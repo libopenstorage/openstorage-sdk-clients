@@ -24,6 +24,7 @@ endif
 
 	@echo "Generating protobuf definitions from api.proto"
 	$(MAKE) -C sdk
+	rm -f api.proto
 
 
 .PHONY: \
