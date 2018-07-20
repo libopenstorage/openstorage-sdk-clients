@@ -18,7 +18,6 @@ proto:
 ifndef DOCKER_PROTO
 	$(error Do not run directly. Run 'make docker-proto' instead.)
 endif
-    go get -u github.com/grpc-ecosystem/grpc-gateway
 	curl https://raw.githubusercontent.com/libopenstorage/openstorage/master/api/api.proto \
 		--output api.proto --silent
 
