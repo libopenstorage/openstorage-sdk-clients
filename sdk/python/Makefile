@@ -1,5 +1,5 @@
 HAS_VIRTUALENV := $(shell command -v virtualenv 2> /dev/null)
-APIDIR := "../../"
+APIDIR := ../..
 VEDIR := "build"
 all: grpc
 

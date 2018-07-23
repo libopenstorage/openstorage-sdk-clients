@@ -96,6 +96,8 @@ module Openstorage
         # Update provides a method for manipulating the specification and attributes of a volume.
         # Set can be used to resize a volume, update labels, change replica count, and much more.
         rpc :Update, SdkVolumeUpdateRequest, SdkVolumeUpdateResponse
+        # Stats returns the statistics for the requested volume
+        rpc :Stats, SdkVolumeStatsRequest, SdkVolumeStatsResponse
         # Enumerate returns a list of volume ids
         rpc :Enumerate, SdkVolumeEnumerateRequest, SdkVolumeEnumerateResponse
         # Enumerate returns a list of volume ids that match the labels if any are provided.

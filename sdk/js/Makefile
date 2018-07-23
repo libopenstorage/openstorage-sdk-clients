@@ -1,6 +1,6 @@
 HAS_NPM := $(shell command -v npm 2> /dev/null)
 JSPROTOC := ./node_modules/.bin/grpc_tools_node_protoc
-APIDIR := "../../"
+APIDIR := ../..
 all: grpc
 
 grpc:

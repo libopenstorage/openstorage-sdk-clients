@@ -1,5 +1,5 @@
 HAS_GRPCTOOLS := $(shell command -v grpc_tools_ruby_protoc 2> /dev/null)
-APIDIR := "../../"
+APIDIR := ../..
 all: grpc
 
 grpc:

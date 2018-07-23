@@ -1029,6 +1029,28 @@ function deserialize_openstorage_api_SdkVolumeSnapshotRestoreResponse(buffer_arg
   return api_pb.SdkVolumeSnapshotRestoreResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVolumeStatsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeStatsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeStatsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeStatsRequest(buffer_arg) {
+  return api_pb.SdkVolumeStatsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVolumeStatsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeStatsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeStatsResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeStatsResponse(buffer_arg) {
+  return api_pb.SdkVolumeStatsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeUnmountRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeUnmountRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeUnmountRequest');
@@ -1246,6 +1268,18 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     requestDeserialize: deserialize_openstorage_api_SdkVolumeUpdateRequest,
     responseSerialize: serialize_openstorage_api_SdkVolumeUpdateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeUpdateResponse,
+  },
+  // Stats returns the statistics for the requested volume
+  stats: {
+    path: '/openstorage.api.OpenStorageVolume/Stats',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVolumeStatsRequest,
+    responseType: api_pb.SdkVolumeStatsResponse,
+    requestSerialize: serialize_openstorage_api_SdkVolumeStatsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVolumeStatsRequest,
+    responseSerialize: serialize_openstorage_api_SdkVolumeStatsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVolumeStatsResponse,
   },
   // Enumerate returns a list of volume ids
   enumerate: {

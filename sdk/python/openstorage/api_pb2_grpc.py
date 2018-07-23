@@ -210,6 +210,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeUpdateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeUpdateResponse.FromString,
         )
+    self.Stats = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/Stats',
+        request_serializer=api__pb2.SdkVolumeStatsRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeStatsResponse.FromString,
+        )
     self.Enumerate = channel.unary_unary(
         '/openstorage.api.OpenStorageVolume/Enumerate',
         request_serializer=api__pb2.SdkVolumeEnumerateRequest.SerializeToString,
@@ -311,6 +316,13 @@ class OpenStorageVolumeServicer(object):
   def Update(self, request, context):
     """Update provides a method for manipulating the specification and attributes of a volume.
     Set can be used to resize a volume, update labels, change replica count, and much more.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Stats(self, request, context):
+    """Stats returns the statistics for the requested volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -423,6 +435,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.Update,
           request_deserializer=api__pb2.SdkVolumeUpdateRequest.FromString,
           response_serializer=api__pb2.SdkVolumeUpdateResponse.SerializeToString,
+      ),
+      'Stats': grpc.unary_unary_rpc_method_handler(
+          servicer.Stats,
+          request_deserializer=api__pb2.SdkVolumeStatsRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeStatsResponse.SerializeToString,
       ),
       'Enumerate': grpc.unary_unary_rpc_method_handler(
           servicer.Enumerate,
