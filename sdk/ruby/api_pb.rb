@@ -166,6 +166,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :runtime_state, :message, 20, "openstorage.api.RuntimeStateMap"
     optional :error, :string, 21
     repeated :volume_consumers, :message, 22, "openstorage.api.VolumeConsumer"
+    optional :fs_resize_required, :bool, 23
   end
   add_message "openstorage.api.Stats" do
     optional :reads, :uint64, 1
@@ -349,7 +350,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.SdkSchedulePolicy" do
     optional :name, :string, 1
-    optional :schedule, :message, 2, "openstorage.api.SdkSchedulePolicyInterval"
+    repeated :schedules, :message, 2, "openstorage.api.SdkSchedulePolicyInterval"
   end
   add_message "openstorage.api.SdkCredentialCreateRequest" do
     oneof :credential_type do
@@ -492,7 +493,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.SdkVolumeSnapshotCreateRequest" do
     optional :volume_id, :string, 1
-    map :labels, :string, :string, 2
+    optional :name, :string, 2
+    map :labels, :string, :string, 3
   end
   add_message "openstorage.api.SdkVolumeSnapshotCreateResponse" do
     optional :snapshot_id, :string, 1
@@ -669,7 +671,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkCloudBackupScheduleInfo" do
     optional :src_volume_id, :string, 1
     optional :credential_id, :string, 2
-    optional :schedule, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
+    repeated :schedules, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
     optional :max_backups, :uint64, 4
   end
   add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do

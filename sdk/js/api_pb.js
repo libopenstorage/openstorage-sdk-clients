@@ -4133,7 +4133,8 @@ proto.openstorage.api.Volume.toObject = function(includeInstance, msg) {
     proto.openstorage.api.RuntimeStateMap.toObject, includeInstance),
     error: jspb.Message.getFieldWithDefault(msg, 21, ""),
     volumeConsumersList: jspb.Message.toObjectList(msg.getVolumeConsumersList(),
-    proto.openstorage.api.VolumeConsumer.toObject, includeInstance)
+    proto.openstorage.api.VolumeConsumer.toObject, includeInstance),
+    fsResizeRequired: jspb.Message.getFieldWithDefault(msg, 23, false)
   };
 
   if (includeInstance) {
@@ -4268,6 +4269,10 @@ proto.openstorage.api.Volume.deserializeBinaryFromReader = function(msg, reader)
       var value = new proto.openstorage.api.VolumeConsumer;
       reader.readMessage(value,proto.openstorage.api.VolumeConsumer.deserializeBinaryFromReader);
       msg.addVolumeConsumers(value);
+      break;
+    case 23:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFsResizeRequired(value);
       break;
     default:
       reader.skipField();
@@ -4456,6 +4461,13 @@ proto.openstorage.api.Volume.serializeBinaryToWriter = function(message, writer)
       22,
       f,
       proto.openstorage.api.VolumeConsumer.serializeBinaryToWriter
+    );
+  }
+  f = message.getFsResizeRequired();
+  if (f) {
+    writer.writeBool(
+      23,
+      f
     );
   }
 };
@@ -4945,6 +4957,23 @@ proto.openstorage.api.Volume.prototype.addVolumeConsumers = function(opt_value, 
 
 proto.openstorage.api.Volume.prototype.clearVolumeConsumersList = function() {
   this.setVolumeConsumersList([]);
+};
+
+
+/**
+ * optional bool fs_resize_required = 23;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.Volume.prototype.getFsResizeRequired = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 23, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.Volume.prototype.setFsResizeRequired = function(value) {
+  jspb.Message.setField(this, 23, value);
 };
 
 
@@ -12476,12 +12505,19 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasMonthly = function(
  * @constructor
  */
 proto.openstorage.api.SdkSchedulePolicy = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkSchedulePolicy.repeatedFields_, null);
 };
 goog.inherits(proto.openstorage.api.SdkSchedulePolicy, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.openstorage.api.SdkSchedulePolicy.displayName = 'proto.openstorage.api.SdkSchedulePolicy';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkSchedulePolicy.repeatedFields_ = [2];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -12512,7 +12548,8 @@ proto.openstorage.api.SdkSchedulePolicy.prototype.toObject = function(opt_includ
 proto.openstorage.api.SdkSchedulePolicy.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    schedule: (f = msg.getSchedule()) && proto.openstorage.api.SdkSchedulePolicyInterval.toObject(includeInstance, f)
+    schedulesList: jspb.Message.toObjectList(msg.getSchedulesList(),
+    proto.openstorage.api.SdkSchedulePolicyInterval.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -12556,7 +12593,7 @@ proto.openstorage.api.SdkSchedulePolicy.deserializeBinaryFromReader = function(m
     case 2:
       var value = new proto.openstorage.api.SdkSchedulePolicyInterval;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyInterval.deserializeBinaryFromReader);
-      msg.setSchedule(value);
+      msg.addSchedules(value);
       break;
     default:
       reader.skipField();
@@ -12594,9 +12631,9 @@ proto.openstorage.api.SdkSchedulePolicy.serializeBinaryToWriter = function(messa
       f
     );
   }
-  f = message.getSchedule();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getSchedulesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       2,
       f,
       proto.openstorage.api.SdkSchedulePolicyInterval.serializeBinaryToWriter
@@ -12621,32 +12658,33 @@ proto.openstorage.api.SdkSchedulePolicy.prototype.setName = function(value) {
 
 
 /**
- * optional SdkSchedulePolicyInterval schedule = 2;
- * @return {?proto.openstorage.api.SdkSchedulePolicyInterval}
+ * repeated SdkSchedulePolicyInterval schedules = 2;
+ * @return {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>}
  */
-proto.openstorage.api.SdkSchedulePolicy.prototype.getSchedule = function() {
-  return /** @type{?proto.openstorage.api.SdkSchedulePolicyInterval} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyInterval, 2));
+proto.openstorage.api.SdkSchedulePolicy.prototype.getSchedulesList = function() {
+  return /** @type{!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkSchedulePolicyInterval, 2));
 };
 
 
-/** @param {?proto.openstorage.api.SdkSchedulePolicyInterval|undefined} value */
-proto.openstorage.api.SdkSchedulePolicy.prototype.setSchedule = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.openstorage.api.SdkSchedulePolicy.prototype.clearSchedule = function() {
-  this.setSchedule(undefined);
+/** @param {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} value */
+proto.openstorage.api.SdkSchedulePolicy.prototype.setSchedulesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * @param {!proto.openstorage.api.SdkSchedulePolicyInterval=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.SdkSchedulePolicyInterval}
  */
-proto.openstorage.api.SdkSchedulePolicy.prototype.hasSchedule = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.openstorage.api.SdkSchedulePolicy.prototype.addSchedules = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.openstorage.api.SdkSchedulePolicyInterval, opt_index);
+};
+
+
+proto.openstorage.api.SdkSchedulePolicy.prototype.clearSchedulesList = function() {
+  this.setSchedulesList([]);
 };
 
 
@@ -19121,6 +19159,7 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.toObject = functi
 proto.openstorage.api.SdkVolumeSnapshotCreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
@@ -19163,6 +19202,10 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.deserializeBinaryFromReader
       msg.setVolumeId(value);
       break;
     case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 3:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
@@ -19204,9 +19247,16 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.serializeBinaryToWriter = f
       f
     );
   }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getLabelsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -19227,14 +19277,29 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.setVolumeId = fun
 
 
 /**
- * map<string, string> labels = 2;
+ * optional string name = 2;
+ * @return {string}
+ */
+proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.setName = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * map<string, string> labels = 3;
  * @param {boolean=} opt_noLazyCreate Do not create the map if
  * empty, instead returning `undefined`
  * @return {!jspb.Map<string,string>}
  */
 proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.getLabelsMap = function(opt_noLazyCreate) {
   return /** @type {!jspb.Map<string,string>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
+      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
       null));
 };
 
@@ -27327,12 +27392,19 @@ proto.openstorage.api.SdkCloudBackupStateChangeResponse.serializeBinaryToWriter 
  * @constructor
  */
 proto.openstorage.api.SdkCloudBackupScheduleInfo = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkCloudBackupScheduleInfo.repeatedFields_, null);
 };
 goog.inherits(proto.openstorage.api.SdkCloudBackupScheduleInfo, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.openstorage.api.SdkCloudBackupScheduleInfo.displayName = 'proto.openstorage.api.SdkCloudBackupScheduleInfo';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -27364,7 +27436,8 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.toObject = function(includeInst
   var f, obj = {
     srcVolumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     credentialId: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    schedule: (f = msg.getSchedule()) && proto.openstorage.api.SdkSchedulePolicyInterval.toObject(includeInstance, f),
+    schedulesList: jspb.Message.toObjectList(msg.getSchedulesList(),
+    proto.openstorage.api.SdkSchedulePolicyInterval.toObject, includeInstance),
     maxBackups: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
@@ -27413,7 +27486,7 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.deserializeBinaryFromReader = f
     case 3:
       var value = new proto.openstorage.api.SdkSchedulePolicyInterval;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyInterval.deserializeBinaryFromReader);
-      msg.setSchedule(value);
+      msg.addSchedules(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readUint64());
@@ -27462,9 +27535,9 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getSchedule();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getSchedulesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       3,
       f,
       proto.openstorage.api.SdkSchedulePolicyInterval.serializeBinaryToWriter
@@ -27511,32 +27584,33 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setCredentialId = fun
 
 
 /**
- * optional SdkSchedulePolicyInterval schedule = 3;
- * @return {?proto.openstorage.api.SdkSchedulePolicyInterval}
+ * repeated SdkSchedulePolicyInterval schedules = 3;
+ * @return {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>}
  */
-proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getSchedule = function() {
-  return /** @type{?proto.openstorage.api.SdkSchedulePolicyInterval} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyInterval, 3));
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getSchedulesList = function() {
+  return /** @type{!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkSchedulePolicyInterval, 3));
 };
 
 
-/** @param {?proto.openstorage.api.SdkSchedulePolicyInterval|undefined} value */
-proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setSchedule = function(value) {
-  jspb.Message.setWrapperField(this, 3, value);
-};
-
-
-proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.clearSchedule = function() {
-  this.setSchedule(undefined);
+/** @param {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} value */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setSchedulesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * @param {!proto.openstorage.api.SdkSchedulePolicyInterval=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.SdkSchedulePolicyInterval}
  */
-proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.hasSchedule = function() {
-  return jspb.Message.getField(this, 3) != null;
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.addSchedules = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.openstorage.api.SdkSchedulePolicyInterval, opt_index);
+};
+
+
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.clearSchedulesList = function() {
+  this.setSchedulesList([]);
 };
 
 
