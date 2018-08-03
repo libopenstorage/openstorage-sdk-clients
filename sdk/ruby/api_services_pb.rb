@@ -17,6 +17,27 @@ require 'api_pb'
 
 module Openstorage
   module Api
+    module OpenStorageIdentity
+      # OpenStorageIdentity service provides methods to obtain information
+      # about the cluster
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageIdentity'
+
+        # Capabilities returns the supported services by the cluster.
+        # This allows SDK implementations to advertise their supported
+        # services as the API matures. With this information, clients
+        # can determine supported services from storage clusters at
+        # different versions.
+        rpc :Capabilities, SdkIdentityCapabilitiesRequest, SdkIdentityCapabilitiesResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageCluster
       # OpenStorageCluster service provides the methods to manage the cluster
       class Service

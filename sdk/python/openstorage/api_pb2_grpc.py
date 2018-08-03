@@ -4,6 +4,54 @@ import grpc
 import api_pb2 as api__pb2
 
 
+class OpenStorageIdentityStub(object):
+  """OpenStorageIdentity service provides methods to obtain information
+  about the cluster
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Capabilities = channel.unary_unary(
+        '/openstorage.api.OpenStorageIdentity/Capabilities',
+        request_serializer=api__pb2.SdkIdentityCapabilitiesRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkIdentityCapabilitiesResponse.FromString,
+        )
+
+
+class OpenStorageIdentityServicer(object):
+  """OpenStorageIdentity service provides methods to obtain information
+  about the cluster
+  """
+
+  def Capabilities(self, request, context):
+    """Capabilities returns the supported services by the cluster.
+    This allows SDK implementations to advertise their supported
+    services as the API matures. With this information, clients
+    can determine supported services from storage clusters at
+    different versions.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageIdentityServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Capabilities': grpc.unary_unary_rpc_method_handler(
+          servicer.Capabilities,
+          request_deserializer=api__pb2.SdkIdentityCapabilitiesRequest.FromString,
+          response_serializer=api__pb2.SdkIdentityCapabilitiesResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageIdentity', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
 class OpenStorageClusterStub(object):
   """OpenStorageCluster service provides the methods to manage the cluster
   """

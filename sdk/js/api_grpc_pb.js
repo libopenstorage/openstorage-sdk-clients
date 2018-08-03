@@ -479,6 +479,28 @@ function deserialize_openstorage_api_SdkCredentialValidateResponse(buffer_arg) {
   return api_pb.SdkCredentialValidateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkIdentityCapabilitiesRequest(arg) {
+  if (!(arg instanceof api_pb.SdkIdentityCapabilitiesRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkIdentityCapabilitiesRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkIdentityCapabilitiesRequest(buffer_arg) {
+  return api_pb.SdkIdentityCapabilitiesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkIdentityCapabilitiesResponse(arg) {
+  if (!(arg instanceof api_pb.SdkIdentityCapabilitiesResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkIdentityCapabilitiesResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkIdentityCapabilitiesResponse(buffer_arg) {
+  return api_pb.SdkIdentityCapabilitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkNodeEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateRequest');
@@ -1096,6 +1118,28 @@ function deserialize_openstorage_api_SdkVolumeUpdateResponse(buffer_arg) {
 }
 
 
+// OpenStorageIdentity service provides methods to obtain information
+// about the cluster
+var OpenStorageIdentityService = exports.OpenStorageIdentityService = {
+  // Capabilities returns the supported services by the cluster.
+  // This allows SDK implementations to advertise their supported
+  // services as the API matures. With this information, clients
+  // can determine supported services from storage clusters at
+  // different versions.
+  capabilities: {
+    path: '/openstorage.api.OpenStorageIdentity/Capabilities',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkIdentityCapabilitiesRequest,
+    responseType: api_pb.SdkIdentityCapabilitiesResponse,
+    requestSerialize: serialize_openstorage_api_SdkIdentityCapabilitiesRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkIdentityCapabilitiesRequest,
+    responseSerialize: serialize_openstorage_api_SdkIdentityCapabilitiesResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkIdentityCapabilitiesResponse,
+  },
+};
+
+exports.OpenStorageIdentityClient = grpc.makeGenericClientConstructor(OpenStorageIdentityService);
 // OpenStorageCluster service provides the methods to manage the cluster
 var OpenStorageClusterService = exports.OpenStorageClusterService = {
   // InspectCurrent returns information about the current cluster
