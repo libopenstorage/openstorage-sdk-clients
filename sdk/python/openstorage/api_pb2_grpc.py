@@ -20,6 +20,11 @@ class OpenStorageIdentityStub(object):
         request_serializer=api__pb2.SdkIdentityCapabilitiesRequest.SerializeToString,
         response_deserializer=api__pb2.SdkIdentityCapabilitiesResponse.FromString,
         )
+    self.Version = channel.unary_unary(
+        '/openstorage.api.OpenStorageIdentity/Version',
+        request_serializer=api__pb2.SdkIdentityVersionRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkIdentityVersionResponse.FromString,
+        )
 
 
 class OpenStorageIdentityServicer(object):
@@ -38,6 +43,13 @@ class OpenStorageIdentityServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Version(self, request, context):
+    """Version returns version information about the system.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageIdentityServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -45,6 +57,11 @@ def add_OpenStorageIdentityServicer_to_server(servicer, server):
           servicer.Capabilities,
           request_deserializer=api__pb2.SdkIdentityCapabilitiesRequest.FromString,
           response_serializer=api__pb2.SdkIdentityCapabilitiesResponse.SerializeToString,
+      ),
+      'Version': grpc.unary_unary_rpc_method_handler(
+          servicer.Version,
+          request_deserializer=api__pb2.SdkIdentityVersionRequest.FromString,
+          response_serializer=api__pb2.SdkIdentityVersionResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -34,6 +34,8 @@ module Openstorage
         # can determine supported services from storage clusters at
         # different versions.
         rpc :Capabilities, SdkIdentityCapabilitiesRequest, SdkIdentityCapabilitiesResponse
+        # Version returns version information about the system.
+        rpc :Version, SdkIdentityVersionRequest, SdkIdentityVersionResponse
       end
 
       Stub = Service.rpc_stub_class

@@ -501,6 +501,28 @@ function deserialize_openstorage_api_SdkIdentityCapabilitiesResponse(buffer_arg)
   return api_pb.SdkIdentityCapabilitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkIdentityVersionRequest(arg) {
+  if (!(arg instanceof api_pb.SdkIdentityVersionRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkIdentityVersionRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkIdentityVersionRequest(buffer_arg) {
+  return api_pb.SdkIdentityVersionRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkIdentityVersionResponse(arg) {
+  if (!(arg instanceof api_pb.SdkIdentityVersionResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkIdentityVersionResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkIdentityVersionResponse(buffer_arg) {
+  return api_pb.SdkIdentityVersionResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkNodeEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateRequest');
@@ -1136,6 +1158,18 @@ var OpenStorageIdentityService = exports.OpenStorageIdentityService = {
     requestDeserialize: deserialize_openstorage_api_SdkIdentityCapabilitiesRequest,
     responseSerialize: serialize_openstorage_api_SdkIdentityCapabilitiesResponse,
     responseDeserialize: deserialize_openstorage_api_SdkIdentityCapabilitiesResponse,
+  },
+  // Version returns version information about the system.
+  version: {
+    path: '/openstorage.api.OpenStorageIdentity/Version',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkIdentityVersionRequest,
+    responseType: api_pb.SdkIdentityVersionResponse,
+    requestSerialize: serialize_openstorage_api_SdkIdentityVersionRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkIdentityVersionRequest,
+    responseSerialize: serialize_openstorage_api_SdkIdentityVersionResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkIdentityVersionResponse,
   },
 };
 

@@ -695,6 +695,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkIdentityCapabilitiesResponse" do
     repeated :capabilities, :message, 1, "openstorage.api.SdkServiceCapability"
   end
+  add_message "openstorage.api.SdkIdentityVersionRequest" do
+  end
+  add_message "openstorage.api.SdkIdentityVersionResponse" do
+    optional :sdk_version, :message, 1, "openstorage.api.SdkVersion"
+    optional :version, :message, 2, "openstorage.api.StorageVersion"
+  end
   add_message "openstorage.api.SdkServiceCapability" do
     oneof :type do
       optional :service, :message, 1, "openstorage.api.SdkServiceCapability.OpenStorageService"
@@ -712,6 +718,23 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :OBJECT_STORAGE, 5
     value :SCHEDULE_POLICY, 6
     value :VOLUME, 7
+  end
+  add_message "openstorage.api.SdkVersion" do
+    optional :major, :int32, 1
+    optional :minor, :int32, 2
+    optional :patch, :int32, 3
+    optional :version, :string, 4
+  end
+  add_enum "openstorage.api.SdkVersion.Version" do
+    value :MUST_HAVE_ZERO_VALUE, 0
+    value :Major, 0
+    value :Minor, 1
+    value :Patch, 0
+  end
+  add_message "openstorage.api.StorageVersion" do
+    optional :driver, :string, 1
+    optional :version, :string, 2
+    map :details, :string, :string, 3
   end
   add_message "openstorage.api.CloudMigrate" do
   end
@@ -1122,9 +1145,14 @@ module Openstorage
     SdkCloudBackupSchedEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedEnumerateResponse").msgclass
     SdkIdentityCapabilitiesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkIdentityCapabilitiesRequest").msgclass
     SdkIdentityCapabilitiesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkIdentityCapabilitiesResponse").msgclass
+    SdkIdentityVersionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkIdentityVersionRequest").msgclass
+    SdkIdentityVersionResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkIdentityVersionResponse").msgclass
     SdkServiceCapability = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkServiceCapability").msgclass
     SdkServiceCapability::OpenStorageService = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkServiceCapability.OpenStorageService").msgclass
     SdkServiceCapability::OpenStorageService::Type = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkServiceCapability.OpenStorageService.Type").enummodule
+    SdkVersion = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVersion").msgclass
+    SdkVersion::Version = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVersion.Version").enummodule
+    StorageVersion = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageVersion").msgclass
     CloudMigrate = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrate").msgclass
     CloudMigrate::OperationType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrate.OperationType").enummodule
     CloudMigrate::Stage = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrate.Stage").enummodule
