@@ -196,6 +196,7 @@ module Openstorage
         # ##### Example
         # {% codetabs name="Golang", type="go" -%}
         # id, err := client.Create(context.Background(), &api.SdkCredentialCreateRequest{
+        #     Name: "awscred",
         #     CredentialType: &api.SdkCredentialCreateRequest_AwsCredential{
         #       AwsCredential: &api.SdkAwsCredentialRequest{
         #       AccessKey: "dummy-access",
@@ -207,6 +208,7 @@ module Openstorage
         # })
         # {%- language name="Python", type="py" -%}
         # en_resp = client.Create(api_pb2.SdkCredentialCreateRequest(
+        #   name='awscred',
         #   aws_credential=api_pb2.SdkAwsCredentialRequest(
         #     access_key='dummy-access',
         #     secret_key='dumm-secret',

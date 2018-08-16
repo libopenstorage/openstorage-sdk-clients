@@ -242,6 +242,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :id, :string, 1
     optional :locator, :message, 2, "openstorage.api.VolumeLocator"
     optional :readonly, :bool, 3
+    optional :no_retry, :bool, 4
   end
   add_message "openstorage.api.SnapCreateResponse" do
     optional :volume_create_response, :message, 1, "openstorage.api.VolumeCreateResponse"
@@ -343,9 +344,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkSchedulePolicyInterval" do
     optional :retain, :int64, 1
     oneof :period_type do
-      optional :daily, :message, 2, "openstorage.api.SdkSchedulePolicyIntervalDaily"
-      optional :weekly, :message, 3, "openstorage.api.SdkSchedulePolicyIntervalWeekly"
-      optional :monthly, :message, 4, "openstorage.api.SdkSchedulePolicyIntervalMonthly"
+      optional :daily, :message, 200, "openstorage.api.SdkSchedulePolicyIntervalDaily"
+      optional :weekly, :message, 201, "openstorage.api.SdkSchedulePolicyIntervalWeekly"
+      optional :monthly, :message, 202, "openstorage.api.SdkSchedulePolicyIntervalMonthly"
     end
   end
   add_message "openstorage.api.SdkSchedulePolicy" do
@@ -353,10 +354,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :schedules, :message, 2, "openstorage.api.SdkSchedulePolicyInterval"
   end
   add_message "openstorage.api.SdkCredentialCreateRequest" do
+    optional :name, :string, 1
     oneof :credential_type do
-      optional :aws_credential, :message, 1, "openstorage.api.SdkAwsCredentialRequest"
-      optional :azure_credential, :message, 2, "openstorage.api.SdkAzureCredentialRequest"
-      optional :google_credential, :message, 3, "openstorage.api.SdkGoogleCredentialRequest"
+      optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
+      optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
+      optional :google_credential, :message, 202, "openstorage.api.SdkGoogleCredentialRequest"
     end
   end
   add_message "openstorage.api.SdkCredentialCreateResponse" do
@@ -377,17 +379,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :json_key, :string, 2
   end
   add_message "openstorage.api.SdkAwsCredentialResponse" do
-    optional :credential_id, :string, 1
     optional :access_key, :string, 2
     optional :endpoint, :string, 3
     optional :region, :string, 4
   end
   add_message "openstorage.api.SdkAzureCredentialResponse" do
-    optional :credential_id, :string, 1
     optional :account_name, :string, 2
   end
   add_message "openstorage.api.SdkGoogleCredentialResponse" do
-    optional :credential_id, :string, 1
     optional :project_id, :string, 2
   end
   add_message "openstorage.api.SdkCredentialEnumerateRequest" do
@@ -399,10 +398,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :credential_id, :string, 1
   end
   add_message "openstorage.api.SdkCredentialInspectResponse" do
+    optional :credential_id, :string, 1
+    optional :name, :string, 2
     oneof :credential_type do
-      optional :aws_credential, :message, 1, "openstorage.api.SdkAwsCredentialResponse"
-      optional :azure_credential, :message, 2, "openstorage.api.SdkAzureCredentialResponse"
-      optional :google_credential, :message, 3, "openstorage.api.SdkGoogleCredentialResponse"
+      optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialResponse"
+      optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialResponse"
+      optional :google_credential, :message, 202, "openstorage.api.SdkGoogleCredentialResponse"
     end
   end
   add_message "openstorage.api.SdkCredentialDeleteRequest" do
@@ -728,7 +729,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 1
+    value :Minor, 2
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do

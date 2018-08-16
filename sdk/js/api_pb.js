@@ -7776,7 +7776,8 @@ proto.openstorage.api.SnapCreateRequest.toObject = function(includeInstance, msg
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     locator: (f = msg.getLocator()) && proto.openstorage.api.VolumeLocator.toObject(includeInstance, f),
-    readonly: jspb.Message.getFieldWithDefault(msg, 3, false)
+    readonly: jspb.Message.getFieldWithDefault(msg, 3, false),
+    noRetry: jspb.Message.getFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -7826,6 +7827,10 @@ proto.openstorage.api.SnapCreateRequest.deserializeBinaryFromReader = function(m
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setReadonly(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNoRetry(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -7874,6 +7879,13 @@ proto.openstorage.api.SnapCreateRequest.serializeBinaryToWriter = function(messa
   if (f) {
     writer.writeBool(
       3,
+      f
+    );
+  }
+  f = message.getNoRetry();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -7939,6 +7951,23 @@ proto.openstorage.api.SnapCreateRequest.prototype.getReadonly = function() {
 /** @param {boolean} value */
 proto.openstorage.api.SnapCreateRequest.prototype.setReadonly = function(value) {
   jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional bool no_retry = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SnapCreateRequest.prototype.getNoRetry = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SnapCreateRequest.prototype.setNoRetry = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 
@@ -12228,16 +12257,16 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_ = [[2,3,4]];
+proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_ = [[200,201,202]];
 
 /**
  * @enum {number}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.PeriodTypeCase = {
   PERIOD_TYPE_NOT_SET: 0,
-  DAILY: 2,
-  WEEKLY: 3,
-  MONTHLY: 4
+  DAILY: 200,
+  WEEKLY: 201,
+  MONTHLY: 202
 };
 
 /**
@@ -12320,17 +12349,17 @@ proto.openstorage.api.SdkSchedulePolicyInterval.deserializeBinaryFromReader = fu
       var value = /** @type {number} */ (reader.readInt64());
       msg.setRetain(value);
       break;
-    case 2:
+    case 200:
       var value = new proto.openstorage.api.SdkSchedulePolicyIntervalDaily;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyIntervalDaily.deserializeBinaryFromReader);
       msg.setDaily(value);
       break;
-    case 3:
+    case 201:
       var value = new proto.openstorage.api.SdkSchedulePolicyIntervalWeekly;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.deserializeBinaryFromReader);
       msg.setWeekly(value);
       break;
-    case 4:
+    case 202:
       var value = new proto.openstorage.api.SdkSchedulePolicyIntervalMonthly;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.deserializeBinaryFromReader);
       msg.setMonthly(value);
@@ -12374,7 +12403,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.serializeBinaryToWriter = functi
   f = message.getDaily();
   if (f != null) {
     writer.writeMessage(
-      2,
+      200,
       f,
       proto.openstorage.api.SdkSchedulePolicyIntervalDaily.serializeBinaryToWriter
     );
@@ -12382,7 +12411,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.serializeBinaryToWriter = functi
   f = message.getWeekly();
   if (f != null) {
     writer.writeMessage(
-      3,
+      201,
       f,
       proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.serializeBinaryToWriter
     );
@@ -12390,7 +12419,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.serializeBinaryToWriter = functi
   f = message.getMonthly();
   if (f != null) {
     writer.writeMessage(
-      4,
+      202,
       f,
       proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.serializeBinaryToWriter
     );
@@ -12414,18 +12443,18 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.setRetain = function(v
 
 
 /**
- * optional SdkSchedulePolicyIntervalDaily daily = 2;
+ * optional SdkSchedulePolicyIntervalDaily daily = 200;
  * @return {?proto.openstorage.api.SdkSchedulePolicyIntervalDaily}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.getDaily = function() {
   return /** @type{?proto.openstorage.api.SdkSchedulePolicyIntervalDaily} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalDaily, 2));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalDaily, 200));
 };
 
 
 /** @param {?proto.openstorage.api.SdkSchedulePolicyIntervalDaily|undefined} value */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.setDaily = function(value) {
-  jspb.Message.setOneofWrapperField(this, 2, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 200, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
 };
 
 
@@ -12439,23 +12468,23 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearDaily = function(
  * @return {!boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasDaily = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 200) != null;
 };
 
 
 /**
- * optional SdkSchedulePolicyIntervalWeekly weekly = 3;
+ * optional SdkSchedulePolicyIntervalWeekly weekly = 201;
  * @return {?proto.openstorage.api.SdkSchedulePolicyIntervalWeekly}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.getWeekly = function() {
   return /** @type{?proto.openstorage.api.SdkSchedulePolicyIntervalWeekly} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalWeekly, 3));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalWeekly, 201));
 };
 
 
 /** @param {?proto.openstorage.api.SdkSchedulePolicyIntervalWeekly|undefined} value */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.setWeekly = function(value) {
-  jspb.Message.setOneofWrapperField(this, 3, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 201, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
 };
 
 
@@ -12469,23 +12498,23 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearWeekly = function
  * @return {!boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasWeekly = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 201) != null;
 };
 
 
 /**
- * optional SdkSchedulePolicyIntervalMonthly monthly = 4;
+ * optional SdkSchedulePolicyIntervalMonthly monthly = 202;
  * @return {?proto.openstorage.api.SdkSchedulePolicyIntervalMonthly}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.getMonthly = function() {
   return /** @type{?proto.openstorage.api.SdkSchedulePolicyIntervalMonthly} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalMonthly, 4));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalMonthly, 202));
 };
 
 
 /** @param {?proto.openstorage.api.SdkSchedulePolicyIntervalMonthly|undefined} value */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.setMonthly = function(value) {
-  jspb.Message.setOneofWrapperField(this, 4, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 202, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
 };
 
 
@@ -12499,7 +12528,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearMonthly = functio
  * @return {!boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasMonthly = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 202) != null;
 };
 
 
@@ -12724,16 +12753,16 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_ = [[1,2,3]];
+proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_ = [[200,201,202]];
 
 /**
  * @enum {number}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.CredentialTypeCase = {
   CREDENTIAL_TYPE_NOT_SET: 0,
-  AWS_CREDENTIAL: 1,
-  AZURE_CREDENTIAL: 2,
-  GOOGLE_CREDENTIAL: 3
+  AWS_CREDENTIAL: 200,
+  AZURE_CREDENTIAL: 201,
+  GOOGLE_CREDENTIAL: 202
 };
 
 /**
@@ -12772,6 +12801,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.toObject = function(o
  */
 proto.openstorage.api.SdkCredentialCreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     awsCredential: (f = msg.getAwsCredential()) && proto.openstorage.api.SdkAwsCredentialRequest.toObject(includeInstance, f),
     azureCredential: (f = msg.getAzureCredential()) && proto.openstorage.api.SdkAzureCredentialRequest.toObject(includeInstance, f),
     googleCredential: (f = msg.getGoogleCredential()) && proto.openstorage.api.SdkGoogleCredentialRequest.toObject(includeInstance, f)
@@ -12812,16 +12842,20 @@ proto.openstorage.api.SdkCredentialCreateRequest.deserializeBinaryFromReader = f
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 200:
       var value = new proto.openstorage.api.SdkAwsCredentialRequest;
       reader.readMessage(value,proto.openstorage.api.SdkAwsCredentialRequest.deserializeBinaryFromReader);
       msg.setAwsCredential(value);
       break;
-    case 2:
+    case 201:
       var value = new proto.openstorage.api.SdkAzureCredentialRequest;
       reader.readMessage(value,proto.openstorage.api.SdkAzureCredentialRequest.deserializeBinaryFromReader);
       msg.setAzureCredential(value);
       break;
-    case 3:
+    case 202:
       var value = new proto.openstorage.api.SdkGoogleCredentialRequest;
       reader.readMessage(value,proto.openstorage.api.SdkGoogleCredentialRequest.deserializeBinaryFromReader);
       msg.setGoogleCredential(value);
@@ -12855,10 +12889,17 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.serializeBinary = fun
  */
 proto.openstorage.api.SdkCredentialCreateRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getAwsCredential();
   if (f != null) {
     writer.writeMessage(
-      1,
+      200,
       f,
       proto.openstorage.api.SdkAwsCredentialRequest.serializeBinaryToWriter
     );
@@ -12866,7 +12907,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.serializeBinaryToWriter = funct
   f = message.getAzureCredential();
   if (f != null) {
     writer.writeMessage(
-      2,
+      201,
       f,
       proto.openstorage.api.SdkAzureCredentialRequest.serializeBinaryToWriter
     );
@@ -12874,7 +12915,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.serializeBinaryToWriter = funct
   f = message.getGoogleCredential();
   if (f != null) {
     writer.writeMessage(
-      3,
+      202,
       f,
       proto.openstorage.api.SdkGoogleCredentialRequest.serializeBinaryToWriter
     );
@@ -12883,18 +12924,33 @@ proto.openstorage.api.SdkCredentialCreateRequest.serializeBinaryToWriter = funct
 
 
 /**
- * optional SdkAwsCredentialRequest aws_credential = 1;
+ * optional string name = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialCreateRequest.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCredentialCreateRequest.prototype.setName = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional SdkAwsCredentialRequest aws_credential = 200;
  * @return {?proto.openstorage.api.SdkAwsCredentialRequest}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.getAwsCredential = function() {
   return /** @type{?proto.openstorage.api.SdkAwsCredentialRequest} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAwsCredentialRequest, 1));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAwsCredentialRequest, 200));
 };
 
 
 /** @param {?proto.openstorage.api.SdkAwsCredentialRequest|undefined} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setAwsCredential = function(value) {
-  jspb.Message.setOneofWrapperField(this, 1, proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 200, proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_[0], value);
 };
 
 
@@ -12908,23 +12964,23 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.clearAwsCredential = 
  * @return {!boolean}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.hasAwsCredential = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 200) != null;
 };
 
 
 /**
- * optional SdkAzureCredentialRequest azure_credential = 2;
+ * optional SdkAzureCredentialRequest azure_credential = 201;
  * @return {?proto.openstorage.api.SdkAzureCredentialRequest}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.getAzureCredential = function() {
   return /** @type{?proto.openstorage.api.SdkAzureCredentialRequest} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAzureCredentialRequest, 2));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAzureCredentialRequest, 201));
 };
 
 
 /** @param {?proto.openstorage.api.SdkAzureCredentialRequest|undefined} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setAzureCredential = function(value) {
-  jspb.Message.setOneofWrapperField(this, 2, proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 201, proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_[0], value);
 };
 
 
@@ -12938,23 +12994,23 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.clearAzureCredential 
  * @return {!boolean}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.hasAzureCredential = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 201) != null;
 };
 
 
 /**
- * optional SdkGoogleCredentialRequest google_credential = 3;
+ * optional SdkGoogleCredentialRequest google_credential = 202;
  * @return {?proto.openstorage.api.SdkGoogleCredentialRequest}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.getGoogleCredential = function() {
   return /** @type{?proto.openstorage.api.SdkGoogleCredentialRequest} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkGoogleCredentialRequest, 3));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkGoogleCredentialRequest, 202));
 };
 
 
 /** @param {?proto.openstorage.api.SdkGoogleCredentialRequest|undefined} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setGoogleCredential = function(value) {
-  jspb.Message.setOneofWrapperField(this, 3, proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 202, proto.openstorage.api.SdkCredentialCreateRequest.oneofGroups_[0], value);
 };
 
 
@@ -12968,7 +13024,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.clearGoogleCredential
  * @return {!boolean}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.hasGoogleCredential = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 202) != null;
 };
 
 
@@ -13722,7 +13778,6 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.toObject = function(opt
  */
 proto.openstorage.api.SdkAwsCredentialResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    credentialId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     accessKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
     endpoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
     region: jspb.Message.getFieldWithDefault(msg, 4, "")
@@ -13762,10 +13817,6 @@ proto.openstorage.api.SdkAwsCredentialResponse.deserializeBinaryFromReader = fun
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCredentialId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setAccessKey(value);
@@ -13807,13 +13858,6 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.serializeBinary = funct
  */
 proto.openstorage.api.SdkAwsCredentialResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCredentialId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getAccessKey();
   if (f.length > 0) {
     writer.writeString(
@@ -13835,21 +13879,6 @@ proto.openstorage.api.SdkAwsCredentialResponse.serializeBinaryToWriter = functio
       f
     );
   }
-};
-
-
-/**
- * optional string credential_id = 1;
- * @return {string}
- */
-proto.openstorage.api.SdkAwsCredentialResponse.prototype.getCredentialId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.openstorage.api.SdkAwsCredentialResponse.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -13945,7 +13974,6 @@ proto.openstorage.api.SdkAzureCredentialResponse.prototype.toObject = function(o
  */
 proto.openstorage.api.SdkAzureCredentialResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    credentialId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     accountName: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -13983,10 +14011,6 @@ proto.openstorage.api.SdkAzureCredentialResponse.deserializeBinaryFromReader = f
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCredentialId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setAccountName(value);
@@ -14020,13 +14044,6 @@ proto.openstorage.api.SdkAzureCredentialResponse.prototype.serializeBinary = fun
  */
 proto.openstorage.api.SdkAzureCredentialResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCredentialId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getAccountName();
   if (f.length > 0) {
     writer.writeString(
@@ -14034,21 +14051,6 @@ proto.openstorage.api.SdkAzureCredentialResponse.serializeBinaryToWriter = funct
       f
     );
   }
-};
-
-
-/**
- * optional string credential_id = 1;
- * @return {string}
- */
-proto.openstorage.api.SdkAzureCredentialResponse.prototype.getCredentialId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.openstorage.api.SdkAzureCredentialResponse.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -14114,7 +14116,6 @@ proto.openstorage.api.SdkGoogleCredentialResponse.prototype.toObject = function(
  */
 proto.openstorage.api.SdkGoogleCredentialResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    credentialId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     projectId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -14152,10 +14153,6 @@ proto.openstorage.api.SdkGoogleCredentialResponse.deserializeBinaryFromReader = 
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCredentialId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setProjectId(value);
@@ -14189,13 +14186,6 @@ proto.openstorage.api.SdkGoogleCredentialResponse.prototype.serializeBinary = fu
  */
 proto.openstorage.api.SdkGoogleCredentialResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getCredentialId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getProjectId();
   if (f.length > 0) {
     writer.writeString(
@@ -14203,21 +14193,6 @@ proto.openstorage.api.SdkGoogleCredentialResponse.serializeBinaryToWriter = func
       f
     );
   }
-};
-
-
-/**
- * optional string credential_id = 1;
- * @return {string}
- */
-proto.openstorage.api.SdkGoogleCredentialResponse.prototype.getCredentialId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.openstorage.api.SdkGoogleCredentialResponse.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -14683,16 +14658,16 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_ = [[1,2,3]];
+proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_ = [[200,201,202]];
 
 /**
  * @enum {number}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.CredentialTypeCase = {
   CREDENTIAL_TYPE_NOT_SET: 0,
-  AWS_CREDENTIAL: 1,
-  AZURE_CREDENTIAL: 2,
-  GOOGLE_CREDENTIAL: 3
+  AWS_CREDENTIAL: 200,
+  AZURE_CREDENTIAL: 201,
+  GOOGLE_CREDENTIAL: 202
 };
 
 /**
@@ -14731,6 +14706,8 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.toObject = function
  */
 proto.openstorage.api.SdkCredentialInspectResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
+    credentialId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     awsCredential: (f = msg.getAwsCredential()) && proto.openstorage.api.SdkAwsCredentialResponse.toObject(includeInstance, f),
     azureCredential: (f = msg.getAzureCredential()) && proto.openstorage.api.SdkAzureCredentialResponse.toObject(includeInstance, f),
     googleCredential: (f = msg.getGoogleCredential()) && proto.openstorage.api.SdkGoogleCredentialResponse.toObject(includeInstance, f)
@@ -14771,16 +14748,24 @@ proto.openstorage.api.SdkCredentialInspectResponse.deserializeBinaryFromReader =
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCredentialId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 200:
       var value = new proto.openstorage.api.SdkAwsCredentialResponse;
       reader.readMessage(value,proto.openstorage.api.SdkAwsCredentialResponse.deserializeBinaryFromReader);
       msg.setAwsCredential(value);
       break;
-    case 2:
+    case 201:
       var value = new proto.openstorage.api.SdkAzureCredentialResponse;
       reader.readMessage(value,proto.openstorage.api.SdkAzureCredentialResponse.deserializeBinaryFromReader);
       msg.setAzureCredential(value);
       break;
-    case 3:
+    case 202:
       var value = new proto.openstorage.api.SdkGoogleCredentialResponse;
       reader.readMessage(value,proto.openstorage.api.SdkGoogleCredentialResponse.deserializeBinaryFromReader);
       msg.setGoogleCredential(value);
@@ -14814,10 +14799,24 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.serializeBinary = f
  */
 proto.openstorage.api.SdkCredentialInspectResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getCredentialId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
   f = message.getAwsCredential();
   if (f != null) {
     writer.writeMessage(
-      1,
+      200,
       f,
       proto.openstorage.api.SdkAwsCredentialResponse.serializeBinaryToWriter
     );
@@ -14825,7 +14824,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.serializeBinaryToWriter = fun
   f = message.getAzureCredential();
   if (f != null) {
     writer.writeMessage(
-      2,
+      201,
       f,
       proto.openstorage.api.SdkAzureCredentialResponse.serializeBinaryToWriter
     );
@@ -14833,7 +14832,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.serializeBinaryToWriter = fun
   f = message.getGoogleCredential();
   if (f != null) {
     writer.writeMessage(
-      3,
+      202,
       f,
       proto.openstorage.api.SdkGoogleCredentialResponse.serializeBinaryToWriter
     );
@@ -14842,18 +14841,48 @@ proto.openstorage.api.SdkCredentialInspectResponse.serializeBinaryToWriter = fun
 
 
 /**
- * optional SdkAwsCredentialResponse aws_credential = 1;
+ * optional string credential_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialInspectResponse.prototype.getCredentialId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCredentialInspectResponse.prototype.setCredentialId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string name = 2;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialInspectResponse.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCredentialInspectResponse.prototype.setName = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional SdkAwsCredentialResponse aws_credential = 200;
  * @return {?proto.openstorage.api.SdkAwsCredentialResponse}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.getAwsCredential = function() {
   return /** @type{?proto.openstorage.api.SdkAwsCredentialResponse} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAwsCredentialResponse, 1));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAwsCredentialResponse, 200));
 };
 
 
 /** @param {?proto.openstorage.api.SdkAwsCredentialResponse|undefined} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setAwsCredential = function(value) {
-  jspb.Message.setOneofWrapperField(this, 1, proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 200, proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_[0], value);
 };
 
 
@@ -14867,23 +14896,23 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.clearAwsCredential 
  * @return {!boolean}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.hasAwsCredential = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 200) != null;
 };
 
 
 /**
- * optional SdkAzureCredentialResponse azure_credential = 2;
+ * optional SdkAzureCredentialResponse azure_credential = 201;
  * @return {?proto.openstorage.api.SdkAzureCredentialResponse}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.getAzureCredential = function() {
   return /** @type{?proto.openstorage.api.SdkAzureCredentialResponse} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAzureCredentialResponse, 2));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkAzureCredentialResponse, 201));
 };
 
 
 /** @param {?proto.openstorage.api.SdkAzureCredentialResponse|undefined} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setAzureCredential = function(value) {
-  jspb.Message.setOneofWrapperField(this, 2, proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 201, proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_[0], value);
 };
 
 
@@ -14897,23 +14926,23 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.clearAzureCredentia
  * @return {!boolean}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.hasAzureCredential = function() {
-  return jspb.Message.getField(this, 2) != null;
+  return jspb.Message.getField(this, 201) != null;
 };
 
 
 /**
- * optional SdkGoogleCredentialResponse google_credential = 3;
+ * optional SdkGoogleCredentialResponse google_credential = 202;
  * @return {?proto.openstorage.api.SdkGoogleCredentialResponse}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.getGoogleCredential = function() {
   return /** @type{?proto.openstorage.api.SdkGoogleCredentialResponse} */ (
-    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkGoogleCredentialResponse, 3));
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkGoogleCredentialResponse, 202));
 };
 
 
 /** @param {?proto.openstorage.api.SdkGoogleCredentialResponse|undefined} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setGoogleCredential = function(value) {
-  jspb.Message.setOneofWrapperField(this, 3, proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_[0], value);
+  jspb.Message.setOneofWrapperField(this, 202, proto.openstorage.api.SdkCredentialInspectResponse.oneofGroups_[0], value);
 };
 
 
@@ -14927,7 +14956,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.clearGoogleCredenti
  * @return {!boolean}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.hasGoogleCredential = function() {
-  return jspb.Message.getField(this, 3) != null;
+  return jspb.Message.getField(this, 202) != null;
 };
 
 
@@ -29570,7 +29599,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 1,
+  MINOR: 2,
   PATCH: 0
 };
 
