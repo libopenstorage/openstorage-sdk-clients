@@ -9679,7 +9679,8 @@ proto.openstorage.api.StorageNode.toObject = function(includeInstance, msg) {
     mgmtIp: jspb.Message.getFieldWithDefault(msg, 11, ""),
     dataIp: jspb.Message.getFieldWithDefault(msg, 12, ""),
     hostname: jspb.Message.getFieldWithDefault(msg, 15, ""),
-    nodeLabelsMap: (f = msg.getNodeLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+    nodeLabelsMap: (f = msg.getNodeLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    schedulerNodeName: jspb.Message.getFieldWithDefault(msg, 17, "")
   };
 
   if (includeInstance) {
@@ -9772,6 +9773,10 @@ proto.openstorage.api.StorageNode.deserializeBinaryFromReader = function(msg, re
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
+      break;
+    case 17:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSchedulerNodeName(value);
       break;
     default:
       reader.skipField();
@@ -9887,6 +9892,13 @@ proto.openstorage.api.StorageNode.serializeBinaryToWriter = function(message, wr
   f = message.getNodeLabelsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(16, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getSchedulerNodeName();
+  if (f.length > 0) {
+    writer.writeString(
+      17,
+      f
+    );
   }
 };
 
@@ -10105,6 +10117,21 @@ proto.openstorage.api.StorageNode.prototype.getNodeLabelsMap = function(opt_noLa
 
 proto.openstorage.api.StorageNode.prototype.clearNodeLabelsMap = function() {
   this.getNodeLabelsMap().clear();
+};
+
+
+/**
+ * optional string scheduler_node_name = 17;
+ * @return {string}
+ */
+proto.openstorage.api.StorageNode.prototype.getSchedulerNodeName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.StorageNode.prototype.setSchedulerNodeName = function(value) {
+  jspb.Message.setField(this, 17, value);
 };
 
 
@@ -29599,7 +29626,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 2,
+  MINOR: 3,
   PATCH: 0
 };
 

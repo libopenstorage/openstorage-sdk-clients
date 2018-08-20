@@ -296,6 +296,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :data_ip, :string, 12
     optional :hostname, :string, 15
     map :node_labels, :string, :string, 16
+    optional :scheduler_node_name, :string, 17
   end
   add_message "openstorage.api.StorageCluster" do
     optional :status, :enum, 1, "openstorage.api.Status"
@@ -729,7 +730,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 2
+    value :Minor, 3
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
