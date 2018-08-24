@@ -12829,6 +12829,8 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.toObject = function(o
 proto.openstorage.api.SdkCredentialCreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    bucket: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    encryptionKey: jspb.Message.getFieldWithDefault(msg, 3, ""),
     awsCredential: (f = msg.getAwsCredential()) && proto.openstorage.api.SdkAwsCredentialRequest.toObject(includeInstance, f),
     azureCredential: (f = msg.getAzureCredential()) && proto.openstorage.api.SdkAzureCredentialRequest.toObject(includeInstance, f),
     googleCredential: (f = msg.getGoogleCredential()) && proto.openstorage.api.SdkGoogleCredentialRequest.toObject(includeInstance, f)
@@ -12871,6 +12873,14 @@ proto.openstorage.api.SdkCredentialCreateRequest.deserializeBinaryFromReader = f
     case 1:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBucket(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEncryptionKey(value);
       break;
     case 200:
       var value = new proto.openstorage.api.SdkAwsCredentialRequest;
@@ -12923,6 +12933,20 @@ proto.openstorage.api.SdkCredentialCreateRequest.serializeBinaryToWriter = funct
       f
     );
   }
+  f = message.getBucket();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getEncryptionKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getAwsCredential();
   if (f != null) {
     writer.writeMessage(
@@ -12962,6 +12986,36 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.getName = function() 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setName = function(value) {
   jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string bucket = 2;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialCreateRequest.prototype.getBucket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCredentialCreateRequest.prototype.setBucket = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string encryption_key = 3;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialCreateRequest.prototype.getEncryptionKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCredentialCreateRequest.prototype.setEncryptionKey = function(value) {
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -13247,7 +13301,8 @@ proto.openstorage.api.SdkAwsCredentialRequest.toObject = function(includeInstanc
     accessKey: jspb.Message.getFieldWithDefault(msg, 1, ""),
     secretKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
     endpoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    region: jspb.Message.getFieldWithDefault(msg, 4, "")
+    region: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    disableSsl: jspb.Message.getFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -13299,6 +13354,10 @@ proto.openstorage.api.SdkAwsCredentialRequest.deserializeBinaryFromReader = func
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRegion(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisableSsl(value);
       break;
     default:
       reader.skipField();
@@ -13354,6 +13413,13 @@ proto.openstorage.api.SdkAwsCredentialRequest.serializeBinaryToWriter = function
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getDisableSsl();
+  if (f) {
+    writer.writeBool(
+      5,
       f
     );
   }
@@ -13417,6 +13483,23 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getRegion = function() {
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setRegion = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional bool disable_ssl = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkAwsCredentialRequest.prototype.getDisableSsl = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkAwsCredentialRequest.prototype.setDisableSsl = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 
@@ -13807,7 +13890,8 @@ proto.openstorage.api.SdkAwsCredentialResponse.toObject = function(includeInstan
   var f, obj = {
     accessKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
     endpoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    region: jspb.Message.getFieldWithDefault(msg, 4, "")
+    region: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    disableSsl: jspb.Message.getFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -13855,6 +13939,10 @@ proto.openstorage.api.SdkAwsCredentialResponse.deserializeBinaryFromReader = fun
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setRegion(value);
+      break;
+    case 5:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisableSsl(value);
       break;
     default:
       reader.skipField();
@@ -13906,6 +13994,13 @@ proto.openstorage.api.SdkAwsCredentialResponse.serializeBinaryToWriter = functio
       f
     );
   }
+  f = message.getDisableSsl();
+  if (f) {
+    writer.writeBool(
+      5,
+      f
+    );
+  }
 };
 
 
@@ -13951,6 +14046,23 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getRegion = function() 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setRegion = function(value) {
   jspb.Message.setField(this, 4, value);
+};
+
+
+/**
+ * optional bool disable_ssl = 5;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkAwsCredentialResponse.prototype.getDisableSsl = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 5, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkAwsCredentialResponse.prototype.setDisableSsl = function(value) {
+  jspb.Message.setField(this, 5, value);
 };
 
 
@@ -14735,6 +14847,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.toObject = function(includeIn
   var f, obj = {
     credentialId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    bucket: jspb.Message.getFieldWithDefault(msg, 3, ""),
     awsCredential: (f = msg.getAwsCredential()) && proto.openstorage.api.SdkAwsCredentialResponse.toObject(includeInstance, f),
     azureCredential: (f = msg.getAzureCredential()) && proto.openstorage.api.SdkAzureCredentialResponse.toObject(includeInstance, f),
     googleCredential: (f = msg.getGoogleCredential()) && proto.openstorage.api.SdkGoogleCredentialResponse.toObject(includeInstance, f)
@@ -14781,6 +14894,10 @@ proto.openstorage.api.SdkCredentialInspectResponse.deserializeBinaryFromReader =
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBucket(value);
       break;
     case 200:
       var value = new proto.openstorage.api.SdkAwsCredentialResponse;
@@ -14840,6 +14957,13 @@ proto.openstorage.api.SdkCredentialInspectResponse.serializeBinaryToWriter = fun
       f
     );
   }
+  f = message.getBucket();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
   f = message.getAwsCredential();
   if (f != null) {
     writer.writeMessage(
@@ -14894,6 +15018,21 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.getName = function(
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setName = function(value) {
   jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string bucket = 3;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialInspectResponse.prototype.getBucket = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCredentialInspectResponse.prototype.setBucket = function(value) {
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -29626,7 +29765,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 3,
+  MINOR: 4,
   PATCH: 0
 };
 
@@ -33838,7 +33977,8 @@ proto.openstorage.api.FSType = {
   FS_TYPE_NFS: 4,
   FS_TYPE_VFS: 5,
   FS_TYPE_XFS: 6,
-  FS_TYPE_ZFS: 7
+  FS_TYPE_ZFS: 7,
+  FS_TYPE_XFSV2: 8
 };
 
 /**

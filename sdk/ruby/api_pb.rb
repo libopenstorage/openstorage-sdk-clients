@@ -356,6 +356,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.SdkCredentialCreateRequest" do
     optional :name, :string, 1
+    optional :bucket, :string, 2
+    optional :encryption_key, :string, 3
     oneof :credential_type do
       optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
       optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
@@ -370,6 +372,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :secret_key, :string, 2
     optional :endpoint, :string, 3
     optional :region, :string, 4
+    optional :disable_ssl, :bool, 5
   end
   add_message "openstorage.api.SdkAzureCredentialRequest" do
     optional :account_name, :string, 1
@@ -383,6 +386,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :access_key, :string, 2
     optional :endpoint, :string, 3
     optional :region, :string, 4
+    optional :disable_ssl, :bool, 5
   end
   add_message "openstorage.api.SdkAzureCredentialResponse" do
     optional :account_name, :string, 2
@@ -401,6 +405,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkCredentialInspectResponse" do
     optional :credential_id, :string, 1
     optional :name, :string, 2
+    optional :bucket, :string, 3
     oneof :credential_type do
       optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialResponse"
       optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialResponse"
@@ -730,7 +735,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 3
+    value :Minor, 4
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -885,6 +890,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :FS_TYPE_VFS, 5
     value :FS_TYPE_XFS, 6
     value :FS_TYPE_ZFS, 7
+    value :FS_TYPE_XFSv2, 8
   end
   add_enum "openstorage.api.GraphDriverChangeType" do
     value :GRAPH_DRIVER_CHANGE_TYPE_NONE, 0
