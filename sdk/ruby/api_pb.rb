@@ -66,21 +66,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :cascaded, :bool, 24
     optional :journal, :bool, 25
     optional :sharedv4, :bool, 26
+    optional :queue_depth, :int32, 27
   end
   add_message "openstorage.api.VolumeSpecUpdate" do
     map :volume_labels, :string, :string, 10
     optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
-    oneof :ephemeral_opt do
-      optional :ephemeral, :bool, 1
-    end
     oneof :size_opt do
       optional :size, :uint64, 2
-    end
-    oneof :format_opt do
-      optional :format, :enum, 3, "openstorage.api.FSType"
-    end
-    oneof :block_size_opt do
-      optional :block_size, :int64, 4
     end
     oneof :ha_level_opt do
       optional :ha_level, :int64, 5
@@ -100,12 +92,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     oneof :shared_opt do
       optional :shared, :bool, 11
     end
-    oneof :aggregation_level_opt do
-      optional :aggregation_level, :uint32, 13
-    end
-    oneof :encrypted_opt do
-      optional :encrypted, :bool, 14
-    end
     oneof :passphrase_opt do
       optional :passphrase, :string, 15
     end
@@ -121,20 +107,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     oneof :group_opt do
       optional :group, :message, 19, "openstorage.api.Group"
     end
-    oneof :group_enforced_opt do
-      optional :group_enforced, :bool, 20
-    end
-    oneof :compressed_opt do
-      optional :compressed, :bool, 21
-    end
-    oneof :cascaded_opt do
-      optional :cascaded, :bool, 22
-    end
     oneof :journal_opt do
       optional :journal, :bool, 23
     end
     oneof :sharedv4_opt do
       optional :sharedv4, :bool, 24
+    end
+    oneof :queue_depth_opt do
+      optional :queue_depth, :int32, 25
     end
   end
   add_message "openstorage.api.ReplicaSet" do
@@ -735,7 +715,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 4
+    value :Minor, 5
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
