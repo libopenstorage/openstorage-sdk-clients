@@ -67,6 +67,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :journal, :bool, 25
     optional :sharedv4, :bool, 26
     optional :queue_depth, :int32, 27
+    optional :force_unsupported_fs_type, :bool, 28
   end
   add_message "openstorage.api.VolumeSpecUpdate" do
     map :volume_labels, :string, :string, 10
@@ -281,6 +282,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.StorageCluster" do
     optional :status, :enum, 1, "openstorage.api.Status"
     optional :id, :string, 2
+    optional :name, :string, 3
   end
   add_message "openstorage.api.SdkSchedulePolicyCreateRequest" do
     optional :SchedulePolicy, :message, 1, "openstorage.api.SdkSchedulePolicy"
@@ -526,26 +528,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkNodeEnumerateResponse" do
     repeated :node_ids, :string, 1
   end
-  add_message "openstorage.api.SdkClusterAlertEnumerateRequest" do
-    optional :time_start, :message, 1, "google.protobuf.Timestamp"
-    optional :time_end, :message, 2, "google.protobuf.Timestamp"
-    optional :resource, :enum, 3, "openstorage.api.ResourceType"
-  end
-  add_message "openstorage.api.SdkClusterAlertEnumerateResponse" do
-    repeated :alerts, :message, 1, "openstorage.api.Alert"
-  end
-  add_message "openstorage.api.SdkClusterAlertClearRequest" do
-    optional :resource, :enum, 1, "openstorage.api.ResourceType"
-    optional :alert_id, :int64, 2
-  end
-  add_message "openstorage.api.SdkClusterAlertClearResponse" do
-  end
-  add_message "openstorage.api.SdkClusterAlertDeleteRequest" do
-    optional :resource, :enum, 1, "openstorage.api.ResourceType"
-    optional :alert_id, :int64, 2
-  end
-  add_message "openstorage.api.SdkClusterAlertDeleteResponse" do
-  end
   add_message "openstorage.api.SdkObjectstoreInspectRequest" do
     optional :objectstore_id, :string, 1
   end
@@ -715,7 +697,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 5
+    value :Minor, 7
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1089,12 +1071,6 @@ module Openstorage
     SdkNodeInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectCurrentResponse").msgclass
     SdkNodeEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeEnumerateRequest").msgclass
     SdkNodeEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeEnumerateResponse").msgclass
-    SdkClusterAlertEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterAlertEnumerateRequest").msgclass
-    SdkClusterAlertEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterAlertEnumerateResponse").msgclass
-    SdkClusterAlertClearRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterAlertClearRequest").msgclass
-    SdkClusterAlertClearResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterAlertClearResponse").msgclass
-    SdkClusterAlertDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterAlertDeleteRequest").msgclass
-    SdkClusterAlertDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterAlertDeleteResponse").msgclass
     SdkObjectstoreInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreInspectRequest").msgclass
     SdkObjectstoreInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreInspectResponse").msgclass
     SdkObjectstoreCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreCreateRequest").msgclass

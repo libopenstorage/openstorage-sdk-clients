@@ -281,72 +281,6 @@ function deserialize_openstorage_api_SdkCloudBackupStatusResponse(buffer_arg) {
   return api_pb.SdkCloudBackupStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkClusterAlertClearRequest(arg) {
-  if (!(arg instanceof api_pb.SdkClusterAlertClearRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkClusterAlertClearRequest');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkClusterAlertClearRequest(buffer_arg) {
-  return api_pb.SdkClusterAlertClearRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkClusterAlertClearResponse(arg) {
-  if (!(arg instanceof api_pb.SdkClusterAlertClearResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkClusterAlertClearResponse');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkClusterAlertClearResponse(buffer_arg) {
-  return api_pb.SdkClusterAlertClearResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkClusterAlertDeleteRequest(arg) {
-  if (!(arg instanceof api_pb.SdkClusterAlertDeleteRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkClusterAlertDeleteRequest');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkClusterAlertDeleteRequest(buffer_arg) {
-  return api_pb.SdkClusterAlertDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkClusterAlertDeleteResponse(arg) {
-  if (!(arg instanceof api_pb.SdkClusterAlertDeleteResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkClusterAlertDeleteResponse');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkClusterAlertDeleteResponse(buffer_arg) {
-  return api_pb.SdkClusterAlertDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkClusterAlertEnumerateRequest(arg) {
-  if (!(arg instanceof api_pb.SdkClusterAlertEnumerateRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkClusterAlertEnumerateRequest');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkClusterAlertEnumerateRequest(buffer_arg) {
-  return api_pb.SdkClusterAlertEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkClusterAlertEnumerateResponse(arg) {
-  if (!(arg instanceof api_pb.SdkClusterAlertEnumerateResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkClusterAlertEnumerateResponse');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkClusterAlertEnumerateResponse(buffer_arg) {
-  return api_pb.SdkClusterAlertEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_openstorage_api_SdkClusterInspectCurrentRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterInspectCurrentRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterInspectCurrentRequest');
@@ -1187,43 +1121,6 @@ var OpenStorageClusterService = exports.OpenStorageClusterService = {
     requestDeserialize: deserialize_openstorage_api_SdkClusterInspectCurrentRequest,
     responseSerialize: serialize_openstorage_api_SdkClusterInspectCurrentResponse,
     responseDeserialize: deserialize_openstorage_api_SdkClusterInspectCurrentResponse,
-  },
-  // AlertEnumerate returns a list of alerts from the storage cluster
-  // In REST, use the request values as query parameters.
-  alertEnumerate: {
-    path: '/openstorage.api.OpenStorageCluster/AlertEnumerate',
-    requestStream: false,
-    responseStream: false,
-    requestType: api_pb.SdkClusterAlertEnumerateRequest,
-    responseType: api_pb.SdkClusterAlertEnumerateResponse,
-    requestSerialize: serialize_openstorage_api_SdkClusterAlertEnumerateRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkClusterAlertEnumerateRequest,
-    responseSerialize: serialize_openstorage_api_SdkClusterAlertEnumerateResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkClusterAlertEnumerateResponse,
-  },
-  // AlertClear clears the alert for a given resource
-  alertClear: {
-    path: '/openstorage.api.OpenStorageCluster/AlertClear',
-    requestStream: false,
-    responseStream: false,
-    requestType: api_pb.SdkClusterAlertClearRequest,
-    responseType: api_pb.SdkClusterAlertClearResponse,
-    requestSerialize: serialize_openstorage_api_SdkClusterAlertClearRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkClusterAlertClearRequest,
-    responseSerialize: serialize_openstorage_api_SdkClusterAlertClearResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkClusterAlertClearResponse,
-  },
-  // AlertDelete deletes an alert for all resources
-  alertDelete: {
-    path: '/openstorage.api.OpenStorageCluster/AlertDelete',
-    requestStream: false,
-    responseStream: false,
-    requestType: api_pb.SdkClusterAlertDeleteRequest,
-    responseType: api_pb.SdkClusterAlertDeleteResponse,
-    requestSerialize: serialize_openstorage_api_SdkClusterAlertDeleteRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkClusterAlertDeleteRequest,
-    responseSerialize: serialize_openstorage_api_SdkClusterAlertDeleteResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkClusterAlertDeleteResponse,
   },
 };
 

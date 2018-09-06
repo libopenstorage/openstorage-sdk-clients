@@ -52,13 +52,6 @@ module Openstorage
 
         # InspectCurrent returns information about the current cluster
         rpc :InspectCurrent, SdkClusterInspectCurrentRequest, SdkClusterInspectCurrentResponse
-        # AlertEnumerate returns a list of alerts from the storage cluster
-        # In REST, use the request values as query parameters.
-        rpc :AlertEnumerate, SdkClusterAlertEnumerateRequest, SdkClusterAlertEnumerateResponse
-        # AlertClear clears the alert for a given resource
-        rpc :AlertClear, SdkClusterAlertClearRequest, SdkClusterAlertClearResponse
-        # AlertDelete deletes an alert for all resources
-        rpc :AlertDelete, SdkClusterAlertDeleteRequest, SdkClusterAlertDeleteResponse
       end
 
       Stub = Service.rpc_stub_class
