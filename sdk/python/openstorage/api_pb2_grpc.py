@@ -373,15 +373,17 @@ class OpenStorageVolumeServicer(object):
 
   def SnapshotEnumerate(self, request, context):
     """SnapshotEnumerate returns a list of snapshots for a specific volume
-    that match the labels provided if any.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
   def SnapshotEnumerateWithFilters(self, request, context):
-    """SnapshotEnumerate returns a list of snapshots for a specific volume
-    that match the labels provided if any.
+    """SnapshotEnumerate returns a list of snapshots. 
+    To filter all the snapshots for a specific volume which may no longer exist,
+    specifiy a volume id.
+    Labels can also be used to filter the snapshot list.
+    If neither are provided all snapshots will be returned.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

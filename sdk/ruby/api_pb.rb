@@ -697,7 +697,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 7
+    value :Minor, 8
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -817,6 +817,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.CatalogResponse" do
     optional :root, :message, 1, "openstorage.api.Catalog"
     optional :report, :message, 2, "openstorage.api.Report"
+  end
+  add_message "openstorage.api.LocateResponse" do
+    map :mounts, :string, :string, 1
+    map :dockerids, :string, :string, 2
   end
   add_enum "openstorage.api.Status" do
     value :STATUS_NONE, 0
@@ -1140,6 +1144,7 @@ module Openstorage
     Catalog = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Catalog").msgclass
     Report = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Report").msgclass
     CatalogResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CatalogResponse").msgclass
+    LocateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LocateResponse").msgclass
     Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Status").enummodule
     DriverType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DriverType").enummodule
     FSType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FSType").enummodule

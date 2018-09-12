@@ -125,10 +125,12 @@ module Openstorage
         # SnapshotRestore restores a volume to a specified snapshot
         rpc :SnapshotRestore, SdkVolumeSnapshotRestoreRequest, SdkVolumeSnapshotRestoreResponse
         # SnapshotEnumerate returns a list of snapshots for a specific volume
-        # that match the labels provided if any.
         rpc :SnapshotEnumerate, SdkVolumeSnapshotEnumerateRequest, SdkVolumeSnapshotEnumerateResponse
-        # SnapshotEnumerate returns a list of snapshots for a specific volume
-        # that match the labels provided if any.
+        # SnapshotEnumerate returns a list of snapshots. 
+        # To filter all the snapshots for a specific volume which may no longer exist,
+        # specifiy a volume id.
+        # Labels can also be used to filter the snapshot list.
+        # If neither are provided all snapshots will be returned.
         rpc :SnapshotEnumerateWithFilters, SdkVolumeSnapshotEnumerateWithFiltersRequest, SdkVolumeSnapshotEnumerateWithFiltersResponse
         # Attach attaches device to the host that the client is communicating with.
         # NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more

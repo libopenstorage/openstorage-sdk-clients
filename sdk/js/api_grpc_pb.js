@@ -1307,7 +1307,6 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotRestoreResponse,
   },
   // SnapshotEnumerate returns a list of snapshots for a specific volume
-  // that match the labels provided if any.
   snapshotEnumerate: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotEnumerate',
     requestStream: false,
@@ -1319,8 +1318,11 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseSerialize: serialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse,
   },
-  // SnapshotEnumerate returns a list of snapshots for a specific volume
-  // that match the labels provided if any.
+  // SnapshotEnumerate returns a list of snapshots. 
+  // To filter all the snapshots for a specific volume which may no longer exist,
+  // specifiy a volume id.
+  // Labels can also be used to filter the snapshot list.
+  // If neither are provided all snapshots will be returned.
   snapshotEnumerateWithFilters: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotEnumerateWithFilters',
     requestStream: false,
