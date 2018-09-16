@@ -1318,7 +1318,7 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseSerialize: serialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse,
   },
-  // SnapshotEnumerate returns a list of snapshots. 
+  // SnapshotEnumerate returns a list of snapshots.
   // To filter all the snapshots for a specific volume which may no longer exist,
   // specifiy a volume id.
   // Labels can also be used to filter the snapshot list.
@@ -1334,11 +1334,18 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseSerialize: serialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse,
   },
+};
+
+exports.OpenStorageVolumeClient = grpc.makeGenericClientConstructor(OpenStorageVolumeService);
+// OpenStorageMountAttach is a service used to manage node access to a volume.
+// Note, these APIs are here for testing or diagnostics purposes only. In normal
+// operations, the Container Orchestration (CO) system is managing all mount
+// and attach calls through the CSI interface. The normal usage is once volumes
+// are created, to let the CO manage the node access functions to the volume.
+var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
   // Attach attaches device to the host that the client is communicating with.
-  // NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-  // information about a new feature to allow attachment to any node.
   attach: {
-    path: '/openstorage.api.OpenStorageVolume/Attach',
+    path: '/openstorage.api.OpenStorageMountAttach/Attach',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkVolumeAttachRequest,
@@ -1350,7 +1357,7 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   },
   // Detaches a the volume from the host
   detach: {
-    path: '/openstorage.api.OpenStorageVolume/Detach',
+    path: '/openstorage.api.OpenStorageMountAttach/Detach',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkVolumeDetachRequest,
@@ -1361,10 +1368,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeDetachResponse,
   },
   // Mount mounts an attached volume in the host that the client is communicating with
-  // NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-  // information about a new feature to allow attachment to any node.
   mount: {
-    path: '/openstorage.api.OpenStorageVolume/Mount',
+    path: '/openstorage.api.OpenStorageMountAttach/Mount',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkVolumeMountRequest,
@@ -1375,10 +1380,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeMountResponse,
   },
   // Unmount unmounts a mounted volume in the host that the client is communicating with
-  // NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-  // information about a new feature to allow attachment to any node.
   unmount: {
-    path: '/openstorage.api.OpenStorageVolume/Unmount',
+    path: '/openstorage.api.OpenStorageMountAttach/Unmount',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkVolumeUnmountRequest,
@@ -1390,7 +1393,7 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   },
 };
 
-exports.OpenStorageVolumeClient = grpc.makeGenericClientConstructor(OpenStorageVolumeService);
+exports.OpenStorageMountAttachClient = grpc.makeGenericClientConstructor(OpenStorageMountAttachService);
 // OpenStorageObjectstore is a service used to manage object store services on volumes
 var OpenStorageObjectstoreService = exports.OpenStorageObjectstoreService = {
   // Inspect returns information about the object store endpoint

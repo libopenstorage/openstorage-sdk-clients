@@ -126,25 +126,37 @@ module Openstorage
         rpc :SnapshotRestore, SdkVolumeSnapshotRestoreRequest, SdkVolumeSnapshotRestoreResponse
         # SnapshotEnumerate returns a list of snapshots for a specific volume
         rpc :SnapshotEnumerate, SdkVolumeSnapshotEnumerateRequest, SdkVolumeSnapshotEnumerateResponse
-        # SnapshotEnumerate returns a list of snapshots. 
+        # SnapshotEnumerate returns a list of snapshots.
         # To filter all the snapshots for a specific volume which may no longer exist,
         # specifiy a volume id.
         # Labels can also be used to filter the snapshot list.
         # If neither are provided all snapshots will be returned.
         rpc :SnapshotEnumerateWithFilters, SdkVolumeSnapshotEnumerateWithFiltersRequest, SdkVolumeSnapshotEnumerateWithFiltersResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
+    module OpenStorageMountAttach
+      # OpenStorageMountAttach is a service used to manage node access to a volume.
+      # Note, these APIs are here for testing or diagnostics purposes only. In normal
+      # operations, the Container Orchestration (CO) system is managing all mount
+      # and attach calls through the CSI interface. The normal usage is once volumes
+      # are created, to let the CO manage the node access functions to the volume.
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageMountAttach'
+
         # Attach attaches device to the host that the client is communicating with.
-        # NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-        # information about a new feature to allow attachment to any node.
         rpc :Attach, SdkVolumeAttachRequest, SdkVolumeAttachResponse
         # Detaches a the volume from the host
         rpc :Detach, SdkVolumeDetachRequest, SdkVolumeDetachResponse
         # Mount mounts an attached volume in the host that the client is communicating with
-        # NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-        # information about a new feature to allow attachment to any node.
         rpc :Mount, SdkVolumeMountRequest, SdkVolumeMountResponse
         # Unmount unmounts a mounted volume in the host that the client is communicating with
-        # NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-        # information about a new feature to allow attachment to any node.
         rpc :Unmount, SdkVolumeUnmountRequest, SdkVolumeUnmountResponse
       end
 

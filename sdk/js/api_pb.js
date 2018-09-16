@@ -148,6 +148,7 @@ goog.exportSymbol('proto.openstorage.api.SdkTimeWeekday', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVersion', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVersion.Version', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeAttachRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkVolumeAttachRequest.Options', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeAttachResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeCloneRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeCloneResponse', null, global);
@@ -156,6 +157,7 @@ goog.exportSymbol('proto.openstorage.api.SdkVolumeCreateResponse', null, global)
 goog.exportSymbol('proto.openstorage.api.SdkVolumeDeleteRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeDeleteResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeDetachRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkVolumeDetachRequest.Options', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeDetachResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeEnumerateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeEnumerateResponse', null, global);
@@ -176,6 +178,7 @@ goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotRestoreResponse', null
 goog.exportSymbol('proto.openstorage.api.SdkVolumeStatsRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeStatsResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeUnmountRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkVolumeUnmountRequest.Options', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeUnmountResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeUpdateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeUpdateResponse', null, global);
@@ -15366,8 +15369,7 @@ proto.openstorage.api.SdkVolumeMountRequest.prototype.toObject = function(opt_in
 proto.openstorage.api.SdkVolumeMountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    mountPath: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    optionsMap: (f = msg.getOptionsMap()) ? f.toObject(includeInstance, undefined) : []
+    mountPath: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -15412,12 +15414,6 @@ proto.openstorage.api.SdkVolumeMountRequest.deserializeBinaryFromReader = functi
       var value = /** @type {string} */ (reader.readString());
       msg.setMountPath(value);
       break;
-    case 3:
-      var value = msg.getOptionsMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
-         });
-      break;
     default:
       reader.skipField();
       break;
@@ -15461,10 +15457,6 @@ proto.openstorage.api.SdkVolumeMountRequest.serializeBinaryToWriter = function(m
       f
     );
   }
-  f = message.getOptionsMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
-  }
 };
 
 
@@ -15495,24 +15487,6 @@ proto.openstorage.api.SdkVolumeMountRequest.prototype.getMountPath = function() 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeMountRequest.prototype.setMountPath = function(value) {
   jspb.Message.setField(this, 2, value);
-};
-
-
-/**
- * map<string, string> options = 3;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,string>}
- */
-proto.openstorage.api.SdkVolumeMountRequest.prototype.getOptionsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (
-      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
-      null));
-};
-
-
-proto.openstorage.api.SdkVolumeMountRequest.prototype.clearOptionsMap = function() {
-  this.getOptionsMap().clear();
 };
 
 
@@ -15681,7 +15655,7 @@ proto.openstorage.api.SdkVolumeUnmountRequest.toObject = function(includeInstanc
   var f, obj = {
     volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     mountPath: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    optionsMap: (f = msg.getOptionsMap()) ? f.toObject(includeInstance, undefined) : []
+    options: (f = msg.getOptions()) && proto.openstorage.api.SdkVolumeUnmountRequest.Options.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -15727,10 +15701,9 @@ proto.openstorage.api.SdkVolumeUnmountRequest.deserializeBinaryFromReader = func
       msg.setMountPath(value);
       break;
     case 3:
-      var value = msg.getOptionsMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
-         });
+      var value = new proto.openstorage.api.SdkVolumeUnmountRequest.Options;
+      reader.readMessage(value,proto.openstorage.api.SdkVolumeUnmountRequest.Options.deserializeBinaryFromReader);
+      msg.setOptions(value);
       break;
     default:
       reader.skipField();
@@ -15775,10 +15748,187 @@ proto.openstorage.api.SdkVolumeUnmountRequest.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getOptionsMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  f = message.getOptions();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.openstorage.api.SdkVolumeUnmountRequest.Options.serializeBinaryToWriter
+    );
   }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkVolumeUnmountRequest.Options, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkVolumeUnmountRequest.Options.displayName = 'proto.openstorage.api.SdkVolumeUnmountRequest.Options';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkVolumeUnmountRequest.Options.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkVolumeUnmountRequest.Options} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    deleteMountPath: jspb.Message.getFieldWithDefault(msg, 1, false),
+    noDelayBeforeDeletingMountPath: jspb.Message.getFieldWithDefault(msg, 2, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkVolumeUnmountRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkVolumeUnmountRequest.Options;
+  return proto.openstorage.api.SdkVolumeUnmountRequest.Options.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkVolumeUnmountRequest.Options} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkVolumeUnmountRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDeleteMountPath(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setNoDelayBeforeDeletingMountPath(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkVolumeUnmountRequest.Options.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkVolumeUnmountRequest.Options} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getDeleteMountPath();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getNoDelayBeforeDeletingMountPath();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bool delete_mount_path = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.getDeleteMountPath = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.setDeleteMountPath = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional bool no_delay_before_deleting_mount_path = 2;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.getNoDelayBeforeDeletingMountPath = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.setNoDelayBeforeDeletingMountPath = function(value) {
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -15813,20 +15963,32 @@ proto.openstorage.api.SdkVolumeUnmountRequest.prototype.setMountPath = function(
 
 
 /**
- * map<string, string> options = 3;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,string>}
+ * optional Options options = 3;
+ * @return {?proto.openstorage.api.SdkVolumeUnmountRequest.Options}
  */
-proto.openstorage.api.SdkVolumeUnmountRequest.prototype.getOptionsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (
-      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
-      null));
+proto.openstorage.api.SdkVolumeUnmountRequest.prototype.getOptions = function() {
+  return /** @type{?proto.openstorage.api.SdkVolumeUnmountRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkVolumeUnmountRequest.Options, 3));
 };
 
 
-proto.openstorage.api.SdkVolumeUnmountRequest.prototype.clearOptionsMap = function() {
-  this.getOptionsMap().clear();
+/** @param {?proto.openstorage.api.SdkVolumeUnmountRequest.Options|undefined} value */
+proto.openstorage.api.SdkVolumeUnmountRequest.prototype.setOptions = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.openstorage.api.SdkVolumeUnmountRequest.prototype.clearOptions = function() {
+  this.setOptions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.SdkVolumeUnmountRequest.prototype.hasOptions = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -15994,7 +16156,7 @@ proto.openstorage.api.SdkVolumeAttachRequest.prototype.toObject = function(opt_i
 proto.openstorage.api.SdkVolumeAttachRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    optionsMap: (f = msg.getOptionsMap()) ? f.toObject(includeInstance, undefined) : []
+    options: (f = msg.getOptions()) && proto.openstorage.api.SdkVolumeAttachRequest.Options.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16036,10 +16198,9 @@ proto.openstorage.api.SdkVolumeAttachRequest.deserializeBinaryFromReader = funct
       msg.setVolumeId(value);
       break;
     case 2:
-      var value = msg.getOptionsMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
-         });
+      var value = new proto.openstorage.api.SdkVolumeAttachRequest.Options;
+      reader.readMessage(value,proto.openstorage.api.SdkVolumeAttachRequest.Options.deserializeBinaryFromReader);
+      msg.setOptions(value);
       break;
     default:
       reader.skipField();
@@ -16077,10 +16238,210 @@ proto.openstorage.api.SdkVolumeAttachRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getOptionsMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  f = message.getOptions();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.openstorage.api.SdkVolumeAttachRequest.Options.serializeBinaryToWriter
+    );
   }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkVolumeAttachRequest.Options, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkVolumeAttachRequest.Options.displayName = 'proto.openstorage.api.SdkVolumeAttachRequest.Options';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkVolumeAttachRequest.Options.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkVolumeAttachRequest.Options} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    secretName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    secretKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    secretContext: jspb.Message.getFieldWithDefault(msg, 3, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkVolumeAttachRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkVolumeAttachRequest.Options;
+  return proto.openstorage.api.SdkVolumeAttachRequest.Options.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkVolumeAttachRequest.Options} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkVolumeAttachRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecretName(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecretKey(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSecretContext(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkVolumeAttachRequest.Options.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkVolumeAttachRequest.Options} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSecretName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSecretKey();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getSecretContext();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string secret_name = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.getSecretName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.setSecretName = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string secret_key = 2;
+ * @return {string}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.getSecretKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.setSecretKey = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional string secret_context = 3;
+ * @return {string}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.getSecretContext = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.setSecretContext = function(value) {
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -16100,20 +16461,32 @@ proto.openstorage.api.SdkVolumeAttachRequest.prototype.setVolumeId = function(va
 
 
 /**
- * map<string, string> options = 2;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,string>}
+ * optional Options options = 2;
+ * @return {?proto.openstorage.api.SdkVolumeAttachRequest.Options}
  */
-proto.openstorage.api.SdkVolumeAttachRequest.prototype.getOptionsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (
-      jspb.Message.getMapField(this, 2, opt_noLazyCreate,
-      null));
+proto.openstorage.api.SdkVolumeAttachRequest.prototype.getOptions = function() {
+  return /** @type{?proto.openstorage.api.SdkVolumeAttachRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkVolumeAttachRequest.Options, 2));
 };
 
 
-proto.openstorage.api.SdkVolumeAttachRequest.prototype.clearOptionsMap = function() {
-  this.getOptionsMap().clear();
+/** @param {?proto.openstorage.api.SdkVolumeAttachRequest.Options|undefined} value */
+proto.openstorage.api.SdkVolumeAttachRequest.prototype.setOptions = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.openstorage.api.SdkVolumeAttachRequest.prototype.clearOptions = function() {
+  this.setOptions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.SdkVolumeAttachRequest.prototype.hasOptions = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -16306,7 +16679,8 @@ proto.openstorage.api.SdkVolumeDetachRequest.prototype.toObject = function(opt_i
  */
 proto.openstorage.api.SdkVolumeDetachRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    volumeId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    options: (f = msg.getOptions()) && proto.openstorage.api.SdkVolumeDetachRequest.Options.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -16347,6 +16721,11 @@ proto.openstorage.api.SdkVolumeDetachRequest.deserializeBinaryFromReader = funct
       var value = /** @type {string} */ (reader.readString());
       msg.setVolumeId(value);
       break;
+    case 2:
+      var value = new proto.openstorage.api.SdkVolumeDetachRequest.Options;
+      reader.readMessage(value,proto.openstorage.api.SdkVolumeDetachRequest.Options.deserializeBinaryFromReader);
+      msg.setOptions(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -16383,6 +16762,187 @@ proto.openstorage.api.SdkVolumeDetachRequest.serializeBinaryToWriter = function(
       f
     );
   }
+  f = message.getOptions();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.openstorage.api.SdkVolumeDetachRequest.Options.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkVolumeDetachRequest.Options, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkVolumeDetachRequest.Options.displayName = 'proto.openstorage.api.SdkVolumeDetachRequest.Options';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkVolumeDetachRequest.Options.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkVolumeDetachRequest.Options} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    force: jspb.Message.getFieldWithDefault(msg, 1, false),
+    unmountBeforeDetach: jspb.Message.getFieldWithDefault(msg, 2, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkVolumeDetachRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkVolumeDetachRequest.Options;
+  return proto.openstorage.api.SdkVolumeDetachRequest.Options.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkVolumeDetachRequest.Options} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkVolumeDetachRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setForce(value);
+      break;
+    case 2:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setUnmountBeforeDetach(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkVolumeDetachRequest.Options.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkVolumeDetachRequest.Options} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getForce();
+  if (f) {
+    writer.writeBool(
+      1,
+      f
+    );
+  }
+  f = message.getUnmountBeforeDetach();
+  if (f) {
+    writer.writeBool(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional bool force = 1;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.getForce = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.setForce = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional bool unmount_before_detach = 2;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.getUnmountBeforeDetach = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 2, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.setUnmountBeforeDetach = function(value) {
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -16398,6 +16958,36 @@ proto.openstorage.api.SdkVolumeDetachRequest.prototype.getVolumeId = function() 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeDetachRequest.prototype.setVolumeId = function(value) {
   jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional Options options = 2;
+ * @return {?proto.openstorage.api.SdkVolumeDetachRequest.Options}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.prototype.getOptions = function() {
+  return /** @type{?proto.openstorage.api.SdkVolumeDetachRequest.Options} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkVolumeDetachRequest.Options, 2));
+};
+
+
+/** @param {?proto.openstorage.api.SdkVolumeDetachRequest.Options|undefined} value */
+proto.openstorage.api.SdkVolumeDetachRequest.prototype.setOptions = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.openstorage.api.SdkVolumeDetachRequest.prototype.clearOptions = function() {
+  this.setOptions(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.SdkVolumeDetachRequest.prototype.hasOptions = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -28473,7 +29063,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 8,
+  MINOR: 9,
   PATCH: 0
 };
 

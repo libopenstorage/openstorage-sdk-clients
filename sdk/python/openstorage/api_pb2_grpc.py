@@ -258,26 +258,6 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersResponse.FromString,
         )
-    self.Attach = channel.unary_unary(
-        '/openstorage.api.OpenStorageVolume/Attach',
-        request_serializer=api__pb2.SdkVolumeAttachRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkVolumeAttachResponse.FromString,
-        )
-    self.Detach = channel.unary_unary(
-        '/openstorage.api.OpenStorageVolume/Detach',
-        request_serializer=api__pb2.SdkVolumeDetachRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkVolumeDetachResponse.FromString,
-        )
-    self.Mount = channel.unary_unary(
-        '/openstorage.api.OpenStorageVolume/Mount',
-        request_serializer=api__pb2.SdkVolumeMountRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkVolumeMountResponse.FromString,
-        )
-    self.Unmount = channel.unary_unary(
-        '/openstorage.api.OpenStorageVolume/Unmount',
-        request_serializer=api__pb2.SdkVolumeUnmountRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkVolumeUnmountResponse.FromString,
-        )
 
 
 class OpenStorageVolumeServicer(object):
@@ -379,45 +359,11 @@ class OpenStorageVolumeServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def SnapshotEnumerateWithFilters(self, request, context):
-    """SnapshotEnumerate returns a list of snapshots. 
+    """SnapshotEnumerate returns a list of snapshots.
     To filter all the snapshots for a specific volume which may no longer exist,
     specifiy a volume id.
     Labels can also be used to filter the snapshot list.
     If neither are provided all snapshots will be returned.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Attach(self, request, context):
-    """Attach attaches device to the host that the client is communicating with.
-    NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-    information about a new feature to allow attachment to any node.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Detach(self, request, context):
-    """Detaches a the volume from the host
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Mount(self, request, context):
-    """Mount mounts an attached volume in the host that the client is communicating with
-    NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-    information about a new feature to allow attachment to any node.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
-  def Unmount(self, request, context):
-    """Unmount unmounts a mounted volume in the host that the client is communicating with
-    NOTE: Please see [#381](https://github.com/libopenstorage/openstorage/issues/381) for more
-    information about a new feature to allow attachment to any node.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -486,6 +432,87 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           request_deserializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersRequest.FromString,
           response_serializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersResponse.SerializeToString,
       ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageVolume', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
+class OpenStorageMountAttachStub(object):
+  """OpenStorageMountAttach is a service used to manage node access to a volume.
+  Note, these APIs are here for testing or diagnostics purposes only. In normal
+  operations, the Container Orchestration (CO) system is managing all mount
+  and attach calls through the CSI interface. The normal usage is once volumes
+  are created, to let the CO manage the node access functions to the volume.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Attach = channel.unary_unary(
+        '/openstorage.api.OpenStorageMountAttach/Attach',
+        request_serializer=api__pb2.SdkVolumeAttachRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeAttachResponse.FromString,
+        )
+    self.Detach = channel.unary_unary(
+        '/openstorage.api.OpenStorageMountAttach/Detach',
+        request_serializer=api__pb2.SdkVolumeDetachRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeDetachResponse.FromString,
+        )
+    self.Mount = channel.unary_unary(
+        '/openstorage.api.OpenStorageMountAttach/Mount',
+        request_serializer=api__pb2.SdkVolumeMountRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeMountResponse.FromString,
+        )
+    self.Unmount = channel.unary_unary(
+        '/openstorage.api.OpenStorageMountAttach/Unmount',
+        request_serializer=api__pb2.SdkVolumeUnmountRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeUnmountResponse.FromString,
+        )
+
+
+class OpenStorageMountAttachServicer(object):
+  """OpenStorageMountAttach is a service used to manage node access to a volume.
+  Note, these APIs are here for testing or diagnostics purposes only. In normal
+  operations, the Container Orchestration (CO) system is managing all mount
+  and attach calls through the CSI interface. The normal usage is once volumes
+  are created, to let the CO manage the node access functions to the volume.
+  """
+
+  def Attach(self, request, context):
+    """Attach attaches device to the host that the client is communicating with.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Detach(self, request, context):
+    """Detaches a the volume from the host
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Mount(self, request, context):
+    """Mount mounts an attached volume in the host that the client is communicating with
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Unmount(self, request, context):
+    """Unmount unmounts a mounted volume in the host that the client is communicating with
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageMountAttachServicer_to_server(servicer, server):
+  rpc_method_handlers = {
       'Attach': grpc.unary_unary_rpc_method_handler(
           servicer.Attach,
           request_deserializer=api__pb2.SdkVolumeAttachRequest.FromString,
@@ -508,7 +535,7 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'openstorage.api.OpenStorageVolume', rpc_method_handlers)
+      'openstorage.api.OpenStorageMountAttach', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
 
 
