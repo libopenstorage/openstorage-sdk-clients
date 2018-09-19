@@ -31,6 +31,7 @@ endif
 		--python_out=. \
 		--grpc_python_out=. \
 		$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/http.proto"
+	sed -i -e "s#^import api_pb2 as api__pb2#from openstorage import api_pb2 as api__pb2#" openstorage/api_pb2_grpc.py
 
 .PHONY: all grpc
 
