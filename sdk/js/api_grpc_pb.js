@@ -17,6 +17,28 @@ var api_pb = require('./api_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
 
+function serialize_openstorage_api_SdkAlertsEnumerateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAlertsEnumerateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAlertsEnumerateRequest(buffer_arg) {
+  return api_pb.SdkAlertsEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAlertsEnumerateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAlertsEnumerateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAlertsEnumerateResponse(buffer_arg) {
+  return api_pb.SdkAlertsEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCloudBackupCatalogRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupCatalogRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupCatalogRequest');
@@ -1074,6 +1096,51 @@ function deserialize_openstorage_api_SdkVolumeUpdateResponse(buffer_arg) {
 }
 
 
+// OpenStorageAlerts defines rpc's for alerts.
+var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
+  // Enumerate allows querying alerts.
+  //
+  // #### Enumerate
+  // Enumerate allows 3 different types of queries as defined below:
+  //
+  // * Query that takes only resource type as input
+  // * Query that takes resource type and alert type as input and
+  // * Query that takes resource id, alert type and resource type as input.
+  //
+  // #### Input
+  // SdkAlertsEnumerateRequest takes a list of such queries and the returned
+  // output is a collective ouput from each of these queries. In that sense,
+  // the filtering of these queries has a behavior of OR operation.
+  // Each query also has a list of optional options. These options allow
+  // narrowing down the scope of alerts search. These options have a
+  // behavior of an AND operation.
+  //
+  // #### Examples
+  // To search by a resource type in a given time window would require
+  // initializing SdkAlertsResourceTypeQuery query and pass in
+  // SdkAlertsTimeSpan option into SdkAlertsQuery struct and finally
+  // packing any other such queries into SdkAlertsEnumerateRequest object.
+  // Alternatively, to search by both resource type and alert type, use
+  // SdkAlertsAlertTypeQuery as query builder.
+  // Finally to search all alerts of a given resource type and some
+  // alerts of another resource type but with specific alert type,
+  // use two queries, first initialized with SdkAlertsResourceTypeQuery
+  // and second initialized with SdkAlertsAlertTypeQuery and both
+  // eventually packed as list in SdkAlertsEnumerateRequest.
+  enumerate: {
+    path: '/openstorage.api.OpenStorageAlerts/Enumerate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAlertsEnumerateRequest,
+    responseType: api_pb.SdkAlertsEnumerateResponse,
+    requestSerialize: serialize_openstorage_api_SdkAlertsEnumerateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateRequest,
+    responseSerialize: serialize_openstorage_api_SdkAlertsEnumerateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateResponse,
+  },
+};
+
+exports.OpenStorageAlertsClient = grpc.makeGenericClientConstructor(OpenStorageAlertsService);
 // OpenStorageIdentity service provides methods to obtain information
 // about the cluster
 var OpenStorageIdentityService = exports.OpenStorageIdentityService = {

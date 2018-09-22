@@ -4,6 +4,76 @@ import grpc
 from openstorage import api_pb2 as api__pb2
 
 
+class OpenStorageAlertsStub(object):
+  """OpenStorageAlerts defines rpc's for alerts.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Enumerate = channel.unary_unary(
+        '/openstorage.api.OpenStorageAlerts/Enumerate',
+        request_serializer=api__pb2.SdkAlertsEnumerateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkAlertsEnumerateResponse.FromString,
+        )
+
+
+class OpenStorageAlertsServicer(object):
+  """OpenStorageAlerts defines rpc's for alerts.
+  """
+
+  def Enumerate(self, request, context):
+    """Enumerate allows querying alerts.
+
+    #### Enumerate
+    Enumerate allows 3 different types of queries as defined below:
+
+    * Query that takes only resource type as input
+    * Query that takes resource type and alert type as input and
+    * Query that takes resource id, alert type and resource type as input.
+
+    #### Input
+    SdkAlertsEnumerateRequest takes a list of such queries and the returned
+    output is a collective ouput from each of these queries. In that sense,
+    the filtering of these queries has a behavior of OR operation.
+    Each query also has a list of optional options. These options allow
+    narrowing down the scope of alerts search. These options have a
+    behavior of an AND operation.
+
+    #### Examples
+    To search by a resource type in a given time window would require
+    initializing SdkAlertsResourceTypeQuery query and pass in
+    SdkAlertsTimeSpan option into SdkAlertsQuery struct and finally
+    packing any other such queries into SdkAlertsEnumerateRequest object.
+    Alternatively, to search by both resource type and alert type, use
+    SdkAlertsAlertTypeQuery as query builder.
+    Finally to search all alerts of a given resource type and some
+    alerts of another resource type but with specific alert type,
+    use two queries, first initialized with SdkAlertsResourceTypeQuery
+    and second initialized with SdkAlertsAlertTypeQuery and both
+    eventually packed as list in SdkAlertsEnumerateRequest.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageAlertsServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Enumerate': grpc.unary_unary_rpc_method_handler(
+          servicer.Enumerate,
+          request_deserializer=api__pb2.SdkAlertsEnumerateRequest.FromString,
+          response_serializer=api__pb2.SdkAlertsEnumerateResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageAlerts', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
 class OpenStorageIdentityStub(object):
   """OpenStorageIdentity service provides methods to obtain information
   about the cluster

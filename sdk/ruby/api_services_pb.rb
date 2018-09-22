@@ -17,6 +17,50 @@ require 'api_pb'
 
 module Openstorage
   module Api
+    module OpenStorageAlerts
+      # OpenStorageAlerts defines rpc's for alerts.
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageAlerts'
+
+        # Enumerate allows querying alerts.
+        #
+        # #### Enumerate
+        # Enumerate allows 3 different types of queries as defined below:
+        #
+        # * Query that takes only resource type as input
+        # * Query that takes resource type and alert type as input and
+        # * Query that takes resource id, alert type and resource type as input.
+        #
+        # #### Input
+        # SdkAlertsEnumerateRequest takes a list of such queries and the returned
+        # output is a collective ouput from each of these queries. In that sense,
+        # the filtering of these queries has a behavior of OR operation.
+        # Each query also has a list of optional options. These options allow
+        # narrowing down the scope of alerts search. These options have a
+        # behavior of an AND operation.
+        #
+        # #### Examples
+        # To search by a resource type in a given time window would require
+        # initializing SdkAlertsResourceTypeQuery query and pass in
+        # SdkAlertsTimeSpan option into SdkAlertsQuery struct and finally
+        # packing any other such queries into SdkAlertsEnumerateRequest object.
+        # Alternatively, to search by both resource type and alert type, use
+        # SdkAlertsAlertTypeQuery as query builder.
+        # Finally to search all alerts of a given resource type and some
+        # alerts of another resource type but with specific alert type,
+        # use two queries, first initialized with SdkAlertsResourceTypeQuery
+        # and second initialized with SdkAlertsAlertTypeQuery and both
+        # eventually packed as list in SdkAlertsEnumerateRequest.
+        rpc :Enumerate, SdkAlertsEnumerateRequest, SdkAlertsEnumerateResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageIdentity
       # OpenStorageIdentity service provides methods to obtain information
       # about the cluster
