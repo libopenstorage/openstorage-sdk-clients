@@ -17,6 +17,28 @@ var api_pb = require('./api_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
 
+function serialize_openstorage_api_SdkAlertsDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAlertsDeleteRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAlertsDeleteRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAlertsDeleteRequest(buffer_arg) {
+  return api_pb.SdkAlertsDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAlertsDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAlertsDeleteResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAlertsDeleteResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAlertsDeleteResponse(buffer_arg) {
+  return api_pb.SdkAlertsDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkAlertsEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkAlertsEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateRequest');
@@ -1137,6 +1159,29 @@ var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
     requestDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateRequest,
     responseSerialize: serialize_openstorage_api_SdkAlertsEnumerateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateResponse,
+  },
+  // Delete allows deleting alerts.
+  //
+  // #### Delete
+  // Delete allows 3 different types of queries as defined below:
+  //
+  // * Query that takes only resource type as input
+  // * Query that takes resource type and alert type as input and
+  // * Query that takes resource id, alert type and resource type as input.
+  //
+  // #### Input
+  // SdkAlertsEnumerateRequest takes a list of such queries and all alerts
+  // that match at least one of the queries are deleted.
+  delete: {
+    path: '/openstorage.api.OpenStorageAlerts/Delete',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAlertsDeleteRequest,
+    responseType: api_pb.SdkAlertsDeleteResponse,
+    requestSerialize: serialize_openstorage_api_SdkAlertsDeleteRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAlertsDeleteRequest,
+    responseSerialize: serialize_openstorage_api_SdkAlertsDeleteResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAlertsDeleteResponse,
   },
 };
 

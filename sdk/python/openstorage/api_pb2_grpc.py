@@ -19,6 +19,11 @@ class OpenStorageAlertsStub(object):
         request_serializer=api__pb2.SdkAlertsEnumerateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkAlertsEnumerateResponse.FromString,
         )
+    self.Delete = channel.unary_unary(
+        '/openstorage.api.OpenStorageAlerts/Delete',
+        request_serializer=api__pb2.SdkAlertsDeleteRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkAlertsDeleteResponse.FromString,
+        )
 
 
 class OpenStorageAlertsServicer(object):
@@ -60,6 +65,24 @@ class OpenStorageAlertsServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def Delete(self, request, context):
+    """Delete allows deleting alerts.
+
+    #### Delete
+    Delete allows 3 different types of queries as defined below:
+
+    * Query that takes only resource type as input
+    * Query that takes resource type and alert type as input and
+    * Query that takes resource id, alert type and resource type as input.
+
+    #### Input
+    SdkAlertsEnumerateRequest takes a list of such queries and all alerts
+    that match at least one of the queries are deleted.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageAlertsServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -67,6 +90,11 @@ def add_OpenStorageAlertsServicer_to_server(servicer, server):
           servicer.Enumerate,
           request_deserializer=api__pb2.SdkAlertsEnumerateRequest.FromString,
           response_serializer=api__pb2.SdkAlertsEnumerateResponse.SerializeToString,
+      ),
+      'Delete': grpc.unary_unary_rpc_method_handler(
+          servicer.Delete,
+          request_deserializer=api__pb2.SdkAlertsDeleteRequest.FromString,
+          response_serializer=api__pb2.SdkAlertsDeleteResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

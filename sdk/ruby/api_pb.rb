@@ -66,7 +66,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :cascaded, :bool, 24
     optional :journal, :bool, 25
     optional :sharedv4, :bool, 26
-    optional :queue_depth, :int32, 27
+    optional :queue_depth, :uint32, 27
     optional :force_unsupported_fs_type, :bool, 28
   end
   add_message "openstorage.api.VolumeSpecUpdate" do
@@ -115,7 +115,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :sharedv4, :bool, 24
     end
     oneof :queue_depth_opt do
-      optional :queue_depth, :int32, 25
+      optional :queue_depth, :uint32, 25
     end
   end
   add_message "openstorage.api.ReplicaSet" do
@@ -216,6 +216,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.SdkAlertsEnumerateResponse" do
     repeated :alerts, :message, 1, "openstorage.api.Alert"
+  end
+  add_message "openstorage.api.SdkAlertsDeleteRequest" do
+    repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
+  end
+  add_message "openstorage.api.SdkAlertsDeleteResponse" do
   end
   add_message "openstorage.api.SdkSchedulePolicyCreateRequest" do
     optional :SchedulePolicy, :message, 1, "openstorage.api.SdkSchedulePolicy"
@@ -697,6 +702,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :credential_id, :string, 2
     repeated :schedules, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
     optional :max_backups, :uint64, 4
+    optional :full, :bool, 5
   end
   add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do
     optional :cloud_sched_info, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
@@ -743,6 +749,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :SCHEDULE_POLICY, 6
     value :VOLUME, 7
     value :ALERTS, 8
+    value :MOUNT_ATTACH, 9
   end
   add_message "openstorage.api.SdkVersion" do
     optional :major, :int32, 1
@@ -753,7 +760,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 10
+    value :Minor, 13
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1049,6 +1056,8 @@ module Openstorage
     SdkAlertsQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsQuery").msgclass
     SdkAlertsEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateRequest").msgclass
     SdkAlertsEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateResponse").msgclass
+    SdkAlertsDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteRequest").msgclass
+    SdkAlertsDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteResponse").msgclass
     SdkSchedulePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyCreateRequest").msgclass
     Alerts = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Alerts").msgclass
     ObjectstoreInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ObjectstoreInfo").msgclass
