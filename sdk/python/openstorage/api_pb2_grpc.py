@@ -356,6 +356,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersResponse.FromString,
         )
+    self.SnapshotScheduleUpdate = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/SnapshotScheduleUpdate',
+        request_serializer=api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.FromString,
+        )
 
 
 class OpenStorageVolumeServicer(object):
@@ -467,6 +472,15 @@ class OpenStorageVolumeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def SnapshotScheduleUpdate(self, request, context):
+    """Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
+    as `policy=<name>,...`. This function will overwrite any policy values
+    in the volume. To delete the policies in the volume send no policies.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageVolumeServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -529,6 +543,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.SnapshotEnumerateWithFilters,
           request_deserializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersRequest.FromString,
           response_serializer=api__pb2.SdkVolumeSnapshotEnumerateWithFiltersResponse.SerializeToString,
+      ),
+      'SnapshotScheduleUpdate': grpc.unary_unary_rpc_method_handler(
+          servicer.SnapshotScheduleUpdate,
+          request_deserializer=api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

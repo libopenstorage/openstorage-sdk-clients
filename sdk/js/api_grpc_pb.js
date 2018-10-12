@@ -1051,6 +1051,28 @@ function deserialize_openstorage_api_SdkVolumeSnapshotRestoreResponse(buffer_arg
   return api_pb.SdkVolumeSnapshotRestoreResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeSnapshotScheduleUpdateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateRequest(buffer_arg) {
+  return api_pb.SdkVolumeSnapshotScheduleUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeSnapshotScheduleUpdateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse(buffer_arg) {
+  return api_pb.SdkVolumeSnapshotScheduleUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeStatsRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeStatsRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeStatsRequest');
@@ -1445,6 +1467,20 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     requestDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersRequest,
     responseSerialize: serialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse,
+  },
+  // Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
+  // as `policy=<name>,...`. This function will overwrite any policy values
+  // in the volume. To delete the policies in the volume send no policies.
+  snapshotScheduleUpdate: {
+    path: '/openstorage.api.OpenStorageVolume/SnapshotScheduleUpdate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVolumeSnapshotScheduleUpdateRequest,
+    responseType: api_pb.SdkVolumeSnapshotScheduleUpdateResponse,
+    requestSerialize: serialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateRequest,
+    responseSerialize: serialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse,
   },
 };
 
