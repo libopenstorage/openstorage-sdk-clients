@@ -1,9 +1,6 @@
 
 all: docker-proto
 
-docker-build-proto:
-	docker build -t openstorage/osd-proto -f Dockerfile.proto .
-
 docker-proto: docker-build-proto
 	docker run \
 		--privileged \
@@ -11,7 +8,7 @@ docker-proto: docker-build-proto
 		-e "GOPATH=/go" \
 		-e "DOCKER_PROTO=yes" \
 		-e "PATH=/bin:/usr/bin:/usr/local/bin:/go/bin" \
-		openstorage/osd-proto \
+		quay.io/openstorage/osd-proto \
 			make proto
 
 proto:
