@@ -132,6 +132,10 @@ module Openstorage
         # Labels can also be used to filter the snapshot list.
         # If neither are provided all snapshots will be returned.
         rpc :SnapshotEnumerateWithFilters, SdkVolumeSnapshotEnumerateWithFiltersRequest, SdkVolumeSnapshotEnumerateWithFiltersResponse
+        # Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
+        # as `policy=<name>,...`. This function will overwrite any policy values
+        # in the volume. To delete the policies in the volume send no policies.
+        rpc :SnapshotScheduleUpdate, SdkVolumeSnapshotScheduleUpdateRequest, SdkVolumeSnapshotScheduleUpdateResponse
       end
 
       Stub = Service.rpc_stub_class

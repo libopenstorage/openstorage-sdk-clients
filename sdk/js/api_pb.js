@@ -138,6 +138,7 @@ goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyInspectResponse', null
 goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyInterval', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyIntervalDaily', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyIntervalMonthly', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyIntervalWeekly', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyUpdateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkSchedulePolicyUpdateResponse', null, global);
@@ -175,6 +176,8 @@ goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRe
 goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotRestoreRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotRestoreResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeStatsRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeStatsResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVolumeUnmountRequest', null, global);
@@ -10030,7 +10033,7 @@ proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.toObject = functi
  */
 proto.openstorage.api.SdkSchedulePolicyCreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    schedulepolicy: (f = msg.getSchedulepolicy()) && proto.openstorage.api.SdkSchedulePolicy.toObject(includeInstance, f)
+    schedulePolicy: (f = msg.getSchedulePolicy()) && proto.openstorage.api.SdkSchedulePolicy.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10070,7 +10073,7 @@ proto.openstorage.api.SdkSchedulePolicyCreateRequest.deserializeBinaryFromReader
     case 1:
       var value = new proto.openstorage.api.SdkSchedulePolicy;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicy.deserializeBinaryFromReader);
-      msg.setSchedulepolicy(value);
+      msg.setSchedulePolicy(value);
       break;
     default:
       reader.skipField();
@@ -10101,7 +10104,7 @@ proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.serializeBinary =
  */
 proto.openstorage.api.SdkSchedulePolicyCreateRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSchedulepolicy();
+  f = message.getSchedulePolicy();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -10113,23 +10116,23 @@ proto.openstorage.api.SdkSchedulePolicyCreateRequest.serializeBinaryToWriter = f
 
 
 /**
- * optional SdkSchedulePolicy SchedulePolicy = 1;
+ * optional SdkSchedulePolicy schedule_policy = 1;
  * @return {?proto.openstorage.api.SdkSchedulePolicy}
  */
-proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.getSchedulepolicy = function() {
+proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.getSchedulePolicy = function() {
   return /** @type{?proto.openstorage.api.SdkSchedulePolicy} */ (
     jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicy, 1));
 };
 
 
 /** @param {?proto.openstorage.api.SdkSchedulePolicy|undefined} value */
-proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.setSchedulepolicy = function(value) {
+proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.setSchedulePolicy = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.clearSchedulepolicy = function() {
-  this.setSchedulepolicy(undefined);
+proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.clearSchedulePolicy = function() {
+  this.setSchedulePolicy(undefined);
 };
 
 
@@ -10137,7 +10140,7 @@ proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.clearSchedulepoli
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.hasSchedulepolicy = function() {
+proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.hasSchedulePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -10305,7 +10308,7 @@ proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.toObject = functi
  */
 proto.openstorage.api.SdkSchedulePolicyUpdateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    schedulepolicy: (f = msg.getSchedulepolicy()) && proto.openstorage.api.SdkSchedulePolicy.toObject(includeInstance, f)
+    schedulePolicy: (f = msg.getSchedulePolicy()) && proto.openstorage.api.SdkSchedulePolicy.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10345,7 +10348,7 @@ proto.openstorage.api.SdkSchedulePolicyUpdateRequest.deserializeBinaryFromReader
     case 1:
       var value = new proto.openstorage.api.SdkSchedulePolicy;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicy.deserializeBinaryFromReader);
-      msg.setSchedulepolicy(value);
+      msg.setSchedulePolicy(value);
       break;
     default:
       reader.skipField();
@@ -10376,7 +10379,7 @@ proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.serializeBinary =
  */
 proto.openstorage.api.SdkSchedulePolicyUpdateRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSchedulepolicy();
+  f = message.getSchedulePolicy();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -10388,23 +10391,23 @@ proto.openstorage.api.SdkSchedulePolicyUpdateRequest.serializeBinaryToWriter = f
 
 
 /**
- * optional SdkSchedulePolicy SchedulePolicy = 1;
+ * optional SdkSchedulePolicy schedule_policy = 1;
  * @return {?proto.openstorage.api.SdkSchedulePolicy}
  */
-proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.getSchedulepolicy = function() {
+proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.getSchedulePolicy = function() {
   return /** @type{?proto.openstorage.api.SdkSchedulePolicy} */ (
     jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicy, 1));
 };
 
 
 /** @param {?proto.openstorage.api.SdkSchedulePolicy|undefined} value */
-proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.setSchedulepolicy = function(value) {
+proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.setSchedulePolicy = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.clearSchedulepolicy = function() {
-  this.setSchedulepolicy(undefined);
+proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.clearSchedulePolicy = function() {
+  this.setSchedulePolicy(undefined);
 };
 
 
@@ -10412,7 +10415,7 @@ proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.clearSchedulepoli
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.hasSchedulepolicy = function() {
+proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.hasSchedulePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -11948,6 +11951,148 @@ proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.setMinute = fun
  * @extends {jspb.Message}
  * @constructor
  */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.displayName = 'proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    seconds: jspb.Message.getFieldWithDefault(msg, 1, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic}
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic;
+  return proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic}
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setSeconds(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSeconds();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 seconds = 1;
+ * @return {number}
+ */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.prototype.getSeconds = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.prototype.setSeconds = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.openstorage.api.SdkSchedulePolicyInterval = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_);
 };
@@ -11963,7 +12108,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_ = [[200,201,202]];
+proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_ = [[200,201,202,203]];
 
 /**
  * @enum {number}
@@ -11972,7 +12117,8 @@ proto.openstorage.api.SdkSchedulePolicyInterval.PeriodTypeCase = {
   PERIOD_TYPE_NOT_SET: 0,
   DAILY: 200,
   WEEKLY: 201,
-  MONTHLY: 202
+  MONTHLY: 202,
+  PERIODIC: 203
 };
 
 /**
@@ -12014,7 +12160,8 @@ proto.openstorage.api.SdkSchedulePolicyInterval.toObject = function(includeInsta
     retain: jspb.Message.getFieldWithDefault(msg, 1, 0),
     daily: (f = msg.getDaily()) && proto.openstorage.api.SdkSchedulePolicyIntervalDaily.toObject(includeInstance, f),
     weekly: (f = msg.getWeekly()) && proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.toObject(includeInstance, f),
-    monthly: (f = msg.getMonthly()) && proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.toObject(includeInstance, f)
+    monthly: (f = msg.getMonthly()) && proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.toObject(includeInstance, f),
+    periodic: (f = msg.getPeriodic()) && proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -12069,6 +12216,11 @@ proto.openstorage.api.SdkSchedulePolicyInterval.deserializeBinaryFromReader = fu
       var value = new proto.openstorage.api.SdkSchedulePolicyIntervalMonthly;
       reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.deserializeBinaryFromReader);
       msg.setMonthly(value);
+      break;
+    case 203:
+      var value = new proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic;
+      reader.readMessage(value,proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.deserializeBinaryFromReader);
+      msg.setPeriodic(value);
       break;
     default:
       reader.skipField();
@@ -12128,6 +12280,14 @@ proto.openstorage.api.SdkSchedulePolicyInterval.serializeBinaryToWriter = functi
       202,
       f,
       proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.serializeBinaryToWriter
+    );
+  }
+  f = message.getPeriodic();
+  if (f != null) {
+    writer.writeMessage(
+      203,
+      f,
+      proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.serializeBinaryToWriter
     );
   }
 };
@@ -12235,6 +12395,36 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearMonthly = functio
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasMonthly = function() {
   return jspb.Message.getField(this, 202) != null;
+};
+
+
+/**
+ * optional SdkSchedulePolicyIntervalPeriodic periodic = 203;
+ * @return {?proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic}
+ */
+proto.openstorage.api.SdkSchedulePolicyInterval.prototype.getPeriodic = function() {
+  return /** @type{?proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic, 203));
+};
+
+
+/** @param {?proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic|undefined} value */
+proto.openstorage.api.SdkSchedulePolicyInterval.prototype.setPeriodic = function(value) {
+  jspb.Message.setOneofWrapperField(this, 203, proto.openstorage.api.SdkSchedulePolicyInterval.oneofGroups_[0], value);
+};
+
+
+proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearPeriodic = function() {
+  this.setPeriodic(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasPeriodic = function() {
+  return jspb.Message.getField(this, 203) != null;
 };
 
 
@@ -20857,6 +21047,312 @@ proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse.prototype.cl
  * @extends {jspb.Message}
  * @constructor
  */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.displayName = 'proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    snapshotScheduleNamesList: jspb.Message.getRepeatedField(msg, 2)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest;
+  return proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setVolumeId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addSnapshotScheduleNames(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getVolumeId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSnapshotScheduleNamesList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string volume_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.getVolumeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.setVolumeId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * repeated string snapshot_schedule_names = 2;
+ * @return {!Array.<string>}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.getSnapshotScheduleNamesList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.setSnapshotScheduleNamesList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.addSnapshotScheduleNames = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.clearSnapshotScheduleNamesList = function() {
+  this.setSnapshotScheduleNamesList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.displayName = 'proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse;
+  return proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.openstorage.api.SdkClusterInspectCurrentRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -29064,7 +29560,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 9,
-  PATCH: 0
+  PATCH: 2
 };
 
 /**
