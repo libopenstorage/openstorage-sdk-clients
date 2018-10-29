@@ -1,7 +1,7 @@
 
 all: docker-proto
 
-docker-proto: docker-build-proto
+docker-proto:
 	docker run \
 		--privileged \
 		-v $(shell pwd):/go/src/github.com/libopenstorage/openstorage \

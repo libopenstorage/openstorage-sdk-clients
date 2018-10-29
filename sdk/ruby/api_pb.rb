@@ -688,6 +688,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :node_id, :string, 7
     optional :src_volume_id, :string, 8
     repeated :info, :string, 9
+    optional :credential_id, :string, 10
   end
   add_message "openstorage.api.SdkCloudBackupStatusRequest" do
     optional :volume_id, :string, 1
@@ -784,7 +785,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 18
+    value :Minor, 19
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -819,22 +820,25 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :operation, :enum, 1, "openstorage.api.CloudMigrate.OperationType"
     optional :cluster_id, :string, 2
     optional :target_id, :string, 3
+    optional :task_id, :string, 4
+  end
+  add_message "openstorage.api.CloudMigrateStartResponse" do
+    optional :task_id, :string, 1
   end
   add_message "openstorage.api.CloudMigrateCancelRequest" do
-    optional :operation, :enum, 1, "openstorage.api.CloudMigrate.OperationType"
-    optional :cluster_id, :string, 2
-    optional :target_id, :string, 3
+    optional :task_id, :string, 1
   end
   add_message "openstorage.api.CloudMigrateInfo" do
-    optional :cluster_id, :string, 1
-    optional :local_volume_id, :string, 2
-    optional :local_volume_name, :string, 3
-    optional :remote_volume_id, :string, 4
-    optional :cloudbackup_id, :string, 5
-    optional :current_stage, :enum, 6, "openstorage.api.CloudMigrate.Stage"
-    optional :status, :enum, 7, "openstorage.api.CloudMigrate.Status"
-    optional :last_update, :message, 8, "google.protobuf.Timestamp"
-    optional :last_success, :message, 9, "google.protobuf.Timestamp"
+    optional :task_id, :string, 1
+    optional :cluster_id, :string, 2
+    optional :local_volume_id, :string, 3
+    optional :local_volume_name, :string, 4
+    optional :remote_volume_id, :string, 5
+    optional :cloudbackup_id, :string, 6
+    optional :current_stage, :enum, 7, "openstorage.api.CloudMigrate.Stage"
+    optional :status, :enum, 8, "openstorage.api.CloudMigrate.Status"
+    optional :last_update, :message, 9, "google.protobuf.Timestamp"
+    optional :error_reason, :string, 10
   end
   add_message "openstorage.api.CloudMigrateInfoList" do
     repeated :list, :message, 1, "openstorage.api.CloudMigrateInfo"
@@ -916,15 +920,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :affected_replicas, :int32, 1
     optional :weight, :int64, 2
     optional :enforcement, :enum, 3, "openstorage.api.VolumePlacementRule.EnforcementType"
-    optional :affinity, :message, 4, "openstorage.api.AffinityRule"
-    optional :anti_affinity, :message, 5, "openstorage.api.AffinityRule"
+    optional :type, :enum, 4, "openstorage.api.VolumePlacementRule.AffinityRuleType"
+    repeated :match_expressions, :message, 5, "openstorage.api.LabelSelectorRequirement"
   end
   add_enum "openstorage.api.VolumePlacementRule.EnforcementType" do
     value :Required, 0
     value :Preferred, 1
   end
-  add_message "openstorage.api.AffinityRule" do
-    repeated :match_expressions, :message, 1, "openstorage.api.LabelSelectorRequirement"
+  add_enum "openstorage.api.VolumePlacementRule.AffinityRuleType" do
+    value :Affinity, 0
+    value :AntiAffinity, 1
   end
   add_message "openstorage.api.LabelSelectorRequirement" do
     optional :key, :string, 1
@@ -1259,6 +1264,7 @@ module Openstorage
     CloudMigrate::Stage = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrate.Stage").enummodule
     CloudMigrate::Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrate.Status").enummodule
     CloudMigrateStartRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateStartRequest").msgclass
+    CloudMigrateStartResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateStartResponse").msgclass
     CloudMigrateCancelRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateCancelRequest").msgclass
     CloudMigrateInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateInfo").msgclass
     CloudMigrateInfoList = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateInfoList").msgclass
@@ -1281,7 +1287,7 @@ module Openstorage
     VolumePlacementStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementStrategy").msgclass
     VolumePlacementRule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementRule").msgclass
     VolumePlacementRule::EnforcementType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementRule.EnforcementType").enummodule
-    AffinityRule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.AffinityRule").msgclass
+    VolumePlacementRule::AffinityRuleType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementRule.AffinityRuleType").enummodule
     LabelSelectorRequirement = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement").msgclass
     LabelSelectorRequirement::Operator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement.Operator").enummodule
     Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Status").enummodule
