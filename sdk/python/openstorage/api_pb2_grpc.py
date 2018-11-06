@@ -209,6 +209,145 @@ def add_OpenStorageClusterServicer_to_server(servicer, server):
   server.add_generic_rpc_handlers((generic_handler,))
 
 
+class OpenStorageClusterPairStub(object):
+  """OpenStorageClusterPair service provides the methods to manage a cluster pair
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Create = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterPair/Create',
+        request_serializer=api__pb2.SdkClusterPairCreateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterPairCreateResponse.FromString,
+        )
+    self.Inspect = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterPair/Inspect',
+        request_serializer=api__pb2.SdkClusterPairInspectRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterPairInspectResponse.FromString,
+        )
+    self.Enumerate = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterPair/Enumerate',
+        request_serializer=api__pb2.SdkClusterPairEnumerateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterPairEnumerateResponse.FromString,
+        )
+    self.GetToken = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterPair/GetToken',
+        request_serializer=api__pb2.SdkClusterPairGetTokenRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterPairGetTokenResponse.FromString,
+        )
+    self.ResetToken = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterPair/ResetToken',
+        request_serializer=api__pb2.SdkClusterPairResetTokenRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterPairResetTokenResponse.FromString,
+        )
+    self.Delete = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterPair/Delete',
+        request_serializer=api__pb2.SdkClusterPairDeleteRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterPairDeleteResponse.FromString,
+        )
+
+
+class OpenStorageClusterPairServicer(object):
+  """OpenStorageClusterPair service provides the methods to manage a cluster pair
+  """
+
+  def Create(self, request, context):
+    """Creates Pair with a remote cluster and returns details about the remote cluster
+
+    ##### Example
+    {% codetabs name="Golang", type="go" -%}
+    id, err := client.Create(context.Background(), &api.SdkClusterPairCreateRequest {
+    Request : &api.ClusterPairCreateRequest {
+    RemoteClusterIp: "127.0.0.1",
+    RemoteClusterPort: 12345,
+    RemoteClusterToken: "<Auth-Token>",
+    SetDefault: true,
+    }
+    })
+    {%- endcodetabs %}
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Inspect(self, request, context):
+    """Inspect information about a cluster pair
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Enumerate(self, request, context):
+    """Enumerate returns list of cluster pairs
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetToken(self, request, context):
+    """GetToken returns a auth token
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def ResetToken(self, request, context):
+    """ResetToken returns a auth token
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Delete(self, request, context):
+    """Delete a cluster pair
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageClusterPairServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Create': grpc.unary_unary_rpc_method_handler(
+          servicer.Create,
+          request_deserializer=api__pb2.SdkClusterPairCreateRequest.FromString,
+          response_serializer=api__pb2.SdkClusterPairCreateResponse.SerializeToString,
+      ),
+      'Inspect': grpc.unary_unary_rpc_method_handler(
+          servicer.Inspect,
+          request_deserializer=api__pb2.SdkClusterPairInspectRequest.FromString,
+          response_serializer=api__pb2.SdkClusterPairInspectResponse.SerializeToString,
+      ),
+      'Enumerate': grpc.unary_unary_rpc_method_handler(
+          servicer.Enumerate,
+          request_deserializer=api__pb2.SdkClusterPairEnumerateRequest.FromString,
+          response_serializer=api__pb2.SdkClusterPairEnumerateResponse.SerializeToString,
+      ),
+      'GetToken': grpc.unary_unary_rpc_method_handler(
+          servicer.GetToken,
+          request_deserializer=api__pb2.SdkClusterPairGetTokenRequest.FromString,
+          response_serializer=api__pb2.SdkClusterPairGetTokenResponse.SerializeToString,
+      ),
+      'ResetToken': grpc.unary_unary_rpc_method_handler(
+          servicer.ResetToken,
+          request_deserializer=api__pb2.SdkClusterPairResetTokenRequest.FromString,
+          response_serializer=api__pb2.SdkClusterPairResetTokenResponse.SerializeToString,
+      ),
+      'Delete': grpc.unary_unary_rpc_method_handler(
+          servicer.Delete,
+          request_deserializer=api__pb2.SdkClusterPairDeleteRequest.FromString,
+          response_serializer=api__pb2.SdkClusterPairDeleteResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageClusterPair', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
 class OpenStorageNodeStub(object):
   """OpenStorageNode is a service used to manage nodes in the cluster
   """
@@ -653,6 +792,82 @@ def add_OpenStorageMountAttachServicer_to_server(servicer, server):
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'openstorage.api.OpenStorageMountAttach', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
+class OpenStorageMigrateStub(object):
+  """OpenStorageMigrate is a service used to manage migration of volumes
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Start = channel.unary_unary(
+        '/openstorage.api.OpenStorageMigrate/Start',
+        request_serializer=api__pb2.SdkCloudMigrateStartRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkCloudMigrateStartResponse.FromString,
+        )
+    self.Cancel = channel.unary_unary(
+        '/openstorage.api.OpenStorageMigrate/Cancel',
+        request_serializer=api__pb2.SdkCloudMigrateCancelRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkCloudMigrateCancelResponse.FromString,
+        )
+    self.Status = channel.unary_unary(
+        '/openstorage.api.OpenStorageMigrate/Status',
+        request_serializer=api__pb2.SdkCloudMigrateStatusRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkCloudMigrateStatusResponse.FromString,
+        )
+
+
+class OpenStorageMigrateServicer(object):
+  """OpenStorageMigrate is a service used to manage migration of volumes
+  """
+
+  def Start(self, request, context):
+    """Start a migration operation
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Cancel(self, request, context):
+    """Cancel a migration operation
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Status(self, request, context):
+    """Inspect the status of migration operation  
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageMigrateServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Start': grpc.unary_unary_rpc_method_handler(
+          servicer.Start,
+          request_deserializer=api__pb2.SdkCloudMigrateStartRequest.FromString,
+          response_serializer=api__pb2.SdkCloudMigrateStartResponse.SerializeToString,
+      ),
+      'Cancel': grpc.unary_unary_rpc_method_handler(
+          servicer.Cancel,
+          request_deserializer=api__pb2.SdkCloudMigrateCancelRequest.FromString,
+          response_serializer=api__pb2.SdkCloudMigrateCancelResponse.SerializeToString,
+      ),
+      'Status': grpc.unary_unary_rpc_method_handler(
+          servicer.Status,
+          request_deserializer=api__pb2.SdkCloudMigrateStatusRequest.FromString,
+          response_serializer=api__pb2.SdkCloudMigrateStatusResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageMigrate', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
 
 

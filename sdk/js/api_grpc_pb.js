@@ -325,6 +325,72 @@ function deserialize_openstorage_api_SdkCloudBackupStatusResponse(buffer_arg) {
   return api_pb.SdkCloudBackupStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCloudMigrateCancelRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudMigrateCancelRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateCancelRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudMigrateCancelRequest(buffer_arg) {
+  return api_pb.SdkCloudMigrateCancelRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudMigrateCancelResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudMigrateCancelResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateCancelResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudMigrateCancelResponse(buffer_arg) {
+  return api_pb.SdkCloudMigrateCancelResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudMigrateStartRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudMigrateStartRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStartRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudMigrateStartRequest(buffer_arg) {
+  return api_pb.SdkCloudMigrateStartRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudMigrateStartResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudMigrateStartResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStartResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudMigrateStartResponse(buffer_arg) {
+  return api_pb.SdkCloudMigrateStartResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudMigrateStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudMigrateStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStatusRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudMigrateStatusRequest(buffer_arg) {
+  return api_pb.SdkCloudMigrateStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudMigrateStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudMigrateStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStatusResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudMigrateStatusResponse(buffer_arg) {
+  return api_pb.SdkCloudMigrateStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkClusterInspectCurrentRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterInspectCurrentRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterInspectCurrentRequest');
@@ -345,6 +411,138 @@ function serialize_openstorage_api_SdkClusterInspectCurrentResponse(arg) {
 
 function deserialize_openstorage_api_SdkClusterInspectCurrentResponse(buffer_arg) {
   return api_pb.SdkClusterInspectCurrentResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairCreateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairCreateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairCreateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairCreateRequest(buffer_arg) {
+  return api_pb.SdkClusterPairCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairCreateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairCreateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairCreateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairCreateResponse(buffer_arg) {
+  return api_pb.SdkClusterPairCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairDeleteRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairDeleteRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairDeleteRequest(buffer_arg) {
+  return api_pb.SdkClusterPairDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairDeleteResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairDeleteResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairDeleteResponse(buffer_arg) {
+  return api_pb.SdkClusterPairDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairEnumerateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairEnumerateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairEnumerateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairEnumerateRequest(buffer_arg) {
+  return api_pb.SdkClusterPairEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairEnumerateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairEnumerateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairEnumerateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairEnumerateResponse(buffer_arg) {
+  return api_pb.SdkClusterPairEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairGetTokenRequest(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairGetTokenRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairGetTokenRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairGetTokenRequest(buffer_arg) {
+  return api_pb.SdkClusterPairGetTokenRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairGetTokenResponse(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairGetTokenResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairGetTokenResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairGetTokenResponse(buffer_arg) {
+  return api_pb.SdkClusterPairGetTokenResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairInspectRequest(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairInspectRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairInspectRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairInspectRequest(buffer_arg) {
+  return api_pb.SdkClusterPairInspectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairInspectResponse(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairInspectResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairInspectResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairInspectResponse(buffer_arg) {
+  return api_pb.SdkClusterPairInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairResetTokenRequest(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairResetTokenRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairResetTokenRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairResetTokenRequest(buffer_arg) {
+  return api_pb.SdkClusterPairResetTokenRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkClusterPairResetTokenResponse(arg) {
+  if (!(arg instanceof api_pb.SdkClusterPairResetTokenResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkClusterPairResetTokenResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkClusterPairResetTokenResponse(buffer_arg) {
+  return api_pb.SdkClusterPairResetTokenResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkCredentialCreateRequest(arg) {
@@ -1259,6 +1457,95 @@ var OpenStorageClusterService = exports.OpenStorageClusterService = {
 };
 
 exports.OpenStorageClusterClient = grpc.makeGenericClientConstructor(OpenStorageClusterService);
+// OpenStorageClusterPair service provides the methods to manage a cluster pair
+var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
+  // Creates Pair with a remote cluster and returns details about the remote cluster
+  //
+  // ##### Example
+  // {% codetabs name="Golang", type="go" -%}
+  // id, err := client.Create(context.Background(), &api.SdkClusterPairCreateRequest {
+  //   Request : &api.ClusterPairCreateRequest {
+  //                  RemoteClusterIp: "127.0.0.1",
+  //                  RemoteClusterPort: 12345,
+  //                  RemoteClusterToken: "<Auth-Token>",
+  //                  SetDefault: true,
+  //              }
+  //        })
+  // {%- endcodetabs %}
+  create: {
+    path: '/openstorage.api.OpenStorageClusterPair/Create',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkClusterPairCreateRequest,
+    responseType: api_pb.SdkClusterPairCreateResponse,
+    requestSerialize: serialize_openstorage_api_SdkClusterPairCreateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkClusterPairCreateRequest,
+    responseSerialize: serialize_openstorage_api_SdkClusterPairCreateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkClusterPairCreateResponse,
+  },
+  // Inspect information about a cluster pair
+  inspect: {
+    path: '/openstorage.api.OpenStorageClusterPair/Inspect',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkClusterPairInspectRequest,
+    responseType: api_pb.SdkClusterPairInspectResponse,
+    requestSerialize: serialize_openstorage_api_SdkClusterPairInspectRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkClusterPairInspectRequest,
+    responseSerialize: serialize_openstorage_api_SdkClusterPairInspectResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkClusterPairInspectResponse,
+  },
+  // Enumerate returns list of cluster pairs
+  enumerate: {
+    path: '/openstorage.api.OpenStorageClusterPair/Enumerate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkClusterPairEnumerateRequest,
+    responseType: api_pb.SdkClusterPairEnumerateResponse,
+    requestSerialize: serialize_openstorage_api_SdkClusterPairEnumerateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkClusterPairEnumerateRequest,
+    responseSerialize: serialize_openstorage_api_SdkClusterPairEnumerateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkClusterPairEnumerateResponse,
+  },
+  // GetToken returns a auth token
+  getToken: {
+    path: '/openstorage.api.OpenStorageClusterPair/GetToken',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkClusterPairGetTokenRequest,
+    responseType: api_pb.SdkClusterPairGetTokenResponse,
+    requestSerialize: serialize_openstorage_api_SdkClusterPairGetTokenRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkClusterPairGetTokenRequest,
+    responseSerialize: serialize_openstorage_api_SdkClusterPairGetTokenResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkClusterPairGetTokenResponse,
+  },
+  // ResetToken returns a auth token
+  resetToken: {
+    path: '/openstorage.api.OpenStorageClusterPair/ResetToken',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkClusterPairResetTokenRequest,
+    responseType: api_pb.SdkClusterPairResetTokenResponse,
+    requestSerialize: serialize_openstorage_api_SdkClusterPairResetTokenRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkClusterPairResetTokenRequest,
+    responseSerialize: serialize_openstorage_api_SdkClusterPairResetTokenResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkClusterPairResetTokenResponse,
+  },
+  // Delete a cluster pair
+  delete: {
+    path: '/openstorage.api.OpenStorageClusterPair/Delete',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkClusterPairDeleteRequest,
+    responseType: api_pb.SdkClusterPairDeleteResponse,
+    requestSerialize: serialize_openstorage_api_SdkClusterPairDeleteRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkClusterPairDeleteRequest,
+    responseSerialize: serialize_openstorage_api_SdkClusterPairDeleteResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkClusterPairDeleteResponse,
+  },
+};
+
+exports.OpenStorageClusterPairClient = grpc.makeGenericClientConstructor(OpenStorageClusterPairService);
 // OpenStorageNode is a service used to manage nodes in the cluster
 var OpenStorageNodeService = exports.OpenStorageNodeService = {
   // Inspect returns information about the specified node
@@ -1542,6 +1829,47 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
 };
 
 exports.OpenStorageMountAttachClient = grpc.makeGenericClientConstructor(OpenStorageMountAttachService);
+// OpenStorageMigrate is a service used to manage migration of volumes
+var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
+  // Start a migration operation
+  start: {
+    path: '/openstorage.api.OpenStorageMigrate/Start',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCloudMigrateStartRequest,
+    responseType: api_pb.SdkCloudMigrateStartResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudMigrateStartRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudMigrateStartRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudMigrateStartResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateStartResponse,
+  },
+  // Cancel a migration operation
+  cancel: {
+    path: '/openstorage.api.OpenStorageMigrate/Cancel',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCloudMigrateCancelRequest,
+    responseType: api_pb.SdkCloudMigrateCancelResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudMigrateCancelRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudMigrateCancelRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudMigrateCancelResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateCancelResponse,
+  },
+  // Inspect the status of migration operation  
+  status: {
+    path: '/openstorage.api.OpenStorageMigrate/Status',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCloudMigrateStatusRequest,
+    responseType: api_pb.SdkCloudMigrateStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudMigrateStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudMigrateStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudMigrateStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateStatusResponse,
+  },
+};
+
+exports.OpenStorageMigrateClient = grpc.makeGenericClientConstructor(OpenStorageMigrateService);
 // OpenStorageObjectstore is a service used to manage object store services on volumes
 var OpenStorageObjectstoreService = exports.OpenStorageObjectstoreService = {
   // Inspect returns information about the object store endpoint

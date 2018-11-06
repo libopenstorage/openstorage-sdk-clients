@@ -113,6 +113,44 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageClusterPair
+      # OpenStorageClusterPair service provides the methods to manage a cluster pair
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageClusterPair'
+
+        # Creates Pair with a remote cluster and returns details about the remote cluster
+        #
+        # ##### Example
+        # {% codetabs name="Golang", type="go" -%}
+        # id, err := client.Create(context.Background(), &api.SdkClusterPairCreateRequest {
+        #   Request : &api.ClusterPairCreateRequest {
+        #                  RemoteClusterIp: "127.0.0.1",
+        #                  RemoteClusterPort: 12345,
+        #                  RemoteClusterToken: "<Auth-Token>",
+        #                  SetDefault: true,
+        #              }
+        #        })
+        # {%- endcodetabs %}
+        rpc :Create, SdkClusterPairCreateRequest, SdkClusterPairCreateResponse
+        # Inspect information about a cluster pair
+        rpc :Inspect, SdkClusterPairInspectRequest, SdkClusterPairInspectResponse
+        # Enumerate returns list of cluster pairs
+        rpc :Enumerate, SdkClusterPairEnumerateRequest, SdkClusterPairEnumerateResponse
+        # GetToken returns a auth token
+        rpc :GetToken, SdkClusterPairGetTokenRequest, SdkClusterPairGetTokenResponse
+        # ResetToken returns a auth token
+        rpc :ResetToken, SdkClusterPairResetTokenRequest, SdkClusterPairResetTokenResponse
+        # Delete a cluster pair
+        rpc :Delete, SdkClusterPairDeleteRequest, SdkClusterPairDeleteResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageNode
       # OpenStorageNode is a service used to manage nodes in the cluster
       class Service
@@ -219,6 +257,26 @@ module Openstorage
         rpc :Mount, SdkVolumeMountRequest, SdkVolumeMountResponse
         # Unmount unmounts a mounted volume in the host that the client is communicating with
         rpc :Unmount, SdkVolumeUnmountRequest, SdkVolumeUnmountResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
+    module OpenStorageMigrate
+      # OpenStorageMigrate is a service used to manage migration of volumes
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageMigrate'
+
+        # Start a migration operation
+        rpc :Start, SdkCloudMigrateStartRequest, SdkCloudMigrateStartResponse
+        # Cancel a migration operation
+        rpc :Cancel, SdkCloudMigrateCancelRequest, SdkCloudMigrateCancelResponse
+        # Inspect the status of migration operation  
+        rpc :Status, SdkCloudMigrateStatusRequest, SdkCloudMigrateStatusResponse
       end
 
       Stub = Service.rpc_stub_class
