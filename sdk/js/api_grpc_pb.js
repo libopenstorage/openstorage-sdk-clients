@@ -1,7 +1,6 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Please use the following editor setup for this file:
 // Tab size=2; Tabs as spaces; Clean up trailing whitepsace
 //
 // In vim add: au FileType proto setl sw=2 ts=2 expandtab list
@@ -149,26 +148,26 @@ function deserialize_openstorage_api_SdkCloudBackupDeleteResponse(buffer_arg) {
   return api_pb.SdkCloudBackupDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkCloudBackupEnumerateRequest(arg) {
-  if (!(arg instanceof api_pb.SdkCloudBackupEnumerateRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupEnumerateRequest');
+function serialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupEnumerateWithFiltersRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest');
   }
   return new Buffer(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkCloudBackupEnumerateRequest(buffer_arg) {
-  return api_pb.SdkCloudBackupEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersRequest(buffer_arg) {
+  return api_pb.SdkCloudBackupEnumerateWithFiltersRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkCloudBackupEnumerateResponse(arg) {
-  if (!(arg instanceof api_pb.SdkCloudBackupEnumerateResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupEnumerateResponse');
+function serialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupEnumerateWithFiltersResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse');
   }
   return new Buffer(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkCloudBackupEnumerateResponse(buffer_arg) {
-  return api_pb.SdkCloudBackupEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse(buffer_arg) {
+  return api_pb.SdkCloudBackupEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkCloudBackupHistoryRequest(arg) {
@@ -985,6 +984,28 @@ function deserialize_openstorage_api_SdkVolumeAttachResponse(buffer_arg) {
   return api_pb.SdkVolumeAttachResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVolumeCapacityUsageRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeCapacityUsageRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeCapacityUsageRequest(buffer_arg) {
+  return api_pb.SdkVolumeCapacityUsageRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVolumeCapacityUsageResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeCapacityUsageResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeCapacityUsageResponse(buffer_arg) {
+  return api_pb.SdkVolumeCapacityUsageResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeCloneRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCloneRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCloneRequest');
@@ -1677,6 +1698,24 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseSerialize: serialize_openstorage_api_SdkVolumeStatsResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeStatsResponse,
   },
+  // CapacityUsage returns volume/snapshot's capacity usage details
+  //
+  // ##### Error codes:
+  //
+  // * codes.Aborted : Command was aborted and only total_bytes field is valid
+  // * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+  // field is valid;
+  capacityUsage: {
+    path: '/openstorage.api.OpenStorageVolume/CapacityUsage',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVolumeCapacityUsageRequest,
+    responseType: api_pb.SdkVolumeCapacityUsageResponse,
+    requestSerialize: serialize_openstorage_api_SdkVolumeCapacityUsageRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVolumeCapacityUsageRequest,
+    responseSerialize: serialize_openstorage_api_SdkVolumeCapacityUsageResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVolumeCapacityUsageResponse,
+  },
   // Enumerate returns a list of volume ids
   enumerate: {
     path: '/openstorage.api.OpenStorageVolume/Enumerate',
@@ -1855,7 +1894,7 @@ var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
     responseSerialize: serialize_openstorage_api_SdkCloudMigrateCancelResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateCancelResponse,
   },
-  // Inspect the status of migration operation  
+  // Inspect the status of migration operation
   status: {
     path: '/openstorage.api.OpenStorageMigrate/Status',
     requestStream: false,
@@ -2152,16 +2191,16 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupDeleteAllResponse,
   },
   // Return a list of backups for the specified volume
-  enumerate: {
-    path: '/openstorage.api.OpenStorageCloudBackup/Enumerate',
+  enumerateWithFilters: {
+    path: '/openstorage.api.OpenStorageCloudBackup/EnumerateWithFilters',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.SdkCloudBackupEnumerateRequest,
-    responseType: api_pb.SdkCloudBackupEnumerateResponse,
-    requestSerialize: serialize_openstorage_api_SdkCloudBackupEnumerateRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkCloudBackupEnumerateRequest,
-    responseSerialize: serialize_openstorage_api_SdkCloudBackupEnumerateResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkCloudBackupEnumerateResponse,
+    requestType: api_pb.SdkCloudBackupEnumerateWithFiltersRequest,
+    responseType: api_pb.SdkCloudBackupEnumerateWithFiltersResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse,
   },
   // Status returns the status of any cloud backups of a volume
   status: {

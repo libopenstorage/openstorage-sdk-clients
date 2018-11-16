@@ -465,6 +465,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeStatsRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeStatsResponse.FromString,
         )
+    self.CapacityUsage = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/CapacityUsage',
+        request_serializer=api__pb2.SdkVolumeCapacityUsageRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeCapacityUsageResponse.FromString,
+        )
     self.Enumerate = channel.unary_unary(
         '/openstorage.api.OpenStorageVolume/Enumerate',
         request_serializer=api__pb2.SdkVolumeEnumerateRequest.SerializeToString,
@@ -563,6 +568,19 @@ class OpenStorageVolumeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CapacityUsage(self, request, context):
+    """CapacityUsage returns volume/snapshot's capacity usage details
+
+    ##### Error codes:
+
+    * codes.Aborted : Command was aborted and only total_bytes field is valid
+    * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+    field is valid;
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def Enumerate(self, request, context):
     """Enumerate returns a list of volume ids
     """
@@ -652,6 +670,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.Stats,
           request_deserializer=api__pb2.SdkVolumeStatsRequest.FromString,
           response_serializer=api__pb2.SdkVolumeStatsResponse.SerializeToString,
+      ),
+      'CapacityUsage': grpc.unary_unary_rpc_method_handler(
+          servicer.CapacityUsage,
+          request_deserializer=api__pb2.SdkVolumeCapacityUsageRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeCapacityUsageResponse.SerializeToString,
       ),
       'Enumerate': grpc.unary_unary_rpc_method_handler(
           servicer.Enumerate,
@@ -841,7 +864,7 @@ class OpenStorageMigrateServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def Status(self, request, context):
-    """Inspect the status of migration operation  
+    """Inspect the status of migration operation
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -1259,10 +1282,10 @@ class OpenStorageCloudBackupStub(object):
         request_serializer=api__pb2.SdkCloudBackupDeleteAllRequest.SerializeToString,
         response_deserializer=api__pb2.SdkCloudBackupDeleteAllResponse.FromString,
         )
-    self.Enumerate = channel.unary_unary(
-        '/openstorage.api.OpenStorageCloudBackup/Enumerate',
-        request_serializer=api__pb2.SdkCloudBackupEnumerateRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkCloudBackupEnumerateResponse.FromString,
+    self.EnumerateWithFilters = channel.unary_unary(
+        '/openstorage.api.OpenStorageCloudBackup/EnumerateWithFilters',
+        request_serializer=api__pb2.SdkCloudBackupEnumerateWithFiltersRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkCloudBackupEnumerateWithFiltersResponse.FromString,
         )
     self.Status = channel.unary_unary(
         '/openstorage.api.OpenStorageCloudBackup/Status',
@@ -1352,7 +1375,7 @@ class OpenStorageCloudBackupServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def Enumerate(self, request, context):
+  def EnumerateWithFilters(self, request, context):
     """Return a list of backups for the specified volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1431,10 +1454,10 @@ def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
           request_deserializer=api__pb2.SdkCloudBackupDeleteAllRequest.FromString,
           response_serializer=api__pb2.SdkCloudBackupDeleteAllResponse.SerializeToString,
       ),
-      'Enumerate': grpc.unary_unary_rpc_method_handler(
-          servicer.Enumerate,
-          request_deserializer=api__pb2.SdkCloudBackupEnumerateRequest.FromString,
-          response_serializer=api__pb2.SdkCloudBackupEnumerateResponse.SerializeToString,
+      'EnumerateWithFilters': grpc.unary_unary_rpc_method_handler(
+          servicer.EnumerateWithFilters,
+          request_deserializer=api__pb2.SdkCloudBackupEnumerateWithFiltersRequest.FromString,
+          response_serializer=api__pb2.SdkCloudBackupEnumerateWithFiltersResponse.SerializeToString,
       ),
       'Status': grpc.unary_unary_rpc_method_handler(
           servicer.Status,

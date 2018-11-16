@@ -15,7 +15,7 @@ proto:
 ifndef DOCKER_PROTO
 	$(error Do not run directly. Run 'make docker-proto' instead.)
 endif
-	curl https://raw.githubusercontent.com/libopenstorage/openstorage/master/api/api.proto \
+	curl https://raw.githubusercontent.com/libopenstorage/openstorage/release-4.0/api/api.proto \
 		--output api.proto --silent
 
 	@echo "Generating protobuf definitions from api.proto"
