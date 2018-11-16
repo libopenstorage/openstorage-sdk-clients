@@ -209,6 +209,14 @@ module Openstorage
         rpc :Update, SdkVolumeUpdateRequest, SdkVolumeUpdateResponse
         # Stats returns the statistics for the requested volume
         rpc :Stats, SdkVolumeStatsRequest, SdkVolumeStatsResponse
+        # CapacityUsage returns volume/snapshot's capacity usage details
+        #
+        # ##### Error codes:
+        #
+        # * codes.Aborted : Command was aborted and only total_bytes field is valid
+        # * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+        # field is valid;
+        rpc :CapacityUsage, SdkVolumeCapacityUsageRequest, SdkVolumeCapacityUsageResponse
         # Enumerate returns a list of volume ids
         rpc :Enumerate, SdkVolumeEnumerateRequest, SdkVolumeEnumerateResponse
         # Enumerate returns a list of volume ids that match the labels if any are provided.
@@ -275,7 +283,7 @@ module Openstorage
         rpc :Start, SdkCloudMigrateStartRequest, SdkCloudMigrateStartResponse
         # Cancel a migration operation
         rpc :Cancel, SdkCloudMigrateCancelRequest, SdkCloudMigrateCancelResponse
-        # Inspect the status of migration operation  
+        # Inspect the status of migration operation
         rpc :Status, SdkCloudMigrateStatusRequest, SdkCloudMigrateStatusResponse
       end
 
@@ -418,7 +426,7 @@ module Openstorage
         # DeleteAll deletes all the backups in the cloud for the specified volume.
         rpc :DeleteAll, SdkCloudBackupDeleteAllRequest, SdkCloudBackupDeleteAllResponse
         # Return a list of backups for the specified volume
-        rpc :Enumerate, SdkCloudBackupEnumerateRequest, SdkCloudBackupEnumerateResponse
+        rpc :EnumerateWithFilters, SdkCloudBackupEnumerateWithFiltersRequest, SdkCloudBackupEnumerateWithFiltersResponse
         # Status returns the status of any cloud backups of a volume
         rpc :Status, SdkCloudBackupStatusRequest, SdkCloudBackupStatusResponse
         # Catalog returns a list of the contents in the backup
