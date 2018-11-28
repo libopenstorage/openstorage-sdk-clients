@@ -27,10 +27,9 @@ module Openstorage
         self.unmarshal_class_method = :decode
         self.service_name = 'openstorage.api.OpenStorageAlerts'
 
-        # Enumerate allows querying alerts.
+        # Allows querying alerts.
         #
-        # #### Enumerate
-        # Enumerate allows 3 different types of queries as defined below:
+        # EnumerateWithFilters allows 3 different types of queries as defined below:
         #
         # * Query that takes only resource type as input
         # * Query that takes resource type and alert type as input and
@@ -56,8 +55,8 @@ module Openstorage
         # use two queries, first initialized with SdkAlertsResourceTypeQuery
         # and second initialized with SdkAlertsAlertTypeQuery and both
         # eventually packed as list in SdkAlertsEnumerateRequest.
-        rpc :Enumerate, SdkAlertsEnumerateRequest, SdkAlertsEnumerateResponse
-        # Delete allows deleting alerts.
+        rpc :EnumerateWithFilters, SdkAlertsEnumerateWithFiltersRequest, stream(SdkAlertsEnumerateWithFiltersResponse)
+        # Delete alerts
         #
         # #### Delete
         # Delete allows 3 different types of queries as defined below:
@@ -67,7 +66,7 @@ module Openstorage
         # * Query that takes resource id, alert type and resource type as input.
         #
         # #### Input
-        # SdkAlertsEnumerateRequest takes a list of such queries and all alerts
+        # SdkAlertsDeleteRequest takes a list of such queries and all alerts
         # that match at least one of the queries are deleted.
         rpc :Delete, SdkAlertsDeleteRequest, SdkAlertsDeleteResponse
       end

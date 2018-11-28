@@ -39,26 +39,26 @@ function deserialize_openstorage_api_SdkAlertsDeleteResponse(buffer_arg) {
   return api_pb.SdkAlertsDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkAlertsEnumerateRequest(arg) {
-  if (!(arg instanceof api_pb.SdkAlertsEnumerateRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateRequest');
+function serialize_openstorage_api_SdkAlertsEnumerateWithFiltersRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAlertsEnumerateWithFiltersRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateWithFiltersRequest');
   }
   return new Buffer(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkAlertsEnumerateRequest(buffer_arg) {
-  return api_pb.SdkAlertsEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersRequest(buffer_arg) {
+  return api_pb.SdkAlertsEnumerateWithFiltersRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkAlertsEnumerateResponse(arg) {
-  if (!(arg instanceof api_pb.SdkAlertsEnumerateResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateResponse');
+function serialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAlertsEnumerateWithFiltersResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateWithFiltersResponse');
   }
   return new Buffer(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkAlertsEnumerateResponse(buffer_arg) {
-  return api_pb.SdkAlertsEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(buffer_arg) {
+  return api_pb.SdkAlertsEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkCloudBackupCatalogRequest(arg) {
@@ -1362,10 +1362,9 @@ function deserialize_openstorage_api_SdkVolumeUpdateResponse(buffer_arg) {
 
 // OpenStorageAlerts defines rpc's for alerts.
 var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
-  // Enumerate allows querying alerts.
+  // Allows querying alerts.
   //
-  // #### Enumerate
-  // Enumerate allows 3 different types of queries as defined below:
+  // EnumerateWithFilters allows 3 different types of queries as defined below:
   //
   // * Query that takes only resource type as input
   // * Query that takes resource type and alert type as input and
@@ -1391,18 +1390,18 @@ var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
   // use two queries, first initialized with SdkAlertsResourceTypeQuery
   // and second initialized with SdkAlertsAlertTypeQuery and both
   // eventually packed as list in SdkAlertsEnumerateRequest.
-  enumerate: {
-    path: '/openstorage.api.OpenStorageAlerts/Enumerate',
+  enumerateWithFilters: {
+    path: '/openstorage.api.OpenStorageAlerts/EnumerateWithFilters',
     requestStream: false,
-    responseStream: false,
-    requestType: api_pb.SdkAlertsEnumerateRequest,
-    responseType: api_pb.SdkAlertsEnumerateResponse,
-    requestSerialize: serialize_openstorage_api_SdkAlertsEnumerateRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateRequest,
-    responseSerialize: serialize_openstorage_api_SdkAlertsEnumerateResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateResponse,
+    responseStream: true,
+    requestType: api_pb.SdkAlertsEnumerateWithFiltersRequest,
+    responseType: api_pb.SdkAlertsEnumerateWithFiltersResponse,
+    requestSerialize: serialize_openstorage_api_SdkAlertsEnumerateWithFiltersRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersRequest,
+    responseSerialize: serialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse,
   },
-  // Delete allows deleting alerts.
+  // Delete alerts
   //
   // #### Delete
   // Delete allows 3 different types of queries as defined below:
@@ -1412,7 +1411,7 @@ var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
   // * Query that takes resource id, alert type and resource type as input.
   //
   // #### Input
-  // SdkAlertsEnumerateRequest takes a list of such queries and all alerts
+  // SdkAlertsDeleteRequest takes a list of such queries and all alerts
   // that match at least one of the queries are deleted.
   delete: {
     path: '/openstorage.api.OpenStorageAlerts/Delete',

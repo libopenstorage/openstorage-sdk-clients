@@ -224,10 +224,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :resource_id_query, :message, 3, "openstorage.api.SdkAlertsResourceIdQuery"
     end
   end
-  add_message "openstorage.api.SdkAlertsEnumerateRequest" do
+  add_message "openstorage.api.SdkAlertsEnumerateWithFiltersRequest" do
     repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
   end
-  add_message "openstorage.api.SdkAlertsEnumerateResponse" do
+  add_message "openstorage.api.SdkAlertsEnumerateWithFiltersResponse" do
     repeated :alerts, :message, 1, "openstorage.api.Alert"
   end
   add_message "openstorage.api.SdkAlertsDeleteRequest" do
@@ -800,7 +800,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 28
+    value :Minor, 31
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1199,8 +1199,8 @@ module Openstorage
     SdkAlertsAlertTypeQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsAlertTypeQuery").msgclass
     SdkAlertsResourceIdQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsResourceIdQuery").msgclass
     SdkAlertsQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsQuery").msgclass
-    SdkAlertsEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateRequest").msgclass
-    SdkAlertsEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateResponse").msgclass
+    SdkAlertsEnumerateWithFiltersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateWithFiltersRequest").msgclass
+    SdkAlertsEnumerateWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateWithFiltersResponse").msgclass
     SdkAlertsDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteRequest").msgclass
     SdkAlertsDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteResponse").msgclass
     SdkSchedulePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyCreateRequest").msgclass

@@ -68,8 +68,8 @@ goog.exportSymbol('proto.openstorage.api.SdkAlertsAlertTypeQuery', null, global)
 goog.exportSymbol('proto.openstorage.api.SdkAlertsCountSpan', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsDeleteRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsDeleteResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkAlertsEnumerateRequest', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkAlertsEnumerateResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsOption', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsQuery', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsResourceIdQuery', null, global);
@@ -7592,19 +7592,19 @@ proto.openstorage.api.SdkAlertsQuery.prototype.clearOptsList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkAlertsEnumerateRequest.repeatedFields_, null);
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.repeatedFields_, null);
 };
-goog.inherits(proto.openstorage.api.SdkAlertsEnumerateRequest, jspb.Message);
+goog.inherits(proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.openstorage.api.SdkAlertsEnumerateRequest.displayName = 'proto.openstorage.api.SdkAlertsEnumerateRequest';
+  proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.displayName = 'proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.repeatedFields_ = [1];
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.repeatedFields_ = [1];
 
 
 
@@ -7619,8 +7619,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkAlertsEnumerateRequest.toObject(opt_includeInstance, this);
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -7629,11 +7629,11 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.toObject = function(op
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkAlertsEnumerateRequest} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.toObject = function(includeInstance, msg) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     queriesList: jspb.Message.toObjectList(msg.getQueriesList(),
     proto.openstorage.api.SdkAlertsQuery.toObject, includeInstance)
@@ -7650,23 +7650,23 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.toObject = function(includeInsta
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkAlertsEnumerateRequest}
+ * @return {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest}
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.deserializeBinary = function(bytes) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkAlertsEnumerateRequest;
-  return proto.openstorage.api.SdkAlertsEnumerateRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest;
+  return proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkAlertsEnumerateRequest} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkAlertsEnumerateRequest}
+ * @return {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest}
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7691,9 +7691,9 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.deserializeBinaryFromReader = fu
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.serializeBinary = function() {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkAlertsEnumerateRequest.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7701,11 +7701,11 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.serializeBinary = func
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkAlertsEnumerateRequest} message
+ * @param {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getQueriesList();
   if (f.length > 0) {
@@ -7722,14 +7722,14 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.serializeBinaryToWriter = functi
  * repeated SdkAlertsQuery queries = 1;
  * @return {!Array.<!proto.openstorage.api.SdkAlertsQuery>}
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.getQueriesList = function() {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.getQueriesList = function() {
   return /** @type{!Array.<!proto.openstorage.api.SdkAlertsQuery>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkAlertsQuery, 1));
 };
 
 
 /** @param {!Array.<!proto.openstorage.api.SdkAlertsQuery>} value */
-proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.setQueriesList = function(value) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.setQueriesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -7739,12 +7739,12 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.setQueriesList = funct
  * @param {number=} opt_index
  * @return {!proto.openstorage.api.SdkAlertsQuery}
  */
-proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.addQueries = function(opt_value, opt_index) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.addQueries = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.openstorage.api.SdkAlertsQuery, opt_index);
 };
 
 
-proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.clearQueriesList = function() {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.clearQueriesList = function() {
   this.setQueriesList([]);
 };
 
@@ -7760,19 +7760,19 @@ proto.openstorage.api.SdkAlertsEnumerateRequest.prototype.clearQueriesList = fun
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkAlertsEnumerateResponse.repeatedFields_, null);
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.repeatedFields_, null);
 };
-goog.inherits(proto.openstorage.api.SdkAlertsEnumerateResponse, jspb.Message);
+goog.inherits(proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.openstorage.api.SdkAlertsEnumerateResponse.displayName = 'proto.openstorage.api.SdkAlertsEnumerateResponse';
+  proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.displayName = 'proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.repeatedFields_ = [1];
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.repeatedFields_ = [1];
 
 
 
@@ -7787,8 +7787,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkAlertsEnumerateResponse.toObject(opt_includeInstance, this);
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -7797,11 +7797,11 @@ proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.toObject = function(o
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkAlertsEnumerateResponse} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.toObject = function(includeInstance, msg) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     alertsList: jspb.Message.toObjectList(msg.getAlertsList(),
     proto.openstorage.api.Alert.toObject, includeInstance)
@@ -7818,23 +7818,23 @@ proto.openstorage.api.SdkAlertsEnumerateResponse.toObject = function(includeInst
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkAlertsEnumerateResponse}
+ * @return {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse}
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.deserializeBinary = function(bytes) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkAlertsEnumerateResponse;
-  return proto.openstorage.api.SdkAlertsEnumerateResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse;
+  return proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkAlertsEnumerateResponse} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkAlertsEnumerateResponse}
+ * @return {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse}
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7859,9 +7859,9 @@ proto.openstorage.api.SdkAlertsEnumerateResponse.deserializeBinaryFromReader = f
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.serializeBinary = function() {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkAlertsEnumerateResponse.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7869,11 +7869,11 @@ proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.serializeBinary = fun
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkAlertsEnumerateResponse} message
+ * @param {!proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAlertsList();
   if (f.length > 0) {
@@ -7890,14 +7890,14 @@ proto.openstorage.api.SdkAlertsEnumerateResponse.serializeBinaryToWriter = funct
  * repeated Alert alerts = 1;
  * @return {!Array.<!proto.openstorage.api.Alert>}
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.getAlertsList = function() {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.getAlertsList = function() {
   return /** @type{!Array.<!proto.openstorage.api.Alert>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.Alert, 1));
 };
 
 
 /** @param {!Array.<!proto.openstorage.api.Alert>} value */
-proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.setAlertsList = function(value) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.setAlertsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -7907,12 +7907,12 @@ proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.setAlertsList = funct
  * @param {number=} opt_index
  * @return {!proto.openstorage.api.Alert}
  */
-proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.addAlerts = function(opt_value, opt_index) {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.addAlerts = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.openstorage.api.Alert, opt_index);
 };
 
 
-proto.openstorage.api.SdkAlertsEnumerateResponse.prototype.clearAlertsList = function() {
+proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.clearAlertsList = function() {
   this.setAlertsList([]);
 };
 
@@ -32909,7 +32909,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 28,
+  MINOR: 31,
   PATCH: 0
 };
 

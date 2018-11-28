@@ -14,10 +14,10 @@ class OpenStorageAlertsStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.Enumerate = channel.unary_unary(
-        '/openstorage.api.OpenStorageAlerts/Enumerate',
-        request_serializer=api__pb2.SdkAlertsEnumerateRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkAlertsEnumerateResponse.FromString,
+    self.EnumerateWithFilters = channel.unary_stream(
+        '/openstorage.api.OpenStorageAlerts/EnumerateWithFilters',
+        request_serializer=api__pb2.SdkAlertsEnumerateWithFiltersRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkAlertsEnumerateWithFiltersResponse.FromString,
         )
     self.Delete = channel.unary_unary(
         '/openstorage.api.OpenStorageAlerts/Delete',
@@ -30,11 +30,10 @@ class OpenStorageAlertsServicer(object):
   """OpenStorageAlerts defines rpc's for alerts.
   """
 
-  def Enumerate(self, request, context):
-    """Enumerate allows querying alerts.
+  def EnumerateWithFilters(self, request, context):
+    """Allows querying alerts.
 
-    #### Enumerate
-    Enumerate allows 3 different types of queries as defined below:
+    EnumerateWithFilters allows 3 different types of queries as defined below:
 
     * Query that takes only resource type as input
     * Query that takes resource type and alert type as input and
@@ -66,7 +65,7 @@ class OpenStorageAlertsServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def Delete(self, request, context):
-    """Delete allows deleting alerts.
+    """Delete alerts
 
     #### Delete
     Delete allows 3 different types of queries as defined below:
@@ -76,7 +75,7 @@ class OpenStorageAlertsServicer(object):
     * Query that takes resource id, alert type and resource type as input.
 
     #### Input
-    SdkAlertsEnumerateRequest takes a list of such queries and all alerts
+    SdkAlertsDeleteRequest takes a list of such queries and all alerts
     that match at least one of the queries are deleted.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -86,10 +85,10 @@ class OpenStorageAlertsServicer(object):
 
 def add_OpenStorageAlertsServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'Enumerate': grpc.unary_unary_rpc_method_handler(
-          servicer.Enumerate,
-          request_deserializer=api__pb2.SdkAlertsEnumerateRequest.FromString,
-          response_serializer=api__pb2.SdkAlertsEnumerateResponse.SerializeToString,
+      'EnumerateWithFilters': grpc.unary_stream_rpc_method_handler(
+          servicer.EnumerateWithFilters,
+          request_deserializer=api__pb2.SdkAlertsEnumerateWithFiltersRequest.FromString,
+          response_serializer=api__pb2.SdkAlertsEnumerateWithFiltersResponse.SerializeToString,
       ),
       'Delete': grpc.unary_unary_rpc_method_handler(
           servicer.Delete,
