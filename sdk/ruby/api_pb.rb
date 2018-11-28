@@ -223,10 +223,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :resource_id_query, :message, 3, "openstorage.api.SdkAlertsResourceIdQuery"
     end
   end
-  add_message "openstorage.api.SdkAlertsEnumerateRequest" do
+  add_message "openstorage.api.SdkAlertsEnumerateWithFiltersRequest" do
     repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
   end
-  add_message "openstorage.api.SdkAlertsEnumerateResponse" do
+  add_message "openstorage.api.SdkAlertsEnumerateWithFiltersResponse" do
     repeated :alerts, :message, 1, "openstorage.api.Alert"
   end
   add_message "openstorage.api.SdkAlertsDeleteRequest" do
@@ -701,6 +701,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :src_volume_id, :string, 8
     repeated :info, :string, 9
     optional :credential_id, :string, 10
+    optional :bytes_total, :uint64, 11
+    optional :eta_seconds, :int64, 12
   end
   add_message "openstorage.api.SdkCloudBackupStatusRequest" do
     optional :volume_id, :string, 1
@@ -798,7 +800,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 22
-    value :Patch, 3
+    value :Patch, 7
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -877,7 +879,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :status, :enum, 8, "openstorage.api.CloudMigrate.Status"
     optional :last_update, :message, 9, "google.protobuf.Timestamp"
     optional :error_reason, :string, 10
-    optional :time_remaining, :int64, 11
+    optional :start_time, :message, 11, "google.protobuf.Timestamp"
+    optional :completed_time, :message, 12, "google.protobuf.Timestamp"
+    optional :bytes_total, :uint64, 13
+    optional :bytes_done, :uint64, 14
+    optional :eta_seconds, :int64, 15
   end
   add_message "openstorage.api.CloudMigrateInfoList" do
     repeated :list, :message, 1, "openstorage.api.CloudMigrateInfo"
@@ -1192,8 +1198,8 @@ module Openstorage
     SdkAlertsAlertTypeQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsAlertTypeQuery").msgclass
     SdkAlertsResourceIdQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsResourceIdQuery").msgclass
     SdkAlertsQuery = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsQuery").msgclass
-    SdkAlertsEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateRequest").msgclass
-    SdkAlertsEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateResponse").msgclass
+    SdkAlertsEnumerateWithFiltersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateWithFiltersRequest").msgclass
+    SdkAlertsEnumerateWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateWithFiltersResponse").msgclass
     SdkAlertsDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteRequest").msgclass
     SdkAlertsDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteResponse").msgclass
     SdkSchedulePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyCreateRequest").msgclass
