@@ -31,17 +31,15 @@ goog.exportSymbol('proto.openstorage.api.CloudMigrateInfo', null, global);
 goog.exportSymbol('proto.openstorage.api.CloudMigrateInfoList', null, global);
 goog.exportSymbol('proto.openstorage.api.CloudMigrateStartRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.CloudMigrateStartResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.CloudMigrateStatusRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.CloudMigrateStatusResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterNotify', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairCreateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairCreateResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.ClusterPairDeleteRequest', null, global);
-goog.exportSymbol('proto.openstorage.api.ClusterPairGetRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairGetResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairInfo', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairProcessRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairProcessResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.ClusterPairTokenGetRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairTokenGetResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterPairsEnumerateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterResponse', null, global);
@@ -11795,12 +11793,19 @@ proto.openstorage.api.ActiveRequests.prototype.clearActiverequestList = function
  * @constructor
  */
 proto.openstorage.api.GroupSnapCreateRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.GroupSnapCreateRequest.repeatedFields_, null);
 };
 goog.inherits(proto.openstorage.api.GroupSnapCreateRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.openstorage.api.GroupSnapCreateRequest.displayName = 'proto.openstorage.api.GroupSnapCreateRequest';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.GroupSnapCreateRequest.repeatedFields_ = [3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -11831,7 +11836,8 @@ proto.openstorage.api.GroupSnapCreateRequest.prototype.toObject = function(opt_i
 proto.openstorage.api.GroupSnapCreateRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    volumeIdsList: jspb.Message.getRepeatedField(msg, 3)
   };
 
   if (includeInstance) {
@@ -11878,6 +11884,10 @@ proto.openstorage.api.GroupSnapCreateRequest.deserializeBinaryFromReader = funct
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addVolumeIds(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -11918,6 +11928,13 @@ proto.openstorage.api.GroupSnapCreateRequest.serializeBinaryToWriter = function(
   if (f && f.getLength() > 0) {
     f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
+  f = message.getVolumeIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -11951,6 +11968,35 @@ proto.openstorage.api.GroupSnapCreateRequest.prototype.getLabelsMap = function(o
 
 proto.openstorage.api.GroupSnapCreateRequest.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
+};
+
+
+/**
+ * repeated string volume_ids = 3;
+ * @return {!Array.<string>}
+ */
+proto.openstorage.api.GroupSnapCreateRequest.prototype.getVolumeIdsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.openstorage.api.GroupSnapCreateRequest.prototype.setVolumeIdsList = function(value) {
+  jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.GroupSnapCreateRequest.prototype.addVolumeIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+proto.openstorage.api.GroupSnapCreateRequest.prototype.clearVolumeIdsList = function() {
+  this.setVolumeIdsList([]);
 };
 
 
@@ -32909,7 +32955,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 31,
+  MINOR: 33,
   PATCH: 0
 };
 
@@ -35776,7 +35822,7 @@ proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.toObject = function
  */
 proto.openstorage.api.SdkCloudMigrateStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    request: (f = msg.getRequest()) && proto.openstorage.api.CloudMigrateStatusRequest.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -35813,6 +35859,11 @@ proto.openstorage.api.SdkCloudMigrateStatusRequest.deserializeBinaryFromReader =
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new proto.openstorage.api.CloudMigrateStatusRequest;
+      reader.readMessage(value,proto.openstorage.api.CloudMigrateStatusRequest.deserializeBinaryFromReader);
+      msg.setRequest(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -35842,6 +35893,213 @@ proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.serializeBinary = f
  */
 proto.openstorage.api.SdkCloudMigrateStatusRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getRequest();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.openstorage.api.CloudMigrateStatusRequest.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional CloudMigrateStatusRequest request = 1;
+ * @return {?proto.openstorage.api.CloudMigrateStatusRequest}
+ */
+proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.getRequest = function() {
+  return /** @type{?proto.openstorage.api.CloudMigrateStatusRequest} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.CloudMigrateStatusRequest, 1));
+};
+
+
+/** @param {?proto.openstorage.api.CloudMigrateStatusRequest|undefined} value */
+proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.setRequest = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.clearRequest = function() {
+  this.setRequest(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.hasRequest = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.CloudMigrateStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.CloudMigrateStatusRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.CloudMigrateStatusRequest.displayName = 'proto.openstorage.api.CloudMigrateStatusRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.CloudMigrateStatusRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.CloudMigrateStatusRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    taskId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    clusterId: jspb.Message.getFieldWithDefault(msg, 2, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.CloudMigrateStatusRequest}
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.CloudMigrateStatusRequest;
+  return proto.openstorage.api.CloudMigrateStatusRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.CloudMigrateStatusRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.CloudMigrateStatusRequest}
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTaskId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setClusterId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.CloudMigrateStatusRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.CloudMigrateStatusRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTaskId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getClusterId();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string task_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.prototype.getTaskId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.CloudMigrateStatusRequest.prototype.setTaskId = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional string cluster_id = 2;
+ * @return {string}
+ */
+proto.openstorage.api.CloudMigrateStatusRequest.prototype.getClusterId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.CloudMigrateStatusRequest.prototype.setClusterId = function(value) {
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -37286,148 +37544,6 @@ proto.openstorage.api.ClusterPairProcessResponse.prototype.clearOptionsMap = fun
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.ClusterPairDeleteRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.ClusterPairDeleteRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.openstorage.api.ClusterPairDeleteRequest.displayName = 'proto.openstorage.api.ClusterPairDeleteRequest';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.ClusterPairDeleteRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.ClusterPairDeleteRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.ClusterPairDeleteRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.ClusterPairDeleteRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    clusterId: jspb.Message.getFieldWithDefault(msg, 1, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.ClusterPairDeleteRequest}
- */
-proto.openstorage.api.ClusterPairDeleteRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.ClusterPairDeleteRequest;
-  return proto.openstorage.api.ClusterPairDeleteRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.ClusterPairDeleteRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.ClusterPairDeleteRequest}
- */
-proto.openstorage.api.ClusterPairDeleteRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setClusterId(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.ClusterPairDeleteRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.ClusterPairDeleteRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.ClusterPairDeleteRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.ClusterPairDeleteRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getClusterId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string cluster_id = 1;
- * @return {string}
- */
-proto.openstorage.api.ClusterPairDeleteRequest.prototype.getClusterId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.openstorage.api.ClusterPairDeleteRequest.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 1, value);
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
 proto.openstorage.api.SdkClusterPairDeleteRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -37672,150 +37788,6 @@ proto.openstorage.api.SdkClusterPairDeleteResponse.prototype.serializeBinary = f
  */
 proto.openstorage.api.SdkClusterPairDeleteResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.openstorage.api.ClusterPairTokenGetRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.ClusterPairTokenGetRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.openstorage.api.ClusterPairTokenGetRequest.displayName = 'proto.openstorage.api.ClusterPairTokenGetRequest';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.ClusterPairTokenGetRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.ClusterPairTokenGetRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    resetToken: jspb.Message.getFieldWithDefault(msg, 1, false)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.ClusterPairTokenGetRequest}
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.ClusterPairTokenGetRequest;
-  return proto.openstorage.api.ClusterPairTokenGetRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.ClusterPairTokenGetRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.ClusterPairTokenGetRequest}
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setResetToken(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.ClusterPairTokenGetRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.ClusterPairTokenGetRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getResetToken();
-  if (f) {
-    writer.writeBool(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bool reset_token = 1;
- * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
- * You should avoid comparisons like {@code val === true/false} in those cases.
- * @return {boolean}
- */
-proto.openstorage.api.ClusterPairTokenGetRequest.prototype.getResetToken = function() {
-  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 1, false));
-};
-
-
-/** @param {boolean} value */
-proto.openstorage.api.ClusterPairTokenGetRequest.prototype.setResetToken = function(value) {
-  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -38837,148 +38809,6 @@ proto.openstorage.api.ClusterPairInfo.prototype.getOptionsMap = function(opt_noL
 
 proto.openstorage.api.ClusterPairInfo.prototype.clearOptionsMap = function() {
   this.getOptionsMap().clear();
-};
-
-
-
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.openstorage.api.ClusterPairGetRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.ClusterPairGetRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  proto.openstorage.api.ClusterPairGetRequest.displayName = 'proto.openstorage.api.ClusterPairGetRequest';
-}
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.ClusterPairGetRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.ClusterPairGetRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.ClusterPairGetRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.ClusterPairGetRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.ClusterPairGetRequest}
- */
-proto.openstorage.api.ClusterPairGetRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.ClusterPairGetRequest;
-  return proto.openstorage.api.ClusterPairGetRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.ClusterPairGetRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.ClusterPairGetRequest}
- */
-proto.openstorage.api.ClusterPairGetRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.ClusterPairGetRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.ClusterPairGetRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.ClusterPairGetRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.ClusterPairGetRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string id = 1;
- * @return {string}
- */
-proto.openstorage.api.ClusterPairGetRequest.prototype.getId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.openstorage.api.ClusterPairGetRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
 };
 
 
