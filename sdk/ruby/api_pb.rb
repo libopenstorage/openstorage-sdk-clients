@@ -320,6 +320,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.GroupSnapCreateRequest" do
     optional :id, :string, 1
     map :Labels, :string, :string, 2
+    repeated :volume_ids, :string, 3
   end
   add_message "openstorage.api.GroupSnapCreateResponse" do
     map :snapshots, :string, :message, 1, "openstorage.api.SnapCreateResponse"
@@ -800,7 +801,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 22
-    value :Patch, 7
+    value :Patch, 9
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -889,6 +890,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :list, :message, 1, "openstorage.api.CloudMigrateInfo"
   end
   add_message "openstorage.api.SdkCloudMigrateStatusRequest" do
+    optional :request, :message, 1, "openstorage.api.CloudMigrateStatusRequest"
+  end
+  add_message "openstorage.api.CloudMigrateStatusRequest" do
+    optional :task_id, :string, 1
+    optional :cluster_id, :string, 2
   end
   add_message "openstorage.api.CloudMigrateStatusResponse" do
     map :info, :string, :message, 1, "openstorage.api.CloudMigrateInfoList"
@@ -922,16 +928,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :remote_cluster_endpoints, :string, 3
     map :options, :string, :string, 4
   end
-  add_message "openstorage.api.ClusterPairDeleteRequest" do
-    optional :cluster_id, :string, 1
-  end
   add_message "openstorage.api.SdkClusterPairDeleteRequest" do
     optional :cluster_id, :string, 1
   end
   add_message "openstorage.api.SdkClusterPairDeleteResponse" do
-  end
-  add_message "openstorage.api.ClusterPairTokenGetRequest" do
-    optional :reset_token, :bool, 1
   end
   add_message "openstorage.api.ClusterPairTokenGetResponse" do
     optional :token, :string, 1
@@ -954,9 +954,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :secure, :bool, 5
     optional :token, :string, 6
     map :options, :string, :string, 7
-  end
-  add_message "openstorage.api.ClusterPairGetRequest" do
-    optional :id, :string, 1
   end
   add_message "openstorage.api.SdkClusterPairInspectRequest" do
     optional :id, :string, 1
@@ -1364,6 +1361,7 @@ module Openstorage
     CloudMigrateInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateInfo").msgclass
     CloudMigrateInfoList = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateInfoList").msgclass
     SdkCloudMigrateStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudMigrateStatusRequest").msgclass
+    CloudMigrateStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateStatusRequest").msgclass
     CloudMigrateStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateStatusResponse").msgclass
     SdkCloudMigrateStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudMigrateStatusResponse").msgclass
     ClusterPairCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairCreateRequest").msgclass
@@ -1372,17 +1370,14 @@ module Openstorage
     SdkClusterPairCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairCreateResponse").msgclass
     ClusterPairProcessRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairProcessRequest").msgclass
     ClusterPairProcessResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairProcessResponse").msgclass
-    ClusterPairDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairDeleteRequest").msgclass
     SdkClusterPairDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairDeleteRequest").msgclass
     SdkClusterPairDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairDeleteResponse").msgclass
-    ClusterPairTokenGetRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairTokenGetRequest").msgclass
     ClusterPairTokenGetResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairTokenGetResponse").msgclass
     SdkClusterPairGetTokenRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairGetTokenRequest").msgclass
     SdkClusterPairGetTokenResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairGetTokenResponse").msgclass
     SdkClusterPairResetTokenRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairResetTokenRequest").msgclass
     SdkClusterPairResetTokenResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairResetTokenResponse").msgclass
     ClusterPairInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairInfo").msgclass
-    ClusterPairGetRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairGetRequest").msgclass
     SdkClusterPairInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairInspectRequest").msgclass
     ClusterPairGetResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ClusterPairGetResponse").msgclass
     SdkClusterPairInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterPairInspectResponse").msgclass
