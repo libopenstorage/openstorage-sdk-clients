@@ -68,6 +68,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :sharedv4, :bool, 26
     optional :queue_depth, :int32, 27
     optional :force_unsupported_fs_type, :bool, 28
+    optional :nodiscard, :bool, 29
   end
   add_message "openstorage.api.VolumeSpecUpdate" do
     map :volume_labels, :string, :string, 10
@@ -160,6 +161,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :io_ms, :uint64, 8
     optional :bytes_used, :uint64, 9
     optional :interval_ms, :uint64, 10
+  end
+  add_message "openstorage.api.CapacityUsageInfo" do
+    optional :exclusive_bytes, :int64, 1
+    optional :shared_bytes, :int64, 2
+    optional :total_bytes, :int64, 3
   end
   add_message "openstorage.api.Alert" do
     optional :id, :int64, 1
@@ -486,6 +492,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkVolumeStatsResponse" do
     optional :stats, :message, 1, "openstorage.api.Stats"
   end
+  add_message "openstorage.api.SdkVolumeCapacityUsageRequest" do
+    optional :volume_id, :string, 1
+  end
+  add_message "openstorage.api.SdkVolumeCapacityUsageResponse" do
+    optional :capacity_usage_info, :message, 1, "openstorage.api.CapacityUsageInfo"
+  end
   add_message "openstorage.api.SdkVolumeEnumerateRequest" do
   end
   add_message "openstorage.api.SdkVolumeEnumerateResponse" do
@@ -721,7 +733,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 9
-    value :Patch, 2
+    value :Patch, 3
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -1006,6 +1018,7 @@ module Openstorage
     RuntimeStateMap = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RuntimeStateMap").msgclass
     Volume = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Volume").msgclass
     Stats = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Stats").msgclass
+    CapacityUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CapacityUsageInfo").msgclass
     Alert = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Alert").msgclass
     Alerts = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Alerts").msgclass
     ObjectstoreInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ObjectstoreInfo").msgclass
@@ -1082,6 +1095,8 @@ module Openstorage
     SdkVolumeUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeUpdateResponse").msgclass
     SdkVolumeStatsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeStatsRequest").msgclass
     SdkVolumeStatsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeStatsResponse").msgclass
+    SdkVolumeCapacityUsageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeCapacityUsageRequest").msgclass
+    SdkVolumeCapacityUsageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeCapacityUsageResponse").msgclass
     SdkVolumeEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeEnumerateRequest").msgclass
     SdkVolumeEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeEnumerateResponse").msgclass
     SdkVolumeEnumerateWithFiltersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeEnumerateWithFiltersRequest").msgclass

@@ -743,6 +743,28 @@ function deserialize_openstorage_api_SdkVolumeAttachResponse(buffer_arg) {
   return api_pb.SdkVolumeAttachResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVolumeCapacityUsageRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeCapacityUsageRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeCapacityUsageRequest(buffer_arg) {
+  return api_pb.SdkVolumeCapacityUsageRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVolumeCapacityUsageResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeCapacityUsageResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeCapacityUsageResponse(buffer_arg) {
+  return api_pb.SdkVolumeCapacityUsageResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeCloneRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCloneRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCloneRequest');
@@ -1277,6 +1299,24 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     requestDeserialize: deserialize_openstorage_api_SdkVolumeStatsRequest,
     responseSerialize: serialize_openstorage_api_SdkVolumeStatsResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeStatsResponse,
+  },
+  // CapacityUsage returns volume/snapshot's capacity usage details
+  //
+  // ##### Error codes:
+  //
+  // * codes.Aborted : Command was aborted and only total_bytes field is valid
+  // * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+  // field is valid;
+  capacityUsage: {
+    path: '/openstorage.api.OpenStorageVolume/CapacityUsage',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVolumeCapacityUsageRequest,
+    responseType: api_pb.SdkVolumeCapacityUsageResponse,
+    requestSerialize: serialize_openstorage_api_SdkVolumeCapacityUsageRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVolumeCapacityUsageRequest,
+    responseSerialize: serialize_openstorage_api_SdkVolumeCapacityUsageResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVolumeCapacityUsageResponse,
   },
   // Enumerate returns a list of volume ids
   enumerate: {

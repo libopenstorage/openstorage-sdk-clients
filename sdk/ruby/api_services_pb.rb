@@ -114,6 +114,14 @@ module Openstorage
         rpc :Update, SdkVolumeUpdateRequest, SdkVolumeUpdateResponse
         # Stats returns the statistics for the requested volume
         rpc :Stats, SdkVolumeStatsRequest, SdkVolumeStatsResponse
+        # CapacityUsage returns volume/snapshot's capacity usage details
+        #
+        # ##### Error codes:
+        #
+        # * codes.Aborted : Command was aborted and only total_bytes field is valid
+        # * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+        # field is valid;
+        rpc :CapacityUsage, SdkVolumeCapacityUsageRequest, SdkVolumeCapacityUsageResponse
         # Enumerate returns a list of volume ids
         rpc :Enumerate, SdkVolumeEnumerateRequest, SdkVolumeEnumerateResponse
         # Enumerate returns a list of volume ids that match the labels if any are provided.

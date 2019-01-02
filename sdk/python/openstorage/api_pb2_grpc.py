@@ -228,6 +228,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeStatsRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeStatsResponse.FromString,
         )
+    self.CapacityUsage = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/CapacityUsage',
+        request_serializer=api__pb2.SdkVolumeCapacityUsageRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeCapacityUsageResponse.FromString,
+        )
     self.Enumerate = channel.unary_unary(
         '/openstorage.api.OpenStorageVolume/Enumerate',
         request_serializer=api__pb2.SdkVolumeEnumerateRequest.SerializeToString,
@@ -326,6 +331,19 @@ class OpenStorageVolumeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def CapacityUsage(self, request, context):
+    """CapacityUsage returns volume/snapshot's capacity usage details
+
+    ##### Error codes:
+
+    * codes.Aborted : Command was aborted and only total_bytes field is valid
+    * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+    field is valid;
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def Enumerate(self, request, context):
     """Enumerate returns a list of volume ids
     """
@@ -415,6 +433,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.Stats,
           request_deserializer=api__pb2.SdkVolumeStatsRequest.FromString,
           response_serializer=api__pb2.SdkVolumeStatsResponse.SerializeToString,
+      ),
+      'CapacityUsage': grpc.unary_unary_rpc_method_handler(
+          servicer.CapacityUsage,
+          request_deserializer=api__pb2.SdkVolumeCapacityUsageRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeCapacityUsageResponse.SerializeToString,
       ),
       'Enumerate': grpc.unary_unary_rpc_method_handler(
           servicer.Enumerate,
