@@ -101,6 +101,148 @@ def add_OpenStorageAlertsServicer_to_server(servicer, server):
   server.add_generic_rpc_handlers((generic_handler,))
 
 
+class OpenStorageRoleStub(object):
+  """OpenStorageRole service provides methods to manage user roles
+
+  ### Custom roles
+  The OpenStorage SDK server is equipped to handle customized authorization
+  roles. Using this model it allows administrators to customize the permission
+  rules of a role to be used by a user.
+
+  Creating a custom role, or an SdkRole, is done by setting up a set of allowed _rules_,
+  or SdkRules, directives which are sequentially scanned until a match is found. Rules
+  are created using the names of OpenStorage SDK services and APIs as follows:
+
+  The message SdkRules has the following properties:
+
+  * Services: Is the gRPC service name in `OpenStorage<service name>` in lowercase
+  * Apis: Is the API name in the service in lowercase
+
+  Please see SdkRule for more information on the format.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Create = channel.unary_unary(
+        '/openstorage.api.OpenStorageRole/Create',
+        request_serializer=api__pb2.SdkRoleCreateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkRoleCreateResponse.FromString,
+        )
+    self.Enumerate = channel.unary_unary(
+        '/openstorage.api.OpenStorageRole/Enumerate',
+        request_serializer=api__pb2.SdkRoleEnumerateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkRoleEnumerateResponse.FromString,
+        )
+    self.Inspect = channel.unary_unary(
+        '/openstorage.api.OpenStorageRole/Inspect',
+        request_serializer=api__pb2.SdkRoleInspectRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkRoleInspectResponse.FromString,
+        )
+    self.Delete = channel.unary_unary(
+        '/openstorage.api.OpenStorageRole/Delete',
+        request_serializer=api__pb2.SdkRoleDeleteRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkRoleDeleteResponse.FromString,
+        )
+    self.Update = channel.unary_unary(
+        '/openstorage.api.OpenStorageRole/Update',
+        request_serializer=api__pb2.SdkRoleUpdateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkRoleUpdateResponse.FromString,
+        )
+
+
+class OpenStorageRoleServicer(object):
+  """OpenStorageRole service provides methods to manage user roles
+
+  ### Custom roles
+  The OpenStorage SDK server is equipped to handle customized authorization
+  roles. Using this model it allows administrators to customize the permission
+  rules of a role to be used by a user.
+
+  Creating a custom role, or an SdkRole, is done by setting up a set of allowed _rules_,
+  or SdkRules, directives which are sequentially scanned until a match is found. Rules
+  are created using the names of OpenStorage SDK services and APIs as follows:
+
+  The message SdkRules has the following properties:
+
+  * Services: Is the gRPC service name in `OpenStorage<service name>` in lowercase
+  * Apis: Is the API name in the service in lowercase
+
+  Please see SdkRule for more information on the format.
+  """
+
+  def Create(self, request, context):
+    """Create a role for users in the system
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Enumerate(self, request, context):
+    """List all roles
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Inspect(self, request, context):
+    """Get information about a role
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Delete(self, request, context):
+    """Delete an existing role
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Update(self, request, context):
+    """Update an existing role
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageRoleServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Create': grpc.unary_unary_rpc_method_handler(
+          servicer.Create,
+          request_deserializer=api__pb2.SdkRoleCreateRequest.FromString,
+          response_serializer=api__pb2.SdkRoleCreateResponse.SerializeToString,
+      ),
+      'Enumerate': grpc.unary_unary_rpc_method_handler(
+          servicer.Enumerate,
+          request_deserializer=api__pb2.SdkRoleEnumerateRequest.FromString,
+          response_serializer=api__pb2.SdkRoleEnumerateResponse.SerializeToString,
+      ),
+      'Inspect': grpc.unary_unary_rpc_method_handler(
+          servicer.Inspect,
+          request_deserializer=api__pb2.SdkRoleInspectRequest.FromString,
+          response_serializer=api__pb2.SdkRoleInspectResponse.SerializeToString,
+      ),
+      'Delete': grpc.unary_unary_rpc_method_handler(
+          servicer.Delete,
+          request_deserializer=api__pb2.SdkRoleDeleteRequest.FromString,
+          response_serializer=api__pb2.SdkRoleDeleteResponse.SerializeToString,
+      ),
+      'Update': grpc.unary_unary_rpc_method_handler(
+          servicer.Update,
+          request_deserializer=api__pb2.SdkRoleUpdateRequest.FromString,
+          response_serializer=api__pb2.SdkRoleUpdateResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageRole', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
 class OpenStorageIdentityStub(object):
   """OpenStorageIdentity service provides methods to obtain information
   about the cluster

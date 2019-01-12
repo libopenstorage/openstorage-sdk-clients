@@ -853,6 +853,116 @@ function deserialize_openstorage_api_SdkObjectstoreUpdateResponse(buffer_arg) {
   return api_pb.SdkObjectstoreUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkRoleCreateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkRoleCreateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleCreateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleCreateRequest(buffer_arg) {
+  return api_pb.SdkRoleCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleCreateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkRoleCreateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleCreateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleCreateResponse(buffer_arg) {
+  return api_pb.SdkRoleCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.SdkRoleDeleteRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleDeleteRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleDeleteRequest(buffer_arg) {
+  return api_pb.SdkRoleDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.SdkRoleDeleteResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleDeleteResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleDeleteResponse(buffer_arg) {
+  return api_pb.SdkRoleDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleEnumerateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkRoleEnumerateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleEnumerateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleEnumerateRequest(buffer_arg) {
+  return api_pb.SdkRoleEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleEnumerateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkRoleEnumerateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleEnumerateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleEnumerateResponse(buffer_arg) {
+  return api_pb.SdkRoleEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleInspectRequest(arg) {
+  if (!(arg instanceof api_pb.SdkRoleInspectRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleInspectRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleInspectRequest(buffer_arg) {
+  return api_pb.SdkRoleInspectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleInspectResponse(arg) {
+  if (!(arg instanceof api_pb.SdkRoleInspectResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleInspectResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleInspectResponse(buffer_arg) {
+  return api_pb.SdkRoleInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkRoleUpdateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleUpdateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleUpdateRequest(buffer_arg) {
+  return api_pb.SdkRoleUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkRoleUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkRoleUpdateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkRoleUpdateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkRoleUpdateResponse(buffer_arg) {
+  return api_pb.SdkRoleUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkSchedulePolicyCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyCreateRequest');
@@ -1427,6 +1537,87 @@ var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
 };
 
 exports.OpenStorageAlertsClient = grpc.makeGenericClientConstructor(OpenStorageAlertsService);
+// OpenStorageRole service provides methods to manage user roles
+//
+// ### Custom roles
+// The OpenStorage SDK server is equipped to handle customized authorization
+// roles. Using this model it allows administrators to customize the permission
+// rules of a role to be used by a user.
+//
+// Creating a custom role, or an SdkRole, is done by setting up a set of allowed _rules_,
+// or SdkRules, directives which are sequentially scanned until a match is found. Rules
+// are created using the names of OpenStorage SDK services and APIs as follows:
+//
+// The message SdkRules has the following properties:
+//
+// * Services: Is the gRPC service name in `OpenStorage<service name>` in lowercase
+// * Apis: Is the API name in the service in lowercase
+//
+// Please see SdkRule for more information on the format.
+var OpenStorageRoleService = exports.OpenStorageRoleService = {
+  // Create a role for users in the system
+  create: {
+    path: '/openstorage.api.OpenStorageRole/Create',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkRoleCreateRequest,
+    responseType: api_pb.SdkRoleCreateResponse,
+    requestSerialize: serialize_openstorage_api_SdkRoleCreateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkRoleCreateRequest,
+    responseSerialize: serialize_openstorage_api_SdkRoleCreateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkRoleCreateResponse,
+  },
+  // List all roles
+  enumerate: {
+    path: '/openstorage.api.OpenStorageRole/Enumerate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkRoleEnumerateRequest,
+    responseType: api_pb.SdkRoleEnumerateResponse,
+    requestSerialize: serialize_openstorage_api_SdkRoleEnumerateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkRoleEnumerateRequest,
+    responseSerialize: serialize_openstorage_api_SdkRoleEnumerateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkRoleEnumerateResponse,
+  },
+  // Get information about a role
+  inspect: {
+    path: '/openstorage.api.OpenStorageRole/Inspect',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkRoleInspectRequest,
+    responseType: api_pb.SdkRoleInspectResponse,
+    requestSerialize: serialize_openstorage_api_SdkRoleInspectRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkRoleInspectRequest,
+    responseSerialize: serialize_openstorage_api_SdkRoleInspectResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkRoleInspectResponse,
+  },
+  // Delete an existing role
+  delete: {
+    path: '/openstorage.api.OpenStorageRole/Delete',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkRoleDeleteRequest,
+    responseType: api_pb.SdkRoleDeleteResponse,
+    requestSerialize: serialize_openstorage_api_SdkRoleDeleteRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkRoleDeleteRequest,
+    responseSerialize: serialize_openstorage_api_SdkRoleDeleteResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkRoleDeleteResponse,
+  },
+  // Update an existing role
+  update: {
+    path: '/openstorage.api.OpenStorageRole/Update',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkRoleUpdateRequest,
+    responseType: api_pb.SdkRoleUpdateResponse,
+    requestSerialize: serialize_openstorage_api_SdkRoleUpdateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkRoleUpdateRequest,
+    responseSerialize: serialize_openstorage_api_SdkRoleUpdateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkRoleUpdateResponse,
+  },
+};
+
+exports.OpenStorageRoleClient = grpc.makeGenericClientConstructor(OpenStorageRoleService);
 // OpenStorageIdentity service provides methods to obtain information
 // about the cluster
 var OpenStorageIdentityService = exports.OpenStorageIdentityService = {

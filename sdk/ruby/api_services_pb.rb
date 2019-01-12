@@ -73,6 +73,46 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageRole
+      # OpenStorageRole service provides methods to manage user roles
+      #
+      # ### Custom roles
+      # The OpenStorage SDK server is equipped to handle customized authorization
+      # roles. Using this model it allows administrators to customize the permission
+      # rules of a role to be used by a user.
+      #
+      # Creating a custom role, or an SdkRole, is done by setting up a set of allowed _rules_,
+      # or SdkRules, directives which are sequentially scanned until a match is found. Rules
+      # are created using the names of OpenStorage SDK services and APIs as follows:
+      #
+      # The message SdkRules has the following properties:
+      #
+      # * Services: Is the gRPC service name in `OpenStorage<service name>` in lowercase
+      # * Apis: Is the API name in the service in lowercase
+      #
+      # Please see SdkRule for more information on the format.
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageRole'
+
+        # Create a role for users in the system
+        rpc :Create, SdkRoleCreateRequest, SdkRoleCreateResponse
+        # List all roles
+        rpc :Enumerate, SdkRoleEnumerateRequest, SdkRoleEnumerateResponse
+        # Get information about a role
+        rpc :Inspect, SdkRoleInspectRequest, SdkRoleInspectResponse
+        # Delete an existing role
+        rpc :Delete, SdkRoleDeleteRequest, SdkRoleDeleteResponse
+        # Update an existing role
+        rpc :Update, SdkRoleUpdateRequest, SdkRoleUpdateResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageIdentity
       # OpenStorageIdentity service provides methods to obtain information
       # about the cluster
