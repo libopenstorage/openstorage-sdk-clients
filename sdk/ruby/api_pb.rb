@@ -34,6 +34,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.VolumeLocator" do
     optional :name, :string, 1
     map :volume_labels, :string, :string, 2
+    optional :ownership, :message, 3, "openstorage.api.Ownership"
   end
   add_message "openstorage.api.Source" do
     optional :parent, :string, 1
@@ -76,9 +77,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :nodiscard, :bool, 29
     optional :io_strategy, :message, 30, "openstorage.api.IoStrategy"
     optional :placement_strategy, :message, 31, "openstorage.api.VolumePlacementStrategy"
+    optional :ownership, :message, 32, "openstorage.api.Ownership"
   end
   add_message "openstorage.api.VolumeSpecUpdate" do
     optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
+    optional :ownership, :message, 26, "openstorage.api.Ownership"
     oneof :size_opt do
       optional :size, :uint64, 2
     end
@@ -130,6 +133,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.RuntimeStateMap" do
     map :runtime_state, :string, :string, 1
+  end
+  add_message "openstorage.api.Ownership" do
+    optional :owner, :string, 1
+    optional :acls, :message, 2, "openstorage.api.Ownership.AccessControl"
+  end
+  add_message "openstorage.api.Ownership.AccessControl" do
+    repeated :groups, :string, 2
+    repeated :collaborators, :string, 3
   end
   add_message "openstorage.api.Volume" do
     optional :id, :string, 1
@@ -564,6 +575,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkVolumeEnumerateWithFiltersRequest" do
     optional :name, :string, 2
     map :labels, :string, :string, 3
+    optional :ownership, :message, 4, "openstorage.api.Ownership"
   end
   add_message "openstorage.api.SdkVolumeEnumerateWithFiltersResponse" do
     repeated :volume_ids, :string, 1
@@ -844,7 +856,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 36
+    value :Minor, 37
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1228,6 +1240,8 @@ module Openstorage
     VolumeSpecUpdate = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpecUpdate").msgclass
     ReplicaSet = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ReplicaSet").msgclass
     RuntimeStateMap = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RuntimeStateMap").msgclass
+    Ownership = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership").msgclass
+    Ownership::AccessControl = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership.AccessControl").msgclass
     Volume = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Volume").msgclass
     Stats = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Stats").msgclass
     CapacityUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CapacityUsageInfo").msgclass

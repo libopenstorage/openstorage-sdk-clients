@@ -58,6 +58,8 @@ goog.exportSymbol('proto.openstorage.api.LabelSelectorRequirement.Operator', nul
 goog.exportSymbol('proto.openstorage.api.LocateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.ObjectstoreInfo', null, global);
 goog.exportSymbol('proto.openstorage.api.OperationFlags', null, global);
+goog.exportSymbol('proto.openstorage.api.Ownership', null, global);
+goog.exportSymbol('proto.openstorage.api.Ownership.AccessControl', null, global);
 goog.exportSymbol('proto.openstorage.api.ReplicaSet', null, global);
 goog.exportSymbol('proto.openstorage.api.Report', null, global);
 goog.exportSymbol('proto.openstorage.api.ResourceType', null, global);
@@ -1135,7 +1137,8 @@ proto.openstorage.api.VolumeLocator.prototype.toObject = function(opt_includeIns
 proto.openstorage.api.VolumeLocator.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    volumeLabelsMap: (f = msg.getVolumeLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+    volumeLabelsMap: (f = msg.getVolumeLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1182,6 +1185,11 @@ proto.openstorage.api.VolumeLocator.deserializeBinaryFromReader = function(msg, 
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
       break;
+    case 3:
+      var value = new proto.openstorage.api.Ownership;
+      reader.readMessage(value,proto.openstorage.api.Ownership.deserializeBinaryFromReader);
+      msg.setOwnership(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1222,6 +1230,14 @@ proto.openstorage.api.VolumeLocator.serializeBinaryToWriter = function(message, 
   if (f && f.getLength() > 0) {
     f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
+  f = message.getOwnership();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.openstorage.api.Ownership.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1255,6 +1271,36 @@ proto.openstorage.api.VolumeLocator.prototype.getVolumeLabelsMap = function(opt_
 
 proto.openstorage.api.VolumeLocator.prototype.clearVolumeLabelsMap = function() {
   this.getVolumeLabelsMap().clear();
+};
+
+
+/**
+ * optional Ownership ownership = 3;
+ * @return {?proto.openstorage.api.Ownership}
+ */
+proto.openstorage.api.VolumeLocator.prototype.getOwnership = function() {
+  return /** @type{?proto.openstorage.api.Ownership} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Ownership, 3));
+};
+
+
+/** @param {?proto.openstorage.api.Ownership|undefined} value */
+proto.openstorage.api.VolumeLocator.prototype.setOwnership = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.openstorage.api.VolumeLocator.prototype.clearOwnership = function() {
+  this.setOwnership(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.VolumeLocator.prototype.hasOwnership = function() {
+  return jspb.Message.getField(this, 3) != null;
 };
 
 
@@ -1817,7 +1863,8 @@ proto.openstorage.api.VolumeSpec.toObject = function(includeInstance, msg) {
     forceUnsupportedFsType: jspb.Message.getFieldWithDefault(msg, 28, false),
     nodiscard: jspb.Message.getFieldWithDefault(msg, 29, false),
     ioStrategy: (f = msg.getIoStrategy()) && proto.openstorage.api.IoStrategy.toObject(includeInstance, f),
-    placementStrategy: (f = msg.getPlacementStrategy()) && proto.openstorage.api.VolumePlacementStrategy.toObject(includeInstance, f)
+    placementStrategy: (f = msg.getPlacementStrategy()) && proto.openstorage.api.VolumePlacementStrategy.toObject(includeInstance, f),
+    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1975,6 +2022,11 @@ proto.openstorage.api.VolumeSpec.deserializeBinaryFromReader = function(msg, rea
       var value = new proto.openstorage.api.VolumePlacementStrategy;
       reader.readMessage(value,proto.openstorage.api.VolumePlacementStrategy.deserializeBinaryFromReader);
       msg.setPlacementStrategy(value);
+      break;
+    case 32:
+      var value = new proto.openstorage.api.Ownership;
+      reader.readMessage(value,proto.openstorage.api.Ownership.deserializeBinaryFromReader);
+      msg.setOwnership(value);
       break;
     default:
       reader.skipField();
@@ -2207,6 +2259,14 @@ proto.openstorage.api.VolumeSpec.serializeBinaryToWriter = function(message, wri
       31,
       f,
       proto.openstorage.api.VolumePlacementStrategy.serializeBinaryToWriter
+    );
+  }
+  f = message.getOwnership();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      proto.openstorage.api.Ownership.serializeBinaryToWriter
     );
   }
 };
@@ -2734,6 +2794,36 @@ proto.openstorage.api.VolumeSpec.prototype.hasPlacementStrategy = function() {
 };
 
 
+/**
+ * optional Ownership ownership = 32;
+ * @return {?proto.openstorage.api.Ownership}
+ */
+proto.openstorage.api.VolumeSpec.prototype.getOwnership = function() {
+  return /** @type{?proto.openstorage.api.Ownership} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Ownership, 32));
+};
+
+
+/** @param {?proto.openstorage.api.Ownership|undefined} value */
+proto.openstorage.api.VolumeSpec.prototype.setOwnership = function(value) {
+  jspb.Message.setWrapperField(this, 32, value);
+};
+
+
+proto.openstorage.api.VolumeSpec.prototype.clearOwnership = function() {
+  this.setOwnership(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.VolumeSpec.prototype.hasOwnership = function() {
+  return jspb.Message.getField(this, 32) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -3031,7 +3121,8 @@ proto.openstorage.api.VolumeSpecUpdate.toObject = function(includeInstance, msg)
     group: (f = msg.getGroup()) && proto.openstorage.api.Group.toObject(includeInstance, f),
     journal: jspb.Message.getFieldWithDefault(msg, 23, false),
     sharedv4: jspb.Message.getFieldWithDefault(msg, 24, false),
-    queueDepth: jspb.Message.getFieldWithDefault(msg, 25, 0)
+    queueDepth: jspb.Message.getFieldWithDefault(msg, 25, 0),
+    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3133,6 +3224,11 @@ proto.openstorage.api.VolumeSpecUpdate.deserializeBinaryFromReader = function(ms
     case 25:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setQueueDepth(value);
+      break;
+    case 26:
+      var value = new proto.openstorage.api.Ownership;
+      reader.readMessage(value,proto.openstorage.api.Ownership.deserializeBinaryFromReader);
+      msg.setOwnership(value);
       break;
     default:
       reader.skipField();
@@ -3275,6 +3371,14 @@ proto.openstorage.api.VolumeSpecUpdate.serializeBinaryToWriter = function(messag
     writer.writeUint32(
       25,
       f
+    );
+  }
+  f = message.getOwnership();
+  if (f != null) {
+    writer.writeMessage(
+      26,
+      f,
+      proto.openstorage.api.Ownership.serializeBinaryToWriter
     );
   }
 };
@@ -3756,6 +3860,36 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.hasQueueDepth = function() {
 };
 
 
+/**
+ * optional Ownership ownership = 26;
+ * @return {?proto.openstorage.api.Ownership}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.getOwnership = function() {
+  return /** @type{?proto.openstorage.api.Ownership} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Ownership, 26));
+};
+
+
+/** @param {?proto.openstorage.api.Ownership|undefined} value */
+proto.openstorage.api.VolumeSpecUpdate.prototype.setOwnership = function(value) {
+  jspb.Message.setWrapperField(this, 26, value);
+};
+
+
+proto.openstorage.api.VolumeSpecUpdate.prototype.clearOwnership = function() {
+  this.setOwnership(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.hasOwnership = function() {
+  return jspb.Message.getField(this, 26) != null;
+};
+
+
 
 /**
  * Generated by JsPbCodeGenerator.
@@ -4060,6 +4194,396 @@ proto.openstorage.api.RuntimeStateMap.prototype.getRuntimeStateMap = function(op
 
 proto.openstorage.api.RuntimeStateMap.prototype.clearRuntimeStateMap = function() {
   this.getRuntimeStateMap().clear();
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.Ownership = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.Ownership, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.Ownership.displayName = 'proto.openstorage.api.Ownership';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.Ownership.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.Ownership.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.Ownership} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.Ownership.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    owner: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    acls: (f = msg.getAcls()) && proto.openstorage.api.Ownership.AccessControl.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.Ownership}
+ */
+proto.openstorage.api.Ownership.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.Ownership;
+  return proto.openstorage.api.Ownership.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.Ownership} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.Ownership}
+ */
+proto.openstorage.api.Ownership.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setOwner(value);
+      break;
+    case 2:
+      var value = new proto.openstorage.api.Ownership.AccessControl;
+      reader.readMessage(value,proto.openstorage.api.Ownership.AccessControl.deserializeBinaryFromReader);
+      msg.setAcls(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.Ownership.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.Ownership.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.Ownership} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.Ownership.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getOwner();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getAcls();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.openstorage.api.Ownership.AccessControl.serializeBinaryToWriter
+    );
+  }
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.Ownership.AccessControl = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.Ownership.AccessControl.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.Ownership.AccessControl, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.Ownership.AccessControl.displayName = 'proto.openstorage.api.Ownership.AccessControl';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.Ownership.AccessControl.repeatedFields_ = [2,3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.Ownership.AccessControl.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.Ownership.AccessControl.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.Ownership.AccessControl} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.Ownership.AccessControl.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    groupsList: jspb.Message.getRepeatedField(msg, 2),
+    collaboratorsList: jspb.Message.getRepeatedField(msg, 3)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.Ownership.AccessControl}
+ */
+proto.openstorage.api.Ownership.AccessControl.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.Ownership.AccessControl;
+  return proto.openstorage.api.Ownership.AccessControl.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.Ownership.AccessControl} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.Ownership.AccessControl}
+ */
+proto.openstorage.api.Ownership.AccessControl.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addGroups(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addCollaborators(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.Ownership.AccessControl.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.Ownership.AccessControl.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.Ownership.AccessControl} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.Ownership.AccessControl.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getGroupsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getCollaboratorsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string groups = 2;
+ * @return {!Array.<string>}
+ */
+proto.openstorage.api.Ownership.AccessControl.prototype.getGroupsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.openstorage.api.Ownership.AccessControl.prototype.setGroupsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.Ownership.AccessControl.prototype.addGroups = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+proto.openstorage.api.Ownership.AccessControl.prototype.clearGroupsList = function() {
+  this.setGroupsList([]);
+};
+
+
+/**
+ * repeated string collaborators = 3;
+ * @return {!Array.<string>}
+ */
+proto.openstorage.api.Ownership.AccessControl.prototype.getCollaboratorsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.openstorage.api.Ownership.AccessControl.prototype.setCollaboratorsList = function(value) {
+  jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.Ownership.AccessControl.prototype.addCollaborators = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+proto.openstorage.api.Ownership.AccessControl.prototype.clearCollaboratorsList = function() {
+  this.setCollaboratorsList([]);
+};
+
+
+/**
+ * optional string owner = 1;
+ * @return {string}
+ */
+proto.openstorage.api.Ownership.prototype.getOwner = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.Ownership.prototype.setOwner = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional AccessControl acls = 2;
+ * @return {?proto.openstorage.api.Ownership.AccessControl}
+ */
+proto.openstorage.api.Ownership.prototype.getAcls = function() {
+  return /** @type{?proto.openstorage.api.Ownership.AccessControl} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Ownership.AccessControl, 2));
+};
+
+
+/** @param {?proto.openstorage.api.Ownership.AccessControl|undefined} value */
+proto.openstorage.api.Ownership.prototype.setAcls = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.openstorage.api.Ownership.prototype.clearAcls = function() {
+  this.setAcls(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.Ownership.prototype.hasAcls = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -22641,7 +23165,8 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.toObject = 
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -22688,6 +23213,11 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.deserializeBinaryFrom
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
          });
       break;
+    case 4:
+      var value = new proto.openstorage.api.Ownership;
+      reader.readMessage(value,proto.openstorage.api.Ownership.deserializeBinaryFromReader);
+      msg.setOwnership(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -22728,6 +23258,14 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.serializeBinaryToWrit
   if (f && f.getLength() > 0) {
     f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
+  f = message.getOwnership();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.openstorage.api.Ownership.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -22761,6 +23299,36 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.getLabelsMa
 
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
+};
+
+
+/**
+ * optional Ownership ownership = 4;
+ * @return {?proto.openstorage.api.Ownership}
+ */
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.getOwnership = function() {
+  return /** @type{?proto.openstorage.api.Ownership} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Ownership, 4));
+};
+
+
+/** @param {?proto.openstorage.api.Ownership|undefined} value */
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.setOwnership = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.clearOwnership = function() {
+  this.setOwnership(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.hasOwnership = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -34940,7 +35508,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 36,
+  MINOR: 37,
   PATCH: 0
 };
 
