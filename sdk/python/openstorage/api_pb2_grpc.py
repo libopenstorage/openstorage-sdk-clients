@@ -655,6 +655,8 @@ class OpenStorageVolumeServicer(object):
   def Create(self, request, context):
     """Create creates a volume according to the specification provided
 
+    Requires access AccessType.Read when cloning from a parent volume.
+
     ##### Example
     {% codetabs name="Golang", type="go" -%}
     id, err := client.Create(context.Background(), &api.SdkVolumeCreateRequest{
@@ -675,6 +677,8 @@ class OpenStorageVolumeServicer(object):
 
   def Clone(self, request, context):
     """Clone creates a new writable volume cloned from an existing volume
+
+    Requires access AccessType.Read of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -682,6 +686,8 @@ class OpenStorageVolumeServicer(object):
 
   def Delete(self, request, context):
     """Delete deletes the provided volume
+
+    Requires access AccessType.Admin of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -689,6 +695,8 @@ class OpenStorageVolumeServicer(object):
 
   def Inspect(self, request, context):
     """Inspect returns information about a volume
+
+    Requires access AccessType.Read of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -697,6 +705,8 @@ class OpenStorageVolumeServicer(object):
   def Update(self, request, context):
     """Update provides a method for manipulating the specification and attributes of a volume.
     Set can be used to resize a volume, update labels, change replica count, and much more.
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -704,6 +714,8 @@ class OpenStorageVolumeServicer(object):
 
   def Stats(self, request, context):
     """Stats returns the statistics for the requested volume
+
+    Requires access AccessType.Read of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -711,6 +723,8 @@ class OpenStorageVolumeServicer(object):
 
   def CapacityUsage(self, request, context):
     """CapacityUsage returns volume/snapshot's capacity usage details
+
+    Requires access AccessType.Read of volume
 
     ##### Error codes:
 
@@ -740,6 +754,8 @@ class OpenStorageVolumeServicer(object):
     """SnapshotCreate creates a snapshot of a volume. This creates an immutable (read-only),
     point-in-time snapshot of a volume. To create a new writable volume from
     a snapshot, please use OpenStorageVolume.Clone().
+
+    Requires access AccessType.Read of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -747,6 +763,8 @@ class OpenStorageVolumeServicer(object):
 
   def SnapshotRestore(self, request, context):
     """SnapshotRestore restores a volume to a specified snapshot
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -774,6 +792,8 @@ class OpenStorageVolumeServicer(object):
     """Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
     as `policy=<name>,...`. This function will overwrite any policy values
     in the volume. To delete the policies in the volume send no policies.
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -904,6 +924,8 @@ class OpenStorageMountAttachServicer(object):
 
   def Attach(self, request, context):
     """Attach attaches device to the host that the client is communicating with.
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -911,6 +933,8 @@ class OpenStorageMountAttachServicer(object):
 
   def Detach(self, request, context):
     """Detaches a the volume from the host
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -918,6 +942,8 @@ class OpenStorageMountAttachServicer(object):
 
   def Mount(self, request, context):
     """Mount mounts an attached volume in the host that the client is communicating with
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -925,6 +951,8 @@ class OpenStorageMountAttachServicer(object):
 
   def Unmount(self, request, context):
     """Unmount unmounts a mounted volume in the host that the client is communicating with
+
+    Requires access AccessType.Write of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -1487,6 +1515,8 @@ class OpenStorageCloudBackupServicer(object):
     """Creates a backup request for a specified volume. Use
     OpenStorageCloudBackup.Status() to get the current status of the
     backup request.
+
+    Requires access AccessType.Read of volume
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

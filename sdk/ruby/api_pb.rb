@@ -139,8 +139,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :acls, :message, 2, "openstorage.api.Ownership.AccessControl"
   end
   add_message "openstorage.api.Ownership.AccessControl" do
-    repeated :groups, :string, 2
-    repeated :collaborators, :string, 3
+    map :groups, :string, :enum, 1, "openstorage.api.Ownership.AccessType"
+    map :collaborators, :string, :enum, 2, "openstorage.api.Ownership.AccessType"
+  end
+  add_enum "openstorage.api.Ownership.AccessType" do
+    value :Read, 0
+    value :Write, 1
+    value :Admin, 2
   end
   add_message "openstorage.api.Volume" do
     optional :id, :string, 1
@@ -856,7 +861,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 37
+    value :Minor, 38
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1242,6 +1247,7 @@ module Openstorage
     RuntimeStateMap = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RuntimeStateMap").msgclass
     Ownership = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership").msgclass
     Ownership::AccessControl = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership.AccessControl").msgclass
+    Ownership::AccessType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership.AccessType").enummodule
     Volume = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Volume").msgclass
     Stats = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Stats").msgclass
     CapacityUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CapacityUsageInfo").msgclass

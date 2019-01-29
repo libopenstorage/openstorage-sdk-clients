@@ -223,6 +223,8 @@ module Openstorage
 
         # Create creates a volume according to the specification provided
         #
+        # Requires access AccessType.Read when cloning from a parent volume.
+        #
         # ##### Example
         # {% codetabs name="Golang", type="go" -%}
         # id, err := client.Create(context.Background(), &api.SdkVolumeCreateRequest{
@@ -238,17 +240,29 @@ module Openstorage
         # {%- endcodetabs %}
         rpc :Create, SdkVolumeCreateRequest, SdkVolumeCreateResponse
         # Clone creates a new writable volume cloned from an existing volume
+        #
+        # Requires access AccessType.Read of volume
         rpc :Clone, SdkVolumeCloneRequest, SdkVolumeCloneResponse
         # Delete deletes the provided volume
+        #
+        # Requires access AccessType.Admin of volume
         rpc :Delete, SdkVolumeDeleteRequest, SdkVolumeDeleteResponse
         # Inspect returns information about a volume
+        #
+        # Requires access AccessType.Read of volume
         rpc :Inspect, SdkVolumeInspectRequest, SdkVolumeInspectResponse
         # Update provides a method for manipulating the specification and attributes of a volume.
         # Set can be used to resize a volume, update labels, change replica count, and much more.
+        #
+        # Requires access AccessType.Write of volume
         rpc :Update, SdkVolumeUpdateRequest, SdkVolumeUpdateResponse
         # Stats returns the statistics for the requested volume
+        #
+        # Requires access AccessType.Read of volume
         rpc :Stats, SdkVolumeStatsRequest, SdkVolumeStatsResponse
         # CapacityUsage returns volume/snapshot's capacity usage details
+        #
+        # Requires access AccessType.Read of volume
         #
         # ##### Error codes:
         #
@@ -263,8 +277,12 @@ module Openstorage
         # SnapshotCreate creates a snapshot of a volume. This creates an immutable (read-only),
         # point-in-time snapshot of a volume. To create a new writable volume from
         # a snapshot, please use OpenStorageVolume.Clone().
+        #
+        # Requires access AccessType.Read of volume
         rpc :SnapshotCreate, SdkVolumeSnapshotCreateRequest, SdkVolumeSnapshotCreateResponse
         # SnapshotRestore restores a volume to a specified snapshot
+        #
+        # Requires access AccessType.Write of volume
         rpc :SnapshotRestore, SdkVolumeSnapshotRestoreRequest, SdkVolumeSnapshotRestoreResponse
         # SnapshotEnumerate returns a list of snapshots for a specific volume
         rpc :SnapshotEnumerate, SdkVolumeSnapshotEnumerateRequest, SdkVolumeSnapshotEnumerateResponse
@@ -277,6 +295,8 @@ module Openstorage
         # Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
         # as `policy=<name>,...`. This function will overwrite any policy values
         # in the volume. To delete the policies in the volume send no policies.
+        #
+        # Requires access AccessType.Write of volume
         rpc :SnapshotScheduleUpdate, SdkVolumeSnapshotScheduleUpdateRequest, SdkVolumeSnapshotScheduleUpdateResponse
       end
 
@@ -297,12 +317,20 @@ module Openstorage
         self.service_name = 'openstorage.api.OpenStorageMountAttach'
 
         # Attach attaches device to the host that the client is communicating with.
+        #
+        # Requires access AccessType.Write of volume
         rpc :Attach, SdkVolumeAttachRequest, SdkVolumeAttachResponse
         # Detaches a the volume from the host
+        #
+        # Requires access AccessType.Write of volume
         rpc :Detach, SdkVolumeDetachRequest, SdkVolumeDetachResponse
         # Mount mounts an attached volume in the host that the client is communicating with
+        #
+        # Requires access AccessType.Write of volume
         rpc :Mount, SdkVolumeMountRequest, SdkVolumeMountResponse
         # Unmount unmounts a mounted volume in the host that the client is communicating with
+        #
+        # Requires access AccessType.Write of volume
         rpc :Unmount, SdkVolumeUnmountRequest, SdkVolumeUnmountResponse
       end
 
@@ -454,6 +482,8 @@ module Openstorage
         # Creates a backup request for a specified volume. Use
         # OpenStorageCloudBackup.Status() to get the current status of the
         # backup request.
+        #
+        # Requires access AccessType.Read of volume
         rpc :Create, SdkCloudBackupCreateRequest, SdkCloudBackupCreateResponse
         # Restore creates a new volume from a backup id. The newly created volume
         # has an ha_level (number of replicas) of only 1. To increase the number of

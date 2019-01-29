@@ -1804,6 +1804,8 @@ exports.OpenStorageNodeClient = grpc.makeGenericClientConstructor(OpenStorageNod
 var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   // Create creates a volume according to the specification provided
   //
+  // Requires access AccessType.Read when cloning from a parent volume.
+  //
   // ##### Example
   // {% codetabs name="Golang", type="go" -%}
   // id, err := client.Create(context.Background(), &api.SdkVolumeCreateRequest{
@@ -1829,6 +1831,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeCreateResponse,
   },
   // Clone creates a new writable volume cloned from an existing volume
+  //
+  // Requires access AccessType.Read of volume
   clone: {
     path: '/openstorage.api.OpenStorageVolume/Clone',
     requestStream: false,
@@ -1841,6 +1845,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeCloneResponse,
   },
   // Delete deletes the provided volume
+  //
+  // Requires access AccessType.Admin of volume
   delete: {
     path: '/openstorage.api.OpenStorageVolume/Delete',
     requestStream: false,
@@ -1853,6 +1859,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeDeleteResponse,
   },
   // Inspect returns information about a volume
+  //
+  // Requires access AccessType.Read of volume
   inspect: {
     path: '/openstorage.api.OpenStorageVolume/Inspect',
     requestStream: false,
@@ -1866,6 +1874,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   },
   // Update provides a method for manipulating the specification and attributes of a volume.
   // Set can be used to resize a volume, update labels, change replica count, and much more.
+  //
+  // Requires access AccessType.Write of volume
   update: {
     path: '/openstorage.api.OpenStorageVolume/Update',
     requestStream: false,
@@ -1878,6 +1888,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeUpdateResponse,
   },
   // Stats returns the statistics for the requested volume
+  //
+  // Requires access AccessType.Read of volume
   stats: {
     path: '/openstorage.api.OpenStorageVolume/Stats',
     requestStream: false,
@@ -1890,6 +1902,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeStatsResponse,
   },
   // CapacityUsage returns volume/snapshot's capacity usage details
+  //
+  // Requires access AccessType.Read of volume
   //
   // ##### Error codes:
   //
@@ -1934,6 +1948,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   // SnapshotCreate creates a snapshot of a volume. This creates an immutable (read-only),
   // point-in-time snapshot of a volume. To create a new writable volume from
   // a snapshot, please use OpenStorageVolume.Clone().
+  //
+  // Requires access AccessType.Read of volume
   snapshotCreate: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotCreate',
     requestStream: false,
@@ -1946,6 +1962,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotCreateResponse,
   },
   // SnapshotRestore restores a volume to a specified snapshot
+  //
+  // Requires access AccessType.Write of volume
   snapshotRestore: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotRestore',
     requestStream: false,
@@ -1988,6 +2006,8 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   // Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
   // as `policy=<name>,...`. This function will overwrite any policy values
   // in the volume. To delete the policies in the volume send no policies.
+  //
+  // Requires access AccessType.Write of volume
   snapshotScheduleUpdate: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotScheduleUpdate',
     requestStream: false,
@@ -2009,6 +2029,8 @@ exports.OpenStorageVolumeClient = grpc.makeGenericClientConstructor(OpenStorageV
 // are created, to let the CO manage the node access functions to the volume.
 var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
   // Attach attaches device to the host that the client is communicating with.
+  //
+  // Requires access AccessType.Write of volume
   attach: {
     path: '/openstorage.api.OpenStorageMountAttach/Attach',
     requestStream: false,
@@ -2021,6 +2043,8 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeAttachResponse,
   },
   // Detaches a the volume from the host
+  //
+  // Requires access AccessType.Write of volume
   detach: {
     path: '/openstorage.api.OpenStorageMountAttach/Detach',
     requestStream: false,
@@ -2033,6 +2057,8 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeDetachResponse,
   },
   // Mount mounts an attached volume in the host that the client is communicating with
+  //
+  // Requires access AccessType.Write of volume
   mount: {
     path: '/openstorage.api.OpenStorageMountAttach/Mount',
     requestStream: false,
@@ -2045,6 +2071,8 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeMountResponse,
   },
   // Unmount unmounts a mounted volume in the host that the client is communicating with
+  //
+  // Requires access AccessType.Write of volume
   unmount: {
     path: '/openstorage.api.OpenStorageMountAttach/Unmount',
     requestStream: false,
@@ -2331,6 +2359,8 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
   // Creates a backup request for a specified volume. Use
   // OpenStorageCloudBackup.Status() to get the current status of the
   // backup request.
+  //
+  // Requires access AccessType.Read of volume
   create: {
     path: '/openstorage.api.OpenStorageCloudBackup/Create',
     requestStream: false,
