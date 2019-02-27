@@ -77,7 +77,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :nodiscard, :bool, 29
     optional :io_strategy, :message, 30, "openstorage.api.IoStrategy"
     optional :placement_strategy, :message, 31, "openstorage.api.VolumePlacementStrategy"
-    optional :ownership, :message, 32, "openstorage.api.Ownership"
+    optional :storage_policy, :string, 32
+    optional :ownership, :message, 33, "openstorage.api.Ownership"
   end
   add_message "openstorage.api.VolumeSpecUpdate" do
     optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -127,6 +128,70 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     oneof :queue_depth_opt do
       optional :queue_depth, :uint32, 25
     end
+  end
+  add_message "openstorage.api.VolumeSpecPolicy" do
+    map :volume_labels, :string, :string, 7
+    optional :replica_set, :message, 9, "openstorage.api.ReplicaSet"
+    optional :size_operator, :enum, 50, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+    optional :ha_level_operator, :enum, 51, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+    optional :scale_operator, :enum, 52, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+    optional :snapshot_interval_operator, :enum, 53, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+    oneof :size_opt do
+      optional :size, :uint64, 1
+    end
+    oneof :ha_level_opt do
+      optional :ha_level, :int64, 2
+    end
+    oneof :cos_opt do
+      optional :cos, :enum, 3, "openstorage.api.CosType"
+    end
+    oneof :io_profile_opt do
+      optional :io_profile, :enum, 4, "openstorage.api.IoProfile"
+    end
+    oneof :dedupe_opt do
+      optional :dedupe, :bool, 5
+    end
+    oneof :snapshot_interval_opt do
+      optional :snapshot_interval, :uint32, 6
+    end
+    oneof :shared_opt do
+      optional :shared, :bool, 8
+    end
+    oneof :passphrase_opt do
+      optional :passphrase, :string, 10
+    end
+    oneof :snapshot_schedule_opt do
+      optional :snapshot_schedule, :string, 11
+    end
+    oneof :scale_opt do
+      optional :scale, :uint32, 12
+    end
+    oneof :sticky_opt do
+      optional :sticky, :bool, 13
+    end
+    oneof :group_opt do
+      optional :group, :message, 14, "openstorage.api.Group"
+    end
+    oneof :journal_opt do
+      optional :journal, :bool, 15
+    end
+    oneof :sharedv4_opt do
+      optional :sharedv4, :bool, 16
+    end
+    oneof :queue_depth_opt do
+      optional :queue_depth, :uint32, 17
+    end
+    oneof :encrypted_opt do
+      optional :encrypted, :bool, 18
+    end
+    oneof :aggregation_level_opt do
+      optional :aggregation_level, :uint32, 19
+    end
+  end
+  add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
+    value :Equal, 0
+    value :Minimum, 1
+    value :Maximum, 2
   end
   add_message "openstorage.api.ReplicaSet" do
     repeated :nodes, :string, 1
@@ -189,6 +254,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :shared_bytes, :int64, 2
     optional :total_bytes, :int64, 3
   end
+  add_message "openstorage.api.SdkStoragePolicy" do
+    optional :name, :string, 1
+    optional :policy, :message, 2, "openstorage.api.VolumeSpecPolicy"
+  end
   add_message "openstorage.api.Alert" do
     optional :id, :int64, 1
     optional :severity, :enum, 2, "openstorage.api.SeverityType"
@@ -249,9 +318,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
   end
   add_message "openstorage.api.SdkAlertsDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkSchedulePolicyCreateRequest" do
-    optional :schedule_policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
   end
   add_message "openstorage.api.Alerts" do
     repeated :alert, :message, 1, "openstorage.api.Alert"
@@ -362,6 +428,49 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :status, :enum, 1, "openstorage.api.Status"
     optional :id, :string, 2
     optional :name, :string, 3
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyCreateRequest" do
+    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyCreateResponse" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyEnumerateRequest" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyEnumerateResponse" do
+    repeated :storage_policies, :message, 1, "openstorage.api.SdkStoragePolicy"
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyInspectRequest" do
+    optional :name, :string, 1
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyInspectResponse" do
+    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyDeleteRequest" do
+    optional :name, :string, 1
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyDeleteResponse" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyUpdateRequest" do
+    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyUpdateResponse" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyEnforceRequest" do
+    optional :name, :string, 1
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyEnforceResponse" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyReleaseRequest" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyReleaseResponse" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyEnforceInspectRequest" do
+  end
+  add_message "openstorage.api.SdkOpenStoragePolicyEnforceInspectResponse" do
+    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+  end
+  add_message "openstorage.api.SdkSchedulePolicyCreateRequest" do
+    optional :schedule_policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
   end
   add_message "openstorage.api.SdkSchedulePolicyCreateResponse" do
   end
@@ -493,6 +602,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :volume_id, :string, 1
     optional :mount_path, :string, 2
     optional :options, :message, 3, "openstorage.api.SdkVolumeAttachOptions"
+    map :driver_options, :string, :string, 4
   end
   add_message "openstorage.api.SdkVolumeMountResponse" do
   end
@@ -504,12 +614,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :volume_id, :string, 1
     optional :mount_path, :string, 2
     optional :options, :message, 3, "openstorage.api.SdkVolumeUnmountOptions"
+    map :driver_options, :string, :string, 4
   end
   add_message "openstorage.api.SdkVolumeUnmountResponse" do
   end
   add_message "openstorage.api.SdkVolumeAttachRequest" do
     optional :volume_id, :string, 1
     optional :options, :message, 2, "openstorage.api.SdkVolumeAttachOptions"
+    map :driver_options, :string, :string, 3
   end
   add_message "openstorage.api.SdkVolumeAttachResponse" do
     optional :device_path, :string, 1
@@ -521,6 +633,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkVolumeDetachRequest" do
     optional :volume_id, :string, 1
     optional :options, :message, 2, "openstorage.api.SdkVolumeDetachOptions"
+    map :driver_options, :string, :string, 3
   end
   add_message "openstorage.api.SdkVolumeDetachResponse" do
   end
@@ -851,6 +964,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :ROLE, 10
     value :CLUSTER_PAIR, 11
     value :MIGRATE, 12
+    value :STORAGE_POLICY, 13
   end
   add_message "openstorage.api.SdkVersion" do
     optional :major, :int32, 1
@@ -861,7 +975,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 39
+    value :Minor, 42
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1243,6 +1357,8 @@ module Openstorage
     IoStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.IoStrategy").msgclass
     VolumeSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpec").msgclass
     VolumeSpecUpdate = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpecUpdate").msgclass
+    VolumeSpecPolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpecPolicy").msgclass
+    VolumeSpecPolicy::PolicyOp = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpecPolicy.PolicyOp").enummodule
     ReplicaSet = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ReplicaSet").msgclass
     RuntimeStateMap = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RuntimeStateMap").msgclass
     Ownership = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership").msgclass
@@ -1251,6 +1367,7 @@ module Openstorage
     Volume = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Volume").msgclass
     Stats = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Stats").msgclass
     CapacityUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CapacityUsageInfo").msgclass
+    SdkStoragePolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePolicy").msgclass
     Alert = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Alert").msgclass
     SdkAlertsTimeSpan = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsTimeSpan").msgclass
     SdkAlertsCountSpan = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsCountSpan").msgclass
@@ -1263,7 +1380,6 @@ module Openstorage
     SdkAlertsEnumerateWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsEnumerateWithFiltersResponse").msgclass
     SdkAlertsDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteRequest").msgclass
     SdkAlertsDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAlertsDeleteResponse").msgclass
-    SdkSchedulePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyCreateRequest").msgclass
     Alerts = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Alerts").msgclass
     ObjectstoreInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ObjectstoreInfo").msgclass
     VolumeCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeCreateRequest").msgclass
@@ -1284,6 +1400,23 @@ module Openstorage
     GroupSnapCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.GroupSnapCreateResponse").msgclass
     StorageNode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageNode").msgclass
     StorageCluster = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageCluster").msgclass
+    SdkOpenStoragePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyCreateRequest").msgclass
+    SdkOpenStoragePolicyCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyCreateResponse").msgclass
+    SdkOpenStoragePolicyEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnumerateRequest").msgclass
+    SdkOpenStoragePolicyEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnumerateResponse").msgclass
+    SdkOpenStoragePolicyInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyInspectRequest").msgclass
+    SdkOpenStoragePolicyInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyInspectResponse").msgclass
+    SdkOpenStoragePolicyDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyDeleteRequest").msgclass
+    SdkOpenStoragePolicyDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyDeleteResponse").msgclass
+    SdkOpenStoragePolicyUpdateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyUpdateRequest").msgclass
+    SdkOpenStoragePolicyUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyUpdateResponse").msgclass
+    SdkOpenStoragePolicyEnforceRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnforceRequest").msgclass
+    SdkOpenStoragePolicyEnforceResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnforceResponse").msgclass
+    SdkOpenStoragePolicyReleaseRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyReleaseRequest").msgclass
+    SdkOpenStoragePolicyReleaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyReleaseResponse").msgclass
+    SdkOpenStoragePolicyEnforceInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnforceInspectRequest").msgclass
+    SdkOpenStoragePolicyEnforceInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnforceInspectResponse").msgclass
+    SdkSchedulePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyCreateRequest").msgclass
     SdkSchedulePolicyCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyCreateResponse").msgclass
     SdkSchedulePolicyUpdateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyUpdateRequest").msgclass
     SdkSchedulePolicyUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkSchedulePolicyUpdateResponse").msgclass

@@ -853,6 +853,182 @@ function deserialize_openstorage_api_SdkObjectstoreUpdateResponse(buffer_arg) {
   return api_pb.SdkObjectstoreUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkOpenStoragePolicyCreateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyCreateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyCreateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyCreateRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyCreateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyCreateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyCreateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyCreateResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyDeleteRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyDeleteRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyDeleteRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyDeleteResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyDeleteResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnforceInspectRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnforceInspectRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyEnforceInspectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnforceInspectResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnforceInspectResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyEnforceInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyEnforceRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnforceRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnforceRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyEnforceRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyEnforceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyEnforceResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnforceResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnforceResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyEnforceResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyEnforceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyEnumerateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnumerateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnumerateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyEnumerateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnumerateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnumerateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyInspectRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyInspectRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyInspectRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyInspectRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyInspectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyInspectResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyInspectResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyInspectResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyInspectResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyReleaseRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyReleaseRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyReleaseRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyReleaseRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyReleaseRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyReleaseResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyReleaseResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyReleaseResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyReleaseResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyReleaseResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyUpdateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyUpdateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyUpdateRequest(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkOpenStoragePolicyUpdateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyUpdateResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse(buffer_arg) {
+  return api_pb.SdkOpenStoragePolicyUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkRoleCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkRoleCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleCreateRequest');
@@ -2510,3 +2686,109 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
 };
 
 exports.OpenStorageCloudBackupClient = grpc.makeGenericClientConstructor(OpenStorageCloudBackupService);
+// OpenStoragePolicy service provides methods to manager storage policies.
+//
+// Policies can be used to enforces a set of volume configurations to be followed
+// while creating volumes.
+var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
+  // Creates a storage policy
+  create: {
+    path: '/openstorage.api.OpenStoragePolicy/Create',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyCreateRequest,
+    responseType: api_pb.SdkOpenStoragePolicyCreateResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyCreateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyCreateRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyCreateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyCreateResponse,
+  },
+  // Enumerate returns a list of storage policies
+  enumerate: {
+    path: '/openstorage.api.OpenStoragePolicy/Enumerate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyEnumerateRequest,
+    responseType: api_pb.SdkOpenStoragePolicyEnumerateResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyEnumerateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse,
+  },
+  // Inspect returns information about a specified storage policy
+  inspect: {
+    path: '/openstorage.api.OpenStoragePolicy/Inspect',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyInspectRequest,
+    responseType: api_pb.SdkOpenStoragePolicyInspectResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyInspectRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyInspectRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyInspectResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyInspectResponse,
+  },
+  // Updates specified storage policy
+  update: {
+    path: '/openstorage.api.OpenStoragePolicy/Update',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyUpdateRequest,
+    responseType: api_pb.SdkOpenStoragePolicyUpdateResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyUpdateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyUpdateRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse,
+  },
+  // Deletes specified storage policy
+  delete: {
+    path: '/openstorage.api.OpenStoragePolicy/Delete',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyDeleteRequest,
+    responseType: api_pb.SdkOpenStoragePolicyDeleteResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyDeleteRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyDeleteRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse,
+  },
+  // Enforces specified storage policy
+  enforce: {
+    path: '/openstorage.api.OpenStoragePolicy/Enforce',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyEnforceRequest,
+    responseType: api_pb.SdkOpenStoragePolicyEnforceResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyEnforceRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnforceRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyEnforceResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnforceResponse,
+  },
+  // EnforcesInspect return enforced storage policy if any, otherwise
+  // empty response
+  enforceInspect: {
+    path: '/openstorage.api.OpenStoragePolicy/EnforceInspect',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyEnforceInspectRequest,
+    responseType: api_pb.SdkOpenStoragePolicyEnforceInspectResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnforceInspectResponse,
+  },
+  // Release specified storage policy constraint for volume
+  // creation
+  release: {
+    path: '/openstorage.api.OpenStoragePolicy/Release',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkOpenStoragePolicyReleaseRequest,
+    responseType: api_pb.SdkOpenStoragePolicyReleaseResponse,
+    requestSerialize: serialize_openstorage_api_SdkOpenStoragePolicyReleaseRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyReleaseRequest,
+    responseSerialize: serialize_openstorage_api_SdkOpenStoragePolicyReleaseResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyReleaseResponse,
+  },
+};
+
+exports.OpenStoragePolicyClient = grpc.makeGenericClientConstructor(OpenStoragePolicyService);
