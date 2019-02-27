@@ -1497,3 +1497,172 @@ def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
   generic_handler = grpc.method_handlers_generic_handler(
       'openstorage.api.OpenStorageCloudBackup', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
+
+
+class OpenStoragePolicyStub(object):
+  """OpenStoragePolicy service provides methods to manager storage policies.
+
+  Policies can be used to enforces a set of volume configurations to be followed
+  while creating volumes.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Create = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Create',
+        request_serializer=api__pb2.SdkOpenStoragePolicyCreateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyCreateResponse.FromString,
+        )
+    self.Enumerate = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Enumerate',
+        request_serializer=api__pb2.SdkOpenStoragePolicyEnumerateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyEnumerateResponse.FromString,
+        )
+    self.Inspect = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Inspect',
+        request_serializer=api__pb2.SdkOpenStoragePolicyInspectRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyInspectResponse.FromString,
+        )
+    self.Update = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Update',
+        request_serializer=api__pb2.SdkOpenStoragePolicyUpdateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyUpdateResponse.FromString,
+        )
+    self.Delete = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Delete',
+        request_serializer=api__pb2.SdkOpenStoragePolicyDeleteRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyDeleteResponse.FromString,
+        )
+    self.Enforce = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Enforce',
+        request_serializer=api__pb2.SdkOpenStoragePolicyEnforceRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyEnforceResponse.FromString,
+        )
+    self.EnforceInspect = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/EnforceInspect',
+        request_serializer=api__pb2.SdkOpenStoragePolicyEnforceInspectRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyEnforceInspectResponse.FromString,
+        )
+    self.Release = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/Release',
+        request_serializer=api__pb2.SdkOpenStoragePolicyReleaseRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyReleaseResponse.FromString,
+        )
+
+
+class OpenStoragePolicyServicer(object):
+  """OpenStoragePolicy service provides methods to manager storage policies.
+
+  Policies can be used to enforces a set of volume configurations to be followed
+  while creating volumes.
+  """
+
+  def Create(self, request, context):
+    """Creates a storage policy
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Enumerate(self, request, context):
+    """Enumerate returns a list of storage policies
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Inspect(self, request, context):
+    """Inspect returns information about a specified storage policy
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Update(self, request, context):
+    """Updates specified storage policy
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Delete(self, request, context):
+    """Deletes specified storage policy
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Enforce(self, request, context):
+    """Enforces specified storage policy
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def EnforceInspect(self, request, context):
+    """EnforcesInspect return enforced storage policy if any, otherwise
+    empty response
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Release(self, request, context):
+    """Release specified storage policy constraint for volume
+    creation
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStoragePolicyServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Create': grpc.unary_unary_rpc_method_handler(
+          servicer.Create,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyCreateRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyCreateResponse.SerializeToString,
+      ),
+      'Enumerate': grpc.unary_unary_rpc_method_handler(
+          servicer.Enumerate,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyEnumerateRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyEnumerateResponse.SerializeToString,
+      ),
+      'Inspect': grpc.unary_unary_rpc_method_handler(
+          servicer.Inspect,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyInspectRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyInspectResponse.SerializeToString,
+      ),
+      'Update': grpc.unary_unary_rpc_method_handler(
+          servicer.Update,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyUpdateRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyUpdateResponse.SerializeToString,
+      ),
+      'Delete': grpc.unary_unary_rpc_method_handler(
+          servicer.Delete,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyDeleteRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyDeleteResponse.SerializeToString,
+      ),
+      'Enforce': grpc.unary_unary_rpc_method_handler(
+          servicer.Enforce,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyEnforceRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyEnforceResponse.SerializeToString,
+      ),
+      'EnforceInspect': grpc.unary_unary_rpc_method_handler(
+          servicer.EnforceInspect,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyEnforceInspectRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyEnforceInspectResponse.SerializeToString,
+      ),
+      'Release': grpc.unary_unary_rpc_method_handler(
+          servicer.Release,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyReleaseRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyReleaseResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStoragePolicy', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))

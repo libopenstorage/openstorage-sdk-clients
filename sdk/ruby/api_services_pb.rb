@@ -443,5 +443,40 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStoragePolicy
+      # OpenStoragePolicy service provides methods to manager storage policies.
+      #
+      # Policies can be used to enforces a set of volume configurations to be followed
+      # while creating volumes.
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStoragePolicy'
+
+        # Creates a storage policy
+        rpc :Create, SdkOpenStoragePolicyCreateRequest, SdkOpenStoragePolicyCreateResponse
+        # Enumerate returns a list of storage policies
+        rpc :Enumerate, SdkOpenStoragePolicyEnumerateRequest, SdkOpenStoragePolicyEnumerateResponse
+        # Inspect returns information about a specified storage policy
+        rpc :Inspect, SdkOpenStoragePolicyInspectRequest, SdkOpenStoragePolicyInspectResponse
+        # Updates specified storage policy
+        rpc :Update, SdkOpenStoragePolicyUpdateRequest, SdkOpenStoragePolicyUpdateResponse
+        # Deletes specified storage policy
+        rpc :Delete, SdkOpenStoragePolicyDeleteRequest, SdkOpenStoragePolicyDeleteResponse
+        # Enforces specified storage policy
+        rpc :Enforce, SdkOpenStoragePolicyEnforceRequest, SdkOpenStoragePolicyEnforceResponse
+        # EnforcesInspect return enforced storage policy if any, otherwise
+        # empty response
+        rpc :EnforceInspect, SdkOpenStoragePolicyEnforceInspectRequest, SdkOpenStoragePolicyEnforceInspectResponse
+        # Release specified storage policy constraint for volume
+        # creation
+        rpc :Release, SdkOpenStoragePolicyReleaseRequest, SdkOpenStoragePolicyReleaseResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
   end
 end
