@@ -489,6 +489,114 @@ def add_OpenStorageClusterPairServicer_to_server(servicer, server):
   server.add_generic_rpc_handlers((generic_handler,))
 
 
+class OpenStorageClusterDomainsStub(object):
+  """OpenStorageClusterDomains is a service used to manage cluster domains in an openstorage cluster.
+  A single openstorage cluster can stretch across multiple cluster domains. In other words it can
+  span across multiple Container Orchestrator clusters. Each node in the cluster is assigned a
+  a cluster domain to start with. A cluster domain and in turn the nodes which are a part of it
+  are assigned a status indicating whether the cluster domain is actively participating in the
+  cluster or whether it is inactive.
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Enumerate = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterDomains/Enumerate',
+        request_serializer=api__pb2.SdkClusterDomainsEnumerateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterDomainsEnumerateResponse.FromString,
+        )
+    self.Inspect = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterDomains/Inspect',
+        request_serializer=api__pb2.SdkClusterDomainInspectRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterDomainInspectResponse.FromString,
+        )
+    self.Activate = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterDomains/Activate',
+        request_serializer=api__pb2.SdkClusterDomainActivateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterDomainActivateResponse.FromString,
+        )
+    self.Deactivate = channel.unary_unary(
+        '/openstorage.api.OpenStorageClusterDomains/Deactivate',
+        request_serializer=api__pb2.SdkClusterDomainDeactivateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkClusterDomainDeactivateResponse.FromString,
+        )
+
+
+class OpenStorageClusterDomainsServicer(object):
+  """OpenStorageClusterDomains is a service used to manage cluster domains in an openstorage cluster.
+  A single openstorage cluster can stretch across multiple cluster domains. In other words it can
+  span across multiple Container Orchestrator clusters. Each node in the cluster is assigned a
+  a cluster domain to start with. A cluster domain and in turn the nodes which are a part of it
+  are assigned a status indicating whether the cluster domain is actively participating in the
+  cluster or whether it is inactive.
+  """
+
+  def Enumerate(self, request, context):
+    """Enumerate returns names of all the cluster domains in the cluster
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Inspect(self, request, context):
+    """Inspect returns information about a cluster domain and a
+    status indicating whether the cluster domain is active
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Activate(self, request, context):
+    """Activates a cluster domain in the cluster.
+    All the nodes which are part of an active cluster domain
+    will participate in cluster quorum calculation
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Deactivate(self, request, context):
+    """Deactivates a cluster domain in the cluster.
+    All the nodes which are part of a deactivated cluster domain.
+    will not participate in cluster quorum calculation
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageClusterDomainsServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Enumerate': grpc.unary_unary_rpc_method_handler(
+          servicer.Enumerate,
+          request_deserializer=api__pb2.SdkClusterDomainsEnumerateRequest.FromString,
+          response_serializer=api__pb2.SdkClusterDomainsEnumerateResponse.SerializeToString,
+      ),
+      'Inspect': grpc.unary_unary_rpc_method_handler(
+          servicer.Inspect,
+          request_deserializer=api__pb2.SdkClusterDomainInspectRequest.FromString,
+          response_serializer=api__pb2.SdkClusterDomainInspectResponse.SerializeToString,
+      ),
+      'Activate': grpc.unary_unary_rpc_method_handler(
+          servicer.Activate,
+          request_deserializer=api__pb2.SdkClusterDomainActivateRequest.FromString,
+          response_serializer=api__pb2.SdkClusterDomainActivateResponse.SerializeToString,
+      ),
+      'Deactivate': grpc.unary_unary_rpc_method_handler(
+          servicer.Deactivate,
+          request_deserializer=api__pb2.SdkClusterDomainDeactivateRequest.FromString,
+          response_serializer=api__pb2.SdkClusterDomainDeactivateResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageClusterDomains', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
 class OpenStorageNodeStub(object):
   """OpenStorageNode is a service used to manage nodes in the cluster
   """
@@ -1674,7 +1782,7 @@ def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
 class OpenStoragePolicyStub(object):
   """OpenStoragePolicy service provides methods to manager storage policies.
 
-  Policies can be used to enforces a set of volume configurations to be followed
+  Policies can be used to validate/ensure a set of volume configurations to be followed
   while creating volumes.
   """
 
@@ -1709,15 +1817,15 @@ class OpenStoragePolicyStub(object):
         request_serializer=api__pb2.SdkOpenStoragePolicyDeleteRequest.SerializeToString,
         response_deserializer=api__pb2.SdkOpenStoragePolicyDeleteResponse.FromString,
         )
-    self.Enforce = channel.unary_unary(
-        '/openstorage.api.OpenStoragePolicy/Enforce',
-        request_serializer=api__pb2.SdkOpenStoragePolicyEnforceRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkOpenStoragePolicyEnforceResponse.FromString,
+    self.SetDefault = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/SetDefault',
+        request_serializer=api__pb2.SdkOpenStoragePolicySetDefaultRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicySetDefaultResponse.FromString,
         )
-    self.EnforceInspect = channel.unary_unary(
-        '/openstorage.api.OpenStoragePolicy/EnforceInspect',
-        request_serializer=api__pb2.SdkOpenStoragePolicyEnforceInspectRequest.SerializeToString,
-        response_deserializer=api__pb2.SdkOpenStoragePolicyEnforceInspectResponse.FromString,
+    self.DefaultInspect = channel.unary_unary(
+        '/openstorage.api.OpenStoragePolicy/DefaultInspect',
+        request_serializer=api__pb2.SdkOpenStoragePolicyDefaultInspectRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkOpenStoragePolicyDefaultInspectResponse.FromString,
         )
     self.Release = channel.unary_unary(
         '/openstorage.api.OpenStoragePolicy/Release',
@@ -1729,7 +1837,7 @@ class OpenStoragePolicyStub(object):
 class OpenStoragePolicyServicer(object):
   """OpenStoragePolicy service provides methods to manager storage policies.
 
-  Policies can be used to enforces a set of volume configurations to be followed
+  Policies can be used to validate/ensure a set of volume configurations to be followed
   while creating volumes.
   """
 
@@ -1768,15 +1876,15 @@ class OpenStoragePolicyServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def Enforce(self, request, context):
-    """Enforces specified storage policy
+  def SetDefault(self, request, context):
+    """Set specified storage policy as default policy
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def EnforceInspect(self, request, context):
-    """EnforcesInspect return enforced storage policy if any, otherwise
+  def DefaultInspect(self, request, context):
+    """DefaultInspect return default storage policy if any, otherwise
     empty response
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -1819,15 +1927,15 @@ def add_OpenStoragePolicyServicer_to_server(servicer, server):
           request_deserializer=api__pb2.SdkOpenStoragePolicyDeleteRequest.FromString,
           response_serializer=api__pb2.SdkOpenStoragePolicyDeleteResponse.SerializeToString,
       ),
-      'Enforce': grpc.unary_unary_rpc_method_handler(
-          servicer.Enforce,
-          request_deserializer=api__pb2.SdkOpenStoragePolicyEnforceRequest.FromString,
-          response_serializer=api__pb2.SdkOpenStoragePolicyEnforceResponse.SerializeToString,
+      'SetDefault': grpc.unary_unary_rpc_method_handler(
+          servicer.SetDefault,
+          request_deserializer=api__pb2.SdkOpenStoragePolicySetDefaultRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicySetDefaultResponse.SerializeToString,
       ),
-      'EnforceInspect': grpc.unary_unary_rpc_method_handler(
-          servicer.EnforceInspect,
-          request_deserializer=api__pb2.SdkOpenStoragePolicyEnforceInspectRequest.FromString,
-          response_serializer=api__pb2.SdkOpenStoragePolicyEnforceInspectResponse.SerializeToString,
+      'DefaultInspect': grpc.unary_unary_rpc_method_handler(
+          servicer.DefaultInspect,
+          request_deserializer=api__pb2.SdkOpenStoragePolicyDefaultInspectRequest.FromString,
+          response_serializer=api__pb2.SdkOpenStoragePolicyDefaultInspectResponse.SerializeToString,
       ),
       'Release': grpc.unary_unary_rpc_method_handler(
           servicer.Release,
