@@ -35,6 +35,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :name, :string, 1
     map :volume_labels, :string, :string, 2
     optional :ownership, :message, 3, "openstorage.api.Ownership"
+    optional :group, :message, 4, "openstorage.api.Group"
   end
   add_message "openstorage.api.Source" do
     optional :parent, :string, 1
@@ -707,6 +708,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :name, :string, 2
     map :labels, :string, :string, 3
     optional :ownership, :message, 4, "openstorage.api.Ownership"
+    optional :group, :message, 5, "openstorage.api.Group"
   end
   add_message "openstorage.api.SdkVolumeEnumerateWithFiltersResponse" do
     repeated :volume_ids, :string, 1
@@ -1011,7 +1013,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 3
+    value :Patch, 7
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1

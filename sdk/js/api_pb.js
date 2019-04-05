@@ -1169,7 +1169,8 @@ proto.openstorage.api.VolumeLocator.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     volumeLabelsMap: (f = msg.getVolumeLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f)
+    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f),
+    group: (f = msg.getGroup()) && proto.openstorage.api.Group.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1221,6 +1222,11 @@ proto.openstorage.api.VolumeLocator.deserializeBinaryFromReader = function(msg, 
       reader.readMessage(value,proto.openstorage.api.Ownership.deserializeBinaryFromReader);
       msg.setOwnership(value);
       break;
+    case 4:
+      var value = new proto.openstorage.api.Group;
+      reader.readMessage(value,proto.openstorage.api.Group.deserializeBinaryFromReader);
+      msg.setGroup(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1267,6 +1273,14 @@ proto.openstorage.api.VolumeLocator.serializeBinaryToWriter = function(message, 
       3,
       f,
       proto.openstorage.api.Ownership.serializeBinaryToWriter
+    );
+  }
+  f = message.getGroup();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.openstorage.api.Group.serializeBinaryToWriter
     );
   }
 };
@@ -1332,6 +1346,36 @@ proto.openstorage.api.VolumeLocator.prototype.clearOwnership = function() {
  */
 proto.openstorage.api.VolumeLocator.prototype.hasOwnership = function() {
   return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * optional Group group = 4;
+ * @return {?proto.openstorage.api.Group}
+ */
+proto.openstorage.api.VolumeLocator.prototype.getGroup = function() {
+  return /** @type{?proto.openstorage.api.Group} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Group, 4));
+};
+
+
+/** @param {?proto.openstorage.api.Group|undefined} value */
+proto.openstorage.api.VolumeLocator.prototype.setGroup = function(value) {
+  jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+proto.openstorage.api.VolumeLocator.prototype.clearGroup = function() {
+  this.setGroup(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.VolumeLocator.prototype.hasGroup = function() {
+  return jspb.Message.getField(this, 4) != null;
 };
 
 
@@ -27338,7 +27382,8 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.toObject = function(i
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f)
+    ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f),
+    group: (f = msg.getGroup()) && proto.openstorage.api.Group.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -27390,6 +27435,11 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.deserializeBinaryFrom
       reader.readMessage(value,proto.openstorage.api.Ownership.deserializeBinaryFromReader);
       msg.setOwnership(value);
       break;
+    case 5:
+      var value = new proto.openstorage.api.Group;
+      reader.readMessage(value,proto.openstorage.api.Group.deserializeBinaryFromReader);
+      msg.setGroup(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -27436,6 +27486,14 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.serializeBinaryToWrit
       4,
       f,
       proto.openstorage.api.Ownership.serializeBinaryToWriter
+    );
+  }
+  f = message.getGroup();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      proto.openstorage.api.Group.serializeBinaryToWriter
     );
   }
 };
@@ -27501,6 +27559,36 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.clearOwners
  */
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.hasOwnership = function() {
   return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional Group group = 5;
+ * @return {?proto.openstorage.api.Group}
+ */
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.getGroup = function() {
+  return /** @type{?proto.openstorage.api.Group} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Group, 5));
+};
+
+
+/** @param {?proto.openstorage.api.Group|undefined} value */
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.setGroup = function(value) {
+  jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.clearGroup = function() {
+  this.setGroup(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.hasGroup = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -40790,7 +40878,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 42,
-  PATCH: 3
+  PATCH: 7
 };
 
 /**
