@@ -12,7 +12,9 @@ var goog = jspb;
 var global = Function('return this')();
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+goog.object.extend(proto, google_protobuf_timestamp_pb);
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
+goog.object.extend(proto, google_api_annotations_pb);
 goog.exportSymbol('proto.openstorage.api.ActiveRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.ActiveRequests', null, global);
 goog.exportSymbol('proto.openstorage.api.Alert', null, global);
@@ -556,7 +558,7 @@ proto.openstorage.api.StorageResource.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageResource.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -571,7 +573,7 @@ proto.openstorage.api.StorageResource.prototype.getPath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageResource.prototype.setPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -586,7 +588,7 @@ proto.openstorage.api.StorageResource.prototype.getMedium = function() {
 
 /** @param {!proto.openstorage.api.StorageMedium} value */
 proto.openstorage.api.StorageResource.prototype.setMedium = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -603,7 +605,7 @@ proto.openstorage.api.StorageResource.prototype.getOnline = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.StorageResource.prototype.setOnline = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -618,7 +620,7 @@ proto.openstorage.api.StorageResource.prototype.getIops = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageResource.prototype.setIops = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -633,7 +635,7 @@ proto.openstorage.api.StorageResource.prototype.getSeqWrite = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageResource.prototype.setSeqWrite = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3FloatField(this, 6, value);
 };
 
 
@@ -648,7 +650,7 @@ proto.openstorage.api.StorageResource.prototype.getSeqRead = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageResource.prototype.setSeqRead = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3FloatField(this, 7, value);
 };
 
 
@@ -663,7 +665,7 @@ proto.openstorage.api.StorageResource.prototype.getRandrw = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageResource.prototype.setRandrw = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3FloatField(this, 8, value);
 };
 
 
@@ -678,7 +680,7 @@ proto.openstorage.api.StorageResource.prototype.getSize = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageResource.prototype.setSize = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
@@ -693,7 +695,7 @@ proto.openstorage.api.StorageResource.prototype.getUsed = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageResource.prototype.setUsed = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
@@ -708,7 +710,7 @@ proto.openstorage.api.StorageResource.prototype.getRotationSpeed = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageResource.prototype.setRotationSpeed = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
@@ -735,7 +737,7 @@ proto.openstorage.api.StorageResource.prototype.clearLastScan = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.StorageResource.prototype.hasLastScan = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -755,7 +757,7 @@ proto.openstorage.api.StorageResource.prototype.getMetadata = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.StorageResource.prototype.setMetadata = function(value) {
-  jspb.Message.setField(this, 13, value);
+  jspb.Message.setProto3BooleanField(this, 13, value);
 };
 
 
@@ -876,7 +878,7 @@ proto.openstorage.api.StoragePool.deserializeBinaryFromReader = function(msg, re
     case 9:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -968,7 +970,7 @@ proto.openstorage.api.StoragePool.prototype.getId = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StoragePool.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -983,7 +985,7 @@ proto.openstorage.api.StoragePool.prototype.getCos = function() {
 
 /** @param {!proto.openstorage.api.CosType} value */
 proto.openstorage.api.StoragePool.prototype.setCos = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -998,7 +1000,7 @@ proto.openstorage.api.StoragePool.prototype.getMedium = function() {
 
 /** @param {!proto.openstorage.api.StorageMedium} value */
 proto.openstorage.api.StoragePool.prototype.setMedium = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -1013,7 +1015,7 @@ proto.openstorage.api.StoragePool.prototype.getRaidlevel = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StoragePool.prototype.setRaidlevel = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -1028,7 +1030,7 @@ proto.openstorage.api.StoragePool.prototype.getTotalsize = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StoragePool.prototype.setTotalsize = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -1043,7 +1045,7 @@ proto.openstorage.api.StoragePool.prototype.getUsed = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StoragePool.prototype.setUsed = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -1157,7 +1159,7 @@ proto.openstorage.api.VolumeLocator.deserializeBinaryFromReader = function(msg, 
     case 2:
       var value = msg.getVolumeLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -1214,7 +1216,7 @@ proto.openstorage.api.VolumeLocator.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeLocator.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1386,7 +1388,7 @@ proto.openstorage.api.Source.prototype.getParent = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Source.prototype.setParent = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1401,7 +1403,7 @@ proto.openstorage.api.Source.prototype.getSeed = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Source.prototype.setSeed = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1543,7 +1545,7 @@ proto.openstorage.api.Group.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Group.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1699,7 +1701,7 @@ proto.openstorage.api.IoStrategy.prototype.getAsyncIo = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.IoStrategy.prototype.setAsyncIo = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -1716,7 +1718,7 @@ proto.openstorage.api.IoStrategy.prototype.getEarlyAck = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.IoStrategy.prototype.setEarlyAck = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -1872,7 +1874,7 @@ proto.openstorage.api.VolumeSpec.deserializeBinaryFromReader = function(msg, rea
     case 10:
       var value = msg.getVolumeLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 11:
@@ -2215,7 +2217,7 @@ proto.openstorage.api.VolumeSpec.prototype.getEphemeral = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setEphemeral = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -2230,7 +2232,7 @@ proto.openstorage.api.VolumeSpec.prototype.getSize = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setSize = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -2245,7 +2247,7 @@ proto.openstorage.api.VolumeSpec.prototype.getFormat = function() {
 
 /** @param {!proto.openstorage.api.FSType} value */
 proto.openstorage.api.VolumeSpec.prototype.setFormat = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -2260,7 +2262,7 @@ proto.openstorage.api.VolumeSpec.prototype.getBlockSize = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setBlockSize = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -2275,7 +2277,7 @@ proto.openstorage.api.VolumeSpec.prototype.getHaLevel = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setHaLevel = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -2290,7 +2292,7 @@ proto.openstorage.api.VolumeSpec.prototype.getCos = function() {
 
 /** @param {!proto.openstorage.api.CosType} value */
 proto.openstorage.api.VolumeSpec.prototype.setCos = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3EnumField(this, 6, value);
 };
 
 
@@ -2305,7 +2307,7 @@ proto.openstorage.api.VolumeSpec.prototype.getIoProfile = function() {
 
 /** @param {!proto.openstorage.api.IoProfile} value */
 proto.openstorage.api.VolumeSpec.prototype.setIoProfile = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 7, value);
 };
 
 
@@ -2322,7 +2324,7 @@ proto.openstorage.api.VolumeSpec.prototype.getDedupe = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setDedupe = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
@@ -2337,7 +2339,7 @@ proto.openstorage.api.VolumeSpec.prototype.getSnapshotInterval = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setSnapshotInterval = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
@@ -2372,7 +2374,7 @@ proto.openstorage.api.VolumeSpec.prototype.getShared = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setShared = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 
@@ -2399,7 +2401,7 @@ proto.openstorage.api.VolumeSpec.prototype.clearReplicaSet = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpec.prototype.hasReplicaSet = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -2417,7 +2419,7 @@ proto.openstorage.api.VolumeSpec.prototype.getAggregationLevel = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setAggregationLevel = function(value) {
-  jspb.Message.setField(this, 13, value);
+  jspb.Message.setProto3IntField(this, 13, value);
 };
 
 
@@ -2434,7 +2436,7 @@ proto.openstorage.api.VolumeSpec.prototype.getEncrypted = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setEncrypted = function(value) {
-  jspb.Message.setField(this, 14, value);
+  jspb.Message.setProto3BooleanField(this, 14, value);
 };
 
 
@@ -2449,7 +2451,7 @@ proto.openstorage.api.VolumeSpec.prototype.getPassphrase = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeSpec.prototype.setPassphrase = function(value) {
-  jspb.Message.setField(this, 15, value);
+  jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
@@ -2464,7 +2466,7 @@ proto.openstorage.api.VolumeSpec.prototype.getSnapshotSchedule = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeSpec.prototype.setSnapshotSchedule = function(value) {
-  jspb.Message.setField(this, 16, value);
+  jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
@@ -2479,7 +2481,7 @@ proto.openstorage.api.VolumeSpec.prototype.getScale = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setScale = function(value) {
-  jspb.Message.setField(this, 17, value);
+  jspb.Message.setProto3IntField(this, 17, value);
 };
 
 
@@ -2496,7 +2498,7 @@ proto.openstorage.api.VolumeSpec.prototype.getSticky = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setSticky = function(value) {
-  jspb.Message.setField(this, 18, value);
+  jspb.Message.setProto3BooleanField(this, 18, value);
 };
 
 
@@ -2523,7 +2525,7 @@ proto.openstorage.api.VolumeSpec.prototype.clearGroup = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpec.prototype.hasGroup = function() {
   return jspb.Message.getField(this, 21) != null;
@@ -2543,7 +2545,7 @@ proto.openstorage.api.VolumeSpec.prototype.getGroupEnforced = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setGroupEnforced = function(value) {
-  jspb.Message.setField(this, 22, value);
+  jspb.Message.setProto3BooleanField(this, 22, value);
 };
 
 
@@ -2560,7 +2562,7 @@ proto.openstorage.api.VolumeSpec.prototype.getCompressed = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setCompressed = function(value) {
-  jspb.Message.setField(this, 23, value);
+  jspb.Message.setProto3BooleanField(this, 23, value);
 };
 
 
@@ -2577,7 +2579,7 @@ proto.openstorage.api.VolumeSpec.prototype.getCascaded = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setCascaded = function(value) {
-  jspb.Message.setField(this, 24, value);
+  jspb.Message.setProto3BooleanField(this, 24, value);
 };
 
 
@@ -2594,7 +2596,7 @@ proto.openstorage.api.VolumeSpec.prototype.getJournal = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setJournal = function(value) {
-  jspb.Message.setField(this, 25, value);
+  jspb.Message.setProto3BooleanField(this, 25, value);
 };
 
 
@@ -2611,7 +2613,7 @@ proto.openstorage.api.VolumeSpec.prototype.getSharedv4 = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setSharedv4 = function(value) {
-  jspb.Message.setField(this, 26, value);
+  jspb.Message.setProto3BooleanField(this, 26, value);
 };
 
 
@@ -2626,7 +2628,7 @@ proto.openstorage.api.VolumeSpec.prototype.getQueueDepth = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumeSpec.prototype.setQueueDepth = function(value) {
-  jspb.Message.setField(this, 27, value);
+  jspb.Message.setProto3IntField(this, 27, value);
 };
 
 
@@ -2643,7 +2645,7 @@ proto.openstorage.api.VolumeSpec.prototype.getForceUnsupportedFsType = function(
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setForceUnsupportedFsType = function(value) {
-  jspb.Message.setField(this, 28, value);
+  jspb.Message.setProto3BooleanField(this, 28, value);
 };
 
 
@@ -2660,7 +2662,7 @@ proto.openstorage.api.VolumeSpec.prototype.getNodiscard = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.VolumeSpec.prototype.setNodiscard = function(value) {
-  jspb.Message.setField(this, 29, value);
+  jspb.Message.setProto3BooleanField(this, 29, value);
 };
 
 
@@ -2687,7 +2689,7 @@ proto.openstorage.api.VolumeSpec.prototype.clearIoStrategy = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpec.prototype.hasIoStrategy = function() {
   return jspb.Message.getField(this, 30) != null;
@@ -2717,7 +2719,7 @@ proto.openstorage.api.VolumeSpec.prototype.clearPlacementStrategy = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpec.prototype.hasPlacementStrategy = function() {
   return jspb.Message.getField(this, 31) != null;
@@ -2735,7 +2737,7 @@ proto.openstorage.api.VolumeSpec.prototype.getStoragePolicy = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeSpec.prototype.setStoragePolicy = function(value) {
-  jspb.Message.setField(this, 32, value);
+  jspb.Message.setProto3StringField(this, 32, value);
 };
 
 
@@ -3101,7 +3103,7 @@ proto.openstorage.api.VolumeSpecUpdate.deserializeBinaryFromReader = function(ms
     case 10:
       var value = msg.getVolumeLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 11:
@@ -3318,7 +3320,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearSize = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasSize = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -3347,7 +3349,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearHaLevel = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasHaLevel = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -3376,7 +3378,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearCos = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasCos = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -3405,7 +3407,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearIoProfile = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasIoProfile = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -3436,7 +3438,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearDedupe = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasDedupe = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -3465,7 +3467,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearSnapshotInterval = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasSnapshotInterval = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -3514,7 +3516,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearShared = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasShared = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -3544,7 +3546,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearReplicaSet = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasReplicaSet = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -3573,7 +3575,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearPassphrase = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasPassphrase = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -3602,7 +3604,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearSnapshotSchedule = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasSnapshotSchedule = function() {
   return jspb.Message.getField(this, 16) != null;
@@ -3631,7 +3633,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearScale = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasScale = function() {
   return jspb.Message.getField(this, 17) != null;
@@ -3662,7 +3664,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearSticky = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasSticky = function() {
   return jspb.Message.getField(this, 18) != null;
@@ -3692,7 +3694,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearGroup = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasGroup = function() {
   return jspb.Message.getField(this, 19) != null;
@@ -3723,7 +3725,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearJournal = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasJournal = function() {
   return jspb.Message.getField(this, 23) != null;
@@ -3754,7 +3756,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearSharedv4 = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasSharedv4 = function() {
   return jspb.Message.getField(this, 24) != null;
@@ -3783,7 +3785,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.clearQueueDepth = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecUpdate.prototype.hasQueueDepth = function() {
   return jspb.Message.getField(this, 25) != null;
@@ -4188,7 +4190,7 @@ proto.openstorage.api.VolumeSpecPolicy.deserializeBinaryFromReader = function(ms
     case 7:
       var value = msg.getVolumeLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 8:
@@ -4480,7 +4482,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearSize = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasSize = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -4509,7 +4511,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearHaLevel = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasHaLevel = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -4538,7 +4540,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearCos = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasCos = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -4567,7 +4569,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearIoProfile = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasIoProfile = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -4598,7 +4600,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearDedupe = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasDedupe = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -4627,7 +4629,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearSnapshotInterval = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasSnapshotInterval = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -4676,7 +4678,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearShared = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasShared = function() {
   return jspb.Message.getField(this, 8) != null;
@@ -4706,7 +4708,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearReplicaSet = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasReplicaSet = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -4735,7 +4737,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearPassphrase = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasPassphrase = function() {
   return jspb.Message.getField(this, 10) != null;
@@ -4764,7 +4766,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearSnapshotSchedule = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasSnapshotSchedule = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -4793,7 +4795,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearScale = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasScale = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -4824,7 +4826,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearSticky = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasSticky = function() {
   return jspb.Message.getField(this, 13) != null;
@@ -4854,7 +4856,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearGroup = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasGroup = function() {
   return jspb.Message.getField(this, 14) != null;
@@ -4885,7 +4887,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearJournal = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasJournal = function() {
   return jspb.Message.getField(this, 15) != null;
@@ -4916,7 +4918,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearSharedv4 = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasSharedv4 = function() {
   return jspb.Message.getField(this, 16) != null;
@@ -4945,7 +4947,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearQueueDepth = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasQueueDepth = function() {
   return jspb.Message.getField(this, 17) != null;
@@ -4976,7 +4978,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearEncrypted = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasEncrypted = function() {
   return jspb.Message.getField(this, 18) != null;
@@ -5005,7 +5007,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearAggregationLevel = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasAggregationLevel = function() {
   return jspb.Message.getField(this, 19) != null;
@@ -5023,7 +5025,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.getSizeOperator = function() {
 
 /** @param {!proto.openstorage.api.VolumeSpecPolicy.PolicyOp} value */
 proto.openstorage.api.VolumeSpecPolicy.prototype.setSizeOperator = function(value) {
-  jspb.Message.setField(this, 50, value);
+  jspb.Message.setProto3EnumField(this, 50, value);
 };
 
 
@@ -5038,7 +5040,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.getHaLevelOperator = function()
 
 /** @param {!proto.openstorage.api.VolumeSpecPolicy.PolicyOp} value */
 proto.openstorage.api.VolumeSpecPolicy.prototype.setHaLevelOperator = function(value) {
-  jspb.Message.setField(this, 51, value);
+  jspb.Message.setProto3EnumField(this, 51, value);
 };
 
 
@@ -5053,7 +5055,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.getScaleOperator = function() {
 
 /** @param {!proto.openstorage.api.VolumeSpecPolicy.PolicyOp} value */
 proto.openstorage.api.VolumeSpecPolicy.prototype.setScaleOperator = function(value) {
-  jspb.Message.setField(this, 52, value);
+  jspb.Message.setProto3EnumField(this, 52, value);
 };
 
 
@@ -5068,7 +5070,7 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.getSnapshotIntervalOperator = f
 
 /** @param {!proto.openstorage.api.VolumeSpecPolicy.PolicyOp} value */
 proto.openstorage.api.VolumeSpecPolicy.prototype.setSnapshotIntervalOperator = function(value) {
-  jspb.Message.setField(this, 53, value);
+  jspb.Message.setProto3EnumField(this, 53, value);
 };
 
 
@@ -5208,21 +5210,21 @@ proto.openstorage.api.ReplicaSet.serializeBinaryToWriter = function(message, wri
 
 /**
  * repeated string nodes = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.ReplicaSet.prototype.getNodesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.ReplicaSet.prototype.setNodesList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.ReplicaSet.prototype.addNodes = function(value, opt_index) {
@@ -5322,7 +5324,7 @@ proto.openstorage.api.RuntimeStateMap.deserializeBinaryFromReader = function(msg
     case 1:
       var value = msg.getRuntimeStateMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -5572,7 +5574,7 @@ proto.openstorage.api.Volume.deserializeBinaryFromReader = function(msg, reader)
     case 18:
       var value = msg.getAttachInfoMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 19:
@@ -5808,7 +5810,7 @@ proto.openstorage.api.Volume.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Volume.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5835,7 +5837,7 @@ proto.openstorage.api.Volume.prototype.clearSource = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Volume.prototype.hasSource = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -5865,7 +5867,7 @@ proto.openstorage.api.Volume.prototype.clearGroup = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Volume.prototype.hasGroup = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -5885,7 +5887,7 @@ proto.openstorage.api.Volume.prototype.getReadonly = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.Volume.prototype.setReadonly = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -5912,7 +5914,7 @@ proto.openstorage.api.Volume.prototype.clearLocator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Volume.prototype.hasLocator = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -5942,7 +5944,7 @@ proto.openstorage.api.Volume.prototype.clearCtime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Volume.prototype.hasCtime = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -5972,7 +5974,7 @@ proto.openstorage.api.Volume.prototype.clearSpec = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Volume.prototype.hasSpec = function() {
   return jspb.Message.getField(this, 7) != null;
@@ -5990,7 +5992,7 @@ proto.openstorage.api.Volume.prototype.getUsage = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Volume.prototype.setUsage = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -6017,7 +6019,7 @@ proto.openstorage.api.Volume.prototype.clearLastScan = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Volume.prototype.hasLastScan = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -6035,7 +6037,7 @@ proto.openstorage.api.Volume.prototype.getFormat = function() {
 
 /** @param {!proto.openstorage.api.FSType} value */
 proto.openstorage.api.Volume.prototype.setFormat = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3EnumField(this, 10, value);
 };
 
 
@@ -6050,7 +6052,7 @@ proto.openstorage.api.Volume.prototype.getStatus = function() {
 
 /** @param {!proto.openstorage.api.VolumeStatus} value */
 proto.openstorage.api.Volume.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3EnumField(this, 11, value);
 };
 
 
@@ -6065,7 +6067,7 @@ proto.openstorage.api.Volume.prototype.getState = function() {
 
 /** @param {!proto.openstorage.api.VolumeState} value */
 proto.openstorage.api.Volume.prototype.setState = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3EnumField(this, 12, value);
 };
 
 
@@ -6080,7 +6082,7 @@ proto.openstorage.api.Volume.prototype.getAttachedOn = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Volume.prototype.setAttachedOn = function(value) {
-  jspb.Message.setField(this, 13, value);
+  jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -6095,7 +6097,7 @@ proto.openstorage.api.Volume.prototype.getAttachedState = function() {
 
 /** @param {!proto.openstorage.api.AttachState} value */
 proto.openstorage.api.Volume.prototype.setAttachedState = function(value) {
-  jspb.Message.setField(this, 14, value);
+  jspb.Message.setProto3EnumField(this, 14, value);
 };
 
 
@@ -6110,7 +6112,7 @@ proto.openstorage.api.Volume.prototype.getDevicePath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Volume.prototype.setDevicePath = function(value) {
-  jspb.Message.setField(this, 15, value);
+  jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
@@ -6125,27 +6127,27 @@ proto.openstorage.api.Volume.prototype.getSecureDevicePath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Volume.prototype.setSecureDevicePath = function(value) {
-  jspb.Message.setField(this, 16, value);
+  jspb.Message.setProto3StringField(this, 16, value);
 };
 
 
 /**
  * repeated string attach_path = 17;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.Volume.prototype.getAttachPathList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 17));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 17));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.Volume.prototype.setAttachPathList = function(value) {
   jspb.Message.setField(this, 17, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.Volume.prototype.addAttachPath = function(value, opt_index) {
@@ -6178,15 +6180,15 @@ proto.openstorage.api.Volume.prototype.clearAttachInfoMap = function() {
 
 /**
  * repeated ReplicaSet replica_sets = 19;
- * @return {!Array.<!proto.openstorage.api.ReplicaSet>}
+ * @return {!Array<!proto.openstorage.api.ReplicaSet>}
  */
 proto.openstorage.api.Volume.prototype.getReplicaSetsList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.ReplicaSet>} */ (
+  return /** @type{!Array<!proto.openstorage.api.ReplicaSet>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.ReplicaSet, 19));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.ReplicaSet>} value */
+/** @param {!Array<!proto.openstorage.api.ReplicaSet>} value */
 proto.openstorage.api.Volume.prototype.setReplicaSetsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 19, value);
 };
@@ -6209,15 +6211,15 @@ proto.openstorage.api.Volume.prototype.clearReplicaSetsList = function() {
 
 /**
  * repeated RuntimeStateMap runtime_state = 20;
- * @return {!Array.<!proto.openstorage.api.RuntimeStateMap>}
+ * @return {!Array<!proto.openstorage.api.RuntimeStateMap>}
  */
 proto.openstorage.api.Volume.prototype.getRuntimeStateList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.RuntimeStateMap>} */ (
+  return /** @type{!Array<!proto.openstorage.api.RuntimeStateMap>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.RuntimeStateMap, 20));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.RuntimeStateMap>} value */
+/** @param {!Array<!proto.openstorage.api.RuntimeStateMap>} value */
 proto.openstorage.api.Volume.prototype.setRuntimeStateList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 20, value);
 };
@@ -6249,21 +6251,21 @@ proto.openstorage.api.Volume.prototype.getError = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Volume.prototype.setError = function(value) {
-  jspb.Message.setField(this, 21, value);
+  jspb.Message.setProto3StringField(this, 21, value);
 };
 
 
 /**
  * repeated VolumeConsumer volume_consumers = 22;
- * @return {!Array.<!proto.openstorage.api.VolumeConsumer>}
+ * @return {!Array<!proto.openstorage.api.VolumeConsumer>}
  */
 proto.openstorage.api.Volume.prototype.getVolumeConsumersList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.VolumeConsumer>} */ (
+  return /** @type{!Array<!proto.openstorage.api.VolumeConsumer>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.VolumeConsumer, 22));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.VolumeConsumer>} value */
+/** @param {!Array<!proto.openstorage.api.VolumeConsumer>} value */
 proto.openstorage.api.Volume.prototype.setVolumeConsumersList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 22, value);
 };
@@ -6297,7 +6299,7 @@ proto.openstorage.api.Volume.prototype.getFsResizeRequired = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.Volume.prototype.setFsResizeRequired = function(value) {
-  jspb.Message.setField(this, 23, value);
+  jspb.Message.setProto3BooleanField(this, 23, value);
 };
 
 
@@ -6547,7 +6549,7 @@ proto.openstorage.api.Stats.prototype.getReads = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setReads = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -6562,7 +6564,7 @@ proto.openstorage.api.Stats.prototype.getReadMs = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setReadMs = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -6577,7 +6579,7 @@ proto.openstorage.api.Stats.prototype.getReadBytes = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setReadBytes = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -6592,7 +6594,7 @@ proto.openstorage.api.Stats.prototype.getWrites = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setWrites = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -6607,7 +6609,7 @@ proto.openstorage.api.Stats.prototype.getWriteMs = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setWriteMs = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -6622,7 +6624,7 @@ proto.openstorage.api.Stats.prototype.getWriteBytes = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setWriteBytes = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -6637,7 +6639,7 @@ proto.openstorage.api.Stats.prototype.getIoProgress = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setIoProgress = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -6652,7 +6654,7 @@ proto.openstorage.api.Stats.prototype.getIoMs = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setIoMs = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
@@ -6667,7 +6669,7 @@ proto.openstorage.api.Stats.prototype.getBytesUsed = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setBytesUsed = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
@@ -6682,7 +6684,7 @@ proto.openstorage.api.Stats.prototype.getIntervalMs = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Stats.prototype.setIntervalMs = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
@@ -6848,7 +6850,7 @@ proto.openstorage.api.CapacityUsageInfo.prototype.getExclusiveBytes = function()
 
 /** @param {number} value */
 proto.openstorage.api.CapacityUsageInfo.prototype.setExclusiveBytes = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -6863,7 +6865,7 @@ proto.openstorage.api.CapacityUsageInfo.prototype.getSharedBytes = function() {
 
 /** @param {number} value */
 proto.openstorage.api.CapacityUsageInfo.prototype.setSharedBytes = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -6878,7 +6880,7 @@ proto.openstorage.api.CapacityUsageInfo.prototype.getTotalBytes = function() {
 
 /** @param {number} value */
 proto.openstorage.api.CapacityUsageInfo.prototype.setTotalBytes = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -7034,7 +7036,7 @@ proto.openstorage.api.SdkStoragePolicy.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkStoragePolicy.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -7061,7 +7063,7 @@ proto.openstorage.api.SdkStoragePolicy.prototype.clearPolicy = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkStoragePolicy.prototype.hasPolicy = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -7342,7 +7344,7 @@ proto.openstorage.api.Alert.prototype.getId = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Alert.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -7357,7 +7359,7 @@ proto.openstorage.api.Alert.prototype.getSeverity = function() {
 
 /** @param {!proto.openstorage.api.SeverityType} value */
 proto.openstorage.api.Alert.prototype.setSeverity = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -7372,7 +7374,7 @@ proto.openstorage.api.Alert.prototype.getAlertType = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Alert.prototype.setAlertType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -7387,7 +7389,7 @@ proto.openstorage.api.Alert.prototype.getMessage = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Alert.prototype.setMessage = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -7414,7 +7416,7 @@ proto.openstorage.api.Alert.prototype.clearTimestamp = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Alert.prototype.hasTimestamp = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -7432,7 +7434,7 @@ proto.openstorage.api.Alert.prototype.getResourceId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Alert.prototype.setResourceId = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -7447,7 +7449,7 @@ proto.openstorage.api.Alert.prototype.getResource = function() {
 
 /** @param {!proto.openstorage.api.ResourceType} value */
 proto.openstorage.api.Alert.prototype.setResource = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 7, value);
 };
 
 
@@ -7464,7 +7466,7 @@ proto.openstorage.api.Alert.prototype.getCleared = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.Alert.prototype.setCleared = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
@@ -7479,7 +7481,7 @@ proto.openstorage.api.Alert.prototype.getTtl = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Alert.prototype.setTtl = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3IntField(this, 9, value);
 };
 
 
@@ -7494,7 +7496,7 @@ proto.openstorage.api.Alert.prototype.getUniqueTag = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Alert.prototype.setUniqueTag = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -7509,7 +7511,7 @@ proto.openstorage.api.Alert.prototype.getCount = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Alert.prototype.setCount = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
@@ -7536,7 +7538,7 @@ proto.openstorage.api.Alert.prototype.clearFirstSeen = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Alert.prototype.hasFirstSeen = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -7709,7 +7711,7 @@ proto.openstorage.api.SdkAlertsTimeSpan.prototype.clearStartTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsTimeSpan.prototype.hasStartTime = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -7739,7 +7741,7 @@ proto.openstorage.api.SdkAlertsTimeSpan.prototype.clearEndTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsTimeSpan.prototype.hasEndTime = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -7896,7 +7898,7 @@ proto.openstorage.api.SdkAlertsCountSpan.prototype.getMinCount = function() {
 
 /** @param {number} value */
 proto.openstorage.api.SdkAlertsCountSpan.prototype.setMinCount = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -7911,7 +7913,7 @@ proto.openstorage.api.SdkAlertsCountSpan.prototype.getMaxCount = function() {
 
 /** @param {number} value */
 proto.openstorage.api.SdkAlertsCountSpan.prototype.setMaxCount = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -8132,7 +8134,7 @@ proto.openstorage.api.SdkAlertsOption.prototype.clearMinSeverityType = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsOption.prototype.hasMinSeverityType = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -8163,7 +8165,7 @@ proto.openstorage.api.SdkAlertsOption.prototype.clearIsCleared = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsOption.prototype.hasIsCleared = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -8193,7 +8195,7 @@ proto.openstorage.api.SdkAlertsOption.prototype.clearTimeSpan = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsOption.prototype.hasTimeSpan = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -8223,7 +8225,7 @@ proto.openstorage.api.SdkAlertsOption.prototype.clearCountSpan = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsOption.prototype.hasCountSpan = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -8368,7 +8370,7 @@ proto.openstorage.api.SdkAlertsResourceTypeQuery.prototype.getResourceType = fun
 
 /** @param {!proto.openstorage.api.ResourceType} value */
 proto.openstorage.api.SdkAlertsResourceTypeQuery.prototype.setResourceType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -8522,7 +8524,7 @@ proto.openstorage.api.SdkAlertsAlertTypeQuery.prototype.getResourceType = functi
 
 /** @param {!proto.openstorage.api.ResourceType} value */
 proto.openstorage.api.SdkAlertsAlertTypeQuery.prototype.setResourceType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -8537,7 +8539,7 @@ proto.openstorage.api.SdkAlertsAlertTypeQuery.prototype.getAlertType = function(
 
 /** @param {number} value */
 proto.openstorage.api.SdkAlertsAlertTypeQuery.prototype.setAlertType = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -8703,7 +8705,7 @@ proto.openstorage.api.SdkAlertsResourceIdQuery.prototype.getResourceType = funct
 
 /** @param {!proto.openstorage.api.ResourceType} value */
 proto.openstorage.api.SdkAlertsResourceIdQuery.prototype.setResourceType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -8718,7 +8720,7 @@ proto.openstorage.api.SdkAlertsResourceIdQuery.prototype.getAlertType = function
 
 /** @param {number} value */
 proto.openstorage.api.SdkAlertsResourceIdQuery.prototype.setAlertType = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -8733,7 +8735,7 @@ proto.openstorage.api.SdkAlertsResourceIdQuery.prototype.getResourceId = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkAlertsResourceIdQuery.prototype.setResourceId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -8966,7 +8968,7 @@ proto.openstorage.api.SdkAlertsQuery.prototype.clearResourceTypeQuery = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsQuery.prototype.hasResourceTypeQuery = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -8996,7 +8998,7 @@ proto.openstorage.api.SdkAlertsQuery.prototype.clearAlertTypeQuery = function() 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsQuery.prototype.hasAlertTypeQuery = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -9026,7 +9028,7 @@ proto.openstorage.api.SdkAlertsQuery.prototype.clearResourceIdQuery = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkAlertsQuery.prototype.hasResourceIdQuery = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -9035,15 +9037,15 @@ proto.openstorage.api.SdkAlertsQuery.prototype.hasResourceIdQuery = function() {
 
 /**
  * repeated SdkAlertsOption opts = 4;
- * @return {!Array.<!proto.openstorage.api.SdkAlertsOption>}
+ * @return {!Array<!proto.openstorage.api.SdkAlertsOption>}
  */
 proto.openstorage.api.SdkAlertsQuery.prototype.getOptsList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkAlertsOption>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkAlertsOption>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkAlertsOption, 4));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkAlertsOption>} value */
+/** @param {!Array<!proto.openstorage.api.SdkAlertsOption>} value */
 proto.openstorage.api.SdkAlertsQuery.prototype.setOptsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 4, value);
 };
@@ -9203,15 +9205,15 @@ proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.serializeBinaryToWrit
 
 /**
  * repeated SdkAlertsQuery queries = 1;
- * @return {!Array.<!proto.openstorage.api.SdkAlertsQuery>}
+ * @return {!Array<!proto.openstorage.api.SdkAlertsQuery>}
  */
 proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.getQueriesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkAlertsQuery>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkAlertsQuery>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkAlertsQuery, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkAlertsQuery>} value */
+/** @param {!Array<!proto.openstorage.api.SdkAlertsQuery>} value */
 proto.openstorage.api.SdkAlertsEnumerateWithFiltersRequest.prototype.setQueriesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -9371,15 +9373,15 @@ proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.serializeBinaryToWri
 
 /**
  * repeated Alert alerts = 1;
- * @return {!Array.<!proto.openstorage.api.Alert>}
+ * @return {!Array<!proto.openstorage.api.Alert>}
  */
 proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.getAlertsList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.Alert>} */ (
+  return /** @type{!Array<!proto.openstorage.api.Alert>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.Alert, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.Alert>} value */
+/** @param {!Array<!proto.openstorage.api.Alert>} value */
 proto.openstorage.api.SdkAlertsEnumerateWithFiltersResponse.prototype.setAlertsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -9539,15 +9541,15 @@ proto.openstorage.api.SdkAlertsDeleteRequest.serializeBinaryToWriter = function(
 
 /**
  * repeated SdkAlertsQuery queries = 1;
- * @return {!Array.<!proto.openstorage.api.SdkAlertsQuery>}
+ * @return {!Array<!proto.openstorage.api.SdkAlertsQuery>}
  */
 proto.openstorage.api.SdkAlertsDeleteRequest.prototype.getQueriesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkAlertsQuery>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkAlertsQuery>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkAlertsQuery, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkAlertsQuery>} value */
+/** @param {!Array<!proto.openstorage.api.SdkAlertsQuery>} value */
 proto.openstorage.api.SdkAlertsDeleteRequest.prototype.setQueriesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -9823,15 +9825,15 @@ proto.openstorage.api.Alerts.serializeBinaryToWriter = function(message, writer)
 
 /**
  * repeated Alert alert = 1;
- * @return {!Array.<!proto.openstorage.api.Alert>}
+ * @return {!Array<!proto.openstorage.api.Alert>}
  */
 proto.openstorage.api.Alerts.prototype.getAlertList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.Alert>} */ (
+  return /** @type{!Array<!proto.openstorage.api.Alert>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.Alert, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.Alert>} value */
+/** @param {!Array<!proto.openstorage.api.Alert>} value */
 proto.openstorage.api.Alerts.prototype.setAlertList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -10117,7 +10119,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getUuid = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setUuid = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -10132,7 +10134,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getVolumeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -10149,7 +10151,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getEnabled = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setEnabled = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -10164,7 +10166,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getStatus = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -10179,7 +10181,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getAction = function() {
 
 /** @param {number} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setAction = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -10194,7 +10196,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getAccessKey = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setAccessKey = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -10209,27 +10211,27 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getSecretKey = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setSecretKey = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
  * repeated string endpoints = 8;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.ObjectstoreInfo.prototype.getEndpointsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 8));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setEndpointsList = function(value) {
   jspb.Message.setField(this, 8, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.ObjectstoreInfo.prototype.addEndpoints = function(value, opt_index) {
@@ -10253,7 +10255,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getCurrentEndpoint = function() 
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setCurrentEndpoint = function(value) {
-  jspb.Message.setField(this, 9, value);
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -10268,7 +10270,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getAccessPort = function() {
 
 /** @param {number} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setAccessPort = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
@@ -10283,7 +10285,7 @@ proto.openstorage.api.ObjectstoreInfo.prototype.getRegion = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ObjectstoreInfo.prototype.setRegion = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
@@ -10467,7 +10469,7 @@ proto.openstorage.api.VolumeCreateRequest.prototype.clearLocator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeCreateRequest.prototype.hasLocator = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -10497,7 +10499,7 @@ proto.openstorage.api.VolumeCreateRequest.prototype.clearSource = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeCreateRequest.prototype.hasSource = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -10527,7 +10529,7 @@ proto.openstorage.api.VolumeCreateRequest.prototype.clearSpec = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeCreateRequest.prototype.hasSpec = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -10672,7 +10674,7 @@ proto.openstorage.api.VolumeResponse.prototype.getError = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeResponse.prototype.setError = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -10828,7 +10830,7 @@ proto.openstorage.api.VolumeCreateResponse.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeCreateResponse.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -10855,7 +10857,7 @@ proto.openstorage.api.VolumeCreateResponse.prototype.clearVolumeResponse = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeCreateResponse.prototype.hasVolumeResponse = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -11036,7 +11038,7 @@ proto.openstorage.api.VolumeStateAction.prototype.getAttach = function() {
 
 /** @param {!proto.openstorage.api.VolumeActionParam} value */
 proto.openstorage.api.VolumeStateAction.prototype.setAttach = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -11051,7 +11053,7 @@ proto.openstorage.api.VolumeStateAction.prototype.getMount = function() {
 
 /** @param {!proto.openstorage.api.VolumeActionParam} value */
 proto.openstorage.api.VolumeStateAction.prototype.setMount = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -11066,7 +11068,7 @@ proto.openstorage.api.VolumeStateAction.prototype.getMountPath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeStateAction.prototype.setMountPath = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -11081,7 +11083,7 @@ proto.openstorage.api.VolumeStateAction.prototype.getDevicePath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeStateAction.prototype.setDevicePath = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -11190,7 +11192,7 @@ proto.openstorage.api.VolumeSetRequest.deserializeBinaryFromReader = function(ms
     case 4:
       var value = msg.getOptionsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -11276,7 +11278,7 @@ proto.openstorage.api.VolumeSetRequest.prototype.clearLocator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSetRequest.prototype.hasLocator = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -11306,7 +11308,7 @@ proto.openstorage.api.VolumeSetRequest.prototype.clearSpec = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSetRequest.prototype.hasSpec = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -11336,7 +11338,7 @@ proto.openstorage.api.VolumeSetRequest.prototype.clearAction = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSetRequest.prototype.hasAction = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -11527,7 +11529,7 @@ proto.openstorage.api.VolumeSetResponse.prototype.clearVolume = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSetResponse.prototype.hasVolume = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -11557,7 +11559,7 @@ proto.openstorage.api.VolumeSetResponse.prototype.clearVolumeResponse = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeSetResponse.prototype.hasVolumeResponse = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -11740,7 +11742,7 @@ proto.openstorage.api.SnapCreateRequest.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SnapCreateRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -11767,7 +11769,7 @@ proto.openstorage.api.SnapCreateRequest.prototype.clearLocator = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SnapCreateRequest.prototype.hasLocator = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -11787,7 +11789,7 @@ proto.openstorage.api.SnapCreateRequest.prototype.getReadonly = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.SnapCreateRequest.prototype.setReadonly = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -11804,7 +11806,7 @@ proto.openstorage.api.SnapCreateRequest.prototype.getNoRetry = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.SnapCreateRequest.prototype.setNoRetry = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -11960,7 +11962,7 @@ proto.openstorage.api.SnapCreateResponse.prototype.clearVolumeCreateResponse = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SnapCreateResponse.prototype.hasVolumeCreateResponse = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -12131,7 +12133,7 @@ proto.openstorage.api.VolumeInfo.prototype.getVolumeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeInfo.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -12146,7 +12148,7 @@ proto.openstorage.api.VolumeInfo.prototype.getPath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeInfo.prototype.setPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -12173,7 +12175,7 @@ proto.openstorage.api.VolumeInfo.prototype.clearStorage = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.VolumeInfo.prototype.hasStorage = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -12378,7 +12380,7 @@ proto.openstorage.api.VolumeConsumer.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeConsumer.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -12393,7 +12395,7 @@ proto.openstorage.api.VolumeConsumer.prototype.getNamespace = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeConsumer.prototype.setNamespace = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -12408,7 +12410,7 @@ proto.openstorage.api.VolumeConsumer.prototype.getType = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeConsumer.prototype.setType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -12423,7 +12425,7 @@ proto.openstorage.api.VolumeConsumer.prototype.getNodeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeConsumer.prototype.setNodeId = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -12438,7 +12440,7 @@ proto.openstorage.api.VolumeConsumer.prototype.getOwnerName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeConsumer.prototype.setOwnerName = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -12453,7 +12455,7 @@ proto.openstorage.api.VolumeConsumer.prototype.getOwnerType = function() {
 
 /** @param {string} value */
 proto.openstorage.api.VolumeConsumer.prototype.setOwnerType = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -12607,7 +12609,7 @@ proto.openstorage.api.GraphDriverChanges.prototype.getPath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.GraphDriverChanges.prototype.setPath = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -12622,7 +12624,7 @@ proto.openstorage.api.GraphDriverChanges.prototype.getKind = function() {
 
 /** @param {!proto.openstorage.api.GraphDriverChangeType} value */
 proto.openstorage.api.GraphDriverChanges.prototype.setKind = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -12764,7 +12766,7 @@ proto.openstorage.api.ClusterResponse.prototype.getError = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ClusterResponse.prototype.setError = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -12855,7 +12857,7 @@ proto.openstorage.api.ActiveRequest.deserializeBinaryFromReader = function(msg, 
     case 1:
       var value = msg.getReqestkvMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readInt64, jspb.BinaryReader.prototype.readString, null, 0);
          });
       break;
     default:
@@ -13072,21 +13074,21 @@ proto.openstorage.api.ActiveRequests.prototype.getRequestcount = function() {
 
 /** @param {number} value */
 proto.openstorage.api.ActiveRequests.prototype.setRequestcount = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
  * repeated ActiveRequest ActiveRequest = 2;
- * @return {!Array.<!proto.openstorage.api.ActiveRequest>}
+ * @return {!Array<!proto.openstorage.api.ActiveRequest>}
  */
 proto.openstorage.api.ActiveRequests.prototype.getActiverequestList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.ActiveRequest>} */ (
+  return /** @type{!Array<!proto.openstorage.api.ActiveRequest>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.ActiveRequest, 2));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.ActiveRequest>} value */
+/** @param {!Array<!proto.openstorage.api.ActiveRequest>} value */
 proto.openstorage.api.ActiveRequests.prototype.setActiverequestList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -13207,7 +13209,7 @@ proto.openstorage.api.GroupSnapCreateRequest.deserializeBinaryFromReader = funct
     case 2:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 3:
@@ -13275,7 +13277,7 @@ proto.openstorage.api.GroupSnapCreateRequest.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.GroupSnapCreateRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -13299,21 +13301,21 @@ proto.openstorage.api.GroupSnapCreateRequest.prototype.clearLabelsMap = function
 
 /**
  * repeated string volume_ids = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.GroupSnapCreateRequest.prototype.getVolumeIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.GroupSnapCreateRequest.prototype.setVolumeIdsList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.GroupSnapCreateRequest.prototype.addVolumeIds = function(value, opt_index) {
@@ -13414,7 +13416,7 @@ proto.openstorage.api.GroupSnapCreateResponse.deserializeBinaryFromReader = func
     case 1:
       var value = msg.getSnapshotsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.SnapCreateResponse.deserializeBinaryFromReader);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.SnapCreateResponse.deserializeBinaryFromReader, "");
          });
       break;
     case 2:
@@ -13493,7 +13495,7 @@ proto.openstorage.api.GroupSnapCreateResponse.prototype.getError = function() {
 
 /** @param {string} value */
 proto.openstorage.api.GroupSnapCreateResponse.prototype.setError = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -13633,7 +13635,7 @@ proto.openstorage.api.StorageNode.deserializeBinaryFromReader = function(msg, re
     case 9:
       var value = msg.getDisksMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.StorageResource.deserializeBinaryFromReader);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.StorageResource.deserializeBinaryFromReader, "");
          });
       break;
     case 10:
@@ -13656,7 +13658,7 @@ proto.openstorage.api.StorageNode.deserializeBinaryFromReader = function(msg, re
     case 16:
       var value = msg.getNodeLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 17:
@@ -13799,7 +13801,7 @@ proto.openstorage.api.StorageNode.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -13814,7 +13816,7 @@ proto.openstorage.api.StorageNode.prototype.getCpu = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageNode.prototype.setCpu = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
@@ -13829,7 +13831,7 @@ proto.openstorage.api.StorageNode.prototype.getMemTotal = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageNode.prototype.setMemTotal = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -13844,7 +13846,7 @@ proto.openstorage.api.StorageNode.prototype.getMemUsed = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageNode.prototype.setMemUsed = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -13859,7 +13861,7 @@ proto.openstorage.api.StorageNode.prototype.getMemFree = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageNode.prototype.setMemFree = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3IntField(this, 5, value);
 };
 
 
@@ -13874,7 +13876,7 @@ proto.openstorage.api.StorageNode.prototype.getAvgLoad = function() {
 
 /** @param {number} value */
 proto.openstorage.api.StorageNode.prototype.setAvgLoad = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -13889,7 +13891,7 @@ proto.openstorage.api.StorageNode.prototype.getStatus = function() {
 
 /** @param {!proto.openstorage.api.Status} value */
 proto.openstorage.api.StorageNode.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 7, value);
 };
 
 
@@ -13913,15 +13915,15 @@ proto.openstorage.api.StorageNode.prototype.clearDisksMap = function() {
 
 /**
  * repeated StoragePool pools = 10;
- * @return {!Array.<!proto.openstorage.api.StoragePool>}
+ * @return {!Array<!proto.openstorage.api.StoragePool>}
  */
 proto.openstorage.api.StorageNode.prototype.getPoolsList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.StoragePool>} */ (
+  return /** @type{!Array<!proto.openstorage.api.StoragePool>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.StoragePool, 10));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.StoragePool>} value */
+/** @param {!Array<!proto.openstorage.api.StoragePool>} value */
 proto.openstorage.api.StorageNode.prototype.setPoolsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 10, value);
 };
@@ -13953,7 +13955,7 @@ proto.openstorage.api.StorageNode.prototype.getMgmtIp = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setMgmtIp = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
@@ -13968,7 +13970,7 @@ proto.openstorage.api.StorageNode.prototype.getDataIp = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setDataIp = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
@@ -13983,7 +13985,7 @@ proto.openstorage.api.StorageNode.prototype.getHostname = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setHostname = function(value) {
-  jspb.Message.setField(this, 15, value);
+  jspb.Message.setProto3StringField(this, 15, value);
 };
 
 
@@ -14016,7 +14018,7 @@ proto.openstorage.api.StorageNode.prototype.getSchedulerNodeName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setSchedulerNodeName = function(value) {
-  jspb.Message.setField(this, 17, value);
+  jspb.Message.setProto3StringField(this, 17, value);
 };
 
 
@@ -14182,7 +14184,7 @@ proto.openstorage.api.StorageCluster.prototype.getStatus = function() {
 
 /** @param {!proto.openstorage.api.Status} value */
 proto.openstorage.api.StorageCluster.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -14197,7 +14199,7 @@ proto.openstorage.api.StorageCluster.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageCluster.prototype.setId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -14212,7 +14214,7 @@ proto.openstorage.api.StorageCluster.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageCluster.prototype.setName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -14368,7 +14370,7 @@ proto.openstorage.api.SdkOpenStoragePolicyCreateRequest.prototype.clearStoragePo
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkOpenStoragePolicyCreateRequest.prototype.hasStoragePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -14746,15 +14748,15 @@ proto.openstorage.api.SdkOpenStoragePolicyEnumerateResponse.serializeBinaryToWri
 
 /**
  * repeated SdkStoragePolicy storage_policies = 1;
- * @return {!Array.<!proto.openstorage.api.SdkStoragePolicy>}
+ * @return {!Array<!proto.openstorage.api.SdkStoragePolicy>}
  */
 proto.openstorage.api.SdkOpenStoragePolicyEnumerateResponse.prototype.getStoragePoliciesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkStoragePolicy>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkStoragePolicy>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkStoragePolicy, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkStoragePolicy>} value */
+/** @param {!Array<!proto.openstorage.api.SdkStoragePolicy>} value */
 proto.openstorage.api.SdkOpenStoragePolicyEnumerateResponse.prototype.setStoragePoliciesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -14913,7 +14915,7 @@ proto.openstorage.api.SdkOpenStoragePolicyInspectRequest.prototype.getName = fun
 
 /** @param {string} value */
 proto.openstorage.api.SdkOpenStoragePolicyInspectRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -15069,7 +15071,7 @@ proto.openstorage.api.SdkOpenStoragePolicyInspectResponse.prototype.clearStorage
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkOpenStoragePolicyInspectResponse.prototype.hasStoragePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -15214,7 +15216,7 @@ proto.openstorage.api.SdkOpenStoragePolicyDeleteRequest.prototype.getName = func
 
 /** @param {string} value */
 proto.openstorage.api.SdkOpenStoragePolicyDeleteRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -15486,7 +15488,7 @@ proto.openstorage.api.SdkOpenStoragePolicyUpdateRequest.prototype.clearStoragePo
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkOpenStoragePolicyUpdateRequest.prototype.hasStoragePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -15747,7 +15749,7 @@ proto.openstorage.api.SdkOpenStoragePolicyEnforceRequest.prototype.getName = fun
 
 /** @param {string} value */
 proto.openstorage.api.SdkOpenStoragePolicyEnforceRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -16367,7 +16369,7 @@ proto.openstorage.api.SdkOpenStoragePolicyEnforceInspectResponse.prototype.clear
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkOpenStoragePolicyEnforceInspectResponse.prototype.hasStoragePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -16526,7 +16528,7 @@ proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.clearSchedulePoli
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyCreateRequest.prototype.hasSchedulePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -16801,7 +16803,7 @@ proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.clearSchedulePoli
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyUpdateRequest.prototype.hasSchedulePolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -17179,15 +17181,15 @@ proto.openstorage.api.SdkSchedulePolicyEnumerateResponse.serializeBinaryToWriter
 
 /**
  * repeated SdkSchedulePolicy policies = 1;
- * @return {!Array.<!proto.openstorage.api.SdkSchedulePolicy>}
+ * @return {!Array<!proto.openstorage.api.SdkSchedulePolicy>}
  */
 proto.openstorage.api.SdkSchedulePolicyEnumerateResponse.prototype.getPoliciesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkSchedulePolicy>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkSchedulePolicy>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkSchedulePolicy, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkSchedulePolicy>} value */
+/** @param {!Array<!proto.openstorage.api.SdkSchedulePolicy>} value */
 proto.openstorage.api.SdkSchedulePolicyEnumerateResponse.prototype.setPoliciesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -17346,7 +17348,7 @@ proto.openstorage.api.SdkSchedulePolicyInspectRequest.prototype.getName = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkSchedulePolicyInspectRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -17502,7 +17504,7 @@ proto.openstorage.api.SdkSchedulePolicyInspectResponse.prototype.clearPolicy = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInspectResponse.prototype.hasPolicy = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -17647,7 +17649,7 @@ proto.openstorage.api.SdkSchedulePolicyDeleteRequest.prototype.getName = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkSchedulePolicyDeleteRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -17917,7 +17919,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalDaily.prototype.getHour = functio
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalDaily.prototype.setHour = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -17932,7 +17934,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalDaily.prototype.getMinute = funct
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalDaily.prototype.setMinute = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -18098,7 +18100,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.prototype.getDay = functio
 
 /** @param {!proto.openstorage.api.SdkTimeWeekday} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.prototype.setDay = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -18113,7 +18115,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.prototype.getHour = functi
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.prototype.setHour = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -18128,7 +18130,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.prototype.getMinute = func
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalWeekly.prototype.setMinute = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -18294,7 +18296,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.getDay = functi
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.setDay = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -18309,7 +18311,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.getHour = funct
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.setHour = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -18324,7 +18326,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.getMinute = fun
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalMonthly.prototype.setMinute = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -18466,7 +18468,7 @@ proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.prototype.getSeconds = f
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyIntervalPeriodic.prototype.setSeconds = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -18692,7 +18694,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.getRetain = function()
 
 /** @param {number} value */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.setRetain = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -18719,7 +18721,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearDaily = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasDaily = function() {
   return jspb.Message.getField(this, 200) != null;
@@ -18749,7 +18751,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearWeekly = function
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasWeekly = function() {
   return jspb.Message.getField(this, 201) != null;
@@ -18779,7 +18781,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearMonthly = functio
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasMonthly = function() {
   return jspb.Message.getField(this, 202) != null;
@@ -18809,7 +18811,7 @@ proto.openstorage.api.SdkSchedulePolicyInterval.prototype.clearPeriodic = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkSchedulePolicyInterval.prototype.hasPeriodic = function() {
   return jspb.Message.getField(this, 203) != null;
@@ -18976,21 +18978,21 @@ proto.openstorage.api.SdkSchedulePolicy.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkSchedulePolicy.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated SdkSchedulePolicyInterval schedules = 2;
- * @return {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>}
+ * @return {!Array<!proto.openstorage.api.SdkSchedulePolicyInterval>}
  */
 proto.openstorage.api.SdkSchedulePolicy.prototype.getSchedulesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkSchedulePolicyInterval>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkSchedulePolicyInterval, 2));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} value */
+/** @param {!Array<!proto.openstorage.api.SdkSchedulePolicyInterval>} value */
 proto.openstorage.api.SdkSchedulePolicy.prototype.setSchedulesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
@@ -19242,7 +19244,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.getName = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -19257,7 +19259,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.getBucket = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setBucket = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -19272,7 +19274,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.getEncryptionKey = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.setEncryptionKey = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -19299,7 +19301,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.clearAwsCredential = 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.hasAwsCredential = function() {
   return jspb.Message.getField(this, 200) != null;
@@ -19329,7 +19331,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.clearAzureCredential 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.hasAzureCredential = function() {
   return jspb.Message.getField(this, 201) != null;
@@ -19359,7 +19361,7 @@ proto.openstorage.api.SdkCredentialCreateRequest.prototype.clearGoogleCredential
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCredentialCreateRequest.prototype.hasGoogleCredential = function() {
   return jspb.Message.getField(this, 202) != null;
@@ -19504,7 +19506,7 @@ proto.openstorage.api.SdkCredentialCreateResponse.prototype.getCredentialId = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialCreateResponse.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -19694,7 +19696,7 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getAccessKey = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setAccessKey = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -19709,7 +19711,7 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getSecretKey = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setSecretKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -19724,7 +19726,7 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getEndpoint = function()
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setEndpoint = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -19739,7 +19741,7 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getRegion = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setRegion = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -19756,7 +19758,7 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getDisableSsl = function
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setDisableSsl = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -19910,7 +19912,7 @@ proto.openstorage.api.SdkAzureCredentialRequest.prototype.getAccountName = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkAzureCredentialRequest.prototype.setAccountName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -19925,7 +19927,7 @@ proto.openstorage.api.SdkAzureCredentialRequest.prototype.getAccountKey = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkAzureCredentialRequest.prototype.setAccountKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -20079,7 +20081,7 @@ proto.openstorage.api.SdkGoogleCredentialRequest.prototype.getProjectId = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkGoogleCredentialRequest.prototype.setProjectId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -20094,7 +20096,7 @@ proto.openstorage.api.SdkGoogleCredentialRequest.prototype.getJsonKey = function
 
 /** @param {string} value */
 proto.openstorage.api.SdkGoogleCredentialRequest.prototype.setJsonKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -20272,7 +20274,7 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getAccessKey = function
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setAccessKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -20287,7 +20289,7 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getEndpoint = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setEndpoint = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -20302,7 +20304,7 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getRegion = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setRegion = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -20319,7 +20321,7 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getDisableSsl = functio
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setDisableSsl = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -20461,7 +20463,7 @@ proto.openstorage.api.SdkAzureCredentialResponse.prototype.getAccountName = func
 
 /** @param {string} value */
 proto.openstorage.api.SdkAzureCredentialResponse.prototype.setAccountName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -20603,7 +20605,7 @@ proto.openstorage.api.SdkGoogleCredentialResponse.prototype.getProjectId = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkGoogleCredentialResponse.prototype.setProjectId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -20859,21 +20861,21 @@ proto.openstorage.api.SdkCredentialEnumerateResponse.serializeBinaryToWriter = f
 
 /**
  * repeated string credential_ids = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkCredentialEnumerateResponse.prototype.getCredentialIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkCredentialEnumerateResponse.prototype.setCredentialIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkCredentialEnumerateResponse.prototype.addCredentialIds = function(value, opt_index) {
@@ -21024,7 +21026,7 @@ proto.openstorage.api.SdkCredentialInspectRequest.prototype.getCredentialId = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialInspectRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -21259,7 +21261,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.getCredentialId = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -21274,7 +21276,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.getName = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -21289,7 +21291,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.getBucket = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.setBucket = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -21316,7 +21318,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.clearAwsCredential 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.hasAwsCredential = function() {
   return jspb.Message.getField(this, 200) != null;
@@ -21346,7 +21348,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.clearAzureCredentia
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.hasAzureCredential = function() {
   return jspb.Message.getField(this, 201) != null;
@@ -21376,7 +21378,7 @@ proto.openstorage.api.SdkCredentialInspectResponse.prototype.clearGoogleCredenti
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCredentialInspectResponse.prototype.hasGoogleCredential = function() {
   return jspb.Message.getField(this, 202) != null;
@@ -21521,7 +21523,7 @@ proto.openstorage.api.SdkCredentialDeleteRequest.prototype.getCredentialId = fun
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialDeleteRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -21779,7 +21781,7 @@ proto.openstorage.api.SdkCredentialValidateRequest.prototype.getCredentialId = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkCredentialValidateRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -22049,7 +22051,7 @@ proto.openstorage.api.SdkVolumeMountRequest.prototype.getVolumeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeMountRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -22064,7 +22066,7 @@ proto.openstorage.api.SdkVolumeMountRequest.prototype.getMountPath = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeMountRequest.prototype.setMountPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -22489,7 +22491,7 @@ proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.getDeleteMountPa
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.setDeleteMountPath = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -22506,7 +22508,7 @@ proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.getNoDelayBefore
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkVolumeUnmountRequest.Options.prototype.setNoDelayBeforeDeletingMountPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -22521,7 +22523,7 @@ proto.openstorage.api.SdkVolumeUnmountRequest.prototype.getVolumeId = function()
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeUnmountRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -22536,7 +22538,7 @@ proto.openstorage.api.SdkVolumeUnmountRequest.prototype.getMountPath = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeUnmountRequest.prototype.setMountPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -22563,7 +22565,7 @@ proto.openstorage.api.SdkVolumeUnmountRequest.prototype.clearOptions = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeUnmountRequest.prototype.hasOptions = function() {
   return jspb.Message.getField(this, 3) != null;
@@ -22989,7 +22991,7 @@ proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.getSecretName = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.setSecretName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23004,7 +23006,7 @@ proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.getSecretKey = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.setSecretKey = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -23019,7 +23021,7 @@ proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.getSecretContext 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeAttachRequest.Options.prototype.setSecretContext = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -23034,7 +23036,7 @@ proto.openstorage.api.SdkVolumeAttachRequest.prototype.getVolumeId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeAttachRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23061,7 +23063,7 @@ proto.openstorage.api.SdkVolumeAttachRequest.prototype.clearOptions = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeAttachRequest.prototype.hasOptions = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -23206,7 +23208,7 @@ proto.openstorage.api.SdkVolumeAttachResponse.prototype.getDevicePath = function
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeAttachResponse.prototype.setDevicePath = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23503,7 +23505,7 @@ proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.getForce = functi
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.setForce = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -23520,7 +23522,7 @@ proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.getUnmountBeforeD
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkVolumeDetachRequest.Options.prototype.setUnmountBeforeDetach = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -23535,7 +23537,7 @@ proto.openstorage.api.SdkVolumeDetachRequest.prototype.getVolumeId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeDetachRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23562,7 +23564,7 @@ proto.openstorage.api.SdkVolumeDetachRequest.prototype.clearOptions = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeDetachRequest.prototype.hasOptions = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -23837,7 +23839,7 @@ proto.openstorage.api.SdkVolumeCreateRequest.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeCreateRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -23864,7 +23866,7 @@ proto.openstorage.api.SdkVolumeCreateRequest.prototype.clearSpec = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeCreateRequest.prototype.hasSpec = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -24009,7 +24011,7 @@ proto.openstorage.api.SdkVolumeCreateResponse.prototype.getVolumeId = function()
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeCreateResponse.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -24163,7 +24165,7 @@ proto.openstorage.api.SdkVolumeCloneRequest.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeCloneRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -24178,7 +24180,7 @@ proto.openstorage.api.SdkVolumeCloneRequest.prototype.getParentId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeCloneRequest.prototype.setParentId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -24320,7 +24322,7 @@ proto.openstorage.api.SdkVolumeCloneResponse.prototype.getVolumeId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeCloneResponse.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -24462,7 +24464,7 @@ proto.openstorage.api.SdkVolumeDeleteRequest.prototype.getVolumeId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeDeleteRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -24720,7 +24722,7 @@ proto.openstorage.api.SdkVolumeInspectRequest.prototype.getVolumeId = function()
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeInspectRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -24876,7 +24878,7 @@ proto.openstorage.api.SdkVolumeInspectResponse.prototype.clearVolume = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeInspectResponse.prototype.hasVolume = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -25049,7 +25051,7 @@ proto.openstorage.api.SdkVolumeUpdateRequest.prototype.getVolumeId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeUpdateRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -25076,7 +25078,7 @@ proto.openstorage.api.SdkVolumeUpdateRequest.prototype.clearLocator = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeUpdateRequest.prototype.hasLocator = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -25106,7 +25108,7 @@ proto.openstorage.api.SdkVolumeUpdateRequest.prototype.clearSpec = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeUpdateRequest.prototype.hasSpec = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -25379,7 +25381,7 @@ proto.openstorage.api.SdkVolumeStatsRequest.prototype.getVolumeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeStatsRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -25396,7 +25398,7 @@ proto.openstorage.api.SdkVolumeStatsRequest.prototype.getNotCumulative = functio
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkVolumeStatsRequest.prototype.setNotCumulative = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -25552,7 +25554,7 @@ proto.openstorage.api.SdkVolumeStatsResponse.prototype.clearStats = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeStatsResponse.prototype.hasStats = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -25697,7 +25699,7 @@ proto.openstorage.api.SdkVolumeCapacityUsageRequest.prototype.getVolumeId = func
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeCapacityUsageRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -25853,7 +25855,7 @@ proto.openstorage.api.SdkVolumeCapacityUsageResponse.prototype.clearCapacityUsag
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeCapacityUsageResponse.prototype.hasCapacityUsageInfo = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -26112,21 +26114,21 @@ proto.openstorage.api.SdkVolumeEnumerateResponse.serializeBinaryToWriter = funct
 
 /**
  * repeated string volume_ids = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkVolumeEnumerateResponse.prototype.getVolumeIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkVolumeEnumerateResponse.prototype.setVolumeIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkVolumeEnumerateResponse.prototype.addVolumeIds = function(value, opt_index) {
@@ -26291,7 +26293,7 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.clearLocato
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.prototype.hasLocator = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -26434,21 +26436,21 @@ proto.openstorage.api.SdkVolumeEnumerateWithFiltersResponse.serializeBinaryToWri
 
 /**
  * repeated string volume_ids = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersResponse.prototype.getVolumeIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersResponse.prototype.setVolumeIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkVolumeEnumerateWithFiltersResponse.prototype.addVolumeIds = function(value, opt_index) {
@@ -26558,7 +26560,7 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.deserializeBinaryFromReader
     case 3:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -26622,7 +26624,7 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.getVolumeId = fun
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -26637,7 +26639,7 @@ proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.getName = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotCreateRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -26797,7 +26799,7 @@ proto.openstorage.api.SdkVolumeSnapshotCreateResponse.prototype.getSnapshotId = 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotCreateResponse.prototype.setSnapshotId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -26951,7 +26953,7 @@ proto.openstorage.api.SdkVolumeSnapshotRestoreRequest.prototype.getVolumeId = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotRestoreRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -26966,7 +26968,7 @@ proto.openstorage.api.SdkVolumeSnapshotRestoreRequest.prototype.getSnapshotId = 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotRestoreRequest.prototype.setSnapshotId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -27224,7 +27226,7 @@ proto.openstorage.api.SdkVolumeSnapshotEnumerateRequest.prototype.getVolumeId = 
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -27364,21 +27366,21 @@ proto.openstorage.api.SdkVolumeSnapshotEnumerateResponse.serializeBinaryToWriter
 
 /**
  * repeated string volume_snapshot_ids = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateResponse.prototype.getVolumeSnapshotIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateResponse.prototype.setVolumeSnapshotIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateResponse.prototype.addVolumeSnapshotIds = function(value, opt_index) {
@@ -27483,7 +27485,7 @@ proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest.deserializeBi
     case 2:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -27540,7 +27542,7 @@ proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest.prototype.get
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -27698,21 +27700,21 @@ proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse.serializeBin
 
 /**
  * repeated string volume_snapshot_ids = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse.prototype.getVolumeSnapshotIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse.prototype.setVolumeSnapshotIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse.prototype.addVolumeSnapshotIds = function(value, opt_index) {
@@ -27882,27 +27884,27 @@ proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.getVolume
 
 /** @param {string} value */
 proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
  * repeated string snapshot_schedule_names = 2;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.getSnapshotScheduleNamesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 2));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.setSnapshotScheduleNamesList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest.prototype.addSnapshotScheduleNames = function(value, opt_index) {
@@ -28299,7 +28301,7 @@ proto.openstorage.api.SdkClusterInspectCurrentResponse.prototype.clearCluster = 
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterInspectCurrentResponse.prototype.hasCluster = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -28444,7 +28446,7 @@ proto.openstorage.api.SdkNodeInspectRequest.prototype.getNodeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkNodeInspectRequest.prototype.setNodeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -28600,7 +28602,7 @@ proto.openstorage.api.SdkNodeInspectResponse.prototype.clearNode = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkNodeInspectResponse.prototype.hasNode = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -28875,7 +28877,7 @@ proto.openstorage.api.SdkNodeInspectCurrentResponse.prototype.clearNode = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkNodeInspectCurrentResponse.prototype.hasNode = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -29134,21 +29136,21 @@ proto.openstorage.api.SdkNodeEnumerateResponse.serializeBinaryToWriter = functio
 
 /**
  * repeated string node_ids = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkNodeEnumerateResponse.prototype.getNodeIdsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkNodeEnumerateResponse.prototype.setNodeIdsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkNodeEnumerateResponse.prototype.addNodeIds = function(value, opt_index) {
@@ -29299,7 +29301,7 @@ proto.openstorage.api.SdkObjectstoreInspectRequest.prototype.getObjectstoreId = 
 
 /** @param {string} value */
 proto.openstorage.api.SdkObjectstoreInspectRequest.prototype.setObjectstoreId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -29455,7 +29457,7 @@ proto.openstorage.api.SdkObjectstoreInspectResponse.prototype.clearObjectstoreSt
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkObjectstoreInspectResponse.prototype.hasObjectstoreStatus = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -29600,7 +29602,7 @@ proto.openstorage.api.SdkObjectstoreCreateRequest.prototype.getVolumeId = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkObjectstoreCreateRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -29756,7 +29758,7 @@ proto.openstorage.api.SdkObjectstoreCreateResponse.prototype.clearObjectstoreSta
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkObjectstoreCreateResponse.prototype.hasObjectstoreStatus = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -29901,7 +29903,7 @@ proto.openstorage.api.SdkObjectstoreDeleteRequest.prototype.getObjectstoreId = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkObjectstoreDeleteRequest.prototype.setObjectstoreId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -30171,7 +30173,7 @@ proto.openstorage.api.SdkObjectstoreUpdateRequest.prototype.getObjectstoreId = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkObjectstoreUpdateRequest.prototype.setObjectstoreId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -30188,7 +30190,7 @@ proto.openstorage.api.SdkObjectstoreUpdateRequest.prototype.getEnable = function
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkObjectstoreUpdateRequest.prototype.setEnable = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -30415,7 +30417,7 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.deserializeBinaryFromReader = 
     case 5:
       var value = msg.getLabelsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -30493,7 +30495,7 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.getVolumeId = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -30508,7 +30510,7 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.getCredentialId = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -30525,7 +30527,7 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.getFull = function()
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.setFull = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -30540,7 +30542,7 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.getTaskId = function
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -30700,7 +30702,7 @@ proto.openstorage.api.SdkCloudBackupCreateResponse.prototype.getTaskId = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupCreateResponse.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -30890,7 +30892,7 @@ proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.getBackupId = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.setBackupId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -30905,7 +30907,7 @@ proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.getRestoreVolumeNam
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.setRestoreVolumeName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -30920,7 +30922,7 @@ proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.getCredentialId = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -30935,7 +30937,7 @@ proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.getNodeId = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.setNodeId = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -30950,7 +30952,7 @@ proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.getTaskId = functio
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -31104,7 +31106,7 @@ proto.openstorage.api.SdkCloudBackupRestoreResponse.prototype.getRestoreVolumeId
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreResponse.prototype.setRestoreVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -31119,7 +31121,7 @@ proto.openstorage.api.SdkCloudBackupRestoreResponse.prototype.getTaskId = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupRestoreResponse.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -31285,7 +31287,7 @@ proto.openstorage.api.SdkCloudBackupDeleteRequest.prototype.getBackupId = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupDeleteRequest.prototype.setBackupId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -31300,7 +31302,7 @@ proto.openstorage.api.SdkCloudBackupDeleteRequest.prototype.getCredentialId = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupDeleteRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -31317,7 +31319,7 @@ proto.openstorage.api.SdkCloudBackupDeleteRequest.prototype.getForce = function(
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupDeleteRequest.prototype.setForce = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -31587,7 +31589,7 @@ proto.openstorage.api.SdkCloudBackupDeleteAllRequest.prototype.getSrcVolumeId = 
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupDeleteAllRequest.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -31602,7 +31604,7 @@ proto.openstorage.api.SdkCloudBackupDeleteAllRequest.prototype.getCredentialId =
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupDeleteAllRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -31896,7 +31898,7 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getSrc
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -31911,7 +31913,7 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getClu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -31926,7 +31928,7 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getCre
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -31943,7 +31945,7 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getAll
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setAll = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -32056,7 +32058,7 @@ proto.openstorage.api.SdkCloudBackupInfo.deserializeBinaryFromReader = function(
     case 5:
       var value = msg.getMetadataMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 6:
@@ -32146,7 +32148,7 @@ proto.openstorage.api.SdkCloudBackupInfo.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupInfo.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -32161,7 +32163,7 @@ proto.openstorage.api.SdkCloudBackupInfo.prototype.getSrcVolumeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupInfo.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -32176,7 +32178,7 @@ proto.openstorage.api.SdkCloudBackupInfo.prototype.getSrcVolumeName = function()
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupInfo.prototype.setSrcVolumeName = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -32203,7 +32205,7 @@ proto.openstorage.api.SdkCloudBackupInfo.prototype.clearTimestamp = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudBackupInfo.prototype.hasTimestamp = function() {
   return jspb.Message.getField(this, 4) != null;
@@ -32239,7 +32241,7 @@ proto.openstorage.api.SdkCloudBackupInfo.prototype.getStatus = function() {
 
 /** @param {!proto.openstorage.api.SdkCloudBackupStatusType} value */
 proto.openstorage.api.SdkCloudBackupInfo.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3EnumField(this, 6, value);
 };
 
 
@@ -32382,15 +32384,15 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.serializeBinary
 
 /**
  * repeated SdkCloudBackupInfo backups = 1;
- * @return {!Array.<!proto.openstorage.api.SdkCloudBackupInfo>}
+ * @return {!Array<!proto.openstorage.api.SdkCloudBackupInfo>}
  */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.getBackupsList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkCloudBackupInfo>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkCloudBackupInfo>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkCloudBackupInfo, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkCloudBackupInfo>} value */
+/** @param {!Array<!proto.openstorage.api.SdkCloudBackupInfo>} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.setBackupsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -32692,7 +32694,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getBackupId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setBackupId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -32707,7 +32709,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getOptype = function() {
 
 /** @param {!proto.openstorage.api.SdkCloudBackupOpType} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setOptype = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -32722,7 +32724,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getStatus = function() {
 
 /** @param {!proto.openstorage.api.SdkCloudBackupStatusType} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -32737,7 +32739,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getBytesDone = function() {
 
 /** @param {number} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setBytesDone = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -32764,7 +32766,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.clearStartTime = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.hasStartTime = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -32794,7 +32796,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.clearCompletedTime = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.hasCompletedTime = function() {
   return jspb.Message.getField(this, 6) != null;
@@ -32812,7 +32814,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getNodeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setNodeId = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -32827,27 +32829,27 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getSrcVolumeId = function()
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
  * repeated string info = 9;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.getInfoList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 9));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 9));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setInfoList = function(value) {
   jspb.Message.setField(this, 9, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.addInfo = function(value, opt_index) {
@@ -32871,7 +32873,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getCredentialId = function(
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -32886,7 +32888,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getBytesTotal = function() 
 
 /** @param {number} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setBytesTotal = function(value) {
-  jspb.Message.setField(this, 11, value);
+  jspb.Message.setProto3IntField(this, 11, value);
 };
 
 
@@ -32901,7 +32903,7 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getEtaSeconds = function() 
 
 /** @param {number} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setEtaSeconds = function(value) {
-  jspb.Message.setField(this, 12, value);
+  jspb.Message.setProto3IntField(this, 12, value);
 };
 
 
@@ -33067,7 +33069,7 @@ proto.openstorage.api.SdkCloudBackupStatusRequest.prototype.getVolumeId = functi
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStatusRequest.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -33084,7 +33086,7 @@ proto.openstorage.api.SdkCloudBackupStatusRequest.prototype.getLocal = function(
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupStatusRequest.prototype.setLocal = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
@@ -33099,7 +33101,7 @@ proto.openstorage.api.SdkCloudBackupStatusRequest.prototype.getTaskId = function
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStatusRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -33190,7 +33192,7 @@ proto.openstorage.api.SdkCloudBackupStatusResponse.deserializeBinaryFromReader =
     case 1:
       var value = msg.getStatusesMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.SdkCloudBackupStatus.deserializeBinaryFromReader);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.SdkCloudBackupStatus.deserializeBinaryFromReader, "");
          });
       break;
     default:
@@ -33397,7 +33399,7 @@ proto.openstorage.api.SdkCloudBackupCatalogRequest.prototype.getBackupId = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupCatalogRequest.prototype.setBackupId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -33412,7 +33414,7 @@ proto.openstorage.api.SdkCloudBackupCatalogRequest.prototype.getCredentialId = f
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupCatalogRequest.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -33552,21 +33554,21 @@ proto.openstorage.api.SdkCloudBackupCatalogResponse.serializeBinaryToWriter = fu
 
 /**
  * repeated string contents = 1;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.SdkCloudBackupCatalogResponse.prototype.getContentsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.SdkCloudBackupCatalogResponse.prototype.setContentsList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.SdkCloudBackupCatalogResponse.prototype.addContents = function(value, opt_index) {
@@ -33743,7 +33745,7 @@ proto.openstorage.api.SdkCloudBackupHistoryItem.prototype.getSrcVolumeId = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupHistoryItem.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -33770,7 +33772,7 @@ proto.openstorage.api.SdkCloudBackupHistoryItem.prototype.clearTimestamp = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudBackupHistoryItem.prototype.hasTimestamp = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -33788,7 +33790,7 @@ proto.openstorage.api.SdkCloudBackupHistoryItem.prototype.getStatus = function()
 
 /** @param {!proto.openstorage.api.SdkCloudBackupStatusType} value */
 proto.openstorage.api.SdkCloudBackupHistoryItem.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -33930,7 +33932,7 @@ proto.openstorage.api.SdkCloudBackupHistoryRequest.prototype.getSrcVolumeId = fu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupHistoryRequest.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -34073,15 +34075,15 @@ proto.openstorage.api.SdkCloudBackupHistoryResponse.serializeBinaryToWriter = fu
 
 /**
  * repeated SdkCloudBackupHistoryItem history_list = 1;
- * @return {!Array.<!proto.openstorage.api.SdkCloudBackupHistoryItem>}
+ * @return {!Array<!proto.openstorage.api.SdkCloudBackupHistoryItem>}
  */
 proto.openstorage.api.SdkCloudBackupHistoryResponse.prototype.getHistoryListList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkCloudBackupHistoryItem>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkCloudBackupHistoryItem>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkCloudBackupHistoryItem, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkCloudBackupHistoryItem>} value */
+/** @param {!Array<!proto.openstorage.api.SdkCloudBackupHistoryItem>} value */
 proto.openstorage.api.SdkCloudBackupHistoryResponse.prototype.setHistoryListList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -34252,7 +34254,7 @@ proto.openstorage.api.SdkCloudBackupStateChangeRequest.prototype.getTaskId = fun
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupStateChangeRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -34267,7 +34269,7 @@ proto.openstorage.api.SdkCloudBackupStateChangeRequest.prototype.getRequestedSta
 
 /** @param {!proto.openstorage.api.SdkCloudBackupRequestedState} value */
 proto.openstorage.api.SdkCloudBackupStateChangeRequest.prototype.setRequestedState = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
@@ -34583,7 +34585,7 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getSrcVolumeId = func
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setSrcVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -34598,21 +34600,21 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getCredentialId = fun
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setCredentialId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated SdkSchedulePolicyInterval schedules = 3;
- * @return {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>}
+ * @return {!Array<!proto.openstorage.api.SdkSchedulePolicyInterval>}
  */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getSchedulesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkSchedulePolicyInterval>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkSchedulePolicyInterval, 3));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkSchedulePolicyInterval>} value */
+/** @param {!Array<!proto.openstorage.api.SdkSchedulePolicyInterval>} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setSchedulesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
@@ -34644,7 +34646,7 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getMaxBackups = funct
 
 /** @param {number} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setMaxBackups = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -34661,7 +34663,7 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getFull = function() 
 
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setFull = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -34817,7 +34819,7 @@ proto.openstorage.api.SdkCloudBackupSchedCreateRequest.prototype.clearCloudSched
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudBackupSchedCreateRequest.prototype.hasCloudSchedInfo = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -34962,7 +34964,7 @@ proto.openstorage.api.SdkCloudBackupSchedCreateResponse.prototype.getBackupSched
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupSchedCreateResponse.prototype.setBackupScheduleId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -35104,7 +35106,7 @@ proto.openstorage.api.SdkCloudBackupSchedDeleteRequest.prototype.getBackupSchedu
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupSchedDeleteRequest.prototype.setBackupScheduleId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -35427,7 +35429,7 @@ proto.openstorage.api.SdkCloudBackupSchedEnumerateResponse.deserializeBinaryFrom
     case 1:
       var value = msg.getCloudSchedListMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.SdkCloudBackupScheduleInfo.deserializeBinaryFromReader);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.SdkCloudBackupScheduleInfo.deserializeBinaryFromReader, "");
          });
       break;
     default:
@@ -35739,15 +35741,15 @@ proto.openstorage.api.SdkIdentityCapabilitiesResponse.serializeBinaryToWriter = 
 
 /**
  * repeated SdkServiceCapability capabilities = 1;
- * @return {!Array.<!proto.openstorage.api.SdkServiceCapability>}
+ * @return {!Array<!proto.openstorage.api.SdkServiceCapability>}
  */
 proto.openstorage.api.SdkIdentityCapabilitiesResponse.prototype.getCapabilitiesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.SdkServiceCapability>} */ (
+  return /** @type{!Array<!proto.openstorage.api.SdkServiceCapability>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.SdkServiceCapability, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.SdkServiceCapability>} value */
+/** @param {!Array<!proto.openstorage.api.SdkServiceCapability>} value */
 proto.openstorage.api.SdkIdentityCapabilitiesResponse.prototype.setCapabilitiesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -36050,7 +36052,7 @@ proto.openstorage.api.SdkIdentityVersionResponse.prototype.clearSdkVersion = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkIdentityVersionResponse.prototype.hasSdkVersion = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -36080,7 +36082,7 @@ proto.openstorage.api.SdkIdentityVersionResponse.prototype.clearVersion = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkIdentityVersionResponse.prototype.hasVersion = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -36396,7 +36398,7 @@ proto.openstorage.api.SdkServiceCapability.OpenStorageService.prototype.getType 
 
 /** @param {!proto.openstorage.api.SdkServiceCapability.OpenStorageService.Type} value */
 proto.openstorage.api.SdkServiceCapability.OpenStorageService.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -36423,7 +36425,7 @@ proto.openstorage.api.SdkServiceCapability.prototype.clearService = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkServiceCapability.prototype.hasService = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -36614,7 +36616,7 @@ proto.openstorage.api.SdkVersion.prototype.getMajor = function() {
 
 /** @param {number} value */
 proto.openstorage.api.SdkVersion.prototype.setMajor = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -36629,7 +36631,7 @@ proto.openstorage.api.SdkVersion.prototype.getMinor = function() {
 
 /** @param {number} value */
 proto.openstorage.api.SdkVersion.prototype.setMinor = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -36644,7 +36646,7 @@ proto.openstorage.api.SdkVersion.prototype.getPatch = function() {
 
 /** @param {number} value */
 proto.openstorage.api.SdkVersion.prototype.setPatch = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -36659,7 +36661,7 @@ proto.openstorage.api.SdkVersion.prototype.getVersion = function() {
 
 /** @param {string} value */
 proto.openstorage.api.SdkVersion.prototype.setVersion = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -36760,7 +36762,7 @@ proto.openstorage.api.StorageVersion.deserializeBinaryFromReader = function(msg,
     case 3:
       var value = msg.getDetailsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -36824,7 +36826,7 @@ proto.openstorage.api.StorageVersion.prototype.getDriver = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageVersion.prototype.setDriver = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -36839,7 +36841,7 @@ proto.openstorage.api.StorageVersion.prototype.getVersion = function() {
 
 /** @param {string} value */
 proto.openstorage.api.StorageVersion.prototype.setVersion = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -37185,7 +37187,7 @@ proto.openstorage.api.CloudMigrateStartRequest.prototype.getOperation = function
 
 /** @param {!proto.openstorage.api.CloudMigrate.OperationType} value */
 proto.openstorage.api.CloudMigrateStartRequest.prototype.setOperation = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -37200,7 +37202,7 @@ proto.openstorage.api.CloudMigrateStartRequest.prototype.getClusterId = function
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateStartRequest.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -37215,7 +37217,7 @@ proto.openstorage.api.CloudMigrateStartRequest.prototype.getTargetId = function(
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateStartRequest.prototype.setTargetId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -37230,7 +37232,7 @@ proto.openstorage.api.CloudMigrateStartRequest.prototype.getTaskId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateStartRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -37580,7 +37582,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume.prototype.getVol
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume.prototype.setVolumeId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -37722,7 +37724,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup.prototype.g
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup.prototype.setGroupId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -37853,7 +37855,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.getClusterId = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -37868,7 +37870,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.getTaskId = function
 
 /** @param {string} value */
 proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -37895,7 +37897,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.clearVolume = functi
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.hasVolume = function() {
   return jspb.Message.getField(this, 200) != null;
@@ -37925,7 +37927,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.clearVolumeGroup = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.hasVolumeGroup = function() {
   return jspb.Message.getField(this, 201) != null;
@@ -37955,7 +37957,7 @@ proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.clearAllVolumes = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateStartRequest.prototype.hasAllVolumes = function() {
   return jspb.Message.getField(this, 202) != null;
@@ -38100,7 +38102,7 @@ proto.openstorage.api.CloudMigrateStartResponse.prototype.getTaskId = function()
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateStartResponse.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -38256,7 +38258,7 @@ proto.openstorage.api.SdkCloudMigrateStartResponse.prototype.clearResult = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateStartResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -38401,7 +38403,7 @@ proto.openstorage.api.CloudMigrateCancelRequest.prototype.getTaskId = function()
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateCancelRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -38557,7 +38559,7 @@ proto.openstorage.api.SdkCloudMigrateCancelRequest.prototype.clearRequest = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateCancelRequest.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -38992,7 +38994,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getTaskId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -39007,7 +39009,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getClusterId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -39022,7 +39024,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getLocalVolumeId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setLocalVolumeId = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -39037,7 +39039,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getLocalVolumeName = function()
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setLocalVolumeName = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -39052,7 +39054,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getRemoteVolumeId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setRemoteVolumeId = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -39067,7 +39069,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getCloudbackupId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setCloudbackupId = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -39082,7 +39084,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getCurrentStage = function() {
 
 /** @param {!proto.openstorage.api.CloudMigrate.Stage} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setCurrentStage = function(value) {
-  jspb.Message.setField(this, 7, value);
+  jspb.Message.setProto3EnumField(this, 7, value);
 };
 
 
@@ -39097,7 +39099,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getStatus = function() {
 
 /** @param {!proto.openstorage.api.CloudMigrate.Status} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setStatus = function(value) {
-  jspb.Message.setField(this, 8, value);
+  jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
@@ -39124,7 +39126,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.clearLastUpdate = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.CloudMigrateInfo.prototype.hasLastUpdate = function() {
   return jspb.Message.getField(this, 9) != null;
@@ -39142,7 +39144,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getErrorReason = function() {
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setErrorReason = function(value) {
-  jspb.Message.setField(this, 10, value);
+  jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
@@ -39169,7 +39171,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.clearStartTime = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.CloudMigrateInfo.prototype.hasStartTime = function() {
   return jspb.Message.getField(this, 11) != null;
@@ -39199,7 +39201,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.clearCompletedTime = function()
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.CloudMigrateInfo.prototype.hasCompletedTime = function() {
   return jspb.Message.getField(this, 12) != null;
@@ -39217,7 +39219,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getBytesTotal = function() {
 
 /** @param {number} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setBytesTotal = function(value) {
-  jspb.Message.setField(this, 13, value);
+  jspb.Message.setProto3IntField(this, 13, value);
 };
 
 
@@ -39232,7 +39234,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getBytesDone = function() {
 
 /** @param {number} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setBytesDone = function(value) {
-  jspb.Message.setField(this, 14, value);
+  jspb.Message.setProto3IntField(this, 14, value);
 };
 
 
@@ -39247,7 +39249,7 @@ proto.openstorage.api.CloudMigrateInfo.prototype.getEtaSeconds = function() {
 
 /** @param {number} value */
 proto.openstorage.api.CloudMigrateInfo.prototype.setEtaSeconds = function(value) {
-  jspb.Message.setField(this, 15, value);
+  jspb.Message.setProto3IntField(this, 15, value);
 };
 
 
@@ -39390,15 +39392,15 @@ proto.openstorage.api.CloudMigrateInfoList.serializeBinaryToWriter = function(me
 
 /**
  * repeated CloudMigrateInfo list = 1;
- * @return {!Array.<!proto.openstorage.api.CloudMigrateInfo>}
+ * @return {!Array<!proto.openstorage.api.CloudMigrateInfo>}
  */
 proto.openstorage.api.CloudMigrateInfoList.prototype.getListList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.CloudMigrateInfo>} */ (
+  return /** @type{!Array<!proto.openstorage.api.CloudMigrateInfo>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.CloudMigrateInfo, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.CloudMigrateInfo>} value */
+/** @param {!Array<!proto.openstorage.api.CloudMigrateInfo>} value */
 proto.openstorage.api.CloudMigrateInfoList.prototype.setListList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -39571,7 +39573,7 @@ proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.clearRequest = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateStatusRequest.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -39728,7 +39730,7 @@ proto.openstorage.api.CloudMigrateStatusRequest.prototype.getTaskId = function()
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateStatusRequest.prototype.setTaskId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -39743,7 +39745,7 @@ proto.openstorage.api.CloudMigrateStatusRequest.prototype.getClusterId = functio
 
 /** @param {string} value */
 proto.openstorage.api.CloudMigrateStatusRequest.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -39834,7 +39836,7 @@ proto.openstorage.api.CloudMigrateStatusResponse.deserializeBinaryFromReader = f
     case 1:
       var value = msg.getInfoMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.CloudMigrateInfoList.deserializeBinaryFromReader);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.CloudMigrateInfoList.deserializeBinaryFromReader, "");
          });
       break;
     default:
@@ -40043,7 +40045,7 @@ proto.openstorage.api.SdkCloudMigrateStatusResponse.prototype.clearResult = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkCloudMigrateStatusResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -40224,7 +40226,7 @@ proto.openstorage.api.ClusterPairCreateRequest.prototype.getRemoteClusterIp = fu
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairCreateRequest.prototype.setRemoteClusterIp = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -40239,7 +40241,7 @@ proto.openstorage.api.ClusterPairCreateRequest.prototype.getRemoteClusterPort = 
 
 /** @param {number} value */
 proto.openstorage.api.ClusterPairCreateRequest.prototype.setRemoteClusterPort = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -40254,7 +40256,7 @@ proto.openstorage.api.ClusterPairCreateRequest.prototype.getRemoteClusterToken =
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairCreateRequest.prototype.setRemoteClusterToken = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -40271,7 +40273,7 @@ proto.openstorage.api.ClusterPairCreateRequest.prototype.getSetDefault = functio
 
 /** @param {boolean} value */
 proto.openstorage.api.ClusterPairCreateRequest.prototype.setSetDefault = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
@@ -40425,7 +40427,7 @@ proto.openstorage.api.ClusterPairCreateResponse.prototype.getRemoteClusterId = f
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairCreateResponse.prototype.setRemoteClusterId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -40440,7 +40442,7 @@ proto.openstorage.api.ClusterPairCreateResponse.prototype.getRemoteClusterName =
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairCreateResponse.prototype.setRemoteClusterName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -40596,7 +40598,7 @@ proto.openstorage.api.SdkClusterPairCreateRequest.prototype.clearRequest = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterPairCreateRequest.prototype.hasRequest = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -40755,7 +40757,7 @@ proto.openstorage.api.SdkClusterPairCreateResponse.prototype.clearResult = funct
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterPairCreateResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -40912,7 +40914,7 @@ proto.openstorage.api.ClusterPairProcessRequest.prototype.getSourceClusterId = f
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairProcessRequest.prototype.setSourceClusterId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -40927,7 +40929,7 @@ proto.openstorage.api.ClusterPairProcessRequest.prototype.getRemoteClusterToken 
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairProcessRequest.prototype.setRemoteClusterToken = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -41040,7 +41042,7 @@ proto.openstorage.api.ClusterPairProcessResponse.deserializeBinaryFromReader = f
     case 4:
       var value = msg.getOptionsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -41111,7 +41113,7 @@ proto.openstorage.api.ClusterPairProcessResponse.prototype.getRemoteClusterId = 
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairProcessResponse.prototype.setRemoteClusterId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -41126,27 +41128,27 @@ proto.openstorage.api.ClusterPairProcessResponse.prototype.getRemoteClusterName 
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairProcessResponse.prototype.setRemoteClusterName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
  * repeated string remote_cluster_endpoints = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.ClusterPairProcessResponse.prototype.getRemoteClusterEndpointsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.ClusterPairProcessResponse.prototype.setRemoteClusterEndpointsList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.ClusterPairProcessResponse.prototype.addRemoteClusterEndpoints = function(value, opt_index) {
@@ -41315,7 +41317,7 @@ proto.openstorage.api.SdkClusterPairDeleteRequest.prototype.getClusterId = funct
 
 /** @param {string} value */
 proto.openstorage.api.SdkClusterPairDeleteRequest.prototype.setClusterId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -41573,7 +41575,7 @@ proto.openstorage.api.ClusterPairTokenGetResponse.prototype.getToken = function(
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairTokenGetResponse.prototype.setToken = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -41845,7 +41847,7 @@ proto.openstorage.api.SdkClusterPairGetTokenResponse.prototype.clearResult = fun
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterPairGetTokenResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -42120,7 +42122,7 @@ proto.openstorage.api.SdkClusterPairResetTokenResponse.prototype.clearResult = f
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterPairResetTokenResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -42251,7 +42253,7 @@ proto.openstorage.api.ClusterPairInfo.deserializeBinaryFromReader = function(msg
     case 7:
       var value = msg.getOptionsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -42343,7 +42345,7 @@ proto.openstorage.api.ClusterPairInfo.prototype.getId = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairInfo.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -42358,7 +42360,7 @@ proto.openstorage.api.ClusterPairInfo.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairInfo.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -42373,27 +42375,27 @@ proto.openstorage.api.ClusterPairInfo.prototype.getEndpoint = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairInfo.prototype.setEndpoint = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
  * repeated string current_endpoints = 4;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.ClusterPairInfo.prototype.getCurrentEndpointsList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 4));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 4));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.ClusterPairInfo.prototype.setCurrentEndpointsList = function(value) {
   jspb.Message.setField(this, 4, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.ClusterPairInfo.prototype.addCurrentEndpoints = function(value, opt_index) {
@@ -42419,7 +42421,7 @@ proto.openstorage.api.ClusterPairInfo.prototype.getSecure = function() {
 
 /** @param {boolean} value */
 proto.openstorage.api.ClusterPairInfo.prototype.setSecure = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
@@ -42434,7 +42436,7 @@ proto.openstorage.api.ClusterPairInfo.prototype.getToken = function() {
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairInfo.prototype.setToken = function(value) {
-  jspb.Message.setField(this, 6, value);
+  jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
@@ -42594,7 +42596,7 @@ proto.openstorage.api.SdkClusterPairInspectRequest.prototype.getId = function() 
 
 /** @param {string} value */
 proto.openstorage.api.SdkClusterPairInspectRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -42750,7 +42752,7 @@ proto.openstorage.api.ClusterPairGetResponse.prototype.clearPairInfo = function(
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.ClusterPairGetResponse.prototype.hasPairInfo = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -42909,7 +42911,7 @@ proto.openstorage.api.SdkClusterPairInspectResponse.prototype.clearResult = func
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterPairInspectResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -43124,7 +43126,7 @@ proto.openstorage.api.ClusterPairsEnumerateResponse.deserializeBinaryFromReader 
     case 2:
       var value = msg.getPairsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.ClusterPairInfo.deserializeBinaryFromReader);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.openstorage.api.ClusterPairInfo.deserializeBinaryFromReader, "");
          });
       break;
     default:
@@ -43181,7 +43183,7 @@ proto.openstorage.api.ClusterPairsEnumerateResponse.prototype.getDefaultId = fun
 
 /** @param {string} value */
 proto.openstorage.api.ClusterPairsEnumerateResponse.prototype.setDefaultId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -43355,7 +43357,7 @@ proto.openstorage.api.SdkClusterPairEnumerateResponse.prototype.clearResult = fu
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.SdkClusterPairEnumerateResponse.prototype.hasResult = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -43572,7 +43574,7 @@ proto.openstorage.api.Catalog.prototype.getName = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Catalog.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -43587,7 +43589,7 @@ proto.openstorage.api.Catalog.prototype.getPath = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Catalog.prototype.setPath = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -43602,7 +43604,7 @@ proto.openstorage.api.Catalog.prototype.getType = function() {
 
 /** @param {string} value */
 proto.openstorage.api.Catalog.prototype.setType = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -43617,7 +43619,7 @@ proto.openstorage.api.Catalog.prototype.getSize = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Catalog.prototype.setSize = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
@@ -43644,7 +43646,7 @@ proto.openstorage.api.Catalog.prototype.clearLastmodified = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.Catalog.prototype.hasLastmodified = function() {
   return jspb.Message.getField(this, 5) != null;
@@ -43653,15 +43655,15 @@ proto.openstorage.api.Catalog.prototype.hasLastmodified = function() {
 
 /**
  * repeated Catalog children = 6;
- * @return {!Array.<!proto.openstorage.api.Catalog>}
+ * @return {!Array<!proto.openstorage.api.Catalog>}
  */
 proto.openstorage.api.Catalog.prototype.getChildrenList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.Catalog>} */ (
+  return /** @type{!Array<!proto.openstorage.api.Catalog>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.Catalog, 6));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.Catalog>} value */
+/** @param {!Array<!proto.openstorage.api.Catalog>} value */
 proto.openstorage.api.Catalog.prototype.setChildrenList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 6, value);
 };
@@ -43832,7 +43834,7 @@ proto.openstorage.api.Report.prototype.getDirectories = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Report.prototype.setDirectories = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -43847,7 +43849,7 @@ proto.openstorage.api.Report.prototype.getFiles = function() {
 
 /** @param {number} value */
 proto.openstorage.api.Report.prototype.setFiles = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -44017,7 +44019,7 @@ proto.openstorage.api.CatalogResponse.prototype.clearRoot = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.CatalogResponse.prototype.hasRoot = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -44047,7 +44049,7 @@ proto.openstorage.api.CatalogResponse.prototype.clearReport = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.openstorage.api.CatalogResponse.prototype.hasReport = function() {
   return jspb.Message.getField(this, 2) != null;
@@ -44142,13 +44144,13 @@ proto.openstorage.api.LocateResponse.deserializeBinaryFromReader = function(msg,
     case 1:
       var value = msg.getMountsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     case 2:
       var value = msg.getDockeridsMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString);
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
       break;
     default:
@@ -44366,15 +44368,15 @@ proto.openstorage.api.VolumePlacementStrategy.serializeBinaryToWriter = function
 
 /**
  * repeated VolumePlacementRule rules = 1;
- * @return {!Array.<!proto.openstorage.api.VolumePlacementRule>}
+ * @return {!Array<!proto.openstorage.api.VolumePlacementRule>}
  */
 proto.openstorage.api.VolumePlacementStrategy.prototype.getRulesList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.VolumePlacementRule>} */ (
+  return /** @type{!Array<!proto.openstorage.api.VolumePlacementRule>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.VolumePlacementRule, 1));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.VolumePlacementRule>} value */
+/** @param {!Array<!proto.openstorage.api.VolumePlacementRule>} value */
 proto.openstorage.api.VolumePlacementStrategy.prototype.setRulesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
@@ -44607,7 +44609,7 @@ proto.openstorage.api.VolumePlacementRule.prototype.getAffectedReplicas = functi
 
 /** @param {number} value */
 proto.openstorage.api.VolumePlacementRule.prototype.setAffectedReplicas = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -44622,7 +44624,7 @@ proto.openstorage.api.VolumePlacementRule.prototype.getWeight = function() {
 
 /** @param {number} value */
 proto.openstorage.api.VolumePlacementRule.prototype.setWeight = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -44637,7 +44639,7 @@ proto.openstorage.api.VolumePlacementRule.prototype.getEnforcement = function() 
 
 /** @param {!proto.openstorage.api.VolumePlacementRule.EnforcementType} value */
 proto.openstorage.api.VolumePlacementRule.prototype.setEnforcement = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -44652,21 +44654,21 @@ proto.openstorage.api.VolumePlacementRule.prototype.getType = function() {
 
 /** @param {!proto.openstorage.api.VolumePlacementRule.AffinityRuleType} value */
 proto.openstorage.api.VolumePlacementRule.prototype.setType = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3EnumField(this, 4, value);
 };
 
 
 /**
  * repeated LabelSelectorRequirement match_expressions = 5;
- * @return {!Array.<!proto.openstorage.api.LabelSelectorRequirement>}
+ * @return {!Array<!proto.openstorage.api.LabelSelectorRequirement>}
  */
 proto.openstorage.api.VolumePlacementRule.prototype.getMatchExpressionsList = function() {
-  return /** @type{!Array.<!proto.openstorage.api.LabelSelectorRequirement>} */ (
+  return /** @type{!Array<!proto.openstorage.api.LabelSelectorRequirement>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.LabelSelectorRequirement, 5));
 };
 
 
-/** @param {!Array.<!proto.openstorage.api.LabelSelectorRequirement>} value */
+/** @param {!Array<!proto.openstorage.api.LabelSelectorRequirement>} value */
 proto.openstorage.api.VolumePlacementRule.prototype.setMatchExpressionsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
@@ -44868,7 +44870,7 @@ proto.openstorage.api.LabelSelectorRequirement.prototype.getKey = function() {
 
 /** @param {string} value */
 proto.openstorage.api.LabelSelectorRequirement.prototype.setKey = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -44883,27 +44885,27 @@ proto.openstorage.api.LabelSelectorRequirement.prototype.getOperator = function(
 
 /** @param {!proto.openstorage.api.LabelSelectorRequirement.Operator} value */
 proto.openstorage.api.LabelSelectorRequirement.prototype.setOperator = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
 /**
  * repeated string values = 3;
- * @return {!Array.<string>}
+ * @return {!Array<string>}
  */
 proto.openstorage.api.LabelSelectorRequirement.prototype.getValuesList = function() {
-  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 3));
 };
 
 
-/** @param {!Array.<string>} value */
+/** @param {!Array<string>} value */
 proto.openstorage.api.LabelSelectorRequirement.prototype.setValuesList = function(value) {
   jspb.Message.setField(this, 3, value || []);
 };
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.openstorage.api.LabelSelectorRequirement.prototype.addValues = function(value, opt_index) {
