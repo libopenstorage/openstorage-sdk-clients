@@ -876,6 +876,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :credential_id, :string, 10
     optional :bytes_total, :uint64, 11
     optional :eta_seconds, :int64, 12
+    optional :group_id, :string, 13
   end
   add_message "openstorage.api.SdkCloudBackupStatusRequest" do
     optional :volume_id, :string, 1
@@ -1013,7 +1014,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 7
+    value :Patch, 8
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
