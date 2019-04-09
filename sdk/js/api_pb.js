@@ -34878,7 +34878,8 @@ proto.openstorage.api.SdkCloudBackupStatus.toObject = function(includeInstance, 
     infoList: jspb.Message.getRepeatedField(msg, 9),
     credentialId: jspb.Message.getFieldWithDefault(msg, 10, ""),
     bytesTotal: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    etaSeconds: jspb.Message.getFieldWithDefault(msg, 12, 0)
+    etaSeconds: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    groupId: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -34964,6 +34965,10 @@ proto.openstorage.api.SdkCloudBackupStatus.deserializeBinaryFromReader = functio
     case 12:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setEtaSeconds(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGroupId(value);
       break;
     default:
       reader.skipField();
@@ -35077,6 +35082,13 @@ proto.openstorage.api.SdkCloudBackupStatus.serializeBinaryToWriter = function(me
   if (f !== 0) {
     writer.writeInt64(
       12,
+      f
+    );
+  }
+  f = message.getGroupId();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -35304,6 +35316,21 @@ proto.openstorage.api.SdkCloudBackupStatus.prototype.getEtaSeconds = function() 
 /** @param {number} value */
 proto.openstorage.api.SdkCloudBackupStatus.prototype.setEtaSeconds = function(value) {
   jspb.Message.setProto3IntField(this, 12, value);
+};
+
+
+/**
+ * optional string group_id = 13;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupStatus.prototype.getGroupId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupStatus.prototype.setGroupId = function(value) {
+  jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -40877,7 +40904,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 49,
+  MINOR: 50,
   PATCH: 0
 };
 
