@@ -283,6 +283,15 @@ module Openstorage
         #
         # Requires access AccessType.Read of volume
         rpc :Inspect, SdkVolumeInspectRequest, SdkVolumeInspectResponse
+        # Returns information for a list of volumes that match a filter.
+        # This call is a helper function like calling
+        # `OpenStorageVolume.EnumerateWithFilters` then having it
+        # return the contents of each of those volumes
+        # `OpenStorageVolume.Inspect()`. Take care in using this call
+        # when requesting large number of volumes because it will
+        # block until it has all the information requested before
+        # returning.
+        rpc :InspectWithFilters, SdkVolumeInspectWithFiltersRequest, SdkVolumeInspectWithFiltersResponse
         # Update provides a method for manipulating the specification and attributes of a volume.
         # Set can be used to resize a volume, update labels, change replica count, and much more.
         #

@@ -1535,6 +1535,28 @@ function deserialize_openstorage_api_SdkVolumeInspectResponse(buffer_arg) {
   return api_pb.SdkVolumeInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVolumeInspectWithFiltersRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeInspectWithFiltersRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeInspectWithFiltersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeInspectWithFiltersRequest(buffer_arg) {
+  return api_pb.SdkVolumeInspectWithFiltersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVolumeInspectWithFiltersResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeInspectWithFiltersResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeInspectWithFiltersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeInspectWithFiltersResponse(buffer_arg) {
+  return api_pb.SdkVolumeInspectWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeMountRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeMountRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeMountRequest');
@@ -2198,6 +2220,25 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     requestDeserialize: deserialize_openstorage_api_SdkVolumeInspectRequest,
     responseSerialize: serialize_openstorage_api_SdkVolumeInspectResponse,
     responseDeserialize: deserialize_openstorage_api_SdkVolumeInspectResponse,
+  },
+  // Returns information for a list of volumes that match a filter.
+  // This call is a helper function like calling
+  // `OpenStorageVolume.EnumerateWithFilters` then having it
+  // return the contents of each of those volumes
+  // `OpenStorageVolume.Inspect()`. Take care in using this call
+  // when requesting large number of volumes because it will
+  // block until it has all the information requested before
+  // returning.
+  inspectWithFilters: {
+    path: '/openstorage.api.OpenStorageVolume/InspectWithFilters',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVolumeInspectWithFiltersRequest,
+    responseType: api_pb.SdkVolumeInspectWithFiltersResponse,
+    requestSerialize: serialize_openstorage_api_SdkVolumeInspectWithFiltersRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVolumeInspectWithFiltersRequest,
+    responseSerialize: serialize_openstorage_api_SdkVolumeInspectWithFiltersResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVolumeInspectWithFiltersResponse,
   },
   // Update provides a method for manipulating the specification and attributes of a volume.
   // Set can be used to resize a volume, update labels, change replica count, and much more.

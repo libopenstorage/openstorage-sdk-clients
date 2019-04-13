@@ -704,6 +704,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeInspectRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeInspectResponse.FromString,
         )
+    self.InspectWithFilters = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/InspectWithFilters',
+        request_serializer=api__pb2.SdkVolumeInspectWithFiltersRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeInspectWithFiltersResponse.FromString,
+        )
     self.Update = channel.unary_unary(
         '/openstorage.api.OpenStorageVolume/Update',
         request_serializer=api__pb2.SdkVolumeUpdateRequest.SerializeToString,
@@ -805,6 +810,20 @@ class OpenStorageVolumeServicer(object):
     """Inspect returns information about a volume
 
     Requires access AccessType.Read of volume
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def InspectWithFilters(self, request, context):
+    """Returns information for a list of volumes that match a filter.
+    This call is a helper function like calling
+    `OpenStorageVolume.EnumerateWithFilters` then having it
+    return the contents of each of those volumes
+    `OpenStorageVolume.Inspect()`. Take care in using this call
+    when requesting large number of volumes because it will
+    block until it has all the information requested before
+    returning.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -929,6 +948,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.Inspect,
           request_deserializer=api__pb2.SdkVolumeInspectRequest.FromString,
           response_serializer=api__pb2.SdkVolumeInspectResponse.SerializeToString,
+      ),
+      'InspectWithFilters': grpc.unary_unary_rpc_method_handler(
+          servicer.InspectWithFilters,
+          request_deserializer=api__pb2.SdkVolumeInspectWithFiltersRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeInspectWithFiltersResponse.SerializeToString,
       ),
       'Update': grpc.unary_unary_rpc_method_handler(
           servicer.Update,
