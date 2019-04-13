@@ -36,6 +36,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     map :volume_labels, :string, :string, 2
     optional :ownership, :message, 3, "openstorage.api.Ownership"
     optional :group, :message, 4, "openstorage.api.Group"
+    repeated :volume_ids, :string, 5
+  end
+  add_message "openstorage.api.VolumeInspectOptions" do
+    optional :deep, :bool, 1
   end
   add_message "openstorage.api.Source" do
     optional :parent, :string, 1
@@ -673,11 +677,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.SdkVolumeInspectRequest" do
     optional :volume_id, :string, 1
+    optional :options, :message, 2, "openstorage.api.VolumeInspectOptions"
   end
   add_message "openstorage.api.SdkVolumeInspectResponse" do
     optional :volume, :message, 1, "openstorage.api.Volume"
     optional :name, :string, 2
     map :labels, :string, :string, 3
+  end
+  add_message "openstorage.api.SdkVolumeInspectWithFiltersRequest" do
+    optional :name, :string, 2
+    map :labels, :string, :string, 3
+    optional :ownership, :message, 4, "openstorage.api.Ownership"
+    optional :group, :message, 5, "openstorage.api.Group"
+    optional :options, :message, 6, "openstorage.api.VolumeInspectOptions"
+  end
+  add_message "openstorage.api.SdkVolumeInspectWithFiltersResponse" do
+    repeated :volumes, :message, 1, "openstorage.api.SdkVolumeInspectResponse"
   end
   add_message "openstorage.api.SdkVolumeUpdateRequest" do
     optional :volume_id, :string, 1
@@ -876,6 +891,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :credential_id, :string, 10
     optional :bytes_total, :uint64, 11
     optional :eta_seconds, :int64, 12
+    optional :group_id, :string, 13
   end
   add_message "openstorage.api.SdkCloudBackupStatusRequest" do
     optional :volume_id, :string, 1
@@ -1013,7 +1029,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 7
+    value :Patch, 9
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -1395,6 +1411,7 @@ module Openstorage
     StorageResource = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageResource").msgclass
     StoragePool = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StoragePool").msgclass
     VolumeLocator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeLocator").msgclass
+    VolumeInspectOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeInspectOptions").msgclass
     Source = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Source").msgclass
     Group = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Group").msgclass
     IoStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.IoStrategy").msgclass
@@ -1510,6 +1527,8 @@ module Openstorage
     SdkVolumeDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeDeleteResponse").msgclass
     SdkVolumeInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeInspectRequest").msgclass
     SdkVolumeInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeInspectResponse").msgclass
+    SdkVolumeInspectWithFiltersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeInspectWithFiltersRequest").msgclass
+    SdkVolumeInspectWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeInspectWithFiltersResponse").msgclass
     SdkVolumeUpdateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeUpdateRequest").msgclass
     SdkVolumeUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeUpdateResponse").msgclass
     SdkVolumeStatsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeStatsRequest").msgclass
