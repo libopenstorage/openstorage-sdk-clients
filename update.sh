@@ -7,6 +7,7 @@ for branch in $branches ; do
 
 	# Switch to branch
 	git checkout $lb
+	git pull
 
 	# Get versios of current and new
 	prevver=$(cat api.swagger.json | jq -r '.info.version')
