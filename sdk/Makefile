@@ -1,7 +1,9 @@
-SUBDIRS := golang \
-	python \
-	ruby \
-	js
+#SUBDIRS := golang \
+#	python \
+#	ruby \
+#	js
+
+SUBDIRS := python
 
 all: $(SUBDIRS)
 

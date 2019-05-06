@@ -5,6 +5,7 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 require 'google/api/annotations_pb'
+require 'google/rpc/status_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.StorageResource" do
     optional :id, :string, 1
@@ -931,6 +932,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :schedules, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
     optional :max_backups, :uint64, 4
     optional :full, :bool, 5
+    optional :retention_days, :uint32, 6
   end
   add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do
     optional :cloud_sched_info, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
@@ -1028,7 +1030,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 51
+    value :Minor, 53
     value :Patch, 0
   end
   add_message "openstorage.api.StorageVersion" do
@@ -1082,6 +1084,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :group_id, :string, 1
   end
   add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes" do
+  end
+  add_message "openstorage.api.SdkErrorMessage" do
+    optional :status, :message, 1, "google.rpc.Status"
   end
   add_message "openstorage.api.CloudMigrateStartResponse" do
     optional :task_id, :string, 1
@@ -1397,6 +1402,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :SdkCloudBackupStatusTypeStopped, 5
     value :SdkCloudBackupStatusTypeActive, 6
     value :SdkCloudBackupStatusTypeFailed, 7
+    value :SdkCloudBackupStatusTypeQueued, 8
   end
   add_enum "openstorage.api.SdkCloudBackupRequestedState" do
     value :SdkCloudBackupRequestedStateUnknown, 0
@@ -1632,6 +1638,7 @@ module Openstorage
     SdkCloudMigrateStartRequest::MigrateVolume = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume").msgclass
     SdkCloudMigrateStartRequest::MigrateVolumeGroup = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup").msgclass
     SdkCloudMigrateStartRequest::MigrateAllVolumes = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes").msgclass
+    SdkErrorMessage = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkErrorMessage").msgclass
     CloudMigrateStartResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateStartResponse").msgclass
     SdkCloudMigrateStartResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudMigrateStartResponse").msgclass
     CloudMigrateCancelRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudMigrateCancelRequest").msgclass

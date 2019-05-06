@@ -15,12 +15,12 @@ proto:
 ifndef DOCKER_PROTO
 	$(error Do not run directly. Run 'make docker-proto' instead.)
 endif
-	curl https://raw.githubusercontent.com/libopenstorage/openstorage/master/api/api.proto \
-		--output api.proto --silent
+	#curl https://raw.githubusercontent.com/libopenstorage/openstorage/master/api/api.proto \
+	#	--output api.proto --silent
 
 	@echo "Generating protobuf definitions from api.proto"
 	$(MAKE) -C sdk
-	rm -f api.proto
+	#rm -f api.proto
 
 
 .PHONY: \
