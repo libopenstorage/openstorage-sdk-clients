@@ -7,20 +7,21 @@ MAINTAINER luis@portworx.com
 ENV GOPATH=/go
 RUN dnf -y update
 RUN dnf -y install \
-	golang-bin \
-	python \
-	python-pip \
-	gem \
-	npm \
-	make \
-	git \
-	protobuf-compiler \
-	protobuf-devel
+    golang-bin \
+    python \
+    python-pip \
+    gem \
+    npm \
+    make \
+    git \
+    unzip \
+    protobuf-compiler \
+    protobuf-devel
 RUN pip install virtualenv
 RUN gem install grpc && gem install grpc-tools
 RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
-	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger && \
-	go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+    go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger && \
+    go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
 
 # Lock protoc-gen-go version to v1.1.0.
 #
@@ -44,7 +45,15 @@ RUN git checkout v1.1.0 && go install github.com/golang/protobuf/protoc-gen-go
 WORKDIR /go/src/github.com/grpc-ecosystem/grpc-gateway
 RUN git checkout v1.4.1 && \
     go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger && \
-	go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+    go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+
+# Download Dartlang
+WORKDIR /usr/local
+RUN curl -O https://storage.googleapis.com/dart-archive/channels/stable/release/2.3.0/sdk/dartsdk-linux-x64-release.zip && \
+    unzip dartsdk-linux-x64-release.zip && \
+    export PATH=$PATH:/usr/local/dart-sdk/bin && \
+    pub global activate protoc_plugin && \
+    echo 'export PATH=$PATH:/usr/local/dart-sdk/bin:$HOME/.pub-cache/bin' > /etc/profile.d/dart.sh
 
 # Finally, set working directory to the openstorage project
 RUN mkdir -p /go/src/github.com/libopenstorage/openstorage

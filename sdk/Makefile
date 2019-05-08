@@ -1,4 +1,5 @@
 SUBDIRS := golang \
+	dart \
 	python \
 	ruby \
 	js

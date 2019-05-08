@@ -8,8 +8,11 @@ docker-proto:
 		-e "GOPATH=/go" \
 		-e "DOCKER_PROTO=yes" \
 		-e "PATH=/bin:/usr/bin:/usr/local/bin:/go/bin" \
-		quay.io/openstorage/osd-proto \
+		quay.io/openstorage/osd-proto-clients \
 			make proto
+
+container:
+	docker build -t quay.io/openstorage/osd-proto-clients -f Dockerfile.proto .
 
 proto:
 ifndef DOCKER_PROTO
