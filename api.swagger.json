@@ -953,6 +953,11 @@
             "title": "Full indicates if full backup is desired even though incremental is possible",
             "type": "boolean"
           },
+          "full_backup_frequency": {
+            "description": "FullBackupFrequency indicates number of incremental backup after whcih \na fullbackup must be created. This is to override the default value for\nmanual/user triggerred backups and not applicable for scheduled backups\nValue of 0 retains the default behavior.",
+            "format": "int64",
+            "type": "integer"
+          },
           "labels": {
             "additionalProperties": {
               "type": "string"
@@ -1216,8 +1221,13 @@
           },
           "max_backups": {
             "format": "uint64",
-            "title": "MaxBackups are the maximum number of backups retained\nin cloud.Older backups are deleted",
+            "title": "MaxBackups indicates when to force full backup to cloud. If RetentionDays\nis not specified or is 0 (older scheme), this is also the maximum number \nof scheduled backups retained in the cloud. Older backups are deleted",
             "type": "string"
+          },
+          "retention_days": {
+            "format": "int64",
+            "title": "Number of days that Scheduled CloudBackups will be kept after which they\nare deleted",
+            "type": "integer"
           },
           "schedules": {
             "items": {
@@ -1349,7 +1359,7 @@
       },
       "apiSdkCloudBackupStatusType": {
         "default": "SdkCloudBackupStatusTypeUnknown",
-        "description": "- SdkCloudBackupStatusTypeUnknown: Unkonwn\n - SdkCloudBackupStatusTypeNotStarted: Not started\n - SdkCloudBackupStatusTypeDone: Done\n - SdkCloudBackupStatusTypeAborted: Aborted\n - SdkCloudBackupStatusTypePaused: Paused\n - SdkCloudBackupStatusTypeStopped: Stopped\n - SdkCloudBackupStatusTypeActive: Active\n - SdkCloudBackupStatusTypeFailed: Failed",
+        "description": "- SdkCloudBackupStatusTypeUnknown: Unkonwn\n - SdkCloudBackupStatusTypeNotStarted: Not started\n - SdkCloudBackupStatusTypeDone: Done\n - SdkCloudBackupStatusTypeAborted: Aborted\n - SdkCloudBackupStatusTypePaused: Paused\n - SdkCloudBackupStatusTypeStopped: Stopped\n - SdkCloudBackupStatusTypeActive: Active\n - SdkCloudBackupStatusTypeFailed: Failed\n - SdkCloudBackupStatusTypeQueued: Queued",
         "enum": [
           "SdkCloudBackupStatusTypeUnknown",
           "SdkCloudBackupStatusTypeNotStarted",
@@ -1358,7 +1368,8 @@
           "SdkCloudBackupStatusTypePaused",
           "SdkCloudBackupStatusTypeStopped",
           "SdkCloudBackupStatusTypeActive",
-          "SdkCloudBackupStatusTypeFailed"
+          "SdkCloudBackupStatusTypeFailed",
+          "SdkCloudBackupStatusTypeQueued"
         ],
         "title": "CloudBackup status types",
         "type": "string"
@@ -3552,7 +3563,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.51.0"
+    "version": "0.54.0"
   },
   "openapi": "3.0.0",
   "paths": {
@@ -5725,39 +5736,7 @@
         ]
       }
     },
-    "/v1/volumes/snapshots/restore": {
-      "post": {
-        "description": "Requires access AccessType.Write of volume",
-        "operationId": "SnapshotRestore",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/apiSdkVolumeSnapshotRestoreRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/apiSdkVolumeSnapshotRestoreResponse"
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "summary": "SnapshotRestore restores a volume to a specified snapshot",
-        "tags": [
-          "OpenStorageVolume"
-        ]
-      }
-    },
-    "/v1/volumes/snapshots/{volume_id}/filters": {
+    "/v1/volumes/snapshots/filters/{volume_id}": {
       "post": {
         "operationId": "SnapshotEnumerateWithFilters",
         "parameters": [
@@ -5793,6 +5772,38 @@
           }
         },
         "summary": "SnapshotEnumerate returns a list of snapshots.\nTo filter all the snapshots for a specific volume which may no longer exist,\nspecifiy a volume id.\nLabels can also be used to filter the snapshot list.\nIf neither are provided all snapshots will be returned.",
+        "tags": [
+          "OpenStorageVolume"
+        ]
+      }
+    },
+    "/v1/volumes/snapshots/restore": {
+      "post": {
+        "description": "Requires access AccessType.Write of volume",
+        "operationId": "SnapshotRestore",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiSdkVolumeSnapshotRestoreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkVolumeSnapshotRestoreResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "SnapshotRestore restores a volume to a specified snapshot",
         "tags": [
           "OpenStorageVolume"
         ]

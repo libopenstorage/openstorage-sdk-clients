@@ -33471,7 +33471,8 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.toObject = function(includeIns
     credentialId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     full: jspb.Message.getFieldWithDefault(msg, 3, false),
     taskId: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
+    fullBackupFrequency: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -33529,6 +33530,10 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.deserializeBinaryFromReader = 
       reader.readMessage(value, function(message, reader) {
         jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
          });
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setFullBackupFrequency(value);
       break;
     default:
       reader.skipField();
@@ -33590,6 +33595,13 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.serializeBinaryToWriter = func
   f = message.getLabelsMap(true);
   if (f && f.getLength() > 0) {
     f.serializeBinary(5, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getFullBackupFrequency();
+  if (f !== 0) {
+    writer.writeUint32(
+      6,
+      f
+    );
   }
 };
 
@@ -33671,6 +33683,21 @@ proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.getLabelsMap = funct
 
 proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.clearLabelsMap = function() {
   this.getLabelsMap().clear();
+};
+
+
+/**
+ * optional uint32 full_backup_frequency = 6;
+ * @return {number}
+ */
+proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.getFullBackupFrequency = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/** @param {number} value */
+proto.openstorage.api.SdkCloudBackupCreateRequest.prototype.setFullBackupFrequency = function(value) {
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -37585,7 +37612,8 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.toObject = function(includeInst
     schedulesList: jspb.Message.toObjectList(msg.getSchedulesList(),
     proto.openstorage.api.SdkSchedulePolicyInterval.toObject, includeInstance),
     maxBackups: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    full: jspb.Message.getFieldWithDefault(msg, 5, false)
+    full: jspb.Message.getFieldWithDefault(msg, 5, false),
+    retentionDays: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
 
   if (includeInstance) {
@@ -37642,6 +37670,10 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.deserializeBinaryFromReader = f
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setFull(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setRetentionDays(value);
       break;
     default:
       reader.skipField();
@@ -37705,6 +37737,13 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.serializeBinaryToWriter = funct
   if (f) {
     writer.writeBool(
       5,
+      f
+    );
+  }
+  f = message.getRetentionDays();
+  if (f !== 0) {
+    writer.writeUint32(
+      6,
       f
     );
   }
@@ -37801,6 +37840,21 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getFull = function() 
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setFull = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional uint32 retention_days = 6;
+ * @return {number}
+ */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getRetentionDays = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/** @param {number} value */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setRetentionDays = function(value) {
+  jspb.Message.setProto3IntField(this, 6, value);
 };
 
 
@@ -41614,7 +41668,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 51,
+  MINOR: 54,
   PATCH: 0
 };
 
@@ -50342,7 +50396,8 @@ proto.openstorage.api.SdkCloudBackupStatusType = {
   SDKCLOUDBACKUPSTATUSTYPEPAUSED: 4,
   SDKCLOUDBACKUPSTATUSTYPESTOPPED: 5,
   SDKCLOUDBACKUPSTATUSTYPEACTIVE: 6,
-  SDKCLOUDBACKUPSTATUSTYPEFAILED: 7
+  SDKCLOUDBACKUPSTATUSTYPEFAILED: 7,
+  SDKCLOUDBACKUPSTATUSTYPEQUEUED: 8
 };
 
 /**

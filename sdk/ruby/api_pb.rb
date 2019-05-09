@@ -6,1403 +6,1408 @@ require 'google/protobuf'
 require 'google/protobuf/timestamp_pb'
 require 'google/api/annotations_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_message "openstorage.api.StorageResource" do
-    optional :id, :string, 1
-    optional :path, :string, 2
-    optional :medium, :enum, 3, "openstorage.api.StorageMedium"
-    optional :online, :bool, 4
-    optional :iops, :uint64, 5
-    optional :seq_write, :double, 6
-    optional :seq_read, :double, 7
-    optional :randRW, :double, 8
-    optional :size, :uint64, 9
-    optional :used, :uint64, 10
-    optional :rotation_speed, :string, 11
-    optional :last_scan, :message, 12, "google.protobuf.Timestamp"
-    optional :metadata, :bool, 13
-    optional :cache, :bool, 14
-  end
-  add_message "openstorage.api.StoragePool" do
-    optional :ID, :int32, 1
-    optional :Cos, :enum, 2, "openstorage.api.CosType"
-    optional :Medium, :enum, 3, "openstorage.api.StorageMedium"
-    optional :RaidLevel, :string, 4
-    optional :TotalSize, :uint64, 7
-    optional :Used, :uint64, 8
-    map :labels, :string, :string, 9
-  end
-  add_message "openstorage.api.VolumeLocator" do
-    optional :name, :string, 1
-    map :volume_labels, :string, :string, 2
-    optional :ownership, :message, 3, "openstorage.api.Ownership"
-    optional :group, :message, 4, "openstorage.api.Group"
-    repeated :volume_ids, :string, 5
-  end
-  add_message "openstorage.api.VolumeInspectOptions" do
-    optional :deep, :bool, 1
-  end
-  add_message "openstorage.api.Source" do
-    optional :parent, :string, 1
-    optional :seed, :string, 2
-  end
-  add_message "openstorage.api.Group" do
-    optional :id, :string, 1
-  end
-  add_message "openstorage.api.IoStrategy" do
-    optional :async_io, :bool, 1
-    optional :early_ack, :bool, 2
-  end
-  add_message "openstorage.api.VolumeSpec" do
-    optional :ephemeral, :bool, 1
-    optional :size, :uint64, 2
-    optional :format, :enum, 3, "openstorage.api.FSType"
-    optional :block_size, :int64, 4
-    optional :ha_level, :int64, 5
-    optional :cos, :enum, 6, "openstorage.api.CosType"
-    optional :io_profile, :enum, 7, "openstorage.api.IoProfile"
-    optional :dedupe, :bool, 8
-    optional :snapshot_interval, :uint32, 9
-    map :volume_labels, :string, :string, 10
-    optional :shared, :bool, 11
-    optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
-    optional :aggregation_level, :uint32, 13
-    optional :encrypted, :bool, 14
-    optional :passphrase, :string, 15
-    optional :snapshot_schedule, :string, 16
-    optional :scale, :uint32, 17
-    optional :sticky, :bool, 18
-    optional :group, :message, 21, "openstorage.api.Group"
-    optional :group_enforced, :bool, 22
-    optional :compressed, :bool, 23
-    optional :cascaded, :bool, 24
-    optional :journal, :bool, 25
-    optional :sharedv4, :bool, 26
-    optional :queue_depth, :uint32, 27
-    optional :force_unsupported_fs_type, :bool, 28
-    optional :nodiscard, :bool, 29
-    optional :io_strategy, :message, 30, "openstorage.api.IoStrategy"
-    optional :placement_strategy, :message, 31, "openstorage.api.VolumePlacementStrategy"
-    optional :storage_policy, :string, 32
-    optional :ownership, :message, 33, "openstorage.api.Ownership"
-  end
-  add_message "openstorage.api.VolumeSpecUpdate" do
-    optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
-    optional :ownership, :message, 26, "openstorage.api.Ownership"
-    optional :io_strategy, :message, 28, "openstorage.api.IoStrategy"
-    oneof :size_opt do
+  add_file("api.proto", :syntax => :proto3) do
+    add_message "openstorage.api.StorageResource" do
+      optional :id, :string, 1
+      optional :path, :string, 2
+      optional :medium, :enum, 3, "openstorage.api.StorageMedium"
+      optional :online, :bool, 4
+      optional :iops, :uint64, 5
+      optional :seq_write, :double, 6
+      optional :seq_read, :double, 7
+      optional :randRW, :double, 8
+      optional :size, :uint64, 9
+      optional :used, :uint64, 10
+      optional :rotation_speed, :string, 11
+      optional :last_scan, :message, 12, "google.protobuf.Timestamp"
+      optional :metadata, :bool, 13
+      optional :cache, :bool, 14
+    end
+    add_message "openstorage.api.StoragePool" do
+      optional :ID, :int32, 1
+      optional :Cos, :enum, 2, "openstorage.api.CosType"
+      optional :Medium, :enum, 3, "openstorage.api.StorageMedium"
+      optional :RaidLevel, :string, 4
+      optional :TotalSize, :uint64, 7
+      optional :Used, :uint64, 8
+      map :labels, :string, :string, 9
+    end
+    add_message "openstorage.api.VolumeLocator" do
+      optional :name, :string, 1
+      map :volume_labels, :string, :string, 2
+      optional :ownership, :message, 3, "openstorage.api.Ownership"
+      optional :group, :message, 4, "openstorage.api.Group"
+      repeated :volume_ids, :string, 5
+    end
+    add_message "openstorage.api.VolumeInspectOptions" do
+      optional :deep, :bool, 1
+    end
+    add_message "openstorage.api.Source" do
+      optional :parent, :string, 1
+      optional :seed, :string, 2
+    end
+    add_message "openstorage.api.Group" do
+      optional :id, :string, 1
+    end
+    add_message "openstorage.api.IoStrategy" do
+      optional :async_io, :bool, 1
+      optional :early_ack, :bool, 2
+    end
+    add_message "openstorage.api.VolumeSpec" do
+      optional :ephemeral, :bool, 1
       optional :size, :uint64, 2
-    end
-    oneof :ha_level_opt do
+      optional :format, :enum, 3, "openstorage.api.FSType"
+      optional :block_size, :int64, 4
       optional :ha_level, :int64, 5
-    end
-    oneof :cos_opt do
       optional :cos, :enum, 6, "openstorage.api.CosType"
-    end
-    oneof :io_profile_opt do
       optional :io_profile, :enum, 7, "openstorage.api.IoProfile"
-    end
-    oneof :dedupe_opt do
       optional :dedupe, :bool, 8
-    end
-    oneof :snapshot_interval_opt do
       optional :snapshot_interval, :uint32, 9
-    end
-    oneof :shared_opt do
+      map :volume_labels, :string, :string, 10
       optional :shared, :bool, 11
-    end
-    oneof :passphrase_opt do
+      optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
+      optional :aggregation_level, :uint32, 13
+      optional :encrypted, :bool, 14
       optional :passphrase, :string, 15
-    end
-    oneof :snapshot_schedule_opt do
       optional :snapshot_schedule, :string, 16
-    end
-    oneof :scale_opt do
       optional :scale, :uint32, 17
-    end
-    oneof :sticky_opt do
       optional :sticky, :bool, 18
+      optional :group, :message, 21, "openstorage.api.Group"
+      optional :group_enforced, :bool, 22
+      optional :compressed, :bool, 23
+      optional :cascaded, :bool, 24
+      optional :journal, :bool, 25
+      optional :sharedv4, :bool, 26
+      optional :queue_depth, :uint32, 27
+      optional :force_unsupported_fs_type, :bool, 28
+      optional :nodiscard, :bool, 29
+      optional :io_strategy, :message, 30, "openstorage.api.IoStrategy"
+      optional :placement_strategy, :message, 31, "openstorage.api.VolumePlacementStrategy"
+      optional :storage_policy, :string, 32
+      optional :ownership, :message, 33, "openstorage.api.Ownership"
     end
-    oneof :group_opt do
-      optional :group, :message, 19, "openstorage.api.Group"
+    add_message "openstorage.api.VolumeSpecUpdate" do
+      optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
+      optional :ownership, :message, 26, "openstorage.api.Ownership"
+      optional :io_strategy, :message, 28, "openstorage.api.IoStrategy"
+      oneof :size_opt do
+        optional :size, :uint64, 2
+      end
+      oneof :ha_level_opt do
+        optional :ha_level, :int64, 5
+      end
+      oneof :cos_opt do
+        optional :cos, :enum, 6, "openstorage.api.CosType"
+      end
+      oneof :io_profile_opt do
+        optional :io_profile, :enum, 7, "openstorage.api.IoProfile"
+      end
+      oneof :dedupe_opt do
+        optional :dedupe, :bool, 8
+      end
+      oneof :snapshot_interval_opt do
+        optional :snapshot_interval, :uint32, 9
+      end
+      oneof :shared_opt do
+        optional :shared, :bool, 11
+      end
+      oneof :passphrase_opt do
+        optional :passphrase, :string, 15
+      end
+      oneof :snapshot_schedule_opt do
+        optional :snapshot_schedule, :string, 16
+      end
+      oneof :scale_opt do
+        optional :scale, :uint32, 17
+      end
+      oneof :sticky_opt do
+        optional :sticky, :bool, 18
+      end
+      oneof :group_opt do
+        optional :group, :message, 19, "openstorage.api.Group"
+      end
+      oneof :journal_opt do
+        optional :journal, :bool, 23
+      end
+      oneof :sharedv4_opt do
+        optional :sharedv4, :bool, 24
+      end
+      oneof :queue_depth_opt do
+        optional :queue_depth, :uint32, 25
+      end
+      oneof :nodiscard_opt do
+        optional :nodiscard, :bool, 27
+      end
     end
-    oneof :journal_opt do
-      optional :journal, :bool, 23
+    add_message "openstorage.api.VolumeSpecPolicy" do
+      map :volume_labels, :string, :string, 7
+      optional :replica_set, :message, 9, "openstorage.api.ReplicaSet"
+      optional :size_operator, :enum, 50, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+      optional :ha_level_operator, :enum, 51, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+      optional :scale_operator, :enum, 52, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+      optional :snapshot_interval_operator, :enum, 53, "openstorage.api.VolumeSpecPolicy.PolicyOp"
+      optional :io_strategy, :message, 55, "openstorage.api.IoStrategy"
+      oneof :size_opt do
+        optional :size, :uint64, 1
+      end
+      oneof :ha_level_opt do
+        optional :ha_level, :int64, 2
+      end
+      oneof :cos_opt do
+        optional :cos, :enum, 3, "openstorage.api.CosType"
+      end
+      oneof :io_profile_opt do
+        optional :io_profile, :enum, 4, "openstorage.api.IoProfile"
+      end
+      oneof :dedupe_opt do
+        optional :dedupe, :bool, 5
+      end
+      oneof :snapshot_interval_opt do
+        optional :snapshot_interval, :uint32, 6
+      end
+      oneof :shared_opt do
+        optional :shared, :bool, 8
+      end
+      oneof :passphrase_opt do
+        optional :passphrase, :string, 10
+      end
+      oneof :snapshot_schedule_opt do
+        optional :snapshot_schedule, :string, 11
+      end
+      oneof :scale_opt do
+        optional :scale, :uint32, 12
+      end
+      oneof :sticky_opt do
+        optional :sticky, :bool, 13
+      end
+      oneof :group_opt do
+        optional :group, :message, 14, "openstorage.api.Group"
+      end
+      oneof :journal_opt do
+        optional :journal, :bool, 15
+      end
+      oneof :sharedv4_opt do
+        optional :sharedv4, :bool, 16
+      end
+      oneof :queue_depth_opt do
+        optional :queue_depth, :uint32, 17
+      end
+      oneof :encrypted_opt do
+        optional :encrypted, :bool, 18
+      end
+      oneof :aggregation_level_opt do
+        optional :aggregation_level, :uint32, 19
+      end
+      oneof :nodiscard_opt do
+        optional :nodiscard, :bool, 54
+      end
     end
-    oneof :sharedv4_opt do
-      optional :sharedv4, :bool, 24
+    add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
+      value :Equal, 0
+      value :Minimum, 1
+      value :Maximum, 2
     end
-    oneof :queue_depth_opt do
-      optional :queue_depth, :uint32, 25
+    add_message "openstorage.api.ReplicaSet" do
+      repeated :nodes, :string, 1
     end
-    oneof :nodiscard_opt do
-      optional :nodiscard, :bool, 27
+    add_message "openstorage.api.RuntimeStateMap" do
+      map :runtime_state, :string, :string, 1
     end
-  end
-  add_message "openstorage.api.VolumeSpecPolicy" do
-    map :volume_labels, :string, :string, 7
-    optional :replica_set, :message, 9, "openstorage.api.ReplicaSet"
-    optional :size_operator, :enum, 50, "openstorage.api.VolumeSpecPolicy.PolicyOp"
-    optional :ha_level_operator, :enum, 51, "openstorage.api.VolumeSpecPolicy.PolicyOp"
-    optional :scale_operator, :enum, 52, "openstorage.api.VolumeSpecPolicy.PolicyOp"
-    optional :snapshot_interval_operator, :enum, 53, "openstorage.api.VolumeSpecPolicy.PolicyOp"
-    optional :io_strategy, :message, 55, "openstorage.api.IoStrategy"
-    oneof :size_opt do
-      optional :size, :uint64, 1
+    add_message "openstorage.api.Ownership" do
+      optional :owner, :string, 1
+      optional :acls, :message, 2, "openstorage.api.Ownership.AccessControl"
     end
-    oneof :ha_level_opt do
-      optional :ha_level, :int64, 2
+    add_message "openstorage.api.Ownership.AccessControl" do
+      map :groups, :string, :enum, 1, "openstorage.api.Ownership.AccessType"
+      map :collaborators, :string, :enum, 2, "openstorage.api.Ownership.AccessType"
     end
-    oneof :cos_opt do
-      optional :cos, :enum, 3, "openstorage.api.CosType"
+    add_enum "openstorage.api.Ownership.AccessType" do
+      value :Read, 0
+      value :Write, 1
+      value :Admin, 2
     end
-    oneof :io_profile_opt do
-      optional :io_profile, :enum, 4, "openstorage.api.IoProfile"
+    add_message "openstorage.api.Volume" do
+      optional :id, :string, 1
+      optional :source, :message, 2, "openstorage.api.Source"
+      optional :group, :message, 3, "openstorage.api.Group"
+      optional :readonly, :bool, 4
+      optional :locator, :message, 5, "openstorage.api.VolumeLocator"
+      optional :ctime, :message, 6, "google.protobuf.Timestamp"
+      optional :spec, :message, 7, "openstorage.api.VolumeSpec"
+      optional :usage, :uint64, 8
+      optional :last_scan, :message, 9, "google.protobuf.Timestamp"
+      optional :format, :enum, 10, "openstorage.api.FSType"
+      optional :status, :enum, 11, "openstorage.api.VolumeStatus"
+      optional :state, :enum, 12, "openstorage.api.VolumeState"
+      optional :attached_on, :string, 13
+      optional :attached_state, :enum, 14, "openstorage.api.AttachState"
+      optional :device_path, :string, 15
+      optional :secure_device_path, :string, 16
+      repeated :attach_path, :string, 17
+      map :attach_info, :string, :string, 18
+      repeated :replica_sets, :message, 19, "openstorage.api.ReplicaSet"
+      repeated :runtime_state, :message, 20, "openstorage.api.RuntimeStateMap"
+      optional :error, :string, 21
+      repeated :volume_consumers, :message, 22, "openstorage.api.VolumeConsumer"
+      optional :fs_resize_required, :bool, 23
     end
-    oneof :dedupe_opt do
-      optional :dedupe, :bool, 5
+    add_message "openstorage.api.Stats" do
+      optional :reads, :uint64, 1
+      optional :read_ms, :uint64, 2
+      optional :read_bytes, :uint64, 3
+      optional :writes, :uint64, 4
+      optional :write_ms, :uint64, 5
+      optional :write_bytes, :uint64, 6
+      optional :io_progress, :uint64, 7
+      optional :io_ms, :uint64, 8
+      optional :bytes_used, :uint64, 9
+      optional :interval_ms, :uint64, 10
     end
-    oneof :snapshot_interval_opt do
-      optional :snapshot_interval, :uint32, 6
+    add_message "openstorage.api.CapacityUsageInfo" do
+      optional :exclusive_bytes, :int64, 1
+      optional :shared_bytes, :int64, 2
+      optional :total_bytes, :int64, 3
     end
-    oneof :shared_opt do
-      optional :shared, :bool, 8
+    add_message "openstorage.api.SdkStoragePolicy" do
+      optional :name, :string, 1
+      optional :policy, :message, 2, "openstorage.api.VolumeSpecPolicy"
+      optional :force, :bool, 3
+      optional :allow_update, :bool, 4
+      optional :ownership, :message, 5, "openstorage.api.Ownership"
     end
-    oneof :passphrase_opt do
-      optional :passphrase, :string, 10
+    add_message "openstorage.api.Alert" do
+      optional :id, :int64, 1
+      optional :severity, :enum, 2, "openstorage.api.SeverityType"
+      optional :alert_type, :int64, 3
+      optional :message, :string, 4
+      optional :timestamp, :message, 5, "google.protobuf.Timestamp"
+      optional :resource_id, :string, 6
+      optional :resource, :enum, 7, "openstorage.api.ResourceType"
+      optional :cleared, :bool, 8
+      optional :ttl, :uint64, 9
+      optional :unique_tag, :string, 10
+      optional :count, :int64, 11
+      optional :first_seen, :message, 12, "google.protobuf.Timestamp"
     end
-    oneof :snapshot_schedule_opt do
-      optional :snapshot_schedule, :string, 11
+    add_message "openstorage.api.SdkAlertsTimeSpan" do
+      optional :start_time, :message, 1, "google.protobuf.Timestamp"
+      optional :end_time, :message, 2, "google.protobuf.Timestamp"
     end
-    oneof :scale_opt do
-      optional :scale, :uint32, 12
+    add_message "openstorage.api.SdkAlertsCountSpan" do
+      optional :min_count, :int64, 1
+      optional :max_count, :int64, 2
     end
-    oneof :sticky_opt do
-      optional :sticky, :bool, 13
+    add_message "openstorage.api.SdkAlertsOption" do
+      oneof :opt do
+        optional :min_severity_type, :enum, 1, "openstorage.api.SeverityType"
+        optional :is_cleared, :bool, 2
+        optional :time_span, :message, 3, "openstorage.api.SdkAlertsTimeSpan"
+        optional :count_span, :message, 4, "openstorage.api.SdkAlertsCountSpan"
+      end
     end
-    oneof :group_opt do
-      optional :group, :message, 14, "openstorage.api.Group"
+    add_message "openstorage.api.SdkAlertsResourceTypeQuery" do
+      optional :resource_type, :enum, 1, "openstorage.api.ResourceType"
     end
-    oneof :journal_opt do
-      optional :journal, :bool, 15
+    add_message "openstorage.api.SdkAlertsAlertTypeQuery" do
+      optional :resource_type, :enum, 1, "openstorage.api.ResourceType"
+      optional :alert_type, :int64, 2
     end
-    oneof :sharedv4_opt do
-      optional :sharedv4, :bool, 16
+    add_message "openstorage.api.SdkAlertsResourceIdQuery" do
+      optional :resource_type, :enum, 1, "openstorage.api.ResourceType"
+      optional :alert_type, :int64, 2
+      optional :resource_id, :string, 3
     end
-    oneof :queue_depth_opt do
-      optional :queue_depth, :uint32, 17
+    add_message "openstorage.api.SdkAlertsQuery" do
+      repeated :opts, :message, 4, "openstorage.api.SdkAlertsOption"
+      oneof :query do
+        optional :resource_type_query, :message, 1, "openstorage.api.SdkAlertsResourceTypeQuery"
+        optional :alert_type_query, :message, 2, "openstorage.api.SdkAlertsAlertTypeQuery"
+        optional :resource_id_query, :message, 3, "openstorage.api.SdkAlertsResourceIdQuery"
+      end
     end
-    oneof :encrypted_opt do
-      optional :encrypted, :bool, 18
+    add_message "openstorage.api.SdkAlertsEnumerateWithFiltersRequest" do
+      repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
     end
-    oneof :aggregation_level_opt do
-      optional :aggregation_level, :uint32, 19
+    add_message "openstorage.api.SdkAlertsEnumerateWithFiltersResponse" do
+      repeated :alerts, :message, 1, "openstorage.api.Alert"
     end
-    oneof :nodiscard_opt do
-      optional :nodiscard, :bool, 54
+    add_message "openstorage.api.SdkAlertsDeleteRequest" do
+      repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
     end
-  end
-  add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
-    value :Equal, 0
-    value :Minimum, 1
-    value :Maximum, 2
-  end
-  add_message "openstorage.api.ReplicaSet" do
-    repeated :nodes, :string, 1
-  end
-  add_message "openstorage.api.RuntimeStateMap" do
-    map :runtime_state, :string, :string, 1
-  end
-  add_message "openstorage.api.Ownership" do
-    optional :owner, :string, 1
-    optional :acls, :message, 2, "openstorage.api.Ownership.AccessControl"
-  end
-  add_message "openstorage.api.Ownership.AccessControl" do
-    map :groups, :string, :enum, 1, "openstorage.api.Ownership.AccessType"
-    map :collaborators, :string, :enum, 2, "openstorage.api.Ownership.AccessType"
-  end
-  add_enum "openstorage.api.Ownership.AccessType" do
-    value :Read, 0
-    value :Write, 1
-    value :Admin, 2
-  end
-  add_message "openstorage.api.Volume" do
-    optional :id, :string, 1
-    optional :source, :message, 2, "openstorage.api.Source"
-    optional :group, :message, 3, "openstorage.api.Group"
-    optional :readonly, :bool, 4
-    optional :locator, :message, 5, "openstorage.api.VolumeLocator"
-    optional :ctime, :message, 6, "google.protobuf.Timestamp"
-    optional :spec, :message, 7, "openstorage.api.VolumeSpec"
-    optional :usage, :uint64, 8
-    optional :last_scan, :message, 9, "google.protobuf.Timestamp"
-    optional :format, :enum, 10, "openstorage.api.FSType"
-    optional :status, :enum, 11, "openstorage.api.VolumeStatus"
-    optional :state, :enum, 12, "openstorage.api.VolumeState"
-    optional :attached_on, :string, 13
-    optional :attached_state, :enum, 14, "openstorage.api.AttachState"
-    optional :device_path, :string, 15
-    optional :secure_device_path, :string, 16
-    repeated :attach_path, :string, 17
-    map :attach_info, :string, :string, 18
-    repeated :replica_sets, :message, 19, "openstorage.api.ReplicaSet"
-    repeated :runtime_state, :message, 20, "openstorage.api.RuntimeStateMap"
-    optional :error, :string, 21
-    repeated :volume_consumers, :message, 22, "openstorage.api.VolumeConsumer"
-    optional :fs_resize_required, :bool, 23
-  end
-  add_message "openstorage.api.Stats" do
-    optional :reads, :uint64, 1
-    optional :read_ms, :uint64, 2
-    optional :read_bytes, :uint64, 3
-    optional :writes, :uint64, 4
-    optional :write_ms, :uint64, 5
-    optional :write_bytes, :uint64, 6
-    optional :io_progress, :uint64, 7
-    optional :io_ms, :uint64, 8
-    optional :bytes_used, :uint64, 9
-    optional :interval_ms, :uint64, 10
-  end
-  add_message "openstorage.api.CapacityUsageInfo" do
-    optional :exclusive_bytes, :int64, 1
-    optional :shared_bytes, :int64, 2
-    optional :total_bytes, :int64, 3
-  end
-  add_message "openstorage.api.SdkStoragePolicy" do
-    optional :name, :string, 1
-    optional :policy, :message, 2, "openstorage.api.VolumeSpecPolicy"
-    optional :force, :bool, 3
-    optional :allow_update, :bool, 4
-    optional :ownership, :message, 5, "openstorage.api.Ownership"
-  end
-  add_message "openstorage.api.Alert" do
-    optional :id, :int64, 1
-    optional :severity, :enum, 2, "openstorage.api.SeverityType"
-    optional :alert_type, :int64, 3
-    optional :message, :string, 4
-    optional :timestamp, :message, 5, "google.protobuf.Timestamp"
-    optional :resource_id, :string, 6
-    optional :resource, :enum, 7, "openstorage.api.ResourceType"
-    optional :cleared, :bool, 8
-    optional :ttl, :uint64, 9
-    optional :unique_tag, :string, 10
-    optional :count, :int64, 11
-    optional :first_seen, :message, 12, "google.protobuf.Timestamp"
-  end
-  add_message "openstorage.api.SdkAlertsTimeSpan" do
-    optional :start_time, :message, 1, "google.protobuf.Timestamp"
-    optional :end_time, :message, 2, "google.protobuf.Timestamp"
-  end
-  add_message "openstorage.api.SdkAlertsCountSpan" do
-    optional :min_count, :int64, 1
-    optional :max_count, :int64, 2
-  end
-  add_message "openstorage.api.SdkAlertsOption" do
-    oneof :opt do
-      optional :min_severity_type, :enum, 1, "openstorage.api.SeverityType"
-      optional :is_cleared, :bool, 2
-      optional :time_span, :message, 3, "openstorage.api.SdkAlertsTimeSpan"
-      optional :count_span, :message, 4, "openstorage.api.SdkAlertsCountSpan"
+    add_message "openstorage.api.SdkAlertsDeleteResponse" do
     end
-  end
-  add_message "openstorage.api.SdkAlertsResourceTypeQuery" do
-    optional :resource_type, :enum, 1, "openstorage.api.ResourceType"
-  end
-  add_message "openstorage.api.SdkAlertsAlertTypeQuery" do
-    optional :resource_type, :enum, 1, "openstorage.api.ResourceType"
-    optional :alert_type, :int64, 2
-  end
-  add_message "openstorage.api.SdkAlertsResourceIdQuery" do
-    optional :resource_type, :enum, 1, "openstorage.api.ResourceType"
-    optional :alert_type, :int64, 2
-    optional :resource_id, :string, 3
-  end
-  add_message "openstorage.api.SdkAlertsQuery" do
-    repeated :opts, :message, 4, "openstorage.api.SdkAlertsOption"
-    oneof :query do
-      optional :resource_type_query, :message, 1, "openstorage.api.SdkAlertsResourceTypeQuery"
-      optional :alert_type_query, :message, 2, "openstorage.api.SdkAlertsAlertTypeQuery"
-      optional :resource_id_query, :message, 3, "openstorage.api.SdkAlertsResourceIdQuery"
+    add_message "openstorage.api.Alerts" do
+      repeated :alert, :message, 1, "openstorage.api.Alert"
     end
-  end
-  add_message "openstorage.api.SdkAlertsEnumerateWithFiltersRequest" do
-    repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
-  end
-  add_message "openstorage.api.SdkAlertsEnumerateWithFiltersResponse" do
-    repeated :alerts, :message, 1, "openstorage.api.Alert"
-  end
-  add_message "openstorage.api.SdkAlertsDeleteRequest" do
-    repeated :queries, :message, 1, "openstorage.api.SdkAlertsQuery"
-  end
-  add_message "openstorage.api.SdkAlertsDeleteResponse" do
-  end
-  add_message "openstorage.api.Alerts" do
-    repeated :alert, :message, 1, "openstorage.api.Alert"
-  end
-  add_message "openstorage.api.ObjectstoreInfo" do
-    optional :uuid, :string, 1
-    optional :volume_id, :string, 2
-    optional :enabled, :bool, 3
-    optional :status, :string, 4
-    optional :action, :int64, 5
-    optional :access_key, :string, 6
-    optional :secret_key, :string, 7
-    repeated :endpoints, :string, 8
-    optional :current_endpoint, :string, 9
-    optional :access_port, :int64, 10
-    optional :region, :string, 11
-  end
-  add_message "openstorage.api.VolumeCreateRequest" do
-    optional :locator, :message, 1, "openstorage.api.VolumeLocator"
-    optional :source, :message, 2, "openstorage.api.Source"
-    optional :spec, :message, 3, "openstorage.api.VolumeSpec"
-  end
-  add_message "openstorage.api.VolumeResponse" do
-    optional :error, :string, 1
-  end
-  add_message "openstorage.api.VolumeCreateResponse" do
-    optional :id, :string, 1
-    optional :volume_response, :message, 2, "openstorage.api.VolumeResponse"
-  end
-  add_message "openstorage.api.VolumeStateAction" do
-    optional :attach, :enum, 1, "openstorage.api.VolumeActionParam"
-    optional :mount, :enum, 2, "openstorage.api.VolumeActionParam"
-    optional :mount_path, :string, 3
-    optional :device_path, :string, 4
-  end
-  add_message "openstorage.api.VolumeSetRequest" do
-    optional :locator, :message, 1, "openstorage.api.VolumeLocator"
-    optional :spec, :message, 2, "openstorage.api.VolumeSpec"
-    optional :action, :message, 3, "openstorage.api.VolumeStateAction"
-    map :options, :string, :string, 4
-  end
-  add_message "openstorage.api.VolumeSetResponse" do
-    optional :volume, :message, 1, "openstorage.api.Volume"
-    optional :volume_response, :message, 2, "openstorage.api.VolumeResponse"
-  end
-  add_message "openstorage.api.SnapCreateRequest" do
-    optional :id, :string, 1
-    optional :locator, :message, 2, "openstorage.api.VolumeLocator"
-    optional :readonly, :bool, 3
-    optional :no_retry, :bool, 4
-  end
-  add_message "openstorage.api.SnapCreateResponse" do
-    optional :volume_create_response, :message, 1, "openstorage.api.VolumeCreateResponse"
-  end
-  add_message "openstorage.api.VolumeInfo" do
-    optional :volume_id, :string, 1
-    optional :path, :string, 2
-    optional :storage, :message, 3, "openstorage.api.VolumeSpec"
-  end
-  add_message "openstorage.api.VolumeConsumer" do
-    optional :name, :string, 1
-    optional :namespace, :string, 2
-    optional :type, :string, 3
-    optional :node_id, :string, 4
-    optional :owner_name, :string, 5
-    optional :owner_type, :string, 6
-  end
-  add_message "openstorage.api.GraphDriverChanges" do
-    optional :path, :string, 1
-    optional :kind, :enum, 2, "openstorage.api.GraphDriverChangeType"
-  end
-  add_message "openstorage.api.ClusterResponse" do
-    optional :error, :string, 1
-  end
-  add_message "openstorage.api.ActiveRequest" do
-    map :ReqestKV, :int64, :string, 1
-  end
-  add_message "openstorage.api.ActiveRequests" do
-    optional :RequestCount, :int64, 1
-    repeated :ActiveRequest, :message, 2, "openstorage.api.ActiveRequest"
-  end
-  add_message "openstorage.api.GroupSnapCreateRequest" do
-    optional :id, :string, 1
-    map :Labels, :string, :string, 2
-    repeated :volume_ids, :string, 3
-  end
-  add_message "openstorage.api.GroupSnapCreateResponse" do
-    map :snapshots, :string, :message, 1, "openstorage.api.SnapCreateResponse"
-    optional :error, :string, 2
-  end
-  add_message "openstorage.api.StorageNode" do
-    optional :id, :string, 1
-    optional :cpu, :double, 2
-    optional :mem_total, :uint64, 3
-    optional :mem_used, :uint64, 4
-    optional :mem_free, :uint64, 5
-    optional :avg_load, :int64, 6
-    optional :status, :enum, 7, "openstorage.api.Status"
-    map :disks, :string, :message, 9, "openstorage.api.StorageResource"
-    repeated :pools, :message, 10, "openstorage.api.StoragePool"
-    optional :mgmt_ip, :string, 11
-    optional :data_ip, :string, 12
-    optional :hostname, :string, 15
-    map :node_labels, :string, :string, 16
-    optional :scheduler_node_name, :string, 17
-  end
-  add_message "openstorage.api.StorageCluster" do
-    optional :status, :enum, 1, "openstorage.api.Status"
-    optional :id, :string, 2
-    optional :name, :string, 3
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyCreateRequest" do
-    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyCreateResponse" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyEnumerateResponse" do
-    repeated :storage_policies, :message, 1, "openstorage.api.SdkStoragePolicy"
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyInspectRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyInspectResponse" do
-    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyDeleteRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyUpdateRequest" do
-    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyUpdateResponse" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicySetDefaultRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicySetDefaultResponse" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyReleaseRequest" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyReleaseResponse" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyDefaultInspectRequest" do
-  end
-  add_message "openstorage.api.SdkOpenStoragePolicyDefaultInspectResponse" do
-    optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
-  end
-  add_message "openstorage.api.SdkSchedulePolicyCreateRequest" do
-    optional :schedule_policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
-  end
-  add_message "openstorage.api.SdkSchedulePolicyCreateResponse" do
-  end
-  add_message "openstorage.api.SdkSchedulePolicyUpdateRequest" do
-    optional :schedule_policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
-  end
-  add_message "openstorage.api.SdkSchedulePolicyUpdateResponse" do
-  end
-  add_message "openstorage.api.SdkSchedulePolicyEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkSchedulePolicyEnumerateResponse" do
-    repeated :policies, :message, 1, "openstorage.api.SdkSchedulePolicy"
-  end
-  add_message "openstorage.api.SdkSchedulePolicyInspectRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkSchedulePolicyInspectResponse" do
-    optional :policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
-  end
-  add_message "openstorage.api.SdkSchedulePolicyDeleteRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkSchedulePolicyDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkSchedulePolicyIntervalDaily" do
-    optional :hour, :int32, 1
-    optional :minute, :int32, 2
-  end
-  add_message "openstorage.api.SdkSchedulePolicyIntervalWeekly" do
-    optional :day, :enum, 1, "openstorage.api.SdkTimeWeekday"
-    optional :hour, :int32, 2
-    optional :minute, :int32, 3
-  end
-  add_message "openstorage.api.SdkSchedulePolicyIntervalMonthly" do
-    optional :day, :int32, 1
-    optional :hour, :int32, 2
-    optional :minute, :int32, 3
-  end
-  add_message "openstorage.api.SdkSchedulePolicyIntervalPeriodic" do
-    optional :seconds, :int64, 1
-  end
-  add_message "openstorage.api.SdkSchedulePolicyInterval" do
-    optional :retain, :int64, 1
-    oneof :period_type do
-      optional :daily, :message, 200, "openstorage.api.SdkSchedulePolicyIntervalDaily"
-      optional :weekly, :message, 201, "openstorage.api.SdkSchedulePolicyIntervalWeekly"
-      optional :monthly, :message, 202, "openstorage.api.SdkSchedulePolicyIntervalMonthly"
-      optional :periodic, :message, 203, "openstorage.api.SdkSchedulePolicyIntervalPeriodic"
+    add_message "openstorage.api.ObjectstoreInfo" do
+      optional :uuid, :string, 1
+      optional :volume_id, :string, 2
+      optional :enabled, :bool, 3
+      optional :status, :string, 4
+      optional :action, :int64, 5
+      optional :access_key, :string, 6
+      optional :secret_key, :string, 7
+      repeated :endpoints, :string, 8
+      optional :current_endpoint, :string, 9
+      optional :access_port, :int64, 10
+      optional :region, :string, 11
     end
-  end
-  add_message "openstorage.api.SdkSchedulePolicy" do
-    optional :name, :string, 1
-    repeated :schedules, :message, 2, "openstorage.api.SdkSchedulePolicyInterval"
-  end
-  add_message "openstorage.api.SdkCredentialCreateRequest" do
-    optional :name, :string, 1
-    optional :bucket, :string, 2
-    optional :encryption_key, :string, 3
-    optional :ownership, :message, 4, "openstorage.api.Ownership"
-    oneof :credential_type do
-      optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
-      optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
-      optional :google_credential, :message, 202, "openstorage.api.SdkGoogleCredentialRequest"
+    add_message "openstorage.api.VolumeCreateRequest" do
+      optional :locator, :message, 1, "openstorage.api.VolumeLocator"
+      optional :source, :message, 2, "openstorage.api.Source"
+      optional :spec, :message, 3, "openstorage.api.VolumeSpec"
     end
-  end
-  add_message "openstorage.api.SdkCredentialCreateResponse" do
-    optional :credential_id, :string, 1
-  end
-  add_message "openstorage.api.SdkAwsCredentialRequest" do
-    optional :access_key, :string, 1
-    optional :secret_key, :string, 2
-    optional :endpoint, :string, 3
-    optional :region, :string, 4
-    optional :disable_ssl, :bool, 5
-  end
-  add_message "openstorage.api.SdkAzureCredentialRequest" do
-    optional :account_name, :string, 1
-    optional :account_key, :string, 2
-  end
-  add_message "openstorage.api.SdkGoogleCredentialRequest" do
-    optional :project_id, :string, 1
-    optional :json_key, :string, 2
-  end
-  add_message "openstorage.api.SdkAwsCredentialResponse" do
-    optional :access_key, :string, 2
-    optional :endpoint, :string, 3
-    optional :region, :string, 4
-    optional :disable_ssl, :bool, 5
-  end
-  add_message "openstorage.api.SdkAzureCredentialResponse" do
-    optional :account_name, :string, 2
-  end
-  add_message "openstorage.api.SdkGoogleCredentialResponse" do
-    optional :project_id, :string, 2
-  end
-  add_message "openstorage.api.SdkCredentialEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkCredentialEnumerateResponse" do
-    repeated :credential_ids, :string, 1
-  end
-  add_message "openstorage.api.SdkCredentialInspectRequest" do
-    optional :credential_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCredentialInspectResponse" do
-    optional :credential_id, :string, 1
-    optional :name, :string, 2
-    optional :bucket, :string, 3
-    optional :ownership, :message, 4, "openstorage.api.Ownership"
-    oneof :credential_type do
-      optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialResponse"
-      optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialResponse"
-      optional :google_credential, :message, 202, "openstorage.api.SdkGoogleCredentialResponse"
+    add_message "openstorage.api.VolumeResponse" do
+      optional :error, :string, 1
     end
-  end
-  add_message "openstorage.api.SdkCredentialDeleteRequest" do
-    optional :credential_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCredentialDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkCredentialValidateRequest" do
-    optional :credential_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCredentialValidateResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeAttachOptions" do
-    optional :secret_name, :string, 1
-    optional :secret_key, :string, 2
-    optional :secret_context, :string, 3
-  end
-  add_message "openstorage.api.SdkVolumeMountRequest" do
-    optional :volume_id, :string, 1
-    optional :mount_path, :string, 2
-    optional :options, :message, 3, "openstorage.api.SdkVolumeAttachOptions"
-    map :driver_options, :string, :string, 4
-  end
-  add_message "openstorage.api.SdkVolumeMountResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeUnmountOptions" do
-    optional :delete_mount_path, :bool, 1
-    optional :no_delay_before_deleting_mount_path, :bool, 2
-  end
-  add_message "openstorage.api.SdkVolumeUnmountRequest" do
-    optional :volume_id, :string, 1
-    optional :mount_path, :string, 2
-    optional :options, :message, 3, "openstorage.api.SdkVolumeUnmountOptions"
-    map :driver_options, :string, :string, 4
-  end
-  add_message "openstorage.api.SdkVolumeUnmountResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeAttachRequest" do
-    optional :volume_id, :string, 1
-    optional :options, :message, 2, "openstorage.api.SdkVolumeAttachOptions"
-    map :driver_options, :string, :string, 3
-  end
-  add_message "openstorage.api.SdkVolumeAttachResponse" do
-    optional :device_path, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeDetachOptions" do
-    optional :force, :bool, 1
-    optional :unmount_before_detach, :bool, 2
-  end
-  add_message "openstorage.api.SdkVolumeDetachRequest" do
-    optional :volume_id, :string, 1
-    optional :options, :message, 2, "openstorage.api.SdkVolumeDetachOptions"
-    map :driver_options, :string, :string, 3
-  end
-  add_message "openstorage.api.SdkVolumeDetachResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeCreateRequest" do
-    optional :name, :string, 1
-    optional :spec, :message, 2, "openstorage.api.VolumeSpec"
-    map :labels, :string, :string, 3
-  end
-  add_message "openstorage.api.SdkVolumeCreateResponse" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeCloneRequest" do
-    optional :name, :string, 1
-    optional :parent_id, :string, 2
-  end
-  add_message "openstorage.api.SdkVolumeCloneResponse" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeDeleteRequest" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeInspectRequest" do
-    optional :volume_id, :string, 1
-    optional :options, :message, 2, "openstorage.api.VolumeInspectOptions"
-  end
-  add_message "openstorage.api.SdkVolumeInspectResponse" do
-    optional :volume, :message, 1, "openstorage.api.Volume"
-    optional :name, :string, 2
-    map :labels, :string, :string, 3
-  end
-  add_message "openstorage.api.SdkVolumeInspectWithFiltersRequest" do
-    optional :name, :string, 2
-    map :labels, :string, :string, 3
-    optional :ownership, :message, 4, "openstorage.api.Ownership"
-    optional :group, :message, 5, "openstorage.api.Group"
-    optional :options, :message, 6, "openstorage.api.VolumeInspectOptions"
-  end
-  add_message "openstorage.api.SdkVolumeInspectWithFiltersResponse" do
-    repeated :volumes, :message, 1, "openstorage.api.SdkVolumeInspectResponse"
-  end
-  add_message "openstorage.api.SdkVolumeUpdateRequest" do
-    optional :volume_id, :string, 1
-    map :labels, :string, :string, 3
-    optional :spec, :message, 4, "openstorage.api.VolumeSpecUpdate"
-  end
-  add_message "openstorage.api.SdkVolumeUpdateResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeStatsRequest" do
-    optional :volume_id, :string, 1
-    optional :not_cumulative, :bool, 2
-  end
-  add_message "openstorage.api.SdkVolumeStatsResponse" do
-    optional :stats, :message, 1, "openstorage.api.Stats"
-  end
-  add_message "openstorage.api.SdkVolumeCapacityUsageRequest" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeCapacityUsageResponse" do
-    optional :capacity_usage_info, :message, 1, "openstorage.api.CapacityUsageInfo"
-  end
-  add_message "openstorage.api.SdkVolumeEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkVolumeEnumerateResponse" do
-    repeated :volume_ids, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeEnumerateWithFiltersRequest" do
-    optional :name, :string, 2
-    map :labels, :string, :string, 3
-    optional :ownership, :message, 4, "openstorage.api.Ownership"
-    optional :group, :message, 5, "openstorage.api.Group"
-  end
-  add_message "openstorage.api.SdkVolumeEnumerateWithFiltersResponse" do
-    repeated :volume_ids, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotCreateRequest" do
-    optional :volume_id, :string, 1
-    optional :name, :string, 2
-    map :labels, :string, :string, 3
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotCreateResponse" do
-    optional :snapshot_id, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotRestoreRequest" do
-    optional :volume_id, :string, 1
-    optional :snapshot_id, :string, 2
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotRestoreResponse" do
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotEnumerateRequest" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotEnumerateResponse" do
-    repeated :volume_snapshot_ids, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest" do
-    optional :volume_id, :string, 1
-    map :labels, :string, :string, 2
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse" do
-    repeated :volume_snapshot_ids, :string, 1
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest" do
-    optional :volume_id, :string, 1
-    repeated :snapshot_schedule_names, :string, 2
-  end
-  add_message "openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse" do
-  end
-  add_message "openstorage.api.SdkClusterDomainsEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkClusterDomainsEnumerateResponse" do
-    repeated :cluster_domain_names, :string, 1
-  end
-  add_message "openstorage.api.SdkClusterDomainInspectRequest" do
-    optional :cluster_domain_name, :string, 1
-  end
-  add_message "openstorage.api.SdkClusterDomainInspectResponse" do
-    optional :cluster_domain_name, :string, 1
-    optional :is_active, :bool, 2
-  end
-  add_message "openstorage.api.SdkClusterDomainActivateRequest" do
-    optional :cluster_domain_name, :string, 1
-  end
-  add_message "openstorage.api.SdkClusterDomainActivateResponse" do
-  end
-  add_message "openstorage.api.SdkClusterDomainDeactivateRequest" do
-    optional :cluster_domain_name, :string, 1
-  end
-  add_message "openstorage.api.SdkClusterDomainDeactivateResponse" do
-  end
-  add_message "openstorage.api.SdkClusterInspectCurrentRequest" do
-  end
-  add_message "openstorage.api.SdkClusterInspectCurrentResponse" do
-    optional :cluster, :message, 1, "openstorage.api.StorageCluster"
-  end
-  add_message "openstorage.api.SdkNodeInspectRequest" do
-    optional :node_id, :string, 1
-  end
-  add_message "openstorage.api.SdkNodeInspectResponse" do
-    optional :node, :message, 1, "openstorage.api.StorageNode"
-  end
-  add_message "openstorage.api.SdkNodeInspectCurrentRequest" do
-  end
-  add_message "openstorage.api.SdkNodeInspectCurrentResponse" do
-    optional :node, :message, 1, "openstorage.api.StorageNode"
-  end
-  add_message "openstorage.api.SdkNodeEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkNodeEnumerateResponse" do
-    repeated :node_ids, :string, 1
-  end
-  add_message "openstorage.api.SdkObjectstoreInspectRequest" do
-    optional :objectstore_id, :string, 1
-  end
-  add_message "openstorage.api.SdkObjectstoreInspectResponse" do
-    optional :objectstore_status, :message, 1, "openstorage.api.ObjectstoreInfo"
-  end
-  add_message "openstorage.api.SdkObjectstoreCreateRequest" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkObjectstoreCreateResponse" do
-    optional :objectstore_status, :message, 1, "openstorage.api.ObjectstoreInfo"
-  end
-  add_message "openstorage.api.SdkObjectstoreDeleteRequest" do
-    optional :objectstore_id, :string, 1
-  end
-  add_message "openstorage.api.SdkObjectstoreDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkObjectstoreUpdateRequest" do
-    optional :objectstore_id, :string, 1
-    optional :enable, :bool, 2
-  end
-  add_message "openstorage.api.SdkObjectstoreUpdateResponse" do
-  end
-  add_message "openstorage.api.SdkCloudBackupCreateRequest" do
-    optional :volume_id, :string, 1
-    optional :credential_id, :string, 2
-    optional :full, :bool, 3
-    optional :task_id, :string, 4
-    map :labels, :string, :string, 5
-  end
-  add_message "openstorage.api.SdkCloudBackupCreateResponse" do
-    optional :task_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudBackupRestoreRequest" do
-    optional :backup_id, :string, 1
-    optional :restore_volume_name, :string, 2
-    optional :credential_id, :string, 3
-    optional :node_id, :string, 4
-    optional :task_id, :string, 5
-  end
-  add_message "openstorage.api.SdkCloudBackupRestoreResponse" do
-    optional :restore_volume_id, :string, 1
-    optional :task_id, :string, 2
-  end
-  add_message "openstorage.api.SdkCloudBackupDeleteRequest" do
-    optional :backup_id, :string, 1
-    optional :credential_id, :string, 2
-    optional :force, :bool, 3
-  end
-  add_message "openstorage.api.SdkCloudBackupDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkCloudBackupDeleteAllRequest" do
-    optional :src_volume_id, :string, 1
-    optional :credential_id, :string, 2
-  end
-  add_message "openstorage.api.SdkCloudBackupDeleteAllResponse" do
-  end
-  add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest" do
-    optional :src_volume_id, :string, 1
-    optional :cluster_id, :string, 2
-    optional :credential_id, :string, 3
-    optional :all, :bool, 4
-  end
-  add_message "openstorage.api.SdkCloudBackupInfo" do
-    optional :id, :string, 1
-    optional :src_volume_id, :string, 2
-    optional :src_volume_name, :string, 3
-    optional :timestamp, :message, 4, "google.protobuf.Timestamp"
-    map :metadata, :string, :string, 5
-    optional :status, :enum, 6, "openstorage.api.SdkCloudBackupStatusType"
-  end
-  add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse" do
-    repeated :backups, :message, 1, "openstorage.api.SdkCloudBackupInfo"
-  end
-  add_message "openstorage.api.SdkCloudBackupStatus" do
-    optional :backup_id, :string, 1
-    optional :optype, :enum, 2, "openstorage.api.SdkCloudBackupOpType"
-    optional :status, :enum, 3, "openstorage.api.SdkCloudBackupStatusType"
-    optional :bytes_done, :uint64, 4
-    optional :start_time, :message, 5, "google.protobuf.Timestamp"
-    optional :completed_time, :message, 6, "google.protobuf.Timestamp"
-    optional :node_id, :string, 7
-    optional :src_volume_id, :string, 8
-    repeated :info, :string, 9
-    optional :credential_id, :string, 10
-    optional :bytes_total, :uint64, 11
-    optional :eta_seconds, :int64, 12
-    optional :group_id, :string, 13
-  end
-  add_message "openstorage.api.SdkCloudBackupStatusRequest" do
-    optional :volume_id, :string, 1
-    optional :local, :bool, 2
-    optional :task_id, :string, 3
-  end
-  add_message "openstorage.api.SdkCloudBackupStatusResponse" do
-    map :statuses, :string, :message, 1, "openstorage.api.SdkCloudBackupStatus"
-  end
-  add_message "openstorage.api.SdkCloudBackupCatalogRequest" do
-    optional :backup_id, :string, 1
-    optional :credential_id, :string, 2
-  end
-  add_message "openstorage.api.SdkCloudBackupCatalogResponse" do
-    repeated :contents, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudBackupHistoryItem" do
-    optional :src_volume_id, :string, 1
-    optional :timestamp, :message, 2, "google.protobuf.Timestamp"
-    optional :status, :enum, 3, "openstorage.api.SdkCloudBackupStatusType"
-  end
-  add_message "openstorage.api.SdkCloudBackupHistoryRequest" do
-    optional :src_volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudBackupHistoryResponse" do
-    repeated :history_list, :message, 1, "openstorage.api.SdkCloudBackupHistoryItem"
-  end
-  add_message "openstorage.api.SdkCloudBackupStateChangeRequest" do
-    optional :task_id, :string, 1
-    optional :requested_state, :enum, 2, "openstorage.api.SdkCloudBackupRequestedState"
-  end
-  add_message "openstorage.api.SdkCloudBackupStateChangeResponse" do
-  end
-  add_message "openstorage.api.SdkCloudBackupScheduleInfo" do
-    optional :src_volume_id, :string, 1
-    optional :credential_id, :string, 2
-    repeated :schedules, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
-    optional :max_backups, :uint64, 4
-    optional :full, :bool, 5
-  end
-  add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do
-    optional :cloud_sched_info, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
-  end
-  add_message "openstorage.api.SdkCloudBackupSchedCreateResponse" do
-    optional :backup_schedule_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudBackupSchedDeleteRequest" do
-    optional :backup_schedule_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudBackupSchedDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkCloudBackupSchedEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkCloudBackupSchedEnumerateResponse" do
-    map :cloud_sched_list, :string, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
-  end
-  add_message "openstorage.api.SdkRule" do
-    repeated :services, :string, 1
-    repeated :apis, :string, 2
-  end
-  add_message "openstorage.api.SdkRole" do
-    optional :name, :string, 1
-    repeated :rules, :message, 2, "openstorage.api.SdkRule"
-  end
-  add_message "openstorage.api.SdkRoleCreateRequest" do
-    optional :role, :message, 1, "openstorage.api.SdkRole"
-  end
-  add_message "openstorage.api.SdkRoleCreateResponse" do
-    optional :role, :message, 1, "openstorage.api.SdkRole"
-  end
-  add_message "openstorage.api.SdkRoleEnumerateRequest" do
-  end
-  add_message "openstorage.api.SdkRoleEnumerateResponse" do
-    repeated :names, :string, 1
-  end
-  add_message "openstorage.api.SdkRoleInspectRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkRoleInspectResponse" do
-    optional :role, :message, 1, "openstorage.api.SdkRole"
-  end
-  add_message "openstorage.api.SdkRoleDeleteRequest" do
-    optional :name, :string, 1
-  end
-  add_message "openstorage.api.SdkRoleDeleteResponse" do
-  end
-  add_message "openstorage.api.SdkRoleUpdateRequest" do
-    optional :role, :message, 1, "openstorage.api.SdkRole"
-  end
-  add_message "openstorage.api.SdkRoleUpdateResponse" do
-    optional :role, :message, 1, "openstorage.api.SdkRole"
-  end
-  add_message "openstorage.api.SdkIdentityCapabilitiesRequest" do
-  end
-  add_message "openstorage.api.SdkIdentityCapabilitiesResponse" do
-    repeated :capabilities, :message, 1, "openstorage.api.SdkServiceCapability"
-  end
-  add_message "openstorage.api.SdkIdentityVersionRequest" do
-  end
-  add_message "openstorage.api.SdkIdentityVersionResponse" do
-    optional :sdk_version, :message, 1, "openstorage.api.SdkVersion"
-    optional :version, :message, 2, "openstorage.api.StorageVersion"
-  end
-  add_message "openstorage.api.SdkServiceCapability" do
-    oneof :type do
-      optional :service, :message, 1, "openstorage.api.SdkServiceCapability.OpenStorageService"
+    add_message "openstorage.api.VolumeCreateResponse" do
+      optional :id, :string, 1
+      optional :volume_response, :message, 2, "openstorage.api.VolumeResponse"
     end
-  end
-  add_message "openstorage.api.SdkServiceCapability.OpenStorageService" do
-    optional :type, :enum, 1, "openstorage.api.SdkServiceCapability.OpenStorageService.Type"
-  end
-  add_enum "openstorage.api.SdkServiceCapability.OpenStorageService.Type" do
-    value :UNKNOWN, 0
-    value :CLUSTER, 1
-    value :CLOUD_BACKUP, 2
-    value :CREDENTIALS, 3
-    value :NODE, 4
-    value :OBJECT_STORAGE, 5
-    value :SCHEDULE_POLICY, 6
-    value :VOLUME, 7
-    value :ALERTS, 8
-    value :MOUNT_ATTACH, 9
-    value :ROLE, 10
-    value :CLUSTER_PAIR, 11
-    value :MIGRATE, 12
-    value :STORAGE_POLICY, 13
-  end
-  add_message "openstorage.api.SdkVersion" do
-    optional :major, :int32, 1
-    optional :minor, :int32, 2
-    optional :patch, :int32, 3
-    optional :version, :string, 4
-  end
-  add_enum "openstorage.api.SdkVersion.Version" do
-    value :MUST_HAVE_ZERO_VALUE, 0
-    value :Major, 0
-    value :Minor, 51
-    value :Patch, 0
-  end
-  add_message "openstorage.api.StorageVersion" do
-    optional :driver, :string, 1
-    optional :version, :string, 2
-    map :details, :string, :string, 3
-  end
-  add_message "openstorage.api.CloudMigrate" do
-  end
-  add_enum "openstorage.api.CloudMigrate.OperationType" do
-    value :InvalidType, 0
-    value :MigrateCluster, 1
-    value :MigrateVolume, 2
-    value :MigrateVolumeGroup, 3
-  end
-  add_enum "openstorage.api.CloudMigrate.Stage" do
-    value :InvalidStage, 0
-    value :Backup, 1
-    value :Restore, 2
-    value :VolumeUpdate, 3
-    value :Done, 4
-  end
-  add_enum "openstorage.api.CloudMigrate.Status" do
-    value :InvalidStatus, 0
-    value :Queued, 1
-    value :Initialized, 2
-    value :InProgress, 3
-    value :Failed, 4
-    value :Complete, 5
-    value :Canceled, 6
-  end
-  add_message "openstorage.api.CloudMigrateStartRequest" do
-    optional :operation, :enum, 1, "openstorage.api.CloudMigrate.OperationType"
-    optional :cluster_id, :string, 2
-    optional :target_id, :string, 3
-    optional :task_id, :string, 4
-  end
-  add_message "openstorage.api.SdkCloudMigrateStartRequest" do
-    optional :cluster_id, :string, 1
-    optional :task_id, :string, 2
-    oneof :opt do
-      optional :volume, :message, 200, "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume"
-      optional :volume_group, :message, 201, "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup"
-      optional :all_volumes, :message, 202, "openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes"
+    add_message "openstorage.api.VolumeStateAction" do
+      optional :attach, :enum, 1, "openstorage.api.VolumeActionParam"
+      optional :mount, :enum, 2, "openstorage.api.VolumeActionParam"
+      optional :mount_path, :string, 3
+      optional :device_path, :string, 4
     end
-  end
-  add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume" do
-    optional :volume_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup" do
-    optional :group_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes" do
-  end
-  add_message "openstorage.api.CloudMigrateStartResponse" do
-    optional :task_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudMigrateStartResponse" do
-    optional :result, :message, 1, "openstorage.api.CloudMigrateStartResponse"
-  end
-  add_message "openstorage.api.CloudMigrateCancelRequest" do
-    optional :task_id, :string, 1
-  end
-  add_message "openstorage.api.SdkCloudMigrateCancelRequest" do
-    optional :request, :message, 1, "openstorage.api.CloudMigrateCancelRequest"
-  end
-  add_message "openstorage.api.SdkCloudMigrateCancelResponse" do
-  end
-  add_message "openstorage.api.CloudMigrateInfo" do
-    optional :task_id, :string, 1
-    optional :cluster_id, :string, 2
-    optional :local_volume_id, :string, 3
-    optional :local_volume_name, :string, 4
-    optional :remote_volume_id, :string, 5
-    optional :cloudbackup_id, :string, 6
-    optional :current_stage, :enum, 7, "openstorage.api.CloudMigrate.Stage"
-    optional :status, :enum, 8, "openstorage.api.CloudMigrate.Status"
-    optional :last_update, :message, 9, "google.protobuf.Timestamp"
-    optional :error_reason, :string, 10
-    optional :start_time, :message, 11, "google.protobuf.Timestamp"
-    optional :completed_time, :message, 12, "google.protobuf.Timestamp"
-    optional :bytes_total, :uint64, 13
-    optional :bytes_done, :uint64, 14
-    optional :eta_seconds, :int64, 15
-  end
-  add_message "openstorage.api.CloudMigrateInfoList" do
-    repeated :list, :message, 1, "openstorage.api.CloudMigrateInfo"
-  end
-  add_message "openstorage.api.SdkCloudMigrateStatusRequest" do
-    optional :request, :message, 1, "openstorage.api.CloudMigrateStatusRequest"
-  end
-  add_message "openstorage.api.CloudMigrateStatusRequest" do
-    optional :task_id, :string, 1
-    optional :cluster_id, :string, 2
-  end
-  add_message "openstorage.api.CloudMigrateStatusResponse" do
-    map :info, :string, :message, 1, "openstorage.api.CloudMigrateInfoList"
-  end
-  add_message "openstorage.api.SdkCloudMigrateStatusResponse" do
-    optional :result, :message, 1, "openstorage.api.CloudMigrateStatusResponse"
-  end
-  add_message "openstorage.api.ClusterPairMode" do
-  end
-  add_enum "openstorage.api.ClusterPairMode.Mode" do
-    value :Default, 0
-    value :DisasterRecovery, 1
-  end
-  add_message "openstorage.api.ClusterPairCreateRequest" do
-    optional :remote_cluster_ip, :string, 1
-    optional :remote_cluster_port, :uint32, 2
-    optional :remote_cluster_token, :string, 3
-    optional :set_default, :bool, 4
-    optional :mode, :enum, 5, "openstorage.api.ClusterPairMode.Mode"
-  end
-  add_message "openstorage.api.ClusterPairCreateResponse" do
-    optional :remote_cluster_id, :string, 1
-    optional :remote_cluster_name, :string, 2
-  end
-  add_message "openstorage.api.SdkClusterPairCreateRequest" do
-    optional :request, :message, 1, "openstorage.api.ClusterPairCreateRequest"
-  end
-  add_message "openstorage.api.SdkClusterPairCreateResponse" do
-    optional :result, :message, 1, "openstorage.api.ClusterPairCreateResponse"
-  end
-  add_message "openstorage.api.ClusterPairProcessRequest" do
-    optional :source_cluster_id, :string, 1
-    optional :remote_cluster_token, :string, 2
-    optional :mode, :enum, 3, "openstorage.api.ClusterPairMode.Mode"
-  end
-  add_message "openstorage.api.ClusterPairProcessResponse" do
-    optional :remote_cluster_id, :string, 1
-    optional :remote_cluster_name, :string, 2
-    repeated :remote_cluster_endpoints, :string, 3
-    map :options, :string, :string, 4
-  end
-  add_message "openstorage.api.SdkClusterPairDeleteRequest" do
-    optional :cluster_id, :string, 1
-  end
-  add_message "openstorage.api.SdkClusterPairDeleteResponse" do
-  end
-  add_message "openstorage.api.ClusterPairTokenGetResponse" do
-    optional :token, :string, 1
-  end
-  add_message "openstorage.api.SdkClusterPairGetTokenRequest" do
-  end
-  add_message "openstorage.api.SdkClusterPairGetTokenResponse" do
-    optional :result, :message, 1, "openstorage.api.ClusterPairTokenGetResponse"
-  end
-  add_message "openstorage.api.SdkClusterPairResetTokenRequest" do
-  end
-  add_message "openstorage.api.SdkClusterPairResetTokenResponse" do
-    optional :result, :message, 1, "openstorage.api.ClusterPairTokenGetResponse"
-  end
-  add_message "openstorage.api.ClusterPairInfo" do
-    optional :id, :string, 1
-    optional :name, :string, 2
-    optional :endpoint, :string, 3
-    repeated :current_endpoints, :string, 4
-    optional :secure, :bool, 5
-    optional :token, :string, 6
-    map :options, :string, :string, 7
-    optional :mode, :enum, 8, "openstorage.api.ClusterPairMode.Mode"
-  end
-  add_message "openstorage.api.SdkClusterPairInspectRequest" do
-    optional :id, :string, 1
-  end
-  add_message "openstorage.api.ClusterPairGetResponse" do
-    optional :pair_info, :message, 1, "openstorage.api.ClusterPairInfo"
-  end
-  add_message "openstorage.api.SdkClusterPairInspectResponse" do
-    optional :result, :message, 1, "openstorage.api.ClusterPairGetResponse"
-  end
-  add_message "openstorage.api.SdkClusterPairEnumerateRequest" do
-  end
-  add_message "openstorage.api.ClusterPairsEnumerateResponse" do
-    optional :default_id, :string, 1
-    map :pairs, :string, :message, 2, "openstorage.api.ClusterPairInfo"
-  end
-  add_message "openstorage.api.SdkClusterPairEnumerateResponse" do
-    optional :result, :message, 1, "openstorage.api.ClusterPairsEnumerateResponse"
-  end
-  add_message "openstorage.api.Catalog" do
-    optional :name, :string, 1
-    optional :path, :string, 2
-    optional :type, :string, 3
-    optional :size, :uint64, 4
-    optional :LastModified, :message, 5, "google.protobuf.Timestamp"
-    repeated :children, :message, 6, "openstorage.api.Catalog"
-  end
-  add_message "openstorage.api.Report" do
-    optional :directories, :int64, 2
-    optional :files, :int64, 3
-  end
-  add_message "openstorage.api.CatalogResponse" do
-    optional :root, :message, 1, "openstorage.api.Catalog"
-    optional :report, :message, 2, "openstorage.api.Report"
-  end
-  add_message "openstorage.api.LocateResponse" do
-    map :mounts, :string, :string, 1
-    map :dockerids, :string, :string, 2
-  end
-  add_message "openstorage.api.VolumePlacementStrategy" do
-    repeated :rules, :message, 1, "openstorage.api.VolumePlacementRule"
-  end
-  add_message "openstorage.api.VolumePlacementRule" do
-    optional :affected_replicas, :int32, 1
-    optional :weight, :int64, 2
-    optional :enforcement, :enum, 3, "openstorage.api.VolumePlacementRule.EnforcementType"
-    optional :type, :enum, 4, "openstorage.api.VolumePlacementRule.AffinityRuleType"
-    repeated :match_expressions, :message, 5, "openstorage.api.LabelSelectorRequirement"
-  end
-  add_enum "openstorage.api.VolumePlacementRule.EnforcementType" do
-    value :required, 0
-    value :preferred, 1
-  end
-  add_enum "openstorage.api.VolumePlacementRule.AffinityRuleType" do
-    value :affinity, 0
-    value :antiAffinity, 1
-  end
-  add_message "openstorage.api.LabelSelectorRequirement" do
-    optional :key, :string, 1
-    optional :operator, :enum, 2, "openstorage.api.LabelSelectorRequirement.Operator"
-    repeated :values, :string, 3
-  end
-  add_enum "openstorage.api.LabelSelectorRequirement.Operator" do
-    value :In, 0
-    value :NotIn, 1
-    value :Exists, 2
-    value :DoesNotExist, 3
-    value :Gt, 4
-    value :Lt, 5
-  end
-  add_enum "openstorage.api.Status" do
-    value :STATUS_NONE, 0
-    value :STATUS_INIT, 1
-    value :STATUS_OK, 2
-    value :STATUS_OFFLINE, 3
-    value :STATUS_ERROR, 4
-    value :STATUS_NOT_IN_QUORUM, 5
-    value :STATUS_DECOMMISSION, 6
-    value :STATUS_MAINTENANCE, 7
-    value :STATUS_STORAGE_DOWN, 8
-    value :STATUS_STORAGE_DEGRADED, 9
-    value :STATUS_NEEDS_REBOOT, 10
-    value :STATUS_STORAGE_REBALANCE, 11
-    value :STATUS_STORAGE_DRIVE_REPLACE, 12
-    value :STATUS_NOT_IN_QUORUM_NO_STORAGE, 13
-    value :STATUS_MAX, 14
-  end
-  add_enum "openstorage.api.DriverType" do
-    value :DRIVER_TYPE_NONE, 0
-    value :DRIVER_TYPE_FILE, 1
-    value :DRIVER_TYPE_BLOCK, 2
-    value :DRIVER_TYPE_OBJECT, 3
-    value :DRIVER_TYPE_CLUSTERED, 4
-    value :DRIVER_TYPE_GRAPH, 5
-  end
-  add_enum "openstorage.api.FSType" do
-    value :FS_TYPE_NONE, 0
-    value :FS_TYPE_BTRFS, 1
-    value :FS_TYPE_EXT4, 2
-    value :FS_TYPE_FUSE, 3
-    value :FS_TYPE_NFS, 4
-    value :FS_TYPE_VFS, 5
-    value :FS_TYPE_XFS, 6
-    value :FS_TYPE_ZFS, 7
-    value :FS_TYPE_XFSv2, 8
-  end
-  add_enum "openstorage.api.GraphDriverChangeType" do
-    value :GRAPH_DRIVER_CHANGE_TYPE_NONE, 0
-    value :GRAPH_DRIVER_CHANGE_TYPE_MODIFIED, 1
-    value :GRAPH_DRIVER_CHANGE_TYPE_ADDED, 2
-    value :GRAPH_DRIVER_CHANGE_TYPE_DELETED, 3
-  end
-  add_enum "openstorage.api.SeverityType" do
-    value :SEVERITY_TYPE_NONE, 0
-    value :SEVERITY_TYPE_ALARM, 1
-    value :SEVERITY_TYPE_WARNING, 2
-    value :SEVERITY_TYPE_NOTIFY, 3
-  end
-  add_enum "openstorage.api.ResourceType" do
-    value :RESOURCE_TYPE_NONE, 0
-    value :RESOURCE_TYPE_VOLUME, 1
-    value :RESOURCE_TYPE_NODE, 2
-    value :RESOURCE_TYPE_CLUSTER, 3
-    value :RESOURCE_TYPE_DRIVE, 4
-  end
-  add_enum "openstorage.api.AlertActionType" do
-    value :ALERT_ACTION_TYPE_NONE, 0
-    value :ALERT_ACTION_TYPE_DELETE, 1
-    value :ALERT_ACTION_TYPE_CREATE, 2
-    value :ALERT_ACTION_TYPE_UPDATE, 3
-  end
-  add_enum "openstorage.api.VolumeActionParam" do
-    value :VOLUME_ACTION_PARAM_NONE, 0
-    value :VOLUME_ACTION_PARAM_OFF, 1
-    value :VOLUME_ACTION_PARAM_ON, 2
-  end
-  add_enum "openstorage.api.CosType" do
-    value :NONE, 0
-    value :LOW, 1
-    value :MEDIUM, 2
-    value :HIGH, 3
-  end
-  add_enum "openstorage.api.IoProfile" do
-    value :IO_PROFILE_SEQUENTIAL, 0
-    value :IO_PROFILE_RANDOM, 1
-    value :IO_PROFILE_DB, 2
-    value :IO_PROFILE_DB_REMOTE, 3
-    value :IO_PROFILE_CMS, 4
-  end
-  add_enum "openstorage.api.VolumeState" do
-    value :VOLUME_STATE_NONE, 0
-    value :VOLUME_STATE_PENDING, 1
-    value :VOLUME_STATE_AVAILABLE, 2
-    value :VOLUME_STATE_ATTACHED, 3
-    value :VOLUME_STATE_DETACHED, 4
-    value :VOLUME_STATE_DETATCHING, 5
-    value :VOLUME_STATE_ERROR, 6
-    value :VOLUME_STATE_DELETED, 7
-    value :VOLUME_STATE_TRY_DETACHING, 8
-    value :VOLUME_STATE_RESTORE, 9
-  end
-  add_enum "openstorage.api.VolumeStatus" do
-    value :VOLUME_STATUS_NONE, 0
-    value :VOLUME_STATUS_NOT_PRESENT, 1
-    value :VOLUME_STATUS_UP, 2
-    value :VOLUME_STATUS_DOWN, 3
-    value :VOLUME_STATUS_DEGRADED, 4
-  end
-  add_enum "openstorage.api.StorageMedium" do
-    value :STORAGE_MEDIUM_MAGNETIC, 0
-    value :STORAGE_MEDIUM_SSD, 1
-    value :STORAGE_MEDIUM_NVME, 2
-  end
-  add_enum "openstorage.api.AttachState" do
-    value :ATTACH_STATE_EXTERNAL, 0
-    value :ATTACH_STATE_INTERNAL, 1
-    value :ATTACH_STATE_INTERNAL_SWITCH, 2
-  end
-  add_enum "openstorage.api.OperationFlags" do
-    value :OP_FLAGS_UNKNOWN, 0
-    value :OP_FLAGS_NONE, 1
-    value :OP_FLAGS_DETACH_FORCE, 2
-  end
-  add_enum "openstorage.api.SdkTimeWeekday" do
-    value :SdkTimeWeekdaySunday, 0
-    value :SdkTimeWeekdayMonday, 1
-    value :SdkTimeWeekdayTuesday, 2
-    value :SdkTimeWeekdayWednesday, 3
-    value :SdkTimeWeekdayThursday, 4
-    value :SdkTimeWeekdayFriday, 5
-    value :SdkTimeWeekdaySaturday, 6
-  end
-  add_enum "openstorage.api.SdkCloudBackupOpType" do
-    value :SdkCloudBackupOpTypeUnknown, 0
-    value :SdkCloudBackupOpTypeBackupOp, 1
-    value :SdkCloudBackupOpTypeRestoreOp, 2
-  end
-  add_enum "openstorage.api.SdkCloudBackupStatusType" do
-    value :SdkCloudBackupStatusTypeUnknown, 0
-    value :SdkCloudBackupStatusTypeNotStarted, 1
-    value :SdkCloudBackupStatusTypeDone, 2
-    value :SdkCloudBackupStatusTypeAborted, 3
-    value :SdkCloudBackupStatusTypePaused, 4
-    value :SdkCloudBackupStatusTypeStopped, 5
-    value :SdkCloudBackupStatusTypeActive, 6
-    value :SdkCloudBackupStatusTypeFailed, 7
-  end
-  add_enum "openstorage.api.SdkCloudBackupRequestedState" do
-    value :SdkCloudBackupRequestedStateUnknown, 0
-    value :SdkCloudBackupRequestedStatePause, 1
-    value :SdkCloudBackupRequestedStateResume, 2
-    value :SdkCloudBackupRequestedStateStop, 3
+    add_message "openstorage.api.VolumeSetRequest" do
+      optional :locator, :message, 1, "openstorage.api.VolumeLocator"
+      optional :spec, :message, 2, "openstorage.api.VolumeSpec"
+      optional :action, :message, 3, "openstorage.api.VolumeStateAction"
+      map :options, :string, :string, 4
+    end
+    add_message "openstorage.api.VolumeSetResponse" do
+      optional :volume, :message, 1, "openstorage.api.Volume"
+      optional :volume_response, :message, 2, "openstorage.api.VolumeResponse"
+    end
+    add_message "openstorage.api.SnapCreateRequest" do
+      optional :id, :string, 1
+      optional :locator, :message, 2, "openstorage.api.VolumeLocator"
+      optional :readonly, :bool, 3
+      optional :no_retry, :bool, 4
+    end
+    add_message "openstorage.api.SnapCreateResponse" do
+      optional :volume_create_response, :message, 1, "openstorage.api.VolumeCreateResponse"
+    end
+    add_message "openstorage.api.VolumeInfo" do
+      optional :volume_id, :string, 1
+      optional :path, :string, 2
+      optional :storage, :message, 3, "openstorage.api.VolumeSpec"
+    end
+    add_message "openstorage.api.VolumeConsumer" do
+      optional :name, :string, 1
+      optional :namespace, :string, 2
+      optional :type, :string, 3
+      optional :node_id, :string, 4
+      optional :owner_name, :string, 5
+      optional :owner_type, :string, 6
+    end
+    add_message "openstorage.api.GraphDriverChanges" do
+      optional :path, :string, 1
+      optional :kind, :enum, 2, "openstorage.api.GraphDriverChangeType"
+    end
+    add_message "openstorage.api.ClusterResponse" do
+      optional :error, :string, 1
+    end
+    add_message "openstorage.api.ActiveRequest" do
+      map :ReqestKV, :int64, :string, 1
+    end
+    add_message "openstorage.api.ActiveRequests" do
+      optional :RequestCount, :int64, 1
+      repeated :ActiveRequest, :message, 2, "openstorage.api.ActiveRequest"
+    end
+    add_message "openstorage.api.GroupSnapCreateRequest" do
+      optional :id, :string, 1
+      map :Labels, :string, :string, 2
+      repeated :volume_ids, :string, 3
+    end
+    add_message "openstorage.api.GroupSnapCreateResponse" do
+      map :snapshots, :string, :message, 1, "openstorage.api.SnapCreateResponse"
+      optional :error, :string, 2
+    end
+    add_message "openstorage.api.StorageNode" do
+      optional :id, :string, 1
+      optional :cpu, :double, 2
+      optional :mem_total, :uint64, 3
+      optional :mem_used, :uint64, 4
+      optional :mem_free, :uint64, 5
+      optional :avg_load, :int64, 6
+      optional :status, :enum, 7, "openstorage.api.Status"
+      map :disks, :string, :message, 9, "openstorage.api.StorageResource"
+      repeated :pools, :message, 10, "openstorage.api.StoragePool"
+      optional :mgmt_ip, :string, 11
+      optional :data_ip, :string, 12
+      optional :hostname, :string, 15
+      map :node_labels, :string, :string, 16
+      optional :scheduler_node_name, :string, 17
+    end
+    add_message "openstorage.api.StorageCluster" do
+      optional :status, :enum, 1, "openstorage.api.Status"
+      optional :id, :string, 2
+      optional :name, :string, 3
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyCreateRequest" do
+      optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyCreateResponse" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyEnumerateResponse" do
+      repeated :storage_policies, :message, 1, "openstorage.api.SdkStoragePolicy"
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyInspectRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyInspectResponse" do
+      optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyDeleteRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyUpdateRequest" do
+      optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyUpdateResponse" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicySetDefaultRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicySetDefaultResponse" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyReleaseRequest" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyReleaseResponse" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyDefaultInspectRequest" do
+    end
+    add_message "openstorage.api.SdkOpenStoragePolicyDefaultInspectResponse" do
+      optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
+    end
+    add_message "openstorage.api.SdkSchedulePolicyCreateRequest" do
+      optional :schedule_policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
+    end
+    add_message "openstorage.api.SdkSchedulePolicyCreateResponse" do
+    end
+    add_message "openstorage.api.SdkSchedulePolicyUpdateRequest" do
+      optional :schedule_policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
+    end
+    add_message "openstorage.api.SdkSchedulePolicyUpdateResponse" do
+    end
+    add_message "openstorage.api.SdkSchedulePolicyEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkSchedulePolicyEnumerateResponse" do
+      repeated :policies, :message, 1, "openstorage.api.SdkSchedulePolicy"
+    end
+    add_message "openstorage.api.SdkSchedulePolicyInspectRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkSchedulePolicyInspectResponse" do
+      optional :policy, :message, 1, "openstorage.api.SdkSchedulePolicy"
+    end
+    add_message "openstorage.api.SdkSchedulePolicyDeleteRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkSchedulePolicyDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkSchedulePolicyIntervalDaily" do
+      optional :hour, :int32, 1
+      optional :minute, :int32, 2
+    end
+    add_message "openstorage.api.SdkSchedulePolicyIntervalWeekly" do
+      optional :day, :enum, 1, "openstorage.api.SdkTimeWeekday"
+      optional :hour, :int32, 2
+      optional :minute, :int32, 3
+    end
+    add_message "openstorage.api.SdkSchedulePolicyIntervalMonthly" do
+      optional :day, :int32, 1
+      optional :hour, :int32, 2
+      optional :minute, :int32, 3
+    end
+    add_message "openstorage.api.SdkSchedulePolicyIntervalPeriodic" do
+      optional :seconds, :int64, 1
+    end
+    add_message "openstorage.api.SdkSchedulePolicyInterval" do
+      optional :retain, :int64, 1
+      oneof :period_type do
+        optional :daily, :message, 200, "openstorage.api.SdkSchedulePolicyIntervalDaily"
+        optional :weekly, :message, 201, "openstorage.api.SdkSchedulePolicyIntervalWeekly"
+        optional :monthly, :message, 202, "openstorage.api.SdkSchedulePolicyIntervalMonthly"
+        optional :periodic, :message, 203, "openstorage.api.SdkSchedulePolicyIntervalPeriodic"
+      end
+    end
+    add_message "openstorage.api.SdkSchedulePolicy" do
+      optional :name, :string, 1
+      repeated :schedules, :message, 2, "openstorage.api.SdkSchedulePolicyInterval"
+    end
+    add_message "openstorage.api.SdkCredentialCreateRequest" do
+      optional :name, :string, 1
+      optional :bucket, :string, 2
+      optional :encryption_key, :string, 3
+      optional :ownership, :message, 4, "openstorage.api.Ownership"
+      oneof :credential_type do
+        optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
+        optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
+        optional :google_credential, :message, 202, "openstorage.api.SdkGoogleCredentialRequest"
+      end
+    end
+    add_message "openstorage.api.SdkCredentialCreateResponse" do
+      optional :credential_id, :string, 1
+    end
+    add_message "openstorage.api.SdkAwsCredentialRequest" do
+      optional :access_key, :string, 1
+      optional :secret_key, :string, 2
+      optional :endpoint, :string, 3
+      optional :region, :string, 4
+      optional :disable_ssl, :bool, 5
+    end
+    add_message "openstorage.api.SdkAzureCredentialRequest" do
+      optional :account_name, :string, 1
+      optional :account_key, :string, 2
+    end
+    add_message "openstorage.api.SdkGoogleCredentialRequest" do
+      optional :project_id, :string, 1
+      optional :json_key, :string, 2
+    end
+    add_message "openstorage.api.SdkAwsCredentialResponse" do
+      optional :access_key, :string, 2
+      optional :endpoint, :string, 3
+      optional :region, :string, 4
+      optional :disable_ssl, :bool, 5
+    end
+    add_message "openstorage.api.SdkAzureCredentialResponse" do
+      optional :account_name, :string, 2
+    end
+    add_message "openstorage.api.SdkGoogleCredentialResponse" do
+      optional :project_id, :string, 2
+    end
+    add_message "openstorage.api.SdkCredentialEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkCredentialEnumerateResponse" do
+      repeated :credential_ids, :string, 1
+    end
+    add_message "openstorage.api.SdkCredentialInspectRequest" do
+      optional :credential_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCredentialInspectResponse" do
+      optional :credential_id, :string, 1
+      optional :name, :string, 2
+      optional :bucket, :string, 3
+      optional :ownership, :message, 4, "openstorage.api.Ownership"
+      oneof :credential_type do
+        optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialResponse"
+        optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialResponse"
+        optional :google_credential, :message, 202, "openstorage.api.SdkGoogleCredentialResponse"
+      end
+    end
+    add_message "openstorage.api.SdkCredentialDeleteRequest" do
+      optional :credential_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCredentialDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkCredentialValidateRequest" do
+      optional :credential_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCredentialValidateResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeAttachOptions" do
+      optional :secret_name, :string, 1
+      optional :secret_key, :string, 2
+      optional :secret_context, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeMountRequest" do
+      optional :volume_id, :string, 1
+      optional :mount_path, :string, 2
+      optional :options, :message, 3, "openstorage.api.SdkVolumeAttachOptions"
+      map :driver_options, :string, :string, 4
+    end
+    add_message "openstorage.api.SdkVolumeMountResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeUnmountOptions" do
+      optional :delete_mount_path, :bool, 1
+      optional :no_delay_before_deleting_mount_path, :bool, 2
+    end
+    add_message "openstorage.api.SdkVolumeUnmountRequest" do
+      optional :volume_id, :string, 1
+      optional :mount_path, :string, 2
+      optional :options, :message, 3, "openstorage.api.SdkVolumeUnmountOptions"
+      map :driver_options, :string, :string, 4
+    end
+    add_message "openstorage.api.SdkVolumeUnmountResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeAttachRequest" do
+      optional :volume_id, :string, 1
+      optional :options, :message, 2, "openstorage.api.SdkVolumeAttachOptions"
+      map :driver_options, :string, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeAttachResponse" do
+      optional :device_path, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeDetachOptions" do
+      optional :force, :bool, 1
+      optional :unmount_before_detach, :bool, 2
+    end
+    add_message "openstorage.api.SdkVolumeDetachRequest" do
+      optional :volume_id, :string, 1
+      optional :options, :message, 2, "openstorage.api.SdkVolumeDetachOptions"
+      map :driver_options, :string, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeDetachResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeCreateRequest" do
+      optional :name, :string, 1
+      optional :spec, :message, 2, "openstorage.api.VolumeSpec"
+      map :labels, :string, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeCreateResponse" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeCloneRequest" do
+      optional :name, :string, 1
+      optional :parent_id, :string, 2
+    end
+    add_message "openstorage.api.SdkVolumeCloneResponse" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeDeleteRequest" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeInspectRequest" do
+      optional :volume_id, :string, 1
+      optional :options, :message, 2, "openstorage.api.VolumeInspectOptions"
+    end
+    add_message "openstorage.api.SdkVolumeInspectResponse" do
+      optional :volume, :message, 1, "openstorage.api.Volume"
+      optional :name, :string, 2
+      map :labels, :string, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeInspectWithFiltersRequest" do
+      optional :name, :string, 2
+      map :labels, :string, :string, 3
+      optional :ownership, :message, 4, "openstorage.api.Ownership"
+      optional :group, :message, 5, "openstorage.api.Group"
+      optional :options, :message, 6, "openstorage.api.VolumeInspectOptions"
+    end
+    add_message "openstorage.api.SdkVolumeInspectWithFiltersResponse" do
+      repeated :volumes, :message, 1, "openstorage.api.SdkVolumeInspectResponse"
+    end
+    add_message "openstorage.api.SdkVolumeUpdateRequest" do
+      optional :volume_id, :string, 1
+      map :labels, :string, :string, 3
+      optional :spec, :message, 4, "openstorage.api.VolumeSpecUpdate"
+    end
+    add_message "openstorage.api.SdkVolumeUpdateResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeStatsRequest" do
+      optional :volume_id, :string, 1
+      optional :not_cumulative, :bool, 2
+    end
+    add_message "openstorage.api.SdkVolumeStatsResponse" do
+      optional :stats, :message, 1, "openstorage.api.Stats"
+    end
+    add_message "openstorage.api.SdkVolumeCapacityUsageRequest" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeCapacityUsageResponse" do
+      optional :capacity_usage_info, :message, 1, "openstorage.api.CapacityUsageInfo"
+    end
+    add_message "openstorage.api.SdkVolumeEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkVolumeEnumerateResponse" do
+      repeated :volume_ids, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeEnumerateWithFiltersRequest" do
+      optional :name, :string, 2
+      map :labels, :string, :string, 3
+      optional :ownership, :message, 4, "openstorage.api.Ownership"
+      optional :group, :message, 5, "openstorage.api.Group"
+    end
+    add_message "openstorage.api.SdkVolumeEnumerateWithFiltersResponse" do
+      repeated :volume_ids, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotCreateRequest" do
+      optional :volume_id, :string, 1
+      optional :name, :string, 2
+      map :labels, :string, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotCreateResponse" do
+      optional :snapshot_id, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotRestoreRequest" do
+      optional :volume_id, :string, 1
+      optional :snapshot_id, :string, 2
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotRestoreResponse" do
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotEnumerateRequest" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotEnumerateResponse" do
+      repeated :volume_snapshot_ids, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest" do
+      optional :volume_id, :string, 1
+      map :labels, :string, :string, 2
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse" do
+      repeated :volume_snapshot_ids, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest" do
+      optional :volume_id, :string, 1
+      repeated :snapshot_schedule_names, :string, 2
+    end
+    add_message "openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse" do
+    end
+    add_message "openstorage.api.SdkClusterDomainsEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkClusterDomainsEnumerateResponse" do
+      repeated :cluster_domain_names, :string, 1
+    end
+    add_message "openstorage.api.SdkClusterDomainInspectRequest" do
+      optional :cluster_domain_name, :string, 1
+    end
+    add_message "openstorage.api.SdkClusterDomainInspectResponse" do
+      optional :cluster_domain_name, :string, 1
+      optional :is_active, :bool, 2
+    end
+    add_message "openstorage.api.SdkClusterDomainActivateRequest" do
+      optional :cluster_domain_name, :string, 1
+    end
+    add_message "openstorage.api.SdkClusterDomainActivateResponse" do
+    end
+    add_message "openstorage.api.SdkClusterDomainDeactivateRequest" do
+      optional :cluster_domain_name, :string, 1
+    end
+    add_message "openstorage.api.SdkClusterDomainDeactivateResponse" do
+    end
+    add_message "openstorage.api.SdkClusterInspectCurrentRequest" do
+    end
+    add_message "openstorage.api.SdkClusterInspectCurrentResponse" do
+      optional :cluster, :message, 1, "openstorage.api.StorageCluster"
+    end
+    add_message "openstorage.api.SdkNodeInspectRequest" do
+      optional :node_id, :string, 1
+    end
+    add_message "openstorage.api.SdkNodeInspectResponse" do
+      optional :node, :message, 1, "openstorage.api.StorageNode"
+    end
+    add_message "openstorage.api.SdkNodeInspectCurrentRequest" do
+    end
+    add_message "openstorage.api.SdkNodeInspectCurrentResponse" do
+      optional :node, :message, 1, "openstorage.api.StorageNode"
+    end
+    add_message "openstorage.api.SdkNodeEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkNodeEnumerateResponse" do
+      repeated :node_ids, :string, 1
+    end
+    add_message "openstorage.api.SdkObjectstoreInspectRequest" do
+      optional :objectstore_id, :string, 1
+    end
+    add_message "openstorage.api.SdkObjectstoreInspectResponse" do
+      optional :objectstore_status, :message, 1, "openstorage.api.ObjectstoreInfo"
+    end
+    add_message "openstorage.api.SdkObjectstoreCreateRequest" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkObjectstoreCreateResponse" do
+      optional :objectstore_status, :message, 1, "openstorage.api.ObjectstoreInfo"
+    end
+    add_message "openstorage.api.SdkObjectstoreDeleteRequest" do
+      optional :objectstore_id, :string, 1
+    end
+    add_message "openstorage.api.SdkObjectstoreDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkObjectstoreUpdateRequest" do
+      optional :objectstore_id, :string, 1
+      optional :enable, :bool, 2
+    end
+    add_message "openstorage.api.SdkObjectstoreUpdateResponse" do
+    end
+    add_message "openstorage.api.SdkCloudBackupCreateRequest" do
+      optional :volume_id, :string, 1
+      optional :credential_id, :string, 2
+      optional :full, :bool, 3
+      optional :task_id, :string, 4
+      map :labels, :string, :string, 5
+      optional :full_backup_frequency, :uint32, 6
+    end
+    add_message "openstorage.api.SdkCloudBackupCreateResponse" do
+      optional :task_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudBackupRestoreRequest" do
+      optional :backup_id, :string, 1
+      optional :restore_volume_name, :string, 2
+      optional :credential_id, :string, 3
+      optional :node_id, :string, 4
+      optional :task_id, :string, 5
+    end
+    add_message "openstorage.api.SdkCloudBackupRestoreResponse" do
+      optional :restore_volume_id, :string, 1
+      optional :task_id, :string, 2
+    end
+    add_message "openstorage.api.SdkCloudBackupDeleteRequest" do
+      optional :backup_id, :string, 1
+      optional :credential_id, :string, 2
+      optional :force, :bool, 3
+    end
+    add_message "openstorage.api.SdkCloudBackupDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkCloudBackupDeleteAllRequest" do
+      optional :src_volume_id, :string, 1
+      optional :credential_id, :string, 2
+    end
+    add_message "openstorage.api.SdkCloudBackupDeleteAllResponse" do
+    end
+    add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest" do
+      optional :src_volume_id, :string, 1
+      optional :cluster_id, :string, 2
+      optional :credential_id, :string, 3
+      optional :all, :bool, 4
+    end
+    add_message "openstorage.api.SdkCloudBackupInfo" do
+      optional :id, :string, 1
+      optional :src_volume_id, :string, 2
+      optional :src_volume_name, :string, 3
+      optional :timestamp, :message, 4, "google.protobuf.Timestamp"
+      map :metadata, :string, :string, 5
+      optional :status, :enum, 6, "openstorage.api.SdkCloudBackupStatusType"
+    end
+    add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse" do
+      repeated :backups, :message, 1, "openstorage.api.SdkCloudBackupInfo"
+    end
+    add_message "openstorage.api.SdkCloudBackupStatus" do
+      optional :backup_id, :string, 1
+      optional :optype, :enum, 2, "openstorage.api.SdkCloudBackupOpType"
+      optional :status, :enum, 3, "openstorage.api.SdkCloudBackupStatusType"
+      optional :bytes_done, :uint64, 4
+      optional :start_time, :message, 5, "google.protobuf.Timestamp"
+      optional :completed_time, :message, 6, "google.protobuf.Timestamp"
+      optional :node_id, :string, 7
+      optional :src_volume_id, :string, 8
+      repeated :info, :string, 9
+      optional :credential_id, :string, 10
+      optional :bytes_total, :uint64, 11
+      optional :eta_seconds, :int64, 12
+      optional :group_id, :string, 13
+    end
+    add_message "openstorage.api.SdkCloudBackupStatusRequest" do
+      optional :volume_id, :string, 1
+      optional :local, :bool, 2
+      optional :task_id, :string, 3
+    end
+    add_message "openstorage.api.SdkCloudBackupStatusResponse" do
+      map :statuses, :string, :message, 1, "openstorage.api.SdkCloudBackupStatus"
+    end
+    add_message "openstorage.api.SdkCloudBackupCatalogRequest" do
+      optional :backup_id, :string, 1
+      optional :credential_id, :string, 2
+    end
+    add_message "openstorage.api.SdkCloudBackupCatalogResponse" do
+      repeated :contents, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudBackupHistoryItem" do
+      optional :src_volume_id, :string, 1
+      optional :timestamp, :message, 2, "google.protobuf.Timestamp"
+      optional :status, :enum, 3, "openstorage.api.SdkCloudBackupStatusType"
+    end
+    add_message "openstorage.api.SdkCloudBackupHistoryRequest" do
+      optional :src_volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudBackupHistoryResponse" do
+      repeated :history_list, :message, 1, "openstorage.api.SdkCloudBackupHistoryItem"
+    end
+    add_message "openstorage.api.SdkCloudBackupStateChangeRequest" do
+      optional :task_id, :string, 1
+      optional :requested_state, :enum, 2, "openstorage.api.SdkCloudBackupRequestedState"
+    end
+    add_message "openstorage.api.SdkCloudBackupStateChangeResponse" do
+    end
+    add_message "openstorage.api.SdkCloudBackupScheduleInfo" do
+      optional :src_volume_id, :string, 1
+      optional :credential_id, :string, 2
+      repeated :schedules, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
+      optional :max_backups, :uint64, 4
+      optional :full, :bool, 5
+      optional :retention_days, :uint32, 6
+    end
+    add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do
+      optional :cloud_sched_info, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
+    end
+    add_message "openstorage.api.SdkCloudBackupSchedCreateResponse" do
+      optional :backup_schedule_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudBackupSchedDeleteRequest" do
+      optional :backup_schedule_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudBackupSchedDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkCloudBackupSchedEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkCloudBackupSchedEnumerateResponse" do
+      map :cloud_sched_list, :string, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
+    end
+    add_message "openstorage.api.SdkRule" do
+      repeated :services, :string, 1
+      repeated :apis, :string, 2
+    end
+    add_message "openstorage.api.SdkRole" do
+      optional :name, :string, 1
+      repeated :rules, :message, 2, "openstorage.api.SdkRule"
+    end
+    add_message "openstorage.api.SdkRoleCreateRequest" do
+      optional :role, :message, 1, "openstorage.api.SdkRole"
+    end
+    add_message "openstorage.api.SdkRoleCreateResponse" do
+      optional :role, :message, 1, "openstorage.api.SdkRole"
+    end
+    add_message "openstorage.api.SdkRoleEnumerateRequest" do
+    end
+    add_message "openstorage.api.SdkRoleEnumerateResponse" do
+      repeated :names, :string, 1
+    end
+    add_message "openstorage.api.SdkRoleInspectRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkRoleInspectResponse" do
+      optional :role, :message, 1, "openstorage.api.SdkRole"
+    end
+    add_message "openstorage.api.SdkRoleDeleteRequest" do
+      optional :name, :string, 1
+    end
+    add_message "openstorage.api.SdkRoleDeleteResponse" do
+    end
+    add_message "openstorage.api.SdkRoleUpdateRequest" do
+      optional :role, :message, 1, "openstorage.api.SdkRole"
+    end
+    add_message "openstorage.api.SdkRoleUpdateResponse" do
+      optional :role, :message, 1, "openstorage.api.SdkRole"
+    end
+    add_message "openstorage.api.SdkIdentityCapabilitiesRequest" do
+    end
+    add_message "openstorage.api.SdkIdentityCapabilitiesResponse" do
+      repeated :capabilities, :message, 1, "openstorage.api.SdkServiceCapability"
+    end
+    add_message "openstorage.api.SdkIdentityVersionRequest" do
+    end
+    add_message "openstorage.api.SdkIdentityVersionResponse" do
+      optional :sdk_version, :message, 1, "openstorage.api.SdkVersion"
+      optional :version, :message, 2, "openstorage.api.StorageVersion"
+    end
+    add_message "openstorage.api.SdkServiceCapability" do
+      oneof :type do
+        optional :service, :message, 1, "openstorage.api.SdkServiceCapability.OpenStorageService"
+      end
+    end
+    add_message "openstorage.api.SdkServiceCapability.OpenStorageService" do
+      optional :type, :enum, 1, "openstorage.api.SdkServiceCapability.OpenStorageService.Type"
+    end
+    add_enum "openstorage.api.SdkServiceCapability.OpenStorageService.Type" do
+      value :UNKNOWN, 0
+      value :CLUSTER, 1
+      value :CLOUD_BACKUP, 2
+      value :CREDENTIALS, 3
+      value :NODE, 4
+      value :OBJECT_STORAGE, 5
+      value :SCHEDULE_POLICY, 6
+      value :VOLUME, 7
+      value :ALERTS, 8
+      value :MOUNT_ATTACH, 9
+      value :ROLE, 10
+      value :CLUSTER_PAIR, 11
+      value :MIGRATE, 12
+      value :STORAGE_POLICY, 13
+    end
+    add_message "openstorage.api.SdkVersion" do
+      optional :major, :int32, 1
+      optional :minor, :int32, 2
+      optional :patch, :int32, 3
+      optional :version, :string, 4
+    end
+    add_enum "openstorage.api.SdkVersion.Version" do
+      value :MUST_HAVE_ZERO_VALUE, 0
+      value :Major, 0
+      value :Minor, 54
+      value :Patch, 0
+    end
+    add_message "openstorage.api.StorageVersion" do
+      optional :driver, :string, 1
+      optional :version, :string, 2
+      map :details, :string, :string, 3
+    end
+    add_message "openstorage.api.CloudMigrate" do
+    end
+    add_enum "openstorage.api.CloudMigrate.OperationType" do
+      value :InvalidType, 0
+      value :MigrateCluster, 1
+      value :MigrateVolume, 2
+      value :MigrateVolumeGroup, 3
+    end
+    add_enum "openstorage.api.CloudMigrate.Stage" do
+      value :InvalidStage, 0
+      value :Backup, 1
+      value :Restore, 2
+      value :VolumeUpdate, 3
+      value :Done, 4
+    end
+    add_enum "openstorage.api.CloudMigrate.Status" do
+      value :InvalidStatus, 0
+      value :Queued, 1
+      value :Initialized, 2
+      value :InProgress, 3
+      value :Failed, 4
+      value :Complete, 5
+      value :Canceled, 6
+    end
+    add_message "openstorage.api.CloudMigrateStartRequest" do
+      optional :operation, :enum, 1, "openstorage.api.CloudMigrate.OperationType"
+      optional :cluster_id, :string, 2
+      optional :target_id, :string, 3
+      optional :task_id, :string, 4
+    end
+    add_message "openstorage.api.SdkCloudMigrateStartRequest" do
+      optional :cluster_id, :string, 1
+      optional :task_id, :string, 2
+      oneof :opt do
+        optional :volume, :message, 200, "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume"
+        optional :volume_group, :message, 201, "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup"
+        optional :all_volumes, :message, 202, "openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes"
+      end
+    end
+    add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup" do
+      optional :group_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes" do
+    end
+    add_message "openstorage.api.CloudMigrateStartResponse" do
+      optional :task_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudMigrateStartResponse" do
+      optional :result, :message, 1, "openstorage.api.CloudMigrateStartResponse"
+    end
+    add_message "openstorage.api.CloudMigrateCancelRequest" do
+      optional :task_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCloudMigrateCancelRequest" do
+      optional :request, :message, 1, "openstorage.api.CloudMigrateCancelRequest"
+    end
+    add_message "openstorage.api.SdkCloudMigrateCancelResponse" do
+    end
+    add_message "openstorage.api.CloudMigrateInfo" do
+      optional :task_id, :string, 1
+      optional :cluster_id, :string, 2
+      optional :local_volume_id, :string, 3
+      optional :local_volume_name, :string, 4
+      optional :remote_volume_id, :string, 5
+      optional :cloudbackup_id, :string, 6
+      optional :current_stage, :enum, 7, "openstorage.api.CloudMigrate.Stage"
+      optional :status, :enum, 8, "openstorage.api.CloudMigrate.Status"
+      optional :last_update, :message, 9, "google.protobuf.Timestamp"
+      optional :error_reason, :string, 10
+      optional :start_time, :message, 11, "google.protobuf.Timestamp"
+      optional :completed_time, :message, 12, "google.protobuf.Timestamp"
+      optional :bytes_total, :uint64, 13
+      optional :bytes_done, :uint64, 14
+      optional :eta_seconds, :int64, 15
+    end
+    add_message "openstorage.api.CloudMigrateInfoList" do
+      repeated :list, :message, 1, "openstorage.api.CloudMigrateInfo"
+    end
+    add_message "openstorage.api.SdkCloudMigrateStatusRequest" do
+      optional :request, :message, 1, "openstorage.api.CloudMigrateStatusRequest"
+    end
+    add_message "openstorage.api.CloudMigrateStatusRequest" do
+      optional :task_id, :string, 1
+      optional :cluster_id, :string, 2
+    end
+    add_message "openstorage.api.CloudMigrateStatusResponse" do
+      map :info, :string, :message, 1, "openstorage.api.CloudMigrateInfoList"
+    end
+    add_message "openstorage.api.SdkCloudMigrateStatusResponse" do
+      optional :result, :message, 1, "openstorage.api.CloudMigrateStatusResponse"
+    end
+    add_message "openstorage.api.ClusterPairMode" do
+    end
+    add_enum "openstorage.api.ClusterPairMode.Mode" do
+      value :Default, 0
+      value :DisasterRecovery, 1
+    end
+    add_message "openstorage.api.ClusterPairCreateRequest" do
+      optional :remote_cluster_ip, :string, 1
+      optional :remote_cluster_port, :uint32, 2
+      optional :remote_cluster_token, :string, 3
+      optional :set_default, :bool, 4
+      optional :mode, :enum, 5, "openstorage.api.ClusterPairMode.Mode"
+    end
+    add_message "openstorage.api.ClusterPairCreateResponse" do
+      optional :remote_cluster_id, :string, 1
+      optional :remote_cluster_name, :string, 2
+    end
+    add_message "openstorage.api.SdkClusterPairCreateRequest" do
+      optional :request, :message, 1, "openstorage.api.ClusterPairCreateRequest"
+    end
+    add_message "openstorage.api.SdkClusterPairCreateResponse" do
+      optional :result, :message, 1, "openstorage.api.ClusterPairCreateResponse"
+    end
+    add_message "openstorage.api.ClusterPairProcessRequest" do
+      optional :source_cluster_id, :string, 1
+      optional :remote_cluster_token, :string, 2
+      optional :mode, :enum, 3, "openstorage.api.ClusterPairMode.Mode"
+    end
+    add_message "openstorage.api.ClusterPairProcessResponse" do
+      optional :remote_cluster_id, :string, 1
+      optional :remote_cluster_name, :string, 2
+      repeated :remote_cluster_endpoints, :string, 3
+      map :options, :string, :string, 4
+    end
+    add_message "openstorage.api.SdkClusterPairDeleteRequest" do
+      optional :cluster_id, :string, 1
+    end
+    add_message "openstorage.api.SdkClusterPairDeleteResponse" do
+    end
+    add_message "openstorage.api.ClusterPairTokenGetResponse" do
+      optional :token, :string, 1
+    end
+    add_message "openstorage.api.SdkClusterPairGetTokenRequest" do
+    end
+    add_message "openstorage.api.SdkClusterPairGetTokenResponse" do
+      optional :result, :message, 1, "openstorage.api.ClusterPairTokenGetResponse"
+    end
+    add_message "openstorage.api.SdkClusterPairResetTokenRequest" do
+    end
+    add_message "openstorage.api.SdkClusterPairResetTokenResponse" do
+      optional :result, :message, 1, "openstorage.api.ClusterPairTokenGetResponse"
+    end
+    add_message "openstorage.api.ClusterPairInfo" do
+      optional :id, :string, 1
+      optional :name, :string, 2
+      optional :endpoint, :string, 3
+      repeated :current_endpoints, :string, 4
+      optional :secure, :bool, 5
+      optional :token, :string, 6
+      map :options, :string, :string, 7
+      optional :mode, :enum, 8, "openstorage.api.ClusterPairMode.Mode"
+    end
+    add_message "openstorage.api.SdkClusterPairInspectRequest" do
+      optional :id, :string, 1
+    end
+    add_message "openstorage.api.ClusterPairGetResponse" do
+      optional :pair_info, :message, 1, "openstorage.api.ClusterPairInfo"
+    end
+    add_message "openstorage.api.SdkClusterPairInspectResponse" do
+      optional :result, :message, 1, "openstorage.api.ClusterPairGetResponse"
+    end
+    add_message "openstorage.api.SdkClusterPairEnumerateRequest" do
+    end
+    add_message "openstorage.api.ClusterPairsEnumerateResponse" do
+      optional :default_id, :string, 1
+      map :pairs, :string, :message, 2, "openstorage.api.ClusterPairInfo"
+    end
+    add_message "openstorage.api.SdkClusterPairEnumerateResponse" do
+      optional :result, :message, 1, "openstorage.api.ClusterPairsEnumerateResponse"
+    end
+    add_message "openstorage.api.Catalog" do
+      optional :name, :string, 1
+      optional :path, :string, 2
+      optional :type, :string, 3
+      optional :size, :uint64, 4
+      optional :LastModified, :message, 5, "google.protobuf.Timestamp"
+      repeated :children, :message, 6, "openstorage.api.Catalog"
+    end
+    add_message "openstorage.api.Report" do
+      optional :directories, :int64, 2
+      optional :files, :int64, 3
+    end
+    add_message "openstorage.api.CatalogResponse" do
+      optional :root, :message, 1, "openstorage.api.Catalog"
+      optional :report, :message, 2, "openstorage.api.Report"
+    end
+    add_message "openstorage.api.LocateResponse" do
+      map :mounts, :string, :string, 1
+      map :dockerids, :string, :string, 2
+    end
+    add_message "openstorage.api.VolumePlacementStrategy" do
+      repeated :rules, :message, 1, "openstorage.api.VolumePlacementRule"
+    end
+    add_message "openstorage.api.VolumePlacementRule" do
+      optional :affected_replicas, :int32, 1
+      optional :weight, :int64, 2
+      optional :enforcement, :enum, 3, "openstorage.api.VolumePlacementRule.EnforcementType"
+      optional :type, :enum, 4, "openstorage.api.VolumePlacementRule.AffinityRuleType"
+      repeated :match_expressions, :message, 5, "openstorage.api.LabelSelectorRequirement"
+    end
+    add_enum "openstorage.api.VolumePlacementRule.EnforcementType" do
+      value :required, 0
+      value :preferred, 1
+    end
+    add_enum "openstorage.api.VolumePlacementRule.AffinityRuleType" do
+      value :affinity, 0
+      value :antiAffinity, 1
+    end
+    add_message "openstorage.api.LabelSelectorRequirement" do
+      optional :key, :string, 1
+      optional :operator, :enum, 2, "openstorage.api.LabelSelectorRequirement.Operator"
+      repeated :values, :string, 3
+    end
+    add_enum "openstorage.api.LabelSelectorRequirement.Operator" do
+      value :In, 0
+      value :NotIn, 1
+      value :Exists, 2
+      value :DoesNotExist, 3
+      value :Gt, 4
+      value :Lt, 5
+    end
+    add_enum "openstorage.api.Status" do
+      value :STATUS_NONE, 0
+      value :STATUS_INIT, 1
+      value :STATUS_OK, 2
+      value :STATUS_OFFLINE, 3
+      value :STATUS_ERROR, 4
+      value :STATUS_NOT_IN_QUORUM, 5
+      value :STATUS_DECOMMISSION, 6
+      value :STATUS_MAINTENANCE, 7
+      value :STATUS_STORAGE_DOWN, 8
+      value :STATUS_STORAGE_DEGRADED, 9
+      value :STATUS_NEEDS_REBOOT, 10
+      value :STATUS_STORAGE_REBALANCE, 11
+      value :STATUS_STORAGE_DRIVE_REPLACE, 12
+      value :STATUS_NOT_IN_QUORUM_NO_STORAGE, 13
+      value :STATUS_MAX, 14
+    end
+    add_enum "openstorage.api.DriverType" do
+      value :DRIVER_TYPE_NONE, 0
+      value :DRIVER_TYPE_FILE, 1
+      value :DRIVER_TYPE_BLOCK, 2
+      value :DRIVER_TYPE_OBJECT, 3
+      value :DRIVER_TYPE_CLUSTERED, 4
+      value :DRIVER_TYPE_GRAPH, 5
+    end
+    add_enum "openstorage.api.FSType" do
+      value :FS_TYPE_NONE, 0
+      value :FS_TYPE_BTRFS, 1
+      value :FS_TYPE_EXT4, 2
+      value :FS_TYPE_FUSE, 3
+      value :FS_TYPE_NFS, 4
+      value :FS_TYPE_VFS, 5
+      value :FS_TYPE_XFS, 6
+      value :FS_TYPE_ZFS, 7
+      value :FS_TYPE_XFSv2, 8
+    end
+    add_enum "openstorage.api.GraphDriverChangeType" do
+      value :GRAPH_DRIVER_CHANGE_TYPE_NONE, 0
+      value :GRAPH_DRIVER_CHANGE_TYPE_MODIFIED, 1
+      value :GRAPH_DRIVER_CHANGE_TYPE_ADDED, 2
+      value :GRAPH_DRIVER_CHANGE_TYPE_DELETED, 3
+    end
+    add_enum "openstorage.api.SeverityType" do
+      value :SEVERITY_TYPE_NONE, 0
+      value :SEVERITY_TYPE_ALARM, 1
+      value :SEVERITY_TYPE_WARNING, 2
+      value :SEVERITY_TYPE_NOTIFY, 3
+    end
+    add_enum "openstorage.api.ResourceType" do
+      value :RESOURCE_TYPE_NONE, 0
+      value :RESOURCE_TYPE_VOLUME, 1
+      value :RESOURCE_TYPE_NODE, 2
+      value :RESOURCE_TYPE_CLUSTER, 3
+      value :RESOURCE_TYPE_DRIVE, 4
+    end
+    add_enum "openstorage.api.AlertActionType" do
+      value :ALERT_ACTION_TYPE_NONE, 0
+      value :ALERT_ACTION_TYPE_DELETE, 1
+      value :ALERT_ACTION_TYPE_CREATE, 2
+      value :ALERT_ACTION_TYPE_UPDATE, 3
+    end
+    add_enum "openstorage.api.VolumeActionParam" do
+      value :VOLUME_ACTION_PARAM_NONE, 0
+      value :VOLUME_ACTION_PARAM_OFF, 1
+      value :VOLUME_ACTION_PARAM_ON, 2
+    end
+    add_enum "openstorage.api.CosType" do
+      value :NONE, 0
+      value :LOW, 1
+      value :MEDIUM, 2
+      value :HIGH, 3
+    end
+    add_enum "openstorage.api.IoProfile" do
+      value :IO_PROFILE_SEQUENTIAL, 0
+      value :IO_PROFILE_RANDOM, 1
+      value :IO_PROFILE_DB, 2
+      value :IO_PROFILE_DB_REMOTE, 3
+      value :IO_PROFILE_CMS, 4
+    end
+    add_enum "openstorage.api.VolumeState" do
+      value :VOLUME_STATE_NONE, 0
+      value :VOLUME_STATE_PENDING, 1
+      value :VOLUME_STATE_AVAILABLE, 2
+      value :VOLUME_STATE_ATTACHED, 3
+      value :VOLUME_STATE_DETACHED, 4
+      value :VOLUME_STATE_DETATCHING, 5
+      value :VOLUME_STATE_ERROR, 6
+      value :VOLUME_STATE_DELETED, 7
+      value :VOLUME_STATE_TRY_DETACHING, 8
+      value :VOLUME_STATE_RESTORE, 9
+    end
+    add_enum "openstorage.api.VolumeStatus" do
+      value :VOLUME_STATUS_NONE, 0
+      value :VOLUME_STATUS_NOT_PRESENT, 1
+      value :VOLUME_STATUS_UP, 2
+      value :VOLUME_STATUS_DOWN, 3
+      value :VOLUME_STATUS_DEGRADED, 4
+    end
+    add_enum "openstorage.api.StorageMedium" do
+      value :STORAGE_MEDIUM_MAGNETIC, 0
+      value :STORAGE_MEDIUM_SSD, 1
+      value :STORAGE_MEDIUM_NVME, 2
+    end
+    add_enum "openstorage.api.AttachState" do
+      value :ATTACH_STATE_EXTERNAL, 0
+      value :ATTACH_STATE_INTERNAL, 1
+      value :ATTACH_STATE_INTERNAL_SWITCH, 2
+    end
+    add_enum "openstorage.api.OperationFlags" do
+      value :OP_FLAGS_UNKNOWN, 0
+      value :OP_FLAGS_NONE, 1
+      value :OP_FLAGS_DETACH_FORCE, 2
+    end
+    add_enum "openstorage.api.SdkTimeWeekday" do
+      value :SdkTimeWeekdaySunday, 0
+      value :SdkTimeWeekdayMonday, 1
+      value :SdkTimeWeekdayTuesday, 2
+      value :SdkTimeWeekdayWednesday, 3
+      value :SdkTimeWeekdayThursday, 4
+      value :SdkTimeWeekdayFriday, 5
+      value :SdkTimeWeekdaySaturday, 6
+    end
+    add_enum "openstorage.api.SdkCloudBackupOpType" do
+      value :SdkCloudBackupOpTypeUnknown, 0
+      value :SdkCloudBackupOpTypeBackupOp, 1
+      value :SdkCloudBackupOpTypeRestoreOp, 2
+    end
+    add_enum "openstorage.api.SdkCloudBackupStatusType" do
+      value :SdkCloudBackupStatusTypeUnknown, 0
+      value :SdkCloudBackupStatusTypeNotStarted, 1
+      value :SdkCloudBackupStatusTypeDone, 2
+      value :SdkCloudBackupStatusTypeAborted, 3
+      value :SdkCloudBackupStatusTypePaused, 4
+      value :SdkCloudBackupStatusTypeStopped, 5
+      value :SdkCloudBackupStatusTypeActive, 6
+      value :SdkCloudBackupStatusTypeFailed, 7
+      value :SdkCloudBackupStatusTypeQueued, 8
+    end
+    add_enum "openstorage.api.SdkCloudBackupRequestedState" do
+      value :SdkCloudBackupRequestedStateUnknown, 0
+      value :SdkCloudBackupRequestedStatePause, 1
+      value :SdkCloudBackupRequestedStateResume, 2
+      value :SdkCloudBackupRequestedStateStop, 3
+    end
   end
 end
 
