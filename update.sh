@@ -24,6 +24,7 @@ for branch in $branches ; do
 		git commit -am "Update to $ver"
 	else
 		echo ">>> Branch $lb does not need an update. At ver $ver"
+		git checkout api.swagger.json
 	fi
 done
 git checkout master
