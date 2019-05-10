@@ -5,8 +5,9 @@ FROM fedora
 MAINTAINER luis@portworx.com
 
 ENV GOPATH=/go
-RUN dnf -y update
-RUN dnf -y install \
+RUN dnf -y update && \
+    dnf -y install \
+    findutils \
     golang-bin \
     python \
     python-pip \
@@ -16,7 +17,9 @@ RUN dnf -y install \
     git \
     unzip \
     protobuf-compiler \
-    protobuf-devel
+    protobuf-devel && \
+    dnf clean all && \
+    rm -rf /var/cache/yum
 RUN pip install virtualenv
 RUN gem install grpc && gem install grpc-tools
 RUN go get -u github.com/golang/protobuf/protoc-gen-go && \
@@ -49,11 +52,20 @@ RUN git checkout v1.4.1 && \
 
 # Download Dartlang
 WORKDIR /usr/local
-RUN curl -O https://storage.googleapis.com/dart-archive/channels/stable/release/2.3.0/sdk/dartsdk-linux-x64-release.zip && \
+RUN curl -O https://storage.googleapis.com/dart-archive/channels/stable/release/2.2.0/sdk/dartsdk-linux-x64-release.zip && \
     unzip dartsdk-linux-x64-release.zip && \
     export PATH=$PATH:/usr/local/dart-sdk/bin && \
     pub global activate protoc_plugin && \
     echo 'export PATH=$PATH:/usr/local/dart-sdk/bin:$HOME/.pub-cache/bin' > /etc/profile.d/dart.sh
+
+# Download protobuf files
+WORKDIR /go/src/github.com
+RUN mkdir protocolbuffers && \
+    cd protocolbuffers && \
+    git clone https://github.com/protocolbuffers/protobuf.git && \
+    cd protobuf && \
+    git checkout v3.6.1 && \
+    find . -type f  | grep -v ".proto$" | xargs rm -f
 
 # Finally, set working directory to the openstorage project
 RUN mkdir -p /go/src/github.com/libopenstorage/openstorage

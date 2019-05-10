@@ -211,6 +211,7 @@ const SdkCloudBackupStatusType$json = const {
     const {'1': 'SdkCloudBackupStatusTypeActive', '2': 6},
     const {'1': 'SdkCloudBackupStatusTypeFailed', '2': 7},
     const {'1': 'SdkCloudBackupStatusTypeQueued', '2': 8},
+    const {'1': 'SdkCloudBackupStatusTypeInvalid', '2': 9},
   ],
 };
 
@@ -1947,7 +1948,21 @@ const SdkCloudBackupEnumerateWithFiltersRequest$json = const {
     const {'1': 'cluster_id', '3': 2, '4': 1, '5': 9, '10': 'clusterId'},
     const {'1': 'credential_id', '3': 3, '4': 1, '5': 9, '10': 'credentialId'},
     const {'1': 'all', '3': 4, '4': 1, '5': 8, '10': 'all'},
+    const {'1': 'status_filter', '3': 5, '4': 1, '5': 14, '6': '.openstorage.api.SdkCloudBackupStatusType', '10': 'statusFilter'},
+    const {'1': 'metadata_filter', '3': 6, '4': 3, '5': 11, '6': '.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry', '10': 'metadataFilter'},
+    const {'1': 'max_backups', '3': 7, '4': 1, '5': 4, '10': 'maxBackups'},
+    const {'1': 'continuation_token', '3': 8, '4': 1, '5': 9, '10': 'continuationToken'},
   ],
+  '3': const [SdkCloudBackupEnumerateWithFiltersRequest_MetadataFilterEntry$json],
+};
+
+const SdkCloudBackupEnumerateWithFiltersRequest_MetadataFilterEntry$json = const {
+  '1': 'MetadataFilterEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
 };
 
 const SdkCloudBackupInfo$json = const {
@@ -1976,6 +1991,7 @@ const SdkCloudBackupEnumerateWithFiltersResponse$json = const {
   '1': 'SdkCloudBackupEnumerateWithFiltersResponse',
   '2': const [
     const {'1': 'backups', '3': 1, '4': 3, '5': 11, '6': '.openstorage.api.SdkCloudBackupInfo', '10': 'backups'},
+    const {'1': 'continuation_token', '3': 2, '4': 1, '5': 9, '10': 'continuationToken'},
   ],
 };
 
@@ -2290,7 +2306,7 @@ const SdkVersion_Version$json = const {
   '2': const [
     const {'1': 'MUST_HAVE_ZERO_VALUE', '2': 0},
     const {'1': 'Major', '2': 0},
-    const {'1': 'Minor', '2': 54},
+    const {'1': 'Minor', '2': 55},
     const {'1': 'Patch', '2': 0},
   ],
   '3': const {'2': true},

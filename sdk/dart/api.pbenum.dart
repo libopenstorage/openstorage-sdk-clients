@@ -391,6 +391,7 @@ class SdkCloudBackupStatusType extends $pb.ProtobufEnum {
   static const SdkCloudBackupStatusType SdkCloudBackupStatusTypeActive = SdkCloudBackupStatusType._(6, 'SdkCloudBackupStatusTypeActive');
   static const SdkCloudBackupStatusType SdkCloudBackupStatusTypeFailed = SdkCloudBackupStatusType._(7, 'SdkCloudBackupStatusTypeFailed');
   static const SdkCloudBackupStatusType SdkCloudBackupStatusTypeQueued = SdkCloudBackupStatusType._(8, 'SdkCloudBackupStatusTypeQueued');
+  static const SdkCloudBackupStatusType SdkCloudBackupStatusTypeInvalid = SdkCloudBackupStatusType._(9, 'SdkCloudBackupStatusTypeInvalid');
 
   static const $core.List<SdkCloudBackupStatusType> values = <SdkCloudBackupStatusType> [
     SdkCloudBackupStatusTypeUnknown,
@@ -402,6 +403,7 @@ class SdkCloudBackupStatusType extends $pb.ProtobufEnum {
     SdkCloudBackupStatusTypeActive,
     SdkCloudBackupStatusTypeFailed,
     SdkCloudBackupStatusTypeQueued,
+    SdkCloudBackupStatusTypeInvalid,
   ];
 
   static final $core.Map<$core.int, SdkCloudBackupStatusType> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -504,7 +506,7 @@ class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
 
 class SdkVersion_Version extends $pb.ProtobufEnum {
   static const SdkVersion_Version MUST_HAVE_ZERO_VALUE = SdkVersion_Version._(0, 'MUST_HAVE_ZERO_VALUE');
-  static const SdkVersion_Version Minor = SdkVersion_Version._(54, 'Minor');
+  static const SdkVersion_Version Minor = SdkVersion_Version._(55, 'Minor');
 
   static const SdkVersion_Version Major = MUST_HAVE_ZERO_VALUE;
   static const SdkVersion_Version Patch = MUST_HAVE_ZERO_VALUE;

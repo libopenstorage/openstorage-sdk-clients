@@ -868,6 +868,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :cluster_id, :string, 2
       optional :credential_id, :string, 3
       optional :all, :bool, 4
+      optional :status_filter, :enum, 5, "openstorage.api.SdkCloudBackupStatusType"
+      map :metadata_filter, :string, :string, 6
+      optional :max_backups, :uint64, 7
+      optional :continuation_token, :string, 8
     end
     add_message "openstorage.api.SdkCloudBackupInfo" do
       optional :id, :string, 1
@@ -879,6 +883,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse" do
       repeated :backups, :message, 1, "openstorage.api.SdkCloudBackupInfo"
+      optional :continuation_token, :string, 2
     end
     add_message "openstorage.api.SdkCloudBackupStatus" do
       optional :backup_id, :string, 1
@@ -1031,7 +1036,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 54
+      value :Minor, 55
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1401,6 +1406,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkCloudBackupStatusTypeActive, 6
       value :SdkCloudBackupStatusTypeFailed, 7
       value :SdkCloudBackupStatusTypeQueued, 8
+      value :SdkCloudBackupStatusTypeInvalid, 9
     end
     add_enum "openstorage.api.SdkCloudBackupRequestedState" do
       value :SdkCloudBackupRequestedStateUnknown, 0

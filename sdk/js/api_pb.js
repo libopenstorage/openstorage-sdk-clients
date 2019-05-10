@@ -34911,7 +34911,11 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.toObject = funct
     srcVolumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     clusterId: jspb.Message.getFieldWithDefault(msg, 2, ""),
     credentialId: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    all: jspb.Message.getFieldWithDefault(msg, 4, false)
+    all: jspb.Message.getFieldWithDefault(msg, 4, false),
+    statusFilter: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    metadataFilterMap: (f = msg.getMetadataFilterMap()) ? f.toObject(includeInstance, undefined) : [],
+    maxBackups: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    continuationToken: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -34963,6 +34967,24 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.deserializeBinar
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setAll(value);
+      break;
+    case 5:
+      var value = /** @type {!proto.openstorage.api.SdkCloudBackupStatusType} */ (reader.readEnum());
+      msg.setStatusFilter(value);
+      break;
+    case 6:
+      var value = msg.getMetadataFilterMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+         });
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setMaxBackups(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContinuationToken(value);
       break;
     default:
       reader.skipField();
@@ -35018,6 +35040,31 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.serializeBinaryT
   if (f) {
     writer.writeBool(
       4,
+      f
+    );
+  }
+  f = message.getStatusFilter();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      5,
+      f
+    );
+  }
+  f = message.getMetadataFilterMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(6, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+  f = message.getMaxBackups();
+  if (f !== 0) {
+    writer.writeUint64(
+      7,
+      f
+    );
+  }
+  f = message.getContinuationToken();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -35083,6 +35130,69 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getAll
 /** @param {boolean} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setAll = function(value) {
   jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * optional SdkCloudBackupStatusType status_filter = 5;
+ * @return {!proto.openstorage.api.SdkCloudBackupStatusType}
+ */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getStatusFilter = function() {
+  return /** @type {!proto.openstorage.api.SdkCloudBackupStatusType} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+};
+
+
+/** @param {!proto.openstorage.api.SdkCloudBackupStatusType} value */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setStatusFilter = function(value) {
+  jspb.Message.setProto3EnumField(this, 5, value);
+};
+
+
+/**
+ * map<string, string> metadata_filter = 6;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getMetadataFilterMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 6, opt_noLazyCreate,
+      null));
+};
+
+
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.clearMetadataFilterMap = function() {
+  this.getMetadataFilterMap().clear();
+};
+
+
+/**
+ * optional uint64 max_backups = 7;
+ * @return {number}
+ */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getMaxBackups = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setMaxBackups = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional string continuation_token = 8;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getContinuationToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setContinuationToken = function(value) {
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -35437,7 +35547,8 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.toObj
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     backupsList: jspb.Message.toObjectList(msg.getBackupsList(),
-    proto.openstorage.api.SdkCloudBackupInfo.toObject, includeInstance)
+    proto.openstorage.api.SdkCloudBackupInfo.toObject, includeInstance),
+    continuationToken: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -35479,6 +35590,10 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.deserializeBina
       reader.readMessage(value,proto.openstorage.api.SdkCloudBackupInfo.deserializeBinaryFromReader);
       msg.addBackups(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setContinuationToken(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -35516,6 +35631,13 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.serializeBinary
       proto.openstorage.api.SdkCloudBackupInfo.serializeBinaryToWriter
     );
   }
+  f = message.getContinuationToken();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -35547,6 +35669,21 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.addBa
 
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.clearBackupsList = function() {
   this.setBackupsList([]);
+};
+
+
+/**
+ * optional string continuation_token = 2;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.getContinuationToken = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse.prototype.setContinuationToken = function(value) {
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -41668,7 +41805,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 54,
+  MINOR: 55,
   PATCH: 0
 };
 
@@ -50397,7 +50534,8 @@ proto.openstorage.api.SdkCloudBackupStatusType = {
   SDKCLOUDBACKUPSTATUSTYPESTOPPED: 5,
   SDKCLOUDBACKUPSTATUSTYPEACTIVE: 6,
   SDKCLOUDBACKUPSTATUSTYPEFAILED: 7,
-  SDKCLOUDBACKUPSTATUSTYPEQUEUED: 8
+  SDKCLOUDBACKUPSTATUSTYPEQUEUED: 8,
+  SDKCLOUDBACKUPSTATUSTYPEINVALID: 9
 };
 
 /**

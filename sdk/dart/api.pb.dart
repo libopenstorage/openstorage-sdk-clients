@@ -6027,6 +6027,10 @@ class SdkCloudBackupEnumerateWithFiltersRequest extends $pb.GeneratedMessage {
     ..aOS(2, 'clusterId')
     ..aOS(3, 'credentialId')
     ..aOB(4, 'all')
+    ..e<SdkCloudBackupStatusType>(5, 'statusFilter', $pb.PbFieldType.OE, SdkCloudBackupStatusType.SdkCloudBackupStatusTypeUnknown, SdkCloudBackupStatusType.valueOf, SdkCloudBackupStatusType.values)
+    ..m<$core.String, $core.String>(6, 'metadataFilter', 'SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry',$pb.PbFieldType.OS, $pb.PbFieldType.OS, null, null, null , const $pb.PackageName('openstorage.api'))
+    ..a<Int64>(7, 'maxBackups', $pb.PbFieldType.OU6, Int64.ZERO)
+    ..aOS(8, 'continuationToken')
     ..hasRequiredFields = false
   ;
 
@@ -6061,6 +6065,23 @@ class SdkCloudBackupEnumerateWithFiltersRequest extends $pb.GeneratedMessage {
   set all($core.bool v) { $_setBool(3, v); }
   $core.bool hasAll() => $_has(3);
   void clearAll() => clearField(4);
+
+  SdkCloudBackupStatusType get statusFilter => $_getN(4);
+  set statusFilter(SdkCloudBackupStatusType v) { setField(5, v); }
+  $core.bool hasStatusFilter() => $_has(4);
+  void clearStatusFilter() => clearField(5);
+
+  $core.Map<$core.String, $core.String> get metadataFilter => $_getMap(5);
+
+  Int64 get maxBackups => $_getI64(6);
+  set maxBackups(Int64 v) { $_setInt64(6, v); }
+  $core.bool hasMaxBackups() => $_has(6);
+  void clearMaxBackups() => clearField(7);
+
+  $core.String get continuationToken => $_getS(7, '');
+  set continuationToken($core.String v) { $_setString(7, v); }
+  $core.bool hasContinuationToken() => $_has(7);
+  void clearContinuationToken() => clearField(8);
 }
 
 class SdkCloudBackupInfo extends $pb.GeneratedMessage {
@@ -6117,6 +6138,7 @@ class SdkCloudBackupInfo extends $pb.GeneratedMessage {
 class SdkCloudBackupEnumerateWithFiltersResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkCloudBackupEnumerateWithFiltersResponse', package: const $pb.PackageName('openstorage.api'))
     ..pc<SdkCloudBackupInfo>(1, 'backups', $pb.PbFieldType.PM,SdkCloudBackupInfo.create)
+    ..aOS(2, 'continuationToken')
     ..hasRequiredFields = false
   ;
 
@@ -6133,6 +6155,11 @@ class SdkCloudBackupEnumerateWithFiltersResponse extends $pb.GeneratedMessage {
   static SdkCloudBackupEnumerateWithFiltersResponse _defaultInstance;
 
   $core.List<SdkCloudBackupInfo> get backups => $_getList(0);
+
+  $core.String get continuationToken => $_getS(1, '');
+  set continuationToken($core.String v) { $_setString(1, v); }
+  $core.bool hasContinuationToken() => $_has(1);
+  void clearContinuationToken() => clearField(2);
 }
 
 class SdkCloudBackupStatus extends $pb.GeneratedMessage {

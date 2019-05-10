@@ -1,5 +1,10 @@
 #!/bin/bash
-branches="master:master release-0.42:release-6.0 release-0.22:release-4.0 release-sdk-0.9:release-sdk-0.9"
+if [ -z $BRANCHES ] ; then
+	branches="master:master release-0.42:release-6.0 release-0.22:release-4.0 release-sdk-0.9:release-sdk-0.9"
+else
+	branches=$BRANCHES
+fi
+
 for branch in $branches ; do
 	# Get branches
 	lb=$(echo $branch | cut -d: -f1)
