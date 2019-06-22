@@ -36,7 +36,7 @@ for branch in $branches ; do
 		git add api.swagger.json
 		git add sdk/.
 		git commit -am "Update to $ver"
-		bash
+		sudo git clean -f -x -d
 	else
 		echo ">>> Branch $lb does not need an update. At ver $ver"
 		git checkout api.swagger.json
