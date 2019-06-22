@@ -2735,6 +2735,7 @@ class StorageNode extends $pb.GeneratedMessage {
     ..aOS(15, 'hostname')
     ..m<$core.String, $core.String>(16, 'nodeLabels', 'StorageNode.NodeLabelsEntry',$pb.PbFieldType.OS, $pb.PbFieldType.OS, null, null, null , const $pb.PackageName('openstorage.api'))
     ..aOS(17, 'schedulerNodeName')
+    ..e<HardwareType>(18, 'hWType', $pb.PbFieldType.OE, HardwareType.UnknownMachine, HardwareType.valueOf, HardwareType.values)
     ..hasRequiredFields = false
   ;
 
@@ -2810,6 +2811,11 @@ class StorageNode extends $pb.GeneratedMessage {
   set schedulerNodeName($core.String v) { $_setString(13, v); }
   $core.bool hasSchedulerNodeName() => $_has(13);
   void clearSchedulerNodeName() => clearField(17);
+
+  HardwareType get hWType => $_getN(14);
+  set hWType(HardwareType v) { setField(18, v); }
+  $core.bool hasHWType() => $_has(14);
+  void clearHWType() => clearField(18);
 }
 
 class StorageCluster extends $pb.GeneratedMessage {
@@ -3722,6 +3728,7 @@ class SdkAwsCredentialRequest extends $pb.GeneratedMessage {
     ..aOS(3, 'endpoint')
     ..aOS(4, 'region')
     ..aOB(5, 'disableSsl')
+    ..aOB(6, 'disablePathStyle')
     ..hasRequiredFields = false
   ;
 
@@ -3761,6 +3768,11 @@ class SdkAwsCredentialRequest extends $pb.GeneratedMessage {
   set disableSsl($core.bool v) { $_setBool(4, v); }
   $core.bool hasDisableSsl() => $_has(4);
   void clearDisableSsl() => clearField(5);
+
+  $core.bool get disablePathStyle => $_get(5, false);
+  set disablePathStyle($core.bool v) { $_setBool(5, v); }
+  $core.bool hasDisablePathStyle() => $_has(5);
+  void clearDisablePathStyle() => clearField(6);
 }
 
 class SdkAzureCredentialRequest extends $pb.GeneratedMessage {
@@ -3829,6 +3841,7 @@ class SdkAwsCredentialResponse extends $pb.GeneratedMessage {
     ..aOS(3, 'endpoint')
     ..aOS(4, 'region')
     ..aOB(5, 'disableSsl')
+    ..aOB(6, 'disablePathStyle')
     ..hasRequiredFields = false
   ;
 
@@ -3863,6 +3876,11 @@ class SdkAwsCredentialResponse extends $pb.GeneratedMessage {
   set disableSsl($core.bool v) { $_setBool(3, v); }
   $core.bool hasDisableSsl() => $_has(3);
   void clearDisableSsl() => clearField(5);
+
+  $core.bool get disablePathStyle => $_get(4, false);
+  set disablePathStyle($core.bool v) { $_setBool(4, v); }
+  $core.bool hasDisablePathStyle() => $_has(4);
+  void clearDisablePathStyle() => clearField(6);
 }
 
 class SdkAzureCredentialResponse extends $pb.GeneratedMessage {
@@ -5839,6 +5857,75 @@ class SdkCloudBackupCreateResponse extends $pb.GeneratedMessage {
   set taskId($core.String v) { $_setString(0, v); }
   $core.bool hasTaskId() => $_has(0);
   void clearTaskId() => clearField(1);
+}
+
+class SdkCloudBackupGroupCreateRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkCloudBackupGroupCreateRequest', package: const $pb.PackageName('openstorage.api'))
+    ..aOS(1, 'groupId')
+    ..pPS(2, 'volumeIds')
+    ..aOS(3, 'credentialId')
+    ..aOB(4, 'full')
+    ..m<$core.String, $core.String>(5, 'labels', 'SdkCloudBackupGroupCreateRequest.LabelsEntry',$pb.PbFieldType.OS, $pb.PbFieldType.OS, null, null, null , const $pb.PackageName('openstorage.api'))
+    ..hasRequiredFields = false
+  ;
+
+  SdkCloudBackupGroupCreateRequest() : super();
+  SdkCloudBackupGroupCreateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkCloudBackupGroupCreateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkCloudBackupGroupCreateRequest clone() => SdkCloudBackupGroupCreateRequest()..mergeFromMessage(this);
+  SdkCloudBackupGroupCreateRequest copyWith(void Function(SdkCloudBackupGroupCreateRequest) updates) => super.copyWith((message) => updates(message as SdkCloudBackupGroupCreateRequest));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkCloudBackupGroupCreateRequest create() => SdkCloudBackupGroupCreateRequest();
+  SdkCloudBackupGroupCreateRequest createEmptyInstance() => create();
+  static $pb.PbList<SdkCloudBackupGroupCreateRequest> createRepeated() => $pb.PbList<SdkCloudBackupGroupCreateRequest>();
+  static SdkCloudBackupGroupCreateRequest getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkCloudBackupGroupCreateRequest _defaultInstance;
+
+  $core.String get groupId => $_getS(0, '');
+  set groupId($core.String v) { $_setString(0, v); }
+  $core.bool hasGroupId() => $_has(0);
+  void clearGroupId() => clearField(1);
+
+  $core.List<$core.String> get volumeIds => $_getList(1);
+
+  $core.String get credentialId => $_getS(2, '');
+  set credentialId($core.String v) { $_setString(2, v); }
+  $core.bool hasCredentialId() => $_has(2);
+  void clearCredentialId() => clearField(3);
+
+  $core.bool get full => $_get(3, false);
+  set full($core.bool v) { $_setBool(3, v); }
+  $core.bool hasFull() => $_has(3);
+  void clearFull() => clearField(4);
+
+  $core.Map<$core.String, $core.String> get labels => $_getMap(4);
+}
+
+class SdkCloudBackupGroupCreateResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkCloudBackupGroupCreateResponse', package: const $pb.PackageName('openstorage.api'))
+    ..aOS(1, 'groupCloudBackupId')
+    ..pPS(2, 'taskIds')
+    ..hasRequiredFields = false
+  ;
+
+  SdkCloudBackupGroupCreateResponse() : super();
+  SdkCloudBackupGroupCreateResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkCloudBackupGroupCreateResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkCloudBackupGroupCreateResponse clone() => SdkCloudBackupGroupCreateResponse()..mergeFromMessage(this);
+  SdkCloudBackupGroupCreateResponse copyWith(void Function(SdkCloudBackupGroupCreateResponse) updates) => super.copyWith((message) => updates(message as SdkCloudBackupGroupCreateResponse));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkCloudBackupGroupCreateResponse create() => SdkCloudBackupGroupCreateResponse();
+  SdkCloudBackupGroupCreateResponse createEmptyInstance() => create();
+  static $pb.PbList<SdkCloudBackupGroupCreateResponse> createRepeated() => $pb.PbList<SdkCloudBackupGroupCreateResponse>();
+  static SdkCloudBackupGroupCreateResponse getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkCloudBackupGroupCreateResponse _defaultInstance;
+
+  $core.String get groupCloudBackupId => $_getS(0, '');
+  set groupCloudBackupId($core.String v) { $_setString(0, v); }
+  $core.bool hasGroupCloudBackupId() => $_has(0);
+  void clearGroupCloudBackupId() => clearField(1);
+
+  $core.List<$core.String> get taskIds => $_getList(1);
 }
 
 class SdkCloudBackupRestoreRequest extends $pb.GeneratedMessage {
@@ -8408,7 +8495,10 @@ class LocateResponse extends $pb.GeneratedMessage {
 
 class VolumePlacementStrategy extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('VolumePlacementStrategy', package: const $pb.PackageName('openstorage.api'))
-    ..pc<VolumePlacementRule>(1, 'rules', $pb.PbFieldType.PM,VolumePlacementRule.create)
+    ..pc<ReplicaPlacementSpec>(1, 'replicaAffinity', $pb.PbFieldType.PM,ReplicaPlacementSpec.create)
+    ..pc<ReplicaPlacementSpec>(2, 'replicaAntiAffinity', $pb.PbFieldType.PM,ReplicaPlacementSpec.create)
+    ..pc<VolumePlacementSpec>(3, 'volumeAffinity', $pb.PbFieldType.PM,VolumePlacementSpec.create)
+    ..pc<VolumePlacementSpec>(4, 'volumeAntiAffinity', $pb.PbFieldType.PM,VolumePlacementSpec.create)
     ..hasRequiredFields = false
   ;
 
@@ -8424,52 +8514,97 @@ class VolumePlacementStrategy extends $pb.GeneratedMessage {
   static VolumePlacementStrategy getDefault() => _defaultInstance ??= create()..freeze();
   static VolumePlacementStrategy _defaultInstance;
 
-  $core.List<VolumePlacementRule> get rules => $_getList(0);
+  $core.List<ReplicaPlacementSpec> get replicaAffinity => $_getList(0);
+
+  $core.List<ReplicaPlacementSpec> get replicaAntiAffinity => $_getList(1);
+
+  $core.List<VolumePlacementSpec> get volumeAffinity => $_getList(2);
+
+  $core.List<VolumePlacementSpec> get volumeAntiAffinity => $_getList(3);
 }
 
-class VolumePlacementRule extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('VolumePlacementRule', package: const $pb.PackageName('openstorage.api'))
-    ..a<$core.int>(1, 'affectedReplicas', $pb.PbFieldType.O3)
-    ..aInt64(2, 'weight')
-    ..e<VolumePlacementRule_EnforcementType>(3, 'enforcement', $pb.PbFieldType.OE, VolumePlacementRule_EnforcementType.required, VolumePlacementRule_EnforcementType.valueOf, VolumePlacementRule_EnforcementType.values)
-    ..e<VolumePlacementRule_AffinityRuleType>(4, 'type', $pb.PbFieldType.OE, VolumePlacementRule_AffinityRuleType.affinity, VolumePlacementRule_AffinityRuleType.valueOf, VolumePlacementRule_AffinityRuleType.values)
+class ReplicaPlacementSpec extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('ReplicaPlacementSpec', package: const $pb.PackageName('openstorage.api'))
+    ..aInt64(1, 'weight')
+    ..e<EnforcementType>(2, 'enforcement', $pb.PbFieldType.OE, EnforcementType.required, EnforcementType.valueOf, EnforcementType.values)
+    ..a<$core.int>(3, 'affectedReplicas', $pb.PbFieldType.O3)
+    ..aOS(4, 'topologyKey')
     ..pc<LabelSelectorRequirement>(5, 'matchExpressions', $pb.PbFieldType.PM,LabelSelectorRequirement.create)
     ..hasRequiredFields = false
   ;
 
-  VolumePlacementRule() : super();
-  VolumePlacementRule.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  VolumePlacementRule.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  VolumePlacementRule clone() => VolumePlacementRule()..mergeFromMessage(this);
-  VolumePlacementRule copyWith(void Function(VolumePlacementRule) updates) => super.copyWith((message) => updates(message as VolumePlacementRule));
+  ReplicaPlacementSpec() : super();
+  ReplicaPlacementSpec.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ReplicaPlacementSpec.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ReplicaPlacementSpec clone() => ReplicaPlacementSpec()..mergeFromMessage(this);
+  ReplicaPlacementSpec copyWith(void Function(ReplicaPlacementSpec) updates) => super.copyWith((message) => updates(message as ReplicaPlacementSpec));
   $pb.BuilderInfo get info_ => _i;
-  static VolumePlacementRule create() => VolumePlacementRule();
-  VolumePlacementRule createEmptyInstance() => create();
-  static $pb.PbList<VolumePlacementRule> createRepeated() => $pb.PbList<VolumePlacementRule>();
-  static VolumePlacementRule getDefault() => _defaultInstance ??= create()..freeze();
-  static VolumePlacementRule _defaultInstance;
+  static ReplicaPlacementSpec create() => ReplicaPlacementSpec();
+  ReplicaPlacementSpec createEmptyInstance() => create();
+  static $pb.PbList<ReplicaPlacementSpec> createRepeated() => $pb.PbList<ReplicaPlacementSpec>();
+  static ReplicaPlacementSpec getDefault() => _defaultInstance ??= create()..freeze();
+  static ReplicaPlacementSpec _defaultInstance;
 
-  $core.int get affectedReplicas => $_get(0, 0);
-  set affectedReplicas($core.int v) { $_setSignedInt32(0, v); }
-  $core.bool hasAffectedReplicas() => $_has(0);
-  void clearAffectedReplicas() => clearField(1);
+  Int64 get weight => $_getI64(0);
+  set weight(Int64 v) { $_setInt64(0, v); }
+  $core.bool hasWeight() => $_has(0);
+  void clearWeight() => clearField(1);
 
-  Int64 get weight => $_getI64(1);
-  set weight(Int64 v) { $_setInt64(1, v); }
-  $core.bool hasWeight() => $_has(1);
-  void clearWeight() => clearField(2);
+  EnforcementType get enforcement => $_getN(1);
+  set enforcement(EnforcementType v) { setField(2, v); }
+  $core.bool hasEnforcement() => $_has(1);
+  void clearEnforcement() => clearField(2);
 
-  VolumePlacementRule_EnforcementType get enforcement => $_getN(2);
-  set enforcement(VolumePlacementRule_EnforcementType v) { setField(3, v); }
-  $core.bool hasEnforcement() => $_has(2);
-  void clearEnforcement() => clearField(3);
+  $core.int get affectedReplicas => $_get(2, 0);
+  set affectedReplicas($core.int v) { $_setSignedInt32(2, v); }
+  $core.bool hasAffectedReplicas() => $_has(2);
+  void clearAffectedReplicas() => clearField(3);
 
-  VolumePlacementRule_AffinityRuleType get type => $_getN(3);
-  set type(VolumePlacementRule_AffinityRuleType v) { setField(4, v); }
-  $core.bool hasType() => $_has(3);
-  void clearType() => clearField(4);
+  $core.String get topologyKey => $_getS(3, '');
+  set topologyKey($core.String v) { $_setString(3, v); }
+  $core.bool hasTopologyKey() => $_has(3);
+  void clearTopologyKey() => clearField(4);
 
   $core.List<LabelSelectorRequirement> get matchExpressions => $_getList(4);
+}
+
+class VolumePlacementSpec extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('VolumePlacementSpec', package: const $pb.PackageName('openstorage.api'))
+    ..aInt64(1, 'weight')
+    ..e<EnforcementType>(2, 'enforcement', $pb.PbFieldType.OE, EnforcementType.required, EnforcementType.valueOf, EnforcementType.values)
+    ..aOS(3, 'topologyKey')
+    ..pc<LabelSelectorRequirement>(4, 'matchExpressions', $pb.PbFieldType.PM,LabelSelectorRequirement.create)
+    ..hasRequiredFields = false
+  ;
+
+  VolumePlacementSpec() : super();
+  VolumePlacementSpec.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  VolumePlacementSpec.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  VolumePlacementSpec clone() => VolumePlacementSpec()..mergeFromMessage(this);
+  VolumePlacementSpec copyWith(void Function(VolumePlacementSpec) updates) => super.copyWith((message) => updates(message as VolumePlacementSpec));
+  $pb.BuilderInfo get info_ => _i;
+  static VolumePlacementSpec create() => VolumePlacementSpec();
+  VolumePlacementSpec createEmptyInstance() => create();
+  static $pb.PbList<VolumePlacementSpec> createRepeated() => $pb.PbList<VolumePlacementSpec>();
+  static VolumePlacementSpec getDefault() => _defaultInstance ??= create()..freeze();
+  static VolumePlacementSpec _defaultInstance;
+
+  Int64 get weight => $_getI64(0);
+  set weight(Int64 v) { $_setInt64(0, v); }
+  $core.bool hasWeight() => $_has(0);
+  void clearWeight() => clearField(1);
+
+  EnforcementType get enforcement => $_getN(1);
+  set enforcement(EnforcementType v) { setField(2, v); }
+  $core.bool hasEnforcement() => $_has(1);
+  void clearEnforcement() => clearField(2);
+
+  $core.String get topologyKey => $_getS(2, '');
+  set topologyKey($core.String v) { $_setString(2, v); }
+  $core.bool hasTopologyKey() => $_has(2);
+  void clearTopologyKey() => clearField(3);
+
+  $core.List<LabelSelectorRequirement> get matchExpressions => $_getList(3);
 }
 
 class LabelSelectorRequirement extends $pb.GeneratedMessage {

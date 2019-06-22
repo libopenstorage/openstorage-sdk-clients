@@ -48,12 +48,14 @@ goog.exportSymbol('proto.openstorage.api.ClusterPairsEnumerateResponse', null, g
 goog.exportSymbol('proto.openstorage.api.ClusterResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.CosType', null, global);
 goog.exportSymbol('proto.openstorage.api.DriverType', null, global);
+goog.exportSymbol('proto.openstorage.api.EnforcementType', null, global);
 goog.exportSymbol('proto.openstorage.api.FSType', null, global);
 goog.exportSymbol('proto.openstorage.api.GraphDriverChangeType', null, global);
 goog.exportSymbol('proto.openstorage.api.GraphDriverChanges', null, global);
 goog.exportSymbol('proto.openstorage.api.Group', null, global);
 goog.exportSymbol('proto.openstorage.api.GroupSnapCreateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.GroupSnapCreateResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.HardwareType', null, global);
 goog.exportSymbol('proto.openstorage.api.IoProfile', null, global);
 goog.exportSymbol('proto.openstorage.api.IoStrategy', null, global);
 goog.exportSymbol('proto.openstorage.api.LabelSelectorRequirement', null, global);
@@ -64,6 +66,7 @@ goog.exportSymbol('proto.openstorage.api.OperationFlags', null, global);
 goog.exportSymbol('proto.openstorage.api.Ownership', null, global);
 goog.exportSymbol('proto.openstorage.api.Ownership.AccessControl', null, global);
 goog.exportSymbol('proto.openstorage.api.Ownership.AccessType', null, global);
+goog.exportSymbol('proto.openstorage.api.ReplicaPlacementSpec', null, global);
 goog.exportSymbol('proto.openstorage.api.ReplicaSet', null, global);
 goog.exportSymbol('proto.openstorage.api.Report', null, global);
 goog.exportSymbol('proto.openstorage.api.ResourceType', null, global);
@@ -93,6 +96,8 @@ goog.exportSymbol('proto.openstorage.api.SdkCloudBackupDeleteRequest', null, glo
 goog.exportSymbol('proto.openstorage.api.SdkCloudBackupDeleteResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkCloudBackupGroupCreateRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkCloudBackupGroupCreateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCloudBackupHistoryItem', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCloudBackupHistoryRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCloudBackupHistoryResponse', null, global);
@@ -287,9 +292,7 @@ goog.exportSymbol('proto.openstorage.api.VolumeCreateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeInfo', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeInspectOptions', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeLocator', null, global);
-goog.exportSymbol('proto.openstorage.api.VolumePlacementRule', null, global);
-goog.exportSymbol('proto.openstorage.api.VolumePlacementRule.AffinityRuleType', null, global);
-goog.exportSymbol('proto.openstorage.api.VolumePlacementRule.EnforcementType', null, global);
+goog.exportSymbol('proto.openstorage.api.VolumePlacementSpec', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumePlacementStrategy', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSetRequest', null, global);
@@ -14636,7 +14639,8 @@ proto.openstorage.api.StorageNode.toObject = function(includeInstance, msg) {
     dataIp: jspb.Message.getFieldWithDefault(msg, 12, ""),
     hostname: jspb.Message.getFieldWithDefault(msg, 15, ""),
     nodeLabelsMap: (f = msg.getNodeLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    schedulerNodeName: jspb.Message.getFieldWithDefault(msg, 17, "")
+    schedulerNodeName: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    hwtype: jspb.Message.getFieldWithDefault(msg, 18, 0)
   };
 
   if (includeInstance) {
@@ -14733,6 +14737,10 @@ proto.openstorage.api.StorageNode.deserializeBinaryFromReader = function(msg, re
     case 17:
       var value = /** @type {string} */ (reader.readString());
       msg.setSchedulerNodeName(value);
+      break;
+    case 18:
+      var value = /** @type {!proto.openstorage.api.HardwareType} */ (reader.readEnum());
+      msg.setHwtype(value);
       break;
     default:
       reader.skipField();
@@ -14853,6 +14861,13 @@ proto.openstorage.api.StorageNode.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       17,
+      f
+    );
+  }
+  f = message.getHwtype();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      18,
       f
     );
   }
@@ -15088,6 +15103,21 @@ proto.openstorage.api.StorageNode.prototype.getSchedulerNodeName = function() {
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setSchedulerNodeName = function(value) {
   jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional HardwareType HWType = 18;
+ * @return {!proto.openstorage.api.HardwareType}
+ */
+proto.openstorage.api.StorageNode.prototype.getHwtype = function() {
+  return /** @type {!proto.openstorage.api.HardwareType} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
+};
+
+
+/** @param {!proto.openstorage.api.HardwareType} value */
+proto.openstorage.api.StorageNode.prototype.setHwtype = function(value) {
+  jspb.Message.setProto3EnumField(this, 18, value);
 };
 
 
@@ -20674,7 +20704,8 @@ proto.openstorage.api.SdkAwsCredentialRequest.toObject = function(includeInstanc
     secretKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
     endpoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
     region: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    disableSsl: jspb.Message.getFieldWithDefault(msg, 5, false)
+    disableSsl: jspb.Message.getFieldWithDefault(msg, 5, false),
+    disablePathStyle: jspb.Message.getFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -20730,6 +20761,10 @@ proto.openstorage.api.SdkAwsCredentialRequest.deserializeBinaryFromReader = func
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisableSsl(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisablePathStyle(value);
       break;
     default:
       reader.skipField();
@@ -20792,6 +20827,13 @@ proto.openstorage.api.SdkAwsCredentialRequest.serializeBinaryToWriter = function
   if (f) {
     writer.writeBool(
       5,
+      f
+    );
+  }
+  f = message.getDisablePathStyle();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -20872,6 +20914,23 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getDisableSsl = function
 /** @param {boolean} value */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setDisableSsl = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional bool disable_path_style = 6;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkAwsCredentialRequest.prototype.getDisablePathStyle = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkAwsCredentialRequest.prototype.setDisablePathStyle = function(value) {
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -21263,7 +21322,8 @@ proto.openstorage.api.SdkAwsCredentialResponse.toObject = function(includeInstan
     accessKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
     endpoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
     region: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    disableSsl: jspb.Message.getFieldWithDefault(msg, 5, false)
+    disableSsl: jspb.Message.getFieldWithDefault(msg, 5, false),
+    disablePathStyle: jspb.Message.getFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -21315,6 +21375,10 @@ proto.openstorage.api.SdkAwsCredentialResponse.deserializeBinaryFromReader = fun
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisableSsl(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDisablePathStyle(value);
       break;
     default:
       reader.skipField();
@@ -21370,6 +21434,13 @@ proto.openstorage.api.SdkAwsCredentialResponse.serializeBinaryToWriter = functio
   if (f) {
     writer.writeBool(
       5,
+      f
+    );
+  }
+  f = message.getDisablePathStyle();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -21435,6 +21506,23 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getDisableSsl = functio
 /** @param {boolean} value */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setDisableSsl = function(value) {
   jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional bool disable_path_style = 6;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkAwsCredentialResponse.prototype.getDisablePathStyle = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 6, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkAwsCredentialResponse.prototype.setDisablePathStyle = function(value) {
+  jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -33854,6 +33942,471 @@ proto.openstorage.api.SdkCloudBackupCreateResponse.prototype.setTaskId = functio
  * @extends {jspb.Message}
  * @constructor
  */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkCloudBackupGroupCreateRequest.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.SdkCloudBackupGroupCreateRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkCloudBackupGroupCreateRequest.displayName = 'proto.openstorage.api.SdkCloudBackupGroupCreateRequest';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkCloudBackupGroupCreateRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkCloudBackupGroupCreateRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    groupId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    volumeIdsList: jspb.Message.getRepeatedField(msg, 2),
+    credentialId: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    full: jspb.Message.getFieldWithDefault(msg, 4, false),
+    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkCloudBackupGroupCreateRequest}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkCloudBackupGroupCreateRequest;
+  return proto.openstorage.api.SdkCloudBackupGroupCreateRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkCloudBackupGroupCreateRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkCloudBackupGroupCreateRequest}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGroupId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addVolumeIds(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCredentialId(value);
+      break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFull(value);
+      break;
+    case 5:
+      var value = msg.getLabelsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+         });
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkCloudBackupGroupCreateRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkCloudBackupGroupCreateRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getGroupId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getVolumeIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+  f = message.getCredentialId();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getFull();
+  if (f) {
+    writer.writeBool(
+      4,
+      f
+    );
+  }
+  f = message.getLabelsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(5, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  }
+};
+
+
+/**
+ * optional string group_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.getGroupId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.setGroupId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string volume_ids = 2;
+ * @return {!Array<string>}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.getVolumeIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/** @param {!Array<string>} value */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.setVolumeIdsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.addVolumeIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.clearVolumeIdsList = function() {
+  this.setVolumeIdsList([]);
+};
+
+
+/**
+ * optional string credential_id = 3;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.getCredentialId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.setCredentialId = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional bool full = 4;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.getFull = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 4, false));
+};
+
+
+/** @param {boolean} value */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.setFull = function(value) {
+  jspb.Message.setProto3BooleanField(this, 4, value);
+};
+
+
+/**
+ * map<string, string> labels = 5;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.getLabelsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 5, opt_noLazyCreate,
+      null));
+};
+
+
+proto.openstorage.api.SdkCloudBackupGroupCreateRequest.prototype.clearLabelsMap = function() {
+  this.getLabelsMap().clear();
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkCloudBackupGroupCreateResponse.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.SdkCloudBackupGroupCreateResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.SdkCloudBackupGroupCreateResponse.displayName = 'proto.openstorage.api.SdkCloudBackupGroupCreateResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkCloudBackupGroupCreateResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkCloudBackupGroupCreateResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    groupCloudBackupId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    taskIdsList: jspb.Message.getRepeatedField(msg, 2)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkCloudBackupGroupCreateResponse}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkCloudBackupGroupCreateResponse;
+  return proto.openstorage.api.SdkCloudBackupGroupCreateResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkCloudBackupGroupCreateResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkCloudBackupGroupCreateResponse}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGroupCloudBackupId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addTaskIds(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkCloudBackupGroupCreateResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkCloudBackupGroupCreateResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getGroupCloudBackupId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getTaskIdsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string group_cloud_backup_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.getGroupCloudBackupId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.setGroupCloudBackupId = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string task_ids = 2;
+ * @return {!Array<string>}
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.getTaskIdsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/** @param {!Array<string>} value */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.setTaskIdsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.addTaskIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+proto.openstorage.api.SdkCloudBackupGroupCreateResponse.prototype.clearTaskIdsList = function() {
+  this.setTaskIdsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.openstorage.api.SdkCloudBackupRestoreRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -41805,7 +42358,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 55,
+  MINOR: 58,
   PATCH: 0
 };
 
@@ -49661,7 +50214,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.VolumePlacementStrategy.repeatedFields_ = [1];
+proto.openstorage.api.VolumePlacementStrategy.repeatedFields_ = [1,2,3,4];
 
 
 
@@ -49692,8 +50245,14 @@ proto.openstorage.api.VolumePlacementStrategy.prototype.toObject = function(opt_
  */
 proto.openstorage.api.VolumePlacementStrategy.toObject = function(includeInstance, msg) {
   var f, obj = {
-    rulesList: jspb.Message.toObjectList(msg.getRulesList(),
-    proto.openstorage.api.VolumePlacementRule.toObject, includeInstance)
+    replicaAffinityList: jspb.Message.toObjectList(msg.getReplicaAffinityList(),
+    proto.openstorage.api.ReplicaPlacementSpec.toObject, includeInstance),
+    replicaAntiAffinityList: jspb.Message.toObjectList(msg.getReplicaAntiAffinityList(),
+    proto.openstorage.api.ReplicaPlacementSpec.toObject, includeInstance),
+    volumeAffinityList: jspb.Message.toObjectList(msg.getVolumeAffinityList(),
+    proto.openstorage.api.VolumePlacementSpec.toObject, includeInstance),
+    volumeAntiAffinityList: jspb.Message.toObjectList(msg.getVolumeAntiAffinityList(),
+    proto.openstorage.api.VolumePlacementSpec.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -49731,9 +50290,24 @@ proto.openstorage.api.VolumePlacementStrategy.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.openstorage.api.VolumePlacementRule;
-      reader.readMessage(value,proto.openstorage.api.VolumePlacementRule.deserializeBinaryFromReader);
-      msg.addRules(value);
+      var value = new proto.openstorage.api.ReplicaPlacementSpec;
+      reader.readMessage(value,proto.openstorage.api.ReplicaPlacementSpec.deserializeBinaryFromReader);
+      msg.addReplicaAffinity(value);
+      break;
+    case 2:
+      var value = new proto.openstorage.api.ReplicaPlacementSpec;
+      reader.readMessage(value,proto.openstorage.api.ReplicaPlacementSpec.deserializeBinaryFromReader);
+      msg.addReplicaAntiAffinity(value);
+      break;
+    case 3:
+      var value = new proto.openstorage.api.VolumePlacementSpec;
+      reader.readMessage(value,proto.openstorage.api.VolumePlacementSpec.deserializeBinaryFromReader);
+      msg.addVolumeAffinity(value);
+      break;
+    case 4:
+      var value = new proto.openstorage.api.VolumePlacementSpec;
+      reader.readMessage(value,proto.openstorage.api.VolumePlacementSpec.deserializeBinaryFromReader);
+      msg.addVolumeAntiAffinity(value);
       break;
     default:
       reader.skipField();
@@ -49764,45 +50338,162 @@ proto.openstorage.api.VolumePlacementStrategy.prototype.serializeBinary = functi
  */
 proto.openstorage.api.VolumePlacementStrategy.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getRulesList();
+  f = message.getReplicaAffinityList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.openstorage.api.VolumePlacementRule.serializeBinaryToWriter
+      proto.openstorage.api.ReplicaPlacementSpec.serializeBinaryToWriter
+    );
+  }
+  f = message.getReplicaAntiAffinityList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.openstorage.api.ReplicaPlacementSpec.serializeBinaryToWriter
+    );
+  }
+  f = message.getVolumeAffinityList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.openstorage.api.VolumePlacementSpec.serializeBinaryToWriter
+    );
+  }
+  f = message.getVolumeAntiAffinityList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.openstorage.api.VolumePlacementSpec.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * repeated VolumePlacementRule rules = 1;
- * @return {!Array<!proto.openstorage.api.VolumePlacementRule>}
+ * repeated ReplicaPlacementSpec replica_affinity = 1;
+ * @return {!Array<!proto.openstorage.api.ReplicaPlacementSpec>}
  */
-proto.openstorage.api.VolumePlacementStrategy.prototype.getRulesList = function() {
-  return /** @type{!Array<!proto.openstorage.api.VolumePlacementRule>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.VolumePlacementRule, 1));
+proto.openstorage.api.VolumePlacementStrategy.prototype.getReplicaAffinityList = function() {
+  return /** @type{!Array<!proto.openstorage.api.ReplicaPlacementSpec>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.ReplicaPlacementSpec, 1));
 };
 
 
-/** @param {!Array<!proto.openstorage.api.VolumePlacementRule>} value */
-proto.openstorage.api.VolumePlacementStrategy.prototype.setRulesList = function(value) {
+/** @param {!Array<!proto.openstorage.api.ReplicaPlacementSpec>} value */
+proto.openstorage.api.VolumePlacementStrategy.prototype.setReplicaAffinityList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.openstorage.api.VolumePlacementRule=} opt_value
+ * @param {!proto.openstorage.api.ReplicaPlacementSpec=} opt_value
  * @param {number=} opt_index
- * @return {!proto.openstorage.api.VolumePlacementRule}
+ * @return {!proto.openstorage.api.ReplicaPlacementSpec}
  */
-proto.openstorage.api.VolumePlacementStrategy.prototype.addRules = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.openstorage.api.VolumePlacementRule, opt_index);
+proto.openstorage.api.VolumePlacementStrategy.prototype.addReplicaAffinity = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.openstorage.api.ReplicaPlacementSpec, opt_index);
 };
 
 
-proto.openstorage.api.VolumePlacementStrategy.prototype.clearRulesList = function() {
-  this.setRulesList([]);
+proto.openstorage.api.VolumePlacementStrategy.prototype.clearReplicaAffinityList = function() {
+  this.setReplicaAffinityList([]);
+};
+
+
+/**
+ * repeated ReplicaPlacementSpec replica_anti_affinity = 2;
+ * @return {!Array<!proto.openstorage.api.ReplicaPlacementSpec>}
+ */
+proto.openstorage.api.VolumePlacementStrategy.prototype.getReplicaAntiAffinityList = function() {
+  return /** @type{!Array<!proto.openstorage.api.ReplicaPlacementSpec>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.ReplicaPlacementSpec, 2));
+};
+
+
+/** @param {!Array<!proto.openstorage.api.ReplicaPlacementSpec>} value */
+proto.openstorage.api.VolumePlacementStrategy.prototype.setReplicaAntiAffinityList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.ReplicaPlacementSpec=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.ReplicaPlacementSpec}
+ */
+proto.openstorage.api.VolumePlacementStrategy.prototype.addReplicaAntiAffinity = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.openstorage.api.ReplicaPlacementSpec, opt_index);
+};
+
+
+proto.openstorage.api.VolumePlacementStrategy.prototype.clearReplicaAntiAffinityList = function() {
+  this.setReplicaAntiAffinityList([]);
+};
+
+
+/**
+ * repeated VolumePlacementSpec volume_affinity = 3;
+ * @return {!Array<!proto.openstorage.api.VolumePlacementSpec>}
+ */
+proto.openstorage.api.VolumePlacementStrategy.prototype.getVolumeAffinityList = function() {
+  return /** @type{!Array<!proto.openstorage.api.VolumePlacementSpec>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.VolumePlacementSpec, 3));
+};
+
+
+/** @param {!Array<!proto.openstorage.api.VolumePlacementSpec>} value */
+proto.openstorage.api.VolumePlacementStrategy.prototype.setVolumeAffinityList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.VolumePlacementSpec=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.VolumePlacementSpec}
+ */
+proto.openstorage.api.VolumePlacementStrategy.prototype.addVolumeAffinity = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.openstorage.api.VolumePlacementSpec, opt_index);
+};
+
+
+proto.openstorage.api.VolumePlacementStrategy.prototype.clearVolumeAffinityList = function() {
+  this.setVolumeAffinityList([]);
+};
+
+
+/**
+ * repeated VolumePlacementSpec volume_anti_affinity = 4;
+ * @return {!Array<!proto.openstorage.api.VolumePlacementSpec>}
+ */
+proto.openstorage.api.VolumePlacementStrategy.prototype.getVolumeAntiAffinityList = function() {
+  return /** @type{!Array<!proto.openstorage.api.VolumePlacementSpec>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.VolumePlacementSpec, 4));
+};
+
+
+/** @param {!Array<!proto.openstorage.api.VolumePlacementSpec>} value */
+proto.openstorage.api.VolumePlacementStrategy.prototype.setVolumeAntiAffinityList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.VolumePlacementSpec=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.VolumePlacementSpec}
+ */
+proto.openstorage.api.VolumePlacementStrategy.prototype.addVolumeAntiAffinity = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.openstorage.api.VolumePlacementSpec, opt_index);
+};
+
+
+proto.openstorage.api.VolumePlacementStrategy.prototype.clearVolumeAntiAffinityList = function() {
+  this.setVolumeAntiAffinityList([]);
 };
 
 
@@ -49817,19 +50508,19 @@ proto.openstorage.api.VolumePlacementStrategy.prototype.clearRulesList = functio
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.VolumePlacementRule = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.VolumePlacementRule.repeatedFields_, null);
+proto.openstorage.api.ReplicaPlacementSpec = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.ReplicaPlacementSpec.repeatedFields_, null);
 };
-goog.inherits(proto.openstorage.api.VolumePlacementRule, jspb.Message);
+goog.inherits(proto.openstorage.api.ReplicaPlacementSpec, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.openstorage.api.VolumePlacementRule.displayName = 'proto.openstorage.api.VolumePlacementRule';
+  proto.openstorage.api.ReplicaPlacementSpec.displayName = 'proto.openstorage.api.ReplicaPlacementSpec';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.VolumePlacementRule.repeatedFields_ = [5];
+proto.openstorage.api.ReplicaPlacementSpec.repeatedFields_ = [5];
 
 
 
@@ -49844,8 +50535,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.VolumePlacementRule.toObject(opt_includeInstance, this);
+proto.openstorage.api.ReplicaPlacementSpec.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.ReplicaPlacementSpec.toObject(opt_includeInstance, this);
 };
 
 
@@ -49854,16 +50545,16 @@ proto.openstorage.api.VolumePlacementRule.prototype.toObject = function(opt_incl
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.VolumePlacementRule} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.ReplicaPlacementSpec} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.VolumePlacementRule.toObject = function(includeInstance, msg) {
+proto.openstorage.api.ReplicaPlacementSpec.toObject = function(includeInstance, msg) {
   var f, obj = {
-    affectedReplicas: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    weight: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    enforcement: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    type: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    weight: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    enforcement: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    affectedReplicas: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    topologyKey: jspb.Message.getFieldWithDefault(msg, 4, ""),
     matchExpressionsList: jspb.Message.toObjectList(msg.getMatchExpressionsList(),
     proto.openstorage.api.LabelSelectorRequirement.toObject, includeInstance)
   };
@@ -49879,23 +50570,23 @@ proto.openstorage.api.VolumePlacementRule.toObject = function(includeInstance, m
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.VolumePlacementRule}
+ * @return {!proto.openstorage.api.ReplicaPlacementSpec}
  */
-proto.openstorage.api.VolumePlacementRule.deserializeBinary = function(bytes) {
+proto.openstorage.api.ReplicaPlacementSpec.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.VolumePlacementRule;
-  return proto.openstorage.api.VolumePlacementRule.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.ReplicaPlacementSpec;
+  return proto.openstorage.api.ReplicaPlacementSpec.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.VolumePlacementRule} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.ReplicaPlacementSpec} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.VolumePlacementRule}
+ * @return {!proto.openstorage.api.ReplicaPlacementSpec}
  */
-proto.openstorage.api.VolumePlacementRule.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.ReplicaPlacementSpec.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -49903,20 +50594,20 @@ proto.openstorage.api.VolumePlacementRule.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setAffectedReplicas(value);
-      break;
-    case 2:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setWeight(value);
       break;
-    case 3:
-      var value = /** @type {!proto.openstorage.api.VolumePlacementRule.EnforcementType} */ (reader.readEnum());
+    case 2:
+      var value = /** @type {!proto.openstorage.api.EnforcementType} */ (reader.readEnum());
       msg.setEnforcement(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setAffectedReplicas(value);
+      break;
     case 4:
-      var value = /** @type {!proto.openstorage.api.VolumePlacementRule.AffinityRuleType} */ (reader.readEnum());
-      msg.setType(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTopologyKey(value);
       break;
     case 5:
       var value = new proto.openstorage.api.LabelSelectorRequirement;
@@ -49936,9 +50627,9 @@ proto.openstorage.api.VolumePlacementRule.deserializeBinaryFromReader = function
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.serializeBinary = function() {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.VolumePlacementRule.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.ReplicaPlacementSpec.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -49946,36 +50637,36 @@ proto.openstorage.api.VolumePlacementRule.prototype.serializeBinary = function()
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.VolumePlacementRule} message
+ * @param {!proto.openstorage.api.ReplicaPlacementSpec} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.VolumePlacementRule.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.ReplicaPlacementSpec.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAffectedReplicas();
-  if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
-  }
   f = message.getWeight();
   if (f !== 0) {
     writer.writeInt64(
-      2,
+      1,
       f
     );
   }
   f = message.getEnforcement();
   if (f !== 0.0) {
     writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getAffectedReplicas();
+  if (f !== 0) {
+    writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getType();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getTopologyKey();
+  if (f.length > 0) {
+    writer.writeString(
       4,
       f
     );
@@ -49992,78 +50683,62 @@ proto.openstorage.api.VolumePlacementRule.serializeBinaryToWriter = function(mes
 
 
 /**
- * @enum {number}
- */
-proto.openstorage.api.VolumePlacementRule.EnforcementType = {
-  REQUIRED: 0,
-  PREFERRED: 1
-};
-
-/**
- * @enum {number}
- */
-proto.openstorage.api.VolumePlacementRule.AffinityRuleType = {
-  AFFINITY: 0,
-  ANTIAFFINITY: 1
-};
-
-/**
- * optional int32 affected_replicas = 1;
+ * optional int64 weight = 1;
  * @return {number}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.getAffectedReplicas = function() {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.getWeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /** @param {number} value */
-proto.openstorage.api.VolumePlacementRule.prototype.setAffectedReplicas = function(value) {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.setWeight = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional int64 weight = 2;
+ * optional EnforcementType enforcement = 2;
+ * @return {!proto.openstorage.api.EnforcementType}
+ */
+proto.openstorage.api.ReplicaPlacementSpec.prototype.getEnforcement = function() {
+  return /** @type {!proto.openstorage.api.EnforcementType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {!proto.openstorage.api.EnforcementType} value */
+proto.openstorage.api.ReplicaPlacementSpec.prototype.setEnforcement = function(value) {
+  jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional int32 affected_replicas = 3;
  * @return {number}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.getWeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.openstorage.api.ReplicaPlacementSpec.prototype.getAffectedReplicas = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /** @param {number} value */
-proto.openstorage.api.VolumePlacementRule.prototype.setWeight = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+proto.openstorage.api.ReplicaPlacementSpec.prototype.setAffectedReplicas = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional EnforcementType enforcement = 3;
- * @return {!proto.openstorage.api.VolumePlacementRule.EnforcementType}
+ * optional string topology_key = 4;
+ * @return {string}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.getEnforcement = function() {
-  return /** @type {!proto.openstorage.api.VolumePlacementRule.EnforcementType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+proto.openstorage.api.ReplicaPlacementSpec.prototype.getTopologyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
-/** @param {!proto.openstorage.api.VolumePlacementRule.EnforcementType} value */
-proto.openstorage.api.VolumePlacementRule.prototype.setEnforcement = function(value) {
-  jspb.Message.setProto3EnumField(this, 3, value);
-};
-
-
-/**
- * optional AffinityRuleType type = 4;
- * @return {!proto.openstorage.api.VolumePlacementRule.AffinityRuleType}
- */
-proto.openstorage.api.VolumePlacementRule.prototype.getType = function() {
-  return /** @type {!proto.openstorage.api.VolumePlacementRule.AffinityRuleType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/** @param {!proto.openstorage.api.VolumePlacementRule.AffinityRuleType} value */
-proto.openstorage.api.VolumePlacementRule.prototype.setType = function(value) {
-  jspb.Message.setProto3EnumField(this, 4, value);
+/** @param {string} value */
+proto.openstorage.api.ReplicaPlacementSpec.prototype.setTopologyKey = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -50071,14 +50746,14 @@ proto.openstorage.api.VolumePlacementRule.prototype.setType = function(value) {
  * repeated LabelSelectorRequirement match_expressions = 5;
  * @return {!Array<!proto.openstorage.api.LabelSelectorRequirement>}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.getMatchExpressionsList = function() {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.getMatchExpressionsList = function() {
   return /** @type{!Array<!proto.openstorage.api.LabelSelectorRequirement>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.LabelSelectorRequirement, 5));
 };
 
 
 /** @param {!Array<!proto.openstorage.api.LabelSelectorRequirement>} value */
-proto.openstorage.api.VolumePlacementRule.prototype.setMatchExpressionsList = function(value) {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.setMatchExpressionsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
@@ -50088,12 +50763,261 @@ proto.openstorage.api.VolumePlacementRule.prototype.setMatchExpressionsList = fu
  * @param {number=} opt_index
  * @return {!proto.openstorage.api.LabelSelectorRequirement}
  */
-proto.openstorage.api.VolumePlacementRule.prototype.addMatchExpressions = function(opt_value, opt_index) {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.addMatchExpressions = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.openstorage.api.LabelSelectorRequirement, opt_index);
 };
 
 
-proto.openstorage.api.VolumePlacementRule.prototype.clearMatchExpressionsList = function() {
+proto.openstorage.api.ReplicaPlacementSpec.prototype.clearMatchExpressionsList = function() {
+  this.setMatchExpressionsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.VolumePlacementSpec = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.VolumePlacementSpec.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.VolumePlacementSpec, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.openstorage.api.VolumePlacementSpec.displayName = 'proto.openstorage.api.VolumePlacementSpec';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.VolumePlacementSpec.repeatedFields_ = [4];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.VolumePlacementSpec.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.VolumePlacementSpec} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.VolumePlacementSpec.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    weight: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    enforcement: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    topologyKey: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    matchExpressionsList: jspb.Message.toObjectList(msg.getMatchExpressionsList(),
+    proto.openstorage.api.LabelSelectorRequirement.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.VolumePlacementSpec}
+ */
+proto.openstorage.api.VolumePlacementSpec.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.VolumePlacementSpec;
+  return proto.openstorage.api.VolumePlacementSpec.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.VolumePlacementSpec} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.VolumePlacementSpec}
+ */
+proto.openstorage.api.VolumePlacementSpec.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setWeight(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.openstorage.api.EnforcementType} */ (reader.readEnum());
+      msg.setEnforcement(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTopologyKey(value);
+      break;
+    case 4:
+      var value = new proto.openstorage.api.LabelSelectorRequirement;
+      reader.readMessage(value,proto.openstorage.api.LabelSelectorRequirement.deserializeBinaryFromReader);
+      msg.addMatchExpressions(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.VolumePlacementSpec.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.VolumePlacementSpec} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.VolumePlacementSpec.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getWeight();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+  f = message.getEnforcement();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getTopologyKey();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getMatchExpressionsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.openstorage.api.LabelSelectorRequirement.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional int64 weight = 1;
+ * @return {number}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.getWeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.openstorage.api.VolumePlacementSpec.prototype.setWeight = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional EnforcementType enforcement = 2;
+ * @return {!proto.openstorage.api.EnforcementType}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.getEnforcement = function() {
+  return /** @type {!proto.openstorage.api.EnforcementType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {!proto.openstorage.api.EnforcementType} value */
+proto.openstorage.api.VolumePlacementSpec.prototype.setEnforcement = function(value) {
+  jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string topology_key = 3;
+ * @return {string}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.getTopologyKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.VolumePlacementSpec.prototype.setTopologyKey = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * repeated LabelSelectorRequirement match_expressions = 4;
+ * @return {!Array<!proto.openstorage.api.LabelSelectorRequirement>}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.getMatchExpressionsList = function() {
+  return /** @type{!Array<!proto.openstorage.api.LabelSelectorRequirement>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.LabelSelectorRequirement, 4));
+};
+
+
+/** @param {!Array<!proto.openstorage.api.LabelSelectorRequirement>} value */
+proto.openstorage.api.VolumePlacementSpec.prototype.setMatchExpressionsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.LabelSelectorRequirement=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.LabelSelectorRequirement}
+ */
+proto.openstorage.api.VolumePlacementSpec.prototype.addMatchExpressions = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.openstorage.api.LabelSelectorRequirement, opt_index);
+};
+
+
+proto.openstorage.api.VolumePlacementSpec.prototype.clearMatchExpressionsList = function() {
   this.setMatchExpressionsList([]);
 };
 
@@ -50443,7 +51367,8 @@ proto.openstorage.api.IoProfile = {
   IO_PROFILE_RANDOM: 1,
   IO_PROFILE_DB: 2,
   IO_PROFILE_DB_REMOTE: 3,
-  IO_PROFILE_CMS: 4
+  IO_PROFILE_CMS: 4,
+  IO_PROFILE_SYNC_SHARED: 5
 };
 
 /**
@@ -50503,6 +51428,15 @@ proto.openstorage.api.OperationFlags = {
 /**
  * @enum {number}
  */
+proto.openstorage.api.HardwareType = {
+  UNKNOWNMACHINE: 0,
+  VIRTUALMACHINE: 1,
+  BAREMETALMACHINE: 2
+};
+
+/**
+ * @enum {number}
+ */
 proto.openstorage.api.SdkTimeWeekday = {
   SDKTIMEWEEKDAYSUNDAY: 0,
   SDKTIMEWEEKDAYMONDAY: 1,
@@ -50546,6 +51480,14 @@ proto.openstorage.api.SdkCloudBackupRequestedState = {
   SDKCLOUDBACKUPREQUESTEDSTATEPAUSE: 1,
   SDKCLOUDBACKUPREQUESTEDSTATERESUME: 2,
   SDKCLOUDBACKUPREQUESTEDSTATESTOP: 3
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.EnforcementType = {
+  REQUIRED: 0,
+  PREFERRED: 1
 };
 
 goog.object.extend(exports, proto.openstorage.api);

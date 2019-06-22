@@ -2012,6 +2012,12 @@ class OpenStorageCloudBackupClient extends $grpc.Client {
       (SdkCloudBackupCreateRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           SdkCloudBackupCreateResponse.fromBuffer(value));
+  static final _$groupCreate = $grpc.ClientMethod<
+          SdkCloudBackupGroupCreateRequest, SdkCloudBackupGroupCreateResponse>(
+      '/openstorage.api.OpenStorageCloudBackup/GroupCreate',
+      (SdkCloudBackupGroupCreateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkCloudBackupGroupCreateResponse.fromBuffer(value));
   static final _$restore = $grpc.ClientMethod<SdkCloudBackupRestoreRequest,
           SdkCloudBackupRestoreResponse>(
       '/openstorage.api.OpenStorageCloudBackup/Restore',
@@ -2090,6 +2096,15 @@ class OpenStorageCloudBackupClient extends $grpc.Client {
       SdkCloudBackupCreateRequest request,
       {$grpc.CallOptions options}) {
     final call = $createCall(_$create, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkCloudBackupGroupCreateResponse> groupCreate(
+      SdkCloudBackupGroupCreateRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$groupCreate, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -2201,6 +2216,15 @@ abstract class OpenStorageCloudBackupServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             SdkCloudBackupCreateRequest.fromBuffer(value),
         (SdkCloudBackupCreateResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkCloudBackupGroupCreateRequest,
+            SdkCloudBackupGroupCreateResponse>(
+        'GroupCreate',
+        groupCreate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkCloudBackupGroupCreateRequest.fromBuffer(value),
+        (SdkCloudBackupGroupCreateResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<SdkCloudBackupRestoreRequest,
             SdkCloudBackupRestoreResponse>(
         'Restore',
@@ -2308,6 +2332,11 @@ abstract class OpenStorageCloudBackupServiceBase extends $grpc.Service {
     return create(call, await request);
   }
 
+  $async.Future<SdkCloudBackupGroupCreateResponse> groupCreate_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return groupCreate(call, await request);
+  }
+
   $async.Future<SdkCloudBackupRestoreResponse> restore_Pre(
       $grpc.ServiceCall call, $async.Future request) async {
     return restore(call, await request);
@@ -2366,6 +2395,8 @@ abstract class OpenStorageCloudBackupServiceBase extends $grpc.Service {
 
   $async.Future<SdkCloudBackupCreateResponse> create(
       $grpc.ServiceCall call, SdkCloudBackupCreateRequest request);
+  $async.Future<SdkCloudBackupGroupCreateResponse> groupCreate(
+      $grpc.ServiceCall call, SdkCloudBackupGroupCreateRequest request);
   $async.Future<SdkCloudBackupRestoreResponse> restore(
       $grpc.ServiceCall call, SdkCloudBackupRestoreRequest request);
   $async.Future<SdkCloudBackupDeleteResponse> delete(

@@ -120,6 +120,7 @@ const IoProfile$json = const {
     const {'1': 'IO_PROFILE_DB', '2': 2},
     const {'1': 'IO_PROFILE_DB_REMOTE', '2': 3},
     const {'1': 'IO_PROFILE_CMS', '2': 4},
+    const {'1': 'IO_PROFILE_SYNC_SHARED', '2': 5},
   ],
 };
 
@@ -177,6 +178,15 @@ const OperationFlags$json = const {
   ],
 };
 
+const HardwareType$json = const {
+  '1': 'HardwareType',
+  '2': const [
+    const {'1': 'UnknownMachine', '2': 0},
+    const {'1': 'VirtualMachine', '2': 1},
+    const {'1': 'BareMetalMachine', '2': 2},
+  ],
+};
+
 const SdkTimeWeekday$json = const {
   '1': 'SdkTimeWeekday',
   '2': const [
@@ -222,6 +232,14 @@ const SdkCloudBackupRequestedState$json = const {
     const {'1': 'SdkCloudBackupRequestedStatePause', '2': 1},
     const {'1': 'SdkCloudBackupRequestedStateResume', '2': 2},
     const {'1': 'SdkCloudBackupRequestedStateStop', '2': 3},
+  ],
+};
+
+const EnforcementType$json = const {
+  '1': 'EnforcementType',
+  '2': const [
+    const {'1': 'required', '2': 0},
+    const {'1': 'preferred', '2': 1},
   ],
 };
 
@@ -952,6 +970,7 @@ const StorageNode$json = const {
     const {'1': 'hostname', '3': 15, '4': 1, '5': 9, '10': 'hostname'},
     const {'1': 'node_labels', '3': 16, '4': 3, '5': 11, '6': '.openstorage.api.StorageNode.NodeLabelsEntry', '10': 'nodeLabels'},
     const {'1': 'scheduler_node_name', '3': 17, '4': 1, '5': 9, '10': 'schedulerNodeName'},
+    const {'1': 'HWType', '3': 18, '4': 1, '5': 14, '6': '.openstorage.api.HardwareType', '10': 'HWType'},
   ],
   '3': const [StorageNode_DisksEntry$json, StorageNode_NodeLabelsEntry$json],
 };
@@ -1215,6 +1234,7 @@ const SdkAwsCredentialRequest$json = const {
     const {'1': 'endpoint', '3': 3, '4': 1, '5': 9, '10': 'endpoint'},
     const {'1': 'region', '3': 4, '4': 1, '5': 9, '10': 'region'},
     const {'1': 'disable_ssl', '3': 5, '4': 1, '5': 8, '10': 'disableSsl'},
+    const {'1': 'disable_path_style', '3': 6, '4': 1, '5': 8, '10': 'disablePathStyle'},
   ],
 };
 
@@ -1241,6 +1261,7 @@ const SdkAwsCredentialResponse$json = const {
     const {'1': 'endpoint', '3': 3, '4': 1, '5': 9, '10': 'endpoint'},
     const {'1': 'region', '3': 4, '4': 1, '5': 9, '10': 'region'},
     const {'1': 'disable_ssl', '3': 5, '4': 1, '5': 8, '10': 'disableSsl'},
+    const {'1': 'disable_path_style', '3': 6, '4': 1, '5': 8, '10': 'disablePathStyle'},
   ],
 };
 
@@ -1897,6 +1918,35 @@ const SdkCloudBackupCreateResponse$json = const {
   ],
 };
 
+const SdkCloudBackupGroupCreateRequest$json = const {
+  '1': 'SdkCloudBackupGroupCreateRequest',
+  '2': const [
+    const {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    const {'1': 'volume_ids', '3': 2, '4': 3, '5': 9, '10': 'volumeIds'},
+    const {'1': 'credential_id', '3': 3, '4': 1, '5': 9, '10': 'credentialId'},
+    const {'1': 'full', '3': 4, '4': 1, '5': 8, '10': 'full'},
+    const {'1': 'labels', '3': 5, '4': 3, '5': 11, '6': '.openstorage.api.SdkCloudBackupGroupCreateRequest.LabelsEntry', '10': 'labels'},
+  ],
+  '3': const [SdkCloudBackupGroupCreateRequest_LabelsEntry$json],
+};
+
+const SdkCloudBackupGroupCreateRequest_LabelsEntry$json = const {
+  '1': 'LabelsEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+const SdkCloudBackupGroupCreateResponse$json = const {
+  '1': 'SdkCloudBackupGroupCreateResponse',
+  '2': const [
+    const {'1': 'group_cloud_backup_id', '3': 1, '4': 1, '5': 9, '10': 'groupCloudBackupId'},
+    const {'1': 'task_ids', '3': 2, '4': 3, '5': 9, '10': 'taskIds'},
+  ],
+};
+
 const SdkCloudBackupRestoreRequest$json = const {
   '1': 'SdkCloudBackupRestoreRequest',
   '2': const [
@@ -2306,7 +2356,7 @@ const SdkVersion_Version$json = const {
   '2': const [
     const {'1': 'MUST_HAVE_ZERO_VALUE', '2': 0},
     const {'1': 'Major', '2': 0},
-    const {'1': 'Minor', '2': 55},
+    const {'1': 'Minor', '2': 58},
     const {'1': 'Patch', '2': 0},
   ],
   '3': const {'2': true},
@@ -2759,35 +2809,31 @@ const LocateResponse_DockeridsEntry$json = const {
 const VolumePlacementStrategy$json = const {
   '1': 'VolumePlacementStrategy',
   '2': const [
-    const {'1': 'rules', '3': 1, '4': 3, '5': 11, '6': '.openstorage.api.VolumePlacementRule', '10': 'rules'},
+    const {'1': 'replica_affinity', '3': 1, '4': 3, '5': 11, '6': '.openstorage.api.ReplicaPlacementSpec', '10': 'replicaAffinity'},
+    const {'1': 'replica_anti_affinity', '3': 2, '4': 3, '5': 11, '6': '.openstorage.api.ReplicaPlacementSpec', '10': 'replicaAntiAffinity'},
+    const {'1': 'volume_affinity', '3': 3, '4': 3, '5': 11, '6': '.openstorage.api.VolumePlacementSpec', '10': 'volumeAffinity'},
+    const {'1': 'volume_anti_affinity', '3': 4, '4': 3, '5': 11, '6': '.openstorage.api.VolumePlacementSpec', '10': 'volumeAntiAffinity'},
   ],
 };
 
-const VolumePlacementRule$json = const {
-  '1': 'VolumePlacementRule',
+const ReplicaPlacementSpec$json = const {
+  '1': 'ReplicaPlacementSpec',
   '2': const [
-    const {'1': 'affected_replicas', '3': 1, '4': 1, '5': 5, '10': 'affectedReplicas'},
-    const {'1': 'weight', '3': 2, '4': 1, '5': 3, '10': 'weight'},
-    const {'1': 'enforcement', '3': 3, '4': 1, '5': 14, '6': '.openstorage.api.VolumePlacementRule.EnforcementType', '10': 'enforcement'},
-    const {'1': 'type', '3': 4, '4': 1, '5': 14, '6': '.openstorage.api.VolumePlacementRule.AffinityRuleType', '10': 'type'},
+    const {'1': 'weight', '3': 1, '4': 1, '5': 3, '10': 'weight'},
+    const {'1': 'enforcement', '3': 2, '4': 1, '5': 14, '6': '.openstorage.api.EnforcementType', '10': 'enforcement'},
+    const {'1': 'affected_replicas', '3': 3, '4': 1, '5': 5, '10': 'affectedReplicas'},
+    const {'1': 'topology_key', '3': 4, '4': 1, '5': 9, '10': 'topologyKey'},
     const {'1': 'match_expressions', '3': 5, '4': 3, '5': 11, '6': '.openstorage.api.LabelSelectorRequirement', '10': 'matchExpressions'},
   ],
-  '4': const [VolumePlacementRule_EnforcementType$json, VolumePlacementRule_AffinityRuleType$json],
 };
 
-const VolumePlacementRule_EnforcementType$json = const {
-  '1': 'EnforcementType',
+const VolumePlacementSpec$json = const {
+  '1': 'VolumePlacementSpec',
   '2': const [
-    const {'1': 'required', '2': 0},
-    const {'1': 'preferred', '2': 1},
-  ],
-};
-
-const VolumePlacementRule_AffinityRuleType$json = const {
-  '1': 'AffinityRuleType',
-  '2': const [
-    const {'1': 'affinity', '2': 0},
-    const {'1': 'antiAffinity', '2': 1},
+    const {'1': 'weight', '3': 1, '4': 1, '5': 3, '10': 'weight'},
+    const {'1': 'enforcement', '3': 2, '4': 1, '5': 14, '6': '.openstorage.api.EnforcementType', '10': 'enforcement'},
+    const {'1': 'topology_key', '3': 3, '4': 1, '5': 9, '10': 'topologyKey'},
+    const {'1': 'match_expressions', '3': 4, '4': 3, '5': 11, '6': '.openstorage.api.LabelSelectorRequirement', '10': 'matchExpressions'},
   ],
 };
 

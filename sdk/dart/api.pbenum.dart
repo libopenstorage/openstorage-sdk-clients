@@ -221,6 +221,7 @@ class IoProfile extends $pb.ProtobufEnum {
   static const IoProfile IO_PROFILE_DB = IoProfile._(2, 'IO_PROFILE_DB');
   static const IoProfile IO_PROFILE_DB_REMOTE = IoProfile._(3, 'IO_PROFILE_DB_REMOTE');
   static const IoProfile IO_PROFILE_CMS = IoProfile._(4, 'IO_PROFILE_CMS');
+  static const IoProfile IO_PROFILE_SYNC_SHARED = IoProfile._(5, 'IO_PROFILE_SYNC_SHARED');
 
   static const $core.List<IoProfile> values = <IoProfile> [
     IO_PROFILE_SEQUENTIAL,
@@ -228,6 +229,7 @@ class IoProfile extends $pb.ProtobufEnum {
     IO_PROFILE_DB,
     IO_PROFILE_DB_REMOTE,
     IO_PROFILE_CMS,
+    IO_PROFILE_SYNC_SHARED,
   ];
 
   static final $core.Map<$core.int, IoProfile> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -339,6 +341,23 @@ class OperationFlags extends $pb.ProtobufEnum {
   const OperationFlags._($core.int v, $core.String n) : super(v, n);
 }
 
+class HardwareType extends $pb.ProtobufEnum {
+  static const HardwareType UnknownMachine = HardwareType._(0, 'UnknownMachine');
+  static const HardwareType VirtualMachine = HardwareType._(1, 'VirtualMachine');
+  static const HardwareType BareMetalMachine = HardwareType._(2, 'BareMetalMachine');
+
+  static const $core.List<HardwareType> values = <HardwareType> [
+    UnknownMachine,
+    VirtualMachine,
+    BareMetalMachine,
+  ];
+
+  static final $core.Map<$core.int, HardwareType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static HardwareType valueOf($core.int value) => _byValue[value];
+
+  const HardwareType._($core.int v, $core.String n) : super(v, n);
+}
+
 class SdkTimeWeekday extends $pb.ProtobufEnum {
   static const SdkTimeWeekday SdkTimeWeekdaySunday = SdkTimeWeekday._(0, 'SdkTimeWeekdaySunday');
   static const SdkTimeWeekday SdkTimeWeekdayMonday = SdkTimeWeekday._(1, 'SdkTimeWeekdayMonday');
@@ -431,6 +450,21 @@ class SdkCloudBackupRequestedState extends $pb.ProtobufEnum {
   const SdkCloudBackupRequestedState._($core.int v, $core.String n) : super(v, n);
 }
 
+class EnforcementType extends $pb.ProtobufEnum {
+  static const EnforcementType required = EnforcementType._(0, 'required');
+  static const EnforcementType preferred = EnforcementType._(1, 'preferred');
+
+  static const $core.List<EnforcementType> values = <EnforcementType> [
+    required,
+    preferred,
+  ];
+
+  static final $core.Map<$core.int, EnforcementType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static EnforcementType valueOf($core.int value) => _byValue[value];
+
+  const EnforcementType._($core.int v, $core.String n) : super(v, n);
+}
+
 class VolumeSpecPolicy_PolicyOp extends $pb.ProtobufEnum {
   static const VolumeSpecPolicy_PolicyOp Equal = VolumeSpecPolicy_PolicyOp._(0, 'Equal');
   static const VolumeSpecPolicy_PolicyOp Minimum = VolumeSpecPolicy_PolicyOp._(1, 'Minimum');
@@ -506,7 +540,7 @@ class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
 
 class SdkVersion_Version extends $pb.ProtobufEnum {
   static const SdkVersion_Version MUST_HAVE_ZERO_VALUE = SdkVersion_Version._(0, 'MUST_HAVE_ZERO_VALUE');
-  static const SdkVersion_Version Minor = SdkVersion_Version._(55, 'Minor');
+  static const SdkVersion_Version Minor = SdkVersion_Version._(58, 'Minor');
 
   static const SdkVersion_Version Major = MUST_HAVE_ZERO_VALUE;
   static const SdkVersion_Version Patch = MUST_HAVE_ZERO_VALUE;
@@ -600,36 +634,6 @@ class ClusterPairMode_Mode extends $pb.ProtobufEnum {
   static ClusterPairMode_Mode valueOf($core.int value) => _byValue[value];
 
   const ClusterPairMode_Mode._($core.int v, $core.String n) : super(v, n);
-}
-
-class VolumePlacementRule_EnforcementType extends $pb.ProtobufEnum {
-  static const VolumePlacementRule_EnforcementType required = VolumePlacementRule_EnforcementType._(0, 'required');
-  static const VolumePlacementRule_EnforcementType preferred = VolumePlacementRule_EnforcementType._(1, 'preferred');
-
-  static const $core.List<VolumePlacementRule_EnforcementType> values = <VolumePlacementRule_EnforcementType> [
-    required,
-    preferred,
-  ];
-
-  static final $core.Map<$core.int, VolumePlacementRule_EnforcementType> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static VolumePlacementRule_EnforcementType valueOf($core.int value) => _byValue[value];
-
-  const VolumePlacementRule_EnforcementType._($core.int v, $core.String n) : super(v, n);
-}
-
-class VolumePlacementRule_AffinityRuleType extends $pb.ProtobufEnum {
-  static const VolumePlacementRule_AffinityRuleType affinity = VolumePlacementRule_AffinityRuleType._(0, 'affinity');
-  static const VolumePlacementRule_AffinityRuleType antiAffinity = VolumePlacementRule_AffinityRuleType._(1, 'antiAffinity');
-
-  static const $core.List<VolumePlacementRule_AffinityRuleType> values = <VolumePlacementRule_AffinityRuleType> [
-    affinity,
-    antiAffinity,
-  ];
-
-  static final $core.Map<$core.int, VolumePlacementRule_AffinityRuleType> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static VolumePlacementRule_AffinityRuleType valueOf($core.int value) => _byValue[value];
-
-  const VolumePlacementRule_AffinityRuleType._($core.int v, $core.String n) : super(v, n);
 }
 
 class LabelSelectorRequirement_Operator extends $pb.ProtobufEnum {

@@ -440,6 +440,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :hostname, :string, 15
       map :node_labels, :string, :string, 16
       optional :scheduler_node_name, :string, 17
+      optional :HWType, :enum, 18, "openstorage.api.HardwareType"
     end
     add_message "openstorage.api.StorageCluster" do
       optional :status, :enum, 1, "openstorage.api.Status"
@@ -562,6 +563,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :endpoint, :string, 3
       optional :region, :string, 4
       optional :disable_ssl, :bool, 5
+      optional :disable_path_style, :bool, 6
     end
     add_message "openstorage.api.SdkAzureCredentialRequest" do
       optional :account_name, :string, 1
@@ -576,6 +578,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :endpoint, :string, 3
       optional :region, :string, 4
       optional :disable_ssl, :bool, 5
+      optional :disable_path_style, :bool, 6
     end
     add_message "openstorage.api.SdkAzureCredentialResponse" do
       optional :account_name, :string, 2
@@ -839,6 +842,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.SdkCloudBackupCreateResponse" do
       optional :task_id, :string, 1
     end
+    add_message "openstorage.api.SdkCloudBackupGroupCreateRequest" do
+      optional :group_id, :string, 1
+      repeated :volume_ids, :string, 2
+      optional :credential_id, :string, 3
+      optional :full, :bool, 4
+      map :labels, :string, :string, 5
+    end
+    add_message "openstorage.api.SdkCloudBackupGroupCreateResponse" do
+      optional :group_cloud_backup_id, :string, 1
+      repeated :task_ids, :string, 2
+    end
     add_message "openstorage.api.SdkCloudBackupRestoreRequest" do
       optional :backup_id, :string, 1
       optional :restore_volume_name, :string, 2
@@ -1036,7 +1050,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 55
+      value :Minor, 58
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1239,22 +1253,23 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       map :dockerids, :string, :string, 2
     end
     add_message "openstorage.api.VolumePlacementStrategy" do
-      repeated :rules, :message, 1, "openstorage.api.VolumePlacementRule"
+      repeated :replica_affinity, :message, 1, "openstorage.api.ReplicaPlacementSpec"
+      repeated :replica_anti_affinity, :message, 2, "openstorage.api.ReplicaPlacementSpec"
+      repeated :volume_affinity, :message, 3, "openstorage.api.VolumePlacementSpec"
+      repeated :volume_anti_affinity, :message, 4, "openstorage.api.VolumePlacementSpec"
     end
-    add_message "openstorage.api.VolumePlacementRule" do
-      optional :affected_replicas, :int32, 1
-      optional :weight, :int64, 2
-      optional :enforcement, :enum, 3, "openstorage.api.VolumePlacementRule.EnforcementType"
-      optional :type, :enum, 4, "openstorage.api.VolumePlacementRule.AffinityRuleType"
+    add_message "openstorage.api.ReplicaPlacementSpec" do
+      optional :weight, :int64, 1
+      optional :enforcement, :enum, 2, "openstorage.api.EnforcementType"
+      optional :affected_replicas, :int32, 3
+      optional :topology_key, :string, 4
       repeated :match_expressions, :message, 5, "openstorage.api.LabelSelectorRequirement"
     end
-    add_enum "openstorage.api.VolumePlacementRule.EnforcementType" do
-      value :required, 0
-      value :preferred, 1
-    end
-    add_enum "openstorage.api.VolumePlacementRule.AffinityRuleType" do
-      value :affinity, 0
-      value :antiAffinity, 1
+    add_message "openstorage.api.VolumePlacementSpec" do
+      optional :weight, :int64, 1
+      optional :enforcement, :enum, 2, "openstorage.api.EnforcementType"
+      optional :topology_key, :string, 3
+      repeated :match_expressions, :message, 4, "openstorage.api.LabelSelectorRequirement"
     end
     add_message "openstorage.api.LabelSelectorRequirement" do
       optional :key, :string, 1
@@ -1347,6 +1362,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_DB, 2
       value :IO_PROFILE_DB_REMOTE, 3
       value :IO_PROFILE_CMS, 4
+      value :IO_PROFILE_SYNC_SHARED, 5
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
@@ -1382,6 +1398,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :OP_FLAGS_NONE, 1
       value :OP_FLAGS_DETACH_FORCE, 2
     end
+    add_enum "openstorage.api.HardwareType" do
+      value :UnknownMachine, 0
+      value :VirtualMachine, 1
+      value :BareMetalMachine, 2
+    end
     add_enum "openstorage.api.SdkTimeWeekday" do
       value :SdkTimeWeekdaySunday, 0
       value :SdkTimeWeekdayMonday, 1
@@ -1413,6 +1434,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkCloudBackupRequestedStatePause, 1
       value :SdkCloudBackupRequestedStateResume, 2
       value :SdkCloudBackupRequestedStateStop, 3
+    end
+    add_enum "openstorage.api.EnforcementType" do
+      value :required, 0
+      value :preferred, 1
     end
   end
 end
@@ -1586,6 +1611,8 @@ module Openstorage
     SdkObjectstoreUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreUpdateResponse").msgclass
     SdkCloudBackupCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupCreateRequest").msgclass
     SdkCloudBackupCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupCreateResponse").msgclass
+    SdkCloudBackupGroupCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupGroupCreateRequest").msgclass
+    SdkCloudBackupGroupCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupGroupCreateResponse").msgclass
     SdkCloudBackupRestoreRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRestoreRequest").msgclass
     SdkCloudBackupRestoreResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRestoreResponse").msgclass
     SdkCloudBackupDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupDeleteRequest").msgclass
@@ -1681,9 +1708,8 @@ module Openstorage
     CatalogResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CatalogResponse").msgclass
     LocateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LocateResponse").msgclass
     VolumePlacementStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementStrategy").msgclass
-    VolumePlacementRule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementRule").msgclass
-    VolumePlacementRule::EnforcementType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementRule.EnforcementType").enummodule
-    VolumePlacementRule::AffinityRuleType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementRule.AffinityRuleType").enummodule
+    ReplicaPlacementSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ReplicaPlacementSpec").msgclass
+    VolumePlacementSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementSpec").msgclass
     LabelSelectorRequirement = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement").msgclass
     LabelSelectorRequirement::Operator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement.Operator").enummodule
     Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Status").enummodule
@@ -1701,9 +1727,11 @@ module Openstorage
     StorageMedium = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageMedium").enummodule
     AttachState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.AttachState").enummodule
     OperationFlags = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.OperationFlags").enummodule
+    HardwareType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.HardwareType").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
     SdkCloudBackupOpType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupOpType").enummodule
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule
     SdkCloudBackupRequestedState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRequestedState").enummodule
+    EnforcementType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.EnforcementType").enummodule
   end
 end

@@ -526,6 +526,12 @@ module Openstorage
         #
         # Requires access AccessType.Read of volume
         rpc :Create, SdkCloudBackupCreateRequest, SdkCloudBackupCreateResponse
+        # Creates a group backup request for a specified group. Use
+        # OpenStorageCloudBackup.Status() to get the current status of the
+        # backup request.
+        #
+        # This will only backup volumes which the user has read_access to.
+        rpc :GroupCreate, SdkCloudBackupGroupCreateRequest, SdkCloudBackupGroupCreateResponse
         # Restore creates a new volume from a backup id. The newly created volume
         # has an ha_level (number of replicas) of only 1. To increase the number of
         # replicas, use OpenStorageVolume.Set() to change the ha_level.

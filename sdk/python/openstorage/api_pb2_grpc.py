@@ -1568,6 +1568,11 @@ class OpenStorageCloudBackupStub(object):
         request_serializer=api__pb2.SdkCloudBackupCreateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkCloudBackupCreateResponse.FromString,
         )
+    self.GroupCreate = channel.unary_unary(
+        '/openstorage.api.OpenStorageCloudBackup/GroupCreate',
+        request_serializer=api__pb2.SdkCloudBackupGroupCreateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkCloudBackupGroupCreateResponse.FromString,
+        )
     self.Restore = channel.unary_unary(
         '/openstorage.api.OpenStorageCloudBackup/Restore',
         request_serializer=api__pb2.SdkCloudBackupRestoreRequest.SerializeToString,
@@ -1649,6 +1654,17 @@ class OpenStorageCloudBackupServicer(object):
     backup request.
 
     Requires access AccessType.Read of volume
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GroupCreate(self, request, context):
+    """Creates a group backup request for a specified group. Use
+    OpenStorageCloudBackup.Status() to get the current status of the
+    backup request.
+
+    This will only backup volumes which the user has read_access to.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -1741,6 +1757,11 @@ def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
           servicer.Create,
           request_deserializer=api__pb2.SdkCloudBackupCreateRequest.FromString,
           response_serializer=api__pb2.SdkCloudBackupCreateResponse.SerializeToString,
+      ),
+      'GroupCreate': grpc.unary_unary_rpc_method_handler(
+          servicer.GroupCreate,
+          request_deserializer=api__pb2.SdkCloudBackupGroupCreateRequest.FromString,
+          response_serializer=api__pb2.SdkCloudBackupGroupCreateResponse.SerializeToString,
       ),
       'Restore': grpc.unary_unary_rpc_method_handler(
           servicer.Restore,
