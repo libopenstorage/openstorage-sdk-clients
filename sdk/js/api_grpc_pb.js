@@ -171,6 +171,28 @@ function deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse(
   return api_pb.SdkCloudBackupEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCloudBackupGroupCreateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupGroupCreateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupGroupCreateRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudBackupGroupCreateRequest(buffer_arg) {
+  return api_pb.SdkCloudBackupGroupCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudBackupGroupCreateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupGroupCreateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupGroupCreateResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudBackupGroupCreateResponse(buffer_arg) {
+  return api_pb.SdkCloudBackupGroupCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCloudBackupHistoryRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupHistoryRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupHistoryRequest');
@@ -2739,6 +2761,22 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     requestDeserialize: deserialize_openstorage_api_SdkCloudBackupCreateRequest,
     responseSerialize: serialize_openstorage_api_SdkCloudBackupCreateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupCreateResponse,
+  },
+  // Creates a group backup request for a specified group. Use
+  // OpenStorageCloudBackup.Status() to get the current status of the
+  // backup request.
+  //
+  // This will only backup volumes which the user has read_access to.
+  groupCreate: {
+    path: '/openstorage.api.OpenStorageCloudBackup/GroupCreate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCloudBackupGroupCreateRequest,
+    responseType: api_pb.SdkCloudBackupGroupCreateResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudBackupGroupCreateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudBackupGroupCreateRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudBackupGroupCreateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudBackupGroupCreateResponse,
   },
   // Restore creates a new volume from a backup id. The newly created volume
   // has an ha_level (number of replicas) of only 1. To increase the number of

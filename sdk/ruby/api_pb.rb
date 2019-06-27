@@ -835,9 +835,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :full, :bool, 3
     optional :task_id, :string, 4
     map :labels, :string, :string, 5
+    optional :full_backup_frequency, :uint32, 6
   end
   add_message "openstorage.api.SdkCloudBackupCreateResponse" do
     optional :task_id, :string, 1
+  end
+  add_message "openstorage.api.SdkCloudBackupGroupCreateRequest" do
+    optional :group_id, :string, 1
+    repeated :volume_ids, :string, 2
+    optional :credential_id, :string, 3
+    optional :full, :bool, 4
+    map :labels, :string, :string, 5
+  end
+  add_message "openstorage.api.SdkCloudBackupGroupCreateResponse" do
+    optional :group_cloud_backup_id, :string, 1
+    repeated :task_ids, :string, 2
   end
   add_message "openstorage.api.SdkCloudBackupRestoreRequest" do
     optional :backup_id, :string, 1
@@ -868,6 +880,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :cluster_id, :string, 2
     optional :credential_id, :string, 3
     optional :all, :bool, 4
+    optional :status_filter, :enum, 5, "openstorage.api.SdkCloudBackupStatusType"
+    map :metadata_filter, :string, :string, 6
+    optional :max_backups, :uint64, 7
+    optional :continuation_token, :string, 8
   end
   add_message "openstorage.api.SdkCloudBackupInfo" do
     optional :id, :string, 1
@@ -879,6 +895,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse" do
     repeated :backups, :message, 1, "openstorage.api.SdkCloudBackupInfo"
+    optional :continuation_token, :string, 2
   end
   add_message "openstorage.api.SdkCloudBackupStatus" do
     optional :backup_id, :string, 1
@@ -933,6 +950,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :schedules, :message, 3, "openstorage.api.SdkSchedulePolicyInterval"
     optional :max_backups, :uint64, 4
     optional :full, :bool, 5
+    optional :retention_days, :uint32, 6
   end
   add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do
     optional :cloud_sched_info, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
@@ -1031,7 +1049,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 10
+    value :Patch, 14
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -1402,6 +1420,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :SdkCloudBackupStatusTypeActive, 6
     value :SdkCloudBackupStatusTypeFailed, 7
     value :SdkCloudBackupStatusTypeQueued, 8
+    value :SdkCloudBackupStatusTypeInvalid, 9
   end
   add_enum "openstorage.api.SdkCloudBackupRequestedState" do
     value :SdkCloudBackupRequestedStateUnknown, 0
@@ -1584,6 +1603,8 @@ module Openstorage
     SdkObjectstoreUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreUpdateResponse").msgclass
     SdkCloudBackupCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupCreateRequest").msgclass
     SdkCloudBackupCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupCreateResponse").msgclass
+    SdkCloudBackupGroupCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupGroupCreateRequest").msgclass
+    SdkCloudBackupGroupCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupGroupCreateResponse").msgclass
     SdkCloudBackupRestoreRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRestoreRequest").msgclass
     SdkCloudBackupRestoreResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRestoreResponse").msgclass
     SdkCloudBackupDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupDeleteRequest").msgclass
