@@ -831,6 +831,28 @@ function deserialize_openstorage_api_SdkNodeEnumerateResponse(buffer_arg) {
   return api_pb.SdkNodeEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest(arg) {
+  if (!(arg instanceof api_pb.SdkNodeEnumerateWithFiltersRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateWithFiltersRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest(buffer_arg) {
+  return api_pb.SdkNodeEnumerateWithFiltersRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse(arg) {
+  if (!(arg instanceof api_pb.SdkNodeEnumerateWithFiltersResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateWithFiltersResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse(buffer_arg) {
+  return api_pb.SdkNodeEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkNodeInspectCurrentRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeInspectCurrentRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeInspectCurrentRequest');
@@ -2167,6 +2189,18 @@ var OpenStorageNodeService = exports.OpenStorageNodeService = {
     requestDeserialize: deserialize_openstorage_api_SdkNodeEnumerateRequest,
     responseSerialize: serialize_openstorage_api_SdkNodeEnumerateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkNodeEnumerateResponse,
+  },
+  // EnumerateWithFilters returns all the nodes in the current cluster
+  enumerateWithFilters: {
+    path: '/openstorage.api.OpenStorageNode/EnumerateWithFilters',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkNodeEnumerateWithFiltersRequest,
+    responseType: api_pb.SdkNodeEnumerateWithFiltersResponse,
+    requestSerialize: serialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest,
+    responseSerialize: serialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse,
   },
 };
 

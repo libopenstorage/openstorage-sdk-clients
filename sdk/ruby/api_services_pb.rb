@@ -239,6 +239,8 @@ module Openstorage
         rpc :InspectCurrent, SdkNodeInspectCurrentRequest, SdkNodeInspectCurrentResponse
         # Enumerate returns the ids of all the nodes in the current cluster
         rpc :Enumerate, SdkNodeEnumerateRequest, SdkNodeEnumerateResponse
+        # EnumerateWithFilters returns all the nodes in the current cluster
+        rpc :EnumerateWithFilters, SdkNodeEnumerateWithFiltersRequest, SdkNodeEnumerateWithFiltersResponse
       end
 
       Stub = Service.rpc_stub_class

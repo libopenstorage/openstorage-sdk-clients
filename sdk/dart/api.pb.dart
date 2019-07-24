@@ -5598,6 +5598,45 @@ class SdkNodeEnumerateResponse extends $pb.GeneratedMessage {
   $core.List<$core.String> get nodeIds => $_getList(0);
 }
 
+class SdkNodeEnumerateWithFiltersRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkNodeEnumerateWithFiltersRequest', package: const $pb.PackageName('openstorage.api'))
+    ..hasRequiredFields = false
+  ;
+
+  SdkNodeEnumerateWithFiltersRequest() : super();
+  SdkNodeEnumerateWithFiltersRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkNodeEnumerateWithFiltersRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkNodeEnumerateWithFiltersRequest clone() => SdkNodeEnumerateWithFiltersRequest()..mergeFromMessage(this);
+  SdkNodeEnumerateWithFiltersRequest copyWith(void Function(SdkNodeEnumerateWithFiltersRequest) updates) => super.copyWith((message) => updates(message as SdkNodeEnumerateWithFiltersRequest));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkNodeEnumerateWithFiltersRequest create() => SdkNodeEnumerateWithFiltersRequest();
+  SdkNodeEnumerateWithFiltersRequest createEmptyInstance() => create();
+  static $pb.PbList<SdkNodeEnumerateWithFiltersRequest> createRepeated() => $pb.PbList<SdkNodeEnumerateWithFiltersRequest>();
+  static SdkNodeEnumerateWithFiltersRequest getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkNodeEnumerateWithFiltersRequest _defaultInstance;
+}
+
+class SdkNodeEnumerateWithFiltersResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkNodeEnumerateWithFiltersResponse', package: const $pb.PackageName('openstorage.api'))
+    ..pc<StorageNode>(1, 'nodes', $pb.PbFieldType.PM,StorageNode.create)
+    ..hasRequiredFields = false
+  ;
+
+  SdkNodeEnumerateWithFiltersResponse() : super();
+  SdkNodeEnumerateWithFiltersResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkNodeEnumerateWithFiltersResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkNodeEnumerateWithFiltersResponse clone() => SdkNodeEnumerateWithFiltersResponse()..mergeFromMessage(this);
+  SdkNodeEnumerateWithFiltersResponse copyWith(void Function(SdkNodeEnumerateWithFiltersResponse) updates) => super.copyWith((message) => updates(message as SdkNodeEnumerateWithFiltersResponse));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkNodeEnumerateWithFiltersResponse create() => SdkNodeEnumerateWithFiltersResponse();
+  SdkNodeEnumerateWithFiltersResponse createEmptyInstance() => create();
+  static $pb.PbList<SdkNodeEnumerateWithFiltersResponse> createRepeated() => $pb.PbList<SdkNodeEnumerateWithFiltersResponse>();
+  static SdkNodeEnumerateWithFiltersResponse getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkNodeEnumerateWithFiltersResponse _defaultInstance;
+
+  $core.List<StorageNode> get nodes => $_getList(0);
+}
+
 class SdkObjectstoreInspectRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkObjectstoreInspectRequest', package: const $pb.PackageName('openstorage.api'))
     ..aOS(1, 'objectstoreId')

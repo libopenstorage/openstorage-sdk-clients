@@ -726,6 +726,13 @@ class OpenStorageNodeClient extends $grpc.Client {
           (SdkNodeEnumerateRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               SdkNodeEnumerateResponse.fromBuffer(value));
+  static final _$enumerateWithFilters = $grpc.ClientMethod<
+          SdkNodeEnumerateWithFiltersRequest,
+          SdkNodeEnumerateWithFiltersResponse>(
+      '/openstorage.api.OpenStorageNode/EnumerateWithFilters',
+      (SdkNodeEnumerateWithFiltersRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkNodeEnumerateWithFiltersResponse.fromBuffer(value));
 
   OpenStorageNodeClient($grpc.ClientChannel channel,
       {$grpc.CallOptions options})
@@ -752,6 +759,15 @@ class OpenStorageNodeClient extends $grpc.Client {
       SdkNodeEnumerateRequest request,
       {$grpc.CallOptions options}) {
     final call = $createCall(_$enumerate, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkNodeEnumerateWithFiltersResponse>
+      enumerateWithFilters(SdkNodeEnumerateWithFiltersRequest request,
+          {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$enumerateWithFilters, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -788,6 +804,15 @@ abstract class OpenStorageNodeServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 SdkNodeEnumerateRequest.fromBuffer(value),
             (SdkNodeEnumerateResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkNodeEnumerateWithFiltersRequest,
+            SdkNodeEnumerateWithFiltersResponse>(
+        'EnumerateWithFilters',
+        enumerateWithFilters_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkNodeEnumerateWithFiltersRequest.fromBuffer(value),
+        (SdkNodeEnumerateWithFiltersResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<SdkNodeInspectResponse> inspect_Pre(
@@ -805,12 +830,19 @@ abstract class OpenStorageNodeServiceBase extends $grpc.Service {
     return enumerate(call, await request);
   }
 
+  $async.Future<SdkNodeEnumerateWithFiltersResponse> enumerateWithFilters_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return enumerateWithFilters(call, await request);
+  }
+
   $async.Future<SdkNodeInspectResponse> inspect(
       $grpc.ServiceCall call, SdkNodeInspectRequest request);
   $async.Future<SdkNodeInspectCurrentResponse> inspectCurrent(
       $grpc.ServiceCall call, SdkNodeInspectCurrentRequest request);
   $async.Future<SdkNodeEnumerateResponse> enumerate(
       $grpc.ServiceCall call, SdkNodeEnumerateRequest request);
+  $async.Future<SdkNodeEnumerateWithFiltersResponse> enumerateWithFilters(
+      $grpc.ServiceCall call, SdkNodeEnumerateWithFiltersRequest request);
 }
 
 class OpenStorageVolumeClient extends $grpc.Client {

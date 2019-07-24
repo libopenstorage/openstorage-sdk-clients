@@ -540,7 +540,7 @@ class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
 
 class SdkVersion_Version extends $pb.ProtobufEnum {
   static const SdkVersion_Version MUST_HAVE_ZERO_VALUE = SdkVersion_Version._(0, 'MUST_HAVE_ZERO_VALUE');
-  static const SdkVersion_Version Minor = SdkVersion_Version._(58, 'Minor');
+  static const SdkVersion_Version Minor = SdkVersion_Version._(59, 'Minor');
 
   static const SdkVersion_Version Major = MUST_HAVE_ZERO_VALUE;
   static const SdkVersion_Version Patch = MUST_HAVE_ZERO_VALUE;

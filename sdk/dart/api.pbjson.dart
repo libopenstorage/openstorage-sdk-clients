@@ -1838,6 +1838,17 @@ const SdkNodeEnumerateResponse$json = const {
   ],
 };
 
+const SdkNodeEnumerateWithFiltersRequest$json = const {
+  '1': 'SdkNodeEnumerateWithFiltersRequest',
+};
+
+const SdkNodeEnumerateWithFiltersResponse$json = const {
+  '1': 'SdkNodeEnumerateWithFiltersResponse',
+  '2': const [
+    const {'1': 'nodes', '3': 1, '4': 3, '5': 11, '6': '.openstorage.api.StorageNode', '10': 'nodes'},
+  ],
+};
+
 const SdkObjectstoreInspectRequest$json = const {
   '1': 'SdkObjectstoreInspectRequest',
   '2': const [
@@ -2356,7 +2367,7 @@ const SdkVersion_Version$json = const {
   '2': const [
     const {'1': 'MUST_HAVE_ZERO_VALUE', '2': 0},
     const {'1': 'Major', '2': 0},
-    const {'1': 'Minor', '2': 58},
+    const {'1': 'Minor', '2': 59},
     const {'1': 'Patch', '2': 0},
   ],
   '3': const {'2': true},
