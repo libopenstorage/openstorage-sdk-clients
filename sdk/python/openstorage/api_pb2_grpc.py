@@ -622,6 +622,11 @@ class OpenStorageNodeStub(object):
         request_serializer=api__pb2.SdkNodeEnumerateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkNodeEnumerateResponse.FromString,
         )
+    self.EnumerateWithFilters = channel.unary_unary(
+        '/openstorage.api.OpenStorageNode/EnumerateWithFilters',
+        request_serializer=api__pb2.SdkNodeEnumerateWithFiltersRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkNodeEnumerateWithFiltersResponse.FromString,
+        )
 
 
 class OpenStorageNodeServicer(object):
@@ -650,6 +655,13 @@ class OpenStorageNodeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def EnumerateWithFilters(self, request, context):
+    """EnumerateWithFilters returns all the nodes in the current cluster
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageNodeServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -667,6 +679,11 @@ def add_OpenStorageNodeServicer_to_server(servicer, server):
           servicer.Enumerate,
           request_deserializer=api__pb2.SdkNodeEnumerateRequest.FromString,
           response_serializer=api__pb2.SdkNodeEnumerateResponse.SerializeToString,
+      ),
+      'EnumerateWithFilters': grpc.unary_unary_rpc_method_handler(
+          servicer.EnumerateWithFilters,
+          request_deserializer=api__pb2.SdkNodeEnumerateWithFiltersRequest.FromString,
+          response_serializer=api__pb2.SdkNodeEnumerateWithFiltersResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

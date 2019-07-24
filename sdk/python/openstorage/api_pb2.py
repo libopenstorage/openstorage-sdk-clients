@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='openstorage.api',
   syntax='proto3',
   serialized_options=_b('\n\023com.openstorage.apiP\001Z\003api'),
-  serialized_pb=_b('\n\tapi.proto\x12\x0fopenstorage.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\xb2\x02\n\x0fStorageResource\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12.\n\x06medium\x18\x03 \x01(\x0e\x32\x1e.openstorage.api.StorageMedium\x12\x0e\n\x06online\x18\x04 \x01(\x08\x12\x0c\n\x04iops\x18\x05 \x01(\x04\x12\x11\n\tseq_write\x18\x06 \x01(\x01\x12\x10\n\x08seq_read\x18\x07 \x01(\x01\x12\x0e\n\x06randRW\x18\x08 \x01(\x01\x12\x0c\n\x04size\x18\t \x01(\x04\x12\x0c\n\x04used\x18\n \x01(\x04\x12\x16\n\x0erotation_speed\x18\x0b \x01(\t\x12-\n\tlast_scan\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x10\n\x08metadata\x18\r \x01(\x08\x12\r\n\x05\x63\x61\x63he\x18\x0e \x01(\x08\"\x8d\x02\n\x0bStoragePool\x12\n\n\x02ID\x18\x01 \x01(\x05\x12%\n\x03\x43os\x18\x02 \x01(\x0e\x32\x18.openstorage.api.CosType\x12.\n\x06Medium\x18\x03 \x01(\x0e\x32\x1e.openstorage.api.StorageMedium\x12\x11\n\tRaidLevel\x18\x04 \x01(\t\x12\x11\n\tTotalSize\x18\x07 \x01(\x04\x12\x0c\n\x04Used\x18\x08 \x01(\x04\x12\x38\n\x06labels\x18\t \x03(\x0b\x32(.openstorage.api.StoragePool.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x85\x02\n\rVolumeLocator\x12\x0c\n\x04name\x18\x01 \x01(\t\x12G\n\rvolume_labels\x18\x02 \x03(\x0b\x32\x30.openstorage.api.VolumeLocator.VolumeLabelsEntry\x12-\n\townership\x18\x03 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12%\n\x05group\x18\x04 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x12\n\nvolume_ids\x18\x05 \x03(\t\x1a\x33\n\x11VolumeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"$\n\x14VolumeInspectOptions\x12\x0c\n\x04\x64\x65\x65p\x18\x01 \x01(\x08\"&\n\x06Source\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x0c\n\x04seed\x18\x02 \x01(\t\"\x13\n\x05Group\x12\n\n\x02id\x18\x01 \x01(\t\"1\n\nIoStrategy\x12\x10\n\x08\x61sync_io\x18\x01 \x01(\x08\x12\x11\n\tearly_ack\x18\x02 \x01(\x08\"\xc9\x07\n\nVolumeSpec\x12\x11\n\tephemeral\x18\x01 \x01(\x08\x12\x0c\n\x04size\x18\x02 \x01(\x04\x12\'\n\x06\x66ormat\x18\x03 \x01(\x0e\x32\x17.openstorage.api.FSType\x12\x12\n\nblock_size\x18\x04 \x01(\x03\x12\x10\n\x08ha_level\x18\x05 \x01(\x03\x12%\n\x03\x63os\x18\x06 \x01(\x0e\x32\x18.openstorage.api.CosType\x12.\n\nio_profile\x18\x07 \x01(\x0e\x32\x1a.openstorage.api.IoProfile\x12\x0e\n\x06\x64\x65\x64upe\x18\x08 \x01(\x08\x12\x19\n\x11snapshot_interval\x18\t \x01(\r\x12\x44\n\rvolume_labels\x18\n \x03(\x0b\x32-.openstorage.api.VolumeSpec.VolumeLabelsEntry\x12\x0e\n\x06shared\x18\x0b \x01(\x08\x12\x30\n\x0breplica_set\x18\x0c \x01(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x19\n\x11\x61ggregation_level\x18\r \x01(\r\x12\x11\n\tencrypted\x18\x0e \x01(\x08\x12\x12\n\npassphrase\x18\x0f \x01(\t\x12\x19\n\x11snapshot_schedule\x18\x10 \x01(\t\x12\r\n\x05scale\x18\x11 \x01(\r\x12\x0e\n\x06sticky\x18\x12 \x01(\x08\x12%\n\x05group\x18\x15 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x16\n\x0egroup_enforced\x18\x16 \x01(\x08\x12\x12\n\ncompressed\x18\x17 \x01(\x08\x12\x10\n\x08\x63\x61scaded\x18\x18 \x01(\x08\x12\x0f\n\x07journal\x18\x19 \x01(\x08\x12\x10\n\x08sharedv4\x18\x1a \x01(\x08\x12\x13\n\x0bqueue_depth\x18\x1b \x01(\r\x12!\n\x19\x66orce_unsupported_fs_type\x18\x1c \x01(\x08\x12\x11\n\tnodiscard\x18\x1d \x01(\x08\x12\x30\n\x0bio_strategy\x18\x1e \x01(\x0b\x32\x1b.openstorage.api.IoStrategy\x12\x44\n\x12placement_strategy\x18\x1f \x01(\x0b\x32(.openstorage.api.VolumePlacementStrategy\x12\x16\n\x0estorage_policy\x18  \x01(\t\x12-\n\townership\x18! \x01(\x0b\x32\x1a.openstorage.api.Ownership\x1a\x33\n\x11VolumeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xbb\x06\n\x10VolumeSpecUpdate\x12\x0e\n\x04size\x18\x02 \x01(\x04H\x00\x12\x12\n\x08ha_level\x18\x05 \x01(\x03H\x01\x12\'\n\x03\x63os\x18\x06 \x01(\x0e\x32\x18.openstorage.api.CosTypeH\x02\x12\x30\n\nio_profile\x18\x07 \x01(\x0e\x32\x1a.openstorage.api.IoProfileH\x03\x12\x10\n\x06\x64\x65\x64upe\x18\x08 \x01(\x08H\x04\x12\x1b\n\x11snapshot_interval\x18\t \x01(\rH\x05\x12\x10\n\x06shared\x18\x0b \x01(\x08H\x06\x12\x30\n\x0breplica_set\x18\x0c \x01(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x14\n\npassphrase\x18\x0f \x01(\tH\x07\x12\x1b\n\x11snapshot_schedule\x18\x10 \x01(\tH\x08\x12\x0f\n\x05scale\x18\x11 \x01(\rH\t\x12\x10\n\x06sticky\x18\x12 \x01(\x08H\n\x12\'\n\x05group\x18\x13 \x01(\x0b\x32\x16.openstorage.api.GroupH\x0b\x12\x11\n\x07journal\x18\x17 \x01(\x08H\x0c\x12\x12\n\x08sharedv4\x18\x18 \x01(\x08H\r\x12\x15\n\x0bqueue_depth\x18\x19 \x01(\rH\x0e\x12-\n\townership\x18\x1a \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12\x13\n\tnodiscard\x18\x1b \x01(\x08H\x0f\x12\x30\n\x0bio_strategy\x18\x1c \x01(\x0b\x32\x1b.openstorage.api.IoStrategyB\n\n\x08size_optB\x0e\n\x0cha_level_optB\t\n\x07\x63os_optB\x10\n\x0eio_profile_optB\x0c\n\ndedupe_optB\x17\n\x15snapshot_interval_optB\x0c\n\nshared_optB\x10\n\x0epassphrase_optB\x17\n\x15snapshot_schedule_optB\x0b\n\tscale_optB\x0c\n\nsticky_optB\x0b\n\tgroup_optB\r\n\x0bjournal_optB\x0e\n\x0csharedv4_optB\x11\n\x0fqueue_depth_optB\x0f\n\rnodiscard_opt\"\xb8\n\n\x10VolumeSpecPolicy\x12\x0e\n\x04size\x18\x01 \x01(\x04H\x00\x12\x12\n\x08ha_level\x18\x02 \x01(\x03H\x01\x12\'\n\x03\x63os\x18\x03 \x01(\x0e\x32\x18.openstorage.api.CosTypeH\x02\x12\x30\n\nio_profile\x18\x04 \x01(\x0e\x32\x1a.openstorage.api.IoProfileH\x03\x12\x10\n\x06\x64\x65\x64upe\x18\x05 \x01(\x08H\x04\x12\x1b\n\x11snapshot_interval\x18\x06 \x01(\rH\x05\x12J\n\rvolume_labels\x18\x07 \x03(\x0b\x32\x33.openstorage.api.VolumeSpecPolicy.VolumeLabelsEntry\x12\x10\n\x06shared\x18\x08 \x01(\x08H\x06\x12\x30\n\x0breplica_set\x18\t \x01(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x14\n\npassphrase\x18\n \x01(\tH\x07\x12\x1b\n\x11snapshot_schedule\x18\x0b \x01(\tH\x08\x12\x0f\n\x05scale\x18\x0c \x01(\rH\t\x12\x10\n\x06sticky\x18\r \x01(\x08H\n\x12\'\n\x05group\x18\x0e \x01(\x0b\x32\x16.openstorage.api.GroupH\x0b\x12\x11\n\x07journal\x18\x0f \x01(\x08H\x0c\x12\x12\n\x08sharedv4\x18\x10 \x01(\x08H\r\x12\x15\n\x0bqueue_depth\x18\x11 \x01(\rH\x0e\x12\x13\n\tencrypted\x18\x12 \x01(\x08H\x0f\x12\x1b\n\x11\x61ggregation_level\x18\x13 \x01(\rH\x10\x12\x41\n\rsize_operator\x18\x32 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12\x45\n\x11ha_level_operator\x18\x33 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12\x42\n\x0escale_operator\x18\x34 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12N\n\x1asnapshot_interval_operator\x18\x35 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12\x13\n\tnodiscard\x18\x36 \x01(\x08H\x11\x12\x30\n\x0bio_strategy\x18\x37 \x01(\x0b\x32\x1b.openstorage.api.IoStrategy\x1a\x33\n\x11VolumeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"/\n\x08PolicyOp\x12\t\n\x05\x45qual\x10\x00\x12\x0b\n\x07Minimum\x10\x01\x12\x0b\n\x07Maximum\x10\x02\x42\n\n\x08size_optB\x0e\n\x0cha_level_optB\t\n\x07\x63os_optB\x10\n\x0eio_profile_optB\x0c\n\ndedupe_optB\x17\n\x15snapshot_interval_optB\x0c\n\nshared_optB\x10\n\x0epassphrase_optB\x17\n\x15snapshot_schedule_optB\x0b\n\tscale_optB\x0c\n\nsticky_optB\x0b\n\tgroup_optB\r\n\x0bjournal_optB\x0e\n\x0csharedv4_optB\x11\n\x0fqueue_depth_optB\x0f\n\rencrypted_optB\x17\n\x15\x61ggregation_level_optB\x0f\n\rnodiscard_opt\"\x1b\n\nReplicaSet\x12\r\n\x05nodes\x18\x01 \x03(\t\"\x91\x01\n\x0fRuntimeStateMap\x12I\n\rruntime_state\x18\x01 \x03(\x0b\x32\x32.openstorage.api.RuntimeStateMap.RuntimeStateEntry\x1a\x33\n\x11RuntimeStateEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xdf\x03\n\tOwnership\x12\r\n\x05owner\x18\x01 \x01(\t\x12\x36\n\x04\x61\x63ls\x18\x02 \x01(\x0b\x32(.openstorage.api.Ownership.AccessControl\x1a\xdc\x02\n\rAccessControl\x12\x44\n\x06groups\x18\x01 \x03(\x0b\x32\x34.openstorage.api.Ownership.AccessControl.GroupsEntry\x12R\n\rcollaborators\x18\x02 \x03(\x0b\x32;.openstorage.api.Ownership.AccessControl.CollaboratorsEntry\x1aT\n\x0bGroupsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0e\x32%.openstorage.api.Ownership.AccessType:\x02\x38\x01\x1a[\n\x12\x43ollaboratorsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0e\x32%.openstorage.api.Ownership.AccessType:\x02\x38\x01\",\n\nAccessType\x12\x08\n\x04Read\x10\x00\x12\t\n\x05Write\x10\x01\x12\t\n\x05\x41\x64min\x10\x02\"\x94\x07\n\x06Volume\x12\n\n\x02id\x18\x01 \x01(\t\x12\'\n\x06source\x18\x02 \x01(\x0b\x32\x17.openstorage.api.Source\x12%\n\x05group\x18\x03 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x10\n\x08readonly\x18\x04 \x01(\x08\x12/\n\x07locator\x18\x05 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12)\n\x05\x63time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12)\n\x04spec\x18\x07 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\x12\r\n\x05usage\x18\x08 \x01(\x04\x12-\n\tlast_scan\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x06\x66ormat\x18\n \x01(\x0e\x32\x17.openstorage.api.FSType\x12-\n\x06status\x18\x0b \x01(\x0e\x32\x1d.openstorage.api.VolumeStatus\x12+\n\x05state\x18\x0c \x01(\x0e\x32\x1c.openstorage.api.VolumeState\x12\x13\n\x0b\x61ttached_on\x18\r \x01(\t\x12\x34\n\x0e\x61ttached_state\x18\x0e \x01(\x0e\x32\x1c.openstorage.api.AttachState\x12\x13\n\x0b\x64\x65vice_path\x18\x0f \x01(\t\x12\x1a\n\x12secure_device_path\x18\x10 \x01(\t\x12\x13\n\x0b\x61ttach_path\x18\x11 \x03(\t\x12<\n\x0b\x61ttach_info\x18\x12 \x03(\x0b\x32\'.openstorage.api.Volume.AttachInfoEntry\x12\x31\n\x0creplica_sets\x18\x13 \x03(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x37\n\rruntime_state\x18\x14 \x03(\x0b\x32 .openstorage.api.RuntimeStateMap\x12\r\n\x05\x65rror\x18\x15 \x01(\t\x12\x39\n\x10volume_consumers\x18\x16 \x03(\x0b\x32\x1f.openstorage.api.VolumeConsumer\x12\x1a\n\x12\x66s_resize_required\x18\x17 \x01(\x08\x1a\x31\n\x0f\x41ttachInfoEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xbf\x01\n\x05Stats\x12\r\n\x05reads\x18\x01 \x01(\x04\x12\x0f\n\x07read_ms\x18\x02 \x01(\x04\x12\x12\n\nread_bytes\x18\x03 \x01(\x04\x12\x0e\n\x06writes\x18\x04 \x01(\x04\x12\x10\n\x08write_ms\x18\x05 \x01(\x04\x12\x13\n\x0bwrite_bytes\x18\x06 \x01(\x04\x12\x13\n\x0bio_progress\x18\x07 \x01(\x04\x12\r\n\x05io_ms\x18\x08 \x01(\x04\x12\x12\n\nbytes_used\x18\t \x01(\x04\x12\x13\n\x0binterval_ms\x18\n \x01(\x04\"W\n\x11\x43\x61pacityUsageInfo\x12\x17\n\x0f\x65xclusive_bytes\x18\x01 \x01(\x03\x12\x14\n\x0cshared_bytes\x18\x02 \x01(\x03\x12\x13\n\x0btotal_bytes\x18\x03 \x01(\x03\"\xa7\x01\n\x10SdkStoragePolicy\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x31\n\x06policy\x18\x02 \x01(\x0b\x32!.openstorage.api.VolumeSpecPolicy\x12\r\n\x05\x66orce\x18\x03 \x01(\x08\x12\x14\n\x0c\x61llow_update\x18\x04 \x01(\x08\x12-\n\townership\x18\x05 \x01(\x0b\x32\x1a.openstorage.api.Ownership\"\xcf\x02\n\x05\x41lert\x12\n\n\x02id\x18\x01 \x01(\x03\x12/\n\x08severity\x18\x02 \x01(\x0e\x32\x1d.openstorage.api.SeverityType\x12\x12\n\nalert_type\x18\x03 \x01(\x03\x12\x0f\n\x07message\x18\x04 \x01(\t\x12-\n\ttimestamp\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0bresource_id\x18\x06 \x01(\t\x12/\n\x08resource\x18\x07 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\x12\x0f\n\x07\x63leared\x18\x08 \x01(\x08\x12\x0b\n\x03ttl\x18\t \x01(\x04\x12\x12\n\nunique_tag\x18\n \x01(\t\x12\r\n\x05\x63ount\x18\x0b \x01(\x03\x12.\n\nfirst_seen\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"q\n\x11SdkAlertsTimeSpan\x12.\n\nstart_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\":\n\x12SdkAlertsCountSpan\x12\x11\n\tmin_count\x18\x01 \x01(\x03\x12\x11\n\tmax_count\x18\x02 \x01(\x03\"\xde\x01\n\x0fSdkAlertsOption\x12:\n\x11min_severity_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.SeverityTypeH\x00\x12\x14\n\nis_cleared\x18\x02 \x01(\x08H\x00\x12\x37\n\ttime_span\x18\x03 \x01(\x0b\x32\".openstorage.api.SdkAlertsTimeSpanH\x00\x12\x39\n\ncount_span\x18\x04 \x01(\x0b\x32#.openstorage.api.SdkAlertsCountSpanH\x00\x42\x05\n\x03opt\"R\n\x1aSdkAlertsResourceTypeQuery\x12\x34\n\rresource_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\"c\n\x17SdkAlertsAlertTypeQuery\x12\x34\n\rresource_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\x12\x12\n\nalert_type\x18\x02 \x01(\x03\"y\n\x18SdkAlertsResourceIdQuery\x12\x34\n\rresource_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\x12\x12\n\nalert_type\x18\x02 \x01(\x03\x12\x13\n\x0bresource_id\x18\x03 \x01(\t\"\xa3\x02\n\x0eSdkAlertsQuery\x12J\n\x13resource_type_query\x18\x01 \x01(\x0b\x32+.openstorage.api.SdkAlertsResourceTypeQueryH\x00\x12\x44\n\x10\x61lert_type_query\x18\x02 \x01(\x0b\x32(.openstorage.api.SdkAlertsAlertTypeQueryH\x00\x12\x46\n\x11resource_id_query\x18\x03 \x01(\x0b\x32).openstorage.api.SdkAlertsResourceIdQueryH\x00\x12.\n\x04opts\x18\x04 \x03(\x0b\x32 .openstorage.api.SdkAlertsOptionB\x07\n\x05query\"X\n$SdkAlertsEnumerateWithFiltersRequest\x12\x30\n\x07queries\x18\x01 \x03(\x0b\x32\x1f.openstorage.api.SdkAlertsQuery\"O\n%SdkAlertsEnumerateWithFiltersResponse\x12&\n\x06\x61lerts\x18\x01 \x03(\x0b\x32\x16.openstorage.api.Alert\"J\n\x16SdkAlertsDeleteRequest\x12\x30\n\x07queries\x18\x01 \x03(\x0b\x32\x1f.openstorage.api.SdkAlertsQuery\"\x19\n\x17SdkAlertsDeleteResponse\"/\n\x06\x41lerts\x12%\n\x05\x61lert\x18\x01 \x03(\x0b\x32\x16.openstorage.api.Alert\"\xdd\x01\n\x0fObjectstoreInfo\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12\x11\n\tvolume_id\x18\x02 \x01(\t\x12\x0f\n\x07\x65nabled\x18\x03 \x01(\x08\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12\x12\n\naccess_key\x18\x06 \x01(\t\x12\x12\n\nsecret_key\x18\x07 \x01(\t\x12\x11\n\tendpoints\x18\x08 \x03(\t\x12\x18\n\x10\x63urrent_endpoint\x18\t \x01(\t\x12\x13\n\x0b\x61\x63\x63\x65ss_port\x18\n \x01(\x03\x12\x0e\n\x06region\x18\x0b \x01(\t\"\x9a\x01\n\x13VolumeCreateRequest\x12/\n\x07locator\x18\x01 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12\'\n\x06source\x18\x02 \x01(\x0b\x32\x17.openstorage.api.Source\x12)\n\x04spec\x18\x03 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\"\x1f\n\x0eVolumeResponse\x12\r\n\x05\x65rror\x18\x01 \x01(\t\"\\\n\x14VolumeCreateResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x38\n\x0fvolume_response\x18\x02 \x01(\x0b\x32\x1f.openstorage.api.VolumeResponse\"\xa3\x01\n\x11VolumeStateAction\x12\x32\n\x06\x61ttach\x18\x01 \x01(\x0e\x32\".openstorage.api.VolumeActionParam\x12\x31\n\x05mount\x18\x02 \x01(\x0e\x32\".openstorage.api.VolumeActionParam\x12\x12\n\nmount_path\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65vice_path\x18\x04 \x01(\t\"\x93\x02\n\x10VolumeSetRequest\x12/\n\x07locator\x18\x01 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12)\n\x04spec\x18\x02 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\x12\x32\n\x06\x61\x63tion\x18\x03 \x01(\x0b\x32\".openstorage.api.VolumeStateAction\x12?\n\x07options\x18\x04 \x03(\x0b\x32..openstorage.api.VolumeSetRequest.OptionsEntry\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"v\n\x11VolumeSetResponse\x12\'\n\x06volume\x18\x01 \x01(\x0b\x32\x17.openstorage.api.Volume\x12\x38\n\x0fvolume_response\x18\x02 \x01(\x0b\x32\x1f.openstorage.api.VolumeResponse\"t\n\x11SnapCreateRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12/\n\x07locator\x18\x02 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12\x10\n\x08readonly\x18\x03 \x01(\x08\x12\x10\n\x08no_retry\x18\x04 \x01(\x08\"[\n\x12SnapCreateResponse\x12\x45\n\x16volume_create_response\x18\x01 \x01(\x0b\x32%.openstorage.api.VolumeCreateResponse\"[\n\nVolumeInfo\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12,\n\x07storage\x18\x03 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\"x\n\x0eVolumeConsumer\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tnamespace\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x0f\n\x07node_id\x18\x04 \x01(\t\x12\x12\n\nowner_name\x18\x05 \x01(\t\x12\x12\n\nowner_type\x18\x06 \x01(\t\"X\n\x12GraphDriverChanges\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x34\n\x04kind\x18\x02 \x01(\x0e\x32&.openstorage.api.GraphDriverChangeType\" \n\x0f\x43lusterResponse\x12\r\n\x05\x65rror\x18\x01 \x01(\t\"\x80\x01\n\rActiveRequest\x12>\n\x08ReqestKV\x18\x01 \x03(\x0b\x32,.openstorage.api.ActiveRequest.ReqestKVEntry\x1a/\n\rReqestKVEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"]\n\x0e\x41\x63tiveRequests\x12\x14\n\x0cRequestCount\x18\x01 \x01(\x03\x12\x35\n\rActiveRequest\x18\x02 \x03(\x0b\x32\x1e.openstorage.api.ActiveRequest\"\xac\x01\n\x16GroupSnapCreateRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x43\n\x06Labels\x18\x02 \x03(\x0b\x32\x33.openstorage.api.GroupSnapCreateRequest.LabelsEntry\x12\x12\n\nvolume_ids\x18\x03 \x03(\t\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xcb\x01\n\x17GroupSnapCreateResponse\x12J\n\tsnapshots\x18\x01 \x03(\x0b\x32\x37.openstorage.api.GroupSnapCreateResponse.SnapshotsEntry\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x1aU\n\x0eSnapshotsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x32\n\x05value\x18\x02 \x01(\x0b\x32#.openstorage.api.SnapCreateResponse:\x02\x38\x01\"\x94\x04\n\x0bStorageNode\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03\x63pu\x18\x02 \x01(\x01\x12\x11\n\tmem_total\x18\x03 \x01(\x04\x12\x10\n\x08mem_used\x18\x04 \x01(\x04\x12\x10\n\x08mem_free\x18\x05 \x01(\x04\x12\x10\n\x08\x61vg_load\x18\x06 \x01(\x03\x12\'\n\x06status\x18\x07 \x01(\x0e\x32\x17.openstorage.api.Status\x12\x36\n\x05\x64isks\x18\t \x03(\x0b\x32\'.openstorage.api.StorageNode.DisksEntry\x12+\n\x05pools\x18\n \x03(\x0b\x32\x1c.openstorage.api.StoragePool\x12\x0f\n\x07mgmt_ip\x18\x0b \x01(\t\x12\x0f\n\x07\x64\x61ta_ip\x18\x0c \x01(\t\x12\x10\n\x08hostname\x18\x0f \x01(\t\x12\x41\n\x0bnode_labels\x18\x10 \x03(\x0b\x32,.openstorage.api.StorageNode.NodeLabelsEntry\x12\x1b\n\x13scheduler_node_name\x18\x11 \x01(\t\x1aN\n\nDisksEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12/\n\x05value\x18\x02 \x01(\x0b\x32 .openstorage.api.StorageResource:\x02\x38\x01\x1a\x31\n\x0fNodeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"S\n\x0eStorageCluster\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.openstorage.api.Status\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\"^\n!SdkOpenStoragePolicyCreateRequest\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"$\n\"SdkOpenStoragePolicyCreateResponse\"&\n$SdkOpenStoragePolicyEnumerateRequest\"d\n%SdkOpenStoragePolicyEnumerateResponse\x12;\n\x10storage_policies\x18\x01 \x03(\x0b\x32!.openstorage.api.SdkStoragePolicy\"2\n\"SdkOpenStoragePolicyInspectRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"`\n#SdkOpenStoragePolicyInspectResponse\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"1\n!SdkOpenStoragePolicyDeleteRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\"SdkOpenStoragePolicyDeleteResponse\"^\n!SdkOpenStoragePolicyUpdateRequest\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"$\n\"SdkOpenStoragePolicyUpdateResponse\"5\n%SdkOpenStoragePolicySetDefaultRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"(\n&SdkOpenStoragePolicySetDefaultResponse\"$\n\"SdkOpenStoragePolicyReleaseRequest\"%\n#SdkOpenStoragePolicyReleaseResponse\"+\n)SdkOpenStoragePolicyDefaultInspectRequest\"g\n*SdkOpenStoragePolicyDefaultInspectResponse\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"]\n\x1eSdkSchedulePolicyCreateRequest\x12;\n\x0fschedule_policy\x18\x01 \x01(\x0b\x32\".openstorage.api.SdkSchedulePolicy\"!\n\x1fSdkSchedulePolicyCreateResponse\"]\n\x1eSdkSchedulePolicyUpdateRequest\x12;\n\x0fschedule_policy\x18\x01 \x01(\x0b\x32\".openstorage.api.SdkSchedulePolicy\"!\n\x1fSdkSchedulePolicyUpdateResponse\"#\n!SdkSchedulePolicyEnumerateRequest\"Z\n\"SdkSchedulePolicyEnumerateResponse\x12\x34\n\x08policies\x18\x01 \x03(\x0b\x32\".openstorage.api.SdkSchedulePolicy\"/\n\x1fSdkSchedulePolicyInspectRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"V\n SdkSchedulePolicyInspectResponse\x12\x32\n\x06policy\x18\x01 \x01(\x0b\x32\".openstorage.api.SdkSchedulePolicy\".\n\x1eSdkSchedulePolicyDeleteRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x1fSdkSchedulePolicyDeleteResponse\">\n\x1eSdkSchedulePolicyIntervalDaily\x12\x0c\n\x04hour\x18\x01 \x01(\x05\x12\x0e\n\x06minute\x18\x02 \x01(\x05\"m\n\x1fSdkSchedulePolicyIntervalWeekly\x12,\n\x03\x64\x61y\x18\x01 \x01(\x0e\x32\x1f.openstorage.api.SdkTimeWeekday\x12\x0c\n\x04hour\x18\x02 \x01(\x05\x12\x0e\n\x06minute\x18\x03 \x01(\x05\"M\n SdkSchedulePolicyIntervalMonthly\x12\x0b\n\x03\x64\x61y\x18\x01 \x01(\x05\x12\x0c\n\x04hour\x18\x02 \x01(\x05\x12\x0e\n\x06minute\x18\x03 \x01(\x05\"4\n!SdkSchedulePolicyIntervalPeriodic\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\"\xd2\x02\n\x19SdkSchedulePolicyInterval\x12\x0e\n\x06retain\x18\x01 \x01(\x03\x12\x41\n\x05\x64\x61ily\x18\xc8\x01 \x01(\x0b\x32/.openstorage.api.SdkSchedulePolicyIntervalDailyH\x00\x12\x43\n\x06weekly\x18\xc9\x01 \x01(\x0b\x32\x30.openstorage.api.SdkSchedulePolicyIntervalWeeklyH\x00\x12\x45\n\x07monthly\x18\xca\x01 \x01(\x0b\x32\x31.openstorage.api.SdkSchedulePolicyIntervalMonthlyH\x00\x12G\n\x08periodic\x18\xcb\x01 \x01(\x0b\x32\x32.openstorage.api.SdkSchedulePolicyIntervalPeriodicH\x00\x42\r\n\x0bperiod_type\"`\n\x11SdkSchedulePolicy\x12\x0c\n\x04name\x18\x01 \x01(\t\x12=\n\tschedules\x18\x02 \x03(\x0b\x32*.openstorage.api.SdkSchedulePolicyInterval\"\xed\x02\n\x1aSdkCredentialCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x02 \x01(\t\x12\x16\n\x0e\x65ncryption_key\x18\x03 \x01(\t\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12\x43\n\x0e\x61ws_credential\x18\xc8\x01 \x01(\x0b\x32(.openstorage.api.SdkAwsCredentialRequestH\x00\x12G\n\x10\x61zure_credential\x18\xc9\x01 \x01(\x0b\x32*.openstorage.api.SdkAzureCredentialRequestH\x00\x12I\n\x11google_credential\x18\xca\x01 \x01(\x0b\x32+.openstorage.api.SdkGoogleCredentialRequestH\x00\x42\x11\n\x0f\x63redential_type\"4\n\x1bSdkCredentialCreateResponse\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\x94\x01\n\x17SdkAwsCredentialRequest\x12\x12\n\naccess_key\x18\x01 \x01(\t\x12\x12\n\nsecret_key\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x0e\n\x06region\x18\x04 \x01(\t\x12\x13\n\x0b\x64isable_ssl\x18\x05 \x01(\x08\x12\x1a\n\x12\x64isable_path_style\x18\x06 \x01(\x08\"F\n\x19SdkAzureCredentialRequest\x12\x14\n\x0c\x61\x63\x63ount_name\x18\x01 \x01(\t\x12\x13\n\x0b\x61\x63\x63ount_key\x18\x02 \x01(\t\"B\n\x1aSdkGoogleCredentialRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\x10\n\x08json_key\x18\x02 \x01(\t\"\x81\x01\n\x18SdkAwsCredentialResponse\x12\x12\n\naccess_key\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x0e\n\x06region\x18\x04 \x01(\t\x12\x13\n\x0b\x64isable_ssl\x18\x05 \x01(\x08\x12\x1a\n\x12\x64isable_path_style\x18\x06 \x01(\x08\"2\n\x1aSdkAzureCredentialResponse\x12\x14\n\x0c\x61\x63\x63ount_name\x18\x02 \x01(\t\"1\n\x1bSdkGoogleCredentialResponse\x12\x12\n\nproject_id\x18\x02 \x01(\t\"\x1f\n\x1dSdkCredentialEnumerateRequest\"8\n\x1eSdkCredentialEnumerateResponse\x12\x16\n\x0e\x63redential_ids\x18\x01 \x03(\t\"4\n\x1bSdkCredentialInspectRequest\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\xf1\x02\n\x1cSdkCredentialInspectResponse\x12\x15\n\rcredential_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x03 \x01(\t\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12\x44\n\x0e\x61ws_credential\x18\xc8\x01 \x01(\x0b\x32).openstorage.api.SdkAwsCredentialResponseH\x00\x12H\n\x10\x61zure_credential\x18\xc9\x01 \x01(\x0b\x32+.openstorage.api.SdkAzureCredentialResponseH\x00\x12J\n\x11google_credential\x18\xca\x01 \x01(\x0b\x32,.openstorage.api.SdkGoogleCredentialResponseH\x00\x42\x11\n\x0f\x63redential_type\"3\n\x1aSdkCredentialDeleteRequest\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\x1d\n\x1bSdkCredentialDeleteResponse\"5\n\x1cSdkCredentialValidateRequest\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\x1f\n\x1dSdkCredentialValidateResponse\"Y\n\x16SdkVolumeAttachOptions\x12\x13\n\x0bsecret_name\x18\x01 \x01(\t\x12\x12\n\nsecret_key\x18\x02 \x01(\t\x12\x16\n\x0esecret_context\x18\x03 \x01(\t\"\x81\x02\n\x15SdkVolumeMountRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x12\n\nmount_path\x18\x02 \x01(\t\x12\x38\n\x07options\x18\x03 \x01(\x0b\x32\'.openstorage.api.SdkVolumeAttachOptions\x12Q\n\x0e\x64river_options\x18\x04 \x03(\x0b\x32\x39.openstorage.api.SdkVolumeMountRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x18\n\x16SdkVolumeMountResponse\"a\n\x17SdkVolumeUnmountOptions\x12\x19\n\x11\x64\x65lete_mount_path\x18\x01 \x01(\x08\x12+\n#no_delay_before_deleting_mount_path\x18\x02 \x01(\x08\"\x86\x02\n\x17SdkVolumeUnmountRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x12\n\nmount_path\x18\x02 \x01(\t\x12\x39\n\x07options\x18\x03 \x01(\x0b\x32(.openstorage.api.SdkVolumeUnmountOptions\x12S\n\x0e\x64river_options\x18\x04 \x03(\x0b\x32;.openstorage.api.SdkVolumeUnmountRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x1a\n\x18SdkVolumeUnmountResponse\"\xef\x01\n\x16SdkVolumeAttachRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x38\n\x07options\x18\x02 \x01(\x0b\x32\'.openstorage.api.SdkVolumeAttachOptions\x12R\n\x0e\x64river_options\x18\x03 \x03(\x0b\x32:.openstorage.api.SdkVolumeAttachRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\".\n\x17SdkVolumeAttachResponse\x12\x13\n\x0b\x64\x65vice_path\x18\x01 \x01(\t\"F\n\x16SdkVolumeDetachOptions\x12\r\n\x05\x66orce\x18\x01 \x01(\x08\x12\x1d\n\x15unmount_before_detach\x18\x02 \x01(\x08\"\xef\x01\n\x16SdkVolumeDetachRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x38\n\x07options\x18\x02 \x01(\x0b\x32\'.openstorage.api.SdkVolumeDetachOptions\x12R\n\x0e\x64river_options\x18\x03 \x03(\x0b\x32:.openstorage.api.SdkVolumeDetachRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x19\n\x17SdkVolumeDetachResponse\"\xc5\x01\n\x16SdkVolumeCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12)\n\x04spec\x18\x02 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\x12\x43\n\x06labels\x18\x03 \x03(\x0b\x32\x33.openstorage.api.SdkVolumeCreateRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\",\n\x17SdkVolumeCreateResponse\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"8\n\x15SdkVolumeCloneRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tparent_id\x18\x02 \x01(\t\"+\n\x16SdkVolumeCloneResponse\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"+\n\x16SdkVolumeDeleteRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"\x19\n\x17SdkVolumeDeleteResponse\"d\n\x17SdkVolumeInspectRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x36\n\x07options\x18\x02 \x01(\x0b\x32%.openstorage.api.VolumeInspectOptions\"\xc7\x01\n\x18SdkVolumeInspectResponse\x12\'\n\x06volume\x18\x01 \x01(\x0b\x32\x17.openstorage.api.Volume\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x45\n\x06labels\x18\x03 \x03(\x0b\x32\x35.openstorage.api.SdkVolumeInspectResponse.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xc0\x02\n\"SdkVolumeInspectWithFiltersRequest\x12\x0c\n\x04name\x18\x02 \x01(\t\x12O\n\x06labels\x18\x03 \x03(\x0b\x32?.openstorage.api.SdkVolumeInspectWithFiltersRequest.LabelsEntry\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12%\n\x05group\x18\x05 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x36\n\x07options\x18\x06 \x01(\x0b\x32%.openstorage.api.VolumeInspectOptions\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"a\n#SdkVolumeInspectWithFiltersResponse\x12:\n\x07volumes\x18\x01 \x03(\x0b\x32).openstorage.api.SdkVolumeInspectResponse\"\xd0\x01\n\x16SdkVolumeUpdateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x43\n\x06labels\x18\x03 \x03(\x0b\x32\x33.openstorage.api.SdkVolumeUpdateRequest.LabelsEntry\x12/\n\x04spec\x18\x04 \x01(\x0b\x32!.openstorage.api.VolumeSpecUpdate\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x19\n\x17SdkVolumeUpdateResponse\"B\n\x15SdkVolumeStatsRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x16\n\x0enot_cumulative\x18\x02 \x01(\x08\"?\n\x16SdkVolumeStatsResponse\x12%\n\x05stats\x18\x01 \x01(\x0b\x32\x16.openstorage.api.Stats\"2\n\x1dSdkVolumeCapacityUsageRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"a\n\x1eSdkVolumeCapacityUsageResponse\x12?\n\x13\x63\x61pacity_usage_info\x18\x01 \x01(\x0b\x32\".openstorage.api.CapacityUsageInfo\"\x1b\n\x19SdkVolumeEnumerateRequest\"0\n\x1aSdkVolumeEnumerateResponse\x12\x12\n\nvolume_ids\x18\x01 \x03(\t\"\x8c\x02\n$SdkVolumeEnumerateWithFiltersRequest\x12\x0c\n\x04name\x18\x02 \x01(\t\x12Q\n\x06labels\x18\x03 \x03(\x0b\x32\x41.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.LabelsEntry\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12%\n\x05group\x18\x05 \x01(\x0b\x32\x16.openstorage.api.Group\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\";\n%SdkVolumeEnumerateWithFiltersResponse\x12\x12\n\nvolume_ids\x18\x01 \x03(\t\"\xbd\x01\n\x1eSdkVolumeSnapshotCreateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12K\n\x06labels\x18\x03 \x03(\x0b\x32;.openstorage.api.SdkVolumeSnapshotCreateRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"6\n\x1fSdkVolumeSnapshotCreateResponse\x12\x13\n\x0bsnapshot_id\x18\x01 \x01(\t\"I\n\x1fSdkVolumeSnapshotRestoreRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x13\n\x0bsnapshot_id\x18\x02 \x01(\t\"\"\n SdkVolumeSnapshotRestoreResponse\"6\n!SdkVolumeSnapshotEnumerateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"A\n\"SdkVolumeSnapshotEnumerateResponse\x12\x1b\n\x13volume_snapshot_ids\x18\x01 \x03(\t\"\xcb\x01\n,SdkVolumeSnapshotEnumerateWithFiltersRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12Y\n\x06labels\x18\x02 \x03(\x0b\x32I.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"L\n-SdkVolumeSnapshotEnumerateWithFiltersResponse\x12\x1b\n\x13volume_snapshot_ids\x18\x01 \x03(\t\"\\\n&SdkVolumeSnapshotScheduleUpdateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x1f\n\x17snapshot_schedule_names\x18\x02 \x03(\t\")\n\'SdkVolumeSnapshotScheduleUpdateResponse\"#\n!SdkClusterDomainsEnumerateRequest\"B\n\"SdkClusterDomainsEnumerateResponse\x12\x1c\n\x14\x63luster_domain_names\x18\x01 \x03(\t\"=\n\x1eSdkClusterDomainInspectRequest\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\"Q\n\x1fSdkClusterDomainInspectResponse\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\x12\x11\n\tis_active\x18\x02 \x01(\x08\">\n\x1fSdkClusterDomainActivateRequest\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\"\"\n SdkClusterDomainActivateResponse\"@\n!SdkClusterDomainDeactivateRequest\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\"$\n\"SdkClusterDomainDeactivateResponse\"!\n\x1fSdkClusterInspectCurrentRequest\"T\n SdkClusterInspectCurrentResponse\x12\x30\n\x07\x63luster\x18\x01 \x01(\x0b\x32\x1f.openstorage.api.StorageCluster\"(\n\x15SdkNodeInspectRequest\x12\x0f\n\x07node_id\x18\x01 \x01(\t\"D\n\x16SdkNodeInspectResponse\x12*\n\x04node\x18\x01 \x01(\x0b\x32\x1c.openstorage.api.StorageNode\"\x1e\n\x1cSdkNodeInspectCurrentRequest\"K\n\x1dSdkNodeInspectCurrentResponse\x12*\n\x04node\x18\x01 \x01(\x0b\x32\x1c.openstorage.api.StorageNode\"\x19\n\x17SdkNodeEnumerateRequest\",\n\x18SdkNodeEnumerateResponse\x12\x10\n\x08node_ids\x18\x01 \x03(\t\"6\n\x1cSdkObjectstoreInspectRequest\x12\x16\n\x0eobjectstore_id\x18\x01 \x01(\t\"]\n\x1dSdkObjectstoreInspectResponse\x12<\n\x12objectstore_status\x18\x01 \x01(\x0b\x32 .openstorage.api.ObjectstoreInfo\"0\n\x1bSdkObjectstoreCreateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"\\\n\x1cSdkObjectstoreCreateResponse\x12<\n\x12objectstore_status\x18\x01 \x01(\x0b\x32 .openstorage.api.ObjectstoreInfo\"5\n\x1bSdkObjectstoreDeleteRequest\x12\x16\n\x0eobjectstore_id\x18\x01 \x01(\t\"\x1e\n\x1cSdkObjectstoreDeleteResponse\"E\n\x1bSdkObjectstoreUpdateRequest\x12\x16\n\x0eobjectstore_id\x18\x01 \x01(\t\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"\x1e\n\x1cSdkObjectstoreUpdateResponse\"\xfe\x01\n\x1bSdkCloudBackupCreateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\x12\x0c\n\x04\x66ull\x18\x03 \x01(\x08\x12\x0f\n\x07task_id\x18\x04 \x01(\t\x12H\n\x06labels\x18\x05 \x03(\x0b\x32\x38.openstorage.api.SdkCloudBackupCreateRequest.LabelsEntry\x12\x1d\n\x15\x66ull_backup_frequency\x18\x06 \x01(\r\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"/\n\x1cSdkCloudBackupCreateResponse\x12\x0f\n\x07task_id\x18\x01 \x01(\t\"\xeb\x01\n SdkCloudBackupGroupCreateRequest\x12\x10\n\x08group_id\x18\x01 \x01(\t\x12\x12\n\nvolume_ids\x18\x02 \x03(\t\x12\x15\n\rcredential_id\x18\x03 \x01(\t\x12\x0c\n\x04\x66ull\x18\x04 \x01(\x08\x12M\n\x06labels\x18\x05 \x03(\x0b\x32=.openstorage.api.SdkCloudBackupGroupCreateRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"T\n!SdkCloudBackupGroupCreateResponse\x12\x1d\n\x15group_cloud_backup_id\x18\x01 \x01(\t\x12\x10\n\x08task_ids\x18\x02 \x03(\t\"\x87\x01\n\x1cSdkCloudBackupRestoreRequest\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x1b\n\x13restore_volume_name\x18\x02 \x01(\t\x12\x15\n\rcredential_id\x18\x03 \x01(\t\x12\x0f\n\x07node_id\x18\x04 \x01(\t\x12\x0f\n\x07task_id\x18\x05 \x01(\t\"K\n\x1dSdkCloudBackupRestoreResponse\x12\x19\n\x11restore_volume_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\"V\n\x1bSdkCloudBackupDeleteRequest\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\x12\r\n\x05\x66orce\x18\x03 \x01(\x08\"\x1e\n\x1cSdkCloudBackupDeleteResponse\"N\n\x1eSdkCloudBackupDeleteAllRequest\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\"!\n\x1fSdkCloudBackupDeleteAllResponse\"\x8d\x03\n)SdkCloudBackupEnumerateWithFiltersRequest\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12\x12\n\ncluster_id\x18\x02 \x01(\t\x12\x15\n\rcredential_id\x18\x03 \x01(\t\x12\x0b\n\x03\x61ll\x18\x04 \x01(\x08\x12@\n\rstatus_filter\x18\x05 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\x12g\n\x0fmetadata_filter\x18\x06 \x03(\x0b\x32N.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry\x12\x13\n\x0bmax_backups\x18\x07 \x01(\x04\x12\x1a\n\x12\x63ontinuation_token\x18\x08 \x01(\t\x1a\x35\n\x13MetadataFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xb0\x02\n\x12SdkCloudBackupInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\rsrc_volume_id\x18\x02 \x01(\t\x12\x17\n\x0fsrc_volume_name\x18\x03 \x01(\t\x12-\n\ttimestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x43\n\x08metadata\x18\x05 \x03(\x0b\x32\x31.openstorage.api.SdkCloudBackupInfo.MetadataEntry\x12\x39\n\x06status\x18\x06 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"~\n*SdkCloudBackupEnumerateWithFiltersResponse\x12\x34\n\x07\x62\x61\x63kups\x18\x01 \x03(\x0b\x32#.openstorage.api.SdkCloudBackupInfo\x12\x1a\n\x12\x63ontinuation_token\x18\x02 \x01(\t\"\x9c\x03\n\x14SdkCloudBackupStatus\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x35\n\x06optype\x18\x02 \x01(\x0e\x32%.openstorage.api.SdkCloudBackupOpType\x12\x39\n\x06status\x18\x03 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\x12\x12\n\nbytes_done\x18\x04 \x01(\x04\x12.\n\nstart_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x63ompleted_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07node_id\x18\x07 \x01(\t\x12\x15\n\rsrc_volume_id\x18\x08 \x01(\t\x12\x0c\n\x04info\x18\t \x03(\t\x12\x15\n\rcredential_id\x18\n \x01(\t\x12\x13\n\x0b\x62ytes_total\x18\x0b \x01(\x04\x12\x13\n\x0b\x65ta_seconds\x18\x0c \x01(\x03\x12\x10\n\x08group_id\x18\r \x01(\t\"P\n\x1bSdkCloudBackupStatusRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\r\n\x05local\x18\x02 \x01(\x08\x12\x0f\n\x07task_id\x18\x03 \x01(\t\"\xc5\x01\n\x1cSdkCloudBackupStatusResponse\x12M\n\x08statuses\x18\x01 \x03(\x0b\x32;.openstorage.api.SdkCloudBackupStatusResponse.StatusesEntry\x1aV\n\rStatusesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0b\x32%.openstorage.api.SdkCloudBackupStatus:\x02\x38\x01\"H\n\x1cSdkCloudBackupCatalogRequest\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\"1\n\x1dSdkCloudBackupCatalogResponse\x12\x10\n\x08\x63ontents\x18\x01 \x03(\t\"\x9c\x01\n\x19SdkCloudBackupHistoryItem\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12-\n\ttimestamp\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x39\n\x06status\x18\x03 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\"5\n\x1cSdkCloudBackupHistoryRequest\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\"a\n\x1dSdkCloudBackupHistoryResponse\x12@\n\x0chistory_list\x18\x01 \x03(\x0b\x32*.openstorage.api.SdkCloudBackupHistoryItem\"{\n SdkCloudBackupStateChangeRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x46\n\x0frequested_state\x18\x02 \x01(\x0e\x32-.openstorage.api.SdkCloudBackupRequestedState\"#\n!SdkCloudBackupStateChangeResponse\"\xc4\x01\n\x1aSdkCloudBackupScheduleInfo\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\x12=\n\tschedules\x18\x03 \x03(\x0b\x32*.openstorage.api.SdkSchedulePolicyInterval\x12\x13\n\x0bmax_backups\x18\x04 \x01(\x04\x12\x0c\n\x04\x66ull\x18\x05 \x01(\x08\x12\x16\n\x0eretention_days\x18\x06 \x01(\r\"i\n SdkCloudBackupSchedCreateRequest\x12\x45\n\x10\x63loud_sched_info\x18\x01 \x01(\x0b\x32+.openstorage.api.SdkCloudBackupScheduleInfo\"?\n!SdkCloudBackupSchedCreateResponse\x12\x1a\n\x12\x62\x61\x63kup_schedule_id\x18\x01 \x01(\t\">\n SdkCloudBackupSchedDeleteRequest\x12\x1a\n\x12\x62\x61\x63kup_schedule_id\x18\x01 \x01(\t\"#\n!SdkCloudBackupSchedDeleteResponse\"%\n#SdkCloudBackupSchedEnumerateRequest\"\xef\x01\n$SdkCloudBackupSchedEnumerateResponse\x12\x63\n\x10\x63loud_sched_list\x18\x01 \x03(\x0b\x32I.openstorage.api.SdkCloudBackupSchedEnumerateResponse.CloudSchedListEntry\x1a\x62\n\x13\x43loudSchedListEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.openstorage.api.SdkCloudBackupScheduleInfo:\x02\x38\x01\")\n\x07SdkRule\x12\x10\n\x08services\x18\x01 \x03(\t\x12\x0c\n\x04\x61pis\x18\x02 \x03(\t\"@\n\x07SdkRole\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\'\n\x05rules\x18\x02 \x03(\x0b\x32\x18.openstorage.api.SdkRule\">\n\x14SdkRoleCreateRequest\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"?\n\x15SdkRoleCreateResponse\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"\x19\n\x17SdkRoleEnumerateRequest\")\n\x18SdkRoleEnumerateResponse\x12\r\n\x05names\x18\x01 \x03(\t\"%\n\x15SdkRoleInspectRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"@\n\x16SdkRoleInspectResponse\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"$\n\x14SdkRoleDeleteRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x15SdkRoleDeleteResponse\">\n\x14SdkRoleUpdateRequest\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"?\n\x15SdkRoleUpdateResponse\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\" \n\x1eSdkIdentityCapabilitiesRequest\"^\n\x1fSdkIdentityCapabilitiesResponse\x12;\n\x0c\x63\x61pabilities\x18\x01 \x03(\x0b\x32%.openstorage.api.SdkServiceCapability\"\x1b\n\x19SdkIdentityVersionRequest\"\x80\x01\n\x1aSdkIdentityVersionResponse\x12\x30\n\x0bsdk_version\x18\x01 \x01(\x0b\x32\x1b.openstorage.api.SdkVersion\x12\x30\n\x07version\x18\x02 \x01(\x0b\x32\x1f.openstorage.api.StorageVersion\"\xaf\x03\n\x14SdkServiceCapability\x12K\n\x07service\x18\x01 \x01(\x0b\x32\x38.openstorage.api.SdkServiceCapability.OpenStorageServiceH\x00\x1a\xc1\x02\n\x12OpenStorageService\x12K\n\x04type\x18\x01 \x01(\x0e\x32=.openstorage.api.SdkServiceCapability.OpenStorageService.Type\"\xdd\x01\n\x04Type\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07\x43LUSTER\x10\x01\x12\x10\n\x0c\x43LOUD_BACKUP\x10\x02\x12\x0f\n\x0b\x43REDENTIALS\x10\x03\x12\x08\n\x04NODE\x10\x04\x12\x12\n\x0eOBJECT_STORAGE\x10\x05\x12\x13\n\x0fSCHEDULE_POLICY\x10\x06\x12\n\n\x06VOLUME\x10\x07\x12\n\n\x06\x41LERTS\x10\x08\x12\x10\n\x0cMOUNT_ATTACH\x10\t\x12\x08\n\x04ROLE\x10\n\x12\x10\n\x0c\x43LUSTER_PAIR\x10\x0b\x12\x0b\n\x07MIGRATE\x10\x0c\x12\x12\n\x0eSTORAGE_POLICY\x10\rB\x06\n\x04type\"\x94\x01\n\nSdkVersion\x12\r\n\x05major\x18\x01 \x01(\x05\x12\r\n\x05minor\x18\x02 \x01(\x05\x12\r\n\x05patch\x18\x03 \x01(\x05\x12\x0f\n\x07version\x18\x04 \x01(\t\"H\n\x07Version\x12\x18\n\x14MUST_HAVE_ZERO_VALUE\x10\x00\x12\t\n\x05Major\x10\x00\x12\t\n\x05Minor\x10*\x12\t\n\x05Patch\x10\x0e\x1a\x02\x10\x01\"\xa0\x01\n\x0eStorageVersion\x12\x0e\n\x06\x64river\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\x12=\n\x07\x64\x65tails\x18\x03 \x03(\x0b\x32,.openstorage.api.StorageVersion.DetailsEntry\x1a.\n\x0c\x44\x65tailsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xb1\x02\n\x0c\x43loudMigrate\"_\n\rOperationType\x12\x0f\n\x0bInvalidType\x10\x00\x12\x12\n\x0eMigrateCluster\x10\x01\x12\x11\n\rMigrateVolume\x10\x02\x12\x16\n\x12MigrateVolumeGroup\x10\x03\"N\n\x05Stage\x12\x10\n\x0cInvalidStage\x10\x00\x12\n\n\x06\x42\x61\x63kup\x10\x01\x12\x0b\n\x07Restore\x10\x02\x12\x10\n\x0cVolumeUpdate\x10\x03\x12\x08\n\x04\x44one\x10\x04\"p\n\x06Status\x12\x11\n\rInvalidStatus\x10\x00\x12\n\n\x06Queued\x10\x01\x12\x0f\n\x0bInitialized\x10\x02\x12\x0e\n\nInProgress\x10\x03\x12\n\n\x06\x46\x61iled\x10\x04\x12\x0c\n\x08\x43omplete\x10\x05\x12\x0c\n\x08\x43\x61nceled\x10\x06\"\x92\x01\n\x18\x43loudMigrateStartRequest\x12>\n\toperation\x18\x01 \x01(\x0e\x32+.openstorage.api.CloudMigrate.OperationType\x12\x12\n\ncluster_id\x18\x02 \x01(\t\x12\x11\n\ttarget_id\x18\x03 \x01(\t\x12\x0f\n\x07task_id\x18\x04 \x01(\t\"\xab\x03\n\x1bSdkCloudMigrateStartRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12M\n\x06volume\x18\xc8\x01 \x01(\x0b\x32:.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeH\x00\x12X\n\x0cvolume_group\x18\xc9\x01 \x01(\x0b\x32?.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroupH\x00\x12V\n\x0b\x61ll_volumes\x18\xca\x01 \x01(\x0b\x32>.openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumesH\x00\x1a\"\n\rMigrateVolume\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x1a&\n\x12MigrateVolumeGroup\x12\x10\n\x08group_id\x18\x01 \x01(\t\x1a\x13\n\x11MigrateAllVolumesB\x05\n\x03opt\",\n\x19\x43loudMigrateStartResponse\x12\x0f\n\x07task_id\x18\x01 \x01(\t\"Z\n\x1cSdkCloudMigrateStartResponse\x12:\n\x06result\x18\x01 \x01(\x0b\x32*.openstorage.api.CloudMigrateStartResponse\",\n\x19\x43loudMigrateCancelRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\"[\n\x1cSdkCloudMigrateCancelRequest\x12;\n\x07request\x18\x01 \x01(\x0b\x32*.openstorage.api.CloudMigrateCancelRequest\"\x1f\n\x1dSdkCloudMigrateCancelResponse\"\xf8\x03\n\x10\x43loudMigrateInfo\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x12\n\ncluster_id\x18\x02 \x01(\t\x12\x17\n\x0flocal_volume_id\x18\x03 \x01(\t\x12\x19\n\x11local_volume_name\x18\x04 \x01(\t\x12\x18\n\x10remote_volume_id\x18\x05 \x01(\t\x12\x16\n\x0e\x63loudbackup_id\x18\x06 \x01(\t\x12:\n\rcurrent_stage\x18\x07 \x01(\x0e\x32#.openstorage.api.CloudMigrate.Stage\x12\x34\n\x06status\x18\x08 \x01(\x0e\x32$.openstorage.api.CloudMigrate.Status\x12/\n\x0blast_update\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x14\n\x0c\x65rror_reason\x18\n \x01(\t\x12.\n\nstart_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x63ompleted_time\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x62ytes_total\x18\r \x01(\x04\x12\x12\n\nbytes_done\x18\x0e \x01(\x04\x12\x13\n\x0b\x65ta_seconds\x18\x0f \x01(\x03\"G\n\x14\x43loudMigrateInfoList\x12/\n\x04list\x18\x01 \x03(\x0b\x32!.openstorage.api.CloudMigrateInfo\"[\n\x1cSdkCloudMigrateStatusRequest\x12;\n\x07request\x18\x01 \x01(\x0b\x32*.openstorage.api.CloudMigrateStatusRequest\"@\n\x19\x43loudMigrateStatusRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x12\n\ncluster_id\x18\x02 \x01(\t\"\xb5\x01\n\x1a\x43loudMigrateStatusResponse\x12\x43\n\x04info\x18\x01 \x03(\x0b\x32\x35.openstorage.api.CloudMigrateStatusResponse.InfoEntry\x1aR\n\tInfoEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0b\x32%.openstorage.api.CloudMigrateInfoList:\x02\x38\x01\"\\\n\x1dSdkCloudMigrateStatusResponse\x12;\n\x06result\x18\x01 \x01(\x0b\x32+.openstorage.api.CloudMigrateStatusResponse\"<\n\x0f\x43lusterPairMode\")\n\x04Mode\x12\x0b\n\x07\x44\x65\x66\x61ult\x10\x00\x12\x14\n\x10\x44isasterRecovery\x10\x01\"\xba\x01\n\x18\x43lusterPairCreateRequest\x12\x19\n\x11remote_cluster_ip\x18\x01 \x01(\t\x12\x1b\n\x13remote_cluster_port\x18\x02 \x01(\r\x12\x1c\n\x14remote_cluster_token\x18\x03 \x01(\t\x12\x13\n\x0bset_default\x18\x04 \x01(\x08\x12\x33\n\x04mode\x18\x05 \x01(\x0e\x32%.openstorage.api.ClusterPairMode.Mode\"S\n\x19\x43lusterPairCreateResponse\x12\x19\n\x11remote_cluster_id\x18\x01 \x01(\t\x12\x1b\n\x13remote_cluster_name\x18\x02 \x01(\t\"Y\n\x1bSdkClusterPairCreateRequest\x12:\n\x07request\x18\x01 \x01(\x0b\x32).openstorage.api.ClusterPairCreateRequest\"Z\n\x1cSdkClusterPairCreateResponse\x12:\n\x06result\x18\x01 \x01(\x0b\x32*.openstorage.api.ClusterPairCreateResponse\"\x89\x01\n\x19\x43lusterPairProcessRequest\x12\x19\n\x11source_cluster_id\x18\x01 \x01(\t\x12\x1c\n\x14remote_cluster_token\x18\x02 \x01(\t\x12\x33\n\x04mode\x18\x03 \x01(\x0e\x32%.openstorage.api.ClusterPairMode.Mode\"\xf1\x01\n\x1a\x43lusterPairProcessResponse\x12\x19\n\x11remote_cluster_id\x18\x01 \x01(\t\x12\x1b\n\x13remote_cluster_name\x18\x02 \x01(\t\x12 \n\x18remote_cluster_endpoints\x18\x03 \x03(\t\x12I\n\x07options\x18\x04 \x03(\x0b\x32\x38.openstorage.api.ClusterPairProcessResponse.OptionsEntry\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"1\n\x1bSdkClusterPairDeleteRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\"\x1e\n\x1cSdkClusterPairDeleteResponse\",\n\x1b\x43lusterPairTokenGetResponse\x12\r\n\x05token\x18\x01 \x01(\t\"\x1f\n\x1dSdkClusterPairGetTokenRequest\"^\n\x1eSdkClusterPairGetTokenResponse\x12<\n\x06result\x18\x01 \x01(\x0b\x32,.openstorage.api.ClusterPairTokenGetResponse\"!\n\x1fSdkClusterPairResetTokenRequest\"`\n SdkClusterPairResetTokenResponse\x12<\n\x06result\x18\x01 \x01(\x0b\x32,.openstorage.api.ClusterPairTokenGetResponse\"\x9c\x02\n\x0f\x43lusterPairInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x19\n\x11\x63urrent_endpoints\x18\x04 \x03(\t\x12\x0e\n\x06secure\x18\x05 \x01(\x08\x12\r\n\x05token\x18\x06 \x01(\t\x12>\n\x07options\x18\x07 \x03(\x0b\x32-.openstorage.api.ClusterPairInfo.OptionsEntry\x12\x33\n\x04mode\x18\x08 \x01(\x0e\x32%.openstorage.api.ClusterPairMode.Mode\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"*\n\x1cSdkClusterPairInspectRequest\x12\n\n\x02id\x18\x01 \x01(\t\"M\n\x16\x43lusterPairGetResponse\x12\x33\n\tpair_info\x18\x01 \x01(\x0b\x32 .openstorage.api.ClusterPairInfo\"X\n\x1dSdkClusterPairInspectResponse\x12\x37\n\x06result\x18\x01 \x01(\x0b\x32\'.openstorage.api.ClusterPairGetResponse\" \n\x1eSdkClusterPairEnumerateRequest\"\xcd\x01\n\x1d\x43lusterPairsEnumerateResponse\x12\x12\n\ndefault_id\x18\x01 \x01(\t\x12H\n\x05pairs\x18\x02 \x03(\x0b\x32\x39.openstorage.api.ClusterPairsEnumerateResponse.PairsEntry\x1aN\n\nPairsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12/\n\x05value\x18\x02 \x01(\x0b\x32 .openstorage.api.ClusterPairInfo:\x02\x38\x01\"a\n\x1fSdkClusterPairEnumerateResponse\x12>\n\x06result\x18\x01 \x01(\x0b\x32..openstorage.api.ClusterPairsEnumerateResponse\"\x9f\x01\n\x07\x43\x61talog\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x0c\n\x04size\x18\x04 \x01(\x04\x12\x30\n\x0cLastModified\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12*\n\x08\x63hildren\x18\x06 \x03(\x0b\x32\x18.openstorage.api.Catalog\",\n\x06Report\x12\x13\n\x0b\x64irectories\x18\x02 \x01(\x03\x12\r\n\x05\x66iles\x18\x03 \x01(\x03\"b\n\x0f\x43\x61talogResponse\x12&\n\x04root\x18\x01 \x01(\x0b\x32\x18.openstorage.api.Catalog\x12\'\n\x06report\x18\x02 \x01(\x0b\x32\x17.openstorage.api.Report\"\xf1\x01\n\x0eLocateResponse\x12;\n\x06mounts\x18\x01 \x03(\x0b\x32+.openstorage.api.LocateResponse.MountsEntry\x12\x41\n\tdockerids\x18\x02 \x03(\x0b\x32..openstorage.api.LocateResponse.DockeridsEntry\x1a-\n\x0bMountsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x30\n\x0e\x44ockeridsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xa3\x02\n\x17VolumePlacementStrategy\x12?\n\x10replica_affinity\x18\x01 \x03(\x0b\x32%.openstorage.api.ReplicaPlacementSpec\x12\x44\n\x15replica_anti_affinity\x18\x02 \x03(\x0b\x32%.openstorage.api.ReplicaPlacementSpec\x12=\n\x0fvolume_affinity\x18\x03 \x03(\x0b\x32$.openstorage.api.VolumePlacementSpec\x12\x42\n\x14volume_anti_affinity\x18\x04 \x03(\x0b\x32$.openstorage.api.VolumePlacementSpec\"\xd4\x01\n\x14ReplicaPlacementSpec\x12\x0e\n\x06weight\x18\x01 \x01(\x03\x12\x35\n\x0b\x65nforcement\x18\x02 \x01(\x0e\x32 .openstorage.api.EnforcementType\x12\x19\n\x11\x61\x66\x66\x65\x63ted_replicas\x18\x03 \x01(\x05\x12\x14\n\x0ctopology_key\x18\x04 \x01(\t\x12\x44\n\x11match_expressions\x18\x05 \x03(\x0b\x32).openstorage.api.LabelSelectorRequirement\"\xb8\x01\n\x13VolumePlacementSpec\x12\x0e\n\x06weight\x18\x01 \x01(\x03\x12\x35\n\x0b\x65nforcement\x18\x02 \x01(\x0e\x32 .openstorage.api.EnforcementType\x12\x14\n\x0ctopology_key\x18\x03 \x01(\t\x12\x44\n\x11match_expressions\x18\x04 \x03(\x0b\x32).openstorage.api.LabelSelectorRequirement\"\xca\x01\n\x18LabelSelectorRequirement\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x44\n\x08operator\x18\x02 \x01(\x0e\x32\x32.openstorage.api.LabelSelectorRequirement.Operator\x12\x0e\n\x06values\x18\x03 \x03(\t\"K\n\x08Operator\x12\x06\n\x02In\x10\x00\x12\t\n\x05NotIn\x10\x01\x12\n\n\x06\x45xists\x10\x02\x12\x10\n\x0c\x44oesNotExist\x10\x03\x12\x06\n\x02Gt\x10\x04\x12\x06\n\x02Lt\x10\x05*\xee\x02\n\x06Status\x12\x0f\n\x0bSTATUS_NONE\x10\x00\x12\x0f\n\x0bSTATUS_INIT\x10\x01\x12\r\n\tSTATUS_OK\x10\x02\x12\x12\n\x0eSTATUS_OFFLINE\x10\x03\x12\x10\n\x0cSTATUS_ERROR\x10\x04\x12\x18\n\x14STATUS_NOT_IN_QUORUM\x10\x05\x12\x17\n\x13STATUS_DECOMMISSION\x10\x06\x12\x16\n\x12STATUS_MAINTENANCE\x10\x07\x12\x17\n\x13STATUS_STORAGE_DOWN\x10\x08\x12\x1b\n\x17STATUS_STORAGE_DEGRADED\x10\t\x12\x17\n\x13STATUS_NEEDS_REBOOT\x10\n\x12\x1c\n\x18STATUS_STORAGE_REBALANCE\x10\x0b\x12 \n\x1cSTATUS_STORAGE_DRIVE_REPLACE\x10\x0c\x12#\n\x1fSTATUS_NOT_IN_QUORUM_NO_STORAGE\x10\r\x12\x0e\n\nSTATUS_MAX\x10\x0e*\x99\x01\n\nDriverType\x12\x14\n\x10\x44RIVER_TYPE_NONE\x10\x00\x12\x14\n\x10\x44RIVER_TYPE_FILE\x10\x01\x12\x15\n\x11\x44RIVER_TYPE_BLOCK\x10\x02\x12\x16\n\x12\x44RIVER_TYPE_OBJECT\x10\x03\x12\x19\n\x15\x44RIVER_TYPE_CLUSTERED\x10\x04\x12\x15\n\x11\x44RIVER_TYPE_GRAPH\x10\x05*\xa8\x01\n\x06\x46SType\x12\x10\n\x0c\x46S_TYPE_NONE\x10\x00\x12\x11\n\rFS_TYPE_BTRFS\x10\x01\x12\x10\n\x0c\x46S_TYPE_EXT4\x10\x02\x12\x10\n\x0c\x46S_TYPE_FUSE\x10\x03\x12\x0f\n\x0b\x46S_TYPE_NFS\x10\x04\x12\x0f\n\x0b\x46S_TYPE_VFS\x10\x05\x12\x0f\n\x0b\x46S_TYPE_XFS\x10\x06\x12\x0f\n\x0b\x46S_TYPE_ZFS\x10\x07\x12\x11\n\rFS_TYPE_XFSv2\x10\x08*\xab\x01\n\x15GraphDriverChangeType\x12!\n\x1dGRAPH_DRIVER_CHANGE_TYPE_NONE\x10\x00\x12%\n!GRAPH_DRIVER_CHANGE_TYPE_MODIFIED\x10\x01\x12\"\n\x1eGRAPH_DRIVER_CHANGE_TYPE_ADDED\x10\x02\x12$\n GRAPH_DRIVER_CHANGE_TYPE_DELETED\x10\x03*t\n\x0cSeverityType\x12\x16\n\x12SEVERITY_TYPE_NONE\x10\x00\x12\x17\n\x13SEVERITY_TYPE_ALARM\x10\x01\x12\x19\n\x15SEVERITY_TYPE_WARNING\x10\x02\x12\x18\n\x14SEVERITY_TYPE_NOTIFY\x10\x03*\x8c\x01\n\x0cResourceType\x12\x16\n\x12RESOURCE_TYPE_NONE\x10\x00\x12\x18\n\x14RESOURCE_TYPE_VOLUME\x10\x01\x12\x16\n\x12RESOURCE_TYPE_NODE\x10\x02\x12\x19\n\x15RESOURCE_TYPE_CLUSTER\x10\x03\x12\x17\n\x13RESOURCE_TYPE_DRIVE\x10\x04*\x87\x01\n\x0f\x41lertActionType\x12\x1a\n\x16\x41LERT_ACTION_TYPE_NONE\x10\x00\x12\x1c\n\x18\x41LERT_ACTION_TYPE_DELETE\x10\x01\x12\x1c\n\x18\x41LERT_ACTION_TYPE_CREATE\x10\x02\x12\x1c\n\x18\x41LERT_ACTION_TYPE_UPDATE\x10\x03*j\n\x11VolumeActionParam\x12\x1c\n\x18VOLUME_ACTION_PARAM_NONE\x10\x00\x12\x1b\n\x17VOLUME_ACTION_PARAM_OFF\x10\x01\x12\x1a\n\x16VOLUME_ACTION_PARAM_ON\x10\x02*2\n\x07\x43osType\x12\x08\n\x04NONE\x10\x00\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03*\x9a\x01\n\tIoProfile\x12\x19\n\x15IO_PROFILE_SEQUENTIAL\x10\x00\x12\x15\n\x11IO_PROFILE_RANDOM\x10\x01\x12\x11\n\rIO_PROFILE_DB\x10\x02\x12\x18\n\x14IO_PROFILE_DB_REMOTE\x10\x03\x12\x12\n\x0eIO_PROFILE_CMS\x10\x04\x12\x1a\n\x16IO_PROFILE_SYNC_SHARED\x10\x05*\x99\x02\n\x0bVolumeState\x12\x15\n\x11VOLUME_STATE_NONE\x10\x00\x12\x18\n\x14VOLUME_STATE_PENDING\x10\x01\x12\x1a\n\x16VOLUME_STATE_AVAILABLE\x10\x02\x12\x19\n\x15VOLUME_STATE_ATTACHED\x10\x03\x12\x19\n\x15VOLUME_STATE_DETACHED\x10\x04\x12\x1b\n\x17VOLUME_STATE_DETATCHING\x10\x05\x12\x16\n\x12VOLUME_STATE_ERROR\x10\x06\x12\x18\n\x14VOLUME_STATE_DELETED\x10\x07\x12\x1e\n\x1aVOLUME_STATE_TRY_DETACHING\x10\x08\x12\x18\n\x14VOLUME_STATE_RESTORE\x10\t*\x8f\x01\n\x0cVolumeStatus\x12\x16\n\x12VOLUME_STATUS_NONE\x10\x00\x12\x1d\n\x19VOLUME_STATUS_NOT_PRESENT\x10\x01\x12\x14\n\x10VOLUME_STATUS_UP\x10\x02\x12\x16\n\x12VOLUME_STATUS_DOWN\x10\x03\x12\x1a\n\x16VOLUME_STATUS_DEGRADED\x10\x04*]\n\rStorageMedium\x12\x1b\n\x17STORAGE_MEDIUM_MAGNETIC\x10\x00\x12\x16\n\x12STORAGE_MEDIUM_SSD\x10\x01\x12\x17\n\x13STORAGE_MEDIUM_NVME\x10\x02*e\n\x0b\x41ttachState\x12\x19\n\x15\x41TTACH_STATE_EXTERNAL\x10\x00\x12\x19\n\x15\x41TTACH_STATE_INTERNAL\x10\x01\x12 \n\x1c\x41TTACH_STATE_INTERNAL_SWITCH\x10\x02*T\n\x0eOperationFlags\x12\x14\n\x10OP_FLAGS_UNKNOWN\x10\x00\x12\x11\n\rOP_FLAGS_NONE\x10\x01\x12\x19\n\x15OP_FLAGS_DETACH_FORCE\x10\x02*\xce\x01\n\x0eSdkTimeWeekday\x12\x18\n\x14SdkTimeWeekdaySunday\x10\x00\x12\x18\n\x14SdkTimeWeekdayMonday\x10\x01\x12\x19\n\x15SdkTimeWeekdayTuesday\x10\x02\x12\x1b\n\x17SdkTimeWeekdayWednesday\x10\x03\x12\x1a\n\x16SdkTimeWeekdayThursday\x10\x04\x12\x18\n\x14SdkTimeWeekdayFriday\x10\x05\x12\x1a\n\x16SdkTimeWeekdaySaturday\x10\x06*|\n\x14SdkCloudBackupOpType\x12\x1f\n\x1bSdkCloudBackupOpTypeUnknown\x10\x00\x12 \n\x1cSdkCloudBackupOpTypeBackupOp\x10\x01\x12!\n\x1dSdkCloudBackupOpTypeRestoreOp\x10\x02*\x88\x03\n\x18SdkCloudBackupStatusType\x12#\n\x1fSdkCloudBackupStatusTypeUnknown\x10\x00\x12&\n\"SdkCloudBackupStatusTypeNotStarted\x10\x01\x12 \n\x1cSdkCloudBackupStatusTypeDone\x10\x02\x12#\n\x1fSdkCloudBackupStatusTypeAborted\x10\x03\x12\"\n\x1eSdkCloudBackupStatusTypePaused\x10\x04\x12#\n\x1fSdkCloudBackupStatusTypeStopped\x10\x05\x12\"\n\x1eSdkCloudBackupStatusTypeActive\x10\x06\x12\"\n\x1eSdkCloudBackupStatusTypeFailed\x10\x07\x12\"\n\x1eSdkCloudBackupStatusTypeQueued\x10\x08\x12#\n\x1fSdkCloudBackupStatusTypeInvalid\x10\t*\xbc\x01\n\x1cSdkCloudBackupRequestedState\x12\'\n#SdkCloudBackupRequestedStateUnknown\x10\x00\x12%\n!SdkCloudBackupRequestedStatePause\x10\x01\x12&\n\"SdkCloudBackupRequestedStateResume\x10\x02\x12$\n SdkCloudBackupRequestedStateStop\x10\x03*.\n\x0f\x45nforcementType\x12\x0c\n\x08required\x10\x00\x12\r\n\tpreferred\x10\x01\x32\xb0\x02\n\x11OpenStorageAlerts\x12\xa6\x01\n\x14\x45numerateWithFilters\x12\x35.openstorage.api.SdkAlertsEnumerateWithFiltersRequest\x1a\x36.openstorage.api.SdkAlertsEnumerateWithFiltersResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\"\x12/v1/alerts/filters:\x01*0\x01\x12r\n\x06\x44\x65lete\x12\'.openstorage.api.SdkAlertsDeleteRequest\x1a(.openstorage.api.SdkAlertsDeleteResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\"\n/v1/alerts:\x01*2\xd5\x04\n\x0fOpenStorageRole\x12m\n\x06\x43reate\x12%.openstorage.api.SdkRoleCreateRequest\x1a&.openstorage.api.SdkRoleCreateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\"\t/v1/roles:\x01*\x12s\n\tEnumerate\x12(.openstorage.api.SdkRoleEnumerateRequest\x1a).openstorage.api.SdkRoleEnumerateResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/roles\x12|\n\x07Inspect\x12&.openstorage.api.SdkRoleInspectRequest\x1a\'.openstorage.api.SdkRoleInspectResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/roles/inspect/{name}\x12q\n\x06\x44\x65lete\x12%.openstorage.api.SdkRoleDeleteRequest\x1a&.openstorage.api.SdkRoleDeleteResponse\"\x18\x82\xd3\xe4\x93\x02\x12*\x10/v1/roles/{name}\x12m\n\x06Update\x12%.openstorage.api.SdkRoleUpdateRequest\x1a&.openstorage.api.SdkRoleUpdateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x1a\t/v1/roles:\x01*2\xb3\x02\n\x13OpenStorageIdentity\x12\x96\x01\n\x0c\x43\x61pabilities\x12/.openstorage.api.SdkIdentityCapabilitiesRequest\x1a\x30.openstorage.api.SdkIdentityCapabilitiesResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/identities/capabilities\x12\x82\x01\n\x07Version\x12*.openstorage.api.SdkIdentityVersionRequest\x1a+.openstorage.api.SdkIdentityVersionResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/identities/version2\xb1\x01\n\x12OpenStorageCluster\x12\x9a\x01\n\x0eInspectCurrent\x12\x30.openstorage.api.SdkClusterInspectCurrentRequest\x1a\x31.openstorage.api.SdkClusterInspectCurrentResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/clusters/inspectcurrent2\xee\x06\n\x16OpenStorageClusterPair\x12\x82\x01\n\x06\x43reate\x12,.openstorage.api.SdkClusterPairCreateRequest\x1a-.openstorage.api.SdkClusterPairCreateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/clusterpairs:\x01*\x12\x8f\x01\n\x07Inspect\x12-.openstorage.api.SdkClusterPairInspectRequest\x1a..openstorage.api.SdkClusterPairInspectResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/clusterpairs/inspect/{id}\x12\x88\x01\n\tEnumerate\x12/.openstorage.api.SdkClusterPairEnumerateRequest\x1a\x30.openstorage.api.SdkClusterPairEnumerateResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/clusterpairs\x12\x8b\x01\n\x08GetToken\x12..openstorage.api.SdkClusterPairGetTokenRequest\x1a/.openstorage.api.SdkClusterPairGetTokenResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/clusterpairs/token\x12\x94\x01\n\nResetToken\x12\x30.openstorage.api.SdkClusterPairResetTokenRequest\x1a\x31.openstorage.api.SdkClusterPairResetTokenResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/clusterpairs/token:\x01*\x12\x8c\x01\n\x06\x44\x65lete\x12,.openstorage.api.SdkClusterPairDeleteRequest\x1a-.openstorage.api.SdkClusterPairDeleteResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v1/clusterpairs/{cluster_id}2\xb9\x05\n\x19OpenStorageClusterDomains\x12\x90\x01\n\tEnumerate\x12\x32.openstorage.api.SdkClusterDomainsEnumerateRequest\x1a\x33.openstorage.api.SdkClusterDomainsEnumerateResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v1/clusterdomains\x12\xa6\x01\n\x07Inspect\x12/.openstorage.api.SdkClusterDomainInspectRequest\x1a\x30.openstorage.api.SdkClusterDomainInspectResponse\"8\x82\xd3\xe4\x93\x02\x32\x12\x30/v1/clusterdomains/inspect/{cluster_domain_name}\x12\xaa\x01\n\x08\x41\x63tivate\x12\x30.openstorage.api.SdkClusterDomainActivateRequest\x1a\x31.openstorage.api.SdkClusterDomainActivateResponse\"9\x82\xd3\xe4\x93\x02\x33\"1/v1/clusterdomains/activate/{cluster_domain_name}\x12\xb2\x01\n\nDeactivate\x12\x32.openstorage.api.SdkClusterDomainDeactivateRequest\x1a\x33.openstorage.api.SdkClusterDomainDeactivateResponse\";\x82\xd3\xe4\x93\x02\x35\"3/v1/clusterdomains/deactivate/{cluster_domain_name}2\x9b\x03\n\x0fOpenStorageNode\x12\x7f\n\x07Inspect\x12&.openstorage.api.SdkNodeInspectRequest\x1a\'.openstorage.api.SdkNodeInspectResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/nodes/inspect/{node_id}\x12\x91\x01\n\x0eInspectCurrent\x12-.openstorage.api.SdkNodeInspectCurrentRequest\x1a..openstorage.api.SdkNodeInspectCurrentResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/nodes/inspectcurrent\x12s\n\tEnumerate\x12(.openstorage.api.SdkNodeEnumerateRequest\x1a).openstorage.api.SdkNodeEnumerateResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/nodes2\xe8\x11\n\x11OpenStorageVolume\x12s\n\x06\x43reate\x12\'.openstorage.api.SdkVolumeCreateRequest\x1a(.openstorage.api.SdkVolumeCreateResponse\"\x16\x82\xd3\xe4\x93\x02\x10\"\x0b/v1/volumes:\x01*\x12v\n\x05\x43lone\x12&.openstorage.api.SdkVolumeCloneRequest\x1a\'.openstorage.api.SdkVolumeCloneResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/v1/volumes/clone:\x01*\x12|\n\x06\x44\x65lete\x12\'.openstorage.api.SdkVolumeDeleteRequest\x1a(.openstorage.api.SdkVolumeDeleteResponse\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/v1/volumes/{volume_id}\x12\x87\x01\n\x07Inspect\x12(.openstorage.api.SdkVolumeInspectRequest\x1a).openstorage.api.SdkVolumeInspectResponse\"\'\x82\xd3\xe4\x93\x02!\x12\x1f/v1/volumes/inspect/{volume_id}\x12\xaa\x01\n\x12InspectWithFilters\x12\x33.openstorage.api.SdkVolumeInspectWithFiltersRequest\x1a\x34.openstorage.api.SdkVolumeInspectWithFiltersResponse\")\x82\xd3\xe4\x93\x02#\"\x1e/v1/volumes/inspectwithfilters:\x01*\x12\x7f\n\x06Update\x12\'.openstorage.api.SdkVolumeUpdateRequest\x1a(.openstorage.api.SdkVolumeUpdateResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x1a\x17/v1/volumes/{volume_id}:\x01*\x12\x7f\n\x05Stats\x12&.openstorage.api.SdkVolumeStatsRequest\x1a\'.openstorage.api.SdkVolumeStatsResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/volumes/stats/{volume_id}\x12\x97\x01\n\rCapacityUsage\x12..openstorage.api.SdkVolumeCapacityUsageRequest\x1a/.openstorage.api.SdkVolumeCapacityUsageResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/volumes/usage/{volume_id}\x12y\n\tEnumerate\x12*.openstorage.api.SdkVolumeEnumerateRequest\x1a+.openstorage.api.SdkVolumeEnumerateResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\x0b/v1/volumes\x12\xa5\x01\n\x14\x45numerateWithFilters\x12\x35.openstorage.api.SdkVolumeEnumerateWithFiltersRequest\x1a\x36.openstorage.api.SdkVolumeEnumerateWithFiltersResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/v1/volumes/filters:\x01*\x12\x95\x01\n\x0eSnapshotCreate\x12/.openstorage.api.SdkVolumeSnapshotCreateRequest\x1a\x30.openstorage.api.SdkVolumeSnapshotCreateResponse\" \x82\xd3\xe4\x93\x02\x1a\"\x15/v1/volumes/snapshots:\x01*\x12\xa0\x01\n\x0fSnapshotRestore\x12\x30.openstorage.api.SdkVolumeSnapshotRestoreRequest\x1a\x31.openstorage.api.SdkVolumeSnapshotRestoreResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1/volumes/snapshots/restore:\x01*\x12\x9b\x01\n\x11SnapshotEnumerate\x12\x32.openstorage.api.SdkVolumeSnapshotEnumerateRequest\x1a\x33.openstorage.api.SdkVolumeSnapshotEnumerateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/volumes/snapshots\x12\xd3\x01\n\x1cSnapshotEnumerateWithFilters\x12=.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest\x1a>.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse\"4\x82\xd3\xe4\x93\x02.\")/v1/volumes/snapshots/{volume_id}/filters:\x01*\x12\xc2\x01\n\x16SnapshotScheduleUpdate\x12\x37.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest\x1a\x38.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse\"5\x82\xd3\xe4\x93\x02/\"*/v1/volumes/snapshot/schedules/{volume_id}:\x01*2\x99\x04\n\x16OpenStorageMountAttach\x12~\n\x06\x41ttach\x12\'.openstorage.api.SdkVolumeAttachRequest\x1a(.openstorage.api.SdkVolumeAttachResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/mountattach/attach:\x01*\x12~\n\x06\x44\x65tach\x12\'.openstorage.api.SdkVolumeDetachRequest\x1a(.openstorage.api.SdkVolumeDetachResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/mountattach/detach:\x01*\x12z\n\x05Mount\x12&.openstorage.api.SdkVolumeMountRequest\x1a\'.openstorage.api.SdkVolumeMountResponse\" \x82\xd3\xe4\x93\x02\x1a\"\x15/v1/mountattach/mount:\x01*\x12\x82\x01\n\x07Unmount\x12(.openstorage.api.SdkVolumeUnmountRequest\x1a).openstorage.api.SdkVolumeUnmountResponse\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/v1/mountattach/unmount:\x01*2\xad\x03\n\x12OpenStorageMigrate\x12\x82\x01\n\x05Start\x12,.openstorage.api.SdkCloudMigrateStartRequest\x1a-.openstorage.api.SdkCloudMigrateStartResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/v1/volumemigrate:\x01*\x12\x8c\x01\n\x06\x43\x61ncel\x12-.openstorage.api.SdkCloudMigrateCancelRequest\x1a..openstorage.api.SdkCloudMigrateCancelResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/v1/volumemigrate/cancel:\x01*\x12\x82\x01\n\x06Status\x12-.openstorage.api.SdkCloudMigrateStatusRequest\x1a..openstorage.api.SdkCloudMigrateStatusResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/volumemigrate2\xe4\x04\n\x16OpenStorageObjectstore\x12\x9b\x01\n\x07Inspect\x12-.openstorage.api.SdkObjectstoreInspectRequest\x1a..openstorage.api.SdkObjectstoreInspectResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v1/objectstores/inspect/{objectstore_id}\x12\x82\x01\n\x06\x43reate\x12,.openstorage.api.SdkObjectstoreCreateRequest\x1a-.openstorage.api.SdkObjectstoreCreateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/objectstores:\x01*\x12\x90\x01\n\x06\x44\x65lete\x12,.openstorage.api.SdkObjectstoreDeleteRequest\x1a-.openstorage.api.SdkObjectstoreDeleteResponse\")\x82\xd3\xe4\x93\x02#*!/v1/objectstores/{objectstore_id}\x12\x93\x01\n\x06Update\x12,.openstorage.api.SdkObjectstoreUpdateRequest\x1a-.openstorage.api.SdkObjectstoreUpdateResponse\",\x82\xd3\xe4\x93\x02&\x1a!/v1/objectstores/{objectstore_id}:\x01*2\xe8\x05\n\x16OpenStorageCredentials\x12\x7f\n\x06\x43reate\x12+.openstorage.api.SdkCredentialCreateRequest\x1a,.openstorage.api.SdkCredentialCreateResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/v1/credentials:\x01*\x12\x85\x01\n\tEnumerate\x12..openstorage.api.SdkCredentialEnumerateRequest\x1a/.openstorage.api.SdkCredentialEnumerateResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/credentials\x12\x97\x01\n\x07Inspect\x12,.openstorage.api.SdkCredentialInspectRequest\x1a-.openstorage.api.SdkCredentialInspectResponse\"/\x82\xd3\xe4\x93\x02)\x12\'/v1/credentials/inspect/{credential_id}\x12\x8c\x01\n\x06\x44\x65lete\x12+.openstorage.api.SdkCredentialDeleteRequest\x1a,.openstorage.api.SdkCredentialDeleteResponse\"\'\x82\xd3\xe4\x93\x02!*\x1f/v1/credentials/{credential_id}\x12\x9b\x01\n\x08Validate\x12-.openstorage.api.SdkCredentialValidateRequest\x1a..openstorage.api.SdkCredentialValidateResponse\"0\x82\xd3\xe4\x93\x02*\x12(/v1/credentials/validate/{credential_id}2\xff\x05\n\x19OpenStorageSchedulePolicy\x12\x8c\x01\n\x06\x43reate\x12/.openstorage.api.SdkSchedulePolicyCreateRequest\x1a\x30.openstorage.api.SdkSchedulePolicyCreateResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\"\x14/v1/schedulepolicies:\x01*\x12\x8c\x01\n\x06Update\x12/.openstorage.api.SdkSchedulePolicyUpdateRequest\x1a\x30.openstorage.api.SdkSchedulePolicyUpdateResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\x1a\x14/v1/schedulepolicies:\x01*\x12\x92\x01\n\tEnumerate\x12\x32.openstorage.api.SdkSchedulePolicyEnumerateRequest\x1a\x33.openstorage.api.SdkSchedulePolicyEnumerateResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/schedulepolicies\x12\x9b\x01\n\x07Inspect\x12\x30.openstorage.api.SdkSchedulePolicyInspectRequest\x1a\x31.openstorage.api.SdkSchedulePolicyInspectResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v1/schedulepolicies/inspect/{name}\x12\x90\x01\n\x06\x44\x65lete\x12/.openstorage.api.SdkSchedulePolicyDeleteRequest\x1a\x30.openstorage.api.SdkSchedulePolicyDeleteResponse\"#\x82\xd3\xe4\x93\x02\x1d*\x1b/v1/schedulepolicies/{name}2\x80\x10\n\x16OpenStorageCloudBackup\x12\x82\x01\n\x06\x43reate\x12,.openstorage.api.SdkCloudBackupCreateRequest\x1a-.openstorage.api.SdkCloudBackupCreateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/cloudbackups:\x01*\x12\x97\x01\n\x0bGroupCreate\x12\x31.openstorage.api.SdkCloudBackupGroupCreateRequest\x1a\x32.openstorage.api.SdkCloudBackupGroupCreateResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/cloudbackups/group:\x01*\x12\x8d\x01\n\x07Restore\x12-.openstorage.api.SdkCloudBackupRestoreRequest\x1a..openstorage.api.SdkCloudBackupRestoreResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/v1/cloudbackups/restore:\x01*\x12\x92\x01\n\x06\x44\x65lete\x12,.openstorage.api.SdkCloudBackupDeleteRequest\x1a-.openstorage.api.SdkCloudBackupDeleteResponse\"+\x82\xd3\xe4\x93\x02%*#/v1/cloudbackups/backup/{backup_id}\x12\x95\x01\n\tDeleteAll\x12/.openstorage.api.SdkCloudBackupDeleteAllRequest\x1a\x30.openstorage.api.SdkCloudBackupDeleteAllResponse\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/v1/cloudbackups/deleteall:\x01*\x12\xbe\x01\n\x14\x45numerateWithFilters\x12:.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest\x1a;.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/cloudbackups/enumerate/filters:\x01*\x12\x89\x01\n\x06Status\x12,.openstorage.api.SdkCloudBackupStatusRequest\x1a-.openstorage.api.SdkCloudBackupStatusResponse\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/v1/cloudbackups/status:\x01*\x12\x8d\x01\n\x07\x43\x61talog\x12-.openstorage.api.SdkCloudBackupCatalogRequest\x1a..openstorage.api.SdkCloudBackupCatalogResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/v1/cloudbackups/catalog:\x01*\x12\x9a\x01\n\x07History\x12-.openstorage.api.SdkCloudBackupHistoryRequest\x1a..openstorage.api.SdkCloudBackupHistoryResponse\"0\x82\xd3\xe4\x93\x02*\x12(/v1/cloudbackups/history/{src_volume_id}\x12\x9d\x01\n\x0bStateChange\x12\x31.openstorage.api.SdkCloudBackupStateChangeRequest\x1a\x32.openstorage.api.SdkCloudBackupStateChangeResponse\"\'\x82\xd3\xe4\x93\x02!\"\x1c/v1/cloudbackups/statechange:\x01*\x12\x9b\x01\n\x0bSchedCreate\x12\x31.openstorage.api.SdkCloudBackupSchedCreateRequest\x1a\x32.openstorage.api.SdkCloudBackupSchedCreateResponse\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/v1/cloudbackups/schedules:\x01*\x12\xad\x01\n\x0bSchedDelete\x12\x31.openstorage.api.SdkCloudBackupSchedDeleteRequest\x1a\x32.openstorage.api.SdkCloudBackupSchedDeleteResponse\"7\x82\xd3\xe4\x93\x02\x31*//v1/cloudbackups/schedules/{backup_schedule_id}\x12\xa1\x01\n\x0eSchedEnumerate\x12\x34.openstorage.api.SdkCloudBackupSchedEnumerateRequest\x1a\x35.openstorage.api.SdkCloudBackupSchedEnumerateResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v1/cloudbackups/schedules2\x8f\n\n\x11OpenStoragePolicy\x12\x91\x01\n\x06\x43reate\x12\x32.openstorage.api.SdkOpenStoragePolicyCreateRequest\x1a\x33.openstorage.api.SdkOpenStoragePolicyCreateResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/v1/storagepolicies:\x01*\x12\x97\x01\n\tEnumerate\x12\x35.openstorage.api.SdkOpenStoragePolicyEnumerateRequest\x1a\x36.openstorage.api.SdkOpenStoragePolicyEnumerateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/storagepolicies\x12\xa0\x01\n\x07Inspect\x12\x33.openstorage.api.SdkOpenStoragePolicyInspectRequest\x1a\x34.openstorage.api.SdkOpenStoragePolicyInspectResponse\"*\x82\xd3\xe4\x93\x02$\x12\"/v1/storagepolicies/inspect/{name}\x12\x91\x01\n\x06Update\x12\x32.openstorage.api.SdkOpenStoragePolicyUpdateRequest\x1a\x33.openstorage.api.SdkOpenStoragePolicyUpdateResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x1a\x13/v1/storagepolicies:\x01*\x12\x95\x01\n\x06\x44\x65lete\x12\x32.openstorage.api.SdkOpenStoragePolicyDeleteRequest\x1a\x33.openstorage.api.SdkOpenStoragePolicyDeleteResponse\"\"\x82\xd3\xe4\x93\x02\x1c*\x1a/v1/storagepolicies/{name}\x12\xac\x01\n\nSetDefault\x12\x36.openstorage.api.SdkOpenStoragePolicySetDefaultRequest\x1a\x37.openstorage.api.SdkOpenStoragePolicySetDefaultResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/storagepolicies/default/{name}:\x01*\x12\xae\x01\n\x0e\x44\x65\x66\x61ultInspect\x12:.openstorage.api.SdkOpenStoragePolicyDefaultInspectRequest\x1a;.openstorage.api.SdkOpenStoragePolicyDefaultInspectResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/storagepolicies/default\x12\x9c\x01\n\x07Release\x12\x33.openstorage.api.SdkOpenStoragePolicyReleaseRequest\x1a\x34.openstorage.api.SdkOpenStoragePolicyReleaseResponse\"&\x82\xd3\xe4\x93\x02 \"\x1b/v1/storagepolicies/release:\x01*B\x1c\n\x13\x63om.openstorage.apiP\x01Z\x03\x61pib\x06proto3')
+  serialized_pb=_b('\n\tapi.proto\x12\x0fopenstorage.api\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\xb2\x02\n\x0fStorageResource\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12.\n\x06medium\x18\x03 \x01(\x0e\x32\x1e.openstorage.api.StorageMedium\x12\x0e\n\x06online\x18\x04 \x01(\x08\x12\x0c\n\x04iops\x18\x05 \x01(\x04\x12\x11\n\tseq_write\x18\x06 \x01(\x01\x12\x10\n\x08seq_read\x18\x07 \x01(\x01\x12\x0e\n\x06randRW\x18\x08 \x01(\x01\x12\x0c\n\x04size\x18\t \x01(\x04\x12\x0c\n\x04used\x18\n \x01(\x04\x12\x16\n\x0erotation_speed\x18\x0b \x01(\t\x12-\n\tlast_scan\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x10\n\x08metadata\x18\r \x01(\x08\x12\r\n\x05\x63\x61\x63he\x18\x0e \x01(\x08\"\x8d\x02\n\x0bStoragePool\x12\n\n\x02ID\x18\x01 \x01(\x05\x12%\n\x03\x43os\x18\x02 \x01(\x0e\x32\x18.openstorage.api.CosType\x12.\n\x06Medium\x18\x03 \x01(\x0e\x32\x1e.openstorage.api.StorageMedium\x12\x11\n\tRaidLevel\x18\x04 \x01(\t\x12\x11\n\tTotalSize\x18\x07 \x01(\x04\x12\x0c\n\x04Used\x18\x08 \x01(\x04\x12\x38\n\x06labels\x18\t \x03(\x0b\x32(.openstorage.api.StoragePool.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x85\x02\n\rVolumeLocator\x12\x0c\n\x04name\x18\x01 \x01(\t\x12G\n\rvolume_labels\x18\x02 \x03(\x0b\x32\x30.openstorage.api.VolumeLocator.VolumeLabelsEntry\x12-\n\townership\x18\x03 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12%\n\x05group\x18\x04 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x12\n\nvolume_ids\x18\x05 \x03(\t\x1a\x33\n\x11VolumeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"$\n\x14VolumeInspectOptions\x12\x0c\n\x04\x64\x65\x65p\x18\x01 \x01(\x08\"&\n\x06Source\x12\x0e\n\x06parent\x18\x01 \x01(\t\x12\x0c\n\x04seed\x18\x02 \x01(\t\"\x13\n\x05Group\x12\n\n\x02id\x18\x01 \x01(\t\"1\n\nIoStrategy\x12\x10\n\x08\x61sync_io\x18\x01 \x01(\x08\x12\x11\n\tearly_ack\x18\x02 \x01(\x08\"\xc9\x07\n\nVolumeSpec\x12\x11\n\tephemeral\x18\x01 \x01(\x08\x12\x0c\n\x04size\x18\x02 \x01(\x04\x12\'\n\x06\x66ormat\x18\x03 \x01(\x0e\x32\x17.openstorage.api.FSType\x12\x12\n\nblock_size\x18\x04 \x01(\x03\x12\x10\n\x08ha_level\x18\x05 \x01(\x03\x12%\n\x03\x63os\x18\x06 \x01(\x0e\x32\x18.openstorage.api.CosType\x12.\n\nio_profile\x18\x07 \x01(\x0e\x32\x1a.openstorage.api.IoProfile\x12\x0e\n\x06\x64\x65\x64upe\x18\x08 \x01(\x08\x12\x19\n\x11snapshot_interval\x18\t \x01(\r\x12\x44\n\rvolume_labels\x18\n \x03(\x0b\x32-.openstorage.api.VolumeSpec.VolumeLabelsEntry\x12\x0e\n\x06shared\x18\x0b \x01(\x08\x12\x30\n\x0breplica_set\x18\x0c \x01(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x19\n\x11\x61ggregation_level\x18\r \x01(\r\x12\x11\n\tencrypted\x18\x0e \x01(\x08\x12\x12\n\npassphrase\x18\x0f \x01(\t\x12\x19\n\x11snapshot_schedule\x18\x10 \x01(\t\x12\r\n\x05scale\x18\x11 \x01(\r\x12\x0e\n\x06sticky\x18\x12 \x01(\x08\x12%\n\x05group\x18\x15 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x16\n\x0egroup_enforced\x18\x16 \x01(\x08\x12\x12\n\ncompressed\x18\x17 \x01(\x08\x12\x10\n\x08\x63\x61scaded\x18\x18 \x01(\x08\x12\x0f\n\x07journal\x18\x19 \x01(\x08\x12\x10\n\x08sharedv4\x18\x1a \x01(\x08\x12\x13\n\x0bqueue_depth\x18\x1b \x01(\r\x12!\n\x19\x66orce_unsupported_fs_type\x18\x1c \x01(\x08\x12\x11\n\tnodiscard\x18\x1d \x01(\x08\x12\x30\n\x0bio_strategy\x18\x1e \x01(\x0b\x32\x1b.openstorage.api.IoStrategy\x12\x44\n\x12placement_strategy\x18\x1f \x01(\x0b\x32(.openstorage.api.VolumePlacementStrategy\x12\x16\n\x0estorage_policy\x18  \x01(\t\x12-\n\townership\x18! \x01(\x0b\x32\x1a.openstorage.api.Ownership\x1a\x33\n\x11VolumeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xbb\x06\n\x10VolumeSpecUpdate\x12\x0e\n\x04size\x18\x02 \x01(\x04H\x00\x12\x12\n\x08ha_level\x18\x05 \x01(\x03H\x01\x12\'\n\x03\x63os\x18\x06 \x01(\x0e\x32\x18.openstorage.api.CosTypeH\x02\x12\x30\n\nio_profile\x18\x07 \x01(\x0e\x32\x1a.openstorage.api.IoProfileH\x03\x12\x10\n\x06\x64\x65\x64upe\x18\x08 \x01(\x08H\x04\x12\x1b\n\x11snapshot_interval\x18\t \x01(\rH\x05\x12\x10\n\x06shared\x18\x0b \x01(\x08H\x06\x12\x30\n\x0breplica_set\x18\x0c \x01(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x14\n\npassphrase\x18\x0f \x01(\tH\x07\x12\x1b\n\x11snapshot_schedule\x18\x10 \x01(\tH\x08\x12\x0f\n\x05scale\x18\x11 \x01(\rH\t\x12\x10\n\x06sticky\x18\x12 \x01(\x08H\n\x12\'\n\x05group\x18\x13 \x01(\x0b\x32\x16.openstorage.api.GroupH\x0b\x12\x11\n\x07journal\x18\x17 \x01(\x08H\x0c\x12\x12\n\x08sharedv4\x18\x18 \x01(\x08H\r\x12\x15\n\x0bqueue_depth\x18\x19 \x01(\rH\x0e\x12-\n\townership\x18\x1a \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12\x13\n\tnodiscard\x18\x1b \x01(\x08H\x0f\x12\x30\n\x0bio_strategy\x18\x1c \x01(\x0b\x32\x1b.openstorage.api.IoStrategyB\n\n\x08size_optB\x0e\n\x0cha_level_optB\t\n\x07\x63os_optB\x10\n\x0eio_profile_optB\x0c\n\ndedupe_optB\x17\n\x15snapshot_interval_optB\x0c\n\nshared_optB\x10\n\x0epassphrase_optB\x17\n\x15snapshot_schedule_optB\x0b\n\tscale_optB\x0c\n\nsticky_optB\x0b\n\tgroup_optB\r\n\x0bjournal_optB\x0e\n\x0csharedv4_optB\x11\n\x0fqueue_depth_optB\x0f\n\rnodiscard_opt\"\xb8\n\n\x10VolumeSpecPolicy\x12\x0e\n\x04size\x18\x01 \x01(\x04H\x00\x12\x12\n\x08ha_level\x18\x02 \x01(\x03H\x01\x12\'\n\x03\x63os\x18\x03 \x01(\x0e\x32\x18.openstorage.api.CosTypeH\x02\x12\x30\n\nio_profile\x18\x04 \x01(\x0e\x32\x1a.openstorage.api.IoProfileH\x03\x12\x10\n\x06\x64\x65\x64upe\x18\x05 \x01(\x08H\x04\x12\x1b\n\x11snapshot_interval\x18\x06 \x01(\rH\x05\x12J\n\rvolume_labels\x18\x07 \x03(\x0b\x32\x33.openstorage.api.VolumeSpecPolicy.VolumeLabelsEntry\x12\x10\n\x06shared\x18\x08 \x01(\x08H\x06\x12\x30\n\x0breplica_set\x18\t \x01(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x14\n\npassphrase\x18\n \x01(\tH\x07\x12\x1b\n\x11snapshot_schedule\x18\x0b \x01(\tH\x08\x12\x0f\n\x05scale\x18\x0c \x01(\rH\t\x12\x10\n\x06sticky\x18\r \x01(\x08H\n\x12\'\n\x05group\x18\x0e \x01(\x0b\x32\x16.openstorage.api.GroupH\x0b\x12\x11\n\x07journal\x18\x0f \x01(\x08H\x0c\x12\x12\n\x08sharedv4\x18\x10 \x01(\x08H\r\x12\x15\n\x0bqueue_depth\x18\x11 \x01(\rH\x0e\x12\x13\n\tencrypted\x18\x12 \x01(\x08H\x0f\x12\x1b\n\x11\x61ggregation_level\x18\x13 \x01(\rH\x10\x12\x41\n\rsize_operator\x18\x32 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12\x45\n\x11ha_level_operator\x18\x33 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12\x42\n\x0escale_operator\x18\x34 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12N\n\x1asnapshot_interval_operator\x18\x35 \x01(\x0e\x32*.openstorage.api.VolumeSpecPolicy.PolicyOp\x12\x13\n\tnodiscard\x18\x36 \x01(\x08H\x11\x12\x30\n\x0bio_strategy\x18\x37 \x01(\x0b\x32\x1b.openstorage.api.IoStrategy\x1a\x33\n\x11VolumeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"/\n\x08PolicyOp\x12\t\n\x05\x45qual\x10\x00\x12\x0b\n\x07Minimum\x10\x01\x12\x0b\n\x07Maximum\x10\x02\x42\n\n\x08size_optB\x0e\n\x0cha_level_optB\t\n\x07\x63os_optB\x10\n\x0eio_profile_optB\x0c\n\ndedupe_optB\x17\n\x15snapshot_interval_optB\x0c\n\nshared_optB\x10\n\x0epassphrase_optB\x17\n\x15snapshot_schedule_optB\x0b\n\tscale_optB\x0c\n\nsticky_optB\x0b\n\tgroup_optB\r\n\x0bjournal_optB\x0e\n\x0csharedv4_optB\x11\n\x0fqueue_depth_optB\x0f\n\rencrypted_optB\x17\n\x15\x61ggregation_level_optB\x0f\n\rnodiscard_opt\"\x1b\n\nReplicaSet\x12\r\n\x05nodes\x18\x01 \x03(\t\"\x91\x01\n\x0fRuntimeStateMap\x12I\n\rruntime_state\x18\x01 \x03(\x0b\x32\x32.openstorage.api.RuntimeStateMap.RuntimeStateEntry\x1a\x33\n\x11RuntimeStateEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xdf\x03\n\tOwnership\x12\r\n\x05owner\x18\x01 \x01(\t\x12\x36\n\x04\x61\x63ls\x18\x02 \x01(\x0b\x32(.openstorage.api.Ownership.AccessControl\x1a\xdc\x02\n\rAccessControl\x12\x44\n\x06groups\x18\x01 \x03(\x0b\x32\x34.openstorage.api.Ownership.AccessControl.GroupsEntry\x12R\n\rcollaborators\x18\x02 \x03(\x0b\x32;.openstorage.api.Ownership.AccessControl.CollaboratorsEntry\x1aT\n\x0bGroupsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0e\x32%.openstorage.api.Ownership.AccessType:\x02\x38\x01\x1a[\n\x12\x43ollaboratorsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0e\x32%.openstorage.api.Ownership.AccessType:\x02\x38\x01\",\n\nAccessType\x12\x08\n\x04Read\x10\x00\x12\t\n\x05Write\x10\x01\x12\t\n\x05\x41\x64min\x10\x02\"\x94\x07\n\x06Volume\x12\n\n\x02id\x18\x01 \x01(\t\x12\'\n\x06source\x18\x02 \x01(\x0b\x32\x17.openstorage.api.Source\x12%\n\x05group\x18\x03 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x10\n\x08readonly\x18\x04 \x01(\x08\x12/\n\x07locator\x18\x05 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12)\n\x05\x63time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12)\n\x04spec\x18\x07 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\x12\r\n\x05usage\x18\x08 \x01(\x04\x12-\n\tlast_scan\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x06\x66ormat\x18\n \x01(\x0e\x32\x17.openstorage.api.FSType\x12-\n\x06status\x18\x0b \x01(\x0e\x32\x1d.openstorage.api.VolumeStatus\x12+\n\x05state\x18\x0c \x01(\x0e\x32\x1c.openstorage.api.VolumeState\x12\x13\n\x0b\x61ttached_on\x18\r \x01(\t\x12\x34\n\x0e\x61ttached_state\x18\x0e \x01(\x0e\x32\x1c.openstorage.api.AttachState\x12\x13\n\x0b\x64\x65vice_path\x18\x0f \x01(\t\x12\x1a\n\x12secure_device_path\x18\x10 \x01(\t\x12\x13\n\x0b\x61ttach_path\x18\x11 \x03(\t\x12<\n\x0b\x61ttach_info\x18\x12 \x03(\x0b\x32\'.openstorage.api.Volume.AttachInfoEntry\x12\x31\n\x0creplica_sets\x18\x13 \x03(\x0b\x32\x1b.openstorage.api.ReplicaSet\x12\x37\n\rruntime_state\x18\x14 \x03(\x0b\x32 .openstorage.api.RuntimeStateMap\x12\r\n\x05\x65rror\x18\x15 \x01(\t\x12\x39\n\x10volume_consumers\x18\x16 \x03(\x0b\x32\x1f.openstorage.api.VolumeConsumer\x12\x1a\n\x12\x66s_resize_required\x18\x17 \x01(\x08\x1a\x31\n\x0f\x41ttachInfoEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xbf\x01\n\x05Stats\x12\r\n\x05reads\x18\x01 \x01(\x04\x12\x0f\n\x07read_ms\x18\x02 \x01(\x04\x12\x12\n\nread_bytes\x18\x03 \x01(\x04\x12\x0e\n\x06writes\x18\x04 \x01(\x04\x12\x10\n\x08write_ms\x18\x05 \x01(\x04\x12\x13\n\x0bwrite_bytes\x18\x06 \x01(\x04\x12\x13\n\x0bio_progress\x18\x07 \x01(\x04\x12\r\n\x05io_ms\x18\x08 \x01(\x04\x12\x12\n\nbytes_used\x18\t \x01(\x04\x12\x13\n\x0binterval_ms\x18\n \x01(\x04\"W\n\x11\x43\x61pacityUsageInfo\x12\x17\n\x0f\x65xclusive_bytes\x18\x01 \x01(\x03\x12\x14\n\x0cshared_bytes\x18\x02 \x01(\x03\x12\x13\n\x0btotal_bytes\x18\x03 \x01(\x03\"\xa7\x01\n\x10SdkStoragePolicy\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x31\n\x06policy\x18\x02 \x01(\x0b\x32!.openstorage.api.VolumeSpecPolicy\x12\r\n\x05\x66orce\x18\x03 \x01(\x08\x12\x14\n\x0c\x61llow_update\x18\x04 \x01(\x08\x12-\n\townership\x18\x05 \x01(\x0b\x32\x1a.openstorage.api.Ownership\"\xcf\x02\n\x05\x41lert\x12\n\n\x02id\x18\x01 \x01(\x03\x12/\n\x08severity\x18\x02 \x01(\x0e\x32\x1d.openstorage.api.SeverityType\x12\x12\n\nalert_type\x18\x03 \x01(\x03\x12\x0f\n\x07message\x18\x04 \x01(\t\x12-\n\ttimestamp\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0bresource_id\x18\x06 \x01(\t\x12/\n\x08resource\x18\x07 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\x12\x0f\n\x07\x63leared\x18\x08 \x01(\x08\x12\x0b\n\x03ttl\x18\t \x01(\x04\x12\x12\n\nunique_tag\x18\n \x01(\t\x12\r\n\x05\x63ount\x18\x0b \x01(\x03\x12.\n\nfirst_seen\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"q\n\x11SdkAlertsTimeSpan\x12.\n\nstart_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12,\n\x08\x65nd_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\":\n\x12SdkAlertsCountSpan\x12\x11\n\tmin_count\x18\x01 \x01(\x03\x12\x11\n\tmax_count\x18\x02 \x01(\x03\"\xde\x01\n\x0fSdkAlertsOption\x12:\n\x11min_severity_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.SeverityTypeH\x00\x12\x14\n\nis_cleared\x18\x02 \x01(\x08H\x00\x12\x37\n\ttime_span\x18\x03 \x01(\x0b\x32\".openstorage.api.SdkAlertsTimeSpanH\x00\x12\x39\n\ncount_span\x18\x04 \x01(\x0b\x32#.openstorage.api.SdkAlertsCountSpanH\x00\x42\x05\n\x03opt\"R\n\x1aSdkAlertsResourceTypeQuery\x12\x34\n\rresource_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\"c\n\x17SdkAlertsAlertTypeQuery\x12\x34\n\rresource_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\x12\x12\n\nalert_type\x18\x02 \x01(\x03\"y\n\x18SdkAlertsResourceIdQuery\x12\x34\n\rresource_type\x18\x01 \x01(\x0e\x32\x1d.openstorage.api.ResourceType\x12\x12\n\nalert_type\x18\x02 \x01(\x03\x12\x13\n\x0bresource_id\x18\x03 \x01(\t\"\xa3\x02\n\x0eSdkAlertsQuery\x12J\n\x13resource_type_query\x18\x01 \x01(\x0b\x32+.openstorage.api.SdkAlertsResourceTypeQueryH\x00\x12\x44\n\x10\x61lert_type_query\x18\x02 \x01(\x0b\x32(.openstorage.api.SdkAlertsAlertTypeQueryH\x00\x12\x46\n\x11resource_id_query\x18\x03 \x01(\x0b\x32).openstorage.api.SdkAlertsResourceIdQueryH\x00\x12.\n\x04opts\x18\x04 \x03(\x0b\x32 .openstorage.api.SdkAlertsOptionB\x07\n\x05query\"X\n$SdkAlertsEnumerateWithFiltersRequest\x12\x30\n\x07queries\x18\x01 \x03(\x0b\x32\x1f.openstorage.api.SdkAlertsQuery\"O\n%SdkAlertsEnumerateWithFiltersResponse\x12&\n\x06\x61lerts\x18\x01 \x03(\x0b\x32\x16.openstorage.api.Alert\"J\n\x16SdkAlertsDeleteRequest\x12\x30\n\x07queries\x18\x01 \x03(\x0b\x32\x1f.openstorage.api.SdkAlertsQuery\"\x19\n\x17SdkAlertsDeleteResponse\"/\n\x06\x41lerts\x12%\n\x05\x61lert\x18\x01 \x03(\x0b\x32\x16.openstorage.api.Alert\"\xdd\x01\n\x0fObjectstoreInfo\x12\x0c\n\x04uuid\x18\x01 \x01(\t\x12\x11\n\tvolume_id\x18\x02 \x01(\t\x12\x0f\n\x07\x65nabled\x18\x03 \x01(\x08\x12\x0e\n\x06status\x18\x04 \x01(\t\x12\x0e\n\x06\x61\x63tion\x18\x05 \x01(\x03\x12\x12\n\naccess_key\x18\x06 \x01(\t\x12\x12\n\nsecret_key\x18\x07 \x01(\t\x12\x11\n\tendpoints\x18\x08 \x03(\t\x12\x18\n\x10\x63urrent_endpoint\x18\t \x01(\t\x12\x13\n\x0b\x61\x63\x63\x65ss_port\x18\n \x01(\x03\x12\x0e\n\x06region\x18\x0b \x01(\t\"\x9a\x01\n\x13VolumeCreateRequest\x12/\n\x07locator\x18\x01 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12\'\n\x06source\x18\x02 \x01(\x0b\x32\x17.openstorage.api.Source\x12)\n\x04spec\x18\x03 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\"\x1f\n\x0eVolumeResponse\x12\r\n\x05\x65rror\x18\x01 \x01(\t\"\\\n\x14VolumeCreateResponse\x12\n\n\x02id\x18\x01 \x01(\t\x12\x38\n\x0fvolume_response\x18\x02 \x01(\x0b\x32\x1f.openstorage.api.VolumeResponse\"\xa3\x01\n\x11VolumeStateAction\x12\x32\n\x06\x61ttach\x18\x01 \x01(\x0e\x32\".openstorage.api.VolumeActionParam\x12\x31\n\x05mount\x18\x02 \x01(\x0e\x32\".openstorage.api.VolumeActionParam\x12\x12\n\nmount_path\x18\x03 \x01(\t\x12\x13\n\x0b\x64\x65vice_path\x18\x04 \x01(\t\"\x93\x02\n\x10VolumeSetRequest\x12/\n\x07locator\x18\x01 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12)\n\x04spec\x18\x02 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\x12\x32\n\x06\x61\x63tion\x18\x03 \x01(\x0b\x32\".openstorage.api.VolumeStateAction\x12?\n\x07options\x18\x04 \x03(\x0b\x32..openstorage.api.VolumeSetRequest.OptionsEntry\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"v\n\x11VolumeSetResponse\x12\'\n\x06volume\x18\x01 \x01(\x0b\x32\x17.openstorage.api.Volume\x12\x38\n\x0fvolume_response\x18\x02 \x01(\x0b\x32\x1f.openstorage.api.VolumeResponse\"t\n\x11SnapCreateRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12/\n\x07locator\x18\x02 \x01(\x0b\x32\x1e.openstorage.api.VolumeLocator\x12\x10\n\x08readonly\x18\x03 \x01(\x08\x12\x10\n\x08no_retry\x18\x04 \x01(\x08\"[\n\x12SnapCreateResponse\x12\x45\n\x16volume_create_response\x18\x01 \x01(\x0b\x32%.openstorage.api.VolumeCreateResponse\"[\n\nVolumeInfo\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12,\n\x07storage\x18\x03 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\"x\n\x0eVolumeConsumer\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tnamespace\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x0f\n\x07node_id\x18\x04 \x01(\t\x12\x12\n\nowner_name\x18\x05 \x01(\t\x12\x12\n\nowner_type\x18\x06 \x01(\t\"X\n\x12GraphDriverChanges\x12\x0c\n\x04path\x18\x01 \x01(\t\x12\x34\n\x04kind\x18\x02 \x01(\x0e\x32&.openstorage.api.GraphDriverChangeType\" \n\x0f\x43lusterResponse\x12\r\n\x05\x65rror\x18\x01 \x01(\t\"\x80\x01\n\rActiveRequest\x12>\n\x08ReqestKV\x18\x01 \x03(\x0b\x32,.openstorage.api.ActiveRequest.ReqestKVEntry\x1a/\n\rReqestKVEntry\x12\x0b\n\x03key\x18\x01 \x01(\x03\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"]\n\x0e\x41\x63tiveRequests\x12\x14\n\x0cRequestCount\x18\x01 \x01(\x03\x12\x35\n\rActiveRequest\x18\x02 \x03(\x0b\x32\x1e.openstorage.api.ActiveRequest\"\xac\x01\n\x16GroupSnapCreateRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x43\n\x06Labels\x18\x02 \x03(\x0b\x32\x33.openstorage.api.GroupSnapCreateRequest.LabelsEntry\x12\x12\n\nvolume_ids\x18\x03 \x03(\t\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xcb\x01\n\x17GroupSnapCreateResponse\x12J\n\tsnapshots\x18\x01 \x03(\x0b\x32\x37.openstorage.api.GroupSnapCreateResponse.SnapshotsEntry\x12\r\n\x05\x65rror\x18\x02 \x01(\t\x1aU\n\x0eSnapshotsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x32\n\x05value\x18\x02 \x01(\x0b\x32#.openstorage.api.SnapCreateResponse:\x02\x38\x01\"\x94\x04\n\x0bStorageNode\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03\x63pu\x18\x02 \x01(\x01\x12\x11\n\tmem_total\x18\x03 \x01(\x04\x12\x10\n\x08mem_used\x18\x04 \x01(\x04\x12\x10\n\x08mem_free\x18\x05 \x01(\x04\x12\x10\n\x08\x61vg_load\x18\x06 \x01(\x03\x12\'\n\x06status\x18\x07 \x01(\x0e\x32\x17.openstorage.api.Status\x12\x36\n\x05\x64isks\x18\t \x03(\x0b\x32\'.openstorage.api.StorageNode.DisksEntry\x12+\n\x05pools\x18\n \x03(\x0b\x32\x1c.openstorage.api.StoragePool\x12\x0f\n\x07mgmt_ip\x18\x0b \x01(\t\x12\x0f\n\x07\x64\x61ta_ip\x18\x0c \x01(\t\x12\x10\n\x08hostname\x18\x0f \x01(\t\x12\x41\n\x0bnode_labels\x18\x10 \x03(\x0b\x32,.openstorage.api.StorageNode.NodeLabelsEntry\x12\x1b\n\x13scheduler_node_name\x18\x11 \x01(\t\x1aN\n\nDisksEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12/\n\x05value\x18\x02 \x01(\x0b\x32 .openstorage.api.StorageResource:\x02\x38\x01\x1a\x31\n\x0fNodeLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"S\n\x0eStorageCluster\x12\'\n\x06status\x18\x01 \x01(\x0e\x32\x17.openstorage.api.Status\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\"^\n!SdkOpenStoragePolicyCreateRequest\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"$\n\"SdkOpenStoragePolicyCreateResponse\"&\n$SdkOpenStoragePolicyEnumerateRequest\"d\n%SdkOpenStoragePolicyEnumerateResponse\x12;\n\x10storage_policies\x18\x01 \x03(\x0b\x32!.openstorage.api.SdkStoragePolicy\"2\n\"SdkOpenStoragePolicyInspectRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"`\n#SdkOpenStoragePolicyInspectResponse\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"1\n!SdkOpenStoragePolicyDeleteRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\"SdkOpenStoragePolicyDeleteResponse\"^\n!SdkOpenStoragePolicyUpdateRequest\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"$\n\"SdkOpenStoragePolicyUpdateResponse\"5\n%SdkOpenStoragePolicySetDefaultRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"(\n&SdkOpenStoragePolicySetDefaultResponse\"$\n\"SdkOpenStoragePolicyReleaseRequest\"%\n#SdkOpenStoragePolicyReleaseResponse\"+\n)SdkOpenStoragePolicyDefaultInspectRequest\"g\n*SdkOpenStoragePolicyDefaultInspectResponse\x12\x39\n\x0estorage_policy\x18\x01 \x01(\x0b\x32!.openstorage.api.SdkStoragePolicy\"]\n\x1eSdkSchedulePolicyCreateRequest\x12;\n\x0fschedule_policy\x18\x01 \x01(\x0b\x32\".openstorage.api.SdkSchedulePolicy\"!\n\x1fSdkSchedulePolicyCreateResponse\"]\n\x1eSdkSchedulePolicyUpdateRequest\x12;\n\x0fschedule_policy\x18\x01 \x01(\x0b\x32\".openstorage.api.SdkSchedulePolicy\"!\n\x1fSdkSchedulePolicyUpdateResponse\"#\n!SdkSchedulePolicyEnumerateRequest\"Z\n\"SdkSchedulePolicyEnumerateResponse\x12\x34\n\x08policies\x18\x01 \x03(\x0b\x32\".openstorage.api.SdkSchedulePolicy\"/\n\x1fSdkSchedulePolicyInspectRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"V\n SdkSchedulePolicyInspectResponse\x12\x32\n\x06policy\x18\x01 \x01(\x0b\x32\".openstorage.api.SdkSchedulePolicy\".\n\x1eSdkSchedulePolicyDeleteRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x1fSdkSchedulePolicyDeleteResponse\">\n\x1eSdkSchedulePolicyIntervalDaily\x12\x0c\n\x04hour\x18\x01 \x01(\x05\x12\x0e\n\x06minute\x18\x02 \x01(\x05\"m\n\x1fSdkSchedulePolicyIntervalWeekly\x12,\n\x03\x64\x61y\x18\x01 \x01(\x0e\x32\x1f.openstorage.api.SdkTimeWeekday\x12\x0c\n\x04hour\x18\x02 \x01(\x05\x12\x0e\n\x06minute\x18\x03 \x01(\x05\"M\n SdkSchedulePolicyIntervalMonthly\x12\x0b\n\x03\x64\x61y\x18\x01 \x01(\x05\x12\x0c\n\x04hour\x18\x02 \x01(\x05\x12\x0e\n\x06minute\x18\x03 \x01(\x05\"4\n!SdkSchedulePolicyIntervalPeriodic\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\"\xd2\x02\n\x19SdkSchedulePolicyInterval\x12\x0e\n\x06retain\x18\x01 \x01(\x03\x12\x41\n\x05\x64\x61ily\x18\xc8\x01 \x01(\x0b\x32/.openstorage.api.SdkSchedulePolicyIntervalDailyH\x00\x12\x43\n\x06weekly\x18\xc9\x01 \x01(\x0b\x32\x30.openstorage.api.SdkSchedulePolicyIntervalWeeklyH\x00\x12\x45\n\x07monthly\x18\xca\x01 \x01(\x0b\x32\x31.openstorage.api.SdkSchedulePolicyIntervalMonthlyH\x00\x12G\n\x08periodic\x18\xcb\x01 \x01(\x0b\x32\x32.openstorage.api.SdkSchedulePolicyIntervalPeriodicH\x00\x42\r\n\x0bperiod_type\"`\n\x11SdkSchedulePolicy\x12\x0c\n\x04name\x18\x01 \x01(\t\x12=\n\tschedules\x18\x02 \x03(\x0b\x32*.openstorage.api.SdkSchedulePolicyInterval\"\xed\x02\n\x1aSdkCredentialCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x02 \x01(\t\x12\x16\n\x0e\x65ncryption_key\x18\x03 \x01(\t\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12\x43\n\x0e\x61ws_credential\x18\xc8\x01 \x01(\x0b\x32(.openstorage.api.SdkAwsCredentialRequestH\x00\x12G\n\x10\x61zure_credential\x18\xc9\x01 \x01(\x0b\x32*.openstorage.api.SdkAzureCredentialRequestH\x00\x12I\n\x11google_credential\x18\xca\x01 \x01(\x0b\x32+.openstorage.api.SdkGoogleCredentialRequestH\x00\x42\x11\n\x0f\x63redential_type\"4\n\x1bSdkCredentialCreateResponse\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\x94\x01\n\x17SdkAwsCredentialRequest\x12\x12\n\naccess_key\x18\x01 \x01(\t\x12\x12\n\nsecret_key\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x0e\n\x06region\x18\x04 \x01(\t\x12\x13\n\x0b\x64isable_ssl\x18\x05 \x01(\x08\x12\x1a\n\x12\x64isable_path_style\x18\x06 \x01(\x08\"F\n\x19SdkAzureCredentialRequest\x12\x14\n\x0c\x61\x63\x63ount_name\x18\x01 \x01(\t\x12\x13\n\x0b\x61\x63\x63ount_key\x18\x02 \x01(\t\"B\n\x1aSdkGoogleCredentialRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\x10\n\x08json_key\x18\x02 \x01(\t\"\x81\x01\n\x18SdkAwsCredentialResponse\x12\x12\n\naccess_key\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x0e\n\x06region\x18\x04 \x01(\t\x12\x13\n\x0b\x64isable_ssl\x18\x05 \x01(\x08\x12\x1a\n\x12\x64isable_path_style\x18\x06 \x01(\x08\"2\n\x1aSdkAzureCredentialResponse\x12\x14\n\x0c\x61\x63\x63ount_name\x18\x02 \x01(\t\"1\n\x1bSdkGoogleCredentialResponse\x12\x12\n\nproject_id\x18\x02 \x01(\t\"\x1f\n\x1dSdkCredentialEnumerateRequest\"8\n\x1eSdkCredentialEnumerateResponse\x12\x16\n\x0e\x63redential_ids\x18\x01 \x03(\t\"4\n\x1bSdkCredentialInspectRequest\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\xf1\x02\n\x1cSdkCredentialInspectResponse\x12\x15\n\rcredential_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06\x62ucket\x18\x03 \x01(\t\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12\x44\n\x0e\x61ws_credential\x18\xc8\x01 \x01(\x0b\x32).openstorage.api.SdkAwsCredentialResponseH\x00\x12H\n\x10\x61zure_credential\x18\xc9\x01 \x01(\x0b\x32+.openstorage.api.SdkAzureCredentialResponseH\x00\x12J\n\x11google_credential\x18\xca\x01 \x01(\x0b\x32,.openstorage.api.SdkGoogleCredentialResponseH\x00\x42\x11\n\x0f\x63redential_type\"3\n\x1aSdkCredentialDeleteRequest\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\x1d\n\x1bSdkCredentialDeleteResponse\"5\n\x1cSdkCredentialValidateRequest\x12\x15\n\rcredential_id\x18\x01 \x01(\t\"\x1f\n\x1dSdkCredentialValidateResponse\"Y\n\x16SdkVolumeAttachOptions\x12\x13\n\x0bsecret_name\x18\x01 \x01(\t\x12\x12\n\nsecret_key\x18\x02 \x01(\t\x12\x16\n\x0esecret_context\x18\x03 \x01(\t\"\x81\x02\n\x15SdkVolumeMountRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x12\n\nmount_path\x18\x02 \x01(\t\x12\x38\n\x07options\x18\x03 \x01(\x0b\x32\'.openstorage.api.SdkVolumeAttachOptions\x12Q\n\x0e\x64river_options\x18\x04 \x03(\x0b\x32\x39.openstorage.api.SdkVolumeMountRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x18\n\x16SdkVolumeMountResponse\"a\n\x17SdkVolumeUnmountOptions\x12\x19\n\x11\x64\x65lete_mount_path\x18\x01 \x01(\x08\x12+\n#no_delay_before_deleting_mount_path\x18\x02 \x01(\x08\"\x86\x02\n\x17SdkVolumeUnmountRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x12\n\nmount_path\x18\x02 \x01(\t\x12\x39\n\x07options\x18\x03 \x01(\x0b\x32(.openstorage.api.SdkVolumeUnmountOptions\x12S\n\x0e\x64river_options\x18\x04 \x03(\x0b\x32;.openstorage.api.SdkVolumeUnmountRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x1a\n\x18SdkVolumeUnmountResponse\"\xef\x01\n\x16SdkVolumeAttachRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x38\n\x07options\x18\x02 \x01(\x0b\x32\'.openstorage.api.SdkVolumeAttachOptions\x12R\n\x0e\x64river_options\x18\x03 \x03(\x0b\x32:.openstorage.api.SdkVolumeAttachRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\".\n\x17SdkVolumeAttachResponse\x12\x13\n\x0b\x64\x65vice_path\x18\x01 \x01(\t\"F\n\x16SdkVolumeDetachOptions\x12\r\n\x05\x66orce\x18\x01 \x01(\x08\x12\x1d\n\x15unmount_before_detach\x18\x02 \x01(\x08\"\xef\x01\n\x16SdkVolumeDetachRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x38\n\x07options\x18\x02 \x01(\x0b\x32\'.openstorage.api.SdkVolumeDetachOptions\x12R\n\x0e\x64river_options\x18\x03 \x03(\x0b\x32:.openstorage.api.SdkVolumeDetachRequest.DriverOptionsEntry\x1a\x34\n\x12\x44riverOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x19\n\x17SdkVolumeDetachResponse\"\xc5\x01\n\x16SdkVolumeCreateRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12)\n\x04spec\x18\x02 \x01(\x0b\x32\x1b.openstorage.api.VolumeSpec\x12\x43\n\x06labels\x18\x03 \x03(\x0b\x32\x33.openstorage.api.SdkVolumeCreateRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\",\n\x17SdkVolumeCreateResponse\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"8\n\x15SdkVolumeCloneRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x11\n\tparent_id\x18\x02 \x01(\t\"+\n\x16SdkVolumeCloneResponse\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"+\n\x16SdkVolumeDeleteRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"\x19\n\x17SdkVolumeDeleteResponse\"d\n\x17SdkVolumeInspectRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x36\n\x07options\x18\x02 \x01(\x0b\x32%.openstorage.api.VolumeInspectOptions\"\xc7\x01\n\x18SdkVolumeInspectResponse\x12\'\n\x06volume\x18\x01 \x01(\x0b\x32\x17.openstorage.api.Volume\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x45\n\x06labels\x18\x03 \x03(\x0b\x32\x35.openstorage.api.SdkVolumeInspectResponse.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xc0\x02\n\"SdkVolumeInspectWithFiltersRequest\x12\x0c\n\x04name\x18\x02 \x01(\t\x12O\n\x06labels\x18\x03 \x03(\x0b\x32?.openstorage.api.SdkVolumeInspectWithFiltersRequest.LabelsEntry\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12%\n\x05group\x18\x05 \x01(\x0b\x32\x16.openstorage.api.Group\x12\x36\n\x07options\x18\x06 \x01(\x0b\x32%.openstorage.api.VolumeInspectOptions\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"a\n#SdkVolumeInspectWithFiltersResponse\x12:\n\x07volumes\x18\x01 \x03(\x0b\x32).openstorage.api.SdkVolumeInspectResponse\"\xd0\x01\n\x16SdkVolumeUpdateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x43\n\x06labels\x18\x03 \x03(\x0b\x32\x33.openstorage.api.SdkVolumeUpdateRequest.LabelsEntry\x12/\n\x04spec\x18\x04 \x01(\x0b\x32!.openstorage.api.VolumeSpecUpdate\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x19\n\x17SdkVolumeUpdateResponse\"B\n\x15SdkVolumeStatsRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x16\n\x0enot_cumulative\x18\x02 \x01(\x08\"?\n\x16SdkVolumeStatsResponse\x12%\n\x05stats\x18\x01 \x01(\x0b\x32\x16.openstorage.api.Stats\"2\n\x1dSdkVolumeCapacityUsageRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"a\n\x1eSdkVolumeCapacityUsageResponse\x12?\n\x13\x63\x61pacity_usage_info\x18\x01 \x01(\x0b\x32\".openstorage.api.CapacityUsageInfo\"\x1b\n\x19SdkVolumeEnumerateRequest\"0\n\x1aSdkVolumeEnumerateResponse\x12\x12\n\nvolume_ids\x18\x01 \x03(\t\"\x8c\x02\n$SdkVolumeEnumerateWithFiltersRequest\x12\x0c\n\x04name\x18\x02 \x01(\t\x12Q\n\x06labels\x18\x03 \x03(\x0b\x32\x41.openstorage.api.SdkVolumeEnumerateWithFiltersRequest.LabelsEntry\x12-\n\townership\x18\x04 \x01(\x0b\x32\x1a.openstorage.api.Ownership\x12%\n\x05group\x18\x05 \x01(\x0b\x32\x16.openstorage.api.Group\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\";\n%SdkVolumeEnumerateWithFiltersResponse\x12\x12\n\nvolume_ids\x18\x01 \x03(\t\"\xbd\x01\n\x1eSdkVolumeSnapshotCreateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12K\n\x06labels\x18\x03 \x03(\x0b\x32;.openstorage.api.SdkVolumeSnapshotCreateRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"6\n\x1fSdkVolumeSnapshotCreateResponse\x12\x13\n\x0bsnapshot_id\x18\x01 \x01(\t\"I\n\x1fSdkVolumeSnapshotRestoreRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x13\n\x0bsnapshot_id\x18\x02 \x01(\t\"\"\n SdkVolumeSnapshotRestoreResponse\"6\n!SdkVolumeSnapshotEnumerateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"A\n\"SdkVolumeSnapshotEnumerateResponse\x12\x1b\n\x13volume_snapshot_ids\x18\x01 \x03(\t\"\xcb\x01\n,SdkVolumeSnapshotEnumerateWithFiltersRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12Y\n\x06labels\x18\x02 \x03(\x0b\x32I.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"L\n-SdkVolumeSnapshotEnumerateWithFiltersResponse\x12\x1b\n\x13volume_snapshot_ids\x18\x01 \x03(\t\"\\\n&SdkVolumeSnapshotScheduleUpdateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x1f\n\x17snapshot_schedule_names\x18\x02 \x03(\t\")\n\'SdkVolumeSnapshotScheduleUpdateResponse\"#\n!SdkClusterDomainsEnumerateRequest\"B\n\"SdkClusterDomainsEnumerateResponse\x12\x1c\n\x14\x63luster_domain_names\x18\x01 \x03(\t\"=\n\x1eSdkClusterDomainInspectRequest\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\"Q\n\x1fSdkClusterDomainInspectResponse\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\x12\x11\n\tis_active\x18\x02 \x01(\x08\">\n\x1fSdkClusterDomainActivateRequest\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\"\"\n SdkClusterDomainActivateResponse\"@\n!SdkClusterDomainDeactivateRequest\x12\x1b\n\x13\x63luster_domain_name\x18\x01 \x01(\t\"$\n\"SdkClusterDomainDeactivateResponse\"!\n\x1fSdkClusterInspectCurrentRequest\"T\n SdkClusterInspectCurrentResponse\x12\x30\n\x07\x63luster\x18\x01 \x01(\x0b\x32\x1f.openstorage.api.StorageCluster\"(\n\x15SdkNodeInspectRequest\x12\x0f\n\x07node_id\x18\x01 \x01(\t\"D\n\x16SdkNodeInspectResponse\x12*\n\x04node\x18\x01 \x01(\x0b\x32\x1c.openstorage.api.StorageNode\"\x1e\n\x1cSdkNodeInspectCurrentRequest\"K\n\x1dSdkNodeInspectCurrentResponse\x12*\n\x04node\x18\x01 \x01(\x0b\x32\x1c.openstorage.api.StorageNode\"\x19\n\x17SdkNodeEnumerateRequest\",\n\x18SdkNodeEnumerateResponse\x12\x10\n\x08node_ids\x18\x01 \x03(\t\"$\n\"SdkNodeEnumerateWithFiltersRequest\"R\n#SdkNodeEnumerateWithFiltersResponse\x12+\n\x05nodes\x18\x01 \x03(\x0b\x32\x1c.openstorage.api.StorageNode\"6\n\x1cSdkObjectstoreInspectRequest\x12\x16\n\x0eobjectstore_id\x18\x01 \x01(\t\"]\n\x1dSdkObjectstoreInspectResponse\x12<\n\x12objectstore_status\x18\x01 \x01(\x0b\x32 .openstorage.api.ObjectstoreInfo\"0\n\x1bSdkObjectstoreCreateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\"\\\n\x1cSdkObjectstoreCreateResponse\x12<\n\x12objectstore_status\x18\x01 \x01(\x0b\x32 .openstorage.api.ObjectstoreInfo\"5\n\x1bSdkObjectstoreDeleteRequest\x12\x16\n\x0eobjectstore_id\x18\x01 \x01(\t\"\x1e\n\x1cSdkObjectstoreDeleteResponse\"E\n\x1bSdkObjectstoreUpdateRequest\x12\x16\n\x0eobjectstore_id\x18\x01 \x01(\t\x12\x0e\n\x06\x65nable\x18\x02 \x01(\x08\"\x1e\n\x1cSdkObjectstoreUpdateResponse\"\xfe\x01\n\x1bSdkCloudBackupCreateRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\x12\x0c\n\x04\x66ull\x18\x03 \x01(\x08\x12\x0f\n\x07task_id\x18\x04 \x01(\t\x12H\n\x06labels\x18\x05 \x03(\x0b\x32\x38.openstorage.api.SdkCloudBackupCreateRequest.LabelsEntry\x12\x1d\n\x15\x66ull_backup_frequency\x18\x06 \x01(\r\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"/\n\x1cSdkCloudBackupCreateResponse\x12\x0f\n\x07task_id\x18\x01 \x01(\t\"\xeb\x01\n SdkCloudBackupGroupCreateRequest\x12\x10\n\x08group_id\x18\x01 \x01(\t\x12\x12\n\nvolume_ids\x18\x02 \x03(\t\x12\x15\n\rcredential_id\x18\x03 \x01(\t\x12\x0c\n\x04\x66ull\x18\x04 \x01(\x08\x12M\n\x06labels\x18\x05 \x03(\x0b\x32=.openstorage.api.SdkCloudBackupGroupCreateRequest.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"T\n!SdkCloudBackupGroupCreateResponse\x12\x1d\n\x15group_cloud_backup_id\x18\x01 \x01(\t\x12\x10\n\x08task_ids\x18\x02 \x03(\t\"\x87\x01\n\x1cSdkCloudBackupRestoreRequest\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x1b\n\x13restore_volume_name\x18\x02 \x01(\t\x12\x15\n\rcredential_id\x18\x03 \x01(\t\x12\x0f\n\x07node_id\x18\x04 \x01(\t\x12\x0f\n\x07task_id\x18\x05 \x01(\t\"K\n\x1dSdkCloudBackupRestoreResponse\x12\x19\n\x11restore_volume_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\"V\n\x1bSdkCloudBackupDeleteRequest\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\x12\r\n\x05\x66orce\x18\x03 \x01(\x08\"\x1e\n\x1cSdkCloudBackupDeleteResponse\"N\n\x1eSdkCloudBackupDeleteAllRequest\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\"!\n\x1fSdkCloudBackupDeleteAllResponse\"\x8d\x03\n)SdkCloudBackupEnumerateWithFiltersRequest\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12\x12\n\ncluster_id\x18\x02 \x01(\t\x12\x15\n\rcredential_id\x18\x03 \x01(\t\x12\x0b\n\x03\x61ll\x18\x04 \x01(\x08\x12@\n\rstatus_filter\x18\x05 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\x12g\n\x0fmetadata_filter\x18\x06 \x03(\x0b\x32N.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry\x12\x13\n\x0bmax_backups\x18\x07 \x01(\x04\x12\x1a\n\x12\x63ontinuation_token\x18\x08 \x01(\t\x1a\x35\n\x13MetadataFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xb0\x02\n\x12SdkCloudBackupInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x15\n\rsrc_volume_id\x18\x02 \x01(\t\x12\x17\n\x0fsrc_volume_name\x18\x03 \x01(\t\x12-\n\ttimestamp\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x43\n\x08metadata\x18\x05 \x03(\x0b\x32\x31.openstorage.api.SdkCloudBackupInfo.MetadataEntry\x12\x39\n\x06status\x18\x06 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\x1a/\n\rMetadataEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"~\n*SdkCloudBackupEnumerateWithFiltersResponse\x12\x34\n\x07\x62\x61\x63kups\x18\x01 \x03(\x0b\x32#.openstorage.api.SdkCloudBackupInfo\x12\x1a\n\x12\x63ontinuation_token\x18\x02 \x01(\t\"\x9c\x03\n\x14SdkCloudBackupStatus\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x35\n\x06optype\x18\x02 \x01(\x0e\x32%.openstorage.api.SdkCloudBackupOpType\x12\x39\n\x06status\x18\x03 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\x12\x12\n\nbytes_done\x18\x04 \x01(\x04\x12.\n\nstart_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x63ompleted_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07node_id\x18\x07 \x01(\t\x12\x15\n\rsrc_volume_id\x18\x08 \x01(\t\x12\x0c\n\x04info\x18\t \x03(\t\x12\x15\n\rcredential_id\x18\n \x01(\t\x12\x13\n\x0b\x62ytes_total\x18\x0b \x01(\x04\x12\x13\n\x0b\x65ta_seconds\x18\x0c \x01(\x03\x12\x10\n\x08group_id\x18\r \x01(\t\"P\n\x1bSdkCloudBackupStatusRequest\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x12\r\n\x05local\x18\x02 \x01(\x08\x12\x0f\n\x07task_id\x18\x03 \x01(\t\"\xc5\x01\n\x1cSdkCloudBackupStatusResponse\x12M\n\x08statuses\x18\x01 \x03(\x0b\x32;.openstorage.api.SdkCloudBackupStatusResponse.StatusesEntry\x1aV\n\rStatusesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0b\x32%.openstorage.api.SdkCloudBackupStatus:\x02\x38\x01\"H\n\x1cSdkCloudBackupCatalogRequest\x12\x11\n\tbackup_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\"1\n\x1dSdkCloudBackupCatalogResponse\x12\x10\n\x08\x63ontents\x18\x01 \x03(\t\"\x9c\x01\n\x19SdkCloudBackupHistoryItem\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12-\n\ttimestamp\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x39\n\x06status\x18\x03 \x01(\x0e\x32).openstorage.api.SdkCloudBackupStatusType\"5\n\x1cSdkCloudBackupHistoryRequest\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\"a\n\x1dSdkCloudBackupHistoryResponse\x12@\n\x0chistory_list\x18\x01 \x03(\x0b\x32*.openstorage.api.SdkCloudBackupHistoryItem\"{\n SdkCloudBackupStateChangeRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x46\n\x0frequested_state\x18\x02 \x01(\x0e\x32-.openstorage.api.SdkCloudBackupRequestedState\"#\n!SdkCloudBackupStateChangeResponse\"\xc4\x01\n\x1aSdkCloudBackupScheduleInfo\x12\x15\n\rsrc_volume_id\x18\x01 \x01(\t\x12\x15\n\rcredential_id\x18\x02 \x01(\t\x12=\n\tschedules\x18\x03 \x03(\x0b\x32*.openstorage.api.SdkSchedulePolicyInterval\x12\x13\n\x0bmax_backups\x18\x04 \x01(\x04\x12\x0c\n\x04\x66ull\x18\x05 \x01(\x08\x12\x16\n\x0eretention_days\x18\x06 \x01(\r\"i\n SdkCloudBackupSchedCreateRequest\x12\x45\n\x10\x63loud_sched_info\x18\x01 \x01(\x0b\x32+.openstorage.api.SdkCloudBackupScheduleInfo\"?\n!SdkCloudBackupSchedCreateResponse\x12\x1a\n\x12\x62\x61\x63kup_schedule_id\x18\x01 \x01(\t\">\n SdkCloudBackupSchedDeleteRequest\x12\x1a\n\x12\x62\x61\x63kup_schedule_id\x18\x01 \x01(\t\"#\n!SdkCloudBackupSchedDeleteResponse\"%\n#SdkCloudBackupSchedEnumerateRequest\"\xef\x01\n$SdkCloudBackupSchedEnumerateResponse\x12\x63\n\x10\x63loud_sched_list\x18\x01 \x03(\x0b\x32I.openstorage.api.SdkCloudBackupSchedEnumerateResponse.CloudSchedListEntry\x1a\x62\n\x13\x43loudSchedListEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.openstorage.api.SdkCloudBackupScheduleInfo:\x02\x38\x01\")\n\x07SdkRule\x12\x10\n\x08services\x18\x01 \x03(\t\x12\x0c\n\x04\x61pis\x18\x02 \x03(\t\"@\n\x07SdkRole\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\'\n\x05rules\x18\x02 \x03(\x0b\x32\x18.openstorage.api.SdkRule\">\n\x14SdkRoleCreateRequest\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"?\n\x15SdkRoleCreateResponse\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"\x19\n\x17SdkRoleEnumerateRequest\")\n\x18SdkRoleEnumerateResponse\x12\r\n\x05names\x18\x01 \x03(\t\"%\n\x15SdkRoleInspectRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"@\n\x16SdkRoleInspectResponse\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"$\n\x14SdkRoleDeleteRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x17\n\x15SdkRoleDeleteResponse\">\n\x14SdkRoleUpdateRequest\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\"?\n\x15SdkRoleUpdateResponse\x12&\n\x04role\x18\x01 \x01(\x0b\x32\x18.openstorage.api.SdkRole\" \n\x1eSdkIdentityCapabilitiesRequest\"^\n\x1fSdkIdentityCapabilitiesResponse\x12;\n\x0c\x63\x61pabilities\x18\x01 \x03(\x0b\x32%.openstorage.api.SdkServiceCapability\"\x1b\n\x19SdkIdentityVersionRequest\"\x80\x01\n\x1aSdkIdentityVersionResponse\x12\x30\n\x0bsdk_version\x18\x01 \x01(\x0b\x32\x1b.openstorage.api.SdkVersion\x12\x30\n\x07version\x18\x02 \x01(\x0b\x32\x1f.openstorage.api.StorageVersion\"\xaf\x03\n\x14SdkServiceCapability\x12K\n\x07service\x18\x01 \x01(\x0b\x32\x38.openstorage.api.SdkServiceCapability.OpenStorageServiceH\x00\x1a\xc1\x02\n\x12OpenStorageService\x12K\n\x04type\x18\x01 \x01(\x0e\x32=.openstorage.api.SdkServiceCapability.OpenStorageService.Type\"\xdd\x01\n\x04Type\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x0b\n\x07\x43LUSTER\x10\x01\x12\x10\n\x0c\x43LOUD_BACKUP\x10\x02\x12\x0f\n\x0b\x43REDENTIALS\x10\x03\x12\x08\n\x04NODE\x10\x04\x12\x12\n\x0eOBJECT_STORAGE\x10\x05\x12\x13\n\x0fSCHEDULE_POLICY\x10\x06\x12\n\n\x06VOLUME\x10\x07\x12\n\n\x06\x41LERTS\x10\x08\x12\x10\n\x0cMOUNT_ATTACH\x10\t\x12\x08\n\x04ROLE\x10\n\x12\x10\n\x0c\x43LUSTER_PAIR\x10\x0b\x12\x0b\n\x07MIGRATE\x10\x0c\x12\x12\n\x0eSTORAGE_POLICY\x10\rB\x06\n\x04type\"\x94\x01\n\nSdkVersion\x12\r\n\x05major\x18\x01 \x01(\x05\x12\r\n\x05minor\x18\x02 \x01(\x05\x12\r\n\x05patch\x18\x03 \x01(\x05\x12\x0f\n\x07version\x18\x04 \x01(\t\"H\n\x07Version\x12\x18\n\x14MUST_HAVE_ZERO_VALUE\x10\x00\x12\t\n\x05Major\x10\x00\x12\t\n\x05Minor\x10*\x12\t\n\x05Patch\x10\x0f\x1a\x02\x10\x01\"\xa0\x01\n\x0eStorageVersion\x12\x0e\n\x06\x64river\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\t\x12=\n\x07\x64\x65tails\x18\x03 \x03(\x0b\x32,.openstorage.api.StorageVersion.DetailsEntry\x1a.\n\x0c\x44\x65tailsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xb1\x02\n\x0c\x43loudMigrate\"_\n\rOperationType\x12\x0f\n\x0bInvalidType\x10\x00\x12\x12\n\x0eMigrateCluster\x10\x01\x12\x11\n\rMigrateVolume\x10\x02\x12\x16\n\x12MigrateVolumeGroup\x10\x03\"N\n\x05Stage\x12\x10\n\x0cInvalidStage\x10\x00\x12\n\n\x06\x42\x61\x63kup\x10\x01\x12\x0b\n\x07Restore\x10\x02\x12\x10\n\x0cVolumeUpdate\x10\x03\x12\x08\n\x04\x44one\x10\x04\"p\n\x06Status\x12\x11\n\rInvalidStatus\x10\x00\x12\n\n\x06Queued\x10\x01\x12\x0f\n\x0bInitialized\x10\x02\x12\x0e\n\nInProgress\x10\x03\x12\n\n\x06\x46\x61iled\x10\x04\x12\x0c\n\x08\x43omplete\x10\x05\x12\x0c\n\x08\x43\x61nceled\x10\x06\"\x92\x01\n\x18\x43loudMigrateStartRequest\x12>\n\toperation\x18\x01 \x01(\x0e\x32+.openstorage.api.CloudMigrate.OperationType\x12\x12\n\ncluster_id\x18\x02 \x01(\t\x12\x11\n\ttarget_id\x18\x03 \x01(\t\x12\x0f\n\x07task_id\x18\x04 \x01(\t\"\xab\x03\n\x1bSdkCloudMigrateStartRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\x12\x0f\n\x07task_id\x18\x02 \x01(\t\x12M\n\x06volume\x18\xc8\x01 \x01(\x0b\x32:.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeH\x00\x12X\n\x0cvolume_group\x18\xc9\x01 \x01(\x0b\x32?.openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroupH\x00\x12V\n\x0b\x61ll_volumes\x18\xca\x01 \x01(\x0b\x32>.openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumesH\x00\x1a\"\n\rMigrateVolume\x12\x11\n\tvolume_id\x18\x01 \x01(\t\x1a&\n\x12MigrateVolumeGroup\x12\x10\n\x08group_id\x18\x01 \x01(\t\x1a\x13\n\x11MigrateAllVolumesB\x05\n\x03opt\",\n\x19\x43loudMigrateStartResponse\x12\x0f\n\x07task_id\x18\x01 \x01(\t\"Z\n\x1cSdkCloudMigrateStartResponse\x12:\n\x06result\x18\x01 \x01(\x0b\x32*.openstorage.api.CloudMigrateStartResponse\",\n\x19\x43loudMigrateCancelRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\"[\n\x1cSdkCloudMigrateCancelRequest\x12;\n\x07request\x18\x01 \x01(\x0b\x32*.openstorage.api.CloudMigrateCancelRequest\"\x1f\n\x1dSdkCloudMigrateCancelResponse\"\xf8\x03\n\x10\x43loudMigrateInfo\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x12\n\ncluster_id\x18\x02 \x01(\t\x12\x17\n\x0flocal_volume_id\x18\x03 \x01(\t\x12\x19\n\x11local_volume_name\x18\x04 \x01(\t\x12\x18\n\x10remote_volume_id\x18\x05 \x01(\t\x12\x16\n\x0e\x63loudbackup_id\x18\x06 \x01(\t\x12:\n\rcurrent_stage\x18\x07 \x01(\x0e\x32#.openstorage.api.CloudMigrate.Stage\x12\x34\n\x06status\x18\x08 \x01(\x0e\x32$.openstorage.api.CloudMigrate.Status\x12/\n\x0blast_update\x18\t \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x14\n\x0c\x65rror_reason\x18\n \x01(\t\x12.\n\nstart_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x63ompleted_time\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x13\n\x0b\x62ytes_total\x18\r \x01(\x04\x12\x12\n\nbytes_done\x18\x0e \x01(\x04\x12\x13\n\x0b\x65ta_seconds\x18\x0f \x01(\x03\"G\n\x14\x43loudMigrateInfoList\x12/\n\x04list\x18\x01 \x03(\x0b\x32!.openstorage.api.CloudMigrateInfo\"[\n\x1cSdkCloudMigrateStatusRequest\x12;\n\x07request\x18\x01 \x01(\x0b\x32*.openstorage.api.CloudMigrateStatusRequest\"@\n\x19\x43loudMigrateStatusRequest\x12\x0f\n\x07task_id\x18\x01 \x01(\t\x12\x12\n\ncluster_id\x18\x02 \x01(\t\"\xb5\x01\n\x1a\x43loudMigrateStatusResponse\x12\x43\n\x04info\x18\x01 \x03(\x0b\x32\x35.openstorage.api.CloudMigrateStatusResponse.InfoEntry\x1aR\n\tInfoEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x34\n\x05value\x18\x02 \x01(\x0b\x32%.openstorage.api.CloudMigrateInfoList:\x02\x38\x01\"\\\n\x1dSdkCloudMigrateStatusResponse\x12;\n\x06result\x18\x01 \x01(\x0b\x32+.openstorage.api.CloudMigrateStatusResponse\"<\n\x0f\x43lusterPairMode\")\n\x04Mode\x12\x0b\n\x07\x44\x65\x66\x61ult\x10\x00\x12\x14\n\x10\x44isasterRecovery\x10\x01\"\xba\x01\n\x18\x43lusterPairCreateRequest\x12\x19\n\x11remote_cluster_ip\x18\x01 \x01(\t\x12\x1b\n\x13remote_cluster_port\x18\x02 \x01(\r\x12\x1c\n\x14remote_cluster_token\x18\x03 \x01(\t\x12\x13\n\x0bset_default\x18\x04 \x01(\x08\x12\x33\n\x04mode\x18\x05 \x01(\x0e\x32%.openstorage.api.ClusterPairMode.Mode\"S\n\x19\x43lusterPairCreateResponse\x12\x19\n\x11remote_cluster_id\x18\x01 \x01(\t\x12\x1b\n\x13remote_cluster_name\x18\x02 \x01(\t\"Y\n\x1bSdkClusterPairCreateRequest\x12:\n\x07request\x18\x01 \x01(\x0b\x32).openstorage.api.ClusterPairCreateRequest\"Z\n\x1cSdkClusterPairCreateResponse\x12:\n\x06result\x18\x01 \x01(\x0b\x32*.openstorage.api.ClusterPairCreateResponse\"\x89\x01\n\x19\x43lusterPairProcessRequest\x12\x19\n\x11source_cluster_id\x18\x01 \x01(\t\x12\x1c\n\x14remote_cluster_token\x18\x02 \x01(\t\x12\x33\n\x04mode\x18\x03 \x01(\x0e\x32%.openstorage.api.ClusterPairMode.Mode\"\xf1\x01\n\x1a\x43lusterPairProcessResponse\x12\x19\n\x11remote_cluster_id\x18\x01 \x01(\t\x12\x1b\n\x13remote_cluster_name\x18\x02 \x01(\t\x12 \n\x18remote_cluster_endpoints\x18\x03 \x03(\t\x12I\n\x07options\x18\x04 \x03(\x0b\x32\x38.openstorage.api.ClusterPairProcessResponse.OptionsEntry\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"1\n\x1bSdkClusterPairDeleteRequest\x12\x12\n\ncluster_id\x18\x01 \x01(\t\"\x1e\n\x1cSdkClusterPairDeleteResponse\",\n\x1b\x43lusterPairTokenGetResponse\x12\r\n\x05token\x18\x01 \x01(\t\"\x1f\n\x1dSdkClusterPairGetTokenRequest\"^\n\x1eSdkClusterPairGetTokenResponse\x12<\n\x06result\x18\x01 \x01(\x0b\x32,.openstorage.api.ClusterPairTokenGetResponse\"!\n\x1fSdkClusterPairResetTokenRequest\"`\n SdkClusterPairResetTokenResponse\x12<\n\x06result\x18\x01 \x01(\x0b\x32,.openstorage.api.ClusterPairTokenGetResponse\"\x9c\x02\n\x0f\x43lusterPairInfo\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08\x65ndpoint\x18\x03 \x01(\t\x12\x19\n\x11\x63urrent_endpoints\x18\x04 \x03(\t\x12\x0e\n\x06secure\x18\x05 \x01(\x08\x12\r\n\x05token\x18\x06 \x01(\t\x12>\n\x07options\x18\x07 \x03(\x0b\x32-.openstorage.api.ClusterPairInfo.OptionsEntry\x12\x33\n\x04mode\x18\x08 \x01(\x0e\x32%.openstorage.api.ClusterPairMode.Mode\x1a.\n\x0cOptionsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"*\n\x1cSdkClusterPairInspectRequest\x12\n\n\x02id\x18\x01 \x01(\t\"M\n\x16\x43lusterPairGetResponse\x12\x33\n\tpair_info\x18\x01 \x01(\x0b\x32 .openstorage.api.ClusterPairInfo\"X\n\x1dSdkClusterPairInspectResponse\x12\x37\n\x06result\x18\x01 \x01(\x0b\x32\'.openstorage.api.ClusterPairGetResponse\" \n\x1eSdkClusterPairEnumerateRequest\"\xcd\x01\n\x1d\x43lusterPairsEnumerateResponse\x12\x12\n\ndefault_id\x18\x01 \x01(\t\x12H\n\x05pairs\x18\x02 \x03(\x0b\x32\x39.openstorage.api.ClusterPairsEnumerateResponse.PairsEntry\x1aN\n\nPairsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12/\n\x05value\x18\x02 \x01(\x0b\x32 .openstorage.api.ClusterPairInfo:\x02\x38\x01\"a\n\x1fSdkClusterPairEnumerateResponse\x12>\n\x06result\x18\x01 \x01(\x0b\x32..openstorage.api.ClusterPairsEnumerateResponse\"\x9f\x01\n\x07\x43\x61talog\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04path\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t\x12\x0c\n\x04size\x18\x04 \x01(\x04\x12\x30\n\x0cLastModified\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12*\n\x08\x63hildren\x18\x06 \x03(\x0b\x32\x18.openstorage.api.Catalog\",\n\x06Report\x12\x13\n\x0b\x64irectories\x18\x02 \x01(\x03\x12\r\n\x05\x66iles\x18\x03 \x01(\x03\"b\n\x0f\x43\x61talogResponse\x12&\n\x04root\x18\x01 \x01(\x0b\x32\x18.openstorage.api.Catalog\x12\'\n\x06report\x18\x02 \x01(\x0b\x32\x17.openstorage.api.Report\"\xf1\x01\n\x0eLocateResponse\x12;\n\x06mounts\x18\x01 \x03(\x0b\x32+.openstorage.api.LocateResponse.MountsEntry\x12\x41\n\tdockerids\x18\x02 \x03(\x0b\x32..openstorage.api.LocateResponse.DockeridsEntry\x1a-\n\x0bMountsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x30\n\x0e\x44ockeridsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xa3\x02\n\x17VolumePlacementStrategy\x12?\n\x10replica_affinity\x18\x01 \x03(\x0b\x32%.openstorage.api.ReplicaPlacementSpec\x12\x44\n\x15replica_anti_affinity\x18\x02 \x03(\x0b\x32%.openstorage.api.ReplicaPlacementSpec\x12=\n\x0fvolume_affinity\x18\x03 \x03(\x0b\x32$.openstorage.api.VolumePlacementSpec\x12\x42\n\x14volume_anti_affinity\x18\x04 \x03(\x0b\x32$.openstorage.api.VolumePlacementSpec\"\xd4\x01\n\x14ReplicaPlacementSpec\x12\x0e\n\x06weight\x18\x01 \x01(\x03\x12\x35\n\x0b\x65nforcement\x18\x02 \x01(\x0e\x32 .openstorage.api.EnforcementType\x12\x19\n\x11\x61\x66\x66\x65\x63ted_replicas\x18\x03 \x01(\x05\x12\x14\n\x0ctopology_key\x18\x04 \x01(\t\x12\x44\n\x11match_expressions\x18\x05 \x03(\x0b\x32).openstorage.api.LabelSelectorRequirement\"\xb8\x01\n\x13VolumePlacementSpec\x12\x0e\n\x06weight\x18\x01 \x01(\x03\x12\x35\n\x0b\x65nforcement\x18\x02 \x01(\x0e\x32 .openstorage.api.EnforcementType\x12\x14\n\x0ctopology_key\x18\x03 \x01(\t\x12\x44\n\x11match_expressions\x18\x04 \x03(\x0b\x32).openstorage.api.LabelSelectorRequirement\"\xca\x01\n\x18LabelSelectorRequirement\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x44\n\x08operator\x18\x02 \x01(\x0e\x32\x32.openstorage.api.LabelSelectorRequirement.Operator\x12\x0e\n\x06values\x18\x03 \x03(\t\"K\n\x08Operator\x12\x06\n\x02In\x10\x00\x12\t\n\x05NotIn\x10\x01\x12\n\n\x06\x45xists\x10\x02\x12\x10\n\x0c\x44oesNotExist\x10\x03\x12\x06\n\x02Gt\x10\x04\x12\x06\n\x02Lt\x10\x05*\xee\x02\n\x06Status\x12\x0f\n\x0bSTATUS_NONE\x10\x00\x12\x0f\n\x0bSTATUS_INIT\x10\x01\x12\r\n\tSTATUS_OK\x10\x02\x12\x12\n\x0eSTATUS_OFFLINE\x10\x03\x12\x10\n\x0cSTATUS_ERROR\x10\x04\x12\x18\n\x14STATUS_NOT_IN_QUORUM\x10\x05\x12\x17\n\x13STATUS_DECOMMISSION\x10\x06\x12\x16\n\x12STATUS_MAINTENANCE\x10\x07\x12\x17\n\x13STATUS_STORAGE_DOWN\x10\x08\x12\x1b\n\x17STATUS_STORAGE_DEGRADED\x10\t\x12\x17\n\x13STATUS_NEEDS_REBOOT\x10\n\x12\x1c\n\x18STATUS_STORAGE_REBALANCE\x10\x0b\x12 \n\x1cSTATUS_STORAGE_DRIVE_REPLACE\x10\x0c\x12#\n\x1fSTATUS_NOT_IN_QUORUM_NO_STORAGE\x10\r\x12\x0e\n\nSTATUS_MAX\x10\x0e*\x99\x01\n\nDriverType\x12\x14\n\x10\x44RIVER_TYPE_NONE\x10\x00\x12\x14\n\x10\x44RIVER_TYPE_FILE\x10\x01\x12\x15\n\x11\x44RIVER_TYPE_BLOCK\x10\x02\x12\x16\n\x12\x44RIVER_TYPE_OBJECT\x10\x03\x12\x19\n\x15\x44RIVER_TYPE_CLUSTERED\x10\x04\x12\x15\n\x11\x44RIVER_TYPE_GRAPH\x10\x05*\xa8\x01\n\x06\x46SType\x12\x10\n\x0c\x46S_TYPE_NONE\x10\x00\x12\x11\n\rFS_TYPE_BTRFS\x10\x01\x12\x10\n\x0c\x46S_TYPE_EXT4\x10\x02\x12\x10\n\x0c\x46S_TYPE_FUSE\x10\x03\x12\x0f\n\x0b\x46S_TYPE_NFS\x10\x04\x12\x0f\n\x0b\x46S_TYPE_VFS\x10\x05\x12\x0f\n\x0b\x46S_TYPE_XFS\x10\x06\x12\x0f\n\x0b\x46S_TYPE_ZFS\x10\x07\x12\x11\n\rFS_TYPE_XFSv2\x10\x08*\xab\x01\n\x15GraphDriverChangeType\x12!\n\x1dGRAPH_DRIVER_CHANGE_TYPE_NONE\x10\x00\x12%\n!GRAPH_DRIVER_CHANGE_TYPE_MODIFIED\x10\x01\x12\"\n\x1eGRAPH_DRIVER_CHANGE_TYPE_ADDED\x10\x02\x12$\n GRAPH_DRIVER_CHANGE_TYPE_DELETED\x10\x03*t\n\x0cSeverityType\x12\x16\n\x12SEVERITY_TYPE_NONE\x10\x00\x12\x17\n\x13SEVERITY_TYPE_ALARM\x10\x01\x12\x19\n\x15SEVERITY_TYPE_WARNING\x10\x02\x12\x18\n\x14SEVERITY_TYPE_NOTIFY\x10\x03*\x8c\x01\n\x0cResourceType\x12\x16\n\x12RESOURCE_TYPE_NONE\x10\x00\x12\x18\n\x14RESOURCE_TYPE_VOLUME\x10\x01\x12\x16\n\x12RESOURCE_TYPE_NODE\x10\x02\x12\x19\n\x15RESOURCE_TYPE_CLUSTER\x10\x03\x12\x17\n\x13RESOURCE_TYPE_DRIVE\x10\x04*\x87\x01\n\x0f\x41lertActionType\x12\x1a\n\x16\x41LERT_ACTION_TYPE_NONE\x10\x00\x12\x1c\n\x18\x41LERT_ACTION_TYPE_DELETE\x10\x01\x12\x1c\n\x18\x41LERT_ACTION_TYPE_CREATE\x10\x02\x12\x1c\n\x18\x41LERT_ACTION_TYPE_UPDATE\x10\x03*j\n\x11VolumeActionParam\x12\x1c\n\x18VOLUME_ACTION_PARAM_NONE\x10\x00\x12\x1b\n\x17VOLUME_ACTION_PARAM_OFF\x10\x01\x12\x1a\n\x16VOLUME_ACTION_PARAM_ON\x10\x02*2\n\x07\x43osType\x12\x08\n\x04NONE\x10\x00\x12\x07\n\x03LOW\x10\x01\x12\n\n\x06MEDIUM\x10\x02\x12\x08\n\x04HIGH\x10\x03*\x9a\x01\n\tIoProfile\x12\x19\n\x15IO_PROFILE_SEQUENTIAL\x10\x00\x12\x15\n\x11IO_PROFILE_RANDOM\x10\x01\x12\x11\n\rIO_PROFILE_DB\x10\x02\x12\x18\n\x14IO_PROFILE_DB_REMOTE\x10\x03\x12\x12\n\x0eIO_PROFILE_CMS\x10\x04\x12\x1a\n\x16IO_PROFILE_SYNC_SHARED\x10\x05*\x99\x02\n\x0bVolumeState\x12\x15\n\x11VOLUME_STATE_NONE\x10\x00\x12\x18\n\x14VOLUME_STATE_PENDING\x10\x01\x12\x1a\n\x16VOLUME_STATE_AVAILABLE\x10\x02\x12\x19\n\x15VOLUME_STATE_ATTACHED\x10\x03\x12\x19\n\x15VOLUME_STATE_DETACHED\x10\x04\x12\x1b\n\x17VOLUME_STATE_DETATCHING\x10\x05\x12\x16\n\x12VOLUME_STATE_ERROR\x10\x06\x12\x18\n\x14VOLUME_STATE_DELETED\x10\x07\x12\x1e\n\x1aVOLUME_STATE_TRY_DETACHING\x10\x08\x12\x18\n\x14VOLUME_STATE_RESTORE\x10\t*\x8f\x01\n\x0cVolumeStatus\x12\x16\n\x12VOLUME_STATUS_NONE\x10\x00\x12\x1d\n\x19VOLUME_STATUS_NOT_PRESENT\x10\x01\x12\x14\n\x10VOLUME_STATUS_UP\x10\x02\x12\x16\n\x12VOLUME_STATUS_DOWN\x10\x03\x12\x1a\n\x16VOLUME_STATUS_DEGRADED\x10\x04*]\n\rStorageMedium\x12\x1b\n\x17STORAGE_MEDIUM_MAGNETIC\x10\x00\x12\x16\n\x12STORAGE_MEDIUM_SSD\x10\x01\x12\x17\n\x13STORAGE_MEDIUM_NVME\x10\x02*e\n\x0b\x41ttachState\x12\x19\n\x15\x41TTACH_STATE_EXTERNAL\x10\x00\x12\x19\n\x15\x41TTACH_STATE_INTERNAL\x10\x01\x12 \n\x1c\x41TTACH_STATE_INTERNAL_SWITCH\x10\x02*T\n\x0eOperationFlags\x12\x14\n\x10OP_FLAGS_UNKNOWN\x10\x00\x12\x11\n\rOP_FLAGS_NONE\x10\x01\x12\x19\n\x15OP_FLAGS_DETACH_FORCE\x10\x02*\xce\x01\n\x0eSdkTimeWeekday\x12\x18\n\x14SdkTimeWeekdaySunday\x10\x00\x12\x18\n\x14SdkTimeWeekdayMonday\x10\x01\x12\x19\n\x15SdkTimeWeekdayTuesday\x10\x02\x12\x1b\n\x17SdkTimeWeekdayWednesday\x10\x03\x12\x1a\n\x16SdkTimeWeekdayThursday\x10\x04\x12\x18\n\x14SdkTimeWeekdayFriday\x10\x05\x12\x1a\n\x16SdkTimeWeekdaySaturday\x10\x06*|\n\x14SdkCloudBackupOpType\x12\x1f\n\x1bSdkCloudBackupOpTypeUnknown\x10\x00\x12 \n\x1cSdkCloudBackupOpTypeBackupOp\x10\x01\x12!\n\x1dSdkCloudBackupOpTypeRestoreOp\x10\x02*\x88\x03\n\x18SdkCloudBackupStatusType\x12#\n\x1fSdkCloudBackupStatusTypeUnknown\x10\x00\x12&\n\"SdkCloudBackupStatusTypeNotStarted\x10\x01\x12 \n\x1cSdkCloudBackupStatusTypeDone\x10\x02\x12#\n\x1fSdkCloudBackupStatusTypeAborted\x10\x03\x12\"\n\x1eSdkCloudBackupStatusTypePaused\x10\x04\x12#\n\x1fSdkCloudBackupStatusTypeStopped\x10\x05\x12\"\n\x1eSdkCloudBackupStatusTypeActive\x10\x06\x12\"\n\x1eSdkCloudBackupStatusTypeFailed\x10\x07\x12\"\n\x1eSdkCloudBackupStatusTypeQueued\x10\x08\x12#\n\x1fSdkCloudBackupStatusTypeInvalid\x10\t*\xbc\x01\n\x1cSdkCloudBackupRequestedState\x12\'\n#SdkCloudBackupRequestedStateUnknown\x10\x00\x12%\n!SdkCloudBackupRequestedStatePause\x10\x01\x12&\n\"SdkCloudBackupRequestedStateResume\x10\x02\x12$\n SdkCloudBackupRequestedStateStop\x10\x03*.\n\x0f\x45nforcementType\x12\x0c\n\x08required\x10\x00\x12\r\n\tpreferred\x10\x01\x32\xb0\x02\n\x11OpenStorageAlerts\x12\xa6\x01\n\x14\x45numerateWithFilters\x12\x35.openstorage.api.SdkAlertsEnumerateWithFiltersRequest\x1a\x36.openstorage.api.SdkAlertsEnumerateWithFiltersResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\"\x12/v1/alerts/filters:\x01*0\x01\x12r\n\x06\x44\x65lete\x12\'.openstorage.api.SdkAlertsDeleteRequest\x1a(.openstorage.api.SdkAlertsDeleteResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\"\n/v1/alerts:\x01*2\xd5\x04\n\x0fOpenStorageRole\x12m\n\x06\x43reate\x12%.openstorage.api.SdkRoleCreateRequest\x1a&.openstorage.api.SdkRoleCreateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\"\t/v1/roles:\x01*\x12s\n\tEnumerate\x12(.openstorage.api.SdkRoleEnumerateRequest\x1a).openstorage.api.SdkRoleEnumerateResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/roles\x12|\n\x07Inspect\x12&.openstorage.api.SdkRoleInspectRequest\x1a\'.openstorage.api.SdkRoleInspectResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/roles/inspect/{name}\x12q\n\x06\x44\x65lete\x12%.openstorage.api.SdkRoleDeleteRequest\x1a&.openstorage.api.SdkRoleDeleteResponse\"\x18\x82\xd3\xe4\x93\x02\x12*\x10/v1/roles/{name}\x12m\n\x06Update\x12%.openstorage.api.SdkRoleUpdateRequest\x1a&.openstorage.api.SdkRoleUpdateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x1a\t/v1/roles:\x01*2\xb3\x02\n\x13OpenStorageIdentity\x12\x96\x01\n\x0c\x43\x61pabilities\x12/.openstorage.api.SdkIdentityCapabilitiesRequest\x1a\x30.openstorage.api.SdkIdentityCapabilitiesResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/identities/capabilities\x12\x82\x01\n\x07Version\x12*.openstorage.api.SdkIdentityVersionRequest\x1a+.openstorage.api.SdkIdentityVersionResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/identities/version2\xb1\x01\n\x12OpenStorageCluster\x12\x9a\x01\n\x0eInspectCurrent\x12\x30.openstorage.api.SdkClusterInspectCurrentRequest\x1a\x31.openstorage.api.SdkClusterInspectCurrentResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/clusters/inspectcurrent2\xee\x06\n\x16OpenStorageClusterPair\x12\x82\x01\n\x06\x43reate\x12,.openstorage.api.SdkClusterPairCreateRequest\x1a-.openstorage.api.SdkClusterPairCreateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/clusterpairs:\x01*\x12\x8f\x01\n\x07Inspect\x12-.openstorage.api.SdkClusterPairInspectRequest\x1a..openstorage.api.SdkClusterPairInspectResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/clusterpairs/inspect/{id}\x12\x88\x01\n\tEnumerate\x12/.openstorage.api.SdkClusterPairEnumerateRequest\x1a\x30.openstorage.api.SdkClusterPairEnumerateResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/clusterpairs\x12\x8b\x01\n\x08GetToken\x12..openstorage.api.SdkClusterPairGetTokenRequest\x1a/.openstorage.api.SdkClusterPairGetTokenResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/clusterpairs/token\x12\x94\x01\n\nResetToken\x12\x30.openstorage.api.SdkClusterPairResetTokenRequest\x1a\x31.openstorage.api.SdkClusterPairResetTokenResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/clusterpairs/token:\x01*\x12\x8c\x01\n\x06\x44\x65lete\x12,.openstorage.api.SdkClusterPairDeleteRequest\x1a-.openstorage.api.SdkClusterPairDeleteResponse\"%\x82\xd3\xe4\x93\x02\x1f*\x1d/v1/clusterpairs/{cluster_id}2\xb9\x05\n\x19OpenStorageClusterDomains\x12\x90\x01\n\tEnumerate\x12\x32.openstorage.api.SdkClusterDomainsEnumerateRequest\x1a\x33.openstorage.api.SdkClusterDomainsEnumerateResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v1/clusterdomains\x12\xa6\x01\n\x07Inspect\x12/.openstorage.api.SdkClusterDomainInspectRequest\x1a\x30.openstorage.api.SdkClusterDomainInspectResponse\"8\x82\xd3\xe4\x93\x02\x32\x12\x30/v1/clusterdomains/inspect/{cluster_domain_name}\x12\xaa\x01\n\x08\x41\x63tivate\x12\x30.openstorage.api.SdkClusterDomainActivateRequest\x1a\x31.openstorage.api.SdkClusterDomainActivateResponse\"9\x82\xd3\xe4\x93\x02\x33\"1/v1/clusterdomains/activate/{cluster_domain_name}\x12\xb2\x01\n\nDeactivate\x12\x32.openstorage.api.SdkClusterDomainDeactivateRequest\x1a\x33.openstorage.api.SdkClusterDomainDeactivateResponse\";\x82\xd3\xe4\x93\x02\x35\"3/v1/clusterdomains/deactivate/{cluster_domain_name}2\xba\x04\n\x0fOpenStorageNode\x12\x7f\n\x07Inspect\x12&.openstorage.api.SdkNodeInspectRequest\x1a\'.openstorage.api.SdkNodeInspectResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/nodes/inspect/{node_id}\x12\x91\x01\n\x0eInspectCurrent\x12-.openstorage.api.SdkNodeInspectCurrentRequest\x1a..openstorage.api.SdkNodeInspectCurrentResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/nodes/inspectcurrent\x12s\n\tEnumerate\x12(.openstorage.api.SdkNodeEnumerateRequest\x1a).openstorage.api.SdkNodeEnumerateResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/nodes\x12\x9c\x01\n\x14\x45numerateWithFilters\x12\x33.openstorage.api.SdkNodeEnumerateWithFiltersRequest\x1a\x34.openstorage.api.SdkNodeEnumerateWithFiltersResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/nodes/filters2\xe8\x11\n\x11OpenStorageVolume\x12s\n\x06\x43reate\x12\'.openstorage.api.SdkVolumeCreateRequest\x1a(.openstorage.api.SdkVolumeCreateResponse\"\x16\x82\xd3\xe4\x93\x02\x10\"\x0b/v1/volumes:\x01*\x12v\n\x05\x43lone\x12&.openstorage.api.SdkVolumeCloneRequest\x1a\'.openstorage.api.SdkVolumeCloneResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/v1/volumes/clone:\x01*\x12|\n\x06\x44\x65lete\x12\'.openstorage.api.SdkVolumeDeleteRequest\x1a(.openstorage.api.SdkVolumeDeleteResponse\"\x1f\x82\xd3\xe4\x93\x02\x19*\x17/v1/volumes/{volume_id}\x12\x87\x01\n\x07Inspect\x12(.openstorage.api.SdkVolumeInspectRequest\x1a).openstorage.api.SdkVolumeInspectResponse\"\'\x82\xd3\xe4\x93\x02!\x12\x1f/v1/volumes/inspect/{volume_id}\x12\xaa\x01\n\x12InspectWithFilters\x12\x33.openstorage.api.SdkVolumeInspectWithFiltersRequest\x1a\x34.openstorage.api.SdkVolumeInspectWithFiltersResponse\")\x82\xd3\xe4\x93\x02#\"\x1e/v1/volumes/inspectwithfilters:\x01*\x12\x7f\n\x06Update\x12\'.openstorage.api.SdkVolumeUpdateRequest\x1a(.openstorage.api.SdkVolumeUpdateResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x1a\x17/v1/volumes/{volume_id}:\x01*\x12\x7f\n\x05Stats\x12&.openstorage.api.SdkVolumeStatsRequest\x1a\'.openstorage.api.SdkVolumeStatsResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/volumes/stats/{volume_id}\x12\x97\x01\n\rCapacityUsage\x12..openstorage.api.SdkVolumeCapacityUsageRequest\x1a/.openstorage.api.SdkVolumeCapacityUsageResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/volumes/usage/{volume_id}\x12y\n\tEnumerate\x12*.openstorage.api.SdkVolumeEnumerateRequest\x1a+.openstorage.api.SdkVolumeEnumerateResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\x0b/v1/volumes\x12\xa5\x01\n\x14\x45numerateWithFilters\x12\x35.openstorage.api.SdkVolumeEnumerateWithFiltersRequest\x1a\x36.openstorage.api.SdkVolumeEnumerateWithFiltersResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/v1/volumes/filters:\x01*\x12\x95\x01\n\x0eSnapshotCreate\x12/.openstorage.api.SdkVolumeSnapshotCreateRequest\x1a\x30.openstorage.api.SdkVolumeSnapshotCreateResponse\" \x82\xd3\xe4\x93\x02\x1a\"\x15/v1/volumes/snapshots:\x01*\x12\xa0\x01\n\x0fSnapshotRestore\x12\x30.openstorage.api.SdkVolumeSnapshotRestoreRequest\x1a\x31.openstorage.api.SdkVolumeSnapshotRestoreResponse\"(\x82\xd3\xe4\x93\x02\"\"\x1d/v1/volumes/snapshots/restore:\x01*\x12\x9b\x01\n\x11SnapshotEnumerate\x12\x32.openstorage.api.SdkVolumeSnapshotEnumerateRequest\x1a\x33.openstorage.api.SdkVolumeSnapshotEnumerateResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/volumes/snapshots\x12\xd3\x01\n\x1cSnapshotEnumerateWithFilters\x12=.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest\x1a>.openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse\"4\x82\xd3\xe4\x93\x02.\")/v1/volumes/snapshots/{volume_id}/filters:\x01*\x12\xc2\x01\n\x16SnapshotScheduleUpdate\x12\x37.openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest\x1a\x38.openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse\"5\x82\xd3\xe4\x93\x02/\"*/v1/volumes/snapshot/schedules/{volume_id}:\x01*2\x99\x04\n\x16OpenStorageMountAttach\x12~\n\x06\x41ttach\x12\'.openstorage.api.SdkVolumeAttachRequest\x1a(.openstorage.api.SdkVolumeAttachResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/mountattach/attach:\x01*\x12~\n\x06\x44\x65tach\x12\'.openstorage.api.SdkVolumeDetachRequest\x1a(.openstorage.api.SdkVolumeDetachResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/mountattach/detach:\x01*\x12z\n\x05Mount\x12&.openstorage.api.SdkVolumeMountRequest\x1a\'.openstorage.api.SdkVolumeMountResponse\" \x82\xd3\xe4\x93\x02\x1a\"\x15/v1/mountattach/mount:\x01*\x12\x82\x01\n\x07Unmount\x12(.openstorage.api.SdkVolumeUnmountRequest\x1a).openstorage.api.SdkVolumeUnmountResponse\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/v1/mountattach/unmount:\x01*2\xad\x03\n\x12OpenStorageMigrate\x12\x82\x01\n\x05Start\x12,.openstorage.api.SdkCloudMigrateStartRequest\x1a-.openstorage.api.SdkCloudMigrateStartResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x11/v1/volumemigrate:\x01*\x12\x8c\x01\n\x06\x43\x61ncel\x12-.openstorage.api.SdkCloudMigrateCancelRequest\x1a..openstorage.api.SdkCloudMigrateCancelResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/v1/volumemigrate/cancel:\x01*\x12\x82\x01\n\x06Status\x12-.openstorage.api.SdkCloudMigrateStatusRequest\x1a..openstorage.api.SdkCloudMigrateStatusResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/volumemigrate2\xe4\x04\n\x16OpenStorageObjectstore\x12\x9b\x01\n\x07Inspect\x12-.openstorage.api.SdkObjectstoreInspectRequest\x1a..openstorage.api.SdkObjectstoreInspectResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v1/objectstores/inspect/{objectstore_id}\x12\x82\x01\n\x06\x43reate\x12,.openstorage.api.SdkObjectstoreCreateRequest\x1a-.openstorage.api.SdkObjectstoreCreateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/objectstores:\x01*\x12\x90\x01\n\x06\x44\x65lete\x12,.openstorage.api.SdkObjectstoreDeleteRequest\x1a-.openstorage.api.SdkObjectstoreDeleteResponse\")\x82\xd3\xe4\x93\x02#*!/v1/objectstores/{objectstore_id}\x12\x93\x01\n\x06Update\x12,.openstorage.api.SdkObjectstoreUpdateRequest\x1a-.openstorage.api.SdkObjectstoreUpdateResponse\",\x82\xd3\xe4\x93\x02&\x1a!/v1/objectstores/{objectstore_id}:\x01*2\xe8\x05\n\x16OpenStorageCredentials\x12\x7f\n\x06\x43reate\x12+.openstorage.api.SdkCredentialCreateRequest\x1a,.openstorage.api.SdkCredentialCreateResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/v1/credentials:\x01*\x12\x85\x01\n\tEnumerate\x12..openstorage.api.SdkCredentialEnumerateRequest\x1a/.openstorage.api.SdkCredentialEnumerateResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/credentials\x12\x97\x01\n\x07Inspect\x12,.openstorage.api.SdkCredentialInspectRequest\x1a-.openstorage.api.SdkCredentialInspectResponse\"/\x82\xd3\xe4\x93\x02)\x12\'/v1/credentials/inspect/{credential_id}\x12\x8c\x01\n\x06\x44\x65lete\x12+.openstorage.api.SdkCredentialDeleteRequest\x1a,.openstorage.api.SdkCredentialDeleteResponse\"\'\x82\xd3\xe4\x93\x02!*\x1f/v1/credentials/{credential_id}\x12\x9b\x01\n\x08Validate\x12-.openstorage.api.SdkCredentialValidateRequest\x1a..openstorage.api.SdkCredentialValidateResponse\"0\x82\xd3\xe4\x93\x02*\x12(/v1/credentials/validate/{credential_id}2\xff\x05\n\x19OpenStorageSchedulePolicy\x12\x8c\x01\n\x06\x43reate\x12/.openstorage.api.SdkSchedulePolicyCreateRequest\x1a\x30.openstorage.api.SdkSchedulePolicyCreateResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\"\x14/v1/schedulepolicies:\x01*\x12\x8c\x01\n\x06Update\x12/.openstorage.api.SdkSchedulePolicyUpdateRequest\x1a\x30.openstorage.api.SdkSchedulePolicyUpdateResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\x1a\x14/v1/schedulepolicies:\x01*\x12\x92\x01\n\tEnumerate\x12\x32.openstorage.api.SdkSchedulePolicyEnumerateRequest\x1a\x33.openstorage.api.SdkSchedulePolicyEnumerateResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/schedulepolicies\x12\x9b\x01\n\x07Inspect\x12\x30.openstorage.api.SdkSchedulePolicyInspectRequest\x1a\x31.openstorage.api.SdkSchedulePolicyInspectResponse\"+\x82\xd3\xe4\x93\x02%\x12#/v1/schedulepolicies/inspect/{name}\x12\x90\x01\n\x06\x44\x65lete\x12/.openstorage.api.SdkSchedulePolicyDeleteRequest\x1a\x30.openstorage.api.SdkSchedulePolicyDeleteResponse\"#\x82\xd3\xe4\x93\x02\x1d*\x1b/v1/schedulepolicies/{name}2\x80\x10\n\x16OpenStorageCloudBackup\x12\x82\x01\n\x06\x43reate\x12,.openstorage.api.SdkCloudBackupCreateRequest\x1a-.openstorage.api.SdkCloudBackupCreateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/cloudbackups:\x01*\x12\x97\x01\n\x0bGroupCreate\x12\x31.openstorage.api.SdkCloudBackupGroupCreateRequest\x1a\x32.openstorage.api.SdkCloudBackupGroupCreateResponse\"!\x82\xd3\xe4\x93\x02\x1b\"\x16/v1/cloudbackups/group:\x01*\x12\x8d\x01\n\x07Restore\x12-.openstorage.api.SdkCloudBackupRestoreRequest\x1a..openstorage.api.SdkCloudBackupRestoreResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/v1/cloudbackups/restore:\x01*\x12\x92\x01\n\x06\x44\x65lete\x12,.openstorage.api.SdkCloudBackupDeleteRequest\x1a-.openstorage.api.SdkCloudBackupDeleteResponse\"+\x82\xd3\xe4\x93\x02%*#/v1/cloudbackups/backup/{backup_id}\x12\x95\x01\n\tDeleteAll\x12/.openstorage.api.SdkCloudBackupDeleteAllRequest\x1a\x30.openstorage.api.SdkCloudBackupDeleteAllResponse\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/v1/cloudbackups/deleteall:\x01*\x12\xbe\x01\n\x14\x45numerateWithFilters\x12:.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest\x1a;.openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/cloudbackups/enumerate/filters:\x01*\x12\x89\x01\n\x06Status\x12,.openstorage.api.SdkCloudBackupStatusRequest\x1a-.openstorage.api.SdkCloudBackupStatusResponse\"\"\x82\xd3\xe4\x93\x02\x1c\"\x17/v1/cloudbackups/status:\x01*\x12\x8d\x01\n\x07\x43\x61talog\x12-.openstorage.api.SdkCloudBackupCatalogRequest\x1a..openstorage.api.SdkCloudBackupCatalogResponse\"#\x82\xd3\xe4\x93\x02\x1d\"\x18/v1/cloudbackups/catalog:\x01*\x12\x9a\x01\n\x07History\x12-.openstorage.api.SdkCloudBackupHistoryRequest\x1a..openstorage.api.SdkCloudBackupHistoryResponse\"0\x82\xd3\xe4\x93\x02*\x12(/v1/cloudbackups/history/{src_volume_id}\x12\x9d\x01\n\x0bStateChange\x12\x31.openstorage.api.SdkCloudBackupStateChangeRequest\x1a\x32.openstorage.api.SdkCloudBackupStateChangeResponse\"\'\x82\xd3\xe4\x93\x02!\"\x1c/v1/cloudbackups/statechange:\x01*\x12\x9b\x01\n\x0bSchedCreate\x12\x31.openstorage.api.SdkCloudBackupSchedCreateRequest\x1a\x32.openstorage.api.SdkCloudBackupSchedCreateResponse\"%\x82\xd3\xe4\x93\x02\x1f\"\x1a/v1/cloudbackups/schedules:\x01*\x12\xad\x01\n\x0bSchedDelete\x12\x31.openstorage.api.SdkCloudBackupSchedDeleteRequest\x1a\x32.openstorage.api.SdkCloudBackupSchedDeleteResponse\"7\x82\xd3\xe4\x93\x02\x31*//v1/cloudbackups/schedules/{backup_schedule_id}\x12\xa1\x01\n\x0eSchedEnumerate\x12\x34.openstorage.api.SdkCloudBackupSchedEnumerateRequest\x1a\x35.openstorage.api.SdkCloudBackupSchedEnumerateResponse\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v1/cloudbackups/schedules2\x8f\n\n\x11OpenStoragePolicy\x12\x91\x01\n\x06\x43reate\x12\x32.openstorage.api.SdkOpenStoragePolicyCreateRequest\x1a\x33.openstorage.api.SdkOpenStoragePolicyCreateResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x13/v1/storagepolicies:\x01*\x12\x97\x01\n\tEnumerate\x12\x35.openstorage.api.SdkOpenStoragePolicyEnumerateRequest\x1a\x36.openstorage.api.SdkOpenStoragePolicyEnumerateResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/storagepolicies\x12\xa0\x01\n\x07Inspect\x12\x33.openstorage.api.SdkOpenStoragePolicyInspectRequest\x1a\x34.openstorage.api.SdkOpenStoragePolicyInspectResponse\"*\x82\xd3\xe4\x93\x02$\x12\"/v1/storagepolicies/inspect/{name}\x12\x91\x01\n\x06Update\x12\x32.openstorage.api.SdkOpenStoragePolicyUpdateRequest\x1a\x33.openstorage.api.SdkOpenStoragePolicyUpdateResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x1a\x13/v1/storagepolicies:\x01*\x12\x95\x01\n\x06\x44\x65lete\x12\x32.openstorage.api.SdkOpenStoragePolicyDeleteRequest\x1a\x33.openstorage.api.SdkOpenStoragePolicyDeleteResponse\"\"\x82\xd3\xe4\x93\x02\x1c*\x1a/v1/storagepolicies/{name}\x12\xac\x01\n\nSetDefault\x12\x36.openstorage.api.SdkOpenStoragePolicySetDefaultRequest\x1a\x37.openstorage.api.SdkOpenStoragePolicySetDefaultResponse\"-\x82\xd3\xe4\x93\x02\'\"\"/v1/storagepolicies/default/{name}:\x01*\x12\xae\x01\n\x0e\x44\x65\x66\x61ultInspect\x12:.openstorage.api.SdkOpenStoragePolicyDefaultInspectRequest\x1a;.openstorage.api.SdkOpenStoragePolicyDefaultInspectResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/storagepolicies/default\x12\x9c\x01\n\x07Release\x12\x33.openstorage.api.SdkOpenStoragePolicyReleaseRequest\x1a\x34.openstorage.api.SdkOpenStoragePolicyReleaseResponse\"&\x82\xd3\xe4\x93\x02 \"\x1b/v1/storagepolicies/release:\x01*B\x1c\n\x13\x63om.openstorage.apiP\x01Z\x03\x61pib\x06proto3')
   ,
   dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
@@ -96,8 +96,8 @@ _STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=31887,
-  serialized_end=32253,
+  serialized_start=32009,
+  serialized_end=32375,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS)
 
@@ -135,8 +135,8 @@ _DRIVERTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=32256,
-  serialized_end=32409,
+  serialized_start=32378,
+  serialized_end=32531,
 )
 _sym_db.RegisterEnumDescriptor(_DRIVERTYPE)
 
@@ -186,8 +186,8 @@ _FSTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=32412,
-  serialized_end=32580,
+  serialized_start=32534,
+  serialized_end=32702,
 )
 _sym_db.RegisterEnumDescriptor(_FSTYPE)
 
@@ -217,8 +217,8 @@ _GRAPHDRIVERCHANGETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=32583,
-  serialized_end=32754,
+  serialized_start=32705,
+  serialized_end=32876,
 )
 _sym_db.RegisterEnumDescriptor(_GRAPHDRIVERCHANGETYPE)
 
@@ -248,8 +248,8 @@ _SEVERITYTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=32756,
-  serialized_end=32872,
+  serialized_start=32878,
+  serialized_end=32994,
 )
 _sym_db.RegisterEnumDescriptor(_SEVERITYTYPE)
 
@@ -283,8 +283,8 @@ _RESOURCETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=32875,
-  serialized_end=33015,
+  serialized_start=32997,
+  serialized_end=33137,
 )
 _sym_db.RegisterEnumDescriptor(_RESOURCETYPE)
 
@@ -314,8 +314,8 @@ _ALERTACTIONTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33018,
-  serialized_end=33153,
+  serialized_start=33140,
+  serialized_end=33275,
 )
 _sym_db.RegisterEnumDescriptor(_ALERTACTIONTYPE)
 
@@ -341,8 +341,8 @@ _VOLUMEACTIONPARAM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33155,
-  serialized_end=33261,
+  serialized_start=33277,
+  serialized_end=33383,
 )
 _sym_db.RegisterEnumDescriptor(_VOLUMEACTIONPARAM)
 
@@ -372,8 +372,8 @@ _COSTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33263,
-  serialized_end=33313,
+  serialized_start=33385,
+  serialized_end=33435,
 )
 _sym_db.RegisterEnumDescriptor(_COSTYPE)
 
@@ -411,8 +411,8 @@ _IOPROFILE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33316,
-  serialized_end=33470,
+  serialized_start=33438,
+  serialized_end=33592,
 )
 _sym_db.RegisterEnumDescriptor(_IOPROFILE)
 
@@ -466,8 +466,8 @@ _VOLUMESTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33473,
-  serialized_end=33754,
+  serialized_start=33595,
+  serialized_end=33876,
 )
 _sym_db.RegisterEnumDescriptor(_VOLUMESTATE)
 
@@ -501,8 +501,8 @@ _VOLUMESTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33757,
-  serialized_end=33900,
+  serialized_start=33879,
+  serialized_end=34022,
 )
 _sym_db.RegisterEnumDescriptor(_VOLUMESTATUS)
 
@@ -528,8 +528,8 @@ _STORAGEMEDIUM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33902,
-  serialized_end=33995,
+  serialized_start=34024,
+  serialized_end=34117,
 )
 _sym_db.RegisterEnumDescriptor(_STORAGEMEDIUM)
 
@@ -555,8 +555,8 @@ _ATTACHSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=33997,
-  serialized_end=34098,
+  serialized_start=34119,
+  serialized_end=34220,
 )
 _sym_db.RegisterEnumDescriptor(_ATTACHSTATE)
 
@@ -582,8 +582,8 @@ _OPERATIONFLAGS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=34100,
-  serialized_end=34184,
+  serialized_start=34222,
+  serialized_end=34306,
 )
 _sym_db.RegisterEnumDescriptor(_OPERATIONFLAGS)
 
@@ -625,8 +625,8 @@ _SDKTIMEWEEKDAY = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=34187,
-  serialized_end=34393,
+  serialized_start=34309,
+  serialized_end=34515,
 )
 _sym_db.RegisterEnumDescriptor(_SDKTIMEWEEKDAY)
 
@@ -652,8 +652,8 @@ _SDKCLOUDBACKUPOPTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=34395,
-  serialized_end=34519,
+  serialized_start=34517,
+  serialized_end=34641,
 )
 _sym_db.RegisterEnumDescriptor(_SDKCLOUDBACKUPOPTYPE)
 
@@ -707,8 +707,8 @@ _SDKCLOUDBACKUPSTATUSTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=34522,
-  serialized_end=34914,
+  serialized_start=34644,
+  serialized_end=35036,
 )
 _sym_db.RegisterEnumDescriptor(_SDKCLOUDBACKUPSTATUSTYPE)
 
@@ -738,8 +738,8 @@ _SDKCLOUDBACKUPREQUESTEDSTATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=34917,
-  serialized_end=35105,
+  serialized_start=35039,
+  serialized_end=35227,
 )
 _sym_db.RegisterEnumDescriptor(_SDKCLOUDBACKUPREQUESTEDSTATE)
 
@@ -761,8 +761,8 @@ _ENFORCEMENTTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=35107,
-  serialized_end=35153,
+  serialized_start=35229,
+  serialized_end=35275,
 )
 _sym_db.RegisterEnumDescriptor(_ENFORCEMENTTYPE)
 
@@ -996,8 +996,8 @@ _SDKSERVICECAPABILITY_OPENSTORAGESERVICE_TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=25539,
-  serialized_end=25760,
+  serialized_start=25661,
+  serialized_end=25882,
 )
 _sym_db.RegisterEnumDescriptor(_SDKSERVICECAPABILITY_OPENSTORAGESERVICE_TYPE)
 
@@ -1020,14 +1020,14 @@ _SDKVERSION_VERSION = _descriptor.EnumDescriptor(
       serialized_options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Patch', index=3, number=14,
+      name='Patch', index=3, number=15,
       serialized_options=None,
       type=None),
   ],
   containing_type=None,
   serialized_options=_b('\020\001'),
-  serialized_start=25847,
-  serialized_end=25919,
+  serialized_start=25969,
+  serialized_end=26041,
 )
 _sym_db.RegisterEnumDescriptor(_SDKVERSION_VERSION)
 
@@ -1056,8 +1056,8 @@ _CLOUDMIGRATE_OPERATIONTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=26101,
-  serialized_end=26196,
+  serialized_start=26223,
+  serialized_end=26318,
 )
 _sym_db.RegisterEnumDescriptor(_CLOUDMIGRATE_OPERATIONTYPE)
 
@@ -1090,8 +1090,8 @@ _CLOUDMIGRATE_STAGE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=26198,
-  serialized_end=26276,
+  serialized_start=26320,
+  serialized_end=26398,
 )
 _sym_db.RegisterEnumDescriptor(_CLOUDMIGRATE_STAGE)
 
@@ -1132,8 +1132,8 @@ _CLOUDMIGRATE_STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=26278,
-  serialized_end=26390,
+  serialized_start=26400,
+  serialized_end=26512,
 )
 _sym_db.RegisterEnumDescriptor(_CLOUDMIGRATE_STATUS)
 
@@ -1154,8 +1154,8 @@ _CLUSTERPAIRMODE_MODE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=28317,
-  serialized_end=28358,
+  serialized_start=28439,
+  serialized_end=28480,
 )
 _sym_db.RegisterEnumDescriptor(_CLUSTERPAIRMODE_MODE)
 
@@ -1192,8 +1192,8 @@ _LABELSELECTORREQUIREMENT_OPERATOR = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=31809,
-  serialized_end=31884,
+  serialized_start=31931,
+  serialized_end=32006,
 )
 _sym_db.RegisterEnumDescriptor(_LABELSELECTORREQUIREMENT_OPERATOR)
 
@@ -8775,6 +8775,61 @@ _SDKNODEENUMERATERESPONSE = _descriptor.Descriptor(
 )
 
 
+_SDKNODEENUMERATEWITHFILTERSREQUEST = _descriptor.Descriptor(
+  name='SdkNodeEnumerateWithFiltersRequest',
+  full_name='openstorage.api.SdkNodeEnumerateWithFiltersRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=19991,
+  serialized_end=20027,
+)
+
+
+_SDKNODEENUMERATEWITHFILTERSRESPONSE = _descriptor.Descriptor(
+  name='SdkNodeEnumerateWithFiltersResponse',
+  full_name='openstorage.api.SdkNodeEnumerateWithFiltersResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='nodes', full_name='openstorage.api.SdkNodeEnumerateWithFiltersResponse.nodes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=20029,
+  serialized_end=20111,
+)
+
+
 _SDKOBJECTSTOREINSPECTREQUEST = _descriptor.Descriptor(
   name='SdkObjectstoreInspectRequest',
   full_name='openstorage.api.SdkObjectstoreInspectRequest',
@@ -8801,8 +8856,8 @@ _SDKOBJECTSTOREINSPECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=19991,
-  serialized_end=20045,
+  serialized_start=20113,
+  serialized_end=20167,
 )
 
 
@@ -8832,8 +8887,8 @@ _SDKOBJECTSTOREINSPECTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20047,
-  serialized_end=20140,
+  serialized_start=20169,
+  serialized_end=20262,
 )
 
 
@@ -8863,8 +8918,8 @@ _SDKOBJECTSTORECREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20142,
-  serialized_end=20190,
+  serialized_start=20264,
+  serialized_end=20312,
 )
 
 
@@ -8894,8 +8949,8 @@ _SDKOBJECTSTORECREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20192,
-  serialized_end=20284,
+  serialized_start=20314,
+  serialized_end=20406,
 )
 
 
@@ -8925,8 +8980,8 @@ _SDKOBJECTSTOREDELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20286,
-  serialized_end=20339,
+  serialized_start=20408,
+  serialized_end=20461,
 )
 
 
@@ -8949,8 +9004,8 @@ _SDKOBJECTSTOREDELETERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20341,
-  serialized_end=20371,
+  serialized_start=20463,
+  serialized_end=20493,
 )
 
 
@@ -8987,8 +9042,8 @@ _SDKOBJECTSTOREUPDATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20373,
-  serialized_end=20442,
+  serialized_start=20495,
+  serialized_end=20564,
 )
 
 
@@ -9011,8 +9066,8 @@ _SDKOBJECTSTOREUPDATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20444,
-  serialized_end=20474,
+  serialized_start=20566,
+  serialized_end=20596,
 )
 
 
@@ -9114,8 +9169,8 @@ _SDKCLOUDBACKUPCREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20477,
-  serialized_end=20731,
+  serialized_start=20599,
+  serialized_end=20853,
 )
 
 
@@ -9145,8 +9200,8 @@ _SDKCLOUDBACKUPCREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20733,
-  serialized_end=20780,
+  serialized_start=20855,
+  serialized_end=20902,
 )
 
 
@@ -9241,8 +9296,8 @@ _SDKCLOUDBACKUPGROUPCREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=20783,
-  serialized_end=21018,
+  serialized_start=20905,
+  serialized_end=21140,
 )
 
 
@@ -9279,8 +9334,8 @@ _SDKCLOUDBACKUPGROUPCREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21020,
-  serialized_end=21104,
+  serialized_start=21142,
+  serialized_end=21226,
 )
 
 
@@ -9338,8 +9393,8 @@ _SDKCLOUDBACKUPRESTOREREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21107,
-  serialized_end=21242,
+  serialized_start=21229,
+  serialized_end=21364,
 )
 
 
@@ -9376,8 +9431,8 @@ _SDKCLOUDBACKUPRESTORERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21244,
-  serialized_end=21319,
+  serialized_start=21366,
+  serialized_end=21441,
 )
 
 
@@ -9421,8 +9476,8 @@ _SDKCLOUDBACKUPDELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21321,
-  serialized_end=21407,
+  serialized_start=21443,
+  serialized_end=21529,
 )
 
 
@@ -9445,8 +9500,8 @@ _SDKCLOUDBACKUPDELETERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21409,
-  serialized_end=21439,
+  serialized_start=21531,
+  serialized_end=21561,
 )
 
 
@@ -9483,8 +9538,8 @@ _SDKCLOUDBACKUPDELETEALLREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21441,
-  serialized_end=21519,
+  serialized_start=21563,
+  serialized_end=21641,
 )
 
 
@@ -9507,8 +9562,8 @@ _SDKCLOUDBACKUPDELETEALLRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21521,
-  serialized_end=21554,
+  serialized_start=21643,
+  serialized_end=21676,
 )
 
 
@@ -9545,8 +9600,8 @@ _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST_METADATAFILTERENTRY = _descriptor.Des
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21901,
-  serialized_end=21954,
+  serialized_start=22023,
+  serialized_end=22076,
 )
 
 _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST = _descriptor.Descriptor(
@@ -9624,8 +9679,8 @@ _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21557,
-  serialized_end=21954,
+  serialized_start=21679,
+  serialized_end=22076,
 )
 
 
@@ -9662,8 +9717,8 @@ _SDKCLOUDBACKUPINFO_METADATAENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=22214,
-  serialized_end=22261,
+  serialized_start=22336,
+  serialized_end=22383,
 )
 
 _SDKCLOUDBACKUPINFO = _descriptor.Descriptor(
@@ -9727,8 +9782,8 @@ _SDKCLOUDBACKUPINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=21957,
-  serialized_end=22261,
+  serialized_start=22079,
+  serialized_end=22383,
 )
 
 
@@ -9765,8 +9820,8 @@ _SDKCLOUDBACKUPENUMERATEWITHFILTERSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=22263,
-  serialized_end=22389,
+  serialized_start=22385,
+  serialized_end=22511,
 )
 
 
@@ -9880,8 +9935,8 @@ _SDKCLOUDBACKUPSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=22392,
-  serialized_end=22804,
+  serialized_start=22514,
+  serialized_end=22926,
 )
 
 
@@ -9925,8 +9980,8 @@ _SDKCLOUDBACKUPSTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=22806,
-  serialized_end=22886,
+  serialized_start=22928,
+  serialized_end=23008,
 )
 
 
@@ -9963,8 +10018,8 @@ _SDKCLOUDBACKUPSTATUSRESPONSE_STATUSESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23000,
-  serialized_end=23086,
+  serialized_start=23122,
+  serialized_end=23208,
 )
 
 _SDKCLOUDBACKUPSTATUSRESPONSE = _descriptor.Descriptor(
@@ -9993,8 +10048,8 @@ _SDKCLOUDBACKUPSTATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=22889,
-  serialized_end=23086,
+  serialized_start=23011,
+  serialized_end=23208,
 )
 
 
@@ -10031,8 +10086,8 @@ _SDKCLOUDBACKUPCATALOGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23088,
-  serialized_end=23160,
+  serialized_start=23210,
+  serialized_end=23282,
 )
 
 
@@ -10062,8 +10117,8 @@ _SDKCLOUDBACKUPCATALOGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23162,
-  serialized_end=23211,
+  serialized_start=23284,
+  serialized_end=23333,
 )
 
 
@@ -10107,8 +10162,8 @@ _SDKCLOUDBACKUPHISTORYITEM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23214,
-  serialized_end=23370,
+  serialized_start=23336,
+  serialized_end=23492,
 )
 
 
@@ -10138,8 +10193,8 @@ _SDKCLOUDBACKUPHISTORYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23372,
-  serialized_end=23425,
+  serialized_start=23494,
+  serialized_end=23547,
 )
 
 
@@ -10169,8 +10224,8 @@ _SDKCLOUDBACKUPHISTORYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23427,
-  serialized_end=23524,
+  serialized_start=23549,
+  serialized_end=23646,
 )
 
 
@@ -10207,8 +10262,8 @@ _SDKCLOUDBACKUPSTATECHANGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23526,
-  serialized_end=23649,
+  serialized_start=23648,
+  serialized_end=23771,
 )
 
 
@@ -10231,8 +10286,8 @@ _SDKCLOUDBACKUPSTATECHANGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23651,
-  serialized_end=23686,
+  serialized_start=23773,
+  serialized_end=23808,
 )
 
 
@@ -10297,8 +10352,8 @@ _SDKCLOUDBACKUPSCHEDULEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23689,
-  serialized_end=23885,
+  serialized_start=23811,
+  serialized_end=24007,
 )
 
 
@@ -10328,8 +10383,8 @@ _SDKCLOUDBACKUPSCHEDCREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23887,
-  serialized_end=23992,
+  serialized_start=24009,
+  serialized_end=24114,
 )
 
 
@@ -10359,8 +10414,8 @@ _SDKCLOUDBACKUPSCHEDCREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=23994,
-  serialized_end=24057,
+  serialized_start=24116,
+  serialized_end=24179,
 )
 
 
@@ -10390,8 +10445,8 @@ _SDKCLOUDBACKUPSCHEDDELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24059,
-  serialized_end=24121,
+  serialized_start=24181,
+  serialized_end=24243,
 )
 
 
@@ -10414,8 +10469,8 @@ _SDKCLOUDBACKUPSCHEDDELETERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24123,
-  serialized_end=24158,
+  serialized_start=24245,
+  serialized_end=24280,
 )
 
 
@@ -10438,8 +10493,8 @@ _SDKCLOUDBACKUPSCHEDENUMERATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24160,
-  serialized_end=24197,
+  serialized_start=24282,
+  serialized_end=24319,
 )
 
 
@@ -10476,8 +10531,8 @@ _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE_CLOUDSCHEDLISTENTRY = _descriptor.Descript
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24341,
-  serialized_end=24439,
+  serialized_start=24463,
+  serialized_end=24561,
 )
 
 _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE = _descriptor.Descriptor(
@@ -10506,8 +10561,8 @@ _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24200,
-  serialized_end=24439,
+  serialized_start=24322,
+  serialized_end=24561,
 )
 
 
@@ -10544,8 +10599,8 @@ _SDKRULE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24441,
-  serialized_end=24482,
+  serialized_start=24563,
+  serialized_end=24604,
 )
 
 
@@ -10582,8 +10637,8 @@ _SDKROLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24484,
-  serialized_end=24548,
+  serialized_start=24606,
+  serialized_end=24670,
 )
 
 
@@ -10613,8 +10668,8 @@ _SDKROLECREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24550,
-  serialized_end=24612,
+  serialized_start=24672,
+  serialized_end=24734,
 )
 
 
@@ -10644,8 +10699,8 @@ _SDKROLECREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24614,
-  serialized_end=24677,
+  serialized_start=24736,
+  serialized_end=24799,
 )
 
 
@@ -10668,8 +10723,8 @@ _SDKROLEENUMERATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24679,
-  serialized_end=24704,
+  serialized_start=24801,
+  serialized_end=24826,
 )
 
 
@@ -10699,8 +10754,8 @@ _SDKROLEENUMERATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24706,
-  serialized_end=24747,
+  serialized_start=24828,
+  serialized_end=24869,
 )
 
 
@@ -10730,8 +10785,8 @@ _SDKROLEINSPECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24749,
-  serialized_end=24786,
+  serialized_start=24871,
+  serialized_end=24908,
 )
 
 
@@ -10761,8 +10816,8 @@ _SDKROLEINSPECTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24788,
-  serialized_end=24852,
+  serialized_start=24910,
+  serialized_end=24974,
 )
 
 
@@ -10792,8 +10847,8 @@ _SDKROLEDELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24854,
-  serialized_end=24890,
+  serialized_start=24976,
+  serialized_end=25012,
 )
 
 
@@ -10816,8 +10871,8 @@ _SDKROLEDELETERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24892,
-  serialized_end=24915,
+  serialized_start=25014,
+  serialized_end=25037,
 )
 
 
@@ -10847,8 +10902,8 @@ _SDKROLEUPDATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24917,
-  serialized_end=24979,
+  serialized_start=25039,
+  serialized_end=25101,
 )
 
 
@@ -10878,8 +10933,8 @@ _SDKROLEUPDATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=24981,
-  serialized_end=25044,
+  serialized_start=25103,
+  serialized_end=25166,
 )
 
 
@@ -10902,8 +10957,8 @@ _SDKIDENTITYCAPABILITIESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25046,
-  serialized_end=25078,
+  serialized_start=25168,
+  serialized_end=25200,
 )
 
 
@@ -10933,8 +10988,8 @@ _SDKIDENTITYCAPABILITIESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25080,
-  serialized_end=25174,
+  serialized_start=25202,
+  serialized_end=25296,
 )
 
 
@@ -10957,8 +11012,8 @@ _SDKIDENTITYVERSIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25176,
-  serialized_end=25203,
+  serialized_start=25298,
+  serialized_end=25325,
 )
 
 
@@ -10995,8 +11050,8 @@ _SDKIDENTITYVERSIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25206,
-  serialized_end=25334,
+  serialized_start=25328,
+  serialized_end=25456,
 )
 
 
@@ -11027,8 +11082,8 @@ _SDKSERVICECAPABILITY_OPENSTORAGESERVICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25439,
-  serialized_end=25760,
+  serialized_start=25561,
+  serialized_end=25882,
 )
 
 _SDKSERVICECAPABILITY = _descriptor.Descriptor(
@@ -11060,8 +11115,8 @@ _SDKSERVICECAPABILITY = _descriptor.Descriptor(
       name='type', full_name='openstorage.api.SdkServiceCapability.type',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=25337,
-  serialized_end=25768,
+  serialized_start=25459,
+  serialized_end=25890,
 )
 
 
@@ -11113,8 +11168,8 @@ _SDKVERSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25771,
-  serialized_end=25919,
+  serialized_start=25893,
+  serialized_end=26041,
 )
 
 
@@ -11151,8 +11206,8 @@ _STORAGEVERSION_DETAILSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26036,
-  serialized_end=26082,
+  serialized_start=26158,
+  serialized_end=26204,
 )
 
 _STORAGEVERSION = _descriptor.Descriptor(
@@ -11195,8 +11250,8 @@ _STORAGEVERSION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=25922,
-  serialized_end=26082,
+  serialized_start=26044,
+  serialized_end=26204,
 )
 
 
@@ -11222,8 +11277,8 @@ _CLOUDMIGRATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26085,
-  serialized_end=26390,
+  serialized_start=26207,
+  serialized_end=26512,
 )
 
 
@@ -11274,8 +11329,8 @@ _CLOUDMIGRATESTARTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26393,
-  serialized_end=26539,
+  serialized_start=26515,
+  serialized_end=26661,
 )
 
 
@@ -11305,8 +11360,8 @@ _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26867,
-  serialized_end=26901,
+  serialized_start=26989,
+  serialized_end=27023,
 )
 
 _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUMEGROUP = _descriptor.Descriptor(
@@ -11335,8 +11390,8 @@ _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUMEGROUP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26903,
-  serialized_end=26941,
+  serialized_start=27025,
+  serialized_end=27063,
 )
 
 _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEALLVOLUMES = _descriptor.Descriptor(
@@ -11358,8 +11413,8 @@ _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEALLVOLUMES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26943,
-  serialized_end=26962,
+  serialized_start=27065,
+  serialized_end=27084,
 )
 
 _SDKCLOUDMIGRATESTARTREQUEST = _descriptor.Descriptor(
@@ -11419,8 +11474,8 @@ _SDKCLOUDMIGRATESTARTREQUEST = _descriptor.Descriptor(
       name='opt', full_name='openstorage.api.SdkCloudMigrateStartRequest.opt',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=26542,
-  serialized_end=26969,
+  serialized_start=26664,
+  serialized_end=27091,
 )
 
 
@@ -11450,8 +11505,8 @@ _CLOUDMIGRATESTARTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26971,
-  serialized_end=27015,
+  serialized_start=27093,
+  serialized_end=27137,
 )
 
 
@@ -11481,8 +11536,8 @@ _SDKCLOUDMIGRATESTARTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27017,
-  serialized_end=27107,
+  serialized_start=27139,
+  serialized_end=27229,
 )
 
 
@@ -11512,8 +11567,8 @@ _CLOUDMIGRATECANCELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27109,
-  serialized_end=27153,
+  serialized_start=27231,
+  serialized_end=27275,
 )
 
 
@@ -11543,8 +11598,8 @@ _SDKCLOUDMIGRATECANCELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27155,
-  serialized_end=27246,
+  serialized_start=27277,
+  serialized_end=27368,
 )
 
 
@@ -11567,8 +11622,8 @@ _SDKCLOUDMIGRATECANCELRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27248,
-  serialized_end=27279,
+  serialized_start=27370,
+  serialized_end=27401,
 )
 
 
@@ -11696,8 +11751,8 @@ _CLOUDMIGRATEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27282,
-  serialized_end=27786,
+  serialized_start=27404,
+  serialized_end=27908,
 )
 
 
@@ -11727,8 +11782,8 @@ _CLOUDMIGRATEINFOLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27788,
-  serialized_end=27859,
+  serialized_start=27910,
+  serialized_end=27981,
 )
 
 
@@ -11758,8 +11813,8 @@ _SDKCLOUDMIGRATESTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27861,
-  serialized_end=27952,
+  serialized_start=27983,
+  serialized_end=28074,
 )
 
 
@@ -11796,8 +11851,8 @@ _CLOUDMIGRATESTATUSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=27954,
-  serialized_end=28018,
+  serialized_start=28076,
+  serialized_end=28140,
 )
 
 
@@ -11834,8 +11889,8 @@ _CLOUDMIGRATESTATUSRESPONSE_INFOENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28120,
-  serialized_end=28202,
+  serialized_start=28242,
+  serialized_end=28324,
 )
 
 _CLOUDMIGRATESTATUSRESPONSE = _descriptor.Descriptor(
@@ -11864,8 +11919,8 @@ _CLOUDMIGRATESTATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28021,
-  serialized_end=28202,
+  serialized_start=28143,
+  serialized_end=28324,
 )
 
 
@@ -11895,8 +11950,8 @@ _SDKCLOUDMIGRATESTATUSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28204,
-  serialized_end=28296,
+  serialized_start=28326,
+  serialized_end=28418,
 )
 
 
@@ -11920,8 +11975,8 @@ _CLUSTERPAIRMODE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28298,
-  serialized_end=28358,
+  serialized_start=28420,
+  serialized_end=28480,
 )
 
 
@@ -11979,8 +12034,8 @@ _CLUSTERPAIRCREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28361,
-  serialized_end=28547,
+  serialized_start=28483,
+  serialized_end=28669,
 )
 
 
@@ -12017,8 +12072,8 @@ _CLUSTERPAIRCREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28549,
-  serialized_end=28632,
+  serialized_start=28671,
+  serialized_end=28754,
 )
 
 
@@ -12048,8 +12103,8 @@ _SDKCLUSTERPAIRCREATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28634,
-  serialized_end=28723,
+  serialized_start=28756,
+  serialized_end=28845,
 )
 
 
@@ -12079,8 +12134,8 @@ _SDKCLUSTERPAIRCREATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28725,
-  serialized_end=28815,
+  serialized_start=28847,
+  serialized_end=28937,
 )
 
 
@@ -12124,8 +12179,8 @@ _CLUSTERPAIRPROCESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28818,
-  serialized_end=28955,
+  serialized_start=28940,
+  serialized_end=29077,
 )
 
 
@@ -12213,8 +12268,8 @@ _CLUSTERPAIRPROCESSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=28958,
-  serialized_end=29199,
+  serialized_start=29080,
+  serialized_end=29321,
 )
 
 
@@ -12244,8 +12299,8 @@ _SDKCLUSTERPAIRDELETEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29201,
-  serialized_end=29250,
+  serialized_start=29323,
+  serialized_end=29372,
 )
 
 
@@ -12268,8 +12323,8 @@ _SDKCLUSTERPAIRDELETERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29252,
-  serialized_end=29282,
+  serialized_start=29374,
+  serialized_end=29404,
 )
 
 
@@ -12299,8 +12354,8 @@ _CLUSTERPAIRTOKENGETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29284,
-  serialized_end=29328,
+  serialized_start=29406,
+  serialized_end=29450,
 )
 
 
@@ -12323,8 +12378,8 @@ _SDKCLUSTERPAIRGETTOKENREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29330,
-  serialized_end=29361,
+  serialized_start=29452,
+  serialized_end=29483,
 )
 
 
@@ -12354,8 +12409,8 @@ _SDKCLUSTERPAIRGETTOKENRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29363,
-  serialized_end=29457,
+  serialized_start=29485,
+  serialized_end=29579,
 )
 
 
@@ -12378,8 +12433,8 @@ _SDKCLUSTERPAIRRESETTOKENREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29459,
-  serialized_end=29492,
+  serialized_start=29581,
+  serialized_end=29614,
 )
 
 
@@ -12409,8 +12464,8 @@ _SDKCLUSTERPAIRRESETTOKENRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29494,
-  serialized_end=29590,
+  serialized_start=29616,
+  serialized_end=29712,
 )
 
 
@@ -12526,8 +12581,8 @@ _CLUSTERPAIRINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29593,
-  serialized_end=29877,
+  serialized_start=29715,
+  serialized_end=29999,
 )
 
 
@@ -12557,8 +12612,8 @@ _SDKCLUSTERPAIRINSPECTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29879,
-  serialized_end=29921,
+  serialized_start=30001,
+  serialized_end=30043,
 )
 
 
@@ -12588,8 +12643,8 @@ _CLUSTERPAIRGETRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=29923,
-  serialized_end=30000,
+  serialized_start=30045,
+  serialized_end=30122,
 )
 
 
@@ -12619,8 +12674,8 @@ _SDKCLUSTERPAIRINSPECTRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30002,
-  serialized_end=30090,
+  serialized_start=30124,
+  serialized_end=30212,
 )
 
 
@@ -12643,8 +12698,8 @@ _SDKCLUSTERPAIRENUMERATEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30092,
-  serialized_end=30124,
+  serialized_start=30214,
+  serialized_end=30246,
 )
 
 
@@ -12681,8 +12736,8 @@ _CLUSTERPAIRSENUMERATERESPONSE_PAIRSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30254,
-  serialized_end=30332,
+  serialized_start=30376,
+  serialized_end=30454,
 )
 
 _CLUSTERPAIRSENUMERATERESPONSE = _descriptor.Descriptor(
@@ -12718,8 +12773,8 @@ _CLUSTERPAIRSENUMERATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30127,
-  serialized_end=30332,
+  serialized_start=30249,
+  serialized_end=30454,
 )
 
 
@@ -12749,8 +12804,8 @@ _SDKCLUSTERPAIRENUMERATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30334,
-  serialized_end=30431,
+  serialized_start=30456,
+  serialized_end=30553,
 )
 
 
@@ -12815,8 +12870,8 @@ _CATALOG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30434,
-  serialized_end=30593,
+  serialized_start=30556,
+  serialized_end=30715,
 )
 
 
@@ -12853,8 +12908,8 @@ _REPORT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30595,
-  serialized_end=30639,
+  serialized_start=30717,
+  serialized_end=30761,
 )
 
 
@@ -12891,8 +12946,8 @@ _CATALOGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30641,
-  serialized_end=30739,
+  serialized_start=30763,
+  serialized_end=30861,
 )
 
 
@@ -12929,8 +12984,8 @@ _LOCATERESPONSE_MOUNTSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30888,
-  serialized_end=30933,
+  serialized_start=31010,
+  serialized_end=31055,
 )
 
 _LOCATERESPONSE_DOCKERIDSENTRY = _descriptor.Descriptor(
@@ -12966,8 +13021,8 @@ _LOCATERESPONSE_DOCKERIDSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30935,
-  serialized_end=30983,
+  serialized_start=31057,
+  serialized_end=31105,
 )
 
 _LOCATERESPONSE = _descriptor.Descriptor(
@@ -13003,8 +13058,8 @@ _LOCATERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30742,
-  serialized_end=30983,
+  serialized_start=30864,
+  serialized_end=31105,
 )
 
 
@@ -13055,8 +13110,8 @@ _VOLUMEPLACEMENTSTRATEGY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=30986,
-  serialized_end=31277,
+  serialized_start=31108,
+  serialized_end=31399,
 )
 
 
@@ -13114,8 +13169,8 @@ _REPLICAPLACEMENTSPEC = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=31280,
-  serialized_end=31492,
+  serialized_start=31402,
+  serialized_end=31614,
 )
 
 
@@ -13166,8 +13221,8 @@ _VOLUMEPLACEMENTSPEC = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=31495,
-  serialized_end=31679,
+  serialized_start=31617,
+  serialized_end=31801,
 )
 
 
@@ -13212,8 +13267,8 @@ _LABELSELECTORREQUIREMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=31682,
-  serialized_end=31884,
+  serialized_start=31804,
+  serialized_end=32006,
 )
 
 _STORAGERESOURCE.fields_by_name['medium'].enum_type = _STORAGEMEDIUM
@@ -13552,6 +13607,7 @@ _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSREQUEST.fields_by_name['labels'].message_t
 _SDKCLUSTERINSPECTCURRENTRESPONSE.fields_by_name['cluster'].message_type = _STORAGECLUSTER
 _SDKNODEINSPECTRESPONSE.fields_by_name['node'].message_type = _STORAGENODE
 _SDKNODEINSPECTCURRENTRESPONSE.fields_by_name['node'].message_type = _STORAGENODE
+_SDKNODEENUMERATEWITHFILTERSRESPONSE.fields_by_name['nodes'].message_type = _STORAGENODE
 _SDKOBJECTSTOREINSPECTRESPONSE.fields_by_name['objectstore_status'].message_type = _OBJECTSTOREINFO
 _SDKOBJECTSTORECREATERESPONSE.fields_by_name['objectstore_status'].message_type = _OBJECTSTOREINFO
 _SDKCLOUDBACKUPCREATEREQUEST_LABELSENTRY.containing_type = _SDKCLOUDBACKUPCREATEREQUEST
@@ -13823,6 +13879,8 @@ DESCRIPTOR.message_types_by_name['SdkNodeInspectCurrentRequest'] = _SDKNODEINSPE
 DESCRIPTOR.message_types_by_name['SdkNodeInspectCurrentResponse'] = _SDKNODEINSPECTCURRENTRESPONSE
 DESCRIPTOR.message_types_by_name['SdkNodeEnumerateRequest'] = _SDKNODEENUMERATEREQUEST
 DESCRIPTOR.message_types_by_name['SdkNodeEnumerateResponse'] = _SDKNODEENUMERATERESPONSE
+DESCRIPTOR.message_types_by_name['SdkNodeEnumerateWithFiltersRequest'] = _SDKNODEENUMERATEWITHFILTERSREQUEST
+DESCRIPTOR.message_types_by_name['SdkNodeEnumerateWithFiltersResponse'] = _SDKNODEENUMERATEWITHFILTERSRESPONSE
 DESCRIPTOR.message_types_by_name['SdkObjectstoreInspectRequest'] = _SDKOBJECTSTOREINSPECTREQUEST
 DESCRIPTOR.message_types_by_name['SdkObjectstoreInspectResponse'] = _SDKOBJECTSTOREINSPECTRESPONSE
 DESCRIPTOR.message_types_by_name['SdkObjectstoreCreateRequest'] = _SDKOBJECTSTORECREATEREQUEST
@@ -13945,2126 +14003,2140 @@ DESCRIPTOR.enum_types_by_name['SdkCloudBackupRequestedState'] = _SDKCLOUDBACKUPR
 DESCRIPTOR.enum_types_by_name['EnforcementType'] = _ENFORCEMENTTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-StorageResource = _reflection.GeneratedProtocolMessageType('StorageResource', (_message.Message,), dict(
-  DESCRIPTOR = _STORAGERESOURCE,
-  __module__ = 'api_pb2'
+StorageResource = _reflection.GeneratedProtocolMessageType('StorageResource', (_message.Message,), {
+  'DESCRIPTOR' : _STORAGERESOURCE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.StorageResource)
-  ))
+  })
 _sym_db.RegisterMessage(StorageResource)
 
-StoragePool = _reflection.GeneratedProtocolMessageType('StoragePool', (_message.Message,), dict(
+StoragePool = _reflection.GeneratedProtocolMessageType('StoragePool', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _STORAGEPOOL_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _STORAGEPOOL_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.StoragePool.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _STORAGEPOOL,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _STORAGEPOOL,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.StoragePool)
-  ))
+  })
 _sym_db.RegisterMessage(StoragePool)
 _sym_db.RegisterMessage(StoragePool.LabelsEntry)
 
-VolumeLocator = _reflection.GeneratedProtocolMessageType('VolumeLocator', (_message.Message,), dict(
+VolumeLocator = _reflection.GeneratedProtocolMessageType('VolumeLocator', (_message.Message,), {
 
-  VolumeLabelsEntry = _reflection.GeneratedProtocolMessageType('VolumeLabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _VOLUMELOCATOR_VOLUMELABELSENTRY,
-    __module__ = 'api_pb2'
+  'VolumeLabelsEntry' : _reflection.GeneratedProtocolMessageType('VolumeLabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _VOLUMELOCATOR_VOLUMELABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.VolumeLocator.VolumeLabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _VOLUMELOCATOR,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _VOLUMELOCATOR,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeLocator)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeLocator)
 _sym_db.RegisterMessage(VolumeLocator.VolumeLabelsEntry)
 
-VolumeInspectOptions = _reflection.GeneratedProtocolMessageType('VolumeInspectOptions', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMEINSPECTOPTIONS,
-  __module__ = 'api_pb2'
+VolumeInspectOptions = _reflection.GeneratedProtocolMessageType('VolumeInspectOptions', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMEINSPECTOPTIONS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeInspectOptions)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeInspectOptions)
 
-Source = _reflection.GeneratedProtocolMessageType('Source', (_message.Message,), dict(
-  DESCRIPTOR = _SOURCE,
-  __module__ = 'api_pb2'
+Source = _reflection.GeneratedProtocolMessageType('Source', (_message.Message,), {
+  'DESCRIPTOR' : _SOURCE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Source)
-  ))
+  })
 _sym_db.RegisterMessage(Source)
 
-Group = _reflection.GeneratedProtocolMessageType('Group', (_message.Message,), dict(
-  DESCRIPTOR = _GROUP,
-  __module__ = 'api_pb2'
+Group = _reflection.GeneratedProtocolMessageType('Group', (_message.Message,), {
+  'DESCRIPTOR' : _GROUP,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Group)
-  ))
+  })
 _sym_db.RegisterMessage(Group)
 
-IoStrategy = _reflection.GeneratedProtocolMessageType('IoStrategy', (_message.Message,), dict(
-  DESCRIPTOR = _IOSTRATEGY,
-  __module__ = 'api_pb2'
+IoStrategy = _reflection.GeneratedProtocolMessageType('IoStrategy', (_message.Message,), {
+  'DESCRIPTOR' : _IOSTRATEGY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.IoStrategy)
-  ))
+  })
 _sym_db.RegisterMessage(IoStrategy)
 
-VolumeSpec = _reflection.GeneratedProtocolMessageType('VolumeSpec', (_message.Message,), dict(
+VolumeSpec = _reflection.GeneratedProtocolMessageType('VolumeSpec', (_message.Message,), {
 
-  VolumeLabelsEntry = _reflection.GeneratedProtocolMessageType('VolumeLabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _VOLUMESPEC_VOLUMELABELSENTRY,
-    __module__ = 'api_pb2'
+  'VolumeLabelsEntry' : _reflection.GeneratedProtocolMessageType('VolumeLabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _VOLUMESPEC_VOLUMELABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSpec.VolumeLabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _VOLUMESPEC,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _VOLUMESPEC,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSpec)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeSpec)
 _sym_db.RegisterMessage(VolumeSpec.VolumeLabelsEntry)
 
-VolumeSpecUpdate = _reflection.GeneratedProtocolMessageType('VolumeSpecUpdate', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMESPECUPDATE,
-  __module__ = 'api_pb2'
+VolumeSpecUpdate = _reflection.GeneratedProtocolMessageType('VolumeSpecUpdate', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMESPECUPDATE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSpecUpdate)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeSpecUpdate)
 
-VolumeSpecPolicy = _reflection.GeneratedProtocolMessageType('VolumeSpecPolicy', (_message.Message,), dict(
+VolumeSpecPolicy = _reflection.GeneratedProtocolMessageType('VolumeSpecPolicy', (_message.Message,), {
 
-  VolumeLabelsEntry = _reflection.GeneratedProtocolMessageType('VolumeLabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _VOLUMESPECPOLICY_VOLUMELABELSENTRY,
-    __module__ = 'api_pb2'
+  'VolumeLabelsEntry' : _reflection.GeneratedProtocolMessageType('VolumeLabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _VOLUMESPECPOLICY_VOLUMELABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSpecPolicy.VolumeLabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _VOLUMESPECPOLICY,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _VOLUMESPECPOLICY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSpecPolicy)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeSpecPolicy)
 _sym_db.RegisterMessage(VolumeSpecPolicy.VolumeLabelsEntry)
 
-ReplicaSet = _reflection.GeneratedProtocolMessageType('ReplicaSet', (_message.Message,), dict(
-  DESCRIPTOR = _REPLICASET,
-  __module__ = 'api_pb2'
+ReplicaSet = _reflection.GeneratedProtocolMessageType('ReplicaSet', (_message.Message,), {
+  'DESCRIPTOR' : _REPLICASET,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ReplicaSet)
-  ))
+  })
 _sym_db.RegisterMessage(ReplicaSet)
 
-RuntimeStateMap = _reflection.GeneratedProtocolMessageType('RuntimeStateMap', (_message.Message,), dict(
+RuntimeStateMap = _reflection.GeneratedProtocolMessageType('RuntimeStateMap', (_message.Message,), {
 
-  RuntimeStateEntry = _reflection.GeneratedProtocolMessageType('RuntimeStateEntry', (_message.Message,), dict(
-    DESCRIPTOR = _RUNTIMESTATEMAP_RUNTIMESTATEENTRY,
-    __module__ = 'api_pb2'
+  'RuntimeStateEntry' : _reflection.GeneratedProtocolMessageType('RuntimeStateEntry', (_message.Message,), {
+    'DESCRIPTOR' : _RUNTIMESTATEMAP_RUNTIMESTATEENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.RuntimeStateMap.RuntimeStateEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _RUNTIMESTATEMAP,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _RUNTIMESTATEMAP,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.RuntimeStateMap)
-  ))
+  })
 _sym_db.RegisterMessage(RuntimeStateMap)
 _sym_db.RegisterMessage(RuntimeStateMap.RuntimeStateEntry)
 
-Ownership = _reflection.GeneratedProtocolMessageType('Ownership', (_message.Message,), dict(
+Ownership = _reflection.GeneratedProtocolMessageType('Ownership', (_message.Message,), {
 
-  AccessControl = _reflection.GeneratedProtocolMessageType('AccessControl', (_message.Message,), dict(
+  'AccessControl' : _reflection.GeneratedProtocolMessageType('AccessControl', (_message.Message,), {
 
-    GroupsEntry = _reflection.GeneratedProtocolMessageType('GroupsEntry', (_message.Message,), dict(
-      DESCRIPTOR = _OWNERSHIP_ACCESSCONTROL_GROUPSENTRY,
-      __module__ = 'api_pb2'
+    'GroupsEntry' : _reflection.GeneratedProtocolMessageType('GroupsEntry', (_message.Message,), {
+      'DESCRIPTOR' : _OWNERSHIP_ACCESSCONTROL_GROUPSENTRY,
+      '__module__' : 'api_pb2'
       # @@protoc_insertion_point(class_scope:openstorage.api.Ownership.AccessControl.GroupsEntry)
-      ))
+      })
     ,
 
-    CollaboratorsEntry = _reflection.GeneratedProtocolMessageType('CollaboratorsEntry', (_message.Message,), dict(
-      DESCRIPTOR = _OWNERSHIP_ACCESSCONTROL_COLLABORATORSENTRY,
-      __module__ = 'api_pb2'
+    'CollaboratorsEntry' : _reflection.GeneratedProtocolMessageType('CollaboratorsEntry', (_message.Message,), {
+      'DESCRIPTOR' : _OWNERSHIP_ACCESSCONTROL_COLLABORATORSENTRY,
+      '__module__' : 'api_pb2'
       # @@protoc_insertion_point(class_scope:openstorage.api.Ownership.AccessControl.CollaboratorsEntry)
-      ))
+      })
     ,
-    DESCRIPTOR = _OWNERSHIP_ACCESSCONTROL,
-    __module__ = 'api_pb2'
+    'DESCRIPTOR' : _OWNERSHIP_ACCESSCONTROL,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.Ownership.AccessControl)
-    ))
+    })
   ,
-  DESCRIPTOR = _OWNERSHIP,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _OWNERSHIP,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Ownership)
-  ))
+  })
 _sym_db.RegisterMessage(Ownership)
 _sym_db.RegisterMessage(Ownership.AccessControl)
 _sym_db.RegisterMessage(Ownership.AccessControl.GroupsEntry)
 _sym_db.RegisterMessage(Ownership.AccessControl.CollaboratorsEntry)
 
-Volume = _reflection.GeneratedProtocolMessageType('Volume', (_message.Message,), dict(
+Volume = _reflection.GeneratedProtocolMessageType('Volume', (_message.Message,), {
 
-  AttachInfoEntry = _reflection.GeneratedProtocolMessageType('AttachInfoEntry', (_message.Message,), dict(
-    DESCRIPTOR = _VOLUME_ATTACHINFOENTRY,
-    __module__ = 'api_pb2'
+  'AttachInfoEntry' : _reflection.GeneratedProtocolMessageType('AttachInfoEntry', (_message.Message,), {
+    'DESCRIPTOR' : _VOLUME_ATTACHINFOENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.Volume.AttachInfoEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _VOLUME,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _VOLUME,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Volume)
-  ))
+  })
 _sym_db.RegisterMessage(Volume)
 _sym_db.RegisterMessage(Volume.AttachInfoEntry)
 
-Stats = _reflection.GeneratedProtocolMessageType('Stats', (_message.Message,), dict(
-  DESCRIPTOR = _STATS,
-  __module__ = 'api_pb2'
+Stats = _reflection.GeneratedProtocolMessageType('Stats', (_message.Message,), {
+  'DESCRIPTOR' : _STATS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Stats)
-  ))
+  })
 _sym_db.RegisterMessage(Stats)
 
-CapacityUsageInfo = _reflection.GeneratedProtocolMessageType('CapacityUsageInfo', (_message.Message,), dict(
-  DESCRIPTOR = _CAPACITYUSAGEINFO,
-  __module__ = 'api_pb2'
+CapacityUsageInfo = _reflection.GeneratedProtocolMessageType('CapacityUsageInfo', (_message.Message,), {
+  'DESCRIPTOR' : _CAPACITYUSAGEINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CapacityUsageInfo)
-  ))
+  })
 _sym_db.RegisterMessage(CapacityUsageInfo)
 
-SdkStoragePolicy = _reflection.GeneratedProtocolMessageType('SdkStoragePolicy', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSTORAGEPOLICY,
-  __module__ = 'api_pb2'
+SdkStoragePolicy = _reflection.GeneratedProtocolMessageType('SdkStoragePolicy', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSTORAGEPOLICY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkStoragePolicy)
-  ))
+  })
 _sym_db.RegisterMessage(SdkStoragePolicy)
 
-Alert = _reflection.GeneratedProtocolMessageType('Alert', (_message.Message,), dict(
-  DESCRIPTOR = _ALERT,
-  __module__ = 'api_pb2'
+Alert = _reflection.GeneratedProtocolMessageType('Alert', (_message.Message,), {
+  'DESCRIPTOR' : _ALERT,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Alert)
-  ))
+  })
 _sym_db.RegisterMessage(Alert)
 
-SdkAlertsTimeSpan = _reflection.GeneratedProtocolMessageType('SdkAlertsTimeSpan', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSTIMESPAN,
-  __module__ = 'api_pb2'
+SdkAlertsTimeSpan = _reflection.GeneratedProtocolMessageType('SdkAlertsTimeSpan', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSTIMESPAN,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsTimeSpan)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsTimeSpan)
 
-SdkAlertsCountSpan = _reflection.GeneratedProtocolMessageType('SdkAlertsCountSpan', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSCOUNTSPAN,
-  __module__ = 'api_pb2'
+SdkAlertsCountSpan = _reflection.GeneratedProtocolMessageType('SdkAlertsCountSpan', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSCOUNTSPAN,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsCountSpan)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsCountSpan)
 
-SdkAlertsOption = _reflection.GeneratedProtocolMessageType('SdkAlertsOption', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSOPTION,
-  __module__ = 'api_pb2'
+SdkAlertsOption = _reflection.GeneratedProtocolMessageType('SdkAlertsOption', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSOPTION,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsOption)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsOption)
 
-SdkAlertsResourceTypeQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsResourceTypeQuery', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSRESOURCETYPEQUERY,
-  __module__ = 'api_pb2'
+SdkAlertsResourceTypeQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsResourceTypeQuery', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSRESOURCETYPEQUERY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsResourceTypeQuery)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsResourceTypeQuery)
 
-SdkAlertsAlertTypeQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsAlertTypeQuery', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSALERTTYPEQUERY,
-  __module__ = 'api_pb2'
+SdkAlertsAlertTypeQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsAlertTypeQuery', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSALERTTYPEQUERY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsAlertTypeQuery)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsAlertTypeQuery)
 
-SdkAlertsResourceIdQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsResourceIdQuery', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSRESOURCEIDQUERY,
-  __module__ = 'api_pb2'
+SdkAlertsResourceIdQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsResourceIdQuery', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSRESOURCEIDQUERY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsResourceIdQuery)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsResourceIdQuery)
 
-SdkAlertsQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsQuery', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSQUERY,
-  __module__ = 'api_pb2'
+SdkAlertsQuery = _reflection.GeneratedProtocolMessageType('SdkAlertsQuery', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSQUERY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsQuery)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsQuery)
 
-SdkAlertsEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkAlertsEnumerateWithFiltersRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSENUMERATEWITHFILTERSREQUEST,
-  __module__ = 'api_pb2'
+SdkAlertsEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkAlertsEnumerateWithFiltersRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSENUMERATEWITHFILTERSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsEnumerateWithFiltersRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsEnumerateWithFiltersRequest)
 
-SdkAlertsEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkAlertsEnumerateWithFiltersResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSENUMERATEWITHFILTERSRESPONSE,
-  __module__ = 'api_pb2'
+SdkAlertsEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkAlertsEnumerateWithFiltersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSENUMERATEWITHFILTERSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsEnumerateWithFiltersResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsEnumerateWithFiltersResponse)
 
-SdkAlertsDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkAlertsDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkAlertsDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkAlertsDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsDeleteRequest)
 
-SdkAlertsDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkAlertsDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKALERTSDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkAlertsDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkAlertsDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKALERTSDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAlertsDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAlertsDeleteResponse)
 
-Alerts = _reflection.GeneratedProtocolMessageType('Alerts', (_message.Message,), dict(
-  DESCRIPTOR = _ALERTS,
-  __module__ = 'api_pb2'
+Alerts = _reflection.GeneratedProtocolMessageType('Alerts', (_message.Message,), {
+  'DESCRIPTOR' : _ALERTS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Alerts)
-  ))
+  })
 _sym_db.RegisterMessage(Alerts)
 
-ObjectstoreInfo = _reflection.GeneratedProtocolMessageType('ObjectstoreInfo', (_message.Message,), dict(
-  DESCRIPTOR = _OBJECTSTOREINFO,
-  __module__ = 'api_pb2'
+ObjectstoreInfo = _reflection.GeneratedProtocolMessageType('ObjectstoreInfo', (_message.Message,), {
+  'DESCRIPTOR' : _OBJECTSTOREINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ObjectstoreInfo)
-  ))
+  })
 _sym_db.RegisterMessage(ObjectstoreInfo)
 
-VolumeCreateRequest = _reflection.GeneratedProtocolMessageType('VolumeCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMECREATEREQUEST,
-  __module__ = 'api_pb2'
+VolumeCreateRequest = _reflection.GeneratedProtocolMessageType('VolumeCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMECREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeCreateRequest)
 
-VolumeResponse = _reflection.GeneratedProtocolMessageType('VolumeResponse', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMERESPONSE,
-  __module__ = 'api_pb2'
+VolumeResponse = _reflection.GeneratedProtocolMessageType('VolumeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeResponse)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeResponse)
 
-VolumeCreateResponse = _reflection.GeneratedProtocolMessageType('VolumeCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMECREATERESPONSE,
-  __module__ = 'api_pb2'
+VolumeCreateResponse = _reflection.GeneratedProtocolMessageType('VolumeCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMECREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeCreateResponse)
 
-VolumeStateAction = _reflection.GeneratedProtocolMessageType('VolumeStateAction', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMESTATEACTION,
-  __module__ = 'api_pb2'
+VolumeStateAction = _reflection.GeneratedProtocolMessageType('VolumeStateAction', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMESTATEACTION,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeStateAction)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeStateAction)
 
-VolumeSetRequest = _reflection.GeneratedProtocolMessageType('VolumeSetRequest', (_message.Message,), dict(
+VolumeSetRequest = _reflection.GeneratedProtocolMessageType('VolumeSetRequest', (_message.Message,), {
 
-  OptionsEntry = _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _VOLUMESETREQUEST_OPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'OptionsEntry' : _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _VOLUMESETREQUEST_OPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSetRequest.OptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _VOLUMESETREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _VOLUMESETREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSetRequest)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeSetRequest)
 _sym_db.RegisterMessage(VolumeSetRequest.OptionsEntry)
 
-VolumeSetResponse = _reflection.GeneratedProtocolMessageType('VolumeSetResponse', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMESETRESPONSE,
-  __module__ = 'api_pb2'
+VolumeSetResponse = _reflection.GeneratedProtocolMessageType('VolumeSetResponse', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMESETRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeSetResponse)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeSetResponse)
 
-SnapCreateRequest = _reflection.GeneratedProtocolMessageType('SnapCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SNAPCREATEREQUEST,
-  __module__ = 'api_pb2'
+SnapCreateRequest = _reflection.GeneratedProtocolMessageType('SnapCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SNAPCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SnapCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SnapCreateRequest)
 
-SnapCreateResponse = _reflection.GeneratedProtocolMessageType('SnapCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SNAPCREATERESPONSE,
-  __module__ = 'api_pb2'
+SnapCreateResponse = _reflection.GeneratedProtocolMessageType('SnapCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SNAPCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SnapCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SnapCreateResponse)
 
-VolumeInfo = _reflection.GeneratedProtocolMessageType('VolumeInfo', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMEINFO,
-  __module__ = 'api_pb2'
+VolumeInfo = _reflection.GeneratedProtocolMessageType('VolumeInfo', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMEINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeInfo)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeInfo)
 
-VolumeConsumer = _reflection.GeneratedProtocolMessageType('VolumeConsumer', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMECONSUMER,
-  __module__ = 'api_pb2'
+VolumeConsumer = _reflection.GeneratedProtocolMessageType('VolumeConsumer', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMECONSUMER,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumeConsumer)
-  ))
+  })
 _sym_db.RegisterMessage(VolumeConsumer)
 
-GraphDriverChanges = _reflection.GeneratedProtocolMessageType('GraphDriverChanges', (_message.Message,), dict(
-  DESCRIPTOR = _GRAPHDRIVERCHANGES,
-  __module__ = 'api_pb2'
+GraphDriverChanges = _reflection.GeneratedProtocolMessageType('GraphDriverChanges', (_message.Message,), {
+  'DESCRIPTOR' : _GRAPHDRIVERCHANGES,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.GraphDriverChanges)
-  ))
+  })
 _sym_db.RegisterMessage(GraphDriverChanges)
 
-ClusterResponse = _reflection.GeneratedProtocolMessageType('ClusterResponse', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERRESPONSE,
-  __module__ = 'api_pb2'
+ClusterResponse = _reflection.GeneratedProtocolMessageType('ClusterResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterResponse)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterResponse)
 
-ActiveRequest = _reflection.GeneratedProtocolMessageType('ActiveRequest', (_message.Message,), dict(
+ActiveRequest = _reflection.GeneratedProtocolMessageType('ActiveRequest', (_message.Message,), {
 
-  ReqestKVEntry = _reflection.GeneratedProtocolMessageType('ReqestKVEntry', (_message.Message,), dict(
-    DESCRIPTOR = _ACTIVEREQUEST_REQESTKVENTRY,
-    __module__ = 'api_pb2'
+  'ReqestKVEntry' : _reflection.GeneratedProtocolMessageType('ReqestKVEntry', (_message.Message,), {
+    'DESCRIPTOR' : _ACTIVEREQUEST_REQESTKVENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.ActiveRequest.ReqestKVEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _ACTIVEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _ACTIVEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ActiveRequest)
-  ))
+  })
 _sym_db.RegisterMessage(ActiveRequest)
 _sym_db.RegisterMessage(ActiveRequest.ReqestKVEntry)
 
-ActiveRequests = _reflection.GeneratedProtocolMessageType('ActiveRequests', (_message.Message,), dict(
-  DESCRIPTOR = _ACTIVEREQUESTS,
-  __module__ = 'api_pb2'
+ActiveRequests = _reflection.GeneratedProtocolMessageType('ActiveRequests', (_message.Message,), {
+  'DESCRIPTOR' : _ACTIVEREQUESTS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ActiveRequests)
-  ))
+  })
 _sym_db.RegisterMessage(ActiveRequests)
 
-GroupSnapCreateRequest = _reflection.GeneratedProtocolMessageType('GroupSnapCreateRequest', (_message.Message,), dict(
+GroupSnapCreateRequest = _reflection.GeneratedProtocolMessageType('GroupSnapCreateRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _GROUPSNAPCREATEREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GROUPSNAPCREATEREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.GroupSnapCreateRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _GROUPSNAPCREATEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _GROUPSNAPCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.GroupSnapCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(GroupSnapCreateRequest)
 _sym_db.RegisterMessage(GroupSnapCreateRequest.LabelsEntry)
 
-GroupSnapCreateResponse = _reflection.GeneratedProtocolMessageType('GroupSnapCreateResponse', (_message.Message,), dict(
+GroupSnapCreateResponse = _reflection.GeneratedProtocolMessageType('GroupSnapCreateResponse', (_message.Message,), {
 
-  SnapshotsEntry = _reflection.GeneratedProtocolMessageType('SnapshotsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _GROUPSNAPCREATERESPONSE_SNAPSHOTSENTRY,
-    __module__ = 'api_pb2'
+  'SnapshotsEntry' : _reflection.GeneratedProtocolMessageType('SnapshotsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _GROUPSNAPCREATERESPONSE_SNAPSHOTSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.GroupSnapCreateResponse.SnapshotsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _GROUPSNAPCREATERESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _GROUPSNAPCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.GroupSnapCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(GroupSnapCreateResponse)
 _sym_db.RegisterMessage(GroupSnapCreateResponse.SnapshotsEntry)
 
-StorageNode = _reflection.GeneratedProtocolMessageType('StorageNode', (_message.Message,), dict(
+StorageNode = _reflection.GeneratedProtocolMessageType('StorageNode', (_message.Message,), {
 
-  DisksEntry = _reflection.GeneratedProtocolMessageType('DisksEntry', (_message.Message,), dict(
-    DESCRIPTOR = _STORAGENODE_DISKSENTRY,
-    __module__ = 'api_pb2'
+  'DisksEntry' : _reflection.GeneratedProtocolMessageType('DisksEntry', (_message.Message,), {
+    'DESCRIPTOR' : _STORAGENODE_DISKSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.StorageNode.DisksEntry)
-    ))
+    })
   ,
 
-  NodeLabelsEntry = _reflection.GeneratedProtocolMessageType('NodeLabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _STORAGENODE_NODELABELSENTRY,
-    __module__ = 'api_pb2'
+  'NodeLabelsEntry' : _reflection.GeneratedProtocolMessageType('NodeLabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _STORAGENODE_NODELABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.StorageNode.NodeLabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _STORAGENODE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _STORAGENODE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.StorageNode)
-  ))
+  })
 _sym_db.RegisterMessage(StorageNode)
 _sym_db.RegisterMessage(StorageNode.DisksEntry)
 _sym_db.RegisterMessage(StorageNode.NodeLabelsEntry)
 
-StorageCluster = _reflection.GeneratedProtocolMessageType('StorageCluster', (_message.Message,), dict(
-  DESCRIPTOR = _STORAGECLUSTER,
-  __module__ = 'api_pb2'
+StorageCluster = _reflection.GeneratedProtocolMessageType('StorageCluster', (_message.Message,), {
+  'DESCRIPTOR' : _STORAGECLUSTER,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.StorageCluster)
-  ))
+  })
 _sym_db.RegisterMessage(StorageCluster)
 
-SdkOpenStoragePolicyCreateRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYCREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyCreateRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyCreateRequest)
 
-SdkOpenStoragePolicyCreateResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyCreateResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyCreateResponse)
 
-SdkOpenStoragePolicyEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyEnumerateRequest)
 
-SdkOpenStoragePolicyEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyEnumerateResponse)
 
-SdkOpenStoragePolicyInspectRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyInspectRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyInspectRequest)
 
-SdkOpenStoragePolicyInspectResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyInspectResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyInspectResponse)
 
-SdkOpenStoragePolicyDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyDeleteRequest)
 
-SdkOpenStoragePolicyDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyDeleteResponse)
 
-SdkOpenStoragePolicyUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyUpdateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYUPDATEREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyUpdateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYUPDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyUpdateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyUpdateRequest)
 
-SdkOpenStoragePolicyUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyUpdateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYUPDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyUpdateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYUPDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyUpdateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyUpdateResponse)
 
-SdkOpenStoragePolicySetDefaultRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicySetDefaultRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYSETDEFAULTREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicySetDefaultRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicySetDefaultRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYSETDEFAULTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicySetDefaultRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicySetDefaultRequest)
 
-SdkOpenStoragePolicySetDefaultResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicySetDefaultResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYSETDEFAULTRESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicySetDefaultResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicySetDefaultResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYSETDEFAULTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicySetDefaultResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicySetDefaultResponse)
 
-SdkOpenStoragePolicyReleaseRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyReleaseRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYRELEASEREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyReleaseRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyReleaseRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYRELEASEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyReleaseRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyReleaseRequest)
 
-SdkOpenStoragePolicyReleaseResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyReleaseResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYRELEASERESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyReleaseResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyReleaseResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYRELEASERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyReleaseResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyReleaseResponse)
 
-SdkOpenStoragePolicyDefaultInspectRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDefaultInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYDEFAULTINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyDefaultInspectRequest = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDefaultInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYDEFAULTINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyDefaultInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyDefaultInspectRequest)
 
-SdkOpenStoragePolicyDefaultInspectResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDefaultInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOPENSTORAGEPOLICYDEFAULTINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkOpenStoragePolicyDefaultInspectResponse = _reflection.GeneratedProtocolMessageType('SdkOpenStoragePolicyDefaultInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOPENSTORAGEPOLICYDEFAULTINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkOpenStoragePolicyDefaultInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkOpenStoragePolicyDefaultInspectResponse)
 
-SdkSchedulePolicyCreateRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYCREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyCreateRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyCreateRequest)
 
-SdkSchedulePolicyCreateResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyCreateResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyCreateResponse)
 
-SdkSchedulePolicyUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyUpdateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYUPDATEREQUEST,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyUpdateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYUPDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyUpdateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyUpdateRequest)
 
-SdkSchedulePolicyUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyUpdateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYUPDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyUpdateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYUPDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyUpdateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyUpdateResponse)
 
-SdkSchedulePolicyEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyEnumerateRequest)
 
-SdkSchedulePolicyEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyEnumerateResponse)
 
-SdkSchedulePolicyInspectRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyInspectRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyInspectRequest)
 
-SdkSchedulePolicyInspectResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyInspectResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyInspectResponse)
 
-SdkSchedulePolicyDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyDeleteRequest)
 
-SdkSchedulePolicyDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyDeleteResponse)
 
-SdkSchedulePolicyIntervalDaily = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalDaily', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINTERVALDAILY,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyIntervalDaily = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalDaily', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINTERVALDAILY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyIntervalDaily)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyIntervalDaily)
 
-SdkSchedulePolicyIntervalWeekly = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalWeekly', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINTERVALWEEKLY,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyIntervalWeekly = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalWeekly', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINTERVALWEEKLY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyIntervalWeekly)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyIntervalWeekly)
 
-SdkSchedulePolicyIntervalMonthly = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalMonthly', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINTERVALMONTHLY,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyIntervalMonthly = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalMonthly', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINTERVALMONTHLY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyIntervalMonthly)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyIntervalMonthly)
 
-SdkSchedulePolicyIntervalPeriodic = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalPeriodic', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINTERVALPERIODIC,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyIntervalPeriodic = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyIntervalPeriodic', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINTERVALPERIODIC,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyIntervalPeriodic)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyIntervalPeriodic)
 
-SdkSchedulePolicyInterval = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyInterval', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICYINTERVAL,
-  __module__ = 'api_pb2'
+SdkSchedulePolicyInterval = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicyInterval', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICYINTERVAL,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicyInterval)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicyInterval)
 
-SdkSchedulePolicy = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicy', (_message.Message,), dict(
-  DESCRIPTOR = _SDKSCHEDULEPOLICY,
-  __module__ = 'api_pb2'
+SdkSchedulePolicy = _reflection.GeneratedProtocolMessageType('SdkSchedulePolicy', (_message.Message,), {
+  'DESCRIPTOR' : _SDKSCHEDULEPOLICY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkSchedulePolicy)
-  ))
+  })
 _sym_db.RegisterMessage(SdkSchedulePolicy)
 
-SdkCredentialCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALCREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkCredentialCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialCreateRequest)
 
-SdkCredentialCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkCredentialCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialCreateResponse)
 
-SdkAwsCredentialRequest = _reflection.GeneratedProtocolMessageType('SdkAwsCredentialRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKAWSCREDENTIALREQUEST,
-  __module__ = 'api_pb2'
+SdkAwsCredentialRequest = _reflection.GeneratedProtocolMessageType('SdkAwsCredentialRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKAWSCREDENTIALREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAwsCredentialRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAwsCredentialRequest)
 
-SdkAzureCredentialRequest = _reflection.GeneratedProtocolMessageType('SdkAzureCredentialRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKAZURECREDENTIALREQUEST,
-  __module__ = 'api_pb2'
+SdkAzureCredentialRequest = _reflection.GeneratedProtocolMessageType('SdkAzureCredentialRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKAZURECREDENTIALREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAzureCredentialRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAzureCredentialRequest)
 
-SdkGoogleCredentialRequest = _reflection.GeneratedProtocolMessageType('SdkGoogleCredentialRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKGOOGLECREDENTIALREQUEST,
-  __module__ = 'api_pb2'
+SdkGoogleCredentialRequest = _reflection.GeneratedProtocolMessageType('SdkGoogleCredentialRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKGOOGLECREDENTIALREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkGoogleCredentialRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkGoogleCredentialRequest)
 
-SdkAwsCredentialResponse = _reflection.GeneratedProtocolMessageType('SdkAwsCredentialResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKAWSCREDENTIALRESPONSE,
-  __module__ = 'api_pb2'
+SdkAwsCredentialResponse = _reflection.GeneratedProtocolMessageType('SdkAwsCredentialResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKAWSCREDENTIALRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAwsCredentialResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAwsCredentialResponse)
 
-SdkAzureCredentialResponse = _reflection.GeneratedProtocolMessageType('SdkAzureCredentialResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKAZURECREDENTIALRESPONSE,
-  __module__ = 'api_pb2'
+SdkAzureCredentialResponse = _reflection.GeneratedProtocolMessageType('SdkAzureCredentialResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKAZURECREDENTIALRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkAzureCredentialResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkAzureCredentialResponse)
 
-SdkGoogleCredentialResponse = _reflection.GeneratedProtocolMessageType('SdkGoogleCredentialResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKGOOGLECREDENTIALRESPONSE,
-  __module__ = 'api_pb2'
+SdkGoogleCredentialResponse = _reflection.GeneratedProtocolMessageType('SdkGoogleCredentialResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKGOOGLECREDENTIALRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkGoogleCredentialResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkGoogleCredentialResponse)
 
-SdkCredentialEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkCredentialEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialEnumerateRequest)
 
-SdkCredentialEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkCredentialEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialEnumerateResponse)
 
-SdkCredentialInspectRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkCredentialInspectRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialInspectRequest)
 
-SdkCredentialInspectResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkCredentialInspectResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialInspectResponse)
 
-SdkCredentialDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkCredentialDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialDeleteRequest)
 
-SdkCredentialDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkCredentialDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialDeleteResponse)
 
-SdkCredentialValidateRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialValidateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALVALIDATEREQUEST,
-  __module__ = 'api_pb2'
+SdkCredentialValidateRequest = _reflection.GeneratedProtocolMessageType('SdkCredentialValidateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALVALIDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialValidateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialValidateRequest)
 
-SdkCredentialValidateResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialValidateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCREDENTIALVALIDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkCredentialValidateResponse = _reflection.GeneratedProtocolMessageType('SdkCredentialValidateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCREDENTIALVALIDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCredentialValidateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCredentialValidateResponse)
 
-SdkVolumeAttachOptions = _reflection.GeneratedProtocolMessageType('SdkVolumeAttachOptions', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEATTACHOPTIONS,
-  __module__ = 'api_pb2'
+SdkVolumeAttachOptions = _reflection.GeneratedProtocolMessageType('SdkVolumeAttachOptions', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEATTACHOPTIONS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeAttachOptions)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeAttachOptions)
 
-SdkVolumeMountRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeMountRequest', (_message.Message,), dict(
+SdkVolumeMountRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeMountRequest', (_message.Message,), {
 
-  DriverOptionsEntry = _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEMOUNTREQUEST_DRIVEROPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'DriverOptionsEntry' : _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEMOUNTREQUEST_DRIVEROPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeMountRequest.DriverOptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEMOUNTREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEMOUNTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeMountRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeMountRequest)
 _sym_db.RegisterMessage(SdkVolumeMountRequest.DriverOptionsEntry)
 
-SdkVolumeMountResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeMountResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEMOUNTRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeMountResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeMountResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEMOUNTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeMountResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeMountResponse)
 
-SdkVolumeUnmountOptions = _reflection.GeneratedProtocolMessageType('SdkVolumeUnmountOptions', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEUNMOUNTOPTIONS,
-  __module__ = 'api_pb2'
+SdkVolumeUnmountOptions = _reflection.GeneratedProtocolMessageType('SdkVolumeUnmountOptions', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEUNMOUNTOPTIONS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUnmountOptions)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeUnmountOptions)
 
-SdkVolumeUnmountRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeUnmountRequest', (_message.Message,), dict(
+SdkVolumeUnmountRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeUnmountRequest', (_message.Message,), {
 
-  DriverOptionsEntry = _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEUNMOUNTREQUEST_DRIVEROPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'DriverOptionsEntry' : _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEUNMOUNTREQUEST_DRIVEROPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUnmountRequest.DriverOptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEUNMOUNTREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEUNMOUNTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUnmountRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeUnmountRequest)
 _sym_db.RegisterMessage(SdkVolumeUnmountRequest.DriverOptionsEntry)
 
-SdkVolumeUnmountResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeUnmountResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEUNMOUNTRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeUnmountResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeUnmountResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEUNMOUNTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUnmountResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeUnmountResponse)
 
-SdkVolumeAttachRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeAttachRequest', (_message.Message,), dict(
+SdkVolumeAttachRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeAttachRequest', (_message.Message,), {
 
-  DriverOptionsEntry = _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEATTACHREQUEST_DRIVEROPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'DriverOptionsEntry' : _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEATTACHREQUEST_DRIVEROPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeAttachRequest.DriverOptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEATTACHREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEATTACHREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeAttachRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeAttachRequest)
 _sym_db.RegisterMessage(SdkVolumeAttachRequest.DriverOptionsEntry)
 
-SdkVolumeAttachResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeAttachResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEATTACHRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeAttachResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeAttachResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEATTACHRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeAttachResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeAttachResponse)
 
-SdkVolumeDetachOptions = _reflection.GeneratedProtocolMessageType('SdkVolumeDetachOptions', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEDETACHOPTIONS,
-  __module__ = 'api_pb2'
+SdkVolumeDetachOptions = _reflection.GeneratedProtocolMessageType('SdkVolumeDetachOptions', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEDETACHOPTIONS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeDetachOptions)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeDetachOptions)
 
-SdkVolumeDetachRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeDetachRequest', (_message.Message,), dict(
+SdkVolumeDetachRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeDetachRequest', (_message.Message,), {
 
-  DriverOptionsEntry = _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEDETACHREQUEST_DRIVEROPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'DriverOptionsEntry' : _reflection.GeneratedProtocolMessageType('DriverOptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEDETACHREQUEST_DRIVEROPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeDetachRequest.DriverOptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEDETACHREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEDETACHREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeDetachRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeDetachRequest)
 _sym_db.RegisterMessage(SdkVolumeDetachRequest.DriverOptionsEntry)
 
-SdkVolumeDetachResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeDetachResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEDETACHRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeDetachResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeDetachResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEDETACHRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeDetachResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeDetachResponse)
 
-SdkVolumeCreateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeCreateRequest', (_message.Message,), dict(
+SdkVolumeCreateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeCreateRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMECREATEREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMECREATEREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCreateRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMECREATEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMECREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeCreateRequest)
 _sym_db.RegisterMessage(SdkVolumeCreateRequest.LabelsEntry)
 
-SdkVolumeCreateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMECREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeCreateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMECREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeCreateResponse)
 
-SdkVolumeCloneRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeCloneRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMECLONEREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeCloneRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeCloneRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMECLONEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCloneRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeCloneRequest)
 
-SdkVolumeCloneResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeCloneResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMECLONERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeCloneResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeCloneResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMECLONERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCloneResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeCloneResponse)
 
-SdkVolumeDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeDeleteRequest)
 
-SdkVolumeDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeDeleteResponse)
 
-SdkVolumeInspectRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeInspectRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeInspectRequest)
 
-SdkVolumeInspectResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectResponse', (_message.Message,), dict(
+SdkVolumeInspectResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectResponse', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEINSPECTRESPONSE_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEINSPECTRESPONSE_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeInspectResponse.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeInspectResponse)
 _sym_db.RegisterMessage(SdkVolumeInspectResponse.LabelsEntry)
 
-SdkVolumeInspectWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectWithFiltersRequest', (_message.Message,), dict(
+SdkVolumeInspectWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectWithFiltersRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEINSPECTWITHFILTERSREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEINSPECTWITHFILTERSREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeInspectWithFiltersRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEINSPECTWITHFILTERSREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEINSPECTWITHFILTERSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeInspectWithFiltersRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeInspectWithFiltersRequest)
 _sym_db.RegisterMessage(SdkVolumeInspectWithFiltersRequest.LabelsEntry)
 
-SdkVolumeInspectWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectWithFiltersResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEINSPECTWITHFILTERSRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeInspectWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeInspectWithFiltersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEINSPECTWITHFILTERSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeInspectWithFiltersResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeInspectWithFiltersResponse)
 
-SdkVolumeUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeUpdateRequest', (_message.Message,), dict(
+SdkVolumeUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeUpdateRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEUPDATEREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEUPDATEREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUpdateRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEUPDATEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEUPDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUpdateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeUpdateRequest)
 _sym_db.RegisterMessage(SdkVolumeUpdateRequest.LabelsEntry)
 
-SdkVolumeUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeUpdateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEUPDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeUpdateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEUPDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeUpdateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeUpdateResponse)
 
-SdkVolumeStatsRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeStatsRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESTATSREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeStatsRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeStatsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESTATSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeStatsRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeStatsRequest)
 
-SdkVolumeStatsResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeStatsResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESTATSRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeStatsResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeStatsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESTATSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeStatsResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeStatsResponse)
 
-SdkVolumeCapacityUsageRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeCapacityUsageRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMECAPACITYUSAGEREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeCapacityUsageRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeCapacityUsageRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMECAPACITYUSAGEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCapacityUsageRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeCapacityUsageRequest)
 
-SdkVolumeCapacityUsageResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeCapacityUsageResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMECAPACITYUSAGERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeCapacityUsageResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeCapacityUsageResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMECAPACITYUSAGERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeCapacityUsageResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeCapacityUsageResponse)
 
-SdkVolumeEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeEnumerateRequest)
 
-SdkVolumeEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeEnumerateResponse)
 
-SdkVolumeEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateWithFiltersRequest', (_message.Message,), dict(
+SdkVolumeEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateWithFiltersRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMEENUMERATEWITHFILTERSREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMEENUMERATEWITHFILTERSREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeEnumerateWithFiltersRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMEENUMERATEWITHFILTERSREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMEENUMERATEWITHFILTERSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeEnumerateWithFiltersRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeEnumerateWithFiltersRequest)
 _sym_db.RegisterMessage(SdkVolumeEnumerateWithFiltersRequest.LabelsEntry)
 
-SdkVolumeEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateWithFiltersResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMEENUMERATEWITHFILTERSRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeEnumerateWithFiltersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMEENUMERATEWITHFILTERSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeEnumerateWithFiltersResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeEnumerateWithFiltersResponse)
 
-SdkVolumeSnapshotCreateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotCreateRequest', (_message.Message,), dict(
+SdkVolumeSnapshotCreateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotCreateRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMESNAPSHOTCREATEREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMESNAPSHOTCREATEREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotCreateRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTCREATEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotCreateRequest)
 _sym_db.RegisterMessage(SdkVolumeSnapshotCreateRequest.LabelsEntry)
 
-SdkVolumeSnapshotCreateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotCreateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotCreateResponse)
 
-SdkVolumeSnapshotRestoreRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotRestoreRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTRESTOREREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotRestoreRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotRestoreRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTRESTOREREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotRestoreRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotRestoreRequest)
 
-SdkVolumeSnapshotRestoreResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotRestoreResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTRESTORERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotRestoreResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotRestoreResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTRESTORERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotRestoreResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotRestoreResponse)
 
-SdkVolumeSnapshotEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotEnumerateRequest)
 
-SdkVolumeSnapshotEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotEnumerateResponse)
 
-SdkVolumeSnapshotEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateWithFiltersRequest', (_message.Message,), dict(
+SdkVolumeSnapshotEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateWithFiltersRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotEnumerateWithFiltersRequest)
 _sym_db.RegisterMessage(SdkVolumeSnapshotEnumerateWithFiltersRequest.LabelsEntry)
 
-SdkVolumeSnapshotEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateWithFiltersResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSRESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotEnumerateWithFiltersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTENUMERATEWITHFILTERSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotEnumerateWithFiltersResponse)
 
-SdkVolumeSnapshotScheduleUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotScheduleUpdateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTSCHEDULEUPDATEREQUEST,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotScheduleUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotScheduleUpdateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTSCHEDULEUPDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotScheduleUpdateRequest)
 
-SdkVolumeSnapshotScheduleUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotScheduleUpdateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVOLUMESNAPSHOTSCHEDULEUPDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkVolumeSnapshotScheduleUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkVolumeSnapshotScheduleUpdateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVOLUMESNAPSHOTSCHEDULEUPDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVolumeSnapshotScheduleUpdateResponse)
 
-SdkClusterDomainsEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainsEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAINSENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterDomainsEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainsEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAINSENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainsEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainsEnumerateRequest)
 
-SdkClusterDomainsEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainsEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAINSENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterDomainsEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainsEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAINSENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainsEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainsEnumerateResponse)
 
-SdkClusterDomainInspectRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAININSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterDomainInspectRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAININSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainInspectRequest)
 
-SdkClusterDomainInspectResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAININSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterDomainInspectResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAININSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainInspectResponse)
 
-SdkClusterDomainActivateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainActivateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAINACTIVATEREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterDomainActivateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainActivateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAINACTIVATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainActivateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainActivateRequest)
 
-SdkClusterDomainActivateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainActivateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAINACTIVATERESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterDomainActivateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainActivateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAINACTIVATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainActivateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainActivateResponse)
 
-SdkClusterDomainDeactivateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainDeactivateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAINDEACTIVATEREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterDomainDeactivateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterDomainDeactivateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAINDEACTIVATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainDeactivateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainDeactivateRequest)
 
-SdkClusterDomainDeactivateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainDeactivateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERDOMAINDEACTIVATERESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterDomainDeactivateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterDomainDeactivateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERDOMAINDEACTIVATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterDomainDeactivateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterDomainDeactivateResponse)
 
-SdkClusterInspectCurrentRequest = _reflection.GeneratedProtocolMessageType('SdkClusterInspectCurrentRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERINSPECTCURRENTREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterInspectCurrentRequest = _reflection.GeneratedProtocolMessageType('SdkClusterInspectCurrentRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERINSPECTCURRENTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterInspectCurrentRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterInspectCurrentRequest)
 
-SdkClusterInspectCurrentResponse = _reflection.GeneratedProtocolMessageType('SdkClusterInspectCurrentResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERINSPECTCURRENTRESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterInspectCurrentResponse = _reflection.GeneratedProtocolMessageType('SdkClusterInspectCurrentResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERINSPECTCURRENTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterInspectCurrentResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterInspectCurrentResponse)
 
-SdkNodeInspectRequest = _reflection.GeneratedProtocolMessageType('SdkNodeInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKNODEINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkNodeInspectRequest = _reflection.GeneratedProtocolMessageType('SdkNodeInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkNodeInspectRequest)
 
-SdkNodeInspectResponse = _reflection.GeneratedProtocolMessageType('SdkNodeInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKNODEINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkNodeInspectResponse = _reflection.GeneratedProtocolMessageType('SdkNodeInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkNodeInspectResponse)
 
-SdkNodeInspectCurrentRequest = _reflection.GeneratedProtocolMessageType('SdkNodeInspectCurrentRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKNODEINSPECTCURRENTREQUEST,
-  __module__ = 'api_pb2'
+SdkNodeInspectCurrentRequest = _reflection.GeneratedProtocolMessageType('SdkNodeInspectCurrentRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEINSPECTCURRENTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeInspectCurrentRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkNodeInspectCurrentRequest)
 
-SdkNodeInspectCurrentResponse = _reflection.GeneratedProtocolMessageType('SdkNodeInspectCurrentResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKNODEINSPECTCURRENTRESPONSE,
-  __module__ = 'api_pb2'
+SdkNodeInspectCurrentResponse = _reflection.GeneratedProtocolMessageType('SdkNodeInspectCurrentResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEINSPECTCURRENTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeInspectCurrentResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkNodeInspectCurrentResponse)
 
-SdkNodeEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkNodeEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKNODEENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkNodeEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkNodeEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkNodeEnumerateRequest)
 
-SdkNodeEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkNodeEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKNODEENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkNodeEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkNodeEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkNodeEnumerateResponse)
 
-SdkObjectstoreInspectRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTOREINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkNodeEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkNodeEnumerateWithFiltersRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEENUMERATEWITHFILTERSREQUEST,
+  '__module__' : 'api_pb2'
+  # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeEnumerateWithFiltersRequest)
+  })
+_sym_db.RegisterMessage(SdkNodeEnumerateWithFiltersRequest)
+
+SdkNodeEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkNodeEnumerateWithFiltersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKNODEENUMERATEWITHFILTERSRESPONSE,
+  '__module__' : 'api_pb2'
+  # @@protoc_insertion_point(class_scope:openstorage.api.SdkNodeEnumerateWithFiltersResponse)
+  })
+_sym_db.RegisterMessage(SdkNodeEnumerateWithFiltersResponse)
+
+SdkObjectstoreInspectRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTOREINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreInspectRequest)
 
-SdkObjectstoreInspectResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTOREINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkObjectstoreInspectResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTOREINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreInspectResponse)
 
-SdkObjectstoreCreateRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTORECREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkObjectstoreCreateRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTORECREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreCreateRequest)
 
-SdkObjectstoreCreateResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTORECREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkObjectstoreCreateResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTORECREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreCreateResponse)
 
-SdkObjectstoreDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTOREDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkObjectstoreDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTOREDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreDeleteRequest)
 
-SdkObjectstoreDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTOREDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkObjectstoreDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTOREDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreDeleteResponse)
 
-SdkObjectstoreUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreUpdateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTOREUPDATEREQUEST,
-  __module__ = 'api_pb2'
+SdkObjectstoreUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkObjectstoreUpdateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTOREUPDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreUpdateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreUpdateRequest)
 
-SdkObjectstoreUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreUpdateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKOBJECTSTOREUPDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkObjectstoreUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkObjectstoreUpdateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKOBJECTSTOREUPDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkObjectstoreUpdateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkObjectstoreUpdateResponse)
 
-SdkCloudBackupCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCreateRequest', (_message.Message,), dict(
+SdkCloudBackupCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCreateRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDBACKUPCREATEREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDBACKUPCREATEREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupCreateRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDBACKUPCREATEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDBACKUPCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupCreateRequest)
 _sym_db.RegisterMessage(SdkCloudBackupCreateRequest.LabelsEntry)
 
-SdkCloudBackupCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupCreateResponse)
 
-SdkCloudBackupGroupCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupGroupCreateRequest', (_message.Message,), dict(
+SdkCloudBackupGroupCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupGroupCreateRequest', (_message.Message,), {
 
-  LabelsEntry = _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDBACKUPGROUPCREATEREQUEST_LABELSENTRY,
-    __module__ = 'api_pb2'
+  'LabelsEntry' : _reflection.GeneratedProtocolMessageType('LabelsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDBACKUPGROUPCREATEREQUEST_LABELSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupGroupCreateRequest.LabelsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDBACKUPGROUPCREATEREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDBACKUPGROUPCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupGroupCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupGroupCreateRequest)
 _sym_db.RegisterMessage(SdkCloudBackupGroupCreateRequest.LabelsEntry)
 
-SdkCloudBackupGroupCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupGroupCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPGROUPCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupGroupCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupGroupCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPGROUPCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupGroupCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupGroupCreateResponse)
 
-SdkCloudBackupRestoreRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupRestoreRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPRESTOREREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupRestoreRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupRestoreRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPRESTOREREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupRestoreRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupRestoreRequest)
 
-SdkCloudBackupRestoreResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupRestoreResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPRESTORERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupRestoreResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupRestoreResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPRESTORERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupRestoreResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupRestoreResponse)
 
-SdkCloudBackupDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupDeleteRequest)
 
-SdkCloudBackupDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupDeleteResponse)
 
-SdkCloudBackupDeleteAllRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteAllRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPDELETEALLREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupDeleteAllRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteAllRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPDELETEALLREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupDeleteAllRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupDeleteAllRequest)
 
-SdkCloudBackupDeleteAllResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteAllResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPDELETEALLRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupDeleteAllResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupDeleteAllResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPDELETEALLRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupDeleteAllResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupDeleteAllResponse)
 
-SdkCloudBackupEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupEnumerateWithFiltersRequest', (_message.Message,), dict(
+SdkCloudBackupEnumerateWithFiltersRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupEnumerateWithFiltersRequest', (_message.Message,), {
 
-  MetadataFilterEntry = _reflection.GeneratedProtocolMessageType('MetadataFilterEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST_METADATAFILTERENTRY,
-    __module__ = 'api_pb2'
+  'MetadataFilterEntry' : _reflection.GeneratedProtocolMessageType('MetadataFilterEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST_METADATAFILTERENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDBACKUPENUMERATEWITHFILTERSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupEnumerateWithFiltersRequest)
 _sym_db.RegisterMessage(SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry)
 
-SdkCloudBackupInfo = _reflection.GeneratedProtocolMessageType('SdkCloudBackupInfo', (_message.Message,), dict(
+SdkCloudBackupInfo = _reflection.GeneratedProtocolMessageType('SdkCloudBackupInfo', (_message.Message,), {
 
-  MetadataEntry = _reflection.GeneratedProtocolMessageType('MetadataEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDBACKUPINFO_METADATAENTRY,
-    __module__ = 'api_pb2'
+  'MetadataEntry' : _reflection.GeneratedProtocolMessageType('MetadataEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDBACKUPINFO_METADATAENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupInfo.MetadataEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDBACKUPINFO,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDBACKUPINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupInfo)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupInfo)
 _sym_db.RegisterMessage(SdkCloudBackupInfo.MetadataEntry)
 
-SdkCloudBackupEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupEnumerateWithFiltersResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPENUMERATEWITHFILTERSRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupEnumerateWithFiltersResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupEnumerateWithFiltersResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPENUMERATEWITHFILTERSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupEnumerateWithFiltersResponse)
 
-SdkCloudBackupStatus = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStatus', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSTATUS,
-  __module__ = 'api_pb2'
+SdkCloudBackupStatus = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStatus', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSTATUS,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupStatus)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupStatus)
 
-SdkCloudBackupStatusRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStatusRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSTATUSREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupStatusRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSTATUSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupStatusRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupStatusRequest)
 
-SdkCloudBackupStatusResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStatusResponse', (_message.Message,), dict(
+SdkCloudBackupStatusResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStatusResponse', (_message.Message,), {
 
-  StatusesEntry = _reflection.GeneratedProtocolMessageType('StatusesEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDBACKUPSTATUSRESPONSE_STATUSESENTRY,
-    __module__ = 'api_pb2'
+  'StatusesEntry' : _reflection.GeneratedProtocolMessageType('StatusesEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDBACKUPSTATUSRESPONSE_STATUSESENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupStatusResponse.StatusesEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDBACKUPSTATUSRESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSTATUSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupStatusResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupStatusResponse)
 _sym_db.RegisterMessage(SdkCloudBackupStatusResponse.StatusesEntry)
 
-SdkCloudBackupCatalogRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCatalogRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPCATALOGREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupCatalogRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCatalogRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPCATALOGREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupCatalogRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupCatalogRequest)
 
-SdkCloudBackupCatalogResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCatalogResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPCATALOGRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupCatalogResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupCatalogResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPCATALOGRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupCatalogResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupCatalogResponse)
 
-SdkCloudBackupHistoryItem = _reflection.GeneratedProtocolMessageType('SdkCloudBackupHistoryItem', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPHISTORYITEM,
-  __module__ = 'api_pb2'
+SdkCloudBackupHistoryItem = _reflection.GeneratedProtocolMessageType('SdkCloudBackupHistoryItem', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPHISTORYITEM,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupHistoryItem)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupHistoryItem)
 
-SdkCloudBackupHistoryRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupHistoryRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPHISTORYREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupHistoryRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupHistoryRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPHISTORYREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupHistoryRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupHistoryRequest)
 
-SdkCloudBackupHistoryResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupHistoryResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPHISTORYRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupHistoryResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupHistoryResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPHISTORYRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupHistoryResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupHistoryResponse)
 
-SdkCloudBackupStateChangeRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStateChangeRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSTATECHANGEREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupStateChangeRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStateChangeRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSTATECHANGEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupStateChangeRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupStateChangeRequest)
 
-SdkCloudBackupStateChangeResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStateChangeResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSTATECHANGERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupStateChangeResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupStateChangeResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSTATECHANGERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupStateChangeResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupStateChangeResponse)
 
-SdkCloudBackupScheduleInfo = _reflection.GeneratedProtocolMessageType('SdkCloudBackupScheduleInfo', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDULEINFO,
-  __module__ = 'api_pb2'
+SdkCloudBackupScheduleInfo = _reflection.GeneratedProtocolMessageType('SdkCloudBackupScheduleInfo', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDULEINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupScheduleInfo)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupScheduleInfo)
 
-SdkCloudBackupSchedCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDCREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupSchedCreateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupSchedCreateRequest)
 
-SdkCloudBackupSchedCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupSchedCreateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupSchedCreateResponse)
 
-SdkCloudBackupSchedDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupSchedDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupSchedDeleteRequest)
 
-SdkCloudBackupSchedDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudBackupSchedDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupSchedDeleteResponse)
 
-SdkCloudBackupSchedEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudBackupSchedEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupSchedEnumerateRequest)
 
-SdkCloudBackupSchedEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedEnumerateResponse', (_message.Message,), dict(
+SdkCloudBackupSchedEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkCloudBackupSchedEnumerateResponse', (_message.Message,), {
 
-  CloudSchedListEntry = _reflection.GeneratedProtocolMessageType('CloudSchedListEntry', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE_CLOUDSCHEDLISTENTRY,
-    __module__ = 'api_pb2'
+  'CloudSchedListEntry' : _reflection.GeneratedProtocolMessageType('CloudSchedListEntry', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE_CLOUDSCHEDLISTENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedEnumerateResponse.CloudSchedListEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDBACKUPSCHEDENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudBackupSchedEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudBackupSchedEnumerateResponse)
 _sym_db.RegisterMessage(SdkCloudBackupSchedEnumerateResponse.CloudSchedListEntry)
 
-SdkRule = _reflection.GeneratedProtocolMessageType('SdkRule', (_message.Message,), dict(
-  DESCRIPTOR = _SDKRULE,
-  __module__ = 'api_pb2'
+SdkRule = _reflection.GeneratedProtocolMessageType('SdkRule', (_message.Message,), {
+  'DESCRIPTOR' : _SDKRULE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRule)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRule)
 
-SdkRole = _reflection.GeneratedProtocolMessageType('SdkRole', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLE,
-  __module__ = 'api_pb2'
+SdkRole = _reflection.GeneratedProtocolMessageType('SdkRole', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRole)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRole)
 
-SdkRoleCreateRequest = _reflection.GeneratedProtocolMessageType('SdkRoleCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLECREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkRoleCreateRequest = _reflection.GeneratedProtocolMessageType('SdkRoleCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLECREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleCreateRequest)
 
-SdkRoleCreateResponse = _reflection.GeneratedProtocolMessageType('SdkRoleCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLECREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkRoleCreateResponse = _reflection.GeneratedProtocolMessageType('SdkRoleCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLECREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleCreateResponse)
 
-SdkRoleEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkRoleEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkRoleEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkRoleEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleEnumerateRequest)
 
-SdkRoleEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkRoleEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkRoleEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkRoleEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleEnumerateResponse)
 
-SdkRoleInspectRequest = _reflection.GeneratedProtocolMessageType('SdkRoleInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkRoleInspectRequest = _reflection.GeneratedProtocolMessageType('SdkRoleInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleInspectRequest)
 
-SdkRoleInspectResponse = _reflection.GeneratedProtocolMessageType('SdkRoleInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkRoleInspectResponse = _reflection.GeneratedProtocolMessageType('SdkRoleInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleInspectResponse)
 
-SdkRoleDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkRoleDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkRoleDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkRoleDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleDeleteRequest)
 
-SdkRoleDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkRoleDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkRoleDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkRoleDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleDeleteResponse)
 
-SdkRoleUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkRoleUpdateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEUPDATEREQUEST,
-  __module__ = 'api_pb2'
+SdkRoleUpdateRequest = _reflection.GeneratedProtocolMessageType('SdkRoleUpdateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEUPDATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleUpdateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleUpdateRequest)
 
-SdkRoleUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkRoleUpdateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKROLEUPDATERESPONSE,
-  __module__ = 'api_pb2'
+SdkRoleUpdateResponse = _reflection.GeneratedProtocolMessageType('SdkRoleUpdateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKROLEUPDATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkRoleUpdateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkRoleUpdateResponse)
 
-SdkIdentityCapabilitiesRequest = _reflection.GeneratedProtocolMessageType('SdkIdentityCapabilitiesRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKIDENTITYCAPABILITIESREQUEST,
-  __module__ = 'api_pb2'
+SdkIdentityCapabilitiesRequest = _reflection.GeneratedProtocolMessageType('SdkIdentityCapabilitiesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKIDENTITYCAPABILITIESREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkIdentityCapabilitiesRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkIdentityCapabilitiesRequest)
 
-SdkIdentityCapabilitiesResponse = _reflection.GeneratedProtocolMessageType('SdkIdentityCapabilitiesResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKIDENTITYCAPABILITIESRESPONSE,
-  __module__ = 'api_pb2'
+SdkIdentityCapabilitiesResponse = _reflection.GeneratedProtocolMessageType('SdkIdentityCapabilitiesResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKIDENTITYCAPABILITIESRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkIdentityCapabilitiesResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkIdentityCapabilitiesResponse)
 
-SdkIdentityVersionRequest = _reflection.GeneratedProtocolMessageType('SdkIdentityVersionRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKIDENTITYVERSIONREQUEST,
-  __module__ = 'api_pb2'
+SdkIdentityVersionRequest = _reflection.GeneratedProtocolMessageType('SdkIdentityVersionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKIDENTITYVERSIONREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkIdentityVersionRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkIdentityVersionRequest)
 
-SdkIdentityVersionResponse = _reflection.GeneratedProtocolMessageType('SdkIdentityVersionResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKIDENTITYVERSIONRESPONSE,
-  __module__ = 'api_pb2'
+SdkIdentityVersionResponse = _reflection.GeneratedProtocolMessageType('SdkIdentityVersionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKIDENTITYVERSIONRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkIdentityVersionResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkIdentityVersionResponse)
 
-SdkServiceCapability = _reflection.GeneratedProtocolMessageType('SdkServiceCapability', (_message.Message,), dict(
+SdkServiceCapability = _reflection.GeneratedProtocolMessageType('SdkServiceCapability', (_message.Message,), {
 
-  OpenStorageService = _reflection.GeneratedProtocolMessageType('OpenStorageService', (_message.Message,), dict(
-    DESCRIPTOR = _SDKSERVICECAPABILITY_OPENSTORAGESERVICE,
-    __module__ = 'api_pb2'
+  'OpenStorageService' : _reflection.GeneratedProtocolMessageType('OpenStorageService', (_message.Message,), {
+    'DESCRIPTOR' : _SDKSERVICECAPABILITY_OPENSTORAGESERVICE,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkServiceCapability.OpenStorageService)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKSERVICECAPABILITY,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKSERVICECAPABILITY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkServiceCapability)
-  ))
+  })
 _sym_db.RegisterMessage(SdkServiceCapability)
 _sym_db.RegisterMessage(SdkServiceCapability.OpenStorageService)
 
-SdkVersion = _reflection.GeneratedProtocolMessageType('SdkVersion', (_message.Message,), dict(
-  DESCRIPTOR = _SDKVERSION,
-  __module__ = 'api_pb2'
+SdkVersion = _reflection.GeneratedProtocolMessageType('SdkVersion', (_message.Message,), {
+  'DESCRIPTOR' : _SDKVERSION,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkVersion)
-  ))
+  })
 _sym_db.RegisterMessage(SdkVersion)
 
-StorageVersion = _reflection.GeneratedProtocolMessageType('StorageVersion', (_message.Message,), dict(
+StorageVersion = _reflection.GeneratedProtocolMessageType('StorageVersion', (_message.Message,), {
 
-  DetailsEntry = _reflection.GeneratedProtocolMessageType('DetailsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _STORAGEVERSION_DETAILSENTRY,
-    __module__ = 'api_pb2'
+  'DetailsEntry' : _reflection.GeneratedProtocolMessageType('DetailsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _STORAGEVERSION_DETAILSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.StorageVersion.DetailsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _STORAGEVERSION,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _STORAGEVERSION,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.StorageVersion)
-  ))
+  })
 _sym_db.RegisterMessage(StorageVersion)
 _sym_db.RegisterMessage(StorageVersion.DetailsEntry)
 
-CloudMigrate = _reflection.GeneratedProtocolMessageType('CloudMigrate', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATE,
-  __module__ = 'api_pb2'
+CloudMigrate = _reflection.GeneratedProtocolMessageType('CloudMigrate', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrate)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrate)
 
-CloudMigrateStartRequest = _reflection.GeneratedProtocolMessageType('CloudMigrateStartRequest', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATESTARTREQUEST,
-  __module__ = 'api_pb2'
+CloudMigrateStartRequest = _reflection.GeneratedProtocolMessageType('CloudMigrateStartRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATESTARTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateStartRequest)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateStartRequest)
 
-SdkCloudMigrateStartRequest = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStartRequest', (_message.Message,), dict(
+SdkCloudMigrateStartRequest = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStartRequest', (_message.Message,), {
 
-  MigrateVolume = _reflection.GeneratedProtocolMessageType('MigrateVolume', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUME,
-    __module__ = 'api_pb2'
+  'MigrateVolume' : _reflection.GeneratedProtocolMessageType('MigrateVolume', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUME,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStartRequest.MigrateVolume)
-    ))
+    })
   ,
 
-  MigrateVolumeGroup = _reflection.GeneratedProtocolMessageType('MigrateVolumeGroup', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUMEGROUP,
-    __module__ = 'api_pb2'
+  'MigrateVolumeGroup' : _reflection.GeneratedProtocolMessageType('MigrateVolumeGroup', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEVOLUMEGROUP,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStartRequest.MigrateVolumeGroup)
-    ))
+    })
   ,
 
-  MigrateAllVolumes = _reflection.GeneratedProtocolMessageType('MigrateAllVolumes', (_message.Message,), dict(
-    DESCRIPTOR = _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEALLVOLUMES,
-    __module__ = 'api_pb2'
+  'MigrateAllVolumes' : _reflection.GeneratedProtocolMessageType('MigrateAllVolumes', (_message.Message,), {
+    'DESCRIPTOR' : _SDKCLOUDMIGRATESTARTREQUEST_MIGRATEALLVOLUMES,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStartRequest.MigrateAllVolumes)
-    ))
+    })
   ,
-  DESCRIPTOR = _SDKCLOUDMIGRATESTARTREQUEST,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _SDKCLOUDMIGRATESTARTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStartRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudMigrateStartRequest)
 _sym_db.RegisterMessage(SdkCloudMigrateStartRequest.MigrateVolume)
 _sym_db.RegisterMessage(SdkCloudMigrateStartRequest.MigrateVolumeGroup)
 _sym_db.RegisterMessage(SdkCloudMigrateStartRequest.MigrateAllVolumes)
 
-CloudMigrateStartResponse = _reflection.GeneratedProtocolMessageType('CloudMigrateStartResponse', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATESTARTRESPONSE,
-  __module__ = 'api_pb2'
+CloudMigrateStartResponse = _reflection.GeneratedProtocolMessageType('CloudMigrateStartResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATESTARTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateStartResponse)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateStartResponse)
 
-SdkCloudMigrateStartResponse = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStartResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDMIGRATESTARTRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudMigrateStartResponse = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStartResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDMIGRATESTARTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStartResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudMigrateStartResponse)
 
-CloudMigrateCancelRequest = _reflection.GeneratedProtocolMessageType('CloudMigrateCancelRequest', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATECANCELREQUEST,
-  __module__ = 'api_pb2'
+CloudMigrateCancelRequest = _reflection.GeneratedProtocolMessageType('CloudMigrateCancelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATECANCELREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateCancelRequest)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateCancelRequest)
 
-SdkCloudMigrateCancelRequest = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateCancelRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDMIGRATECANCELREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudMigrateCancelRequest = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateCancelRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDMIGRATECANCELREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateCancelRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudMigrateCancelRequest)
 
-SdkCloudMigrateCancelResponse = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateCancelResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDMIGRATECANCELRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudMigrateCancelResponse = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateCancelResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDMIGRATECANCELRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateCancelResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudMigrateCancelResponse)
 
-CloudMigrateInfo = _reflection.GeneratedProtocolMessageType('CloudMigrateInfo', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATEINFO,
-  __module__ = 'api_pb2'
+CloudMigrateInfo = _reflection.GeneratedProtocolMessageType('CloudMigrateInfo', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATEINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateInfo)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateInfo)
 
-CloudMigrateInfoList = _reflection.GeneratedProtocolMessageType('CloudMigrateInfoList', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATEINFOLIST,
-  __module__ = 'api_pb2'
+CloudMigrateInfoList = _reflection.GeneratedProtocolMessageType('CloudMigrateInfoList', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATEINFOLIST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateInfoList)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateInfoList)
 
-SdkCloudMigrateStatusRequest = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStatusRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDMIGRATESTATUSREQUEST,
-  __module__ = 'api_pb2'
+SdkCloudMigrateStatusRequest = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDMIGRATESTATUSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStatusRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudMigrateStatusRequest)
 
-CloudMigrateStatusRequest = _reflection.GeneratedProtocolMessageType('CloudMigrateStatusRequest', (_message.Message,), dict(
-  DESCRIPTOR = _CLOUDMIGRATESTATUSREQUEST,
-  __module__ = 'api_pb2'
+CloudMigrateStatusRequest = _reflection.GeneratedProtocolMessageType('CloudMigrateStatusRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLOUDMIGRATESTATUSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateStatusRequest)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateStatusRequest)
 
-CloudMigrateStatusResponse = _reflection.GeneratedProtocolMessageType('CloudMigrateStatusResponse', (_message.Message,), dict(
+CloudMigrateStatusResponse = _reflection.GeneratedProtocolMessageType('CloudMigrateStatusResponse', (_message.Message,), {
 
-  InfoEntry = _reflection.GeneratedProtocolMessageType('InfoEntry', (_message.Message,), dict(
-    DESCRIPTOR = _CLOUDMIGRATESTATUSRESPONSE_INFOENTRY,
-    __module__ = 'api_pb2'
+  'InfoEntry' : _reflection.GeneratedProtocolMessageType('InfoEntry', (_message.Message,), {
+    'DESCRIPTOR' : _CLOUDMIGRATESTATUSRESPONSE_INFOENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateStatusResponse.InfoEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _CLOUDMIGRATESTATUSRESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _CLOUDMIGRATESTATUSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CloudMigrateStatusResponse)
-  ))
+  })
 _sym_db.RegisterMessage(CloudMigrateStatusResponse)
 _sym_db.RegisterMessage(CloudMigrateStatusResponse.InfoEntry)
 
-SdkCloudMigrateStatusResponse = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStatusResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLOUDMIGRATESTATUSRESPONSE,
-  __module__ = 'api_pb2'
+SdkCloudMigrateStatusResponse = _reflection.GeneratedProtocolMessageType('SdkCloudMigrateStatusResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLOUDMIGRATESTATUSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkCloudMigrateStatusResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkCloudMigrateStatusResponse)
 
-ClusterPairMode = _reflection.GeneratedProtocolMessageType('ClusterPairMode', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERPAIRMODE,
-  __module__ = 'api_pb2'
+ClusterPairMode = _reflection.GeneratedProtocolMessageType('ClusterPairMode', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERPAIRMODE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairMode)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairMode)
 
-ClusterPairCreateRequest = _reflection.GeneratedProtocolMessageType('ClusterPairCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERPAIRCREATEREQUEST,
-  __module__ = 'api_pb2'
+ClusterPairCreateRequest = _reflection.GeneratedProtocolMessageType('ClusterPairCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERPAIRCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairCreateRequest)
 
-ClusterPairCreateResponse = _reflection.GeneratedProtocolMessageType('ClusterPairCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERPAIRCREATERESPONSE,
-  __module__ = 'api_pb2'
+ClusterPairCreateResponse = _reflection.GeneratedProtocolMessageType('ClusterPairCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERPAIRCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairCreateResponse)
 
-SdkClusterPairCreateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairCreateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRCREATEREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterPairCreateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairCreateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRCREATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairCreateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairCreateRequest)
 
-SdkClusterPairCreateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairCreateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRCREATERESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterPairCreateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairCreateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRCREATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairCreateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairCreateResponse)
 
-ClusterPairProcessRequest = _reflection.GeneratedProtocolMessageType('ClusterPairProcessRequest', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERPAIRPROCESSREQUEST,
-  __module__ = 'api_pb2'
+ClusterPairProcessRequest = _reflection.GeneratedProtocolMessageType('ClusterPairProcessRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERPAIRPROCESSREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairProcessRequest)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairProcessRequest)
 
-ClusterPairProcessResponse = _reflection.GeneratedProtocolMessageType('ClusterPairProcessResponse', (_message.Message,), dict(
+ClusterPairProcessResponse = _reflection.GeneratedProtocolMessageType('ClusterPairProcessResponse', (_message.Message,), {
 
-  OptionsEntry = _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _CLUSTERPAIRPROCESSRESPONSE_OPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'OptionsEntry' : _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _CLUSTERPAIRPROCESSRESPONSE_OPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairProcessResponse.OptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _CLUSTERPAIRPROCESSRESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _CLUSTERPAIRPROCESSRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairProcessResponse)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairProcessResponse)
 _sym_db.RegisterMessage(ClusterPairProcessResponse.OptionsEntry)
 
-SdkClusterPairDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairDeleteRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRDELETEREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterPairDeleteRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairDeleteRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRDELETEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairDeleteRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairDeleteRequest)
 
-SdkClusterPairDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairDeleteResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRDELETERESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterPairDeleteResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairDeleteResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRDELETERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairDeleteResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairDeleteResponse)
 
-ClusterPairTokenGetResponse = _reflection.GeneratedProtocolMessageType('ClusterPairTokenGetResponse', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERPAIRTOKENGETRESPONSE,
-  __module__ = 'api_pb2'
+ClusterPairTokenGetResponse = _reflection.GeneratedProtocolMessageType('ClusterPairTokenGetResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERPAIRTOKENGETRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairTokenGetResponse)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairTokenGetResponse)
 
-SdkClusterPairGetTokenRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairGetTokenRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRGETTOKENREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterPairGetTokenRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairGetTokenRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRGETTOKENREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairGetTokenRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairGetTokenRequest)
 
-SdkClusterPairGetTokenResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairGetTokenResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRGETTOKENRESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterPairGetTokenResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairGetTokenResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRGETTOKENRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairGetTokenResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairGetTokenResponse)
 
-SdkClusterPairResetTokenRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairResetTokenRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRRESETTOKENREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterPairResetTokenRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairResetTokenRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRRESETTOKENREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairResetTokenRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairResetTokenRequest)
 
-SdkClusterPairResetTokenResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairResetTokenResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRRESETTOKENRESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterPairResetTokenResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairResetTokenResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRRESETTOKENRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairResetTokenResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairResetTokenResponse)
 
-ClusterPairInfo = _reflection.GeneratedProtocolMessageType('ClusterPairInfo', (_message.Message,), dict(
+ClusterPairInfo = _reflection.GeneratedProtocolMessageType('ClusterPairInfo', (_message.Message,), {
 
-  OptionsEntry = _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _CLUSTERPAIRINFO_OPTIONSENTRY,
-    __module__ = 'api_pb2'
+  'OptionsEntry' : _reflection.GeneratedProtocolMessageType('OptionsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _CLUSTERPAIRINFO_OPTIONSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairInfo.OptionsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _CLUSTERPAIRINFO,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _CLUSTERPAIRINFO,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairInfo)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairInfo)
 _sym_db.RegisterMessage(ClusterPairInfo.OptionsEntry)
 
-SdkClusterPairInspectRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairInspectRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRINSPECTREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterPairInspectRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairInspectRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRINSPECTREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairInspectRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairInspectRequest)
 
-ClusterPairGetResponse = _reflection.GeneratedProtocolMessageType('ClusterPairGetResponse', (_message.Message,), dict(
-  DESCRIPTOR = _CLUSTERPAIRGETRESPONSE,
-  __module__ = 'api_pb2'
+ClusterPairGetResponse = _reflection.GeneratedProtocolMessageType('ClusterPairGetResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CLUSTERPAIRGETRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairGetResponse)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairGetResponse)
 
-SdkClusterPairInspectResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairInspectResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRINSPECTRESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterPairInspectResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairInspectResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRINSPECTRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairInspectResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairInspectResponse)
 
-SdkClusterPairEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairEnumerateRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRENUMERATEREQUEST,
-  __module__ = 'api_pb2'
+SdkClusterPairEnumerateRequest = _reflection.GeneratedProtocolMessageType('SdkClusterPairEnumerateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRENUMERATEREQUEST,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairEnumerateRequest)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairEnumerateRequest)
 
-ClusterPairsEnumerateResponse = _reflection.GeneratedProtocolMessageType('ClusterPairsEnumerateResponse', (_message.Message,), dict(
+ClusterPairsEnumerateResponse = _reflection.GeneratedProtocolMessageType('ClusterPairsEnumerateResponse', (_message.Message,), {
 
-  PairsEntry = _reflection.GeneratedProtocolMessageType('PairsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _CLUSTERPAIRSENUMERATERESPONSE_PAIRSENTRY,
-    __module__ = 'api_pb2'
+  'PairsEntry' : _reflection.GeneratedProtocolMessageType('PairsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _CLUSTERPAIRSENUMERATERESPONSE_PAIRSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairsEnumerateResponse.PairsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _CLUSTERPAIRSENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _CLUSTERPAIRSENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ClusterPairsEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(ClusterPairsEnumerateResponse)
 _sym_db.RegisterMessage(ClusterPairsEnumerateResponse.PairsEntry)
 
-SdkClusterPairEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairEnumerateResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SDKCLUSTERPAIRENUMERATERESPONSE,
-  __module__ = 'api_pb2'
+SdkClusterPairEnumerateResponse = _reflection.GeneratedProtocolMessageType('SdkClusterPairEnumerateResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SDKCLUSTERPAIRENUMERATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.SdkClusterPairEnumerateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(SdkClusterPairEnumerateResponse)
 
-Catalog = _reflection.GeneratedProtocolMessageType('Catalog', (_message.Message,), dict(
-  DESCRIPTOR = _CATALOG,
-  __module__ = 'api_pb2'
+Catalog = _reflection.GeneratedProtocolMessageType('Catalog', (_message.Message,), {
+  'DESCRIPTOR' : _CATALOG,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Catalog)
-  ))
+  })
 _sym_db.RegisterMessage(Catalog)
 
-Report = _reflection.GeneratedProtocolMessageType('Report', (_message.Message,), dict(
-  DESCRIPTOR = _REPORT,
-  __module__ = 'api_pb2'
+Report = _reflection.GeneratedProtocolMessageType('Report', (_message.Message,), {
+  'DESCRIPTOR' : _REPORT,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.Report)
-  ))
+  })
 _sym_db.RegisterMessage(Report)
 
-CatalogResponse = _reflection.GeneratedProtocolMessageType('CatalogResponse', (_message.Message,), dict(
-  DESCRIPTOR = _CATALOGRESPONSE,
-  __module__ = 'api_pb2'
+CatalogResponse = _reflection.GeneratedProtocolMessageType('CatalogResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CATALOGRESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.CatalogResponse)
-  ))
+  })
 _sym_db.RegisterMessage(CatalogResponse)
 
-LocateResponse = _reflection.GeneratedProtocolMessageType('LocateResponse', (_message.Message,), dict(
+LocateResponse = _reflection.GeneratedProtocolMessageType('LocateResponse', (_message.Message,), {
 
-  MountsEntry = _reflection.GeneratedProtocolMessageType('MountsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _LOCATERESPONSE_MOUNTSENTRY,
-    __module__ = 'api_pb2'
+  'MountsEntry' : _reflection.GeneratedProtocolMessageType('MountsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _LOCATERESPONSE_MOUNTSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.LocateResponse.MountsEntry)
-    ))
+    })
   ,
 
-  DockeridsEntry = _reflection.GeneratedProtocolMessageType('DockeridsEntry', (_message.Message,), dict(
-    DESCRIPTOR = _LOCATERESPONSE_DOCKERIDSENTRY,
-    __module__ = 'api_pb2'
+  'DockeridsEntry' : _reflection.GeneratedProtocolMessageType('DockeridsEntry', (_message.Message,), {
+    'DESCRIPTOR' : _LOCATERESPONSE_DOCKERIDSENTRY,
+    '__module__' : 'api_pb2'
     # @@protoc_insertion_point(class_scope:openstorage.api.LocateResponse.DockeridsEntry)
-    ))
+    })
   ,
-  DESCRIPTOR = _LOCATERESPONSE,
-  __module__ = 'api_pb2'
+  'DESCRIPTOR' : _LOCATERESPONSE,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.LocateResponse)
-  ))
+  })
 _sym_db.RegisterMessage(LocateResponse)
 _sym_db.RegisterMessage(LocateResponse.MountsEntry)
 _sym_db.RegisterMessage(LocateResponse.DockeridsEntry)
 
-VolumePlacementStrategy = _reflection.GeneratedProtocolMessageType('VolumePlacementStrategy', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMEPLACEMENTSTRATEGY,
-  __module__ = 'api_pb2'
+VolumePlacementStrategy = _reflection.GeneratedProtocolMessageType('VolumePlacementStrategy', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMEPLACEMENTSTRATEGY,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumePlacementStrategy)
-  ))
+  })
 _sym_db.RegisterMessage(VolumePlacementStrategy)
 
-ReplicaPlacementSpec = _reflection.GeneratedProtocolMessageType('ReplicaPlacementSpec', (_message.Message,), dict(
-  DESCRIPTOR = _REPLICAPLACEMENTSPEC,
-  __module__ = 'api_pb2'
+ReplicaPlacementSpec = _reflection.GeneratedProtocolMessageType('ReplicaPlacementSpec', (_message.Message,), {
+  'DESCRIPTOR' : _REPLICAPLACEMENTSPEC,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.ReplicaPlacementSpec)
-  ))
+  })
 _sym_db.RegisterMessage(ReplicaPlacementSpec)
 
-VolumePlacementSpec = _reflection.GeneratedProtocolMessageType('VolumePlacementSpec', (_message.Message,), dict(
-  DESCRIPTOR = _VOLUMEPLACEMENTSPEC,
-  __module__ = 'api_pb2'
+VolumePlacementSpec = _reflection.GeneratedProtocolMessageType('VolumePlacementSpec', (_message.Message,), {
+  'DESCRIPTOR' : _VOLUMEPLACEMENTSPEC,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.VolumePlacementSpec)
-  ))
+  })
 _sym_db.RegisterMessage(VolumePlacementSpec)
 
-LabelSelectorRequirement = _reflection.GeneratedProtocolMessageType('LabelSelectorRequirement', (_message.Message,), dict(
-  DESCRIPTOR = _LABELSELECTORREQUIREMENT,
-  __module__ = 'api_pb2'
+LabelSelectorRequirement = _reflection.GeneratedProtocolMessageType('LabelSelectorRequirement', (_message.Message,), {
+  'DESCRIPTOR' : _LABELSELECTORREQUIREMENT,
+  '__module__' : 'api_pb2'
   # @@protoc_insertion_point(class_scope:openstorage.api.LabelSelectorRequirement)
-  ))
+  })
 _sym_db.RegisterMessage(LabelSelectorRequirement)
 
 
@@ -16115,8 +16187,8 @@ _OPENSTORAGEALERTS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=35156,
-  serialized_end=35460,
+  serialized_start=35278,
+  serialized_end=35582,
   methods=[
   _descriptor.MethodDescriptor(
     name='EnumerateWithFilters',
@@ -16148,8 +16220,8 @@ _OPENSTORAGEROLE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   serialized_options=None,
-  serialized_start=35463,
-  serialized_end=36060,
+  serialized_start=35585,
+  serialized_end=36182,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -16208,8 +16280,8 @@ _OPENSTORAGEIDENTITY = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=2,
   serialized_options=None,
-  serialized_start=36063,
-  serialized_end=36370,
+  serialized_start=36185,
+  serialized_end=36492,
   methods=[
   _descriptor.MethodDescriptor(
     name='Capabilities',
@@ -16241,8 +16313,8 @@ _OPENSTORAGECLUSTER = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=3,
   serialized_options=None,
-  serialized_start=36373,
-  serialized_end=36550,
+  serialized_start=36495,
+  serialized_end=36672,
   methods=[
   _descriptor.MethodDescriptor(
     name='InspectCurrent',
@@ -16265,8 +16337,8 @@ _OPENSTORAGECLUSTERPAIR = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=4,
   serialized_options=None,
-  serialized_start=36553,
-  serialized_end=37431,
+  serialized_start=36675,
+  serialized_end=37553,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -16334,8 +16406,8 @@ _OPENSTORAGECLUSTERDOMAINS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=5,
   serialized_options=None,
-  serialized_start=37434,
-  serialized_end=38131,
+  serialized_start=37556,
+  serialized_end=38253,
   methods=[
   _descriptor.MethodDescriptor(
     name='Enumerate',
@@ -16385,8 +16457,8 @@ _OPENSTORAGENODE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=6,
   serialized_options=None,
-  serialized_start=38134,
-  serialized_end=38545,
+  serialized_start=38256,
+  serialized_end=38826,
   methods=[
   _descriptor.MethodDescriptor(
     name='Inspect',
@@ -16415,6 +16487,15 @@ _OPENSTORAGENODE = _descriptor.ServiceDescriptor(
     output_type=_SDKNODEENUMERATERESPONSE,
     serialized_options=_b('\202\323\344\223\002\013\022\t/v1/nodes'),
   ),
+  _descriptor.MethodDescriptor(
+    name='EnumerateWithFilters',
+    full_name='openstorage.api.OpenStorageNode.EnumerateWithFilters',
+    index=3,
+    containing_service=None,
+    input_type=_SDKNODEENUMERATEWITHFILTERSREQUEST,
+    output_type=_SDKNODEENUMERATEWITHFILTERSRESPONSE,
+    serialized_options=_b('\202\323\344\223\002\023\022\021/v1/nodes/filters'),
+  ),
 ])
 _sym_db.RegisterServiceDescriptor(_OPENSTORAGENODE)
 
@@ -16427,8 +16508,8 @@ _OPENSTORAGEVOLUME = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=7,
   serialized_options=None,
-  serialized_start=38548,
-  serialized_end=40828,
+  serialized_start=38829,
+  serialized_end=41109,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -16577,8 +16658,8 @@ _OPENSTORAGEMOUNTATTACH = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=8,
   serialized_options=None,
-  serialized_start=40831,
-  serialized_end=41368,
+  serialized_start=41112,
+  serialized_end=41649,
   methods=[
   _descriptor.MethodDescriptor(
     name='Attach',
@@ -16628,8 +16709,8 @@ _OPENSTORAGEMIGRATE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=9,
   serialized_options=None,
-  serialized_start=41371,
-  serialized_end=41800,
+  serialized_start=41652,
+  serialized_end=42081,
   methods=[
   _descriptor.MethodDescriptor(
     name='Start',
@@ -16670,8 +16751,8 @@ _OPENSTORAGEOBJECTSTORE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=10,
   serialized_options=None,
-  serialized_start=41803,
-  serialized_end=42415,
+  serialized_start=42084,
+  serialized_end=42696,
   methods=[
   _descriptor.MethodDescriptor(
     name='Inspect',
@@ -16721,8 +16802,8 @@ _OPENSTORAGECREDENTIALS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=11,
   serialized_options=None,
-  serialized_start=42418,
-  serialized_end=43162,
+  serialized_start=42699,
+  serialized_end=43443,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -16781,8 +16862,8 @@ _OPENSTORAGESCHEDULEPOLICY = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=12,
   serialized_options=None,
-  serialized_start=43165,
-  serialized_end=43932,
+  serialized_start=43446,
+  serialized_end=44213,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -16841,8 +16922,8 @@ _OPENSTORAGECLOUDBACKUP = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=13,
   serialized_options=None,
-  serialized_start=43935,
-  serialized_end=45983,
+  serialized_start=44216,
+  serialized_end=46264,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',
@@ -16973,8 +17054,8 @@ _OPENSTORAGEPOLICY = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=14,
   serialized_options=None,
-  serialized_start=45986,
-  serialized_end=47281,
+  serialized_start=46267,
+  serialized_end=47562,
   methods=[
   _descriptor.MethodDescriptor(
     name='Create',

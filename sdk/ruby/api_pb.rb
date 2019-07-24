@@ -806,6 +806,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "openstorage.api.SdkNodeEnumerateResponse" do
     repeated :node_ids, :string, 1
   end
+  add_message "openstorage.api.SdkNodeEnumerateWithFiltersRequest" do
+  end
+  add_message "openstorage.api.SdkNodeEnumerateWithFiltersResponse" do
+    repeated :nodes, :message, 1, "openstorage.api.StorageNode"
+  end
   add_message "openstorage.api.SdkObjectstoreInspectRequest" do
     optional :objectstore_id, :string, 1
   end
@@ -1049,7 +1054,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 14
+    value :Patch, 15
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -1593,6 +1598,8 @@ module Openstorage
     SdkNodeInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectCurrentResponse").msgclass
     SdkNodeEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeEnumerateRequest").msgclass
     SdkNodeEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeEnumerateResponse").msgclass
+    SdkNodeEnumerateWithFiltersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeEnumerateWithFiltersRequest").msgclass
+    SdkNodeEnumerateWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeEnumerateWithFiltersResponse").msgclass
     SdkObjectstoreInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreInspectRequest").msgclass
     SdkObjectstoreInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreInspectResponse").msgclass
     SdkObjectstoreCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkObjectstoreCreateRequest").msgclass
