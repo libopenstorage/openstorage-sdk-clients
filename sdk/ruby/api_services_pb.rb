@@ -555,6 +555,8 @@ module Openstorage
         rpc :StateChange, SdkCloudBackupStateChangeRequest, SdkCloudBackupStateChangeResponse
         # Create cloud backup schedule
         rpc :SchedCreate, SdkCloudBackupSchedCreateRequest, SdkCloudBackupSchedCreateResponse
+        # Update existing cloud backup schedule
+        rpc :SchedUpdate, SdkCloudBackupSchedUpdateRequest, SdkCloudBackupSchedUpdateResponse
         # Delete cloud backup schedule
         rpc :SchedDelete, SdkCloudBackupSchedDeleteRequest, SdkCloudBackupSchedDeleteResponse
         # Enumerate cloud backup schedules

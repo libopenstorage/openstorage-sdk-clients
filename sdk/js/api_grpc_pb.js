@@ -303,6 +303,28 @@ function deserialize_openstorage_api_SdkCloudBackupSchedEnumerateResponse(buffer
   return api_pb.SdkCloudBackupSchedEnumerateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCloudBackupSchedUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupSchedUpdateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedUpdateRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudBackupSchedUpdateRequest(buffer_arg) {
+  return api_pb.SdkCloudBackupSchedUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudBackupSchedUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupSchedUpdateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedUpdateResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudBackupSchedUpdateResponse(buffer_arg) {
+  return api_pb.SdkCloudBackupSchedUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCloudBackupStateChangeRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupStateChangeRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupStateChangeRequest');
@@ -2922,6 +2944,18 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     requestDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedCreateRequest,
     responseSerialize: serialize_openstorage_api_SdkCloudBackupSchedCreateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedCreateResponse,
+  },
+  // Update existing cloud backup schedule
+  schedUpdate: {
+    path: '/openstorage.api.OpenStorageCloudBackup/SchedUpdate',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCloudBackupSchedUpdateRequest,
+    responseType: api_pb.SdkCloudBackupSchedUpdateResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudBackupSchedUpdateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedUpdateRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudBackupSchedUpdateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedUpdateResponse,
   },
   // Delete cloud backup schedule
   schedDelete: {

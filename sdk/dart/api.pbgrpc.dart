@@ -2106,6 +2106,12 @@ class OpenStorageCloudBackupClient extends $grpc.Client {
       (SdkCloudBackupSchedCreateRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           SdkCloudBackupSchedCreateResponse.fromBuffer(value));
+  static final _$schedUpdate = $grpc.ClientMethod<
+          SdkCloudBackupSchedUpdateRequest, SdkCloudBackupSchedUpdateResponse>(
+      '/openstorage.api.OpenStorageCloudBackup/SchedUpdate',
+      (SdkCloudBackupSchedUpdateRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkCloudBackupSchedUpdateResponse.fromBuffer(value));
   static final _$schedDelete = $grpc.ClientMethod<
           SdkCloudBackupSchedDeleteRequest, SdkCloudBackupSchedDeleteResponse>(
       '/openstorage.api.OpenStorageCloudBackup/SchedDelete',
@@ -2212,6 +2218,15 @@ class OpenStorageCloudBackupClient extends $grpc.Client {
       {$grpc.CallOptions options}) {
     final call = $createCall(
         _$schedCreate, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkCloudBackupSchedUpdateResponse> schedUpdate(
+      SdkCloudBackupSchedUpdateRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$schedUpdate, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -2339,6 +2354,15 @@ abstract class OpenStorageCloudBackupServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             SdkCloudBackupSchedCreateRequest.fromBuffer(value),
         (SdkCloudBackupSchedCreateResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkCloudBackupSchedUpdateRequest,
+            SdkCloudBackupSchedUpdateResponse>(
+        'SchedUpdate',
+        schedUpdate_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkCloudBackupSchedUpdateRequest.fromBuffer(value),
+        (SdkCloudBackupSchedUpdateResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<SdkCloudBackupSchedDeleteRequest,
             SdkCloudBackupSchedDeleteResponse>(
         'SchedDelete',
@@ -2415,6 +2439,11 @@ abstract class OpenStorageCloudBackupServiceBase extends $grpc.Service {
     return schedCreate(call, await request);
   }
 
+  $async.Future<SdkCloudBackupSchedUpdateResponse> schedUpdate_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return schedUpdate(call, await request);
+  }
+
   $async.Future<SdkCloudBackupSchedDeleteResponse> schedDelete_Pre(
       $grpc.ServiceCall call, $async.Future request) async {
     return schedDelete(call, await request);
@@ -2448,6 +2477,8 @@ abstract class OpenStorageCloudBackupServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, SdkCloudBackupStateChangeRequest request);
   $async.Future<SdkCloudBackupSchedCreateResponse> schedCreate(
       $grpc.ServiceCall call, SdkCloudBackupSchedCreateRequest request);
+  $async.Future<SdkCloudBackupSchedUpdateResponse> schedUpdate(
+      $grpc.ServiceCall call, SdkCloudBackupSchedUpdateRequest request);
   $async.Future<SdkCloudBackupSchedDeleteResponse> schedDelete(
       $grpc.ServiceCall call, SdkCloudBackupSchedDeleteRequest request);
   $async.Future<SdkCloudBackupSchedEnumerateResponse> schedEnumerate(

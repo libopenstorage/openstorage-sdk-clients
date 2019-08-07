@@ -6717,6 +6717,54 @@ class SdkCloudBackupSchedCreateResponse extends $pb.GeneratedMessage {
   void clearBackupScheduleId() => clearField(1);
 }
 
+class SdkCloudBackupSchedUpdateRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkCloudBackupSchedUpdateRequest', package: const $pb.PackageName('openstorage.api'))
+    ..a<SdkCloudBackupScheduleInfo>(1, 'cloudSchedInfo', $pb.PbFieldType.OM, SdkCloudBackupScheduleInfo.getDefault, SdkCloudBackupScheduleInfo.create)
+    ..aOS(2, 'schedUuid')
+    ..hasRequiredFields = false
+  ;
+
+  SdkCloudBackupSchedUpdateRequest() : super();
+  SdkCloudBackupSchedUpdateRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkCloudBackupSchedUpdateRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkCloudBackupSchedUpdateRequest clone() => SdkCloudBackupSchedUpdateRequest()..mergeFromMessage(this);
+  SdkCloudBackupSchedUpdateRequest copyWith(void Function(SdkCloudBackupSchedUpdateRequest) updates) => super.copyWith((message) => updates(message as SdkCloudBackupSchedUpdateRequest));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkCloudBackupSchedUpdateRequest create() => SdkCloudBackupSchedUpdateRequest();
+  SdkCloudBackupSchedUpdateRequest createEmptyInstance() => create();
+  static $pb.PbList<SdkCloudBackupSchedUpdateRequest> createRepeated() => $pb.PbList<SdkCloudBackupSchedUpdateRequest>();
+  static SdkCloudBackupSchedUpdateRequest getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkCloudBackupSchedUpdateRequest _defaultInstance;
+
+  SdkCloudBackupScheduleInfo get cloudSchedInfo => $_getN(0);
+  set cloudSchedInfo(SdkCloudBackupScheduleInfo v) { setField(1, v); }
+  $core.bool hasCloudSchedInfo() => $_has(0);
+  void clearCloudSchedInfo() => clearField(1);
+
+  $core.String get schedUuid => $_getS(1, '');
+  set schedUuid($core.String v) { $_setString(1, v); }
+  $core.bool hasSchedUuid() => $_has(1);
+  void clearSchedUuid() => clearField(2);
+}
+
+class SdkCloudBackupSchedUpdateResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkCloudBackupSchedUpdateResponse', package: const $pb.PackageName('openstorage.api'))
+    ..hasRequiredFields = false
+  ;
+
+  SdkCloudBackupSchedUpdateResponse() : super();
+  SdkCloudBackupSchedUpdateResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkCloudBackupSchedUpdateResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkCloudBackupSchedUpdateResponse clone() => SdkCloudBackupSchedUpdateResponse()..mergeFromMessage(this);
+  SdkCloudBackupSchedUpdateResponse copyWith(void Function(SdkCloudBackupSchedUpdateResponse) updates) => super.copyWith((message) => updates(message as SdkCloudBackupSchedUpdateResponse));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkCloudBackupSchedUpdateResponse create() => SdkCloudBackupSchedUpdateResponse();
+  SdkCloudBackupSchedUpdateResponse createEmptyInstance() => create();
+  static $pb.PbList<SdkCloudBackupSchedUpdateResponse> createRepeated() => $pb.PbList<SdkCloudBackupSchedUpdateResponse>();
+  static SdkCloudBackupSchedUpdateResponse getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkCloudBackupSchedUpdateResponse _defaultInstance;
+}
+
 class SdkCloudBackupSchedDeleteRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkCloudBackupSchedDeleteRequest', package: const $pb.PackageName('openstorage.api'))
     ..aOS(1, 'backupScheduleId')

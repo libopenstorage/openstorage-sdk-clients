@@ -1635,6 +1635,11 @@ class OpenStorageCloudBackupStub(object):
         request_serializer=api__pb2.SdkCloudBackupSchedCreateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkCloudBackupSchedCreateResponse.FromString,
         )
+    self.SchedUpdate = channel.unary_unary(
+        '/openstorage.api.OpenStorageCloudBackup/SchedUpdate',
+        request_serializer=api__pb2.SdkCloudBackupSchedUpdateRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkCloudBackupSchedUpdateResponse.FromString,
+        )
     self.SchedDelete = channel.unary_unary(
         '/openstorage.api.OpenStorageCloudBackup/SchedDelete',
         request_serializer=api__pb2.SdkCloudBackupSchedDeleteRequest.SerializeToString,
@@ -1753,6 +1758,13 @@ class OpenStorageCloudBackupServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def SchedUpdate(self, request, context):
+    """Update existing cloud backup schedule
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def SchedDelete(self, request, context):
     """Delete cloud backup schedule
     """
@@ -1824,6 +1836,11 @@ def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
           servicer.SchedCreate,
           request_deserializer=api__pb2.SdkCloudBackupSchedCreateRequest.FromString,
           response_serializer=api__pb2.SdkCloudBackupSchedCreateResponse.SerializeToString,
+      ),
+      'SchedUpdate': grpc.unary_unary_rpc_method_handler(
+          servicer.SchedUpdate,
+          request_deserializer=api__pb2.SdkCloudBackupSchedUpdateRequest.FromString,
+          response_serializer=api__pb2.SdkCloudBackupSchedUpdateResponse.SerializeToString,
       ),
       'SchedDelete': grpc.unary_unary_rpc_method_handler(
           servicer.SchedDelete,

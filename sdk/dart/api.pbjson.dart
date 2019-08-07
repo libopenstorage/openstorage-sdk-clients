@@ -2177,6 +2177,18 @@ const SdkCloudBackupSchedCreateResponse$json = const {
   ],
 };
 
+const SdkCloudBackupSchedUpdateRequest$json = const {
+  '1': 'SdkCloudBackupSchedUpdateRequest',
+  '2': const [
+    const {'1': 'cloud_sched_info', '3': 1, '4': 1, '5': 11, '6': '.openstorage.api.SdkCloudBackupScheduleInfo', '10': 'cloudSchedInfo'},
+    const {'1': 'sched_uuid', '3': 2, '4': 1, '5': 9, '10': 'schedUuid'},
+  ],
+};
+
+const SdkCloudBackupSchedUpdateResponse$json = const {
+  '1': 'SdkCloudBackupSchedUpdateResponse',
+};
+
 const SdkCloudBackupSchedDeleteRequest$json = const {
   '1': 'SdkCloudBackupSchedDeleteRequest',
   '2': const [
@@ -2367,7 +2379,7 @@ const SdkVersion_Version$json = const {
   '2': const [
     const {'1': 'MUST_HAVE_ZERO_VALUE', '2': 0},
     const {'1': 'Major', '2': 0},
-    const {'1': 'Minor', '2': 59},
+    const {'1': 'Minor', '2': 60},
     const {'1': 'Patch', '2': 0},
   ],
   '3': const {'2': true},
