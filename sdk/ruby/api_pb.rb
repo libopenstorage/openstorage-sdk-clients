@@ -439,6 +439,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :hostname, :string, 15
     map :node_labels, :string, :string, 16
     optional :scheduler_node_name, :string, 17
+    optional :HWType, :enum, 18, "openstorage.api.HardwareType"
   end
   add_message "openstorage.api.StorageCluster" do
     optional :status, :enum, 1, "openstorage.api.Status"
@@ -1054,7 +1055,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 15
+    value :Patch, 16
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
@@ -1401,6 +1402,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :OP_FLAGS_NONE, 1
     value :OP_FLAGS_DETACH_FORCE, 2
   end
+  add_enum "openstorage.api.HardwareType" do
+    value :UnknownMachine, 0
+    value :VirtualMachine, 1
+    value :BareMetalMachine, 2
+  end
   add_enum "openstorage.api.SdkTimeWeekday" do
     value :SdkTimeWeekdaySunday, 0
     value :SdkTimeWeekdayMonday, 1
@@ -1726,6 +1732,7 @@ module Openstorage
     StorageMedium = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageMedium").enummodule
     AttachState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.AttachState").enummodule
     OperationFlags = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.OperationFlags").enummodule
+    HardwareType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.HardwareType").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
     SdkCloudBackupOpType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupOpType").enummodule
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule

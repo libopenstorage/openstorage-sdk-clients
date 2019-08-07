@@ -55,6 +55,7 @@ goog.exportSymbol('proto.openstorage.api.GraphDriverChanges', null, global);
 goog.exportSymbol('proto.openstorage.api.Group', null, global);
 goog.exportSymbol('proto.openstorage.api.GroupSnapCreateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.GroupSnapCreateResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.HardwareType', null, global);
 goog.exportSymbol('proto.openstorage.api.IoProfile', null, global);
 goog.exportSymbol('proto.openstorage.api.IoStrategy', null, global);
 goog.exportSymbol('proto.openstorage.api.LabelSelectorRequirement', null, global);
@@ -14640,7 +14641,8 @@ proto.openstorage.api.StorageNode.toObject = function(includeInstance, msg) {
     dataIp: jspb.Message.getFieldWithDefault(msg, 12, ""),
     hostname: jspb.Message.getFieldWithDefault(msg, 15, ""),
     nodeLabelsMap: (f = msg.getNodeLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    schedulerNodeName: jspb.Message.getFieldWithDefault(msg, 17, "")
+    schedulerNodeName: jspb.Message.getFieldWithDefault(msg, 17, ""),
+    hwtype: jspb.Message.getFieldWithDefault(msg, 18, 0)
   };
 
   if (includeInstance) {
@@ -14737,6 +14739,10 @@ proto.openstorage.api.StorageNode.deserializeBinaryFromReader = function(msg, re
     case 17:
       var value = /** @type {string} */ (reader.readString());
       msg.setSchedulerNodeName(value);
+      break;
+    case 18:
+      var value = /** @type {!proto.openstorage.api.HardwareType} */ (reader.readEnum());
+      msg.setHwtype(value);
       break;
     default:
       reader.skipField();
@@ -14857,6 +14863,13 @@ proto.openstorage.api.StorageNode.serializeBinaryToWriter = function(message, wr
   if (f.length > 0) {
     writer.writeString(
       17,
+      f
+    );
+  }
+  f = message.getHwtype();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      18,
       f
     );
   }
@@ -15092,6 +15105,21 @@ proto.openstorage.api.StorageNode.prototype.getSchedulerNodeName = function() {
 /** @param {string} value */
 proto.openstorage.api.StorageNode.prototype.setSchedulerNodeName = function(value) {
   jspb.Message.setProto3StringField(this, 17, value);
+};
+
+
+/**
+ * optional HardwareType HWType = 18;
+ * @return {!proto.openstorage.api.HardwareType}
+ */
+proto.openstorage.api.StorageNode.prototype.getHwtype = function() {
+  return /** @type {!proto.openstorage.api.HardwareType} */ (jspb.Message.getFieldWithDefault(this, 18, 0));
+};
+
+
+/** @param {!proto.openstorage.api.HardwareType} value */
+proto.openstorage.api.StorageNode.prototype.setHwtype = function(value) {
+  jspb.Message.setProto3EnumField(this, 18, value);
 };
 
 
@@ -42617,7 +42645,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 42,
-  PATCH: 15
+  PATCH: 16
 };
 
 /**
@@ -51681,6 +51709,15 @@ proto.openstorage.api.OperationFlags = {
   OP_FLAGS_UNKNOWN: 0,
   OP_FLAGS_NONE: 1,
   OP_FLAGS_DETACH_FORCE: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.HardwareType = {
+  UNKNOWNMACHINE: 0,
+  VIRTUALMACHINE: 1,
+  BAREMETALMACHINE: 2
 };
 
 /**
