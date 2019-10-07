@@ -43815,8 +43815,8 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 43,
-  PATCH: 0
+  MINOR: 42,
+  PATCH: 18
 };
 
 /**

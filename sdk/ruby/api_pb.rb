@@ -1095,8 +1095,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_enum "openstorage.api.SdkVersion.Version" do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
-    value :Minor, 43
-    value :Patch, 0
+    value :Minor, 42
+    value :Patch, 18
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1
