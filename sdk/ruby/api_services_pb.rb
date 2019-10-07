@@ -222,6 +222,22 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStoragePool
+      # OpenStoragePool is a service used to manage storage pools in the cluster
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStoragePool'
+
+        # Resize resizes the specified storage pool based on the request parameters
+        rpc :Resize, SdkStoragePoolResizeRequest, SdkStoragePoolResizeResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageNode
       # OpenStorageNode is a service used to manage nodes in the cluster
       class Service
@@ -555,6 +571,8 @@ module Openstorage
         rpc :StateChange, SdkCloudBackupStateChangeRequest, SdkCloudBackupStateChangeResponse
         # Create cloud backup schedule
         rpc :SchedCreate, SdkCloudBackupSchedCreateRequest, SdkCloudBackupSchedCreateResponse
+        # Update existing cloud backup schedule
+        rpc :SchedUpdate, SdkCloudBackupSchedUpdateRequest, SdkCloudBackupSchedUpdateResponse
         # Delete cloud backup schedule
         rpc :SchedDelete, SdkCloudBackupSchedDeleteRequest, SdkCloudBackupSchedDeleteResponse
         # Enumerate cloud backup schedules
