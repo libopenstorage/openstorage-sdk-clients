@@ -273,12 +273,34 @@ const StoragePool$json = const {
     const {'1': 'TotalSize', '3': 7, '4': 1, '5': 4, '10': 'TotalSize'},
     const {'1': 'Used', '3': 8, '4': 1, '5': 4, '10': 'Used'},
     const {'1': 'labels', '3': 9, '4': 3, '5': 11, '6': '.openstorage.api.StoragePool.LabelsEntry', '10': 'labels'},
+    const {'1': 'uuid', '3': 10, '4': 1, '5': 9, '10': 'uuid'},
+    const {'1': 'last_operation', '3': 11, '4': 1, '5': 11, '6': '.openstorage.api.StoragePoolOperation', '10': 'lastOperation'},
   ],
   '3': const [StoragePool_LabelsEntry$json],
 };
 
 const StoragePool_LabelsEntry$json = const {
   '1': 'LabelsEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+const StoragePoolOperation$json = const {
+  '1': 'StoragePoolOperation',
+  '2': const [
+    const {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.SdkStoragePool.OperationType', '10': 'type'},
+    const {'1': 'msg', '3': 2, '4': 1, '5': 9, '10': 'msg'},
+    const {'1': 'params', '3': 3, '4': 3, '5': 11, '6': '.openstorage.api.StoragePoolOperation.ParamsEntry', '10': 'params'},
+    const {'1': 'status', '3': 4, '4': 1, '5': 14, '6': '.openstorage.api.SdkStoragePool.OperationStatus', '10': 'status'},
+  ],
+  '3': const [StoragePoolOperation_ParamsEntry$json],
+};
+
+const StoragePoolOperation_ParamsEntry$json = const {
+  '1': 'ParamsEntry',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
     const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
@@ -594,6 +616,8 @@ const Volume$json = const {
     const {'1': 'error', '3': 21, '4': 1, '5': 9, '10': 'error'},
     const {'1': 'volume_consumers', '3': 22, '4': 3, '5': 11, '6': '.openstorage.api.VolumeConsumer', '10': 'volumeConsumers'},
     const {'1': 'fs_resize_required', '3': 23, '4': 1, '5': 8, '10': 'fsResizeRequired'},
+    const {'1': 'attach_time', '3': 24, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'attachTime'},
+    const {'1': 'detach_time', '3': 25, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'detachTime'},
   ],
   '3': const [Volume_AttachInfoEntry$json],
 };
@@ -1431,6 +1455,7 @@ const SdkVolumeDetachOptions$json = const {
   '2': const [
     const {'1': 'force', '3': 1, '4': 1, '5': 8, '10': 'force'},
     const {'1': 'unmount_before_detach', '3': 2, '4': 1, '5': 8, '10': 'unmountBeforeDetach'},
+    const {'1': 'redirect', '3': 3, '4': 1, '5': 8, '10': 'redirect'},
   ],
 };
 
@@ -1809,6 +1834,54 @@ const SdkNodeInspectRequest$json = const {
   ],
 };
 
+const SdkStoragePoolResizeRequest$json = const {
+  '1': 'SdkStoragePoolResizeRequest',
+  '2': const [
+    const {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
+    const {'1': 'size', '3': 200, '4': 1, '5': 4, '9': 0, '10': 'size'},
+    const {'1': 'percentage', '3': 201, '4': 1, '5': 4, '9': 0, '10': 'percentage'},
+    const {'1': 'operation_type', '3': 3, '4': 1, '5': 14, '6': '.openstorage.api.SdkStoragePool.ResizeOperationType', '10': 'operationType'},
+  ],
+  '8': const [
+    const {'1': 'resize_factor'},
+  ],
+};
+
+const SdkStoragePool$json = const {
+  '1': 'SdkStoragePool',
+  '4': const [SdkStoragePool_OperationStatus$json, SdkStoragePool_OperationType$json, SdkStoragePool_ResizeOperationType$json],
+};
+
+const SdkStoragePool_OperationStatus$json = const {
+  '1': 'OperationStatus',
+  '2': const [
+    const {'1': 'OPERATION_PENDING', '2': 0},
+    const {'1': 'OPERATION_IN_PROGRESS', '2': 1},
+    const {'1': 'OPERATION_SUCCESSFUL', '2': 2},
+    const {'1': 'OPERATION_FAILED', '2': 3},
+  ],
+};
+
+const SdkStoragePool_OperationType$json = const {
+  '1': 'OperationType',
+  '2': const [
+    const {'1': 'OPERATION_RESIZE', '2': 0},
+  ],
+};
+
+const SdkStoragePool_ResizeOperationType$json = const {
+  '1': 'ResizeOperationType',
+  '2': const [
+    const {'1': 'RESIZE_TYPE_AUTO', '2': 0},
+    const {'1': 'RESIZE_TYPE_ADD_DISK', '2': 1},
+    const {'1': 'RESIZE_TYPE_RESIZE_DISK', '2': 2},
+  ],
+};
+
+const SdkStoragePoolResizeResponse$json = const {
+  '1': 'SdkStoragePoolResizeResponse',
+};
+
 const SdkNodeInspectResponse$json = const {
   '1': 'SdkNodeInspectResponse',
   '2': const [
@@ -2013,6 +2086,7 @@ const SdkCloudBackupEnumerateWithFiltersRequest$json = const {
     const {'1': 'metadata_filter', '3': 6, '4': 3, '5': 11, '6': '.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry', '10': 'metadataFilter'},
     const {'1': 'max_backups', '3': 7, '4': 1, '5': 4, '10': 'maxBackups'},
     const {'1': 'continuation_token', '3': 8, '4': 1, '5': 9, '10': 'continuationToken'},
+    const {'1': 'cloud_backup_id', '3': 9, '4': 1, '5': 9, '10': 'cloudBackupId'},
   ],
   '3': const [SdkCloudBackupEnumerateWithFiltersRequest_MetadataFilterEntry$json],
 };
@@ -2379,7 +2453,7 @@ const SdkVersion_Version$json = const {
   '2': const [
     const {'1': 'MUST_HAVE_ZERO_VALUE', '2': 0},
     const {'1': 'Major', '2': 0},
-    const {'1': 'Minor', '2': 60},
+    const {'1': 'Minor', '2': 64},
     const {'1': 'Patch', '2': 0},
   ],
   '3': const {'2': true},

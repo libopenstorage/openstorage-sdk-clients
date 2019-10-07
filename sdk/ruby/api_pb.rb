@@ -31,6 +31,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :TotalSize, :uint64, 7
       optional :Used, :uint64, 8
       map :labels, :string, :string, 9
+      optional :uuid, :string, 10
+      optional :last_operation, :message, 11, "openstorage.api.StoragePoolOperation"
+    end
+    add_message "openstorage.api.StoragePoolOperation" do
+      optional :type, :enum, 1, "openstorage.api.SdkStoragePool.OperationType"
+      optional :msg, :string, 2
+      map :params, :string, :string, 3
+      optional :status, :enum, 4, "openstorage.api.SdkStoragePool.OperationStatus"
     end
     add_message "openstorage.api.VolumeLocator" do
       optional :name, :string, 1
@@ -250,6 +258,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :error, :string, 21
       repeated :volume_consumers, :message, 22, "openstorage.api.VolumeConsumer"
       optional :fs_resize_required, :bool, 23
+      optional :attach_time, :message, 24, "google.protobuf.Timestamp"
+      optional :detach_time, :message, 25, "google.protobuf.Timestamp"
     end
     add_message "openstorage.api.Stats" do
       optional :reads, :uint64, 1
@@ -651,6 +661,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.SdkVolumeDetachOptions" do
       optional :force, :bool, 1
       optional :unmount_before_detach, :bool, 2
+      optional :redirect, :bool, 3
     end
     add_message "openstorage.api.SdkVolumeDetachRequest" do
       optional :volume_id, :string, 1
@@ -795,6 +806,32 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.SdkNodeInspectRequest" do
       optional :node_id, :string, 1
     end
+    add_message "openstorage.api.SdkStoragePoolResizeRequest" do
+      optional :uuid, :string, 1
+      optional :operation_type, :enum, 3, "openstorage.api.SdkStoragePool.ResizeOperationType"
+      oneof :resize_factor do
+        optional :size, :uint64, 200
+        optional :percentage, :uint64, 201
+      end
+    end
+    add_message "openstorage.api.SdkStoragePool" do
+    end
+    add_enum "openstorage.api.SdkStoragePool.OperationStatus" do
+      value :OPERATION_PENDING, 0
+      value :OPERATION_IN_PROGRESS, 1
+      value :OPERATION_SUCCESSFUL, 2
+      value :OPERATION_FAILED, 3
+    end
+    add_enum "openstorage.api.SdkStoragePool.OperationType" do
+      value :OPERATION_RESIZE, 0
+    end
+    add_enum "openstorage.api.SdkStoragePool.ResizeOperationType" do
+      value :RESIZE_TYPE_AUTO, 0
+      value :RESIZE_TYPE_ADD_DISK, 1
+      value :RESIZE_TYPE_RESIZE_DISK, 2
+    end
+    add_message "openstorage.api.SdkStoragePoolResizeResponse" do
+    end
     add_message "openstorage.api.SdkNodeInspectResponse" do
       optional :node, :message, 1, "openstorage.api.StorageNode"
     end
@@ -891,6 +928,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       map :metadata_filter, :string, :string, 6
       optional :max_backups, :uint64, 7
       optional :continuation_token, :string, 8
+      optional :cloud_backup_id, :string, 9
     end
     add_message "openstorage.api.SdkCloudBackupInfo" do
       optional :id, :string, 1
@@ -1061,7 +1099,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 60
+      value :Minor, 64
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1457,6 +1495,7 @@ module Openstorage
   module Api
     StorageResource = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageResource").msgclass
     StoragePool = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StoragePool").msgclass
+    StoragePoolOperation = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StoragePoolOperation").msgclass
     VolumeLocator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeLocator").msgclass
     VolumeInspectOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeInspectOptions").msgclass
     Source = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Source").msgclass
@@ -1607,6 +1646,12 @@ module Openstorage
     SdkClusterInspectCurrentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterInspectCurrentRequest").msgclass
     SdkClusterInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterInspectCurrentResponse").msgclass
     SdkNodeInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectRequest").msgclass
+    SdkStoragePoolResizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePoolResizeRequest").msgclass
+    SdkStoragePool = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool").msgclass
+    SdkStoragePool::OperationStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool.OperationStatus").enummodule
+    SdkStoragePool::OperationType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool.OperationType").enummodule
+    SdkStoragePool::ResizeOperationType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool.ResizeOperationType").enummodule
+    SdkStoragePoolResizeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePoolResizeResponse").msgclass
     SdkNodeInspectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectResponse").msgclass
     SdkNodeInspectCurrentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectCurrentRequest").msgclass
     SdkNodeInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectCurrentResponse").msgclass

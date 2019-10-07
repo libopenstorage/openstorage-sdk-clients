@@ -126,6 +126,8 @@ class StoragePool extends $pb.GeneratedMessage {
     ..a<Int64>(7, 'totalSize', $pb.PbFieldType.OU6, Int64.ZERO)
     ..a<Int64>(8, 'used', $pb.PbFieldType.OU6, Int64.ZERO)
     ..m<$core.String, $core.String>(9, 'labels', 'StoragePool.LabelsEntry',$pb.PbFieldType.OS, $pb.PbFieldType.OS, null, null, null , const $pb.PackageName('openstorage.api'))
+    ..aOS(10, 'uuid')
+    ..a<StoragePoolOperation>(11, 'lastOperation', $pb.PbFieldType.OM, StoragePoolOperation.getDefault, StoragePoolOperation.create)
     ..hasRequiredFields = false
   ;
 
@@ -172,6 +174,55 @@ class StoragePool extends $pb.GeneratedMessage {
   void clearUsed() => clearField(8);
 
   $core.Map<$core.String, $core.String> get labels => $_getMap(6);
+
+  $core.String get uuid => $_getS(7, '');
+  set uuid($core.String v) { $_setString(7, v); }
+  $core.bool hasUuid() => $_has(7);
+  void clearUuid() => clearField(10);
+
+  StoragePoolOperation get lastOperation => $_getN(8);
+  set lastOperation(StoragePoolOperation v) { setField(11, v); }
+  $core.bool hasLastOperation() => $_has(8);
+  void clearLastOperation() => clearField(11);
+}
+
+class StoragePoolOperation extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('StoragePoolOperation', package: const $pb.PackageName('openstorage.api'))
+    ..e<SdkStoragePool_OperationType>(1, 'type', $pb.PbFieldType.OE, SdkStoragePool_OperationType.OPERATION_RESIZE, SdkStoragePool_OperationType.valueOf, SdkStoragePool_OperationType.values)
+    ..aOS(2, 'msg')
+    ..m<$core.String, $core.String>(3, 'params', 'StoragePoolOperation.ParamsEntry',$pb.PbFieldType.OS, $pb.PbFieldType.OS, null, null, null , const $pb.PackageName('openstorage.api'))
+    ..e<SdkStoragePool_OperationStatus>(4, 'status', $pb.PbFieldType.OE, SdkStoragePool_OperationStatus.OPERATION_PENDING, SdkStoragePool_OperationStatus.valueOf, SdkStoragePool_OperationStatus.values)
+    ..hasRequiredFields = false
+  ;
+
+  StoragePoolOperation() : super();
+  StoragePoolOperation.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  StoragePoolOperation.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  StoragePoolOperation clone() => StoragePoolOperation()..mergeFromMessage(this);
+  StoragePoolOperation copyWith(void Function(StoragePoolOperation) updates) => super.copyWith((message) => updates(message as StoragePoolOperation));
+  $pb.BuilderInfo get info_ => _i;
+  static StoragePoolOperation create() => StoragePoolOperation();
+  StoragePoolOperation createEmptyInstance() => create();
+  static $pb.PbList<StoragePoolOperation> createRepeated() => $pb.PbList<StoragePoolOperation>();
+  static StoragePoolOperation getDefault() => _defaultInstance ??= create()..freeze();
+  static StoragePoolOperation _defaultInstance;
+
+  SdkStoragePool_OperationType get type => $_getN(0);
+  set type(SdkStoragePool_OperationType v) { setField(1, v); }
+  $core.bool hasType() => $_has(0);
+  void clearType() => clearField(1);
+
+  $core.String get msg => $_getS(1, '');
+  set msg($core.String v) { $_setString(1, v); }
+  $core.bool hasMsg() => $_has(1);
+  void clearMsg() => clearField(2);
+
+  $core.Map<$core.String, $core.String> get params => $_getMap(2);
+
+  SdkStoragePool_OperationStatus get status => $_getN(3);
+  set status(SdkStoragePool_OperationStatus v) { setField(4, v); }
+  $core.bool hasStatus() => $_has(3);
+  void clearStatus() => clearField(4);
 }
 
 class VolumeLocator extends $pb.GeneratedMessage {
@@ -1385,6 +1436,8 @@ class Volume extends $pb.GeneratedMessage {
     ..aOS(21, 'error')
     ..pc<VolumeConsumer>(22, 'volumeConsumers', $pb.PbFieldType.PM,VolumeConsumer.create)
     ..aOB(23, 'fsResizeRequired')
+    ..a<$0.Timestamp>(24, 'attachTime', $pb.PbFieldType.OM, $0.Timestamp.getDefault, $0.Timestamp.create)
+    ..a<$0.Timestamp>(25, 'detachTime', $pb.PbFieldType.OM, $0.Timestamp.getDefault, $0.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -1499,6 +1552,16 @@ class Volume extends $pb.GeneratedMessage {
   set fsResizeRequired($core.bool v) { $_setBool(22, v); }
   $core.bool hasFsResizeRequired() => $_has(22);
   void clearFsResizeRequired() => clearField(23);
+
+  $0.Timestamp get attachTime => $_getN(23);
+  set attachTime($0.Timestamp v) { setField(24, v); }
+  $core.bool hasAttachTime() => $_has(23);
+  void clearAttachTime() => clearField(24);
+
+  $0.Timestamp get detachTime => $_getN(24);
+  set detachTime($0.Timestamp v) { setField(25, v); }
+  $core.bool hasDetachTime() => $_has(24);
+  void clearDetachTime() => clearField(25);
 }
 
 class Stats extends $pb.GeneratedMessage {
@@ -4396,6 +4459,7 @@ class SdkVolumeDetachOptions extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkVolumeDetachOptions', package: const $pb.PackageName('openstorage.api'))
     ..aOB(1, 'force')
     ..aOB(2, 'unmountBeforeDetach')
+    ..aOB(3, 'redirect')
     ..hasRequiredFields = false
   ;
 
@@ -4420,6 +4484,11 @@ class SdkVolumeDetachOptions extends $pb.GeneratedMessage {
   set unmountBeforeDetach($core.bool v) { $_setBool(1, v); }
   $core.bool hasUnmountBeforeDetach() => $_has(1);
   void clearUnmountBeforeDetach() => clearField(2);
+
+  $core.bool get redirect => $_get(2, false);
+  set redirect($core.bool v) { $_setBool(2, v); }
+  $core.bool hasRedirect() => $_has(2);
+  void clearRedirect() => clearField(3);
 }
 
 class SdkVolumeDetachRequest extends $pb.GeneratedMessage {
@@ -5493,6 +5562,99 @@ class SdkNodeInspectRequest extends $pb.GeneratedMessage {
   void clearNodeId() => clearField(1);
 }
 
+enum SdkStoragePoolResizeRequest_ResizeFactor {
+  size, 
+  percentage, 
+  notSet
+}
+
+class SdkStoragePoolResizeRequest extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, SdkStoragePoolResizeRequest_ResizeFactor> _SdkStoragePoolResizeRequest_ResizeFactorByTag = {
+    200 : SdkStoragePoolResizeRequest_ResizeFactor.size,
+    201 : SdkStoragePoolResizeRequest_ResizeFactor.percentage,
+    0 : SdkStoragePoolResizeRequest_ResizeFactor.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkStoragePoolResizeRequest', package: const $pb.PackageName('openstorage.api'))
+    ..aOS(1, 'uuid')
+    ..e<SdkStoragePool_ResizeOperationType>(3, 'operationType', $pb.PbFieldType.OE, SdkStoragePool_ResizeOperationType.RESIZE_TYPE_AUTO, SdkStoragePool_ResizeOperationType.valueOf, SdkStoragePool_ResizeOperationType.values)
+    ..a<Int64>(200, 'size', $pb.PbFieldType.OU6, Int64.ZERO)
+    ..a<Int64>(201, 'percentage', $pb.PbFieldType.OU6, Int64.ZERO)
+    ..oo(0, [200, 201])
+    ..hasRequiredFields = false
+  ;
+
+  SdkStoragePoolResizeRequest() : super();
+  SdkStoragePoolResizeRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkStoragePoolResizeRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkStoragePoolResizeRequest clone() => SdkStoragePoolResizeRequest()..mergeFromMessage(this);
+  SdkStoragePoolResizeRequest copyWith(void Function(SdkStoragePoolResizeRequest) updates) => super.copyWith((message) => updates(message as SdkStoragePoolResizeRequest));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkStoragePoolResizeRequest create() => SdkStoragePoolResizeRequest();
+  SdkStoragePoolResizeRequest createEmptyInstance() => create();
+  static $pb.PbList<SdkStoragePoolResizeRequest> createRepeated() => $pb.PbList<SdkStoragePoolResizeRequest>();
+  static SdkStoragePoolResizeRequest getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkStoragePoolResizeRequest _defaultInstance;
+
+  SdkStoragePoolResizeRequest_ResizeFactor whichResizeFactor() => _SdkStoragePoolResizeRequest_ResizeFactorByTag[$_whichOneof(0)];
+  void clearResizeFactor() => clearField($_whichOneof(0));
+
+  $core.String get uuid => $_getS(0, '');
+  set uuid($core.String v) { $_setString(0, v); }
+  $core.bool hasUuid() => $_has(0);
+  void clearUuid() => clearField(1);
+
+  SdkStoragePool_ResizeOperationType get operationType => $_getN(1);
+  set operationType(SdkStoragePool_ResizeOperationType v) { setField(3, v); }
+  $core.bool hasOperationType() => $_has(1);
+  void clearOperationType() => clearField(3);
+
+  Int64 get size => $_getI64(2);
+  set size(Int64 v) { $_setInt64(2, v); }
+  $core.bool hasSize() => $_has(2);
+  void clearSize() => clearField(200);
+
+  Int64 get percentage => $_getI64(3);
+  set percentage(Int64 v) { $_setInt64(3, v); }
+  $core.bool hasPercentage() => $_has(3);
+  void clearPercentage() => clearField(201);
+}
+
+class SdkStoragePool extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkStoragePool', package: const $pb.PackageName('openstorage.api'))
+    ..hasRequiredFields = false
+  ;
+
+  SdkStoragePool() : super();
+  SdkStoragePool.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkStoragePool.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkStoragePool clone() => SdkStoragePool()..mergeFromMessage(this);
+  SdkStoragePool copyWith(void Function(SdkStoragePool) updates) => super.copyWith((message) => updates(message as SdkStoragePool));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkStoragePool create() => SdkStoragePool();
+  SdkStoragePool createEmptyInstance() => create();
+  static $pb.PbList<SdkStoragePool> createRepeated() => $pb.PbList<SdkStoragePool>();
+  static SdkStoragePool getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkStoragePool _defaultInstance;
+}
+
+class SdkStoragePoolResizeResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkStoragePoolResizeResponse', package: const $pb.PackageName('openstorage.api'))
+    ..hasRequiredFields = false
+  ;
+
+  SdkStoragePoolResizeResponse() : super();
+  SdkStoragePoolResizeResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SdkStoragePoolResizeResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SdkStoragePoolResizeResponse clone() => SdkStoragePoolResizeResponse()..mergeFromMessage(this);
+  SdkStoragePoolResizeResponse copyWith(void Function(SdkStoragePoolResizeResponse) updates) => super.copyWith((message) => updates(message as SdkStoragePoolResizeResponse));
+  $pb.BuilderInfo get info_ => _i;
+  static SdkStoragePoolResizeResponse create() => SdkStoragePoolResizeResponse();
+  SdkStoragePoolResizeResponse createEmptyInstance() => create();
+  static $pb.PbList<SdkStoragePoolResizeResponse> createRepeated() => $pb.PbList<SdkStoragePoolResizeResponse>();
+  static SdkStoragePoolResizeResponse getDefault() => _defaultInstance ??= create()..freeze();
+  static SdkStoragePoolResizeResponse _defaultInstance;
+}
+
 class SdkNodeInspectResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SdkNodeInspectResponse', package: const $pb.PackageName('openstorage.api'))
     ..a<StorageNode>(1, 'node', $pb.PbFieldType.OM, StorageNode.getDefault, StorageNode.create)
@@ -6157,6 +6319,7 @@ class SdkCloudBackupEnumerateWithFiltersRequest extends $pb.GeneratedMessage {
     ..m<$core.String, $core.String>(6, 'metadataFilter', 'SdkCloudBackupEnumerateWithFiltersRequest.MetadataFilterEntry',$pb.PbFieldType.OS, $pb.PbFieldType.OS, null, null, null , const $pb.PackageName('openstorage.api'))
     ..a<Int64>(7, 'maxBackups', $pb.PbFieldType.OU6, Int64.ZERO)
     ..aOS(8, 'continuationToken')
+    ..aOS(9, 'cloudBackupId')
     ..hasRequiredFields = false
   ;
 
@@ -6208,6 +6371,11 @@ class SdkCloudBackupEnumerateWithFiltersRequest extends $pb.GeneratedMessage {
   set continuationToken($core.String v) { $_setString(7, v); }
   $core.bool hasContinuationToken() => $_has(7);
   void clearContinuationToken() => clearField(8);
+
+  $core.String get cloudBackupId => $_getS(8, '');
+  set cloudBackupId($core.String v) { $_setString(8, v); }
+  $core.bool hasCloudBackupId() => $_has(8);
+  void clearCloudBackupId() => clearField(9);
 }
 
 class SdkCloudBackupInfo extends $pb.GeneratedMessage {

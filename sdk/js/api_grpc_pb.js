@@ -1403,6 +1403,28 @@ function deserialize_openstorage_api_SdkSchedulePolicyUpdateResponse(buffer_arg)
   return api_pb.SdkSchedulePolicyUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkStoragePoolResizeRequest(arg) {
+  if (!(arg instanceof api_pb.SdkStoragePoolResizeRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkStoragePoolResizeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkStoragePoolResizeRequest(buffer_arg) {
+  return api_pb.SdkStoragePoolResizeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkStoragePoolResizeResponse(arg) {
+  if (!(arg instanceof api_pb.SdkStoragePoolResizeResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkStoragePoolResizeResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkStoragePoolResizeResponse(buffer_arg) {
+  return api_pb.SdkStoragePoolResizeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeAttachRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeAttachRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeAttachRequest');
@@ -2173,6 +2195,23 @@ var OpenStorageClusterDomainsService = exports.OpenStorageClusterDomainsService 
 };
 
 exports.OpenStorageClusterDomainsClient = grpc.makeGenericClientConstructor(OpenStorageClusterDomainsService);
+// OpenStoragePool is a service used to manage storage pools in the cluster
+var OpenStoragePoolService = exports.OpenStoragePoolService = {
+  // Resize resizes the specified storage pool based on the request parameters
+  resize: {
+    path: '/openstorage.api.OpenStoragePool/Resize',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkStoragePoolResizeRequest,
+    responseType: api_pb.SdkStoragePoolResizeResponse,
+    requestSerialize: serialize_openstorage_api_SdkStoragePoolResizeRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkStoragePoolResizeRequest,
+    responseSerialize: serialize_openstorage_api_SdkStoragePoolResizeResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkStoragePoolResizeResponse,
+  },
+};
+
+exports.OpenStoragePoolClient = grpc.makeGenericClientConstructor(OpenStoragePoolService);
 // OpenStorageNode is a service used to manage nodes in the cluster
 var OpenStorageNodeService = exports.OpenStorageNodeService = {
   // Inspect returns information about the specified node

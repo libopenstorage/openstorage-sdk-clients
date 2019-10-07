@@ -499,6 +499,55 @@ class Ownership_AccessType extends $pb.ProtobufEnum {
   const Ownership_AccessType._($core.int v, $core.String n) : super(v, n);
 }
 
+class SdkStoragePool_OperationStatus extends $pb.ProtobufEnum {
+  static const SdkStoragePool_OperationStatus OPERATION_PENDING = SdkStoragePool_OperationStatus._(0, 'OPERATION_PENDING');
+  static const SdkStoragePool_OperationStatus OPERATION_IN_PROGRESS = SdkStoragePool_OperationStatus._(1, 'OPERATION_IN_PROGRESS');
+  static const SdkStoragePool_OperationStatus OPERATION_SUCCESSFUL = SdkStoragePool_OperationStatus._(2, 'OPERATION_SUCCESSFUL');
+  static const SdkStoragePool_OperationStatus OPERATION_FAILED = SdkStoragePool_OperationStatus._(3, 'OPERATION_FAILED');
+
+  static const $core.List<SdkStoragePool_OperationStatus> values = <SdkStoragePool_OperationStatus> [
+    OPERATION_PENDING,
+    OPERATION_IN_PROGRESS,
+    OPERATION_SUCCESSFUL,
+    OPERATION_FAILED,
+  ];
+
+  static final $core.Map<$core.int, SdkStoragePool_OperationStatus> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static SdkStoragePool_OperationStatus valueOf($core.int value) => _byValue[value];
+
+  const SdkStoragePool_OperationStatus._($core.int v, $core.String n) : super(v, n);
+}
+
+class SdkStoragePool_OperationType extends $pb.ProtobufEnum {
+  static const SdkStoragePool_OperationType OPERATION_RESIZE = SdkStoragePool_OperationType._(0, 'OPERATION_RESIZE');
+
+  static const $core.List<SdkStoragePool_OperationType> values = <SdkStoragePool_OperationType> [
+    OPERATION_RESIZE,
+  ];
+
+  static final $core.Map<$core.int, SdkStoragePool_OperationType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static SdkStoragePool_OperationType valueOf($core.int value) => _byValue[value];
+
+  const SdkStoragePool_OperationType._($core.int v, $core.String n) : super(v, n);
+}
+
+class SdkStoragePool_ResizeOperationType extends $pb.ProtobufEnum {
+  static const SdkStoragePool_ResizeOperationType RESIZE_TYPE_AUTO = SdkStoragePool_ResizeOperationType._(0, 'RESIZE_TYPE_AUTO');
+  static const SdkStoragePool_ResizeOperationType RESIZE_TYPE_ADD_DISK = SdkStoragePool_ResizeOperationType._(1, 'RESIZE_TYPE_ADD_DISK');
+  static const SdkStoragePool_ResizeOperationType RESIZE_TYPE_RESIZE_DISK = SdkStoragePool_ResizeOperationType._(2, 'RESIZE_TYPE_RESIZE_DISK');
+
+  static const $core.List<SdkStoragePool_ResizeOperationType> values = <SdkStoragePool_ResizeOperationType> [
+    RESIZE_TYPE_AUTO,
+    RESIZE_TYPE_ADD_DISK,
+    RESIZE_TYPE_RESIZE_DISK,
+  ];
+
+  static final $core.Map<$core.int, SdkStoragePool_ResizeOperationType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static SdkStoragePool_ResizeOperationType valueOf($core.int value) => _byValue[value];
+
+  const SdkStoragePool_ResizeOperationType._($core.int v, $core.String n) : super(v, n);
+}
+
 class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
   static const SdkServiceCapability_OpenStorageService_Type UNKNOWN = SdkServiceCapability_OpenStorageService_Type._(0, 'UNKNOWN');
   static const SdkServiceCapability_OpenStorageService_Type CLUSTER = SdkServiceCapability_OpenStorageService_Type._(1, 'CLUSTER');
@@ -540,7 +589,7 @@ class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
 
 class SdkVersion_Version extends $pb.ProtobufEnum {
   static const SdkVersion_Version MUST_HAVE_ZERO_VALUE = SdkVersion_Version._(0, 'MUST_HAVE_ZERO_VALUE');
-  static const SdkVersion_Version Minor = SdkVersion_Version._(60, 'Minor');
+  static const SdkVersion_Version Minor = SdkVersion_Version._(64, 'Minor');
 
   static const SdkVersion_Version Major = MUST_HAVE_ZERO_VALUE;
   static const SdkVersion_Version Patch = MUST_HAVE_ZERO_VALUE;

@@ -707,6 +707,51 @@ abstract class OpenStorageClusterDomainsServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, SdkClusterDomainDeactivateRequest request);
 }
 
+class OpenStoragePoolClient extends $grpc.Client {
+  static final _$resize = $grpc.ClientMethod<SdkStoragePoolResizeRequest,
+          SdkStoragePoolResizeResponse>(
+      '/openstorage.api.OpenStoragePool/Resize',
+      (SdkStoragePoolResizeRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkStoragePoolResizeResponse.fromBuffer(value));
+
+  OpenStoragePoolClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions options})
+      : super(channel, options: options);
+
+  $grpc.ResponseFuture<SdkStoragePoolResizeResponse> resize(
+      SdkStoragePoolResizeRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$resize, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+}
+
+abstract class OpenStoragePoolServiceBase extends $grpc.Service {
+  $core.String get $name => 'openstorage.api.OpenStoragePool';
+
+  OpenStoragePoolServiceBase() {
+    $addMethod($grpc.ServiceMethod<SdkStoragePoolResizeRequest,
+            SdkStoragePoolResizeResponse>(
+        'Resize',
+        resize_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkStoragePoolResizeRequest.fromBuffer(value),
+        (SdkStoragePoolResizeResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<SdkStoragePoolResizeResponse> resize_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return resize(call, await request);
+  }
+
+  $async.Future<SdkStoragePoolResizeResponse> resize(
+      $grpc.ServiceCall call, SdkStoragePoolResizeRequest request);
+}
+
 class OpenStorageNodeClient extends $grpc.Client {
   static final _$inspect =
       $grpc.ClientMethod<SdkNodeInspectRequest, SdkNodeInspectResponse>(
