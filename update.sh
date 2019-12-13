@@ -5,7 +5,7 @@ fail() {
 	exit 1
 }
 
-branches="master:master release-0.42:release-6.1 release-0.22:release-4.0 release-sdk-0.9:release-sdk-0.9"
+branches="master:master release-0.42:release-6.2 release-0.22:release-4.0 release-sdk-0.9:release-sdk-0.9"
 localbranch=$(git symbolic-ref --short HEAD)
 filter="$1"
 
