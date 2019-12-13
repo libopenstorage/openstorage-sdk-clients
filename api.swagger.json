@@ -520,6 +520,31 @@
         "title": "Defines the types of enforcement on the given rules",
         "type": "string"
       },
+      "apiExportProtocol": {
+        "default": "INVALID",
+        "description": "ExportProtocol defines how the device is exported..\n\n - INVALID: Invalid uninitialized value\n - PXD: PXD the volume is exported over Portworx block interace.\n - ISCSI: ISCSI the volume is exported over ISCSI.\n - NFS: NFS the volume is exported over NFS.\n - CUSTOM: Custom the volume is exported over custom interace.",
+        "enum": [
+          "INVALID",
+          "PXD",
+          "ISCSI",
+          "NFS",
+          "CUSTOM"
+        ],
+        "type": "string"
+      },
+      "apiExportSpec": {
+        "description": "ExportSpec defines how the volume is exported..",
+        "properties": {
+          "export_options": {
+            "description": "ExportOptions options exporting the volume.",
+            "type": "string"
+          },
+          "export_protocol": {
+            "$ref": "#/components/schemas/apiExportProtocol"
+          }
+        },
+        "type": "object"
+      },
       "apiFSType": {
         "default": "FS_TYPE_NONE",
         "enum": [
@@ -707,6 +732,13 @@
             "items": {
               "type": "string"
             },
+            "type": "array"
+          },
+          "pool_uuids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unique IDs of the storage pools for this replica set",
             "type": "array"
           }
         },
@@ -1080,6 +1112,10 @@
             "format": "boolean",
             "type": "boolean"
           },
+          "cloud_backup_id": {
+            "title": "If one wants to enumerate known backup, set this field to the backup ID\nnaming format :clusteruuidORbicketname/srcVolId-snapId(-incr)",
+            "type": "string"
+          },
           "cluster_id": {
             "title": "(optional) Cluster id specifies the cluster for the request",
             "type": "string"
@@ -1370,6 +1406,17 @@
             "description": "Full indicates if scheduled backups should always be full and never incremental.",
             "format": "boolean",
             "type": "boolean"
+          },
+          "group_id": {
+            "title": "GroupId indicates the group of volumes for which this schedule applies",
+            "type": "string"
+          },
+          "labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "labels indicates group of volumes with similar labels for which this schedule applies",
+            "type": "object"
           },
           "max_backups": {
             "format": "uint64",
@@ -3026,7 +3073,7 @@
           },
           "ID": {
             "format": "int32",
-            "title": "ID pool ID",
+            "title": "Deprecated! Use `uuid` instead. ID pool ID",
             "type": "integer"
           },
           "Medium": {
@@ -3196,6 +3243,11 @@
             },
             "type": "array"
           },
+          "attach_time": {
+            "description": "AttachTime time this device was last attached externally.",
+            "format": "date-time",
+            "type": "string"
+          },
           "attached_on": {
             "description": "AttachedOn is the node instance identifier for clustered systems.",
             "type": "string"
@@ -3206,6 +3258,11 @@
           "ctime": {
             "format": "date-time",
             "title": "Volume creation time",
+            "type": "string"
+          },
+          "detach_time": {
+            "description": "DetachTime time this device was detached.",
+            "format": "date-time",
             "type": "string"
           },
           "device_path": {
@@ -3275,7 +3332,7 @@
             "$ref": "#/components/schemas/apiVolumeStatus"
           },
           "usage": {
-            "description": "Usage is bytes consumed by vtheis volume.",
+            "description": "Usage is bytes consumed by this volume.",
             "format": "uint64",
             "type": "string"
           },
@@ -3459,6 +3516,9 @@
             "title": "Ephemeral storage",
             "type": "boolean"
           },
+          "export_spec": {
+            "$ref": "#/components/schemas/apiExportSpec"
+          },
           "force_unsupported_fs_type": {
             "description": "Use to force a file system type which is not recommended.\nThe driver may still refuse to use the file system type.",
             "format": "boolean",
@@ -3579,6 +3639,9 @@
             "format": "boolean",
             "type": "boolean"
           },
+          "export_spec": {
+            "$ref": "#/components/schemas/apiExportSpec"
+          },
           "group": {
             "$ref": "#/components/schemas/apiGroup"
           },
@@ -3668,6 +3731,9 @@
           "dedupe": {
             "format": "boolean",
             "type": "boolean"
+          },
+          "export_spec": {
+            "$ref": "#/components/schemas/apiExportSpec"
           },
           "group": {
             "$ref": "#/components/schemas/apiGroup"
@@ -3796,7 +3862,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.42.18"
+    "version": "0.42.22"
   },
   "openapi": "3.0.0",
   "paths": {

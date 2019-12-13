@@ -216,6 +216,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "openstorage.api.ReplicaSet" do
     repeated :nodes, :string, 1
+    repeated :pool_uuids, :string, 2
   end
   add_message "openstorage.api.RuntimeStateMap" do
     map :runtime_state, :string, :string, 1
@@ -257,6 +258,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :error, :string, 21
     repeated :volume_consumers, :message, 22, "openstorage.api.VolumeConsumer"
     optional :fs_resize_required, :bool, 23
+    optional :attach_time, :message, 24, "google.protobuf.Timestamp"
+    optional :detach_time, :message, 25, "google.protobuf.Timestamp"
   end
   add_message "openstorage.api.Stats" do
     optional :reads, :uint64, 1
@@ -925,6 +928,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     map :metadata_filter, :string, :string, 6
     optional :max_backups, :uint64, 7
     optional :continuation_token, :string, 8
+    optional :cloud_backup_id, :string, 9
   end
   add_message "openstorage.api.SdkCloudBackupInfo" do
     optional :id, :string, 1
@@ -992,6 +996,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :max_backups, :uint64, 4
     optional :full, :bool, 5
     optional :retention_days, :uint32, 6
+    optional :group_id, :string, 7
+    map :labels, :string, :string, 8
   end
   add_message "openstorage.api.SdkCloudBackupSchedCreateRequest" do
     optional :cloud_sched_info, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
@@ -1096,7 +1102,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :MUST_HAVE_ZERO_VALUE, 0
     value :Major, 0
     value :Minor, 42
-    value :Patch, 18
+    value :Patch, 22
   end
   add_message "openstorage.api.StorageVersion" do
     optional :driver, :string, 1

@@ -6006,7 +6006,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.ReplicaSet.repeatedFields_ = [1];
+proto.openstorage.api.ReplicaSet.repeatedFields_ = [1,2];
 
 
 
@@ -6037,7 +6037,8 @@ proto.openstorage.api.ReplicaSet.prototype.toObject = function(opt_includeInstan
  */
 proto.openstorage.api.ReplicaSet.toObject = function(includeInstance, msg) {
   var f, obj = {
-    nodesList: jspb.Message.getRepeatedField(msg, 1)
+    nodesList: jspb.Message.getRepeatedField(msg, 1),
+    poolUuidsList: jspb.Message.getRepeatedField(msg, 2)
   };
 
   if (includeInstance) {
@@ -6078,6 +6079,10 @@ proto.openstorage.api.ReplicaSet.deserializeBinaryFromReader = function(msg, rea
       var value = /** @type {string} */ (reader.readString());
       msg.addNodes(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addPoolUuids(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -6114,6 +6119,13 @@ proto.openstorage.api.ReplicaSet.serializeBinaryToWriter = function(message, wri
       f
     );
   }
+  f = message.getPoolUuidsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -6143,6 +6155,35 @@ proto.openstorage.api.ReplicaSet.prototype.addNodes = function(value, opt_index)
 
 proto.openstorage.api.ReplicaSet.prototype.clearNodesList = function() {
   this.setNodesList([]);
+};
+
+
+/**
+ * repeated string pool_uuids = 2;
+ * @return {!Array<string>}
+ */
+proto.openstorage.api.ReplicaSet.prototype.getPoolUuidsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+};
+
+
+/** @param {!Array<string>} value */
+proto.openstorage.api.ReplicaSet.prototype.setPoolUuidsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
+};
+
+
+/**
+ * @param {string} value
+ * @param {number=} opt_index
+ */
+proto.openstorage.api.ReplicaSet.prototype.addPoolUuids = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+};
+
+
+proto.openstorage.api.ReplicaSet.prototype.clearPoolUuidsList = function() {
+  this.setPoolUuidsList([]);
 };
 
 
@@ -6737,7 +6778,9 @@ proto.openstorage.api.Volume.toObject = function(includeInstance, msg) {
     error: jspb.Message.getFieldWithDefault(msg, 21, ""),
     volumeConsumersList: jspb.Message.toObjectList(msg.getVolumeConsumersList(),
     proto.openstorage.api.VolumeConsumer.toObject, includeInstance),
-    fsResizeRequired: jspb.Message.getFieldWithDefault(msg, 23, false)
+    fsResizeRequired: jspb.Message.getFieldWithDefault(msg, 23, false),
+    attachTime: (f = msg.getAttachTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    detachTime: (f = msg.getDetachTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6876,6 +6919,16 @@ proto.openstorage.api.Volume.deserializeBinaryFromReader = function(msg, reader)
     case 23:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setFsResizeRequired(value);
+      break;
+    case 24:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setAttachTime(value);
+      break;
+    case 25:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setDetachTime(value);
       break;
     default:
       reader.skipField();
@@ -7071,6 +7124,22 @@ proto.openstorage.api.Volume.serializeBinaryToWriter = function(message, writer)
     writer.writeBool(
       23,
       f
+    );
+  }
+  f = message.getAttachTime();
+  if (f != null) {
+    writer.writeMessage(
+      24,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getDetachTime();
+  if (f != null) {
+    writer.writeMessage(
+      25,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
 };
@@ -7577,6 +7646,66 @@ proto.openstorage.api.Volume.prototype.getFsResizeRequired = function() {
 /** @param {boolean} value */
 proto.openstorage.api.Volume.prototype.setFsResizeRequired = function(value) {
   jspb.Message.setProto3BooleanField(this, 23, value);
+};
+
+
+/**
+ * optional google.protobuf.Timestamp attach_time = 24;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.Volume.prototype.getAttachTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 24));
+};
+
+
+/** @param {?proto.google.protobuf.Timestamp|undefined} value */
+proto.openstorage.api.Volume.prototype.setAttachTime = function(value) {
+  jspb.Message.setWrapperField(this, 24, value);
+};
+
+
+proto.openstorage.api.Volume.prototype.clearAttachTime = function() {
+  this.setAttachTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.Volume.prototype.hasAttachTime = function() {
+  return jspb.Message.getField(this, 24) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp detach_time = 25;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.Volume.prototype.getDetachTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 25));
+};
+
+
+/** @param {?proto.google.protobuf.Timestamp|undefined} value */
+proto.openstorage.api.Volume.prototype.setDetachTime = function(value) {
+  jspb.Message.setWrapperField(this, 25, value);
+};
+
+
+proto.openstorage.api.Volume.prototype.clearDetachTime = function() {
+  this.setDetachTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.Volume.prototype.hasDetachTime = function() {
+  return jspb.Message.getField(this, 25) != null;
 };
 
 
@@ -36623,7 +36752,8 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.toObject = funct
     statusFilter: jspb.Message.getFieldWithDefault(msg, 5, 0),
     metadataFilterMap: (f = msg.getMetadataFilterMap()) ? f.toObject(includeInstance, undefined) : [],
     maxBackups: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    continuationToken: jspb.Message.getFieldWithDefault(msg, 8, "")
+    continuationToken: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    cloudBackupId: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -36693,6 +36823,10 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.deserializeBinar
     case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setContinuationToken(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCloudBackupId(value);
       break;
     default:
       reader.skipField();
@@ -36773,6 +36907,13 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.serializeBinaryT
   if (f.length > 0) {
     writer.writeString(
       8,
+      f
+    );
+  }
+  f = message.getCloudBackupId();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -36901,6 +37042,21 @@ proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getCon
 /** @param {string} value */
 proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setContinuationToken = function(value) {
   jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string cloud_backup_id = 9;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.getCloudBackupId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest.prototype.setCloudBackupId = function(value) {
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -39458,7 +39614,9 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.toObject = function(includeInst
     proto.openstorage.api.SdkSchedulePolicyInterval.toObject, includeInstance),
     maxBackups: jspb.Message.getFieldWithDefault(msg, 4, 0),
     full: jspb.Message.getFieldWithDefault(msg, 5, false),
-    retentionDays: jspb.Message.getFieldWithDefault(msg, 6, 0)
+    retentionDays: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    groupId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    labelsMap: (f = msg.getLabelsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -39519,6 +39677,16 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.deserializeBinaryFromReader = f
     case 6:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setRetentionDays(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setGroupId(value);
+      break;
+    case 8:
+      var value = msg.getLabelsMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "");
+         });
       break;
     default:
       reader.skipField();
@@ -39591,6 +39759,17 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.serializeBinaryToWriter = funct
       6,
       f
     );
+  }
+  f = message.getGroupId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
+      f
+    );
+  }
+  f = message.getLabelsMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(8, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
   }
 };
 
@@ -39700,6 +39879,39 @@ proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getRetentionDays = fu
 /** @param {number} value */
 proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setRetentionDays = function(value) {
   jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional string group_id = 7;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getGroupId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/** @param {string} value */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.setGroupId = function(value) {
+  jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * map<string, string> labels = 8;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,string>}
+ */
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.getLabelsMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,string>} */ (
+      jspb.Message.getMapField(this, 8, opt_noLazyCreate,
+      null));
+};
+
+
+proto.openstorage.api.SdkCloudBackupScheduleInfo.prototype.clearLabelsMap = function() {
+  this.getLabelsMap().clear();
 };
 
 
@@ -43816,7 +44028,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 42,
-  PATCH: 18
+  PATCH: 22
 };
 
 /**
