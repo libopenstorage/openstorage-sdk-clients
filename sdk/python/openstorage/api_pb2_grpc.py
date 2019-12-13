@@ -243,6 +243,299 @@ def add_OpenStorageRoleServicer_to_server(servicer, server):
   server.add_generic_rpc_handlers((generic_handler,))
 
 
+class OpenStorageFilesystemTrimStub(object):
+  """## OpenStorageFilesystemTrim Service
+  This service provides methods to manage filesystem trim operation on a
+  volume. 
+
+  This operation runs in the background on a **mounted volume**. If the volumes
+  are not mounted, these API return error.
+
+  Once the filesystem trim operation is started, the clients have to poll for
+  the status of the background operation using the
+  `OpenStorageFilesystemTrim.GetStatus()` rpc request
+
+  A typical workflow involving filesystem trim would be as follows
+  1. Attach the volume
+  `OpenStorageMountAttachClient.Attach()`
+  2. Mount the volume
+  `OpenStorageMountAttachClient.Mount()`
+  3. Start the filesystem trim operation by issuing a grpc call to
+  `OpenStorageFilesystemTrimClient.Start()`
+  This call returns immediately with a status code indicating if the
+  operation was successfully started or not.
+  4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+  `OpenStorageFilesystemTrimClient.GetStatus()`
+  5. To stop the Filesystem Trim operation, issue a grpc call to
+  `OpenStorageFilesystemTrimClient.Stop()`
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.Start = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemTrim/Start',
+        request_serializer=api__pb2.SdkFilesystemTrimStartRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemTrimStartResponse.FromString,
+        )
+    self.GetStatus = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
+        request_serializer=api__pb2.SdkFilesystemTrimGetStatusRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemTrimGetStatusResponse.FromString,
+        )
+    self.Stop = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemTrim/Stop',
+        request_serializer=api__pb2.SdkFilesystemTrimStopRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemTrimStopResponse.FromString,
+        )
+
+
+class OpenStorageFilesystemTrimServicer(object):
+  """## OpenStorageFilesystemTrim Service
+  This service provides methods to manage filesystem trim operation on a
+  volume. 
+
+  This operation runs in the background on a **mounted volume**. If the volumes
+  are not mounted, these API return error.
+
+  Once the filesystem trim operation is started, the clients have to poll for
+  the status of the background operation using the
+  `OpenStorageFilesystemTrim.GetStatus()` rpc request
+
+  A typical workflow involving filesystem trim would be as follows
+  1. Attach the volume
+  `OpenStorageMountAttachClient.Attach()`
+  2. Mount the volume
+  `OpenStorageMountAttachClient.Mount()`
+  3. Start the filesystem trim operation by issuing a grpc call to
+  `OpenStorageFilesystemTrimClient.Start()`
+  This call returns immediately with a status code indicating if the
+  operation was successfully started or not.
+  4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+  `OpenStorageFilesystemTrimClient.GetStatus()`
+  5. To stop the Filesystem Trim operation, issue a grpc call to
+  `OpenStorageFilesystemTrimClient.Stop()`
+  """
+
+  def Start(self, request, context):
+    """Start a filesystem Trim background operation on a mounted volume
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetStatus(self, request, context):
+    """Get Status of a filesystem Trim background operation on a mounted
+    volume, if any
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Stop(self, request, context):
+    """Stop a filesystem Trim background operation on a mounted volume, if any
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'Start': grpc.unary_unary_rpc_method_handler(
+          servicer.Start,
+          request_deserializer=api__pb2.SdkFilesystemTrimStartRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemTrimStartResponse.SerializeToString,
+      ),
+      'GetStatus': grpc.unary_unary_rpc_method_handler(
+          servicer.GetStatus,
+          request_deserializer=api__pb2.SdkFilesystemTrimGetStatusRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemTrimGetStatusResponse.SerializeToString,
+      ),
+      'Stop': grpc.unary_unary_rpc_method_handler(
+          servicer.Stop,
+          request_deserializer=api__pb2.SdkFilesystemTrimStopRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemTrimStopResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageFilesystemTrim', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
+class OpenStorageFilesystemCheckStub(object):
+  """## OpenStorageFilesystemCheckService
+  This service provides methods to manage filesystem check operation on a
+  volume. 
+
+  This operation is run in the background on an **unmounted volume**.
+  If the volume is mounted, then these APIs return error.
+
+  Once the filesystem check operation(either CheckHealth() or FixAll()) is
+  started, the clients have to poll for the status of the background operation
+  using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
+  `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+
+  **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+
+  A typical workflow involving filesystem check would be as follows
+  1. Attach the volume
+  `OpenStorageMountAttachClient.Attach()`
+  2. Check the health of the filesystem by issuing a grpc call to
+  `OpenStorageFilesystemCheckClient.CheckHealth()`
+  3. Status of the CheckHealth() operation can be retrieved by polling for the
+  status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
+  4. If the CheckHealth Operations status reports filesystem is in unhealthy
+  state, then to fix all the problems issue a grpc call to 
+  `OpenStorageFilesystemCheckClient.FixAll()`
+  5. Status of the FixAll() operation can be retrieved by polling for the
+  status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
+  6. CheckHealth() and FixAll() operations run in the background, to stop these
+  operations, issue a call to
+  `OpenStorageFilesystemCheckClient.Stop()`
+  """
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.CheckHealth = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
+        request_serializer=api__pb2.SdkFilesystemCheckCheckHealthRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemCheckCheckHealthResponse.FromString,
+        )
+    self.CheckHealthGetStatus = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
+        request_serializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusResponse.FromString,
+        )
+    self.FixAll = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
+        request_serializer=api__pb2.SdkFilesystemCheckFixAllRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemCheckFixAllResponse.FromString,
+        )
+    self.FixAllGetStatus = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
+        request_serializer=api__pb2.SdkFilesystemCheckFixAllGetStatusRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemCheckFixAllGetStatusResponse.FromString,
+        )
+    self.Stop = channel.unary_unary(
+        '/openstorage.api.OpenStorageFilesystemCheck/Stop',
+        request_serializer=api__pb2.SdkFilesystemCheckStopRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkFilesystemCheckStopResponse.FromString,
+        )
+
+
+class OpenStorageFilesystemCheckServicer(object):
+  """## OpenStorageFilesystemCheckService
+  This service provides methods to manage filesystem check operation on a
+  volume. 
+
+  This operation is run in the background on an **unmounted volume**.
+  If the volume is mounted, then these APIs return error.
+
+  Once the filesystem check operation(either CheckHealth() or FixAll()) is
+  started, the clients have to poll for the status of the background operation
+  using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
+  `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+
+  **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+
+  A typical workflow involving filesystem check would be as follows
+  1. Attach the volume
+  `OpenStorageMountAttachClient.Attach()`
+  2. Check the health of the filesystem by issuing a grpc call to
+  `OpenStorageFilesystemCheckClient.CheckHealth()`
+  3. Status of the CheckHealth() operation can be retrieved by polling for the
+  status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
+  4. If the CheckHealth Operations status reports filesystem is in unhealthy
+  state, then to fix all the problems issue a grpc call to 
+  `OpenStorageFilesystemCheckClient.FixAll()`
+  5. Status of the FixAll() operation can be retrieved by polling for the
+  status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
+  6. CheckHealth() and FixAll() operations run in the background, to stop these
+  operations, issue a call to
+  `OpenStorageFilesystemCheckClient.Stop()`
+  """
+
+  def CheckHealth(self, request, context):
+    """Get a report of issues found on the filesystem. This operation works on an
+    unmounted volume.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def CheckHealthGetStatus(self, request, context):
+    """Get Status of a filesystem CheckHealth background operation on an unmounted
+    volume, if any
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def FixAll(self, request, context):
+    """FixAll fixes all the issues reported in the response to CheckHealth API on
+    a filesystem. This operation works on an unmounted volume.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def FixAllGetStatus(self, request, context):
+    """Get Status of a filesystem FixAll background operation on an unmounted
+    volume, if any
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def Stop(self, request, context):
+    """Stop a filesystem check background operation on an unmounted volume, if any
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageFilesystemCheckServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'CheckHealth': grpc.unary_unary_rpc_method_handler(
+          servicer.CheckHealth,
+          request_deserializer=api__pb2.SdkFilesystemCheckCheckHealthRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemCheckCheckHealthResponse.SerializeToString,
+      ),
+      'CheckHealthGetStatus': grpc.unary_unary_rpc_method_handler(
+          servicer.CheckHealthGetStatus,
+          request_deserializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusResponse.SerializeToString,
+      ),
+      'FixAll': grpc.unary_unary_rpc_method_handler(
+          servicer.FixAll,
+          request_deserializer=api__pb2.SdkFilesystemCheckFixAllRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemCheckFixAllResponse.SerializeToString,
+      ),
+      'FixAllGetStatus': grpc.unary_unary_rpc_method_handler(
+          servicer.FixAllGetStatus,
+          request_deserializer=api__pb2.SdkFilesystemCheckFixAllGetStatusRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemCheckFixAllGetStatusResponse.SerializeToString,
+      ),
+      'Stop': grpc.unary_unary_rpc_method_handler(
+          servicer.Stop,
+          request_deserializer=api__pb2.SdkFilesystemCheckStopRequest.FromString,
+          response_serializer=api__pb2.SdkFilesystemCheckStopResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'openstorage.api.OpenStorageFilesystemCheck', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
+
+
 class OpenStorageIdentityStub(object):
   """OpenStorageIdentity service provides methods to obtain information
   about the cluster
@@ -1224,7 +1517,8 @@ class OpenStorageMigrateServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def Status(self, request, context):
-    """Inspect the status of migration operation
+    """Status for migration operation.
+    If status request is empty, status for all migration operation will be returned.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -1400,6 +1694,7 @@ class OpenStorageCredentialsServicer(object):
     {% codetabs name="Golang", type="go" -%}
     id, err := client.Create(context.Background(), &api.SdkCredentialCreateRequest{
     Name: "awscred",
+    UseProxy: false,
     CredentialType: &api.SdkCredentialCreateRequest_AwsCredential{
     AwsCredential: &api.SdkAwsCredentialRequest{
     AccessKey: "dummy-access",

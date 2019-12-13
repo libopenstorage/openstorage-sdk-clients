@@ -251,6 +251,291 @@ abstract class OpenStorageRoleServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, SdkRoleUpdateRequest request);
 }
 
+class OpenStorageFilesystemTrimClient extends $grpc.Client {
+  static final _$start = $grpc.ClientMethod<SdkFilesystemTrimStartRequest,
+          SdkFilesystemTrimStartResponse>(
+      '/openstorage.api.OpenStorageFilesystemTrim/Start',
+      (SdkFilesystemTrimStartRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemTrimStartResponse.fromBuffer(value));
+  static final _$getStatus = $grpc.ClientMethod<
+          SdkFilesystemTrimGetStatusRequest,
+          SdkFilesystemTrimGetStatusResponse>(
+      '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
+      (SdkFilesystemTrimGetStatusRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemTrimGetStatusResponse.fromBuffer(value));
+  static final _$stop = $grpc.ClientMethod<SdkFilesystemTrimStopRequest,
+          SdkFilesystemTrimStopResponse>(
+      '/openstorage.api.OpenStorageFilesystemTrim/Stop',
+      (SdkFilesystemTrimStopRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemTrimStopResponse.fromBuffer(value));
+
+  OpenStorageFilesystemTrimClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions options})
+      : super(channel, options: options);
+
+  $grpc.ResponseFuture<SdkFilesystemTrimStartResponse> start(
+      SdkFilesystemTrimStartRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$start, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkFilesystemTrimGetStatusResponse> getStatus(
+      SdkFilesystemTrimGetStatusRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$getStatus, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkFilesystemTrimStopResponse> stop(
+      SdkFilesystemTrimStopRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$stop, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+}
+
+abstract class OpenStorageFilesystemTrimServiceBase extends $grpc.Service {
+  $core.String get $name => 'openstorage.api.OpenStorageFilesystemTrim';
+
+  OpenStorageFilesystemTrimServiceBase() {
+    $addMethod($grpc.ServiceMethod<SdkFilesystemTrimStartRequest,
+            SdkFilesystemTrimStartResponse>(
+        'Start',
+        start_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemTrimStartRequest.fromBuffer(value),
+        (SdkFilesystemTrimStartResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkFilesystemTrimGetStatusRequest,
+            SdkFilesystemTrimGetStatusResponse>(
+        'GetStatus',
+        getStatus_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemTrimGetStatusRequest.fromBuffer(value),
+        (SdkFilesystemTrimGetStatusResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkFilesystemTrimStopRequest,
+            SdkFilesystemTrimStopResponse>(
+        'Stop',
+        stop_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemTrimStopRequest.fromBuffer(value),
+        (SdkFilesystemTrimStopResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<SdkFilesystemTrimStartResponse> start_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return start(call, await request);
+  }
+
+  $async.Future<SdkFilesystemTrimGetStatusResponse> getStatus_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return getStatus(call, await request);
+  }
+
+  $async.Future<SdkFilesystemTrimStopResponse> stop_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return stop(call, await request);
+  }
+
+  $async.Future<SdkFilesystemTrimStartResponse> start(
+      $grpc.ServiceCall call, SdkFilesystemTrimStartRequest request);
+  $async.Future<SdkFilesystemTrimGetStatusResponse> getStatus(
+      $grpc.ServiceCall call, SdkFilesystemTrimGetStatusRequest request);
+  $async.Future<SdkFilesystemTrimStopResponse> stop(
+      $grpc.ServiceCall call, SdkFilesystemTrimStopRequest request);
+}
+
+class OpenStorageFilesystemCheckClient extends $grpc.Client {
+  static final _$checkHealth = $grpc.ClientMethod<
+          SdkFilesystemCheckCheckHealthRequest,
+          SdkFilesystemCheckCheckHealthResponse>(
+      '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
+      (SdkFilesystemCheckCheckHealthRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemCheckCheckHealthResponse.fromBuffer(value));
+  static final _$checkHealthGetStatus = $grpc.ClientMethod<
+          SdkFilesystemCheckCheckHealthGetStatusRequest,
+          SdkFilesystemCheckCheckHealthGetStatusResponse>(
+      '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
+      (SdkFilesystemCheckCheckHealthGetStatusRequest value) =>
+          value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemCheckCheckHealthGetStatusResponse.fromBuffer(value));
+  static final _$fixAll = $grpc.ClientMethod<SdkFilesystemCheckFixAllRequest,
+          SdkFilesystemCheckFixAllResponse>(
+      '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
+      (SdkFilesystemCheckFixAllRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemCheckFixAllResponse.fromBuffer(value));
+  static final _$fixAllGetStatus = $grpc.ClientMethod<
+          SdkFilesystemCheckFixAllGetStatusRequest,
+          SdkFilesystemCheckFixAllGetStatusResponse>(
+      '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
+      (SdkFilesystemCheckFixAllGetStatusRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemCheckFixAllGetStatusResponse.fromBuffer(value));
+  static final _$stop = $grpc.ClientMethod<SdkFilesystemCheckStopRequest,
+          SdkFilesystemCheckStopResponse>(
+      '/openstorage.api.OpenStorageFilesystemCheck/Stop',
+      (SdkFilesystemCheckStopRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          SdkFilesystemCheckStopResponse.fromBuffer(value));
+
+  OpenStorageFilesystemCheckClient($grpc.ClientChannel channel,
+      {$grpc.CallOptions options})
+      : super(channel, options: options);
+
+  $grpc.ResponseFuture<SdkFilesystemCheckCheckHealthResponse> checkHealth(
+      SdkFilesystemCheckCheckHealthRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$checkHealth, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkFilesystemCheckCheckHealthGetStatusResponse>
+      checkHealthGetStatus(
+          SdkFilesystemCheckCheckHealthGetStatusRequest request,
+          {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$checkHealthGetStatus, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkFilesystemCheckFixAllResponse> fixAll(
+      SdkFilesystemCheckFixAllRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$fixAll, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkFilesystemCheckFixAllGetStatusResponse>
+      fixAllGetStatus(SdkFilesystemCheckFixAllGetStatusRequest request,
+          {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$fixAllGetStatus, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<SdkFilesystemCheckStopResponse> stop(
+      SdkFilesystemCheckStopRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$stop, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+}
+
+abstract class OpenStorageFilesystemCheckServiceBase extends $grpc.Service {
+  $core.String get $name => 'openstorage.api.OpenStorageFilesystemCheck';
+
+  OpenStorageFilesystemCheckServiceBase() {
+    $addMethod($grpc.ServiceMethod<SdkFilesystemCheckCheckHealthRequest,
+            SdkFilesystemCheckCheckHealthResponse>(
+        'CheckHealth',
+        checkHealth_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemCheckCheckHealthRequest.fromBuffer(value),
+        (SdkFilesystemCheckCheckHealthResponse value) =>
+            value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<
+            SdkFilesystemCheckCheckHealthGetStatusRequest,
+            SdkFilesystemCheckCheckHealthGetStatusResponse>(
+        'CheckHealthGetStatus',
+        checkHealthGetStatus_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemCheckCheckHealthGetStatusRequest.fromBuffer(value),
+        (SdkFilesystemCheckCheckHealthGetStatusResponse value) =>
+            value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkFilesystemCheckFixAllRequest,
+            SdkFilesystemCheckFixAllResponse>(
+        'FixAll',
+        fixAll_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemCheckFixAllRequest.fromBuffer(value),
+        (SdkFilesystemCheckFixAllResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkFilesystemCheckFixAllGetStatusRequest,
+            SdkFilesystemCheckFixAllGetStatusResponse>(
+        'FixAllGetStatus',
+        fixAllGetStatus_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemCheckFixAllGetStatusRequest.fromBuffer(value),
+        (SdkFilesystemCheckFixAllGetStatusResponse value) =>
+            value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<SdkFilesystemCheckStopRequest,
+            SdkFilesystemCheckStopResponse>(
+        'Stop',
+        stop_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            SdkFilesystemCheckStopRequest.fromBuffer(value),
+        (SdkFilesystemCheckStopResponse value) => value.writeToBuffer()));
+  }
+
+  $async.Future<SdkFilesystemCheckCheckHealthResponse> checkHealth_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return checkHealth(call, await request);
+  }
+
+  $async.Future<SdkFilesystemCheckCheckHealthGetStatusResponse>
+      checkHealthGetStatus_Pre(
+          $grpc.ServiceCall call, $async.Future request) async {
+    return checkHealthGetStatus(call, await request);
+  }
+
+  $async.Future<SdkFilesystemCheckFixAllResponse> fixAll_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return fixAll(call, await request);
+  }
+
+  $async.Future<SdkFilesystemCheckFixAllGetStatusResponse> fixAllGetStatus_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return fixAllGetStatus(call, await request);
+  }
+
+  $async.Future<SdkFilesystemCheckStopResponse> stop_Pre(
+      $grpc.ServiceCall call, $async.Future request) async {
+    return stop(call, await request);
+  }
+
+  $async.Future<SdkFilesystemCheckCheckHealthResponse> checkHealth(
+      $grpc.ServiceCall call, SdkFilesystemCheckCheckHealthRequest request);
+  $async.Future<SdkFilesystemCheckCheckHealthGetStatusResponse>
+      checkHealthGetStatus($grpc.ServiceCall call,
+          SdkFilesystemCheckCheckHealthGetStatusRequest request);
+  $async.Future<SdkFilesystemCheckFixAllResponse> fixAll(
+      $grpc.ServiceCall call, SdkFilesystemCheckFixAllRequest request);
+  $async.Future<SdkFilesystemCheckFixAllGetStatusResponse> fixAllGetStatus(
+      $grpc.ServiceCall call, SdkFilesystemCheckFixAllGetStatusRequest request);
+  $async.Future<SdkFilesystemCheckStopResponse> stop(
+      $grpc.ServiceCall call, SdkFilesystemCheckStopRequest request);
+}
+
 class OpenStorageIdentityClient extends $grpc.Client {
   static final _$capabilities = $grpc.ClientMethod<
           SdkIdentityCapabilitiesRequest, SdkIdentityCapabilitiesResponse>(

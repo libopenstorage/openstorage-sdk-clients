@@ -113,6 +113,106 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageFilesystemTrim
+      # ## OpenStorageFilesystemTrim Service
+      # This service provides methods to manage filesystem trim operation on a
+      # volume. 
+      #
+      # This operation runs in the background on a **mounted volume**. If the volumes
+      # are not mounted, these API return error.
+      #
+      # Once the filesystem trim operation is started, the clients have to poll for
+      # the status of the background operation using the
+      # `OpenStorageFilesystemTrim.GetStatus()` rpc request
+      #
+      # A typical workflow involving filesystem trim would be as follows
+      # 1. Attach the volume
+      #    `OpenStorageMountAttachClient.Attach()`
+      # 2. Mount the volume
+      #    `OpenStorageMountAttachClient.Mount()`
+      # 3. Start the filesystem trim operation by issuing a grpc call to
+      #    `OpenStorageFilesystemTrimClient.Start()`
+      #    This call returns immediately with a status code indicating if the
+      #    operation was successfully started or not.
+      # 4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+      #    `OpenStorageFilesystemTrimClient.GetStatus()`
+      # 5. To stop the Filesystem Trim operation, issue a grpc call to
+      #    `OpenStorageFilesystemTrimClient.Stop()`
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageFilesystemTrim'
+
+        # Start a filesystem Trim background operation on a mounted volume
+        rpc :Start, SdkFilesystemTrimStartRequest, SdkFilesystemTrimStartResponse
+        # Get Status of a filesystem Trim background operation on a mounted
+        # volume, if any
+        rpc :GetStatus, SdkFilesystemTrimGetStatusRequest, SdkFilesystemTrimGetStatusResponse
+        # Stop a filesystem Trim background operation on a mounted volume, if any
+        rpc :Stop, SdkFilesystemTrimStopRequest, SdkFilesystemTrimStopResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
+    module OpenStorageFilesystemCheck
+      # ## OpenStorageFilesystemCheckService
+      # This service provides methods to manage filesystem check operation on a
+      # volume. 
+      #
+      # This operation is run in the background on an **unmounted volume**.
+      # If the volume is mounted, then these APIs return error.
+      #
+      # Once the filesystem check operation(either CheckHealth() or FixAll()) is
+      # started, the clients have to poll for the status of the background operation
+      # using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
+      # `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+      #
+      # **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+      #
+      # A typical workflow involving filesystem check would be as follows
+      # 1. Attach the volume
+      #    `OpenStorageMountAttachClient.Attach()`
+      # 2. Check the health of the filesystem by issuing a grpc call to
+      #    `OpenStorageFilesystemCheckClient.CheckHealth()`
+      # 3. Status of the CheckHealth() operation can be retrieved by polling for the
+      #    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
+      # 4. If the CheckHealth Operations status reports filesystem is in unhealthy
+      #    state, then to fix all the problems issue a grpc call to 
+      #    `OpenStorageFilesystemCheckClient.FixAll()`
+      # 5. Status of the FixAll() operation can be retrieved by polling for the
+      #    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
+      # 6. CheckHealth() and FixAll() operations run in the background, to stop these
+      #    operations, issue a call to
+      #    `OpenStorageFilesystemCheckClient.Stop()`
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageFilesystemCheck'
+
+        # Get a report of issues found on the filesystem. This operation works on an
+        # unmounted volume.
+        rpc :CheckHealth, SdkFilesystemCheckCheckHealthRequest, SdkFilesystemCheckCheckHealthResponse
+        # Get Status of a filesystem CheckHealth background operation on an unmounted
+        # volume, if any
+        rpc :CheckHealthGetStatus, SdkFilesystemCheckCheckHealthGetStatusRequest, SdkFilesystemCheckCheckHealthGetStatusResponse
+        # FixAll fixes all the issues reported in the response to CheckHealth API on
+        # a filesystem. This operation works on an unmounted volume.
+        rpc :FixAll, SdkFilesystemCheckFixAllRequest, SdkFilesystemCheckFixAllResponse
+        # Get Status of a filesystem FixAll background operation on an unmounted
+        # volume, if any
+        rpc :FixAllGetStatus, SdkFilesystemCheckFixAllGetStatusRequest, SdkFilesystemCheckFixAllGetStatusResponse
+        # Stop a filesystem check background operation on an unmounted volume, if any
+        rpc :Stop, SdkFilesystemCheckStopRequest, SdkFilesystemCheckStopResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageIdentity
       # OpenStorageIdentity service provides methods to obtain information
       # about the cluster
@@ -409,7 +509,8 @@ module Openstorage
         rpc :Start, SdkCloudMigrateStartRequest, SdkCloudMigrateStartResponse
         # Cancel a migration operation
         rpc :Cancel, SdkCloudMigrateCancelRequest, SdkCloudMigrateCancelResponse
-        # Inspect the status of migration operation
+        # Status for migration operation.
+        # If status request is empty, status for all migration operation will be returned.
         rpc :Status, SdkCloudMigrateStatusRequest, SdkCloudMigrateStatusResponse
       end
 
@@ -457,6 +558,7 @@ module Openstorage
         # {% codetabs name="Golang", type="go" -%}
         # id, err := client.Create(context.Background(), &api.SdkCredentialCreateRequest{
         #     Name: "awscred",
+        #     UseProxy: false,
         #     CredentialType: &api.SdkCredentialCreateRequest_AwsCredential{
         #       AwsCredential: &api.SdkAwsCredentialRequest{
         #       AccessKey: "dummy-access",

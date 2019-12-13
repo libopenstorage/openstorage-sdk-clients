@@ -787,6 +787,182 @@ function deserialize_openstorage_api_SdkCredentialValidateResponse(buffer_arg) {
   return api_pb.SdkCredentialValidateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckCheckHealthRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckCheckHealthResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllGetStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckFixAllGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllGetStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckFixAllRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckFixAllRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckFixAllRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckFixAllResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckFixAllResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckFixAllResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckStopRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStopRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStopRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckStopRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStopRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckStopResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStopResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStopResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckStopResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStopResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimGetStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimGetStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimGetStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimGetStatusRequest(buffer_arg) {
+  return api_pb.SdkFilesystemTrimGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimGetStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimGetStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimGetStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimGetStatusResponse(buffer_arg) {
+  return api_pb.SdkFilesystemTrimGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimStartRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimStartRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStartRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimStartRequest(buffer_arg) {
+  return api_pb.SdkFilesystemTrimStartRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimStartResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimStartResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStartResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimStartResponse(buffer_arg) {
+  return api_pb.SdkFilesystemTrimStartResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimStopRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimStopRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStopRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimStopRequest(buffer_arg) {
+  return api_pb.SdkFilesystemTrimStopRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimStopResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimStopResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStopResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimStopResponse(buffer_arg) {
+  return api_pb.SdkFilesystemTrimStopResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkIdentityCapabilitiesRequest(arg) {
   if (!(arg instanceof api_pb.SdkIdentityCapabilitiesRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkIdentityCapabilitiesRequest');
@@ -1992,6 +2168,168 @@ var OpenStorageRoleService = exports.OpenStorageRoleService = {
 };
 
 exports.OpenStorageRoleClient = grpc.makeGenericClientConstructor(OpenStorageRoleService);
+// ## OpenStorageFilesystemTrim Service
+// This service provides methods to manage filesystem trim operation on a
+// volume. 
+//
+// This operation runs in the background on a **mounted volume**. If the volumes
+// are not mounted, these API return error.
+//
+// Once the filesystem trim operation is started, the clients have to poll for
+// the status of the background operation using the
+// `OpenStorageFilesystemTrim.GetStatus()` rpc request
+//
+// A typical workflow involving filesystem trim would be as follows
+// 1. Attach the volume
+//    `OpenStorageMountAttachClient.Attach()`
+// 2. Mount the volume
+//    `OpenStorageMountAttachClient.Mount()`
+// 3. Start the filesystem trim operation by issuing a grpc call to
+//    `OpenStorageFilesystemTrimClient.Start()`
+//    This call returns immediately with a status code indicating if the
+//    operation was successfully started or not.
+// 4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+//    `OpenStorageFilesystemTrimClient.GetStatus()`
+// 5. To stop the Filesystem Trim operation, issue a grpc call to
+//    `OpenStorageFilesystemTrimClient.Stop()`
+var OpenStorageFilesystemTrimService = exports.OpenStorageFilesystemTrimService = {
+  // Start a filesystem Trim background operation on a mounted volume
+  start: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/Start',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemTrimStartRequest,
+    responseType: api_pb.SdkFilesystemTrimStartResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemTrimStartRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStartRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStartResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStartResponse,
+  },
+  // Get Status of a filesystem Trim background operation on a mounted
+  // volume, if any
+  getStatus: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemTrimGetStatusRequest,
+    responseType: api_pb.SdkFilesystemTrimGetStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemTrimGetStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimGetStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemTrimGetStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimGetStatusResponse,
+  },
+  // Stop a filesystem Trim background operation on a mounted volume, if any
+  stop: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/Stop',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemTrimStopRequest,
+    responseType: api_pb.SdkFilesystemTrimStopResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemTrimStopRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStopRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStopResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStopResponse,
+  },
+};
+
+exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(OpenStorageFilesystemTrimService);
+// ## OpenStorageFilesystemCheckService
+// This service provides methods to manage filesystem check operation on a
+// volume. 
+//
+// This operation is run in the background on an **unmounted volume**.
+// If the volume is mounted, then these APIs return error.
+//
+// Once the filesystem check operation(either CheckHealth() or FixAll()) is
+// started, the clients have to poll for the status of the background operation
+// using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
+// `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+//
+// **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+//
+// A typical workflow involving filesystem check would be as follows
+// 1. Attach the volume
+//    `OpenStorageMountAttachClient.Attach()`
+// 2. Check the health of the filesystem by issuing a grpc call to
+//    `OpenStorageFilesystemCheckClient.CheckHealth()`
+// 3. Status of the CheckHealth() operation can be retrieved by polling for the
+//    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
+// 4. If the CheckHealth Operations status reports filesystem is in unhealthy
+//    state, then to fix all the problems issue a grpc call to 
+//    `OpenStorageFilesystemCheckClient.FixAll()`
+// 5. Status of the FixAll() operation can be retrieved by polling for the
+//    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
+// 6. CheckHealth() and FixAll() operations run in the background, to stop these
+//    operations, issue a call to
+//    `OpenStorageFilesystemCheckClient.Stop()`
+var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckService = {
+  // Get a report of issues found on the filesystem. This operation works on an
+  // unmounted volume.
+  checkHealth: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckCheckHealthRequest,
+    responseType: api_pb.SdkFilesystemCheckCheckHealthResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse,
+  },
+  // Get Status of a filesystem CheckHealth background operation on an unmounted
+  // volume, if any
+  checkHealthGetStatus: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest,
+    responseType: api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse,
+  },
+  // FixAll fixes all the issues reported in the response to CheckHealth API on
+  // a filesystem. This operation works on an unmounted volume.
+  fixAll: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckFixAllRequest,
+    responseType: api_pb.SdkFilesystemCheckFixAllResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllResponse,
+  },
+  // Get Status of a filesystem FixAll background operation on an unmounted
+  // volume, if any
+  fixAllGetStatus: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckFixAllGetStatusRequest,
+    responseType: api_pb.SdkFilesystemCheckFixAllGetStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse,
+  },
+  // Stop a filesystem check background operation on an unmounted volume, if any
+  stop: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/Stop',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckStopRequest,
+    responseType: api_pb.SdkFilesystemCheckStopResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckStopRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStopRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckStopResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStopResponse,
+  },
+};
+
+exports.OpenStorageFilesystemCheckClient = grpc.makeGenericClientConstructor(OpenStorageFilesystemCheckService);
 // OpenStorageIdentity service provides methods to obtain information
 // about the cluster
 var OpenStorageIdentityService = exports.OpenStorageIdentityService = {
@@ -2598,7 +2936,8 @@ var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
     responseSerialize: serialize_openstorage_api_SdkCloudMigrateCancelResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateCancelResponse,
   },
-  // Inspect the status of migration operation
+  // Status for migration operation.
+  // If status request is empty, status for all migration operation will be returned.
   status: {
     path: '/openstorage.api.OpenStorageMigrate/Status',
     requestStream: false,
@@ -2678,6 +3017,7 @@ var OpenStorageCredentialsService = exports.OpenStorageCredentialsService = {
   // {% codetabs name="Golang", type="go" -%}
   // id, err := client.Create(context.Background(), &api.SdkCredentialCreateRequest{
   //     Name: "awscred",
+  //     UseProxy: false,
   //     CredentialType: &api.SdkCredentialCreateRequest_AwsCredential{
   //       AwsCredential: &api.SdkAwsCredentialRequest{
   //       AccessKey: "dummy-access",

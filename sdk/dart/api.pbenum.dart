@@ -358,6 +358,27 @@ class HardwareType extends $pb.ProtobufEnum {
   const HardwareType._($core.int v, $core.String n) : super(v, n);
 }
 
+class ExportProtocol extends $pb.ProtobufEnum {
+  static const ExportProtocol INVALID = ExportProtocol._(0, 'INVALID');
+  static const ExportProtocol PXD = ExportProtocol._(1, 'PXD');
+  static const ExportProtocol ISCSI = ExportProtocol._(2, 'ISCSI');
+  static const ExportProtocol NFS = ExportProtocol._(3, 'NFS');
+  static const ExportProtocol CUSTOM = ExportProtocol._(4, 'CUSTOM');
+
+  static const $core.List<ExportProtocol> values = <ExportProtocol> [
+    INVALID,
+    PXD,
+    ISCSI,
+    NFS,
+    CUSTOM,
+  ];
+
+  static final $core.Map<$core.int, ExportProtocol> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static ExportProtocol valueOf($core.int value) => _byValue[value];
+
+  const ExportProtocol._($core.int v, $core.String n) : super(v, n);
+}
+
 class SdkTimeWeekday extends $pb.ProtobufEnum {
   static const SdkTimeWeekday SdkTimeWeekdaySunday = SdkTimeWeekday._(0, 'SdkTimeWeekdaySunday');
   static const SdkTimeWeekday SdkTimeWeekdayMonday = SdkTimeWeekday._(1, 'SdkTimeWeekdayMonday');
@@ -548,6 +569,98 @@ class SdkStoragePool_ResizeOperationType extends $pb.ProtobufEnum {
   const SdkStoragePool_ResizeOperationType._($core.int v, $core.String n) : super(v, n);
 }
 
+class FilesystemTrim_FilesystemTrimStatus extends $pb.ProtobufEnum {
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_UNKNOWN = FilesystemTrim_FilesystemTrimStatus._(0, 'FS_TRIM_UNKNOWN');
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_NOT_RUNNING = FilesystemTrim_FilesystemTrimStatus._(1, 'FS_TRIM_NOT_RUNNING');
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_STARTED = FilesystemTrim_FilesystemTrimStatus._(2, 'FS_TRIM_STARTED');
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_INPROGRESS = FilesystemTrim_FilesystemTrimStatus._(3, 'FS_TRIM_INPROGRESS');
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_STOPPED = FilesystemTrim_FilesystemTrimStatus._(4, 'FS_TRIM_STOPPED');
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_COMPLETED = FilesystemTrim_FilesystemTrimStatus._(5, 'FS_TRIM_COMPLETED');
+  static const FilesystemTrim_FilesystemTrimStatus FS_TRIM_FAILED = FilesystemTrim_FilesystemTrimStatus._(6, 'FS_TRIM_FAILED');
+
+  static const $core.List<FilesystemTrim_FilesystemTrimStatus> values = <FilesystemTrim_FilesystemTrimStatus> [
+    FS_TRIM_UNKNOWN,
+    FS_TRIM_NOT_RUNNING,
+    FS_TRIM_STARTED,
+    FS_TRIM_INPROGRESS,
+    FS_TRIM_STOPPED,
+    FS_TRIM_COMPLETED,
+    FS_TRIM_FAILED,
+  ];
+
+  static final $core.Map<$core.int, FilesystemTrim_FilesystemTrimStatus> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static FilesystemTrim_FilesystemTrimStatus valueOf($core.int value) => _byValue[value];
+
+  const FilesystemTrim_FilesystemTrimStatus._($core.int v, $core.String n) : super(v, n);
+}
+
+class FilesystemCheck_FilesystemCheckStatus extends $pb.ProtobufEnum {
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_UNKNOWN = FilesystemCheck_FilesystemCheckStatus._(0, 'FS_CHECK_UNKNOWN');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_NOT_RUNNING = FilesystemCheck_FilesystemCheckStatus._(1, 'FS_CHECK_NOT_RUNNING');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_STARTED = FilesystemCheck_FilesystemCheckStatus._(2, 'FS_CHECK_STARTED');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_CHECK_HEALTH_INPROGRESS = FilesystemCheck_FilesystemCheckStatus._(3, 'FS_CHECK_CHECK_HEALTH_INPROGRESS');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_CHECK_HEALTH_STOPPED = FilesystemCheck_FilesystemCheckStatus._(4, 'FS_CHECK_CHECK_HEALTH_STOPPED');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_CHECK_HEALTH_COMPLETED = FilesystemCheck_FilesystemCheckStatus._(5, 'FS_CHECK_CHECK_HEALTH_COMPLETED');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_CHECK_HEALTH_FAILED = FilesystemCheck_FilesystemCheckStatus._(6, 'FS_CHECK_CHECK_HEALTH_FAILED');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_FIXALL_INPROGRESS = FilesystemCheck_FilesystemCheckStatus._(7, 'FS_CHECK_FIXALL_INPROGRESS');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_FIXALL_STOPPED = FilesystemCheck_FilesystemCheckStatus._(8, 'FS_CHECK_FIXALL_STOPPED');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_FIXALL_COMPLETED = FilesystemCheck_FilesystemCheckStatus._(9, 'FS_CHECK_FIXALL_COMPLETED');
+  static const FilesystemCheck_FilesystemCheckStatus FS_CHECK_FIXALL_FAILED = FilesystemCheck_FilesystemCheckStatus._(10, 'FS_CHECK_FIXALL_FAILED');
+
+  static const $core.List<FilesystemCheck_FilesystemCheckStatus> values = <FilesystemCheck_FilesystemCheckStatus> [
+    FS_CHECK_UNKNOWN,
+    FS_CHECK_NOT_RUNNING,
+    FS_CHECK_STARTED,
+    FS_CHECK_CHECK_HEALTH_INPROGRESS,
+    FS_CHECK_CHECK_HEALTH_STOPPED,
+    FS_CHECK_CHECK_HEALTH_COMPLETED,
+    FS_CHECK_CHECK_HEALTH_FAILED,
+    FS_CHECK_FIXALL_INPROGRESS,
+    FS_CHECK_FIXALL_STOPPED,
+    FS_CHECK_FIXALL_COMPLETED,
+    FS_CHECK_FIXALL_FAILED,
+  ];
+
+  static final $core.Map<$core.int, FilesystemCheck_FilesystemCheckStatus> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static FilesystemCheck_FilesystemCheckStatus valueOf($core.int value) => _byValue[value];
+
+  const FilesystemCheck_FilesystemCheckStatus._($core.int v, $core.String n) : super(v, n);
+}
+
+class FilesystemCheck_CheckHealthStatus extends $pb.ProtobufEnum {
+  static const FilesystemCheck_CheckHealthStatus CHECK_HEALTH_STATUS_UNKNOWN = FilesystemCheck_CheckHealthStatus._(0, 'CHECK_HEALTH_STATUS_UNKNOWN');
+  static const FilesystemCheck_CheckHealthStatus CHECK_HEALTH_STATUS_HEALTHY = FilesystemCheck_CheckHealthStatus._(1, 'CHECK_HEALTH_STATUS_HEALTHY');
+  static const FilesystemCheck_CheckHealthStatus CHECK_HEALTH_STATUS_NOT_HEALTHY = FilesystemCheck_CheckHealthStatus._(2, 'CHECK_HEALTH_STATUS_NOT_HEALTHY');
+
+  static const $core.List<FilesystemCheck_CheckHealthStatus> values = <FilesystemCheck_CheckHealthStatus> [
+    CHECK_HEALTH_STATUS_UNKNOWN,
+    CHECK_HEALTH_STATUS_HEALTHY,
+    CHECK_HEALTH_STATUS_NOT_HEALTHY,
+  ];
+
+  static final $core.Map<$core.int, FilesystemCheck_CheckHealthStatus> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static FilesystemCheck_CheckHealthStatus valueOf($core.int value) => _byValue[value];
+
+  const FilesystemCheck_CheckHealthStatus._($core.int v, $core.String n) : super(v, n);
+}
+
+class FilesystemCheck_FixAllStatus extends $pb.ProtobufEnum {
+  static const FilesystemCheck_FixAllStatus FIXALL_STATUS_UNKNOWN = FilesystemCheck_FixAllStatus._(0, 'FIXALL_STATUS_UNKNOWN');
+  static const FilesystemCheck_FixAllStatus FIXALL_STATUS_HEALTHY = FilesystemCheck_FixAllStatus._(1, 'FIXALL_STATUS_HEALTHY');
+  static const FilesystemCheck_FixAllStatus FIXALL_STATUS_NOT_HEALTHY = FilesystemCheck_FixAllStatus._(2, 'FIXALL_STATUS_NOT_HEALTHY');
+
+  static const $core.List<FilesystemCheck_FixAllStatus> values = <FilesystemCheck_FixAllStatus> [
+    FIXALL_STATUS_UNKNOWN,
+    FIXALL_STATUS_HEALTHY,
+    FIXALL_STATUS_NOT_HEALTHY,
+  ];
+
+  static final $core.Map<$core.int, FilesystemCheck_FixAllStatus> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static FilesystemCheck_FixAllStatus valueOf($core.int value) => _byValue[value];
+
+  const FilesystemCheck_FixAllStatus._($core.int v, $core.String n) : super(v, n);
+}
+
 class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
   static const SdkServiceCapability_OpenStorageService_Type UNKNOWN = SdkServiceCapability_OpenStorageService_Type._(0, 'UNKNOWN');
   static const SdkServiceCapability_OpenStorageService_Type CLUSTER = SdkServiceCapability_OpenStorageService_Type._(1, 'CLUSTER');
@@ -589,7 +702,7 @@ class SdkServiceCapability_OpenStorageService_Type extends $pb.ProtobufEnum {
 
 class SdkVersion_Version extends $pb.ProtobufEnum {
   static const SdkVersion_Version MUST_HAVE_ZERO_VALUE = SdkVersion_Version._(0, 'MUST_HAVE_ZERO_VALUE');
-  static const SdkVersion_Version Minor = SdkVersion_Version._(64, 'Minor');
+  static const SdkVersion_Version Minor = SdkVersion_Version._(69, 'Minor');
 
   static const SdkVersion_Version Major = MUST_HAVE_ZERO_VALUE;
   static const SdkVersion_Version Patch = MUST_HAVE_ZERO_VALUE;

@@ -187,6 +187,17 @@ const HardwareType$json = const {
   ],
 };
 
+const ExportProtocol$json = const {
+  '1': 'ExportProtocol',
+  '2': const [
+    const {'1': 'INVALID', '2': 0},
+    const {'1': 'PXD', '2': 1},
+    const {'1': 'ISCSI', '2': 2},
+    const {'1': 'NFS', '2': 3},
+    const {'1': 'CUSTOM', '2': 4},
+  ],
+};
+
 const SdkTimeWeekday$json = const {
   '1': 'SdkTimeWeekday',
   '2': const [
@@ -359,6 +370,14 @@ const IoStrategy$json = const {
   ],
 };
 
+const ExportSpec$json = const {
+  '1': 'ExportSpec',
+  '2': const [
+    const {'1': 'export_protocol', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.ExportProtocol', '10': 'exportProtocol'},
+    const {'1': 'export_options', '3': 2, '4': 1, '5': 9, '10': 'exportOptions'},
+  ],
+};
+
 const VolumeSpec$json = const {
   '1': 'VolumeSpec',
   '2': const [
@@ -393,6 +412,7 @@ const VolumeSpec$json = const {
     const {'1': 'placement_strategy', '3': 31, '4': 1, '5': 11, '6': '.openstorage.api.VolumePlacementStrategy', '10': 'placementStrategy'},
     const {'1': 'storage_policy', '3': 32, '4': 1, '5': 9, '10': 'storagePolicy'},
     const {'1': 'ownership', '3': 33, '4': 1, '5': 11, '6': '.openstorage.api.Ownership', '10': 'ownership'},
+    const {'1': 'export_spec', '3': 34, '4': 1, '5': 11, '6': '.openstorage.api.ExportSpec', '10': 'exportSpec'},
   ],
   '3': const [VolumeSpec_VolumeLabelsEntry$json],
 };
@@ -428,6 +448,7 @@ const VolumeSpecUpdate$json = const {
     const {'1': 'ownership', '3': 26, '4': 1, '5': 11, '6': '.openstorage.api.Ownership', '10': 'ownership'},
     const {'1': 'nodiscard', '3': 27, '4': 1, '5': 8, '9': 15, '10': 'nodiscard'},
     const {'1': 'io_strategy', '3': 28, '4': 1, '5': 11, '6': '.openstorage.api.IoStrategy', '10': 'ioStrategy'},
+    const {'1': 'export_spec', '3': 29, '4': 1, '5': 11, '6': '.openstorage.api.ExportSpec', '9': 16, '10': 'exportSpec'},
   ],
   '8': const [
     const {'1': 'size_opt'},
@@ -446,6 +467,7 @@ const VolumeSpecUpdate$json = const {
     const {'1': 'sharedv4_opt'},
     const {'1': 'queue_depth_opt'},
     const {'1': 'nodiscard_opt'},
+    const {'1': 'export_spec_opt'},
   ],
 };
 
@@ -477,6 +499,7 @@ const VolumeSpecPolicy$json = const {
     const {'1': 'snapshot_interval_operator', '3': 53, '4': 1, '5': 14, '6': '.openstorage.api.VolumeSpecPolicy.PolicyOp', '10': 'snapshotIntervalOperator'},
     const {'1': 'nodiscard', '3': 54, '4': 1, '5': 8, '9': 17, '10': 'nodiscard'},
     const {'1': 'io_strategy', '3': 55, '4': 1, '5': 11, '6': '.openstorage.api.IoStrategy', '10': 'ioStrategy'},
+    const {'1': 'export_spec', '3': 56, '4': 1, '5': 11, '6': '.openstorage.api.ExportSpec', '9': 18, '10': 'exportSpec'},
   ],
   '3': const [VolumeSpecPolicy_VolumeLabelsEntry$json],
   '4': const [VolumeSpecPolicy_PolicyOp$json],
@@ -499,6 +522,7 @@ const VolumeSpecPolicy$json = const {
     const {'1': 'encrypted_opt'},
     const {'1': 'aggregation_level_opt'},
     const {'1': 'nodiscard_opt'},
+    const {'1': 'export_spec_opt'},
   ],
 };
 
@@ -524,6 +548,7 @@ const ReplicaSet$json = const {
   '1': 'ReplicaSet',
   '2': const [
     const {'1': 'nodes', '3': 1, '4': 3, '5': 9, '10': 'nodes'},
+    const {'1': 'pool_uuids', '3': 2, '4': 3, '5': 9, '10': 'poolUuids'},
   ],
 };
 
@@ -900,6 +925,50 @@ const VolumeConsumer$json = const {
   ],
 };
 
+const VolumeServiceRequest$json = const {
+  '1': 'VolumeServiceRequest',
+  '2': const [
+    const {'1': 'srv_cmd', '3': 1, '4': 1, '5': 9, '10': 'srvCmd'},
+    const {'1': 'srv_cmd_params', '3': 2, '4': 3, '5': 11, '6': '.openstorage.api.VolumeServiceRequest.SrvCmdParamsEntry', '10': 'srvCmdParams'},
+  ],
+  '3': const [VolumeServiceRequest_SrvCmdParamsEntry$json],
+};
+
+const VolumeServiceRequest_SrvCmdParamsEntry$json = const {
+  '1': 'SrvCmdParamsEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+const VolumeServiceInstanceResponse$json = const {
+  '1': 'VolumeServiceInstanceResponse',
+  '2': const [
+    const {'1': 'error', '3': 1, '4': 1, '5': 9, '10': 'error'},
+    const {'1': 'status', '3': 2, '4': 3, '5': 11, '6': '.openstorage.api.VolumeServiceInstanceResponse.StatusEntry', '10': 'status'},
+  ],
+  '3': const [VolumeServiceInstanceResponse_StatusEntry$json],
+};
+
+const VolumeServiceInstanceResponse_StatusEntry$json = const {
+  '1': 'StatusEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+const VolumeServiceResponse$json = const {
+  '1': 'VolumeServiceResponse',
+  '2': const [
+    const {'1': 'vol_srv_rsp_obj_cnt', '3': 1, '4': 1, '5': 5, '10': 'volSrvRspObjCnt'},
+    const {'1': 'vol_srv_rsp', '3': 2, '4': 3, '5': 11, '6': '.openstorage.api.VolumeServiceInstanceResponse', '10': 'volSrvRsp'},
+  ],
+};
+
 const GraphDriverChanges$json = const {
   '1': 'GraphDriverChanges',
   '2': const [
@@ -1234,6 +1303,7 @@ const SdkCredentialCreateRequest$json = const {
     const {'1': 'bucket', '3': 2, '4': 1, '5': 9, '10': 'bucket'},
     const {'1': 'encryption_key', '3': 3, '4': 1, '5': 9, '10': 'encryptionKey'},
     const {'1': 'ownership', '3': 4, '4': 1, '5': 11, '6': '.openstorage.api.Ownership', '10': 'ownership'},
+    const {'1': 'use_proxy', '3': 5, '4': 1, '5': 8, '10': 'useProxy'},
     const {'1': 'aws_credential', '3': 200, '4': 1, '5': 11, '6': '.openstorage.api.SdkAwsCredentialRequest', '9': 0, '10': 'awsCredential'},
     const {'1': 'azure_credential', '3': 201, '4': 1, '5': 11, '6': '.openstorage.api.SdkAzureCredentialRequest', '9': 0, '10': 'azureCredential'},
     const {'1': 'google_credential', '3': 202, '4': 1, '5': 11, '6': '.openstorage.api.SdkGoogleCredentialRequest', '9': 0, '10': 'googleCredential'},
@@ -1328,6 +1398,7 @@ const SdkCredentialInspectResponse$json = const {
     const {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'bucket', '3': 3, '4': 1, '5': 9, '10': 'bucket'},
     const {'1': 'ownership', '3': 4, '4': 1, '5': 11, '6': '.openstorage.api.Ownership', '10': 'ownership'},
+    const {'1': 'use_proxy', '3': 5, '4': 1, '5': 8, '10': 'useProxy'},
     const {'1': 'aws_credential', '3': 200, '4': 1, '5': 11, '6': '.openstorage.api.SdkAwsCredentialResponse', '9': 0, '10': 'awsCredential'},
     const {'1': 'azure_credential', '3': 201, '4': 1, '5': 11, '6': '.openstorage.api.SdkAzureCredentialResponse', '9': 0, '10': 'azureCredential'},
     const {'1': 'google_credential', '3': 202, '4': 1, '5': 11, '6': '.openstorage.api.SdkGoogleCredentialResponse', '9': 0, '10': 'googleCredential'},
@@ -1841,6 +1912,7 @@ const SdkStoragePoolResizeRequest$json = const {
     const {'1': 'size', '3': 200, '4': 1, '5': 4, '9': 0, '10': 'size'},
     const {'1': 'percentage', '3': 201, '4': 1, '5': 4, '9': 0, '10': 'percentage'},
     const {'1': 'operation_type', '3': 3, '4': 1, '5': 14, '6': '.openstorage.api.SdkStoragePool.ResizeOperationType', '10': 'operationType'},
+    const {'1': 'skip_wait_for_clean_volumes', '3': 4, '4': 1, '5': 8, '10': 'skipWaitForCleanVolumes'},
   ],
   '8': const [
     const {'1': 'resize_factor'},
@@ -2234,7 +2306,19 @@ const SdkCloudBackupScheduleInfo$json = const {
     const {'1': 'max_backups', '3': 4, '4': 1, '5': 4, '10': 'maxBackups'},
     const {'1': 'full', '3': 5, '4': 1, '5': 8, '10': 'full'},
     const {'1': 'retention_days', '3': 6, '4': 1, '5': 13, '10': 'retentionDays'},
+    const {'1': 'group_id', '3': 7, '4': 1, '5': 9, '10': 'groupId'},
+    const {'1': 'labels', '3': 8, '4': 3, '5': 11, '6': '.openstorage.api.SdkCloudBackupScheduleInfo.LabelsEntry', '10': 'labels'},
   ],
+  '3': const [SdkCloudBackupScheduleInfo_LabelsEntry$json],
+};
+
+const SdkCloudBackupScheduleInfo_LabelsEntry$json = const {
+  '1': 'LabelsEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
 };
 
 const SdkCloudBackupSchedCreateRequest$json = const {
@@ -2375,6 +2459,181 @@ const SdkRoleUpdateResponse$json = const {
   ],
 };
 
+const FilesystemTrim$json = const {
+  '1': 'FilesystemTrim',
+  '4': const [FilesystemTrim_FilesystemTrimStatus$json],
+};
+
+const FilesystemTrim_FilesystemTrimStatus$json = const {
+  '1': 'FilesystemTrimStatus',
+  '2': const [
+    const {'1': 'FS_TRIM_UNKNOWN', '2': 0},
+    const {'1': 'FS_TRIM_NOT_RUNNING', '2': 1},
+    const {'1': 'FS_TRIM_STARTED', '2': 2},
+    const {'1': 'FS_TRIM_INPROGRESS', '2': 3},
+    const {'1': 'FS_TRIM_STOPPED', '2': 4},
+    const {'1': 'FS_TRIM_COMPLETED', '2': 5},
+    const {'1': 'FS_TRIM_FAILED', '2': 6},
+  ],
+};
+
+const SdkFilesystemTrimStartRequest$json = const {
+  '1': 'SdkFilesystemTrimStartRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+    const {'1': 'mount_path', '3': 2, '4': 1, '5': 9, '10': 'mountPath'},
+  ],
+};
+
+const SdkFilesystemTrimStartResponse$json = const {
+  '1': 'SdkFilesystemTrimStartResponse',
+  '2': const [
+    const {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemTrim.FilesystemTrimStatus', '10': 'status'},
+    const {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+const SdkFilesystemTrimGetStatusRequest$json = const {
+  '1': 'SdkFilesystemTrimGetStatusRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+    const {'1': 'mount_path', '3': 2, '4': 1, '5': 9, '10': 'mountPath'},
+  ],
+};
+
+const SdkFilesystemTrimGetStatusResponse$json = const {
+  '1': 'SdkFilesystemTrimGetStatusResponse',
+  '2': const [
+    const {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemTrim.FilesystemTrimStatus', '10': 'status'},
+    const {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+const SdkFilesystemTrimStopRequest$json = const {
+  '1': 'SdkFilesystemTrimStopRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+    const {'1': 'mount_path', '3': 2, '4': 1, '5': 9, '10': 'mountPath'},
+  ],
+};
+
+const SdkFilesystemTrimStopResponse$json = const {
+  '1': 'SdkFilesystemTrimStopResponse',
+};
+
+const FilesystemCheck$json = const {
+  '1': 'FilesystemCheck',
+  '4': const [FilesystemCheck_FilesystemCheckStatus$json, FilesystemCheck_CheckHealthStatus$json, FilesystemCheck_FixAllStatus$json],
+};
+
+const FilesystemCheck_FilesystemCheckStatus$json = const {
+  '1': 'FilesystemCheckStatus',
+  '2': const [
+    const {'1': 'FS_CHECK_UNKNOWN', '2': 0},
+    const {'1': 'FS_CHECK_NOT_RUNNING', '2': 1},
+    const {'1': 'FS_CHECK_STARTED', '2': 2},
+    const {'1': 'FS_CHECK_CHECK_HEALTH_INPROGRESS', '2': 3},
+    const {'1': 'FS_CHECK_CHECK_HEALTH_STOPPED', '2': 4},
+    const {'1': 'FS_CHECK_CHECK_HEALTH_COMPLETED', '2': 5},
+    const {'1': 'FS_CHECK_CHECK_HEALTH_FAILED', '2': 6},
+    const {'1': 'FS_CHECK_FIXALL_INPROGRESS', '2': 7},
+    const {'1': 'FS_CHECK_FIXALL_STOPPED', '2': 8},
+    const {'1': 'FS_CHECK_FIXALL_COMPLETED', '2': 9},
+    const {'1': 'FS_CHECK_FIXALL_FAILED', '2': 10},
+  ],
+};
+
+const FilesystemCheck_CheckHealthStatus$json = const {
+  '1': 'CheckHealthStatus',
+  '2': const [
+    const {'1': 'CHECK_HEALTH_STATUS_UNKNOWN', '2': 0},
+    const {'1': 'CHECK_HEALTH_STATUS_HEALTHY', '2': 1},
+    const {'1': 'CHECK_HEALTH_STATUS_NOT_HEALTHY', '2': 2},
+  ],
+};
+
+const FilesystemCheck_FixAllStatus$json = const {
+  '1': 'FixAllStatus',
+  '2': const [
+    const {'1': 'FIXALL_STATUS_UNKNOWN', '2': 0},
+    const {'1': 'FIXALL_STATUS_HEALTHY', '2': 1},
+    const {'1': 'FIXALL_STATUS_NOT_HEALTHY', '2': 2},
+  ],
+};
+
+const SdkFilesystemCheckCheckHealthRequest$json = const {
+  '1': 'SdkFilesystemCheckCheckHealthRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+  ],
+};
+
+const SdkFilesystemCheckCheckHealthResponse$json = const {
+  '1': 'SdkFilesystemCheckCheckHealthResponse',
+  '2': const [
+    const {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemCheck.FilesystemCheckStatus', '10': 'status'},
+    const {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+const SdkFilesystemCheckCheckHealthGetStatusRequest$json = const {
+  '1': 'SdkFilesystemCheckCheckHealthGetStatusRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+  ],
+};
+
+const SdkFilesystemCheckCheckHealthGetStatusResponse$json = const {
+  '1': 'SdkFilesystemCheckCheckHealthGetStatusResponse',
+  '2': const [
+    const {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemCheck.FilesystemCheckStatus', '10': 'status'},
+    const {'1': 'health_status', '3': 2, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemCheck.CheckHealthStatus', '10': 'healthStatus'},
+    const {'1': 'message', '3': 3, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+const SdkFilesystemCheckFixAllRequest$json = const {
+  '1': 'SdkFilesystemCheckFixAllRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+  ],
+};
+
+const SdkFilesystemCheckFixAllResponse$json = const {
+  '1': 'SdkFilesystemCheckFixAllResponse',
+  '2': const [
+    const {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemCheck.FilesystemCheckStatus', '10': 'status'},
+    const {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+const SdkFilesystemCheckFixAllGetStatusRequest$json = const {
+  '1': 'SdkFilesystemCheckFixAllGetStatusRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+  ],
+};
+
+const SdkFilesystemCheckFixAllGetStatusResponse$json = const {
+  '1': 'SdkFilesystemCheckFixAllGetStatusResponse',
+  '2': const [
+    const {'1': 'status', '3': 1, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemCheck.FilesystemCheckStatus', '10': 'status'},
+    const {'1': 'health_status', '3': 2, '4': 1, '5': 14, '6': '.openstorage.api.FilesystemCheck.FixAllStatus', '10': 'healthStatus'},
+    const {'1': 'message', '3': 3, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+const SdkFilesystemCheckStopRequest$json = const {
+  '1': 'SdkFilesystemCheckStopRequest',
+  '2': const [
+    const {'1': 'volume_id', '3': 1, '4': 1, '5': 9, '10': 'volumeId'},
+  ],
+};
+
+const SdkFilesystemCheckStopResponse$json = const {
+  '1': 'SdkFilesystemCheckStopResponse',
+};
+
 const SdkIdentityCapabilitiesRequest$json = const {
   '1': 'SdkIdentityCapabilitiesRequest',
 };
@@ -2453,7 +2712,7 @@ const SdkVersion_Version$json = const {
   '2': const [
     const {'1': 'MUST_HAVE_ZERO_VALUE', '2': 0},
     const {'1': 'Major', '2': 0},
-    const {'1': 'Minor', '2': 64},
+    const {'1': 'Minor', '2': 69},
     const {'1': 'Patch', '2': 0},
   ],
   '3': const {'2': true},
