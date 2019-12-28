@@ -2,6 +2,8 @@ HAS_GRPCTOOLS := $(shell command -v grpc_tools_ruby_protoc 2> /dev/null)
 APIDIR := ../..
 all: grpc
 
+clean:
+
 grpc:
 ifndef HAS_GRPCTOOLS
 	$(error "Please install grpc rools for ruby: gem install grpc && gem install grpc-tools")

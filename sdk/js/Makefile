@@ -3,6 +3,8 @@ JSPROTOC := ./node_modules/.bin/grpc_tools_node_protoc
 APIDIR := ../..
 all: grpc
 
+clean:
+
 grpc:
 ifndef HAS_NPM
 	$(error "Please install npm")

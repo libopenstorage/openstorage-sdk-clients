@@ -16,6 +16,8 @@ export PATH
 
 all: grpc
 
+clean:
+
 grpc:
 	-mkdir -p lib/src/generated > /dev/null
 	$(PROTOC) -I $(PROTOSRC_PATH) \
