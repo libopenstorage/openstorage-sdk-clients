@@ -4,3 +4,6 @@ _tmp
 sdk/python/build
 sdk/js/node_modules
 sdk/js/package-lock.json
+sdk/python/dist/
+sdk/python/libopenstorage_openstorage.egg-info/
+sdk/python/setup.py

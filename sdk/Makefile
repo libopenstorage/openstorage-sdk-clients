@@ -3,9 +3,16 @@ SUBDIRS := golang \
 	ruby \
 	js
 
+CLEANDIRS=$(SUBDIRS:%=clean-%)
+
 all: $(SUBDIRS)
+
+clean: $(CLEANDIRS)
 
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-.PHONY: all $(SUBDIRS)
+$(CLEANDIRS):
+	$(MAKE) -C $(@:clean-%=%) clean
+
+.PHONY: all $(SUBDIRS) $(CLEANDIRS)

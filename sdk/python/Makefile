@@ -1,16 +1,18 @@
-HAS_VIRTUALENV := $(shell command -v virtualenv 2> /dev/null)
 APIDIR := ../..
 VEDIR := "build"
+PYTHON := python3
+PIP := pip3
 all: grpc
 
-grpc:
-ifndef HAS_VIRTUALENV
-	$(error "Please install virtualenv for python: pip install virtualenv")
+ifndef APIVER
+	$(error Must provide an APIVER value)
 endif
-	virtualenv $(VEDIR)
+
+grpc:
+	$(PYTHON) -m venv $(VEDIR)
 	bash -c "source $(VEDIR)/bin/activate && \
-	pip install grpcio grpcio-tools && \
-	python -m grpc_tools.protoc \
+	$(PIP) install --upgrade pip grpcio grpcio-tools setuptools wheel twine && \
+	$(PYTHON) -m grpc_tools.protoc \
 		-I$(APIDIR) \
 		-I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--python_out=. \
@@ -18,20 +20,26 @@ endif
 		$(APIDIR)/api.proto" && \
 		mv api_pb2*.py openstorage
 	bash -c "source $(VEDIR)/bin/activate && \
-	python -m grpc_tools.protoc \
+	$(PYTHON) -m grpc_tools.protoc \
 		-I$(APIDIR) \
 		-I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--python_out=. \
 		--grpc_python_out=. \
 		$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/annotations.proto"
 	bash -c "source $(VEDIR)/bin/activate && \
-	python -m grpc_tools.protoc \
+	$(PYTHON) -m grpc_tools.protoc \
 		-I$(APIDIR) \
 		-I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--python_out=. \
 		--grpc_python_out=. \
 		$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/http.proto"
 	sed -i -e "s#^import api_pb2 as api__pb2#from openstorage import api_pb2 as api__pb2#" openstorage/api_pb2_grpc.py
+	sed -e "s#%%APIVER%%#$(APIVER)#" setup.py.tmpl > setup.py
+	bash -c "source $(VEDIR)/bin/activate && \
+		$(PYTHON) setup.py sdist bdist_wheel"
 
-.PHONY: all grpc
+clean:
+	sudo rm -rf $(VEDIR) setup.py dist libopenstorage_openstorage.egg-info
+
+.PHONY: all grpc clean
 
