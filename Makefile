@@ -1,11 +1,18 @@
+ifndef APIVER
+APIVER=$(shell cat api.swagger.json | jq -r '.info.version')
+endif
 
 all: docker-proto
+
+clean:
+	$(MAKE) -C sdk clean
 
 docker-proto:
 	docker run \
 		--privileged \
 		-v $(shell pwd):/go/src/github.com/libopenstorage/openstorage \
 		-e "GOPATH=/go" \
+		-e "APIVER=$(APIVER)" \
 		-e "DOCKER_PROTO=yes" \
 		-e "PATH=/bin:/usr/bin:/usr/local/bin:/go/bin" \
 		quay.io/openstorage/osd-proto \
