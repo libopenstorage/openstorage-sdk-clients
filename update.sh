@@ -25,7 +25,7 @@ create() {
 	if [ "$prevver" != "$ver" ] ; then
 		echo ">>> Updating branch $lb from $prevver to $ver"
 		sleep 2
-		make || fail "Make failed"
+		make APIVER=${ver} || fail "Make failed"
 		git add api.swagger.json
 		git add sdk/.
 		git commit -am "Update to $ver"
