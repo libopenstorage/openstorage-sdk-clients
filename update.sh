@@ -29,6 +29,7 @@ create() {
 		git add api.swagger.json
 		git add sdk/.
 		git commit -am "Update to $ver"
+		make APIVER=${ver} clean || fail "Make clean failed"
 		sudo git clean -f -x -d
 	else
 		echo ">>> Branch $lb does not need an update. At ver $ver"
@@ -36,7 +37,7 @@ create() {
 	fi
 }
 
-branches="master:master release-0.42:release-6.2 release-0.22:release-4.0 release-sdk-0.9:release-sdk-0.9"
+branches="master:master release-0.42:release-6.3 release-0.22:release-4.0 release-sdk-0.9:release-sdk-0.9"
 localbranch=$(git symbolic-ref --short HEAD)
 filter="$1"
 
