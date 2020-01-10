@@ -88,6 +88,8 @@ class Connector(object):
         """
         if self._is_secure():
             return self._get_secure_channel(opts)
+        elif self._is_authenticated():
+            return self._get_auth_insecure_channel(opts)
         return grpc.insecure_channel(self.endpoint, opts)
 
 
@@ -144,4 +146,28 @@ class Connector(object):
 
         return grpc.secure_channel(self.endpoint, creds, opts)
 
+
+    def _get_auth_insecure_channel(self, opts=None):
+        channel = grpc.insecure_channel(self.endpoint, opts)
+        return grpc.intercept_channel(channel, TokenAuthentication(self.token))
+
+
+class TokenAuthentication(grpc.UnaryUnaryClientInterceptor):
+    """
+    gRPC interceptor which allows authentication to a non-TLS server
+    """
+
+
+    def __init__(self, token):
+        self.token = token
+
+
+    def intercept_unary_unary(self, continuation, client_call_details, request):
+        try:
+            client_call_details.metadata.append(("authorization", "bearer "+self.token))
+        except AttributeError:
+            md = []
+            md.append(("authorization", "bearer "+self.token))
+            client_call_details = client_call_details._replace(metadata=md)
+        return continuation(client_call_details, request)
 
