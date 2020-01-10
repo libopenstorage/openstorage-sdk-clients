@@ -48,7 +48,7 @@ try:
     ))
     print('Volume id is {0}'.format(v_resp.volume_id))
 except grpc.RpcError as e:
-    print('Failed: code={0} msg={1}'.format(e.code(), e.details()))(build)
+    print('Failed: code={0} msg={1}'.format(e.code(), e.details()))
 ```
 
 # PyPi
