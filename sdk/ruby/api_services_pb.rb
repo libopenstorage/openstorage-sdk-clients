@@ -509,8 +509,7 @@ module Openstorage
         rpc :Start, SdkCloudMigrateStartRequest, SdkCloudMigrateStartResponse
         # Cancel a migration operation
         rpc :Cancel, SdkCloudMigrateCancelRequest, SdkCloudMigrateCancelResponse
-        # Status for migration operation.
-        # If status request is empty, status for all migration operation will be returned.
+        # Inspect the status of migration operation
         rpc :Status, SdkCloudMigrateStatusRequest, SdkCloudMigrateStatusResponse
       end
 

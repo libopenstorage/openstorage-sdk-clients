@@ -1517,8 +1517,7 @@ class OpenStorageMigrateServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def Status(self, request, context):
-    """Status for migration operation.
-    If status request is empty, status for all migration operation will be returned.
+    """Inspect the status of migration operation
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')

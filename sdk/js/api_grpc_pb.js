@@ -2936,8 +2936,7 @@ var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
     responseSerialize: serialize_openstorage_api_SdkCloudMigrateCancelResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateCancelResponse,
   },
-  // Status for migration operation.
-  // If status request is empty, status for all migration operation will be returned.
+  // Inspect the status of migration operation
   status: {
     path: '/openstorage.api.OpenStorageMigrate/Status',
     requestStream: false,
