@@ -104,6 +104,9 @@
             },
             "description": "Group access to resource which must match the group set in the\nauthorization token.\nCan be set by the owner or the system administrator only.\nPossible values are:\n1. no groups: Means no groups are given access.\n2. `[\"*\"]`: All groups are allowed.\n3. `[\"group1\", \"group2\"]`: Only certain groups are allowed. In this example only\n_group1_ and _group2_ are allowed.",
             "type": "object"
+          },
+          "public": {
+            "$ref": "#/components/schemas/OwnershipPublicAccessControl"
           }
         },
         "type": "object"
@@ -117,6 +120,15 @@
           "Admin"
         ],
         "type": "string"
+      },
+      "OwnershipPublicAccessControl": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/OwnershipAccessType"
+          }
+        },
+        "title": "PublicAccessControl allows assigning public ownership",
+        "type": "object"
       },
       "SdkCloudMigrateStartRequestMigrateAllVolumes": {
         "title": "Defines a migration request for all volumes in a cluster",
@@ -614,6 +626,98 @@
         ],
         "type": "string"
       },
+      "apiFastpathConfig": {
+        "properties": {
+          "promote": {
+            "format": "boolean",
+            "title": "Fastpath temporary promotion during attach",
+            "type": "boolean"
+          },
+          "replicas": {
+            "items": {
+              "$ref": "#/components/schemas/apiFastpathReplState"
+            },
+            "title": "Fastpath replica state for each replica in replica set",
+            "type": "array"
+          },
+          "setup_on": {
+            "format": "int32",
+            "title": "fastpath setup on this node",
+            "type": "integer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/apiFastpathStatus"
+          }
+        },
+        "title": "FastpathConfig part of volume",
+        "type": "object"
+      },
+      "apiFastpathProtocol": {
+        "default": "FASTPATH_PROTO_UNKNOWN",
+        "enum": [
+          "FASTPATH_PROTO_UNKNOWN",
+          "FASTPATH_PROTO_NVMEOF_TCP",
+          "FASTPATH_PROTO_ISCSI"
+        ],
+        "type": "string"
+      },
+      "apiFastpathReplState": {
+        "properties": {
+          "acl": {
+            "format": "boolean",
+            "type": "boolean"
+          },
+          "block": {
+            "format": "boolean",
+            "type": "boolean"
+          },
+          "dev_id": {
+            "format": "uint64",
+            "type": "string"
+          },
+          "devpath": {
+            "type": "string"
+          },
+          "exported": {
+            "format": "boolean",
+            "type": "boolean"
+          },
+          "exported_device": {
+            "title": "target info",
+            "type": "string"
+          },
+          "imported": {
+            "format": "boolean",
+            "title": "initiator info",
+            "type": "boolean"
+          },
+          "node_id": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/apiFastpathProtocol"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "apiFastpathStatus": {
+        "default": "FASTPATH_UNKNOWN",
+        "description": "- FASTPATH_UNKNOWN: backward compatible state\n - FASTPATH_ACTIVE: fastpath activated and enabled\n - FASTPATH_INACTIVE: fastpath inactive\n - FASTPATH_UNSUPPORTED: fastpath unsupported, disabled\n - FASTPATH_PENDING: fastpath operation setup in progress\n - FASTPATH_ERRORED: fastpath error'd, possible stuck failure",
+        "enum": [
+          "FASTPATH_UNKNOWN",
+          "FASTPATH_ACTIVE",
+          "FASTPATH_INACTIVE",
+          "FASTPATH_UNSUPPORTED",
+          "FASTPATH_PENDING",
+          "FASTPATH_ERRORED"
+        ],
+        "title": "fastpath extensions",
+        "type": "string"
+      },
       "apiGroup": {
         "description": "Group represents VolumeGroup / namespace\nAll volumes in the same group share this object.",
         "properties": {
@@ -806,7 +910,8 @@
           "RESOURCE_TYPE_VOLUME",
           "RESOURCE_TYPE_NODE",
           "RESOURCE_TYPE_CLUSTER",
-          "RESOURCE_TYPE_DRIVE"
+          "RESOURCE_TYPE_DRIVE",
+          "RESOURCE_TYPE_POOL"
         ],
         "type": "string"
       },
@@ -2344,7 +2449,7 @@
         "type": "object"
       },
       "apiSdkRule": {
-        "description": "SdkRule is the message used to construct custom roles in the OpenStorage SDK.\n\n### Format\nThe following shows the supported format for SdkRule:\n\n* Services: Is the gRPC service name in `OpenStorage\u003cservice name\u003e` in lowercase\n* Apis: Is the API name in the service in lowercase\n\nValues can also be set to `*`, or start or end with `*` to allow multiple matches in services or apis.\n\n### Examples\n\n* Allow any call:\n\n```yaml\nSdkRule:\n  - Services: [\"*\"]\n    Apis: [\"*\"]\n```\n\n* Allow only cluster operations:\n\n```yaml\nSdkRule:\n  - services: [\"cluster\"]\n    apis: [\"*\"]\n```\n\n* Allow inspection of any object and listings of only volumes\n\n```yaml\nSdkRule:\n  - Services: [\"volumes\"]\n    Apis: [\"*enumerate*\"]\n  - Services: [\"*\"]\n    Apis: [\"inspect*\"]\n```",
+        "description": "SdkRule is the message used to construct custom roles in the OpenStorage SDK.\n\n### Format\nThe following shows the supported format for SdkRule:\n\n* Services: Is the gRPC service name in `OpenStorage\u003cservice name\u003e` in lowercase\n* Apis: Is the API name in the service in lowercase\n\nValues can also be set to `*`, or start or end with `*` to allow multiple matches in services or apis.\n\nServices and APIs can also be denied by prefixing the value with a `!`. Note that on rule conflicts,\ndenial will always be chosen.\n\n### Examples\n\n* Allow any call:\n\n```yaml\nSdkRule:\n  - Services: [\"*\"]\n    Apis: [\"*\"]\n```\n\n* Allow only cluster operations:\n\n```yaml\nSdkRule:\n  - services: [\"cluster\"]\n    apis: [\"*\"]\n```\n\n* Allow inspection of any object and listings of only volumes\n\n```yaml\nSdkRule:\n  - Services: [\"volumes\"]\n    Apis: [\"*enumerate*\"]\n  - Services: [\"*\"]\n    Apis: [\"inspect*\"]\n```\n\n* Allow all volume call except create\n\n```yaml\nSdkRule:\n  - Services: [\"volumes\"]\n    Apis: [\"*\", \"!create\"]\n```",
         "properties": {
           "apis": {
             "items": {
@@ -2612,6 +2717,10 @@
       },
       "apiSdkVolumeAttachOptions": {
         "properties": {
+          "fastpath": {
+            "title": "Indicates whether fastpath needs to be enabled during attach",
+            "type": "string"
+          },
           "secret_context": {
             "description": "It indicates the additional context which could be used to retrieve the secret.\nIn case of Kubernetes, this is the namespace in which the secret is created.",
             "type": "string"
@@ -3490,6 +3599,9 @@
           "format": {
             "$ref": "#/components/schemas/apiFSType"
           },
+          "fpConfig": {
+            "$ref": "#/components/schemas/apiFastpathConfig"
+          },
           "fs_resize_required": {
             "description": "FsResizeRequired if an FS resize is required on the volume.",
             "format": "boolean",
@@ -3741,6 +3853,11 @@
           "format": {
             "$ref": "#/components/schemas/apiFSType"
           },
+          "fp_preference": {
+            "format": "boolean",
+            "title": "fastpath extensions",
+            "type": "boolean"
+          },
           "group": {
             "$ref": "#/components/schemas/apiGroup"
           },
@@ -3949,6 +4066,10 @@
           "export_spec": {
             "$ref": "#/components/schemas/apiExportSpec"
           },
+          "fastpath": {
+            "format": "boolean",
+            "type": "boolean"
+          },
           "group": {
             "$ref": "#/components/schemas/apiGroup"
           },
@@ -4076,7 +4197,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.69.0"
+    "version": "0.69.3"
   },
   "openapi": "3.0.0",
   "paths": {
@@ -5058,14 +5179,15 @@
         ]
       }
     },
-    "/v1/filesystem-check/checkhealth/status/{volume_id}": {
+    "/v1/filesystem-check/checkhealth/status": {
       "get": {
         "operationId": "CheckHealthGetStatus",
         "parameters": [
           {
-            "in": "path",
+            "description": "Id of the volume.",
+            "in": "query",
             "name": "volume_id",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5120,14 +5242,15 @@
         ]
       }
     },
-    "/v1/filesystem-check/fixall/status/{volume_id}": {
+    "/v1/filesystem-check/fixall/status": {
       "get": {
         "operationId": "FixAllGetStatus",
         "parameters": [
           {
-            "in": "path",
+            "description": "Id of the volume.",
+            "in": "query",
             "name": "volume_id",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -5213,22 +5336,24 @@
         ]
       }
     },
-    "/v1/filesystem-trim/status/{volume_id}/{mount_path}": {
+    "/v1/filesystem-trim/status": {
       "get": {
         "operationId": "GetStatus",
         "parameters": [
           {
-            "in": "path",
+            "description": "Id of the volume.",
+            "in": "query",
             "name": "volume_id",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "in": "path",
+            "description": "Path where the volume is mounted.",
+            "in": "query",
             "name": "mount_path",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             }
@@ -6261,7 +6386,7 @@
             "description": ""
           }
         },
-        "summary": "Status for migration operation.\nIf status request is empty, status for all migration operation will be returned.",
+        "summary": "Inspect the status of migration operation",
         "tags": [
           "OpenStorageMigrate"
         ]
