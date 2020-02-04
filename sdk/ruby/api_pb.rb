@@ -65,6 +65,24 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :export_protocol, :enum, 1, "openstorage.api.ExportProtocol"
       optional :export_options, :string, 2
     end
+    add_message "openstorage.api.FastpathReplState" do
+      optional :dev_id, :uint64, 1
+      optional :node_id, :uint32, 2
+      optional :protocol, :enum, 3, "openstorage.api.FastpathProtocol"
+      optional :acl, :bool, 4
+      optional :exported_device, :string, 5
+      optional :block, :bool, 6
+      optional :target, :string, 7
+      optional :exported, :bool, 8
+      optional :imported, :bool, 9
+      optional :devpath, :string, 10
+    end
+    add_message "openstorage.api.FastpathConfig" do
+      optional :setup_on, :int32, 1
+      optional :promote, :bool, 2
+      optional :status, :enum, 3, "openstorage.api.FastpathStatus"
+      repeated :replicas, :message, 4, "openstorage.api.FastpathReplState"
+    end
     add_message "openstorage.api.VolumeSpec" do
       optional :ephemeral, :bool, 1
       optional :size, :uint64, 2
@@ -98,6 +116,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :storage_policy, :string, 32
       optional :ownership, :message, 33, "openstorage.api.Ownership"
       optional :export_spec, :message, 34, "openstorage.api.ExportSpec"
+      optional :fp_preference, :bool, 35
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -153,6 +172,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :export_spec_opt do
         optional :export_spec, :message, 29, "openstorage.api.ExportSpec"
+      end
+      oneof :fastpath_opt do
+        optional :fastpath, :bool, 30
       end
     end
     add_message "openstorage.api.VolumeSpecPolicy" do
@@ -237,9 +259,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :owner, :string, 1
       optional :acls, :message, 2, "openstorage.api.Ownership.AccessControl"
     end
+    add_message "openstorage.api.Ownership.PublicAccessControl" do
+      optional :type, :enum, 1, "openstorage.api.Ownership.AccessType"
+    end
     add_message "openstorage.api.Ownership.AccessControl" do
       map :groups, :string, :enum, 1, "openstorage.api.Ownership.AccessType"
       map :collaborators, :string, :enum, 2, "openstorage.api.Ownership.AccessType"
+      optional :public, :message, 3, "openstorage.api.Ownership.PublicAccessControl"
     end
     add_enum "openstorage.api.Ownership.AccessType" do
       value :Read, 0
@@ -272,6 +298,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :fs_resize_required, :bool, 23
       optional :attach_time, :message, 24, "google.protobuf.Timestamp"
       optional :detach_time, :message, 25, "google.protobuf.Timestamp"
+      optional :fpConfig, :message, 26, "openstorage.api.FastpathConfig"
     end
     add_message "openstorage.api.Stats" do
       optional :reads, :uint64, 1
@@ -655,6 +682,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :secret_name, :string, 1
       optional :secret_key, :string, 2
       optional :secret_context, :string, 3
+      optional :fastpath, :string, 4
     end
     add_message "openstorage.api.SdkVolumeMountRequest" do
       optional :volume_id, :string, 1
@@ -928,6 +956,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :credential_id, :string, 3
       optional :node_id, :string, 4
       optional :task_id, :string, 5
+      optional :spec, :message, 6, "openstorage.api.RestoreVolumeSpec"
+      optional :locator, :message, 7, "openstorage.api.VolumeLocator"
     end
     add_message "openstorage.api.SdkCloudBackupRestoreResponse" do
       optional :restore_volume_id, :string, 1
@@ -1221,7 +1251,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 69
+      value :Minor, 73
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1455,6 +1485,35 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :Gt, 4
       value :Lt, 5
     end
+    add_message "openstorage.api.RestoreVolSnashotSchedule" do
+      optional :schedule, :string, 1
+    end
+    add_message "openstorage.api.RestoreVolStoragePolicy" do
+      optional :policy, :string, 1
+    end
+    add_message "openstorage.api.RestoreVolumeSpec" do
+      optional :ha_level, :int64, 1
+      optional :cos, :enum, 2, "openstorage.api.CosType"
+      optional :io_profile, :enum, 3, "openstorage.api.IoProfile"
+      optional :snapshot_interval, :uint32, 4
+      optional :shared, :enum, 5, "openstorage.api.RestoreParamBoolType"
+      optional :replica_set, :message, 6, "openstorage.api.ReplicaSet"
+      optional :aggregation_level, :uint32, 7
+      optional :snapshot_schedule, :message, 8, "openstorage.api.RestoreVolSnashotSchedule"
+      optional :sticky, :enum, 9, "openstorage.api.RestoreParamBoolType"
+      optional :group, :message, 10, "openstorage.api.Group"
+      optional :group_enforced, :bool, 11
+      optional :journal, :enum, 12, "openstorage.api.RestoreParamBoolType"
+      optional :sharedv4, :enum, 13, "openstorage.api.RestoreParamBoolType"
+      optional :queue_depth, :uint32, 14
+      optional :nodiscard, :enum, 15, "openstorage.api.RestoreParamBoolType"
+      optional :io_strategy, :message, 16, "openstorage.api.IoStrategy"
+      optional :placement_strategy, :message, 17, "openstorage.api.VolumePlacementStrategy"
+      optional :storage_policy, :message, 18, "openstorage.api.RestoreVolStoragePolicy"
+      optional :ownership, :message, 19, "openstorage.api.Ownership"
+      optional :export_spec, :message, 20, "openstorage.api.ExportSpec"
+      optional :fp_preference, :enum, 21, "openstorage.api.RestoreParamBoolType"
+    end
     add_enum "openstorage.api.Status" do
       value :STATUS_NONE, 0
       value :STATUS_INIT, 1
@@ -1509,6 +1568,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :RESOURCE_TYPE_NODE, 2
       value :RESOURCE_TYPE_CLUSTER, 3
       value :RESOURCE_TYPE_DRIVE, 4
+      value :RESOURCE_TYPE_POOL, 5
     end
     add_enum "openstorage.api.AlertActionType" do
       value :ALERT_ACTION_TYPE_NONE, 0
@@ -1534,6 +1594,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_DB_REMOTE, 3
       value :IO_PROFILE_CMS, 4
       value :IO_PROFILE_SYNC_SHARED, 5
+      value :IO_PROFILE_AUTO, 6
+      value :IO_PROFILE_BKUPSRC, 7
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
@@ -1581,6 +1643,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :NFS, 3
       value :CUSTOM, 4
     end
+    add_enum "openstorage.api.FastpathStatus" do
+      value :FASTPATH_UNKNOWN, 0
+      value :FASTPATH_ACTIVE, 1
+      value :FASTPATH_INACTIVE, 2
+      value :FASTPATH_UNSUPPORTED, 3
+      value :FASTPATH_PENDING, 4
+      value :FASTPATH_ERRORED, 5
+    end
+    add_enum "openstorage.api.FastpathProtocol" do
+      value :FASTPATH_PROTO_UNKNOWN, 0
+      value :FASTPATH_PROTO_NVMEOF_TCP, 1
+      value :FASTPATH_PROTO_ISCSI, 2
+    end
     add_enum "openstorage.api.SdkTimeWeekday" do
       value :SdkTimeWeekdaySunday, 0
       value :SdkTimeWeekdayMonday, 1
@@ -1617,6 +1692,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :required, 0
       value :preferred, 1
     end
+    add_enum "openstorage.api.RestoreParamBoolType" do
+      value :PARAM_BKUPSRC, 0
+      value :PARAM_FALSE, 1
+      value :PARAM_TRUE, 2
+    end
   end
 end
 
@@ -1631,6 +1711,8 @@ module Openstorage
     Group = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Group").msgclass
     IoStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.IoStrategy").msgclass
     ExportSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ExportSpec").msgclass
+    FastpathReplState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathReplState").msgclass
+    FastpathConfig = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathConfig").msgclass
     VolumeSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpec").msgclass
     VolumeSpecUpdate = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpecUpdate").msgclass
     VolumeSpecPolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeSpecPolicy").msgclass
@@ -1638,6 +1720,7 @@ module Openstorage
     ReplicaSet = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ReplicaSet").msgclass
     RuntimeStateMap = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RuntimeStateMap").msgclass
     Ownership = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership").msgclass
+    Ownership::PublicAccessControl = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership.PublicAccessControl").msgclass
     Ownership::AccessControl = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership.AccessControl").msgclass
     Ownership::AccessType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Ownership.AccessType").enummodule
     Volume = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Volume").msgclass
@@ -1927,6 +2010,9 @@ module Openstorage
     VolumePlacementSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementSpec").msgclass
     LabelSelectorRequirement = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement").msgclass
     LabelSelectorRequirement::Operator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement.Operator").enummodule
+    RestoreVolSnashotSchedule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolSnashotSchedule").msgclass
+    RestoreVolStoragePolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolStoragePolicy").msgclass
+    RestoreVolumeSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolumeSpec").msgclass
     Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Status").enummodule
     DriverType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DriverType").enummodule
     FSType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FSType").enummodule
@@ -1944,10 +2030,13 @@ module Openstorage
     OperationFlags = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.OperationFlags").enummodule
     HardwareType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.HardwareType").enummodule
     ExportProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ExportProtocol").enummodule
+    FastpathStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathStatus").enummodule
+    FastpathProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathProtocol").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
     SdkCloudBackupOpType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupOpType").enummodule
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule
     SdkCloudBackupRequestedState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRequestedState").enummodule
     EnforcementType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.EnforcementType").enummodule
+    RestoreParamBoolType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreParamBoolType").enummodule
   end
 end
