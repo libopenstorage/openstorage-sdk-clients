@@ -752,7 +752,8 @@
           "RESOURCE_TYPE_VOLUME",
           "RESOURCE_TYPE_NODE",
           "RESOURCE_TYPE_CLUSTER",
-          "RESOURCE_TYPE_DRIVE"
+          "RESOURCE_TYPE_DRIVE",
+          "RESOURCE_TYPE_POOL"
         ],
         "type": "string"
       },
@@ -3862,7 +3863,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.42.22"
+    "version": "0.42.24"
   },
   "openapi": "3.0.0",
   "paths": {
