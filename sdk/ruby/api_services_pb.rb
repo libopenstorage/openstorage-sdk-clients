@@ -116,7 +116,7 @@ module Openstorage
     module OpenStorageFilesystemTrim
       # ## OpenStorageFilesystemTrim Service
       # This service provides methods to manage filesystem trim operation on a
-      # volume. 
+      # volume.
       #
       # This operation runs in the background on a **mounted volume**. If the volumes
       # are not mounted, these API return error.
@@ -134,7 +134,7 @@ module Openstorage
       #    `OpenStorageFilesystemTrimClient.Start()`
       #    This call returns immediately with a status code indicating if the
       #    operation was successfully started or not.
-      # 4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+      # 4. To get the status of the Filesystem Trim operation, issue a grpc call to
       #    `OpenStorageFilesystemTrimClient.GetStatus()`
       # 5. To stop the Filesystem Trim operation, issue a grpc call to
       #    `OpenStorageFilesystemTrimClient.Stop()`
@@ -160,7 +160,7 @@ module Openstorage
     module OpenStorageFilesystemCheck
       # ## OpenStorageFilesystemCheckService
       # This service provides methods to manage filesystem check operation on a
-      # volume. 
+      # volume.
       #
       # This operation is run in the background on an **unmounted volume**.
       # If the volume is mounted, then these APIs return error.
@@ -180,7 +180,7 @@ module Openstorage
       # 3. Status of the CheckHealth() operation can be retrieved by polling for the
       #    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
       # 4. If the CheckHealth Operations status reports filesystem is in unhealthy
-      #    state, then to fix all the problems issue a grpc call to 
+      #    state, then to fix all the problems issue a grpc call to
       #    `OpenStorageFilesystemCheckClient.FixAll()`
       # 5. Status of the FixAll() operation can be retrieved by polling for the
       #    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
@@ -457,6 +457,10 @@ module Openstorage
         #
         # Requires access AccessType.Write of volume
         rpc :SnapshotScheduleUpdate, SdkVolumeSnapshotScheduleUpdateRequest, SdkVolumeSnapshotScheduleUpdateResponse
+        # Gets the volume catalog of an attached and mounted volume.
+        # Returns the entire tree up to "n"  depth (default is all of it)
+        # Takes a path that can be used as the new root for the catalog request.
+        rpc :VolumeCatalog, SdkVolumeCatalogRequest, SdkVolumeCatalogResponse
       end
 
       Stub = Service.rpc_stub_class

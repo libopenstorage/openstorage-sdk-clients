@@ -1251,7 +1251,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 73
+      value :Minor, 74
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1514,6 +1514,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :export_spec, :message, 20, "openstorage.api.ExportSpec"
       optional :fp_preference, :enum, 21, "openstorage.api.RestoreParamBoolType"
     end
+    add_message "openstorage.api.SdkVolumeCatalogRequest" do
+      optional :volume_id, :string, 1
+      optional :path, :string, 2
+      optional :depth, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeCatalogResponse" do
+      optional :catalog, :message, 1, "openstorage.api.CatalogResponse"
+    end
     add_enum "openstorage.api.Status" do
       value :STATUS_NONE, 0
       value :STATUS_INIT, 1
@@ -1655,6 +1663,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :FASTPATH_PROTO_UNKNOWN, 0
       value :FASTPATH_PROTO_NVMEOF_TCP, 1
       value :FASTPATH_PROTO_ISCSI, 2
+      value :FASTPATH_PROTO_LOCAL, 3
     end
     add_enum "openstorage.api.SdkTimeWeekday" do
       value :SdkTimeWeekdaySunday, 0
@@ -2013,6 +2022,8 @@ module Openstorage
     RestoreVolSnashotSchedule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolSnashotSchedule").msgclass
     RestoreVolStoragePolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolStoragePolicy").msgclass
     RestoreVolumeSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolumeSpec").msgclass
+    SdkVolumeCatalogRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeCatalogRequest").msgclass
+    SdkVolumeCatalogResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeCatalogResponse").msgclass
     Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Status").enummodule
     DriverType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DriverType").enummodule
     FSType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FSType").enummodule

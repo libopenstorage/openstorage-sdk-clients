@@ -246,7 +246,7 @@ def add_OpenStorageRoleServicer_to_server(servicer, server):
 class OpenStorageFilesystemTrimStub(object):
   """## OpenStorageFilesystemTrim Service
   This service provides methods to manage filesystem trim operation on a
-  volume. 
+  volume.
 
   This operation runs in the background on a **mounted volume**. If the volumes
   are not mounted, these API return error.
@@ -264,7 +264,7 @@ class OpenStorageFilesystemTrimStub(object):
   `OpenStorageFilesystemTrimClient.Start()`
   This call returns immediately with a status code indicating if the
   operation was successfully started or not.
-  4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+  4. To get the status of the Filesystem Trim operation, issue a grpc call to
   `OpenStorageFilesystemTrimClient.GetStatus()`
   5. To stop the Filesystem Trim operation, issue a grpc call to
   `OpenStorageFilesystemTrimClient.Stop()`
@@ -296,7 +296,7 @@ class OpenStorageFilesystemTrimStub(object):
 class OpenStorageFilesystemTrimServicer(object):
   """## OpenStorageFilesystemTrim Service
   This service provides methods to manage filesystem trim operation on a
-  volume. 
+  volume.
 
   This operation runs in the background on a **mounted volume**. If the volumes
   are not mounted, these API return error.
@@ -314,7 +314,7 @@ class OpenStorageFilesystemTrimServicer(object):
   `OpenStorageFilesystemTrimClient.Start()`
   This call returns immediately with a status code indicating if the
   operation was successfully started or not.
-  4. To get the status of the Filesystem Trim operation, issue a grpc call to 
+  4. To get the status of the Filesystem Trim operation, issue a grpc call to
   `OpenStorageFilesystemTrimClient.GetStatus()`
   5. To stop the Filesystem Trim operation, issue a grpc call to
   `OpenStorageFilesystemTrimClient.Stop()`
@@ -369,7 +369,7 @@ def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
 class OpenStorageFilesystemCheckStub(object):
   """## OpenStorageFilesystemCheckService
   This service provides methods to manage filesystem check operation on a
-  volume. 
+  volume.
 
   This operation is run in the background on an **unmounted volume**.
   If the volume is mounted, then these APIs return error.
@@ -389,7 +389,7 @@ class OpenStorageFilesystemCheckStub(object):
   3. Status of the CheckHealth() operation can be retrieved by polling for the
   status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
   4. If the CheckHealth Operations status reports filesystem is in unhealthy
-  state, then to fix all the problems issue a grpc call to 
+  state, then to fix all the problems issue a grpc call to
   `OpenStorageFilesystemCheckClient.FixAll()`
   5. Status of the FixAll() operation can be retrieved by polling for the
   status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
@@ -434,7 +434,7 @@ class OpenStorageFilesystemCheckStub(object):
 class OpenStorageFilesystemCheckServicer(object):
   """## OpenStorageFilesystemCheckService
   This service provides methods to manage filesystem check operation on a
-  volume. 
+  volume.
 
   This operation is run in the background on an **unmounted volume**.
   If the volume is mounted, then these APIs return error.
@@ -454,7 +454,7 @@ class OpenStorageFilesystemCheckServicer(object):
   3. Status of the CheckHealth() operation can be retrieved by polling for the
   status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
   4. If the CheckHealth Operations status reports filesystem is in unhealthy
-  state, then to fix all the problems issue a grpc call to 
+  state, then to fix all the problems issue a grpc call to
   `OpenStorageFilesystemCheckClient.FixAll()`
   5. Status of the FixAll() operation can be retrieved by polling for the
   status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
@@ -1111,6 +1111,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.FromString,
         )
+    self.VolumeCatalog = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/VolumeCatalog',
+        request_serializer=api__pb2.SdkVolumeCatalogRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeCatalogResponse.FromString,
+        )
 
 
 class OpenStorageVolumeServicer(object):
@@ -1278,6 +1283,15 @@ class OpenStorageVolumeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def VolumeCatalog(self, request, context):
+    """Gets the volume catalog of an attached and mounted volume.
+    Returns the entire tree up to "n"  depth (default is all of it)
+    Takes a path that can be used as the new root for the catalog request.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageVolumeServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -1355,6 +1369,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.SnapshotScheduleUpdate,
           request_deserializer=api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.FromString,
           response_serializer=api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.SerializeToString,
+      ),
+      'VolumeCatalog': grpc.unary_unary_rpc_method_handler(
+          servicer.VolumeCatalog,
+          request_deserializer=api__pb2.SdkVolumeCatalogRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeCatalogResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
