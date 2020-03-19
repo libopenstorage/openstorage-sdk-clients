@@ -818,6 +818,11 @@ class OpenStorageVolumeStub(object):
         request_serializer=api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.SerializeToString,
         response_deserializer=api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.FromString,
         )
+    self.VolumeCatalog = channel.unary_unary(
+        '/openstorage.api.OpenStorageVolume/VolumeCatalog',
+        request_serializer=api__pb2.SdkVolumeCatalogRequest.SerializeToString,
+        response_deserializer=api__pb2.SdkVolumeCatalogResponse.FromString,
+        )
 
 
 class OpenStorageVolumeServicer(object):
@@ -985,6 +990,15 @@ class OpenStorageVolumeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def VolumeCatalog(self, request, context):
+    """Gets the volume catalog of an attached and mounted volume.
+    Returns the entire tree up to "n"  depth (default is all of it)
+    Takes a path that can be used as the new root for the catalog request.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageVolumeServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -1062,6 +1076,11 @@ def add_OpenStorageVolumeServicer_to_server(servicer, server):
           servicer.SnapshotScheduleUpdate,
           request_deserializer=api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.FromString,
           response_serializer=api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.SerializeToString,
+      ),
+      'VolumeCatalog': grpc.unary_unary_rpc_method_handler(
+          servicer.VolumeCatalog,
+          request_deserializer=api__pb2.SdkVolumeCatalogRequest.FromString,
+          response_serializer=api__pb2.SdkVolumeCatalogResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

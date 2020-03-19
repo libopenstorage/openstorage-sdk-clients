@@ -357,6 +357,10 @@ module Openstorage
         #
         # Requires access AccessType.Write of volume
         rpc :SnapshotScheduleUpdate, SdkVolumeSnapshotScheduleUpdateRequest, SdkVolumeSnapshotScheduleUpdateResponse
+        # Gets the volume catalog of an attached and mounted volume.
+        # Returns the entire tree up to "n"  depth (default is all of it)
+        # Takes a path that can be used as the new root for the catalog request.
+        rpc :VolumeCatalog, SdkVolumeCatalogRequest, SdkVolumeCatalogResponse
       end
 
       Stub = Service.rpc_stub_class
