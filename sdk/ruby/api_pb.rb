@@ -610,6 +610,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :encryption_key, :string, 3
       optional :ownership, :message, 4, "openstorage.api.Ownership"
       optional :use_proxy, :bool, 5
+      optional :iam_policy, :bool, 6
       oneof :credential_type do
         optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
         optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
@@ -662,6 +663,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :bucket, :string, 3
       optional :ownership, :message, 4, "openstorage.api.Ownership"
       optional :use_proxy, :bool, 5
+      optional :iam_policy, :bool, 6
       oneof :credential_type do
         optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialResponse"
         optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialResponse"
@@ -956,6 +958,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :credential_id, :string, 3
       optional :node_id, :string, 4
       optional :task_id, :string, 5
+      optional :spec, :message, 6, "openstorage.api.RestoreVolumeSpec"
+      optional :locator, :message, 7, "openstorage.api.VolumeLocator"
     end
     add_message "openstorage.api.SdkCloudBackupRestoreResponse" do
       optional :restore_volume_id, :string, 1
@@ -1250,7 +1254,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 69
-      value :Patch, 3
+      value :Patch, 6
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -1483,6 +1487,43 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :Gt, 4
       value :Lt, 5
     end
+    add_message "openstorage.api.RestoreVolSnashotSchedule" do
+      optional :schedule, :string, 1
+    end
+    add_message "openstorage.api.RestoreVolStoragePolicy" do
+      optional :policy, :string, 1
+    end
+    add_message "openstorage.api.RestoreVolumeSpec" do
+      optional :ha_level, :int64, 1
+      optional :cos, :enum, 2, "openstorage.api.CosType"
+      optional :io_profile, :enum, 3, "openstorage.api.IoProfile"
+      optional :snapshot_interval, :uint32, 4
+      optional :shared, :enum, 5, "openstorage.api.RestoreParamBoolType"
+      optional :replica_set, :message, 6, "openstorage.api.ReplicaSet"
+      optional :aggregation_level, :uint32, 7
+      optional :snapshot_schedule, :message, 8, "openstorage.api.RestoreVolSnashotSchedule"
+      optional :sticky, :enum, 9, "openstorage.api.RestoreParamBoolType"
+      optional :group, :message, 10, "openstorage.api.Group"
+      optional :group_enforced, :bool, 11
+      optional :journal, :enum, 12, "openstorage.api.RestoreParamBoolType"
+      optional :sharedv4, :enum, 13, "openstorage.api.RestoreParamBoolType"
+      optional :queue_depth, :uint32, 14
+      optional :nodiscard, :enum, 15, "openstorage.api.RestoreParamBoolType"
+      optional :io_strategy, :message, 16, "openstorage.api.IoStrategy"
+      optional :placement_strategy, :message, 17, "openstorage.api.VolumePlacementStrategy"
+      optional :storage_policy, :message, 18, "openstorage.api.RestoreVolStoragePolicy"
+      optional :ownership, :message, 19, "openstorage.api.Ownership"
+      optional :export_spec, :message, 20, "openstorage.api.ExportSpec"
+      optional :fp_preference, :enum, 21, "openstorage.api.RestoreParamBoolType"
+    end
+    add_message "openstorage.api.SdkVolumeCatalogRequest" do
+      optional :volume_id, :string, 1
+      optional :path, :string, 2
+      optional :depth, :string, 3
+    end
+    add_message "openstorage.api.SdkVolumeCatalogResponse" do
+      optional :catalog, :message, 1, "openstorage.api.CatalogResponse"
+    end
     add_enum "openstorage.api.Status" do
       value :STATUS_NONE, 0
       value :STATUS_INIT, 1
@@ -1563,6 +1604,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_DB_REMOTE, 3
       value :IO_PROFILE_CMS, 4
       value :IO_PROFILE_SYNC_SHARED, 5
+      value :IO_PROFILE_BKUPSRC, 6
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
@@ -1658,6 +1700,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.EnforcementType" do
       value :required, 0
       value :preferred, 1
+    end
+    add_enum "openstorage.api.RestoreParamBoolType" do
+      value :PARAM_BKUPSRC, 0
+      value :PARAM_FALSE, 1
+      value :PARAM_TRUE, 2
     end
   end
 end
@@ -1972,6 +2019,11 @@ module Openstorage
     VolumePlacementSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumePlacementSpec").msgclass
     LabelSelectorRequirement = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement").msgclass
     LabelSelectorRequirement::Operator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.LabelSelectorRequirement.Operator").enummodule
+    RestoreVolSnashotSchedule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolSnashotSchedule").msgclass
+    RestoreVolStoragePolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolStoragePolicy").msgclass
+    RestoreVolumeSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreVolumeSpec").msgclass
+    SdkVolumeCatalogRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeCatalogRequest").msgclass
+    SdkVolumeCatalogResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeCatalogResponse").msgclass
     Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Status").enummodule
     DriverType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DriverType").enummodule
     FSType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FSType").enummodule
@@ -1996,5 +2048,6 @@ module Openstorage
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule
     SdkCloudBackupRequestedState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRequestedState").enummodule
     EnforcementType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.EnforcementType").enummodule
+    RestoreParamBoolType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RestoreParamBoolType").enummodule
   end
 end

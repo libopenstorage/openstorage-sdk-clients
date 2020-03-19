@@ -23,6 +23,7 @@ create() {
 		#git add sdk/.
 		#git commit -am "Update to $ver"
 		#sudo git clean -f -x -d
+		echo "New Version is $ver"
 	else
 		echo ">>> Branch does not need an update. At ver $ver"
 		git checkout api.swagger.json
