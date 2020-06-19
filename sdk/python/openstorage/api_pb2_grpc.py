@@ -591,28 +591,40 @@ class OpenStorageFilesystemCheckStub(object):
     This operation is run in the background on an **unmounted volume**.
     If the volume is mounted, then these APIs return error.
 
-    Once the filesystem check operation(either CheckHealth() or FixAll()) is
-    started, the clients have to poll for the status of the background operation
-    using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
-    `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+    Once the filesystem check operation is started, in one of the available
+    modes(check_health, fix_safe, fix_all),
+    the clients have to poll for the status of the background operation
+    using the `OpenStorageFilesystemcheck.GetStatus()` rpc request.
 
-    **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+    **Note:
+    1. Different modes of filesystem check can execute in parallel for
+    the same volume.
+    2. Filesystem Check and volume Mount are mutually exclusive, meaning both
+    cannot be run on a volume at the same time.
 
     A typical workflow involving filesystem check would be as follows
     1. Attach the volume
     `OpenStorageMountAttachClient.Attach()`
     2. Check the health of the filesystem by issuing a grpc call to
-    `OpenStorageFilesystemCheckClient.CheckHealth()`
-    3. Status of the CheckHealth() operation can be retrieved by polling for the
-    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
-    4. If the CheckHealth Operations status reports filesystem is in unhealthy
+    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
+    3. Status of the Filesystem Check operation in check_health mode, can be
+    retrieved by polling for the status using
+    `OpenStorageFilesystemCheck.GetStatus()`
+    4. If the Filesystem Check Operation status reports filesystem is in unhealthy
     state, then to fix all the problems issue a grpc call to
-    `OpenStorageFilesystemCheckClient.FixAll()`
-    5. Status of the FixAll() operation can be retrieved by polling for the
-    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
-    6. CheckHealth() and FixAll() operations run in the background, to stop these
-    operations, issue a call to
+    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
+    5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+    by polling for the status using
+    `OpenStorageFilesystemCheck.GetStatus()`
+    6. Filesystem Check operation runs in the background, to stop the operation,
+    issue a call to
     `OpenStorageFilesystemCheckClient.Stop()`
+    7. To Check and Fix errors in the filesystem that are safe to fix, issue a
+    grpc call to
+    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
+    Status of this operation can be polled in the way mentioned in step 3
+    This operation can be stopped a Stop request as mentioned in step 6
+
     """
 
     def __init__(self, channel):
@@ -621,25 +633,15 @@ class OpenStorageFilesystemCheckStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.CheckHealth = channel.unary_unary(
-                '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
-                request_serializer=api__pb2.SdkFilesystemCheckCheckHealthRequest.SerializeToString,
-                response_deserializer=api__pb2.SdkFilesystemCheckCheckHealthResponse.FromString,
+        self.Start = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemCheck/Start',
+                request_serializer=api__pb2.SdkFilesystemCheckStartRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkFilesystemCheckStartResponse.FromString,
                 )
-        self.CheckHealthGetStatus = channel.unary_unary(
-                '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
-                request_serializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusRequest.SerializeToString,
-                response_deserializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusResponse.FromString,
-                )
-        self.FixAll = channel.unary_unary(
-                '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
-                request_serializer=api__pb2.SdkFilesystemCheckFixAllRequest.SerializeToString,
-                response_deserializer=api__pb2.SdkFilesystemCheckFixAllResponse.FromString,
-                )
-        self.FixAllGetStatus = channel.unary_unary(
-                '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
-                request_serializer=api__pb2.SdkFilesystemCheckFixAllGetStatusRequest.SerializeToString,
-                response_deserializer=api__pb2.SdkFilesystemCheckFixAllGetStatusResponse.FromString,
+        self.GetStatus = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemCheck/GetStatus',
+                request_serializer=api__pb2.SdkFilesystemCheckGetStatusRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkFilesystemCheckGetStatusResponse.FromString,
                 )
         self.Stop = channel.unary_unary(
                 '/openstorage.api.OpenStorageFilesystemCheck/Stop',
@@ -656,56 +658,51 @@ class OpenStorageFilesystemCheckServicer(object):
     This operation is run in the background on an **unmounted volume**.
     If the volume is mounted, then these APIs return error.
 
-    Once the filesystem check operation(either CheckHealth() or FixAll()) is
-    started, the clients have to poll for the status of the background operation
-    using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
-    `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+    Once the filesystem check operation is started, in one of the available
+    modes(check_health, fix_safe, fix_all),
+    the clients have to poll for the status of the background operation
+    using the `OpenStorageFilesystemcheck.GetStatus()` rpc request.
 
-    **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+    **Note:
+    1. Different modes of filesystem check can execute in parallel for
+    the same volume.
+    2. Filesystem Check and volume Mount are mutually exclusive, meaning both
+    cannot be run on a volume at the same time.
 
     A typical workflow involving filesystem check would be as follows
     1. Attach the volume
     `OpenStorageMountAttachClient.Attach()`
     2. Check the health of the filesystem by issuing a grpc call to
-    `OpenStorageFilesystemCheckClient.CheckHealth()`
-    3. Status of the CheckHealth() operation can be retrieved by polling for the
-    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
-    4. If the CheckHealth Operations status reports filesystem is in unhealthy
+    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
+    3. Status of the Filesystem Check operation in check_health mode, can be
+    retrieved by polling for the status using
+    `OpenStorageFilesystemCheck.GetStatus()`
+    4. If the Filesystem Check Operation status reports filesystem is in unhealthy
     state, then to fix all the problems issue a grpc call to
-    `OpenStorageFilesystemCheckClient.FixAll()`
-    5. Status of the FixAll() operation can be retrieved by polling for the
-    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
-    6. CheckHealth() and FixAll() operations run in the background, to stop these
-    operations, issue a call to
+    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
+    5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+    by polling for the status using
+    `OpenStorageFilesystemCheck.GetStatus()`
+    6. Filesystem Check operation runs in the background, to stop the operation,
+    issue a call to
     `OpenStorageFilesystemCheckClient.Stop()`
+    7. To Check and Fix errors in the filesystem that are safe to fix, issue a
+    grpc call to
+    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
+    Status of this operation can be polled in the way mentioned in step 3
+    This operation can be stopped a Stop request as mentioned in step 6
+
     """
 
-    def CheckHealth(self, request, context):
-        """Get a report of issues found on the filesystem. This operation works on an
-        unmounted volume.
+    def Start(self, request, context):
+        """Start a filesystem-check background operation on a unmounted volume.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CheckHealthGetStatus(self, request, context):
-        """Get Status of a filesystem CheckHealth background operation on an unmounted
-        volume, if any
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def FixAll(self, request, context):
-        """FixAll fixes all the issues reported in the response to CheckHealth API on
-        a filesystem. This operation works on an unmounted volume.
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def FixAllGetStatus(self, request, context):
-        """Get Status of a filesystem FixAll background operation on an unmounted
+    def GetStatus(self, request, context):
+        """Get Status of a filesystem-check background operation on an unmounted
         volume, if any
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -722,25 +719,15 @@ class OpenStorageFilesystemCheckServicer(object):
 
 def add_OpenStorageFilesystemCheckServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'CheckHealth': grpc.unary_unary_rpc_method_handler(
-                    servicer.CheckHealth,
-                    request_deserializer=api__pb2.SdkFilesystemCheckCheckHealthRequest.FromString,
-                    response_serializer=api__pb2.SdkFilesystemCheckCheckHealthResponse.SerializeToString,
+            'Start': grpc.unary_unary_rpc_method_handler(
+                    servicer.Start,
+                    request_deserializer=api__pb2.SdkFilesystemCheckStartRequest.FromString,
+                    response_serializer=api__pb2.SdkFilesystemCheckStartResponse.SerializeToString,
             ),
-            'CheckHealthGetStatus': grpc.unary_unary_rpc_method_handler(
-                    servicer.CheckHealthGetStatus,
-                    request_deserializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusRequest.FromString,
-                    response_serializer=api__pb2.SdkFilesystemCheckCheckHealthGetStatusResponse.SerializeToString,
-            ),
-            'FixAll': grpc.unary_unary_rpc_method_handler(
-                    servicer.FixAll,
-                    request_deserializer=api__pb2.SdkFilesystemCheckFixAllRequest.FromString,
-                    response_serializer=api__pb2.SdkFilesystemCheckFixAllResponse.SerializeToString,
-            ),
-            'FixAllGetStatus': grpc.unary_unary_rpc_method_handler(
-                    servicer.FixAllGetStatus,
-                    request_deserializer=api__pb2.SdkFilesystemCheckFixAllGetStatusRequest.FromString,
-                    response_serializer=api__pb2.SdkFilesystemCheckFixAllGetStatusResponse.SerializeToString,
+            'GetStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetStatus,
+                    request_deserializer=api__pb2.SdkFilesystemCheckGetStatusRequest.FromString,
+                    response_serializer=api__pb2.SdkFilesystemCheckGetStatusResponse.SerializeToString,
             ),
             'Stop': grpc.unary_unary_rpc_method_handler(
                     servicer.Stop,
@@ -762,32 +749,44 @@ class OpenStorageFilesystemCheck(object):
     This operation is run in the background on an **unmounted volume**.
     If the volume is mounted, then these APIs return error.
 
-    Once the filesystem check operation(either CheckHealth() or FixAll()) is
-    started, the clients have to poll for the status of the background operation
-    using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
-    `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+    Once the filesystem check operation is started, in one of the available
+    modes(check_health, fix_safe, fix_all),
+    the clients have to poll for the status of the background operation
+    using the `OpenStorageFilesystemcheck.GetStatus()` rpc request.
 
-    **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+    **Note:
+    1. Different modes of filesystem check can execute in parallel for
+    the same volume.
+    2. Filesystem Check and volume Mount are mutually exclusive, meaning both
+    cannot be run on a volume at the same time.
 
     A typical workflow involving filesystem check would be as follows
     1. Attach the volume
     `OpenStorageMountAttachClient.Attach()`
     2. Check the health of the filesystem by issuing a grpc call to
-    `OpenStorageFilesystemCheckClient.CheckHealth()`
-    3. Status of the CheckHealth() operation can be retrieved by polling for the
-    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
-    4. If the CheckHealth Operations status reports filesystem is in unhealthy
+    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
+    3. Status of the Filesystem Check operation in check_health mode, can be
+    retrieved by polling for the status using
+    `OpenStorageFilesystemCheck.GetStatus()`
+    4. If the Filesystem Check Operation status reports filesystem is in unhealthy
     state, then to fix all the problems issue a grpc call to
-    `OpenStorageFilesystemCheckClient.FixAll()`
-    5. Status of the FixAll() operation can be retrieved by polling for the
-    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
-    6. CheckHealth() and FixAll() operations run in the background, to stop these
-    operations, issue a call to
+    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
+    5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+    by polling for the status using
+    `OpenStorageFilesystemCheck.GetStatus()`
+    6. Filesystem Check operation runs in the background, to stop the operation,
+    issue a call to
     `OpenStorageFilesystemCheckClient.Stop()`
+    7. To Check and Fix errors in the filesystem that are safe to fix, issue a
+    grpc call to
+    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
+    Status of this operation can be polled in the way mentioned in step 3
+    This operation can be stopped a Stop request as mentioned in step 6
+
     """
 
     @staticmethod
-    def CheckHealth(request,
+    def Start(request,
             target,
             options=(),
             channel_credentials=None,
@@ -796,14 +795,14 @@ class OpenStorageFilesystemCheck(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
-            api__pb2.SdkFilesystemCheckCheckHealthRequest.SerializeToString,
-            api__pb2.SdkFilesystemCheckCheckHealthResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/Start',
+            api__pb2.SdkFilesystemCheckStartRequest.SerializeToString,
+            api__pb2.SdkFilesystemCheckStartResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CheckHealthGetStatus(request,
+    def GetStatus(request,
             target,
             options=(),
             channel_credentials=None,
@@ -812,41 +811,9 @@ class OpenStorageFilesystemCheck(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
-            api__pb2.SdkFilesystemCheckCheckHealthGetStatusRequest.SerializeToString,
-            api__pb2.SdkFilesystemCheckCheckHealthGetStatusResponse.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def FixAll(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
-            api__pb2.SdkFilesystemCheckFixAllRequest.SerializeToString,
-            api__pb2.SdkFilesystemCheckFixAllResponse.FromString,
-            options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def FixAllGetStatus(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
-            api__pb2.SdkFilesystemCheckFixAllGetStatusRequest.SerializeToString,
-            api__pb2.SdkFilesystemCheckFixAllGetStatusResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/GetStatus',
+            api__pb2.SdkFilesystemCheckGetStatusRequest.SerializeToString,
+            api__pb2.SdkFilesystemCheckGetStatusResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -3437,6 +3404,11 @@ class OpenStorageCloudBackupStub(object):
                 request_serializer=api__pb2.SdkCloudBackupSchedEnumerateRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkCloudBackupSchedEnumerateResponse.FromString,
                 )
+        self.Size = channel.unary_unary(
+                '/openstorage.api.OpenStorageCloudBackup/Size',
+                request_serializer=api__pb2.SdkCloudBackupSizeRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkCloudBackupSizeResponse.FromString,
+                )
 
 
 class OpenStorageCloudBackupServicer(object):
@@ -3566,6 +3538,13 @@ class OpenStorageCloudBackupServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Size(self, request, context):
+        """Size returns the size of any cloud backups of a volume
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -3638,6 +3617,11 @@ def add_OpenStorageCloudBackupServicer_to_server(servicer, server):
                     servicer.SchedEnumerate,
                     request_deserializer=api__pb2.SdkCloudBackupSchedEnumerateRequest.FromString,
                     response_serializer=api__pb2.SdkCloudBackupSchedEnumerateResponse.SerializeToString,
+            ),
+            'Size': grpc.unary_unary_rpc_method_handler(
+                    servicer.Size,
+                    request_deserializer=api__pb2.SdkCloudBackupSizeRequest.FromString,
+                    response_serializer=api__pb2.SdkCloudBackupSizeResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -3885,6 +3869,22 @@ class OpenStorageCloudBackup(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageCloudBackup/SchedEnumerate',
             api__pb2.SdkCloudBackupSchedEnumerateRequest.SerializeToString,
             api__pb2.SdkCloudBackupSchedEnumerateResponse.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Size(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageCloudBackup/Size',
+            api__pb2.SdkCloudBackupSizeRequest.SerializeToString,
+            api__pb2.SdkCloudBackupSizeResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 

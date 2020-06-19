@@ -165,28 +165,40 @@ module Openstorage
       # This operation is run in the background on an **unmounted volume**.
       # If the volume is mounted, then these APIs return error.
       #
-      # Once the filesystem check operation(either CheckHealth() or FixAll()) is
-      # started, the clients have to poll for the status of the background operation
-      # using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
-      # `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+      # Once the filesystem check operation is started, in one of the available
+      # modes(check_health, fix_safe, fix_all),
+      # the clients have to poll for the status of the background operation
+      # using the `OpenStorageFilesystemcheck.GetStatus()` rpc request.
       #
-      # **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+      # **Note:
+      # 1. Different modes of filesystem check can execute in parallel for
+      # the same volume.
+      # 2. Filesystem Check and volume Mount are mutually exclusive, meaning both
+      # cannot be run on a volume at the same time.
       #
       # A typical workflow involving filesystem check would be as follows
       # 1. Attach the volume
       #    `OpenStorageMountAttachClient.Attach()`
       # 2. Check the health of the filesystem by issuing a grpc call to
-      #    `OpenStorageFilesystemCheckClient.CheckHealth()`
-      # 3. Status of the CheckHealth() operation can be retrieved by polling for the
-      #    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
-      # 4. If the CheckHealth Operations status reports filesystem is in unhealthy
+      #    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
+      # 3. Status of the Filesystem Check operation in check_health mode, can be
+      #    retrieved by polling for the status using
+      #    `OpenStorageFilesystemCheck.GetStatus()`
+      # 4. If the Filesystem Check Operation status reports filesystem is in unhealthy
       #    state, then to fix all the problems issue a grpc call to
-      #    `OpenStorageFilesystemCheckClient.FixAll()`
-      # 5. Status of the FixAll() operation can be retrieved by polling for the
-      #    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
-      # 6. CheckHealth() and FixAll() operations run in the background, to stop these
-      #    operations, issue a call to
+      #    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
+      # 5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+      #    by polling for the status using
+      #    `OpenStorageFilesystemCheck.GetStatus()`
+      # 6. Filesystem Check operation runs in the background, to stop the operation,
+      #    issue a call to
       #    `OpenStorageFilesystemCheckClient.Stop()`
+      # 7. To Check and Fix errors in the filesystem that are safe to fix, issue a
+      #    grpc call to
+      #    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
+      #    Status of this operation can be polled in the way mentioned in step 3
+      #    This operation can be stopped a Stop request as mentioned in step 6
+      #
       class Service
 
         include GRPC::GenericService
@@ -195,18 +207,11 @@ module Openstorage
         self.unmarshal_class_method = :decode
         self.service_name = 'openstorage.api.OpenStorageFilesystemCheck'
 
-        # Get a report of issues found on the filesystem. This operation works on an
-        # unmounted volume.
-        rpc :CheckHealth, SdkFilesystemCheckCheckHealthRequest, SdkFilesystemCheckCheckHealthResponse
-        # Get Status of a filesystem CheckHealth background operation on an unmounted
+        # Start a filesystem-check background operation on a unmounted volume.
+        rpc :Start, SdkFilesystemCheckStartRequest, SdkFilesystemCheckStartResponse
+        # Get Status of a filesystem-check background operation on an unmounted
         # volume, if any
-        rpc :CheckHealthGetStatus, SdkFilesystemCheckCheckHealthGetStatusRequest, SdkFilesystemCheckCheckHealthGetStatusResponse
-        # FixAll fixes all the issues reported in the response to CheckHealth API on
-        # a filesystem. This operation works on an unmounted volume.
-        rpc :FixAll, SdkFilesystemCheckFixAllRequest, SdkFilesystemCheckFixAllResponse
-        # Get Status of a filesystem FixAll background operation on an unmounted
-        # volume, if any
-        rpc :FixAllGetStatus, SdkFilesystemCheckFixAllGetStatusRequest, SdkFilesystemCheckFixAllGetStatusResponse
+        rpc :GetStatus, SdkFilesystemCheckGetStatusRequest, SdkFilesystemCheckGetStatusResponse
         # Stop a filesystem check background operation on an unmounted volume, if any
         rpc :Stop, SdkFilesystemCheckStopRequest, SdkFilesystemCheckStopResponse
       end
@@ -695,6 +700,8 @@ module Openstorage
         rpc :SchedDelete, SdkCloudBackupSchedDeleteRequest, SdkCloudBackupSchedDeleteResponse
         # Enumerate cloud backup schedules
         rpc :SchedEnumerate, SdkCloudBackupSchedEnumerateRequest, SdkCloudBackupSchedEnumerateResponse
+        # Size returns the size of any cloud backups of a volume
+        rpc :Size, SdkCloudBackupSizeRequest, SdkCloudBackupSizeResponse
       end
 
       Stub = Service.rpc_stub_class

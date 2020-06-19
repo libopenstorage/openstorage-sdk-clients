@@ -60,6 +60,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.IoStrategy" do
       optional :async_io, :bool, 1
       optional :early_ack, :bool, 2
+      optional :direct_io, :bool, 3
     end
     add_message "openstorage.api.Xattr" do
     end
@@ -88,6 +89,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :promote, :bool, 2
       optional :status, :enum, 3, "openstorage.api.FastpathStatus"
       repeated :replicas, :message, 4, "openstorage.api.FastpathReplState"
+      optional :dirty, :bool, 5
     end
     add_message "openstorage.api.VolumeSpec" do
       optional :ephemeral, :bool, 1
@@ -288,7 +290,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :ctime, :message, 6, "google.protobuf.Timestamp"
       optional :spec, :message, 7, "openstorage.api.VolumeSpec"
       optional :usage, :uint64, 8
-      optional :last_scan, :message, 9, "google.protobuf.Timestamp"
+      optional :last_fsck_scan, :message, 9, "google.protobuf.Timestamp"
       optional :format, :enum, 10, "openstorage.api.FSType"
       optional :status, :enum, 11, "openstorage.api.VolumeStatus"
       optional :state, :enum, 12, "openstorage.api.VolumeState"
@@ -306,6 +308,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :attach_time, :message, 24, "google.protobuf.Timestamp"
       optional :detach_time, :message, 25, "google.protobuf.Timestamp"
       optional :fpConfig, :message, 26, "openstorage.api.FastpathConfig"
+      optional :last_fsck_scan_fix, :message, 27, "google.protobuf.Timestamp"
     end
     add_message "openstorage.api.Stats" do
       optional :reads, :uint64, 1
@@ -619,6 +622,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :ownership, :message, 4, "openstorage.api.Ownership"
       optional :use_proxy, :bool, 5
       optional :iam_policy, :bool, 6
+      optional :s3_storage_class, :string, 7
       oneof :credential_type do
         optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
         optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
@@ -650,6 +654,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :region, :string, 4
       optional :disable_ssl, :bool, 5
       optional :disable_path_style, :bool, 6
+      optional :s3_storage_class, :string, 7
     end
     add_message "openstorage.api.SdkAzureCredentialResponse" do
       optional :account_name, :string, 2
@@ -1171,6 +1176,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.SdkCloudBackupSchedEnumerateResponse" do
       map :cloud_sched_list, :string, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
     end
+    add_message "openstorage.api.SdkCloudBackupSizeRequest" do
+      optional :backup_id, :string, 1
+      optional :credential_id, :string, 2
+    end
+    add_message "openstorage.api.SdkCloudBackupSizeResponse" do
+      optional :size, :uint64, 1
+    end
     add_message "openstorage.api.SdkRule" do
       repeated :services, :string, 1
       repeated :apis, :string, 2
@@ -1246,54 +1258,32 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :FS_CHECK_UNKNOWN, 0
       value :FS_CHECK_NOT_RUNNING, 1
       value :FS_CHECK_STARTED, 2
-      value :FS_CHECK_CHECK_HEALTH_INPROGRESS, 3
-      value :FS_CHECK_CHECK_HEALTH_STOPPED, 4
-      value :FS_CHECK_CHECK_HEALTH_COMPLETED, 5
-      value :FS_CHECK_CHECK_HEALTH_FAILED, 6
-      value :FS_CHECK_FIXALL_INPROGRESS, 7
-      value :FS_CHECK_FIXALL_STOPPED, 8
-      value :FS_CHECK_FIXALL_COMPLETED, 9
-      value :FS_CHECK_FIXALL_FAILED, 10
+      value :FS_CHECK_INPROGRESS, 3
+      value :FS_CHECK_STOPPED, 4
+      value :FS_CHECK_COMPLETED, 5
+      value :FS_CHECK_FAILED, 6
     end
-    add_enum "openstorage.api.FilesystemCheck.CheckHealthStatus" do
-      value :CHECK_HEALTH_STATUS_UNKNOWN, 0
-      value :CHECK_HEALTH_STATUS_HEALTHY, 1
-      value :CHECK_HEALTH_STATUS_NOT_HEALTHY, 2
+    add_enum "openstorage.api.FilesystemCheck.FilesystemHealthStatus" do
+      value :FS_HEALTH_STATUS_UNKNOWN, 0
+      value :FS_HEALTH_STATUS_HEALTHY, 1
+      value :FS_HEALTH_STATUS_NOT_HEALTHY, 2
     end
-    add_enum "openstorage.api.FilesystemCheck.FixAllStatus" do
-      value :FIXALL_STATUS_UNKNOWN, 0
-      value :FIXALL_STATUS_HEALTHY, 1
-      value :FIXALL_STATUS_NOT_HEALTHY, 2
-    end
-    add_message "openstorage.api.SdkFilesystemCheckCheckHealthRequest" do
+    add_message "openstorage.api.SdkFilesystemCheckStartRequest" do
       optional :volume_id, :string, 1
+      optional :mode, :string, 2
     end
-    add_message "openstorage.api.SdkFilesystemCheckCheckHealthResponse" do
+    add_message "openstorage.api.SdkFilesystemCheckStartResponse" do
       optional :status, :enum, 1, "openstorage.api.FilesystemCheck.FilesystemCheckStatus"
       optional :message, :string, 2
     end
-    add_message "openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest" do
+    add_message "openstorage.api.SdkFilesystemCheckGetStatusRequest" do
       optional :volume_id, :string, 1
     end
-    add_message "openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse" do
+    add_message "openstorage.api.SdkFilesystemCheckGetStatusResponse" do
       optional :status, :enum, 1, "openstorage.api.FilesystemCheck.FilesystemCheckStatus"
-      optional :health_status, :enum, 2, "openstorage.api.FilesystemCheck.CheckHealthStatus"
-      optional :message, :string, 3
-    end
-    add_message "openstorage.api.SdkFilesystemCheckFixAllRequest" do
-      optional :volume_id, :string, 1
-    end
-    add_message "openstorage.api.SdkFilesystemCheckFixAllResponse" do
-      optional :status, :enum, 1, "openstorage.api.FilesystemCheck.FilesystemCheckStatus"
-      optional :message, :string, 2
-    end
-    add_message "openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest" do
-      optional :volume_id, :string, 1
-    end
-    add_message "openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse" do
-      optional :status, :enum, 1, "openstorage.api.FilesystemCheck.FilesystemCheckStatus"
-      optional :health_status, :enum, 2, "openstorage.api.FilesystemCheck.FixAllStatus"
-      optional :message, :string, 3
+      optional :health_status, :enum, 2, "openstorage.api.FilesystemCheck.FilesystemHealthStatus"
+      optional :mode, :string, 3
+      optional :message, :string, 4
     end
     add_message "openstorage.api.SdkFilesystemCheckStopRequest" do
       optional :volume_id, :string, 1
@@ -1344,7 +1334,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 77
+      value :Minor, 83
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -2043,6 +2033,8 @@ module Openstorage
     SdkCloudBackupSchedDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedDeleteResponse").msgclass
     SdkCloudBackupSchedEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedEnumerateRequest").msgclass
     SdkCloudBackupSchedEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedEnumerateResponse").msgclass
+    SdkCloudBackupSizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSizeRequest").msgclass
+    SdkCloudBackupSizeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSizeResponse").msgclass
     SdkRule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkRule").msgclass
     SdkRole = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkRole").msgclass
     SdkRoleCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkRoleCreateRequest").msgclass
@@ -2065,16 +2057,11 @@ module Openstorage
     SdkFilesystemTrimStopResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopResponse").msgclass
     FilesystemCheck = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck").msgclass
     FilesystemCheck::FilesystemCheckStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck.FilesystemCheckStatus").enummodule
-    FilesystemCheck::CheckHealthStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck.CheckHealthStatus").enummodule
-    FilesystemCheck::FixAllStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck.FixAllStatus").enummodule
-    SdkFilesystemCheckCheckHealthRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckCheckHealthRequest").msgclass
-    SdkFilesystemCheckCheckHealthResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckCheckHealthResponse").msgclass
-    SdkFilesystemCheckCheckHealthGetStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest").msgclass
-    SdkFilesystemCheckCheckHealthGetStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse").msgclass
-    SdkFilesystemCheckFixAllRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckFixAllRequest").msgclass
-    SdkFilesystemCheckFixAllResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckFixAllResponse").msgclass
-    SdkFilesystemCheckFixAllGetStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest").msgclass
-    SdkFilesystemCheckFixAllGetStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse").msgclass
+    FilesystemCheck::FilesystemHealthStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck.FilesystemHealthStatus").enummodule
+    SdkFilesystemCheckStartRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckStartRequest").msgclass
+    SdkFilesystemCheckStartResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckStartResponse").msgclass
+    SdkFilesystemCheckGetStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckGetStatusRequest").msgclass
+    SdkFilesystemCheckGetStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckGetStatusResponse").msgclass
     SdkFilesystemCheckStopRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckStopRequest").msgclass
     SdkFilesystemCheckStopResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckStopResponse").msgclass
     SdkIdentityCapabilitiesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkIdentityCapabilitiesRequest").msgclass
