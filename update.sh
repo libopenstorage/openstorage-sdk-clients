@@ -19,11 +19,11 @@ create() {
 		echo ">>> Updating branch from $prevver to $ver"
 		sleep 2
 		make APIVER=${ver} || fail "Make failed"
+		echo ">>> Updated to version $ver"
 		#git add api.swagger.json
 		#git add sdk/.
 		#git commit -am "Update to $ver"
 		#sudo git clean -f -x -d
-		echo "New Version is $ver"
 	else
 		echo ">>> Branch does not need an update. At ver $ver"
 		git checkout api.swagger.json

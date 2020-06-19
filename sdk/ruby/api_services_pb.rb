@@ -332,8 +332,20 @@ module Openstorage
         self.unmarshal_class_method = :decode
         self.service_name = 'openstorage.api.OpenStoragePool'
 
-        # Resize resizes the specified storage pool based on the request parameters
+        # Resize expands the specified storage pool based on the request parameters
         rpc :Resize, SdkStoragePoolResizeRequest, SdkStoragePoolResizeResponse
+        # Rebalance creates a new rebalance task
+        rpc :Rebalance, SdkStorageRebalanceRequest, SdkStorageRebalanceResponse
+        # UpdateRebalanceJobState updates existing rebalance task state.
+        # Only acceptable values are
+        # StorageRebalanceJobState_PAUSED - acceptable only from running state
+        # StorageRebalanceJobState_CANCELLED - acceptable only from running/pause state
+        # StorageRebalanceJobState_RUNNING - acceptable only from pause state
+        rpc :UpdateRebalanceJobState, SdkUpdateRebalanceJobRequest, SdkUpdateRebalanceJobResponse
+        # GetRebalanceJobStatus returns rebalance status for specified job
+        rpc :GetRebalanceJobStatus, SdkGetRebalanceJobStatusRequest, SdkGetRebalanceJobStatusResponse
+        # EnumerateRebalanceJobs returns all rebalance jobs currently known to the system
+        rpc :EnumerateRebalanceJobs, SdkEnumerateRebalanceJobsRequest, SdkEnumerateRebalanceJobsResponse
       end
 
       Stub = Service.rpc_stub_class
@@ -682,6 +694,8 @@ module Openstorage
         rpc :SchedDelete, SdkCloudBackupSchedDeleteRequest, SdkCloudBackupSchedDeleteResponse
         # Enumerate cloud backup schedules
         rpc :SchedEnumerate, SdkCloudBackupSchedEnumerateRequest, SdkCloudBackupSchedEnumerateResponse
+        # Size returns the size of any cloud backups of a volume
+        rpc :Size, SdkCloudBackupSizeRequest, SdkCloudBackupSizeResponse
       end
 
       Stub = Service.rpc_stub_class

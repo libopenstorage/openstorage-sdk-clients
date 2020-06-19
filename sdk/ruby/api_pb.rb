@@ -61,6 +61,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :async_io, :bool, 1
       optional :early_ack, :bool, 2
     end
+    add_message "openstorage.api.Xattr" do
+    end
+    add_enum "openstorage.api.Xattr.Value" do
+      value :UNSPECIFIED, 0
+      value :COW_ON_DEMAND, 1
+    end
     add_message "openstorage.api.ExportSpec" do
       optional :export_protocol, :enum, 1, "openstorage.api.ExportProtocol"
       optional :export_options, :string, 2
@@ -117,6 +123,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :ownership, :message, 33, "openstorage.api.Ownership"
       optional :export_spec, :message, 34, "openstorage.api.ExportSpec"
       optional :fp_preference, :bool, 35
+      optional :xattr, :enum, 36, "openstorage.api.Xattr.Value"
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -481,6 +488,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :id, :string, 1
       map :Labels, :string, :string, 2
       repeated :volume_ids, :string, 3
+      optional :delete_on_failure, :bool, 4
     end
     add_message "openstorage.api.GroupSnapCreateResponse" do
       map :snapshots, :string, :message, 1, "openstorage.api.SnapCreateResponse"
@@ -611,6 +619,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :ownership, :message, 4, "openstorage.api.Ownership"
       optional :use_proxy, :bool, 5
       optional :iam_policy, :bool, 6
+      optional :s3_storage_class, :string, 7
       oneof :credential_type do
         optional :aws_credential, :message, 200, "openstorage.api.SdkAwsCredentialRequest"
         optional :azure_credential, :message, 201, "openstorage.api.SdkAzureCredentialRequest"
@@ -642,6 +651,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :region, :string, 4
       optional :disable_ssl, :bool, 5
       optional :disable_path_style, :bool, 6
+      optional :s3_storage_class, :string, 7
     end
     add_message "openstorage.api.SdkAzureCredentialResponse" do
       optional :account_name, :string, 2
@@ -871,6 +881,89 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
         optional :percentage, :uint64, 201
       end
     end
+    add_message "openstorage.api.StorageRebalanceTriggerThreshold" do
+      optional :type, :enum, 1, "openstorage.api.StorageRebalanceTriggerThreshold.Type"
+      optional :metric, :enum, 2, "openstorage.api.StorageRebalanceTriggerThreshold.Metric"
+      optional :over_load_trigger_threshold, :uint64, 3
+      optional :under_load_trigger_threshold, :uint64, 4
+    end
+    add_enum "openstorage.api.StorageRebalanceTriggerThreshold.Type" do
+      value :ABSOLUTE_PERCENT, 0
+      value :DELTA_MEAN_PERCENT, 1
+    end
+    add_enum "openstorage.api.StorageRebalanceTriggerThreshold.Metric" do
+      value :PROVISION_SPACE, 0
+      value :USED_SPACE, 1
+    end
+    add_message "openstorage.api.SdkStorageRebalanceRequest" do
+      repeated :trigger_thresholds, :message, 1, "openstorage.api.StorageRebalanceTriggerThreshold"
+      optional :trial_run, :bool, 2
+      map :pool_selector_labels, :string, :string, 3
+      optional :max_duration_minutes, :uint64, 4
+    end
+    add_message "openstorage.api.SdkStorageRebalanceResponse" do
+      optional :job, :message, 1, "openstorage.api.StorageRebalanceJob"
+      optional :summary, :message, 2, "openstorage.api.StorageRebalanceSummary"
+      repeated :actions, :message, 3, "openstorage.api.StorageRebalanceAudit"
+    end
+    add_message "openstorage.api.StorageRebalanceJob" do
+      optional :id, :string, 1
+      optional :error, :string, 2
+      optional :state, :enum, 3, "openstorage.api.StorageRebalanceJobState"
+      optional :parameters, :message, 4, "openstorage.api.SdkStorageRebalanceRequest"
+      optional :create_time, :message, 5, "google.protobuf.Timestamp"
+    end
+    add_message "openstorage.api.StorageRebalanceSummary" do
+      optional :last_update_time, :message, 1, "google.protobuf.Timestamp"
+      optional :total_run_time_seconds, :uint64, 2
+      repeated :work_summary, :message, 3, "openstorage.api.StorageRebalanceWorkSummary"
+    end
+    add_message "openstorage.api.StorageRebalanceWorkSummary" do
+      optional :type, :enum, 1, "openstorage.api.StorageRebalanceWorkSummary.Type"
+      optional :done, :uint64, 2
+      optional :pending, :uint64, 3
+    end
+    add_enum "openstorage.api.StorageRebalanceWorkSummary.Type" do
+      value :UnbalancedPools, 0
+      value :UnbalancedVolumes, 1
+      value :UnbalancedProvisionedSpaceBytes, 2
+      value :UnbalancedUsedSpaceBytes, 3
+    end
+    add_message "openstorage.api.StorageRebalanceAudit" do
+      optional :volume_id, :string, 1
+      optional :name, :string, 2
+      optional :action, :enum, 3, "openstorage.api.StorageRebalanceAudit.StorageRebalanceAction"
+      optional :node, :string, 4
+      optional :pool, :string, 5
+      optional :start_time, :message, 6, "google.protobuf.Timestamp"
+      optional :end_time, :message, 7, "google.protobuf.Timestamp"
+      repeated :work_summary, :message, 8, "openstorage.api.StorageRebalanceWorkSummary"
+      optional :replication_set_id, :uint64, 9
+      optional :state, :enum, 10, "openstorage.api.StorageRebalanceJobState"
+    end
+    add_enum "openstorage.api.StorageRebalanceAudit.StorageRebalanceAction" do
+      value :ADD_REPLICA, 0
+      value :REMOVE_REPLICA, 1
+    end
+    add_message "openstorage.api.SdkUpdateRebalanceJobRequest" do
+      optional :id, :string, 1
+      optional :state, :enum, 2, "openstorage.api.StorageRebalanceJobState"
+    end
+    add_message "openstorage.api.SdkUpdateRebalanceJobResponse" do
+    end
+    add_message "openstorage.api.SdkGetRebalanceJobStatusRequest" do
+      optional :id, :string, 1
+    end
+    add_message "openstorage.api.SdkGetRebalanceJobStatusResponse" do
+      optional :job, :message, 1, "openstorage.api.StorageRebalanceJob"
+      optional :summary, :message, 2, "openstorage.api.StorageRebalanceSummary"
+      repeated :actions, :message, 3, "openstorage.api.StorageRebalanceAudit"
+    end
+    add_message "openstorage.api.SdkEnumerateRebalanceJobsRequest" do
+    end
+    add_message "openstorage.api.SdkEnumerateRebalanceJobsResponse" do
+      repeated :jobs, :message, 1, "openstorage.api.StorageRebalanceJob"
+    end
     add_message "openstorage.api.SdkStoragePool" do
     end
     add_enum "openstorage.api.SdkStoragePool.OperationStatus" do
@@ -1080,6 +1173,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.SdkCloudBackupSchedEnumerateResponse" do
       map :cloud_sched_list, :string, :message, 1, "openstorage.api.SdkCloudBackupScheduleInfo"
     end
+    add_message "openstorage.api.SdkCloudBackupSizeRequest" do
+      optional :backup_id, :string, 1
+      optional :credential_id, :string, 2
+    end
+    add_message "openstorage.api.SdkCloudBackupSizeResponse" do
+      optional :size, :uint64, 1
+    end
     add_message "openstorage.api.SdkRule" do
       repeated :services, :string, 1
       repeated :apis, :string, 2
@@ -1254,7 +1354,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 69
-      value :Patch, 6
+      value :Patch, 11
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -1674,6 +1774,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkTimeWeekdayFriday, 5
       value :SdkTimeWeekdaySaturday, 6
     end
+    add_enum "openstorage.api.StorageRebalanceJobState" do
+      value :PENDING, 0
+      value :RUNNING, 1
+      value :DONE, 2
+      value :PAUSED, 3
+      value :CANCELLED, 4
+    end
     add_enum "openstorage.api.SdkCloudBackupOpType" do
       value :SdkCloudBackupOpTypeUnknown, 0
       value :SdkCloudBackupOpTypeBackupOp, 1
@@ -1719,6 +1826,8 @@ module Openstorage
     Source = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Source").msgclass
     Group = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Group").msgclass
     IoStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.IoStrategy").msgclass
+    Xattr = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Xattr").msgclass
+    Xattr::Value = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Xattr.Value").enummodule
     ExportSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ExportSpec").msgclass
     FastpathReplState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathReplState").msgclass
     FastpathConfig = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathConfig").msgclass
@@ -1872,6 +1981,23 @@ module Openstorage
     SdkClusterInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterInspectCurrentResponse").msgclass
     SdkNodeInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectRequest").msgclass
     SdkStoragePoolResizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePoolResizeRequest").msgclass
+    StorageRebalanceTriggerThreshold = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold").msgclass
+    StorageRebalanceTriggerThreshold::Type = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold.Type").enummodule
+    StorageRebalanceTriggerThreshold::Metric = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold.Metric").enummodule
+    SdkStorageRebalanceRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStorageRebalanceRequest").msgclass
+    SdkStorageRebalanceResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStorageRebalanceResponse").msgclass
+    StorageRebalanceJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJob").msgclass
+    StorageRebalanceSummary = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceSummary").msgclass
+    StorageRebalanceWorkSummary = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceWorkSummary").msgclass
+    StorageRebalanceWorkSummary::Type = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceWorkSummary.Type").enummodule
+    StorageRebalanceAudit = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceAudit").msgclass
+    StorageRebalanceAudit::StorageRebalanceAction = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceAudit.StorageRebalanceAction").enummodule
+    SdkUpdateRebalanceJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateRebalanceJobRequest").msgclass
+    SdkUpdateRebalanceJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateRebalanceJobResponse").msgclass
+    SdkGetRebalanceJobStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkGetRebalanceJobStatusRequest").msgclass
+    SdkGetRebalanceJobStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkGetRebalanceJobStatusResponse").msgclass
+    SdkEnumerateRebalanceJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateRebalanceJobsRequest").msgclass
+    SdkEnumerateRebalanceJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateRebalanceJobsResponse").msgclass
     SdkStoragePool = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool").msgclass
     SdkStoragePool::OperationStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool.OperationStatus").enummodule
     SdkStoragePool::OperationType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePool.OperationType").enummodule
@@ -1924,6 +2050,8 @@ module Openstorage
     SdkCloudBackupSchedDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedDeleteResponse").msgclass
     SdkCloudBackupSchedEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedEnumerateRequest").msgclass
     SdkCloudBackupSchedEnumerateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSchedEnumerateResponse").msgclass
+    SdkCloudBackupSizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSizeRequest").msgclass
+    SdkCloudBackupSizeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupSizeResponse").msgclass
     SdkRule = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkRule").msgclass
     SdkRole = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkRole").msgclass
     SdkRoleCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkRoleCreateRequest").msgclass
@@ -2044,6 +2172,7 @@ module Openstorage
     FastpathStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathStatus").enummodule
     FastpathProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathProtocol").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
+    StorageRebalanceJobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJobState").enummodule
     SdkCloudBackupOpType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupOpType").enummodule
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule
     SdkCloudBackupRequestedState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupRequestedState").enummodule

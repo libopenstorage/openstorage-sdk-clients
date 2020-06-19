@@ -21,7 +21,7 @@ function serialize_openstorage_api_SdkAlertsDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkAlertsDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkAlertsDeleteRequest(buffer_arg) {
@@ -32,7 +32,7 @@ function serialize_openstorage_api_SdkAlertsDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkAlertsDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkAlertsDeleteResponse(buffer_arg) {
@@ -43,7 +43,7 @@ function serialize_openstorage_api_SdkAlertsEnumerateWithFiltersRequest(arg) {
   if (!(arg instanceof api_pb.SdkAlertsEnumerateWithFiltersRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateWithFiltersRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersRequest(buffer_arg) {
@@ -54,7 +54,7 @@ function serialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(arg) {
   if (!(arg instanceof api_pb.SdkAlertsEnumerateWithFiltersResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsEnumerateWithFiltersResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(buffer_arg) {
@@ -65,7 +65,7 @@ function serialize_openstorage_api_SdkCloudBackupCatalogRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupCatalogRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupCatalogRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupCatalogRequest(buffer_arg) {
@@ -76,7 +76,7 @@ function serialize_openstorage_api_SdkCloudBackupCatalogResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupCatalogResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupCatalogResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupCatalogResponse(buffer_arg) {
@@ -87,7 +87,7 @@ function serialize_openstorage_api_SdkCloudBackupCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupCreateRequest(buffer_arg) {
@@ -98,7 +98,7 @@ function serialize_openstorage_api_SdkCloudBackupCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupCreateResponse(buffer_arg) {
@@ -109,7 +109,7 @@ function serialize_openstorage_api_SdkCloudBackupDeleteAllRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupDeleteAllRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupDeleteAllRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupDeleteAllRequest(buffer_arg) {
@@ -120,7 +120,7 @@ function serialize_openstorage_api_SdkCloudBackupDeleteAllResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupDeleteAllResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupDeleteAllResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupDeleteAllResponse(buffer_arg) {
@@ -131,7 +131,7 @@ function serialize_openstorage_api_SdkCloudBackupDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupDeleteRequest(buffer_arg) {
@@ -142,7 +142,7 @@ function serialize_openstorage_api_SdkCloudBackupDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupDeleteResponse(buffer_arg) {
@@ -153,7 +153,7 @@ function serialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersRequest(arg
   if (!(arg instanceof api_pb.SdkCloudBackupEnumerateWithFiltersRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersRequest(buffer_arg) {
@@ -164,7 +164,7 @@ function serialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse(ar
   if (!(arg instanceof api_pb.SdkCloudBackupEnumerateWithFiltersResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse(buffer_arg) {
@@ -175,7 +175,7 @@ function serialize_openstorage_api_SdkCloudBackupGroupCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupGroupCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupGroupCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupGroupCreateRequest(buffer_arg) {
@@ -186,7 +186,7 @@ function serialize_openstorage_api_SdkCloudBackupGroupCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupGroupCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupGroupCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupGroupCreateResponse(buffer_arg) {
@@ -197,7 +197,7 @@ function serialize_openstorage_api_SdkCloudBackupHistoryRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupHistoryRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupHistoryRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupHistoryRequest(buffer_arg) {
@@ -208,7 +208,7 @@ function serialize_openstorage_api_SdkCloudBackupHistoryResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupHistoryResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupHistoryResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupHistoryResponse(buffer_arg) {
@@ -219,7 +219,7 @@ function serialize_openstorage_api_SdkCloudBackupRestoreRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupRestoreRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupRestoreRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupRestoreRequest(buffer_arg) {
@@ -230,7 +230,7 @@ function serialize_openstorage_api_SdkCloudBackupRestoreResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupRestoreResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupRestoreResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupRestoreResponse(buffer_arg) {
@@ -241,7 +241,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedCreateRequest(buffer_arg) {
@@ -252,7 +252,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedCreateResponse(buffer_arg) {
@@ -263,7 +263,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedDeleteRequest(buffer_arg) {
@@ -274,7 +274,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedDeleteResponse(buffer_arg) {
@@ -285,7 +285,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedEnumerateRequest(buffer_arg) {
@@ -296,7 +296,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedEnumerateResponse(buffer_arg) {
@@ -307,7 +307,7 @@ function serialize_openstorage_api_SdkCloudBackupSchedUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedUpdateRequest(buffer_arg) {
@@ -318,18 +318,40 @@ function serialize_openstorage_api_SdkCloudBackupSchedUpdateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupSchedUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSchedUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupSchedUpdateResponse(buffer_arg) {
   return api_pb.SdkCloudBackupSchedUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCloudBackupSizeRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupSizeRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSizeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudBackupSizeRequest(buffer_arg) {
+  return api_pb.SdkCloudBackupSizeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCloudBackupSizeResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCloudBackupSizeResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCloudBackupSizeResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCloudBackupSizeResponse(buffer_arg) {
+  return api_pb.SdkCloudBackupSizeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCloudBackupStateChangeRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupStateChangeRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupStateChangeRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupStateChangeRequest(buffer_arg) {
@@ -340,7 +362,7 @@ function serialize_openstorage_api_SdkCloudBackupStateChangeResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupStateChangeResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupStateChangeResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupStateChangeResponse(buffer_arg) {
@@ -351,7 +373,7 @@ function serialize_openstorage_api_SdkCloudBackupStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupStatusRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupStatusRequest(buffer_arg) {
@@ -362,7 +384,7 @@ function serialize_openstorage_api_SdkCloudBackupStatusResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupStatusResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupStatusResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudBackupStatusResponse(buffer_arg) {
@@ -373,7 +395,7 @@ function serialize_openstorage_api_SdkCloudMigrateCancelRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudMigrateCancelRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateCancelRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudMigrateCancelRequest(buffer_arg) {
@@ -384,7 +406,7 @@ function serialize_openstorage_api_SdkCloudMigrateCancelResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudMigrateCancelResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateCancelResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudMigrateCancelResponse(buffer_arg) {
@@ -395,7 +417,7 @@ function serialize_openstorage_api_SdkCloudMigrateStartRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudMigrateStartRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStartRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudMigrateStartRequest(buffer_arg) {
@@ -406,7 +428,7 @@ function serialize_openstorage_api_SdkCloudMigrateStartResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudMigrateStartResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStartResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudMigrateStartResponse(buffer_arg) {
@@ -417,7 +439,7 @@ function serialize_openstorage_api_SdkCloudMigrateStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudMigrateStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStatusRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudMigrateStatusRequest(buffer_arg) {
@@ -428,7 +450,7 @@ function serialize_openstorage_api_SdkCloudMigrateStatusResponse(arg) {
   if (!(arg instanceof api_pb.SdkCloudMigrateStatusResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudMigrateStatusResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCloudMigrateStatusResponse(buffer_arg) {
@@ -439,7 +461,7 @@ function serialize_openstorage_api_SdkClusterDomainActivateRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainActivateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainActivateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainActivateRequest(buffer_arg) {
@@ -450,7 +472,7 @@ function serialize_openstorage_api_SdkClusterDomainActivateResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainActivateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainActivateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainActivateResponse(buffer_arg) {
@@ -461,7 +483,7 @@ function serialize_openstorage_api_SdkClusterDomainDeactivateRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainDeactivateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainDeactivateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainDeactivateRequest(buffer_arg) {
@@ -472,7 +494,7 @@ function serialize_openstorage_api_SdkClusterDomainDeactivateResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainDeactivateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainDeactivateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainDeactivateResponse(buffer_arg) {
@@ -483,7 +505,7 @@ function serialize_openstorage_api_SdkClusterDomainInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainInspectRequest(buffer_arg) {
@@ -494,7 +516,7 @@ function serialize_openstorage_api_SdkClusterDomainInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainInspectResponse(buffer_arg) {
@@ -505,7 +527,7 @@ function serialize_openstorage_api_SdkClusterDomainsEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainsEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainsEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainsEnumerateRequest(buffer_arg) {
@@ -516,7 +538,7 @@ function serialize_openstorage_api_SdkClusterDomainsEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterDomainsEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterDomainsEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterDomainsEnumerateResponse(buffer_arg) {
@@ -527,7 +549,7 @@ function serialize_openstorage_api_SdkClusterInspectCurrentRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterInspectCurrentRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterInspectCurrentRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterInspectCurrentRequest(buffer_arg) {
@@ -538,7 +560,7 @@ function serialize_openstorage_api_SdkClusterInspectCurrentResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterInspectCurrentResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterInspectCurrentResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterInspectCurrentResponse(buffer_arg) {
@@ -549,7 +571,7 @@ function serialize_openstorage_api_SdkClusterPairCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairCreateRequest(buffer_arg) {
@@ -560,7 +582,7 @@ function serialize_openstorage_api_SdkClusterPairCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairCreateResponse(buffer_arg) {
@@ -571,7 +593,7 @@ function serialize_openstorage_api_SdkClusterPairDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairDeleteRequest(buffer_arg) {
@@ -582,7 +604,7 @@ function serialize_openstorage_api_SdkClusterPairDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairDeleteResponse(buffer_arg) {
@@ -593,7 +615,7 @@ function serialize_openstorage_api_SdkClusterPairEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairEnumerateRequest(buffer_arg) {
@@ -604,7 +626,7 @@ function serialize_openstorage_api_SdkClusterPairEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairEnumerateResponse(buffer_arg) {
@@ -615,7 +637,7 @@ function serialize_openstorage_api_SdkClusterPairGetTokenRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairGetTokenRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairGetTokenRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairGetTokenRequest(buffer_arg) {
@@ -626,7 +648,7 @@ function serialize_openstorage_api_SdkClusterPairGetTokenResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairGetTokenResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairGetTokenResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairGetTokenResponse(buffer_arg) {
@@ -637,7 +659,7 @@ function serialize_openstorage_api_SdkClusterPairInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairInspectRequest(buffer_arg) {
@@ -648,7 +670,7 @@ function serialize_openstorage_api_SdkClusterPairInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairInspectResponse(buffer_arg) {
@@ -659,7 +681,7 @@ function serialize_openstorage_api_SdkClusterPairResetTokenRequest(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairResetTokenRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairResetTokenRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairResetTokenRequest(buffer_arg) {
@@ -670,7 +692,7 @@ function serialize_openstorage_api_SdkClusterPairResetTokenResponse(arg) {
   if (!(arg instanceof api_pb.SdkClusterPairResetTokenResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkClusterPairResetTokenResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkClusterPairResetTokenResponse(buffer_arg) {
@@ -681,7 +703,7 @@ function serialize_openstorage_api_SdkCredentialCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialCreateRequest(buffer_arg) {
@@ -692,7 +714,7 @@ function serialize_openstorage_api_SdkCredentialCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCredentialCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialCreateResponse(buffer_arg) {
@@ -703,7 +725,7 @@ function serialize_openstorage_api_SdkCredentialDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialDeleteRequest(buffer_arg) {
@@ -714,7 +736,7 @@ function serialize_openstorage_api_SdkCredentialDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkCredentialDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialDeleteResponse(buffer_arg) {
@@ -725,7 +747,7 @@ function serialize_openstorage_api_SdkCredentialEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialEnumerateRequest(buffer_arg) {
@@ -736,7 +758,7 @@ function serialize_openstorage_api_SdkCredentialEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCredentialEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialEnumerateResponse(buffer_arg) {
@@ -747,7 +769,7 @@ function serialize_openstorage_api_SdkCredentialInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialInspectRequest(buffer_arg) {
@@ -758,7 +780,7 @@ function serialize_openstorage_api_SdkCredentialInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkCredentialInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialInspectResponse(buffer_arg) {
@@ -769,7 +791,7 @@ function serialize_openstorage_api_SdkCredentialValidateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialValidateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialValidateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialValidateRequest(buffer_arg) {
@@ -780,18 +802,40 @@ function serialize_openstorage_api_SdkCredentialValidateResponse(arg) {
   if (!(arg instanceof api_pb.SdkCredentialValidateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialValidateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkCredentialValidateResponse(buffer_arg) {
   return api_pb.SdkCredentialValidateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkEnumerateRebalanceJobsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkEnumerateRebalanceJobsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkEnumerateRebalanceJobsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkEnumerateRebalanceJobsRequest(buffer_arg) {
+  return api_pb.SdkEnumerateRebalanceJobsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkEnumerateRebalanceJobsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkEnumerateRebalanceJobsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkEnumerateRebalanceJobsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkEnumerateRebalanceJobsResponse(buffer_arg) {
+  return api_pb.SdkEnumerateRebalanceJobsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest(buffer_arg) {
@@ -802,7 +846,7 @@ function serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRespons
   if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse(buffer_arg) {
@@ -813,7 +857,7 @@ function serialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest(buffer_arg) {
@@ -824,7 +868,7 @@ function serialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse(buffer_arg) {
@@ -835,7 +879,7 @@ function serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest(arg)
   if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllGetStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest(buffer_arg) {
@@ -846,7 +890,7 @@ function serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse(arg
   if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllGetStatusResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse(buffer_arg) {
@@ -857,7 +901,7 @@ function serialize_openstorage_api_SdkFilesystemCheckFixAllRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckFixAllRequest(buffer_arg) {
@@ -868,7 +912,7 @@ function serialize_openstorage_api_SdkFilesystemCheckFixAllResponse(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckFixAllResponse(buffer_arg) {
@@ -879,7 +923,7 @@ function serialize_openstorage_api_SdkFilesystemCheckStopRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckStopRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStopRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckStopRequest(buffer_arg) {
@@ -890,7 +934,7 @@ function serialize_openstorage_api_SdkFilesystemCheckStopResponse(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckStopResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStopResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemCheckStopResponse(buffer_arg) {
@@ -901,7 +945,7 @@ function serialize_openstorage_api_SdkFilesystemTrimGetStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimGetStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimGetStatusRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemTrimGetStatusRequest(buffer_arg) {
@@ -912,7 +956,7 @@ function serialize_openstorage_api_SdkFilesystemTrimGetStatusResponse(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimGetStatusResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimGetStatusResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemTrimGetStatusResponse(buffer_arg) {
@@ -923,7 +967,7 @@ function serialize_openstorage_api_SdkFilesystemTrimStartRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimStartRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStartRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemTrimStartRequest(buffer_arg) {
@@ -934,7 +978,7 @@ function serialize_openstorage_api_SdkFilesystemTrimStartResponse(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimStartResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStartResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemTrimStartResponse(buffer_arg) {
@@ -945,7 +989,7 @@ function serialize_openstorage_api_SdkFilesystemTrimStopRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimStopRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStopRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemTrimStopRequest(buffer_arg) {
@@ -956,18 +1000,40 @@ function serialize_openstorage_api_SdkFilesystemTrimStopResponse(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimStopResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStopResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkFilesystemTrimStopResponse(buffer_arg) {
   return api_pb.SdkFilesystemTrimStopResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkGetRebalanceJobStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkGetRebalanceJobStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkGetRebalanceJobStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkGetRebalanceJobStatusRequest(buffer_arg) {
+  return api_pb.SdkGetRebalanceJobStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkGetRebalanceJobStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkGetRebalanceJobStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkGetRebalanceJobStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkGetRebalanceJobStatusResponse(buffer_arg) {
+  return api_pb.SdkGetRebalanceJobStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkIdentityCapabilitiesRequest(arg) {
   if (!(arg instanceof api_pb.SdkIdentityCapabilitiesRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkIdentityCapabilitiesRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkIdentityCapabilitiesRequest(buffer_arg) {
@@ -978,7 +1044,7 @@ function serialize_openstorage_api_SdkIdentityCapabilitiesResponse(arg) {
   if (!(arg instanceof api_pb.SdkIdentityCapabilitiesResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkIdentityCapabilitiesResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkIdentityCapabilitiesResponse(buffer_arg) {
@@ -989,7 +1055,7 @@ function serialize_openstorage_api_SdkIdentityVersionRequest(arg) {
   if (!(arg instanceof api_pb.SdkIdentityVersionRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkIdentityVersionRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkIdentityVersionRequest(buffer_arg) {
@@ -1000,7 +1066,7 @@ function serialize_openstorage_api_SdkIdentityVersionResponse(arg) {
   if (!(arg instanceof api_pb.SdkIdentityVersionResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkIdentityVersionResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkIdentityVersionResponse(buffer_arg) {
@@ -1011,7 +1077,7 @@ function serialize_openstorage_api_SdkNodeEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeEnumerateRequest(buffer_arg) {
@@ -1022,7 +1088,7 @@ function serialize_openstorage_api_SdkNodeEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkNodeEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeEnumerateResponse(buffer_arg) {
@@ -1033,7 +1099,7 @@ function serialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeEnumerateWithFiltersRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateWithFiltersRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest(buffer_arg) {
@@ -1044,7 +1110,7 @@ function serialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse(arg) {
   if (!(arg instanceof api_pb.SdkNodeEnumerateWithFiltersResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeEnumerateWithFiltersResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse(buffer_arg) {
@@ -1055,7 +1121,7 @@ function serialize_openstorage_api_SdkNodeInspectCurrentRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeInspectCurrentRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeInspectCurrentRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeInspectCurrentRequest(buffer_arg) {
@@ -1066,7 +1132,7 @@ function serialize_openstorage_api_SdkNodeInspectCurrentResponse(arg) {
   if (!(arg instanceof api_pb.SdkNodeInspectCurrentResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeInspectCurrentResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeInspectCurrentResponse(buffer_arg) {
@@ -1077,7 +1143,7 @@ function serialize_openstorage_api_SdkNodeInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkNodeInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeInspectRequest(buffer_arg) {
@@ -1088,7 +1154,7 @@ function serialize_openstorage_api_SdkNodeInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkNodeInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkNodeInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkNodeInspectResponse(buffer_arg) {
@@ -1099,7 +1165,7 @@ function serialize_openstorage_api_SdkObjectstoreCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreCreateRequest(buffer_arg) {
@@ -1110,7 +1176,7 @@ function serialize_openstorage_api_SdkObjectstoreCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreCreateResponse(buffer_arg) {
@@ -1121,7 +1187,7 @@ function serialize_openstorage_api_SdkObjectstoreDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreDeleteRequest(buffer_arg) {
@@ -1132,7 +1198,7 @@ function serialize_openstorage_api_SdkObjectstoreDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreDeleteResponse(buffer_arg) {
@@ -1143,7 +1209,7 @@ function serialize_openstorage_api_SdkObjectstoreInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreInspectRequest(buffer_arg) {
@@ -1154,7 +1220,7 @@ function serialize_openstorage_api_SdkObjectstoreInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreInspectResponse(buffer_arg) {
@@ -1165,7 +1231,7 @@ function serialize_openstorage_api_SdkObjectstoreUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreUpdateRequest(buffer_arg) {
@@ -1176,7 +1242,7 @@ function serialize_openstorage_api_SdkObjectstoreUpdateResponse(arg) {
   if (!(arg instanceof api_pb.SdkObjectstoreUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkObjectstoreUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkObjectstoreUpdateResponse(buffer_arg) {
@@ -1187,7 +1253,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyCreateRequest(buffer_arg) {
@@ -1198,7 +1264,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyCreateResponse(buffer_arg) {
@@ -1209,7 +1275,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyDefaultInspectRequest(arg
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyDefaultInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyDefaultInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyDefaultInspectRequest(buffer_arg) {
@@ -1220,7 +1286,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyDefaultInspectResponse(ar
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyDefaultInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyDefaultInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyDefaultInspectResponse(buffer_arg) {
@@ -1231,7 +1297,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyDeleteRequest(buffer_arg) {
@@ -1242,7 +1308,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse(buffer_arg) {
@@ -1253,7 +1319,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateRequest(buffer_arg) {
@@ -1264,7 +1330,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse(buffer_arg) {
@@ -1275,7 +1341,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyInspectRequest(buffer_arg) {
@@ -1286,7 +1352,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyInspectResponse(buffer_arg) {
@@ -1297,7 +1363,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyReleaseRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyReleaseRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyReleaseRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyReleaseRequest(buffer_arg) {
@@ -1308,7 +1374,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyReleaseResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyReleaseResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyReleaseResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyReleaseResponse(buffer_arg) {
@@ -1319,7 +1385,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicySetDefaultRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicySetDefaultRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicySetDefaultRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicySetDefaultRequest(buffer_arg) {
@@ -1330,7 +1396,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicySetDefaultResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicySetDefaultResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicySetDefaultResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicySetDefaultResponse(buffer_arg) {
@@ -1341,7 +1407,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyUpdateRequest(buffer_arg) {
@@ -1352,7 +1418,7 @@ function serialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse(arg) {
   if (!(arg instanceof api_pb.SdkOpenStoragePolicyUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkOpenStoragePolicyUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse(buffer_arg) {
@@ -1363,7 +1429,7 @@ function serialize_openstorage_api_SdkRoleCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkRoleCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleCreateRequest(buffer_arg) {
@@ -1374,7 +1440,7 @@ function serialize_openstorage_api_SdkRoleCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkRoleCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleCreateResponse(buffer_arg) {
@@ -1385,7 +1451,7 @@ function serialize_openstorage_api_SdkRoleDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkRoleDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleDeleteRequest(buffer_arg) {
@@ -1396,7 +1462,7 @@ function serialize_openstorage_api_SdkRoleDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkRoleDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleDeleteResponse(buffer_arg) {
@@ -1407,7 +1473,7 @@ function serialize_openstorage_api_SdkRoleEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkRoleEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleEnumerateRequest(buffer_arg) {
@@ -1418,7 +1484,7 @@ function serialize_openstorage_api_SdkRoleEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkRoleEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleEnumerateResponse(buffer_arg) {
@@ -1429,7 +1495,7 @@ function serialize_openstorage_api_SdkRoleInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkRoleInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleInspectRequest(buffer_arg) {
@@ -1440,7 +1506,7 @@ function serialize_openstorage_api_SdkRoleInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkRoleInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleInspectResponse(buffer_arg) {
@@ -1451,7 +1517,7 @@ function serialize_openstorage_api_SdkRoleUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkRoleUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleUpdateRequest(buffer_arg) {
@@ -1462,7 +1528,7 @@ function serialize_openstorage_api_SdkRoleUpdateResponse(arg) {
   if (!(arg instanceof api_pb.SdkRoleUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkRoleUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkRoleUpdateResponse(buffer_arg) {
@@ -1473,7 +1539,7 @@ function serialize_openstorage_api_SdkSchedulePolicyCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyCreateRequest(buffer_arg) {
@@ -1484,7 +1550,7 @@ function serialize_openstorage_api_SdkSchedulePolicyCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyCreateResponse(buffer_arg) {
@@ -1495,7 +1561,7 @@ function serialize_openstorage_api_SdkSchedulePolicyDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyDeleteRequest(buffer_arg) {
@@ -1506,7 +1572,7 @@ function serialize_openstorage_api_SdkSchedulePolicyDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyDeleteResponse(buffer_arg) {
@@ -1517,7 +1583,7 @@ function serialize_openstorage_api_SdkSchedulePolicyEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyEnumerateRequest(buffer_arg) {
@@ -1528,7 +1594,7 @@ function serialize_openstorage_api_SdkSchedulePolicyEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyEnumerateResponse(buffer_arg) {
@@ -1539,7 +1605,7 @@ function serialize_openstorage_api_SdkSchedulePolicyInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyInspectRequest(buffer_arg) {
@@ -1550,7 +1616,7 @@ function serialize_openstorage_api_SdkSchedulePolicyInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyInspectResponse(buffer_arg) {
@@ -1561,7 +1627,7 @@ function serialize_openstorage_api_SdkSchedulePolicyUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyUpdateRequest(buffer_arg) {
@@ -1572,7 +1638,7 @@ function serialize_openstorage_api_SdkSchedulePolicyUpdateResponse(arg) {
   if (!(arg instanceof api_pb.SdkSchedulePolicyUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkSchedulePolicyUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkSchedulePolicyUpdateResponse(buffer_arg) {
@@ -1583,7 +1649,7 @@ function serialize_openstorage_api_SdkStoragePoolResizeRequest(arg) {
   if (!(arg instanceof api_pb.SdkStoragePoolResizeRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkStoragePoolResizeRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkStoragePoolResizeRequest(buffer_arg) {
@@ -1594,18 +1660,62 @@ function serialize_openstorage_api_SdkStoragePoolResizeResponse(arg) {
   if (!(arg instanceof api_pb.SdkStoragePoolResizeResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkStoragePoolResizeResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkStoragePoolResizeResponse(buffer_arg) {
   return api_pb.SdkStoragePoolResizeResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkStorageRebalanceRequest(arg) {
+  if (!(arg instanceof api_pb.SdkStorageRebalanceRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkStorageRebalanceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkStorageRebalanceRequest(buffer_arg) {
+  return api_pb.SdkStorageRebalanceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkStorageRebalanceResponse(arg) {
+  if (!(arg instanceof api_pb.SdkStorageRebalanceResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkStorageRebalanceResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkStorageRebalanceResponse(buffer_arg) {
+  return api_pb.SdkStorageRebalanceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkUpdateRebalanceJobRequest(arg) {
+  if (!(arg instanceof api_pb.SdkUpdateRebalanceJobRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkUpdateRebalanceJobRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkUpdateRebalanceJobRequest(buffer_arg) {
+  return api_pb.SdkUpdateRebalanceJobRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkUpdateRebalanceJobResponse(arg) {
+  if (!(arg instanceof api_pb.SdkUpdateRebalanceJobResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkUpdateRebalanceJobResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkUpdateRebalanceJobResponse(buffer_arg) {
+  return api_pb.SdkUpdateRebalanceJobResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeAttachRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeAttachRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeAttachRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeAttachRequest(buffer_arg) {
@@ -1616,7 +1726,7 @@ function serialize_openstorage_api_SdkVolumeAttachResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeAttachResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeAttachResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeAttachResponse(buffer_arg) {
@@ -1627,7 +1737,7 @@ function serialize_openstorage_api_SdkVolumeCapacityUsageRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCapacityUsageRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCapacityUsageRequest(buffer_arg) {
@@ -1638,7 +1748,7 @@ function serialize_openstorage_api_SdkVolumeCapacityUsageResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCapacityUsageResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCapacityUsageResponse(buffer_arg) {
@@ -1649,7 +1759,7 @@ function serialize_openstorage_api_SdkVolumeCatalogRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCatalogRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCatalogRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCatalogRequest(buffer_arg) {
@@ -1660,7 +1770,7 @@ function serialize_openstorage_api_SdkVolumeCatalogResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCatalogResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCatalogResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCatalogResponse(buffer_arg) {
@@ -1671,7 +1781,7 @@ function serialize_openstorage_api_SdkVolumeCloneRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCloneRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCloneRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCloneRequest(buffer_arg) {
@@ -1682,7 +1792,7 @@ function serialize_openstorage_api_SdkVolumeCloneResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCloneResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCloneResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCloneResponse(buffer_arg) {
@@ -1693,7 +1803,7 @@ function serialize_openstorage_api_SdkVolumeCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCreateRequest(buffer_arg) {
@@ -1704,7 +1814,7 @@ function serialize_openstorage_api_SdkVolumeCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeCreateResponse(buffer_arg) {
@@ -1715,7 +1825,7 @@ function serialize_openstorage_api_SdkVolumeDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeDeleteRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeDeleteRequest(buffer_arg) {
@@ -1726,7 +1836,7 @@ function serialize_openstorage_api_SdkVolumeDeleteResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeDeleteResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeDeleteResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeDeleteResponse(buffer_arg) {
@@ -1737,7 +1847,7 @@ function serialize_openstorage_api_SdkVolumeDetachRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeDetachRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeDetachRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeDetachRequest(buffer_arg) {
@@ -1748,7 +1858,7 @@ function serialize_openstorage_api_SdkVolumeDetachResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeDetachResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeDetachResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeDetachResponse(buffer_arg) {
@@ -1759,7 +1869,7 @@ function serialize_openstorage_api_SdkVolumeEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeEnumerateRequest(buffer_arg) {
@@ -1770,7 +1880,7 @@ function serialize_openstorage_api_SdkVolumeEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeEnumerateResponse(buffer_arg) {
@@ -1781,7 +1891,7 @@ function serialize_openstorage_api_SdkVolumeEnumerateWithFiltersRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeEnumerateWithFiltersRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeEnumerateWithFiltersRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeEnumerateWithFiltersRequest(buffer_arg) {
@@ -1792,7 +1902,7 @@ function serialize_openstorage_api_SdkVolumeEnumerateWithFiltersResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeEnumerateWithFiltersResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeEnumerateWithFiltersResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeEnumerateWithFiltersResponse(buffer_arg) {
@@ -1803,7 +1913,7 @@ function serialize_openstorage_api_SdkVolumeInspectRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeInspectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeInspectRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeInspectRequest(buffer_arg) {
@@ -1814,7 +1924,7 @@ function serialize_openstorage_api_SdkVolumeInspectResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeInspectResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeInspectResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeInspectResponse(buffer_arg) {
@@ -1825,7 +1935,7 @@ function serialize_openstorage_api_SdkVolumeInspectWithFiltersRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeInspectWithFiltersRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeInspectWithFiltersRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeInspectWithFiltersRequest(buffer_arg) {
@@ -1836,7 +1946,7 @@ function serialize_openstorage_api_SdkVolumeInspectWithFiltersResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeInspectWithFiltersResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeInspectWithFiltersResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeInspectWithFiltersResponse(buffer_arg) {
@@ -1847,7 +1957,7 @@ function serialize_openstorage_api_SdkVolumeMountRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeMountRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeMountRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeMountRequest(buffer_arg) {
@@ -1858,7 +1968,7 @@ function serialize_openstorage_api_SdkVolumeMountResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeMountResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeMountResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeMountResponse(buffer_arg) {
@@ -1869,7 +1979,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotCreateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotCreateRequest(buffer_arg) {
@@ -1880,7 +1990,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotCreateResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotCreateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotCreateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotCreateResponse(buffer_arg) {
@@ -1891,7 +2001,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotEnumerateRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotEnumerateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotEnumerateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotEnumerateRequest(buffer_arg) {
@@ -1902,7 +2012,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotEnumerateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotEnumerateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse(buffer_arg) {
@@ -1913,7 +2023,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersRequest(
   if (!(arg instanceof api_pb.SdkVolumeSnapshotEnumerateWithFiltersRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersRequest(buffer_arg) {
@@ -1924,7 +2034,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse
   if (!(arg instanceof api_pb.SdkVolumeSnapshotEnumerateWithFiltersResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse(buffer_arg) {
@@ -1935,7 +2045,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotRestoreRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotRestoreRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotRestoreRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotRestoreRequest(buffer_arg) {
@@ -1946,7 +2056,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotRestoreResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotRestoreResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotRestoreResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotRestoreResponse(buffer_arg) {
@@ -1957,7 +2067,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeSnapshotScheduleUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateRequest(buffer_arg) {
@@ -1968,7 +2078,7 @@ function serialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse(arg) 
   if (!(arg instanceof api_pb.SdkVolumeSnapshotScheduleUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse(buffer_arg) {
@@ -1979,7 +2089,7 @@ function serialize_openstorage_api_SdkVolumeStatsRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeStatsRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeStatsRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeStatsRequest(buffer_arg) {
@@ -1990,7 +2100,7 @@ function serialize_openstorage_api_SdkVolumeStatsResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeStatsResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeStatsResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeStatsResponse(buffer_arg) {
@@ -2001,7 +2111,7 @@ function serialize_openstorage_api_SdkVolumeUnmountRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeUnmountRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeUnmountRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeUnmountRequest(buffer_arg) {
@@ -2012,7 +2122,7 @@ function serialize_openstorage_api_SdkVolumeUnmountResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeUnmountResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeUnmountResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeUnmountResponse(buffer_arg) {
@@ -2023,7 +2133,7 @@ function serialize_openstorage_api_SdkVolumeUpdateRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeUpdateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeUpdateRequest');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeUpdateRequest(buffer_arg) {
@@ -2034,7 +2144,7 @@ function serialize_openstorage_api_SdkVolumeUpdateResponse(arg) {
   if (!(arg instanceof api_pb.SdkVolumeUpdateResponse)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeUpdateResponse');
   }
-  return new Buffer(arg.serializeBinary());
+  return Buffer.from(arg.serializeBinary());
 }
 
 function deserialize_openstorage_api_SdkVolumeUpdateResponse(buffer_arg) {
@@ -2045,34 +2155,34 @@ function deserialize_openstorage_api_SdkVolumeUpdateResponse(buffer_arg) {
 // OpenStorageAlerts defines rpc's for alerts.
 var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
   // Allows querying alerts.
-  //
-  // EnumerateWithFilters allows 3 different types of queries as defined below:
-  //
-  // * Query that takes only resource type as input
-  // * Query that takes resource type and alert type as input and
-  // * Query that takes resource id, alert type and resource type as input.
-  //
-  // #### Input
-  // SdkAlertsEnumerateRequest takes a list of such queries and the returned
-  // output is a collective ouput from each of these queries. In that sense,
-  // the filtering of these queries has a behavior of OR operation.
-  // Each query also has a list of optional options. These options allow
-  // narrowing down the scope of alerts search. These options have a
-  // behavior of an AND operation.
-  //
-  // #### Examples
-  // To search by a resource type in a given time window would require
-  // initializing SdkAlertsResourceTypeQuery query and pass in
-  // SdkAlertsTimeSpan option into SdkAlertsQuery struct and finally
-  // packing any other such queries into SdkAlertsEnumerateRequest object.
-  // Alternatively, to search by both resource type and alert type, use
-  // SdkAlertsAlertTypeQuery as query builder.
-  // Finally to search all alerts of a given resource type and some
-  // alerts of another resource type but with specific alert type,
-  // use two queries, first initialized with SdkAlertsResourceTypeQuery
-  // and second initialized with SdkAlertsAlertTypeQuery and both
-  // eventually packed as list in SdkAlertsEnumerateRequest.
-  enumerateWithFilters: {
+//
+// EnumerateWithFilters allows 3 different types of queries as defined below:
+//
+// * Query that takes only resource type as input
+// * Query that takes resource type and alert type as input and
+// * Query that takes resource id, alert type and resource type as input.
+//
+// #### Input
+// SdkAlertsEnumerateRequest takes a list of such queries and the returned
+// output is a collective ouput from each of these queries. In that sense,
+// the filtering of these queries has a behavior of OR operation.
+// Each query also has a list of optional options. These options allow
+// narrowing down the scope of alerts search. These options have a
+// behavior of an AND operation.
+//
+// #### Examples
+// To search by a resource type in a given time window would require
+// initializing SdkAlertsResourceTypeQuery query and pass in
+// SdkAlertsTimeSpan option into SdkAlertsQuery struct and finally
+// packing any other such queries into SdkAlertsEnumerateRequest object.
+// Alternatively, to search by both resource type and alert type, use
+// SdkAlertsAlertTypeQuery as query builder.
+// Finally to search all alerts of a given resource type and some
+// alerts of another resource type but with specific alert type,
+// use two queries, first initialized with SdkAlertsResourceTypeQuery
+// and second initialized with SdkAlertsAlertTypeQuery and both
+// eventually packed as list in SdkAlertsEnumerateRequest.
+enumerateWithFilters: {
     path: '/openstorage.api.OpenStorageAlerts/EnumerateWithFilters',
     requestStream: false,
     responseStream: true,
@@ -2084,18 +2194,18 @@ var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
     responseDeserialize: deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse,
   },
   // Delete alerts
-  //
-  // #### Delete
-  // Delete allows 3 different types of queries as defined below:
-  //
-  // * Query that takes only resource type as input
-  // * Query that takes resource type and alert type as input and
-  // * Query that takes resource id, alert type and resource type as input.
-  //
-  // #### Input
-  // SdkAlertsDeleteRequest takes a list of such queries and all alerts
-  // that match at least one of the queries are deleted.
-  delete: {
+//
+// #### Delete
+// Delete allows 3 different types of queries as defined below:
+//
+// * Query that takes only resource type as input
+// * Query that takes resource type and alert type as input and
+// * Query that takes resource id, alert type and resource type as input.
+//
+// #### Input
+// SdkAlertsDeleteRequest takes a list of such queries and all alerts
+// that match at least one of the queries are deleted.
+delete: {
     path: '/openstorage.api.OpenStorageAlerts/Delete',
     requestStream: false,
     responseStream: false,
@@ -2128,7 +2238,7 @@ exports.OpenStorageAlertsClient = grpc.makeGenericClientConstructor(OpenStorageA
 // Please see SdkRule for more information on the format.
 var OpenStorageRoleService = exports.OpenStorageRoleService = {
   // Create a role for users in the system
-  create: {
+create: {
     path: '/openstorage.api.OpenStorageRole/Create',
     requestStream: false,
     responseStream: false,
@@ -2140,7 +2250,7 @@ var OpenStorageRoleService = exports.OpenStorageRoleService = {
     responseDeserialize: deserialize_openstorage_api_SdkRoleCreateResponse,
   },
   // List all roles
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageRole/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -2152,7 +2262,7 @@ var OpenStorageRoleService = exports.OpenStorageRoleService = {
     responseDeserialize: deserialize_openstorage_api_SdkRoleEnumerateResponse,
   },
   // Get information about a role
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStorageRole/Inspect',
     requestStream: false,
     responseStream: false,
@@ -2164,7 +2274,7 @@ var OpenStorageRoleService = exports.OpenStorageRoleService = {
     responseDeserialize: deserialize_openstorage_api_SdkRoleInspectResponse,
   },
   // Delete an existing role
-  delete: {
+delete: {
     path: '/openstorage.api.OpenStorageRole/Delete',
     requestStream: false,
     responseStream: false,
@@ -2176,7 +2286,7 @@ var OpenStorageRoleService = exports.OpenStorageRoleService = {
     responseDeserialize: deserialize_openstorage_api_SdkRoleDeleteResponse,
   },
   // Update an existing role
-  update: {
+update: {
     path: '/openstorage.api.OpenStorageRole/Update',
     requestStream: false,
     responseStream: false,
@@ -2216,7 +2326,7 @@ exports.OpenStorageRoleClient = grpc.makeGenericClientConstructor(OpenStorageRol
 //    `OpenStorageFilesystemTrimClient.Stop()`
 var OpenStorageFilesystemTrimService = exports.OpenStorageFilesystemTrimService = {
   // Start a filesystem Trim background operation on a mounted volume
-  start: {
+start: {
     path: '/openstorage.api.OpenStorageFilesystemTrim/Start',
     requestStream: false,
     responseStream: false,
@@ -2228,8 +2338,8 @@ var OpenStorageFilesystemTrimService = exports.OpenStorageFilesystemTrimService 
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStartResponse,
   },
   // Get Status of a filesystem Trim background operation on a mounted
-  // volume, if any
-  getStatus: {
+// volume, if any
+getStatus: {
     path: '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
     requestStream: false,
     responseStream: false,
@@ -2241,7 +2351,7 @@ var OpenStorageFilesystemTrimService = exports.OpenStorageFilesystemTrimService 
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimGetStatusResponse,
   },
   // Stop a filesystem Trim background operation on a mounted volume, if any
-  stop: {
+stop: {
     path: '/openstorage.api.OpenStorageFilesystemTrim/Stop',
     requestStream: false,
     responseStream: false,
@@ -2286,8 +2396,8 @@ exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(Open
 //    `OpenStorageFilesystemCheckClient.Stop()`
 var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckService = {
   // Get a report of issues found on the filesystem. This operation works on an
-  // unmounted volume.
-  checkHealth: {
+// unmounted volume.
+checkHealth: {
     path: '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
     requestStream: false,
     responseStream: false,
@@ -2299,8 +2409,8 @@ var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckServic
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse,
   },
   // Get Status of a filesystem CheckHealth background operation on an unmounted
-  // volume, if any
-  checkHealthGetStatus: {
+// volume, if any
+checkHealthGetStatus: {
     path: '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
     requestStream: false,
     responseStream: false,
@@ -2312,8 +2422,8 @@ var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckServic
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse,
   },
   // FixAll fixes all the issues reported in the response to CheckHealth API on
-  // a filesystem. This operation works on an unmounted volume.
-  fixAll: {
+// a filesystem. This operation works on an unmounted volume.
+fixAll: {
     path: '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
     requestStream: false,
     responseStream: false,
@@ -2325,8 +2435,8 @@ var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckServic
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllResponse,
   },
   // Get Status of a filesystem FixAll background operation on an unmounted
-  // volume, if any
-  fixAllGetStatus: {
+// volume, if any
+fixAllGetStatus: {
     path: '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
     requestStream: false,
     responseStream: false,
@@ -2338,7 +2448,7 @@ var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckServic
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse,
   },
   // Stop a filesystem check background operation on an unmounted volume, if any
-  stop: {
+stop: {
     path: '/openstorage.api.OpenStorageFilesystemCheck/Stop',
     requestStream: false,
     responseStream: false,
@@ -2356,11 +2466,11 @@ exports.OpenStorageFilesystemCheckClient = grpc.makeGenericClientConstructor(Ope
 // about the cluster
 var OpenStorageIdentityService = exports.OpenStorageIdentityService = {
   // Capabilities returns the supported services by the cluster.
-  // This allows SDK implementations to advertise their supported
-  // services as the API matures. With this information, clients
-  // can determine supported services from storage clusters at
-  // different versions.
-  capabilities: {
+// This allows SDK implementations to advertise their supported
+// services as the API matures. With this information, clients
+// can determine supported services from storage clusters at
+// different versions.
+capabilities: {
     path: '/openstorage.api.OpenStorageIdentity/Capabilities',
     requestStream: false,
     responseStream: false,
@@ -2372,7 +2482,7 @@ var OpenStorageIdentityService = exports.OpenStorageIdentityService = {
     responseDeserialize: deserialize_openstorage_api_SdkIdentityCapabilitiesResponse,
   },
   // Version returns version information about the system.
-  version: {
+version: {
     path: '/openstorage.api.OpenStorageIdentity/Version',
     requestStream: false,
     responseStream: false,
@@ -2389,7 +2499,7 @@ exports.OpenStorageIdentityClient = grpc.makeGenericClientConstructor(OpenStorag
 // OpenStorageCluster service provides the methods to manage the cluster
 var OpenStorageClusterService = exports.OpenStorageClusterService = {
   // InspectCurrent returns information about the current cluster
-  inspectCurrent: {
+inspectCurrent: {
     path: '/openstorage.api.OpenStorageCluster/InspectCurrent',
     requestStream: false,
     responseStream: false,
@@ -2406,19 +2516,19 @@ exports.OpenStorageClusterClient = grpc.makeGenericClientConstructor(OpenStorage
 // OpenStorageClusterPair service provides the methods to manage a cluster pair
 var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
   // Creates Pair with a remote cluster and returns details about the remote cluster
-  //
-  // ##### Example
-  // {% codetabs name="Golang", type="go" -%}
-  // id, err := client.Create(context.Background(), &api.SdkClusterPairCreateRequest {
-  //   Request : &api.ClusterPairCreateRequest {
-  //                  RemoteClusterIp: "127.0.0.1",
-  //                  RemoteClusterPort: 12345,
-  //                  RemoteClusterToken: "<Auth-Token>",
-  //                  SetDefault: true,
-  //              }
-  //        })
-  // {%- endcodetabs %}
-  create: {
+//
+// ##### Example
+// {% codetabs name="Golang", type="go" -%}
+// id, err := client.Create(context.Background(), &api.SdkClusterPairCreateRequest {
+//   Request : &api.ClusterPairCreateRequest {
+//                  RemoteClusterIp: "127.0.0.1",
+//                  RemoteClusterPort: 12345,
+//                  RemoteClusterToken: "<Auth-Token>",
+//                  SetDefault: true,
+//              }
+//        })
+// {%- endcodetabs %}
+create: {
     path: '/openstorage.api.OpenStorageClusterPair/Create',
     requestStream: false,
     responseStream: false,
@@ -2430,7 +2540,7 @@ var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
     responseDeserialize: deserialize_openstorage_api_SdkClusterPairCreateResponse,
   },
   // Inspect information about a cluster pair
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStorageClusterPair/Inspect',
     requestStream: false,
     responseStream: false,
@@ -2442,7 +2552,7 @@ var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
     responseDeserialize: deserialize_openstorage_api_SdkClusterPairInspectResponse,
   },
   // Enumerate returns list of cluster pairs
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageClusterPair/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -2454,7 +2564,7 @@ var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
     responseDeserialize: deserialize_openstorage_api_SdkClusterPairEnumerateResponse,
   },
   // GetToken returns a auth token
-  getToken: {
+getToken: {
     path: '/openstorage.api.OpenStorageClusterPair/GetToken',
     requestStream: false,
     responseStream: false,
@@ -2466,7 +2576,7 @@ var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
     responseDeserialize: deserialize_openstorage_api_SdkClusterPairGetTokenResponse,
   },
   // ResetToken returns a auth token
-  resetToken: {
+resetToken: {
     path: '/openstorage.api.OpenStorageClusterPair/ResetToken',
     requestStream: false,
     responseStream: false,
@@ -2478,7 +2588,7 @@ var OpenStorageClusterPairService = exports.OpenStorageClusterPairService = {
     responseDeserialize: deserialize_openstorage_api_SdkClusterPairResetTokenResponse,
   },
   // Delete a cluster pair
-  delete: {
+delete: {
     path: '/openstorage.api.OpenStorageClusterPair/Delete',
     requestStream: false,
     responseStream: false,
@@ -2500,7 +2610,7 @@ exports.OpenStorageClusterPairClient = grpc.makeGenericClientConstructor(OpenSto
 // cluster or whether it is inactive.
 var OpenStorageClusterDomainsService = exports.OpenStorageClusterDomainsService = {
   // Enumerate returns names of all the cluster domains in the cluster
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageClusterDomains/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -2512,8 +2622,8 @@ var OpenStorageClusterDomainsService = exports.OpenStorageClusterDomainsService 
     responseDeserialize: deserialize_openstorage_api_SdkClusterDomainsEnumerateResponse,
   },
   // Inspect returns information about a cluster domain and a
-  // status indicating whether the cluster domain is active
-  inspect: {
+// status indicating whether the cluster domain is active
+inspect: {
     path: '/openstorage.api.OpenStorageClusterDomains/Inspect',
     requestStream: false,
     responseStream: false,
@@ -2525,9 +2635,9 @@ var OpenStorageClusterDomainsService = exports.OpenStorageClusterDomainsService 
     responseDeserialize: deserialize_openstorage_api_SdkClusterDomainInspectResponse,
   },
   // Activates a cluster domain in the cluster.
-  // All the nodes which are part of an active cluster domain
-  // will participate in cluster quorum calculation
-  activate: {
+// All the nodes which are part of an active cluster domain
+// will participate in cluster quorum calculation
+activate: {
     path: '/openstorage.api.OpenStorageClusterDomains/Activate',
     requestStream: false,
     responseStream: false,
@@ -2539,9 +2649,9 @@ var OpenStorageClusterDomainsService = exports.OpenStorageClusterDomainsService 
     responseDeserialize: deserialize_openstorage_api_SdkClusterDomainActivateResponse,
   },
   // Deactivates a cluster domain in the cluster.
-  // All the nodes which are part of a deactivated cluster domain.
-  // will not participate in cluster quorum calculation
-  deactivate: {
+// All the nodes which are part of a deactivated cluster domain.
+// will not participate in cluster quorum calculation
+deactivate: {
     path: '/openstorage.api.OpenStorageClusterDomains/Deactivate',
     requestStream: false,
     responseStream: false,
@@ -2557,8 +2667,8 @@ var OpenStorageClusterDomainsService = exports.OpenStorageClusterDomainsService 
 exports.OpenStorageClusterDomainsClient = grpc.makeGenericClientConstructor(OpenStorageClusterDomainsService);
 // OpenStoragePool is a service used to manage storage pools in the cluster
 var OpenStoragePoolService = exports.OpenStoragePoolService = {
-  // Resize resizes the specified storage pool based on the request parameters
-  resize: {
+  // Resize expands the specified storage pool based on the request parameters
+resize: {
     path: '/openstorage.api.OpenStoragePool/Resize',
     requestStream: false,
     responseStream: false,
@@ -2569,13 +2679,65 @@ var OpenStoragePoolService = exports.OpenStoragePoolService = {
     responseSerialize: serialize_openstorage_api_SdkStoragePoolResizeResponse,
     responseDeserialize: deserialize_openstorage_api_SdkStoragePoolResizeResponse,
   },
+  // Rebalance creates a new rebalance task
+rebalance: {
+    path: '/openstorage.api.OpenStoragePool/Rebalance',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkStorageRebalanceRequest,
+    responseType: api_pb.SdkStorageRebalanceResponse,
+    requestSerialize: serialize_openstorage_api_SdkStorageRebalanceRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkStorageRebalanceRequest,
+    responseSerialize: serialize_openstorage_api_SdkStorageRebalanceResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkStorageRebalanceResponse,
+  },
+  // UpdateRebalanceJobState updates existing rebalance task state.
+// Only acceptable values are
+// StorageRebalanceJobState_PAUSED - acceptable only from running state
+// StorageRebalanceJobState_CANCELLED - acceptable only from running/pause state
+// StorageRebalanceJobState_RUNNING - acceptable only from pause state
+updateRebalanceJobState: {
+    path: '/openstorage.api.OpenStoragePool/UpdateRebalanceJobState',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkUpdateRebalanceJobRequest,
+    responseType: api_pb.SdkUpdateRebalanceJobResponse,
+    requestSerialize: serialize_openstorage_api_SdkUpdateRebalanceJobRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkUpdateRebalanceJobRequest,
+    responseSerialize: serialize_openstorage_api_SdkUpdateRebalanceJobResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkUpdateRebalanceJobResponse,
+  },
+  // GetRebalanceJobStatus returns rebalance status for specified job
+getRebalanceJobStatus: {
+    path: '/openstorage.api.OpenStoragePool/GetRebalanceJobStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkGetRebalanceJobStatusRequest,
+    responseType: api_pb.SdkGetRebalanceJobStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkGetRebalanceJobStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkGetRebalanceJobStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkGetRebalanceJobStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkGetRebalanceJobStatusResponse,
+  },
+  // EnumerateRebalanceJobs returns all rebalance jobs currently known to the system
+enumerateRebalanceJobs: {
+    path: '/openstorage.api.OpenStoragePool/EnumerateRebalanceJobs',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkEnumerateRebalanceJobsRequest,
+    responseType: api_pb.SdkEnumerateRebalanceJobsResponse,
+    requestSerialize: serialize_openstorage_api_SdkEnumerateRebalanceJobsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkEnumerateRebalanceJobsRequest,
+    responseSerialize: serialize_openstorage_api_SdkEnumerateRebalanceJobsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkEnumerateRebalanceJobsResponse,
+  },
 };
 
 exports.OpenStoragePoolClient = grpc.makeGenericClientConstructor(OpenStoragePoolService);
 // OpenStorageNode is a service used to manage nodes in the cluster
 var OpenStorageNodeService = exports.OpenStorageNodeService = {
   // Inspect returns information about the specified node
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStorageNode/Inspect',
     requestStream: false,
     responseStream: false,
@@ -2587,8 +2749,8 @@ var OpenStorageNodeService = exports.OpenStorageNodeService = {
     responseDeserialize: deserialize_openstorage_api_SdkNodeInspectResponse,
   },
   // InspectCurrent returns information about the storage node
-  // where the client is currently connected to.
-  inspectCurrent: {
+// where the client is currently connected to.
+inspectCurrent: {
     path: '/openstorage.api.OpenStorageNode/InspectCurrent',
     requestStream: false,
     responseStream: false,
@@ -2600,7 +2762,7 @@ var OpenStorageNodeService = exports.OpenStorageNodeService = {
     responseDeserialize: deserialize_openstorage_api_SdkNodeInspectCurrentResponse,
   },
   // Enumerate returns the ids of all the nodes in the current cluster
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageNode/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -2612,7 +2774,7 @@ var OpenStorageNodeService = exports.OpenStorageNodeService = {
     responseDeserialize: deserialize_openstorage_api_SdkNodeEnumerateResponse,
   },
   // EnumerateWithFilters returns all the nodes in the current cluster
-  enumerateWithFilters: {
+enumerateWithFilters: {
     path: '/openstorage.api.OpenStorageNode/EnumerateWithFilters',
     requestStream: false,
     responseStream: false,
@@ -2629,23 +2791,23 @@ exports.OpenStorageNodeClient = grpc.makeGenericClientConstructor(OpenStorageNod
 // OpenStorageVolume is a service used to manage the volumes of a storage system
 var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   // Create creates a volume according to the specification provided
-  //
-  // Requires access AccessType.Read when cloning from a parent volume.
-  //
-  // ##### Example
-  // {% codetabs name="Golang", type="go" -%}
-  // id, err := client.Create(context.Background(), &api.SdkVolumeCreateRequest{
-  //   Name: "volume-12345-east",
-  //   Spec: &api.VolumeSpec {
-  //     Size: 1234567,
-  //   },
-  // })
-  // {%- language name="Python", type="py" -%}
-  // en_resp = client.Create(api_pb2.SdkVolumeCreateRequest(
-  //   name="volume-12345-east",
-  //   spec=api_pb2.VolumeSpec(size=1234567)))
-  // {%- endcodetabs %}
-  create: {
+//
+// Requires access AccessType.Read when cloning from a parent volume.
+//
+// ##### Example
+// {% codetabs name="Golang", type="go" -%}
+// id, err := client.Create(context.Background(), &api.SdkVolumeCreateRequest{
+//   Name: "volume-12345-east",
+//   Spec: &api.VolumeSpec {
+//     Size: 1234567,
+//   },
+// })
+// {%- language name="Python", type="py" -%}
+// en_resp = client.Create(api_pb2.SdkVolumeCreateRequest(
+//   name="volume-12345-east",
+//   spec=api_pb2.VolumeSpec(size=1234567)))
+// {%- endcodetabs %}
+create: {
     path: '/openstorage.api.OpenStorageVolume/Create',
     requestStream: false,
     responseStream: false,
@@ -2657,9 +2819,9 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeCreateResponse,
   },
   // Clone creates a new writable volume cloned from an existing volume
-  //
-  // Requires access AccessType.Read of volume
-  clone: {
+//
+// Requires access AccessType.Read of volume
+clone: {
     path: '/openstorage.api.OpenStorageVolume/Clone',
     requestStream: false,
     responseStream: false,
@@ -2671,9 +2833,9 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeCloneResponse,
   },
   // Delete deletes the provided volume
-  //
-  // Requires access AccessType.Admin of volume
-  delete: {
+//
+// Requires access AccessType.Admin of volume
+delete: {
     path: '/openstorage.api.OpenStorageVolume/Delete',
     requestStream: false,
     responseStream: false,
@@ -2685,9 +2847,9 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeDeleteResponse,
   },
   // Inspect returns information about a volume
-  //
-  // Requires access AccessType.Read of volume
-  inspect: {
+//
+// Requires access AccessType.Read of volume
+inspect: {
     path: '/openstorage.api.OpenStorageVolume/Inspect',
     requestStream: false,
     responseStream: false,
@@ -2699,14 +2861,14 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeInspectResponse,
   },
   // Returns information for a list of volumes that match a filter.
-  // This call is a helper function like calling
-  // `OpenStorageVolume.EnumerateWithFilters` then having it
-  // return the contents of each of those volumes
-  // `OpenStorageVolume.Inspect()`. Take care in using this call
-  // when requesting large number of volumes because it will
-  // block until it has all the information requested before
-  // returning.
-  inspectWithFilters: {
+// This call is a helper function like calling
+// `OpenStorageVolume.EnumerateWithFilters` then having it
+// return the contents of each of those volumes
+// `OpenStorageVolume.Inspect()`. Take care in using this call
+// when requesting large number of volumes because it will
+// block until it has all the information requested before
+// returning.
+inspectWithFilters: {
     path: '/openstorage.api.OpenStorageVolume/InspectWithFilters',
     requestStream: false,
     responseStream: false,
@@ -2718,10 +2880,10 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeInspectWithFiltersResponse,
   },
   // Update provides a method for manipulating the specification and attributes of a volume.
-  // Set can be used to resize a volume, update labels, change replica count, and much more.
-  //
-  // Requires access AccessType.Write of volume
-  update: {
+// Set can be used to resize a volume, update labels, change replica count, and much more.
+//
+// Requires access AccessType.Write of volume
+update: {
     path: '/openstorage.api.OpenStorageVolume/Update',
     requestStream: false,
     responseStream: false,
@@ -2733,9 +2895,9 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeUpdateResponse,
   },
   // Stats returns the statistics for the requested volume
-  //
-  // Requires access AccessType.Read of volume
-  stats: {
+//
+// Requires access AccessType.Read of volume
+stats: {
     path: '/openstorage.api.OpenStorageVolume/Stats',
     requestStream: false,
     responseStream: false,
@@ -2747,15 +2909,15 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeStatsResponse,
   },
   // CapacityUsage returns volume/snapshot's capacity usage details
-  //
-  // Requires access AccessType.Read of volume
-  //
-  // ##### Error codes:
-  //
-  // * codes.Aborted : Command was aborted and only total_bytes field is valid
-  // * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
-  // field is valid;
-  capacityUsage: {
+//
+// Requires access AccessType.Read of volume
+//
+// ##### Error codes:
+//
+// * codes.Aborted : Command was aborted and only total_bytes field is valid
+// * code.Unimmplemented : Command is not suported this kernel.Only total_bytes
+// field is valid;
+capacityUsage: {
     path: '/openstorage.api.OpenStorageVolume/CapacityUsage',
     requestStream: false,
     responseStream: false,
@@ -2767,7 +2929,7 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeCapacityUsageResponse,
   },
   // Enumerate returns a list of volume ids
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageVolume/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -2779,7 +2941,7 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeEnumerateResponse,
   },
   // Enumerate returns a list of volume ids that match the labels if any are provided.
-  enumerateWithFilters: {
+enumerateWithFilters: {
     path: '/openstorage.api.OpenStorageVolume/EnumerateWithFilters',
     requestStream: false,
     responseStream: false,
@@ -2791,11 +2953,11 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeEnumerateWithFiltersResponse,
   },
   // SnapshotCreate creates a snapshot of a volume. This creates an immutable (read-only),
-  // point-in-time snapshot of a volume. To create a new writable volume from
-  // a snapshot, please use OpenStorageVolume.Clone().
-  //
-  // Requires access AccessType.Read of volume
-  snapshotCreate: {
+// point-in-time snapshot of a volume. To create a new writable volume from
+// a snapshot, please use OpenStorageVolume.Clone().
+//
+// Requires access AccessType.Read of volume
+snapshotCreate: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotCreate',
     requestStream: false,
     responseStream: false,
@@ -2807,9 +2969,9 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotCreateResponse,
   },
   // SnapshotRestore restores a volume to a specified snapshot
-  //
-  // Requires access AccessType.Write of volume
-  snapshotRestore: {
+//
+// Requires access AccessType.Write of volume
+snapshotRestore: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotRestore',
     requestStream: false,
     responseStream: false,
@@ -2821,7 +2983,7 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotRestoreResponse,
   },
   // SnapshotEnumerate returns a list of snapshots for a specific volume
-  snapshotEnumerate: {
+snapshotEnumerate: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotEnumerate',
     requestStream: false,
     responseStream: false,
@@ -2833,11 +2995,11 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateResponse,
   },
   // SnapshotEnumerate returns a list of snapshots.
-  // To filter all the snapshots for a specific volume which may no longer exist,
-  // specifiy a volume id.
-  // Labels can also be used to filter the snapshot list.
-  // If neither are provided all snapshots will be returned.
-  snapshotEnumerateWithFilters: {
+// To filter all the snapshots for a specific volume which may no longer exist,
+// specifiy a volume id.
+// Labels can also be used to filter the snapshot list.
+// If neither are provided all snapshots will be returned.
+snapshotEnumerateWithFilters: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotEnumerateWithFilters',
     requestStream: false,
     responseStream: false,
@@ -2849,11 +3011,11 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotEnumerateWithFiltersResponse,
   },
   // Sets the snapshot schedules. This information is saved in the VolumeSpec.snapshot_schedule
-  // as `policy=<name>,...`. This function will overwrite any policy values
-  // in the volume. To delete the policies in the volume send no policies.
-  //
-  // Requires access AccessType.Write of volume
-  snapshotScheduleUpdate: {
+// as `policy=<name>,...`. This function will overwrite any policy values
+// in the volume. To delete the policies in the volume send no policies.
+//
+// Requires access AccessType.Write of volume
+snapshotScheduleUpdate: {
     path: '/openstorage.api.OpenStorageVolume/SnapshotScheduleUpdate',
     requestStream: false,
     responseStream: false,
@@ -2865,9 +3027,9 @@ var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeSnapshotScheduleUpdateResponse,
   },
   // Gets the volume catalog of an attached and mounted volume.
-  // Returns the entire tree up to "n"  depth (default is all of it)
-  // Takes a path that can be used as the new root for the catalog request.
-  volumeCatalog: {
+// Returns the entire tree up to "n"  depth (default is all of it)
+// Takes a path that can be used as the new root for the catalog request.
+volumeCatalog: {
     path: '/openstorage.api.OpenStorageVolume/VolumeCatalog',
     requestStream: false,
     responseStream: false,
@@ -2888,9 +3050,9 @@ exports.OpenStorageVolumeClient = grpc.makeGenericClientConstructor(OpenStorageV
 // are created, to let the CO manage the node access functions to the volume.
 var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
   // Attach attaches device to the host that the client is communicating with.
-  //
-  // Requires access AccessType.Write of volume
-  attach: {
+//
+// Requires access AccessType.Write of volume
+attach: {
     path: '/openstorage.api.OpenStorageMountAttach/Attach',
     requestStream: false,
     responseStream: false,
@@ -2902,9 +3064,9 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeAttachResponse,
   },
   // Detaches a the volume from the host
-  //
-  // Requires access AccessType.Write of volume
-  detach: {
+//
+// Requires access AccessType.Write of volume
+detach: {
     path: '/openstorage.api.OpenStorageMountAttach/Detach',
     requestStream: false,
     responseStream: false,
@@ -2916,9 +3078,9 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeDetachResponse,
   },
   // Mount mounts an attached volume in the host that the client is communicating with
-  //
-  // Requires access AccessType.Write of volume
-  mount: {
+//
+// Requires access AccessType.Write of volume
+mount: {
     path: '/openstorage.api.OpenStorageMountAttach/Mount',
     requestStream: false,
     responseStream: false,
@@ -2930,9 +3092,9 @@ var OpenStorageMountAttachService = exports.OpenStorageMountAttachService = {
     responseDeserialize: deserialize_openstorage_api_SdkVolumeMountResponse,
   },
   // Unmount unmounts a mounted volume in the host that the client is communicating with
-  //
-  // Requires access AccessType.Write of volume
-  unmount: {
+//
+// Requires access AccessType.Write of volume
+unmount: {
     path: '/openstorage.api.OpenStorageMountAttach/Unmount',
     requestStream: false,
     responseStream: false,
@@ -2949,7 +3111,7 @@ exports.OpenStorageMountAttachClient = grpc.makeGenericClientConstructor(OpenSto
 // OpenStorageMigrate is a service used to manage migration of volumes
 var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
   // Start a migration operation
-  start: {
+start: {
     path: '/openstorage.api.OpenStorageMigrate/Start',
     requestStream: false,
     responseStream: false,
@@ -2961,7 +3123,7 @@ var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateStartResponse,
   },
   // Cancel a migration operation
-  cancel: {
+cancel: {
     path: '/openstorage.api.OpenStorageMigrate/Cancel',
     requestStream: false,
     responseStream: false,
@@ -2973,7 +3135,7 @@ var OpenStorageMigrateService = exports.OpenStorageMigrateService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudMigrateCancelResponse,
   },
   // Inspect the status of migration operation
-  status: {
+status: {
     path: '/openstorage.api.OpenStorageMigrate/Status',
     requestStream: false,
     responseStream: false,
@@ -2990,7 +3152,7 @@ exports.OpenStorageMigrateClient = grpc.makeGenericClientConstructor(OpenStorage
 // OpenStorageObjectstore is a service used to manage object store services on volumes
 var OpenStorageObjectstoreService = exports.OpenStorageObjectstoreService = {
   // Inspect returns information about the object store endpoint
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStorageObjectstore/Inspect',
     requestStream: false,
     responseStream: false,
@@ -3002,7 +3164,7 @@ var OpenStorageObjectstoreService = exports.OpenStorageObjectstoreService = {
     responseDeserialize: deserialize_openstorage_api_SdkObjectstoreInspectResponse,
   },
   // Creates creates an object store endpoint on specified volume
-  create: {
+create: {
     path: '/openstorage.api.OpenStorageObjectstore/Create',
     requestStream: false,
     responseStream: false,
@@ -3014,7 +3176,7 @@ var OpenStorageObjectstoreService = exports.OpenStorageObjectstoreService = {
     responseDeserialize: deserialize_openstorage_api_SdkObjectstoreCreateResponse,
   },
   // Delete destroys the object store endpoint on the volume
-  delete: {
+delete: {
     path: '/openstorage.api.OpenStorageObjectstore/Delete',
     requestStream: false,
     responseStream: false,
@@ -3026,9 +3188,9 @@ var OpenStorageObjectstoreService = exports.OpenStorageObjectstoreService = {
     responseDeserialize: deserialize_openstorage_api_SdkObjectstoreDeleteResponse,
   },
   // Updates provided objectstore status.
-  // This call can be used to stop and start the server while maintaining the same
-  // object storage id.
-  update: {
+// This call can be used to stop and start the server while maintaining the same
+// object storage id.
+update: {
     path: '/openstorage.api.OpenStorageObjectstore/Update',
     requestStream: false,
     responseStream: false,
@@ -3046,32 +3208,32 @@ exports.OpenStorageObjectstoreClient = grpc.makeGenericClientConstructor(OpenSto
 // which can then be used by the OpenStorageCloudBackup service
 var OpenStorageCredentialsService = exports.OpenStorageCredentialsService = {
   // Create is used to submit cloud credentials. It will return an
-  // id of the credentials once they are verified to work.
-  //
-  // ##### Example
-  // {% codetabs name="Golang", type="go" -%}
-  // id, err := client.Create(context.Background(), &api.SdkCredentialCreateRequest{
-  //     Name: "awscred",
-  //     UseProxy: false,
-  //     CredentialType: &api.SdkCredentialCreateRequest_AwsCredential{
-  //       AwsCredential: &api.SdkAwsCredentialRequest{
-  //       AccessKey: "dummy-access",
-  //       SecretKey: "dummy-secret",
-  //       Endpoint:  "dummy-endpoint",
-  //       Region:    "dummy-region",
-  //     },
-  //   },
-  // })
-  // {%- language name="Python", type="py" -%}
-  // en_resp = client.Create(api_pb2.SdkCredentialCreateRequest(
-  //   name='awscred',
-  //   aws_credential=api_pb2.SdkAwsCredentialRequest(
-  //     access_key='dummy-access',
-  //     secret_key='dumm-secret',
-  //     endpoint='dummy-endpoint',
-  //     region='dummy-region')))
-  // {%- endcodetabs %}
-  create: {
+// id of the credentials once they are verified to work.
+//
+// ##### Example
+// {% codetabs name="Golang", type="go" -%}
+// id, err := client.Create(context.Background(), &api.SdkCredentialCreateRequest{
+//     Name: "awscred",
+//     UseProxy: false,
+//     CredentialType: &api.SdkCredentialCreateRequest_AwsCredential{
+//       AwsCredential: &api.SdkAwsCredentialRequest{
+//       AccessKey: "dummy-access",
+//       SecretKey: "dummy-secret",
+//       Endpoint:  "dummy-endpoint",
+//       Region:    "dummy-region",
+//     },
+//   },
+// })
+// {%- language name="Python", type="py" -%}
+// en_resp = client.Create(api_pb2.SdkCredentialCreateRequest(
+//   name='awscred',
+//   aws_credential=api_pb2.SdkAwsCredentialRequest(
+//     access_key='dummy-access',
+//     secret_key='dumm-secret',
+//     endpoint='dummy-endpoint',
+//     region='dummy-region')))
+// {%- endcodetabs %}
+create: {
     path: '/openstorage.api.OpenStorageCredentials/Create',
     requestStream: false,
     responseStream: false,
@@ -3083,7 +3245,7 @@ var OpenStorageCredentialsService = exports.OpenStorageCredentialsService = {
     responseDeserialize: deserialize_openstorage_api_SdkCredentialCreateResponse,
   },
   // Enumerate returns a list of credential ids
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageCredentials/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -3095,7 +3257,7 @@ var OpenStorageCredentialsService = exports.OpenStorageCredentialsService = {
     responseDeserialize: deserialize_openstorage_api_SdkCredentialEnumerateResponse,
   },
   // Inspect returns the information about a credential, but does not return the secret key.
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStorageCredentials/Inspect',
     requestStream: false,
     responseStream: false,
@@ -3107,7 +3269,7 @@ var OpenStorageCredentialsService = exports.OpenStorageCredentialsService = {
     responseDeserialize: deserialize_openstorage_api_SdkCredentialInspectResponse,
   },
   // Delete a specified credential
-  delete: {
+delete: {
     path: '/openstorage.api.OpenStorageCredentials/Delete',
     requestStream: false,
     responseStream: false,
@@ -3119,7 +3281,7 @@ var OpenStorageCredentialsService = exports.OpenStorageCredentialsService = {
     responseDeserialize: deserialize_openstorage_api_SdkCredentialDeleteResponse,
   },
   // Validate is used to validate credentials
-  validate: {
+validate: {
     path: '/openstorage.api.OpenStorageCredentials/Validate',
     requestStream: false,
     responseStream: false,
@@ -3137,8 +3299,8 @@ exports.OpenStorageCredentialsClient = grpc.makeGenericClientConstructor(OpenSto
 // snapshots for a volume
 var OpenStorageSchedulePolicyService = exports.OpenStorageSchedulePolicyService = {
   // Create creates a new snapshot schedule. They can be setup daily,
-  // weekly, or monthly.
-  create: {
+// weekly, or monthly.
+create: {
     path: '/openstorage.api.OpenStorageSchedulePolicy/Create',
     requestStream: false,
     responseStream: false,
@@ -3150,7 +3312,7 @@ var OpenStorageSchedulePolicyService = exports.OpenStorageSchedulePolicyService 
     responseDeserialize: deserialize_openstorage_api_SdkSchedulePolicyCreateResponse,
   },
   // Update a snapshot schedule
-  update: {
+update: {
     path: '/openstorage.api.OpenStorageSchedulePolicy/Update',
     requestStream: false,
     responseStream: false,
@@ -3162,7 +3324,7 @@ var OpenStorageSchedulePolicyService = exports.OpenStorageSchedulePolicyService 
     responseDeserialize: deserialize_openstorage_api_SdkSchedulePolicyUpdateResponse,
   },
   // Enumerate returns a list of schedules
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStorageSchedulePolicy/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -3174,7 +3336,7 @@ var OpenStorageSchedulePolicyService = exports.OpenStorageSchedulePolicyService 
     responseDeserialize: deserialize_openstorage_api_SdkSchedulePolicyEnumerateResponse,
   },
   // Inspect returns information about a specified schedule
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStorageSchedulePolicy/Inspect',
     requestStream: false,
     responseStream: false,
@@ -3186,7 +3348,7 @@ var OpenStorageSchedulePolicyService = exports.OpenStorageSchedulePolicyService 
     responseDeserialize: deserialize_openstorage_api_SdkSchedulePolicyInspectResponse,
   },
   // Delete removes a snapshot schedule
-  delete: {
+delete: {
     path: '/openstorage.api.OpenStorageSchedulePolicy/Delete',
     requestStream: false,
     responseStream: false,
@@ -3217,11 +3379,11 @@ exports.OpenStorageSchedulePolicyClient = grpc.makeGenericClientConstructor(Open
 //
 var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
   // Creates a backup request for a specified volume. Use
-  // OpenStorageCloudBackup.Status() to get the current status of the
-  // backup request.
-  //
-  // Requires access AccessType.Read of volume
-  create: {
+// OpenStorageCloudBackup.Status() to get the current status of the
+// backup request.
+//
+// Requires access AccessType.Read of volume
+create: {
     path: '/openstorage.api.OpenStorageCloudBackup/Create',
     requestStream: false,
     responseStream: false,
@@ -3233,11 +3395,11 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupCreateResponse,
   },
   // Creates a group backup request for a specified group. Use
-  // OpenStorageCloudBackup.Status() to get the current status of the
-  // backup request.
-  //
-  // This will only backup volumes which the user has read_access to.
-  groupCreate: {
+// OpenStorageCloudBackup.Status() to get the current status of the
+// backup request.
+//
+// This will only backup volumes which the user has read_access to.
+groupCreate: {
     path: '/openstorage.api.OpenStorageCloudBackup/GroupCreate',
     requestStream: false,
     responseStream: false,
@@ -3249,9 +3411,9 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupGroupCreateResponse,
   },
   // Restore creates a new volume from a backup id. The newly created volume
-  // has an ha_level (number of replicas) of only 1. To increase the number of
-  // replicas, use OpenStorageVolume.Set() to change the ha_level.
-  restore: {
+// has an ha_level (number of replicas) of only 1. To increase the number of
+// replicas, use OpenStorageVolume.Set() to change the ha_level.
+restore: {
     path: '/openstorage.api.OpenStorageCloudBackup/Restore',
     requestStream: false,
     responseStream: false,
@@ -3263,8 +3425,8 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupRestoreResponse,
   },
   // Deletes a backup stored in the cloud. If the backup is an incremental
-  // backup and other backups are dependent on it, it will not be able to be deleted.
-  delete: {
+// backup and other backups are dependent on it, it will not be able to be deleted.
+delete: {
     path: '/openstorage.api.OpenStorageCloudBackup/Delete',
     requestStream: false,
     responseStream: false,
@@ -3276,7 +3438,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupDeleteResponse,
   },
   // DeleteAll deletes all the backups in the cloud for the specified volume.
-  deleteAll: {
+deleteAll: {
     path: '/openstorage.api.OpenStorageCloudBackup/DeleteAll',
     requestStream: false,
     responseStream: false,
@@ -3288,7 +3450,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupDeleteAllResponse,
   },
   // Return a list of backups for the specified volume
-  enumerateWithFilters: {
+enumerateWithFilters: {
     path: '/openstorage.api.OpenStorageCloudBackup/EnumerateWithFilters',
     requestStream: false,
     responseStream: false,
@@ -3300,7 +3462,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupEnumerateWithFiltersResponse,
   },
   // Status returns the status of any cloud backups of a volume
-  status: {
+status: {
     path: '/openstorage.api.OpenStorageCloudBackup/Status',
     requestStream: false,
     responseStream: false,
@@ -3312,7 +3474,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupStatusResponse,
   },
   // Catalog returns a list of the contents in the backup
-  catalog: {
+catalog: {
     path: '/openstorage.api.OpenStorageCloudBackup/Catalog',
     requestStream: false,
     responseStream: false,
@@ -3324,7 +3486,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupCatalogResponse,
   },
   // History returns a list of backups for a specified volume
-  history: {
+history: {
     path: '/openstorage.api.OpenStorageCloudBackup/History',
     requestStream: false,
     responseStream: false,
@@ -3336,7 +3498,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupHistoryResponse,
   },
   // StateChange can be used to stop, pause, and restart a backup
-  stateChange: {
+stateChange: {
     path: '/openstorage.api.OpenStorageCloudBackup/StateChange',
     requestStream: false,
     responseStream: false,
@@ -3348,7 +3510,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupStateChangeResponse,
   },
   // Create cloud backup schedule
-  schedCreate: {
+schedCreate: {
     path: '/openstorage.api.OpenStorageCloudBackup/SchedCreate',
     requestStream: false,
     responseStream: false,
@@ -3360,7 +3522,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedCreateResponse,
   },
   // Update existing cloud backup schedule
-  schedUpdate: {
+schedUpdate: {
     path: '/openstorage.api.OpenStorageCloudBackup/SchedUpdate',
     requestStream: false,
     responseStream: false,
@@ -3372,7 +3534,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedUpdateResponse,
   },
   // Delete cloud backup schedule
-  schedDelete: {
+schedDelete: {
     path: '/openstorage.api.OpenStorageCloudBackup/SchedDelete',
     requestStream: false,
     responseStream: false,
@@ -3384,7 +3546,7 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedDeleteResponse,
   },
   // Enumerate cloud backup schedules
-  schedEnumerate: {
+schedEnumerate: {
     path: '/openstorage.api.OpenStorageCloudBackup/SchedEnumerate',
     requestStream: false,
     responseStream: false,
@@ -3395,6 +3557,18 @@ var OpenStorageCloudBackupService = exports.OpenStorageCloudBackupService = {
     responseSerialize: serialize_openstorage_api_SdkCloudBackupSchedEnumerateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSchedEnumerateResponse,
   },
+  // Size returns the size of any cloud backups of a volume
+size: {
+    path: '/openstorage.api.OpenStorageCloudBackup/Size',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCloudBackupSizeRequest,
+    responseType: api_pb.SdkCloudBackupSizeResponse,
+    requestSerialize: serialize_openstorage_api_SdkCloudBackupSizeRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCloudBackupSizeRequest,
+    responseSerialize: serialize_openstorage_api_SdkCloudBackupSizeResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCloudBackupSizeResponse,
+  },
 };
 
 exports.OpenStorageCloudBackupClient = grpc.makeGenericClientConstructor(OpenStorageCloudBackupService);
@@ -3404,7 +3578,7 @@ exports.OpenStorageCloudBackupClient = grpc.makeGenericClientConstructor(OpenSto
 // while creating volumes.
 var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
   // Creates a storage policy
-  create: {
+create: {
     path: '/openstorage.api.OpenStoragePolicy/Create',
     requestStream: false,
     responseStream: false,
@@ -3416,7 +3590,7 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyCreateResponse,
   },
   // Enumerate returns a list of storage policies
-  enumerate: {
+enumerate: {
     path: '/openstorage.api.OpenStoragePolicy/Enumerate',
     requestStream: false,
     responseStream: false,
@@ -3428,7 +3602,7 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyEnumerateResponse,
   },
   // Inspect returns information about a specified storage policy
-  inspect: {
+inspect: {
     path: '/openstorage.api.OpenStoragePolicy/Inspect',
     requestStream: false,
     responseStream: false,
@@ -3440,7 +3614,7 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyInspectResponse,
   },
   // Updates specified storage policy
-  update: {
+update: {
     path: '/openstorage.api.OpenStoragePolicy/Update',
     requestStream: false,
     responseStream: false,
@@ -3452,7 +3626,7 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyUpdateResponse,
   },
   // Deletes specified storage policy
-  delete: {
+delete: {
     path: '/openstorage.api.OpenStoragePolicy/Delete',
     requestStream: false,
     responseStream: false,
@@ -3464,7 +3638,7 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyDeleteResponse,
   },
   // Set specified storage policy as default policy
-  setDefault: {
+setDefault: {
     path: '/openstorage.api.OpenStoragePolicy/SetDefault',
     requestStream: false,
     responseStream: false,
@@ -3476,8 +3650,8 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicySetDefaultResponse,
   },
   // DefaultInspect return default storage policy if any, otherwise
-  // empty response
-  defaultInspect: {
+// empty response
+defaultInspect: {
     path: '/openstorage.api.OpenStoragePolicy/DefaultInspect',
     requestStream: false,
     responseStream: false,
@@ -3489,8 +3663,8 @@ var OpenStoragePolicyService = exports.OpenStoragePolicyService = {
     responseDeserialize: deserialize_openstorage_api_SdkOpenStoragePolicyDefaultInspectResponse,
   },
   // Release specified storage policy constraint for volume
-  // creation
-  release: {
+// creation
+release: {
     path: '/openstorage.api.OpenStoragePolicy/Release',
     requestStream: false,
     responseStream: false,
