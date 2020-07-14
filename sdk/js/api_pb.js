@@ -58,9 +58,8 @@ goog.exportSymbol('proto.openstorage.api.FastpathProtocol', null, global);
 goog.exportSymbol('proto.openstorage.api.FastpathReplState', null, global);
 goog.exportSymbol('proto.openstorage.api.FastpathStatus', null, global);
 goog.exportSymbol('proto.openstorage.api.FilesystemCheck', null, global);
-goog.exportSymbol('proto.openstorage.api.FilesystemCheck.CheckHealthStatus', null, global);
 goog.exportSymbol('proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus', null, global);
-goog.exportSymbol('proto.openstorage.api.FilesystemCheck.FixAllStatus', null, global);
+goog.exportSymbol('proto.openstorage.api.FilesystemHealthStatus', null, global);
 goog.exportSymbol('proto.openstorage.api.FilesystemTrim', null, global);
 goog.exportSymbol('proto.openstorage.api.FilesystemTrim.FilesystemTrimStatus', null, global);
 goog.exportSymbol('proto.openstorage.api.GraphDriverChangeType', null, global);
@@ -89,6 +88,9 @@ goog.exportSymbol('proto.openstorage.api.RestoreVolSnashotSchedule', null, globa
 goog.exportSymbol('proto.openstorage.api.RestoreVolStoragePolicy', null, global);
 goog.exportSymbol('proto.openstorage.api.RestoreVolumeSpec', null, global);
 goog.exportSymbol('proto.openstorage.api.RuntimeStateMap', null, global);
+goog.exportSymbol('proto.openstorage.api.ScanPolicy', null, global);
+goog.exportSymbol('proto.openstorage.api.ScanPolicy.ScanAction', null, global);
+goog.exportSymbol('proto.openstorage.api.ScanPolicy.ScanTrigger', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsAlertTypeQuery', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsCountSpan', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkAlertsDeleteRequest', null, global);
@@ -189,14 +191,10 @@ goog.exportSymbol('proto.openstorage.api.SdkCredentialValidateRequest', null, gl
 goog.exportSymbol('proto.openstorage.api.SdkCredentialValidateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkEnumerateRebalanceJobsRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkEnumerateRebalanceJobsResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckFixAllRequest', null, global);
-goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckFixAllResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStartRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStartResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStatusRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStatusResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStopRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStopResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemTrimGetStatusRequest', null, global);
@@ -391,6 +389,7 @@ goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.PassphraseOptCase', nu
 goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.PolicyOp', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.QueueDepthOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.ScaleOptCase', null, global);
+goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.ScanPolicyOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.SharedOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.Sharedv4OptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecPolicy.SizeOptCase', null, global);
@@ -410,12 +409,14 @@ goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.NodiscardOptCase', nul
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.PassphraseOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.QueueDepthOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.ScaleOptCase', null, global);
+goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.ScanPolicyOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.SharedOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.Sharedv4OptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.SizeOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.SnapshotIntervalOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.SnapshotScheduleOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.StickyOptCase', null, global);
+goog.exportSymbol('proto.openstorage.api.VolumeSpecUpdate.XattrOptCase', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeState', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeStateAction', null, global);
 goog.exportSymbol('proto.openstorage.api.VolumeStatus', null, global);
@@ -672,6 +673,27 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.openstorage.api.FastpathConfig.displayName = 'proto.openstorage.api.FastpathConfig';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.ScanPolicy = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.ScanPolicy, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.ScanPolicy.displayName = 'proto.openstorage.api.ScanPolicy';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -5555,16 +5577,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest = function(opt_data) {
+proto.openstorage.api.SdkFilesystemCheckStartRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest, jspb.Message);
+goog.inherits(proto.openstorage.api.SdkFilesystemCheckStartRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.displayName = 'proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest';
+  proto.openstorage.api.SdkFilesystemCheckStartRequest.displayName = 'proto.openstorage.api.SdkFilesystemCheckStartRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -5576,16 +5598,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse = function(opt_data) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse, jspb.Message);
+goog.inherits(proto.openstorage.api.SdkFilesystemCheckStartResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.displayName = 'proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse';
+  proto.openstorage.api.SdkFilesystemCheckStartResponse.displayName = 'proto.openstorage.api.SdkFilesystemCheckStartResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -5597,16 +5619,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest = function(opt_data) {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest, jspb.Message);
+goog.inherits(proto.openstorage.api.SdkFilesystemCheckStatusRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.displayName = 'proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest';
+  proto.openstorage.api.SdkFilesystemCheckStatusRequest.displayName = 'proto.openstorage.api.SdkFilesystemCheckStatusRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -5618,100 +5640,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse = function(opt_data) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse, jspb.Message);
+goog.inherits(proto.openstorage.api.SdkFilesystemCheckStatusResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.displayName = 'proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckFixAllRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.openstorage.api.SdkFilesystemCheckFixAllRequest.displayName = 'proto.openstorage.api.SdkFilesystemCheckFixAllRequest';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckFixAllResponse, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.openstorage.api.SdkFilesystemCheckFixAllResponse.displayName = 'proto.openstorage.api.SdkFilesystemCheckFixAllResponse';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.displayName = 'proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.displayName = 'proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse';
+  proto.openstorage.api.SdkFilesystemCheckStatusResponse.displayName = 'proto.openstorage.api.SdkFilesystemCheckStatusResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -9988,6 +9926,184 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
+proto.openstorage.api.ScanPolicy.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.ScanPolicy.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.ScanPolicy} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.ScanPolicy.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    trigger: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    action: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.ScanPolicy}
+ */
+proto.openstorage.api.ScanPolicy.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.ScanPolicy;
+  return proto.openstorage.api.ScanPolicy.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.ScanPolicy} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.ScanPolicy}
+ */
+proto.openstorage.api.ScanPolicy.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.openstorage.api.ScanPolicy.ScanTrigger} */ (reader.readEnum());
+      msg.setTrigger(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.openstorage.api.ScanPolicy.ScanAction} */ (reader.readEnum());
+      msg.setAction(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.ScanPolicy.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.ScanPolicy.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.ScanPolicy} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.ScanPolicy.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getTrigger();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getAction();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.ScanPolicy.ScanTrigger = {
+  SCAN_TRIGGER_NONE: 0,
+  SCAN_TRIGGER_ON_MOUNT: 1,
+  SCAN_TRIGGER_ON_NEXT_MOUNT: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.ScanPolicy.ScanAction = {
+  SCAN_ACTION_NONE: 0,
+  SCAN_ACTION_SCAN_ONLY: 1,
+  SCAN_ACTION_SCAN_REPAIR: 2
+};
+
+/**
+ * optional ScanTrigger trigger = 1;
+ * @return {!proto.openstorage.api.ScanPolicy.ScanTrigger}
+ */
+proto.openstorage.api.ScanPolicy.prototype.getTrigger = function() {
+  return /** @type {!proto.openstorage.api.ScanPolicy.ScanTrigger} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.ScanPolicy.ScanTrigger} value
+ * @return {!proto.openstorage.api.ScanPolicy} returns this
+ */
+proto.openstorage.api.ScanPolicy.prototype.setTrigger = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional ScanAction action = 2;
+ * @return {!proto.openstorage.api.ScanPolicy.ScanAction}
+ */
+proto.openstorage.api.ScanPolicy.prototype.getAction = function() {
+  return /** @type {!proto.openstorage.api.ScanPolicy.ScanAction} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.ScanPolicy.ScanAction} value
+ * @return {!proto.openstorage.api.ScanPolicy} returns this
+ */
+proto.openstorage.api.ScanPolicy.prototype.setAction = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
 proto.openstorage.api.VolumeSpec.prototype.toObject = function(opt_includeInstance) {
   return proto.openstorage.api.VolumeSpec.toObject(opt_includeInstance, this);
 };
@@ -10037,7 +10153,8 @@ proto.openstorage.api.VolumeSpec.toObject = function(includeInstance, msg) {
     ownership: (f = msg.getOwnership()) && proto.openstorage.api.Ownership.toObject(includeInstance, f),
     exportSpec: (f = msg.getExportSpec()) && proto.openstorage.api.ExportSpec.toObject(includeInstance, f),
     fpPreference: jspb.Message.getBooleanFieldWithDefault(msg, 35, false),
-    xattr: jspb.Message.getFieldWithDefault(msg, 36, 0)
+    xattr: jspb.Message.getFieldWithDefault(msg, 36, 0),
+    scanPolicy: (f = msg.getScanPolicy()) && proto.openstorage.api.ScanPolicy.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -10217,6 +10334,11 @@ proto.openstorage.api.VolumeSpec.deserializeBinaryFromReader = function(msg, rea
     case 36:
       var value = /** @type {!proto.openstorage.api.Xattr.Value} */ (reader.readEnum());
       msg.setXattr(value);
+      break;
+    case 37:
+      var value = new proto.openstorage.api.ScanPolicy;
+      reader.readMessage(value,proto.openstorage.api.ScanPolicy.deserializeBinaryFromReader);
+      msg.setScanPolicy(value);
       break;
     default:
       reader.skipField();
@@ -10486,6 +10608,14 @@ proto.openstorage.api.VolumeSpec.serializeBinaryToWriter = function(message, wri
     writer.writeEnum(
       36,
       f
+    );
+  }
+  f = message.getScanPolicy();
+  if (f != null) {
+    writer.writeMessage(
+      37,
+      f,
+      proto.openstorage.api.ScanPolicy.serializeBinaryToWriter
     );
   }
 };
@@ -11221,6 +11351,43 @@ proto.openstorage.api.VolumeSpec.prototype.setXattr = function(value) {
 };
 
 
+/**
+ * optional ScanPolicy scan_policy = 37;
+ * @return {?proto.openstorage.api.ScanPolicy}
+ */
+proto.openstorage.api.VolumeSpec.prototype.getScanPolicy = function() {
+  return /** @type{?proto.openstorage.api.ScanPolicy} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.ScanPolicy, 37));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.ScanPolicy|undefined} value
+ * @return {!proto.openstorage.api.VolumeSpec} returns this
+*/
+proto.openstorage.api.VolumeSpec.prototype.setScanPolicy = function(value) {
+  return jspb.Message.setWrapperField(this, 37, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.VolumeSpec} returns this
+ */
+proto.openstorage.api.VolumeSpec.prototype.clearScanPolicy = function() {
+  return this.setScanPolicy(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.VolumeSpec.prototype.hasScanPolicy = function() {
+  return jspb.Message.getField(this, 37) != null;
+};
+
+
 
 /**
  * Oneof group definitions for this message. Each group defines the field
@@ -11230,7 +11397,7 @@ proto.openstorage.api.VolumeSpec.prototype.setXattr = function(value) {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.openstorage.api.VolumeSpecUpdate.oneofGroups_ = [[2],[5],[6],[7],[8],[9],[11],[15],[16],[17],[18],[19],[23],[24],[25],[27],[29],[30]];
+proto.openstorage.api.VolumeSpecUpdate.oneofGroups_ = [[2],[5],[6],[7],[8],[9],[11],[15],[16],[17],[18],[19],[23],[24],[25],[27],[29],[30],[31],[32]];
 
 /**
  * @enum {number}
@@ -11502,6 +11669,36 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.getFastpathOptCase = function()
   return /** @type {proto.openstorage.api.VolumeSpecUpdate.FastpathOptCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.VolumeSpecUpdate.oneofGroups_[17]));
 };
 
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.VolumeSpecUpdate.XattrOptCase = {
+  XATTR_OPT_NOT_SET: 0,
+  XATTR: 31
+};
+
+/**
+ * @return {proto.openstorage.api.VolumeSpecUpdate.XattrOptCase}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.getXattrOptCase = function() {
+  return /** @type {proto.openstorage.api.VolumeSpecUpdate.XattrOptCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.VolumeSpecUpdate.oneofGroups_[18]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.VolumeSpecUpdate.ScanPolicyOptCase = {
+  SCAN_POLICY_OPT_NOT_SET: 0,
+  SCAN_POLICY: 32
+};
+
+/**
+ * @return {proto.openstorage.api.VolumeSpecUpdate.ScanPolicyOptCase}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.getScanPolicyOptCase = function() {
+  return /** @type {proto.openstorage.api.VolumeSpecUpdate.ScanPolicyOptCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.VolumeSpecUpdate.oneofGroups_[19]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -11553,7 +11750,9 @@ proto.openstorage.api.VolumeSpecUpdate.toObject = function(includeInstance, msg)
     nodiscard: jspb.Message.getBooleanFieldWithDefault(msg, 27, false),
     ioStrategy: (f = msg.getIoStrategy()) && proto.openstorage.api.IoStrategy.toObject(includeInstance, f),
     exportSpec: (f = msg.getExportSpec()) && proto.openstorage.api.ExportSpec.toObject(includeInstance, f),
-    fastpath: jspb.Message.getBooleanFieldWithDefault(msg, 30, false)
+    fastpath: jspb.Message.getBooleanFieldWithDefault(msg, 30, false),
+    xattr: jspb.Message.getFieldWithDefault(msg, 31, 0),
+    scanPolicy: (f = msg.getScanPolicy()) && proto.openstorage.api.ScanPolicy.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -11678,6 +11877,15 @@ proto.openstorage.api.VolumeSpecUpdate.deserializeBinaryFromReader = function(ms
     case 30:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setFastpath(value);
+      break;
+    case 31:
+      var value = /** @type {!proto.openstorage.api.Xattr.Value} */ (reader.readEnum());
+      msg.setXattr(value);
+      break;
+    case 32:
+      var value = new proto.openstorage.api.ScanPolicy;
+      reader.readMessage(value,proto.openstorage.api.ScanPolicy.deserializeBinaryFromReader);
+      msg.setScanPolicy(value);
       break;
     default:
       reader.skipField();
@@ -11858,6 +12066,21 @@ proto.openstorage.api.VolumeSpecUpdate.serializeBinaryToWriter = function(messag
     writer.writeBool(
       30,
       f
+    );
+  }
+  f = /** @type {!proto.openstorage.api.Xattr.Value} */ (jspb.Message.getField(message, 31));
+  if (f != null) {
+    writer.writeEnum(
+      31,
+      f
+    );
+  }
+  f = message.getScanPolicy();
+  if (f != null) {
+    writer.writeMessage(
+      32,
+      f,
+      proto.openstorage.api.ScanPolicy.serializeBinaryToWriter
     );
   }
 };
@@ -12624,6 +12847,79 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.hasFastpath = function() {
 };
 
 
+/**
+ * optional Xattr.Value xattr = 31;
+ * @return {!proto.openstorage.api.Xattr.Value}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.getXattr = function() {
+  return /** @type {!proto.openstorage.api.Xattr.Value} */ (jspb.Message.getFieldWithDefault(this, 31, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.Xattr.Value} value
+ * @return {!proto.openstorage.api.VolumeSpecUpdate} returns this
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.setXattr = function(value) {
+  return jspb.Message.setOneofField(this, 31, proto.openstorage.api.VolumeSpecUpdate.oneofGroups_[18], value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.openstorage.api.VolumeSpecUpdate} returns this
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.clearXattr = function() {
+  return jspb.Message.setOneofField(this, 31, proto.openstorage.api.VolumeSpecUpdate.oneofGroups_[18], undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.hasXattr = function() {
+  return jspb.Message.getField(this, 31) != null;
+};
+
+
+/**
+ * optional ScanPolicy scan_policy = 32;
+ * @return {?proto.openstorage.api.ScanPolicy}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.getScanPolicy = function() {
+  return /** @type{?proto.openstorage.api.ScanPolicy} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.ScanPolicy, 32));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.ScanPolicy|undefined} value
+ * @return {!proto.openstorage.api.VolumeSpecUpdate} returns this
+*/
+proto.openstorage.api.VolumeSpecUpdate.prototype.setScanPolicy = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 32, proto.openstorage.api.VolumeSpecUpdate.oneofGroups_[19], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.VolumeSpecUpdate} returns this
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.clearScanPolicy = function() {
+  return this.setScanPolicy(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.VolumeSpecUpdate.prototype.hasScanPolicy = function() {
+  return jspb.Message.getField(this, 32) != null;
+};
+
+
 
 /**
  * Oneof group definitions for this message. Each group defines the field
@@ -12633,7 +12929,7 @@ proto.openstorage.api.VolumeSpecUpdate.prototype.hasFastpath = function() {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.openstorage.api.VolumeSpecPolicy.oneofGroups_ = [[1],[2],[3],[4],[5],[6],[8],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[54],[56]];
+proto.openstorage.api.VolumeSpecPolicy.oneofGroups_ = [[1],[2],[3],[4],[5],[6],[8],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[54],[56],[57]];
 
 /**
  * @enum {number}
@@ -12920,6 +13216,21 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.getExportSpecOptCase = function
   return /** @type {proto.openstorage.api.VolumeSpecPolicy.ExportSpecOptCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.VolumeSpecPolicy.oneofGroups_[18]));
 };
 
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.VolumeSpecPolicy.ScanPolicyOptCase = {
+  SCAN_POLICY_OPT_NOT_SET: 0,
+  SCAN_POLICY: 57
+};
+
+/**
+ * @return {proto.openstorage.api.VolumeSpecPolicy.ScanPolicyOptCase}
+ */
+proto.openstorage.api.VolumeSpecPolicy.prototype.getScanPolicyOptCase = function() {
+  return /** @type {proto.openstorage.api.VolumeSpecPolicy.ScanPolicyOptCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.VolumeSpecPolicy.oneofGroups_[19]));
+};
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -12976,7 +13287,8 @@ proto.openstorage.api.VolumeSpecPolicy.toObject = function(includeInstance, msg)
     snapshotIntervalOperator: jspb.Message.getFieldWithDefault(msg, 53, 0),
     nodiscard: jspb.Message.getBooleanFieldWithDefault(msg, 54, false),
     ioStrategy: (f = msg.getIoStrategy()) && proto.openstorage.api.IoStrategy.toObject(includeInstance, f),
-    exportSpec: (f = msg.getExportSpec()) && proto.openstorage.api.ExportSpec.toObject(includeInstance, f)
+    exportSpec: (f = msg.getExportSpec()) && proto.openstorage.api.ExportSpec.toObject(includeInstance, f),
+    scanPolicy: (f = msg.getScanPolicy()) && proto.openstorage.api.ScanPolicy.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -13122,6 +13434,11 @@ proto.openstorage.api.VolumeSpecPolicy.deserializeBinaryFromReader = function(ms
       var value = new proto.openstorage.api.ExportSpec;
       reader.readMessage(value,proto.openstorage.api.ExportSpec.deserializeBinaryFromReader);
       msg.setExportSpec(value);
+      break;
+    case 57:
+      var value = new proto.openstorage.api.ScanPolicy;
+      reader.readMessage(value,proto.openstorage.api.ScanPolicy.deserializeBinaryFromReader);
+      msg.setScanPolicy(value);
       break;
     default:
       reader.skipField();
@@ -13333,6 +13650,14 @@ proto.openstorage.api.VolumeSpecPolicy.serializeBinaryToWriter = function(messag
       56,
       f,
       proto.openstorage.api.ExportSpec.serializeBinaryToWriter
+    );
+  }
+  f = message.getScanPolicy();
+  if (f != null) {
+    writer.writeMessage(
+      57,
+      f,
+      proto.openstorage.api.ScanPolicy.serializeBinaryToWriter
     );
   }
 };
@@ -14198,6 +14523,43 @@ proto.openstorage.api.VolumeSpecPolicy.prototype.clearExportSpec = function() {
  */
 proto.openstorage.api.VolumeSpecPolicy.prototype.hasExportSpec = function() {
   return jspb.Message.getField(this, 56) != null;
+};
+
+
+/**
+ * optional ScanPolicy scan_policy = 57;
+ * @return {?proto.openstorage.api.ScanPolicy}
+ */
+proto.openstorage.api.VolumeSpecPolicy.prototype.getScanPolicy = function() {
+  return /** @type{?proto.openstorage.api.ScanPolicy} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.ScanPolicy, 57));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.ScanPolicy|undefined} value
+ * @return {!proto.openstorage.api.VolumeSpecPolicy} returns this
+*/
+proto.openstorage.api.VolumeSpecPolicy.prototype.setScanPolicy = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 57, proto.openstorage.api.VolumeSpecPolicy.oneofGroups_[19], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.VolumeSpecPolicy} returns this
+ */
+proto.openstorage.api.VolumeSpecPolicy.prototype.clearScanPolicy = function() {
+  return this.setScanPolicy(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.VolumeSpecPolicy.prototype.hasScanPolicy = function() {
+  return jspb.Message.getField(this, 57) != null;
 };
 
 
@@ -15143,7 +15505,9 @@ proto.openstorage.api.Volume.toObject = function(includeInstance, msg) {
     fsResizeRequired: jspb.Message.getBooleanFieldWithDefault(msg, 23, false),
     attachTime: (f = msg.getAttachTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     detachTime: (f = msg.getDetachTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    fpconfig: (f = msg.getFpconfig()) && proto.openstorage.api.FastpathConfig.toObject(includeInstance, f)
+    fpconfig: (f = msg.getFpconfig()) && proto.openstorage.api.FastpathConfig.toObject(includeInstance, f),
+    lastScanFix: (f = msg.getLastScanFix()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastScanStatus: jspb.Message.getFieldWithDefault(msg, 28, 0)
   };
 
   if (includeInstance) {
@@ -15297,6 +15661,15 @@ proto.openstorage.api.Volume.deserializeBinaryFromReader = function(msg, reader)
       var value = new proto.openstorage.api.FastpathConfig;
       reader.readMessage(value,proto.openstorage.api.FastpathConfig.deserializeBinaryFromReader);
       msg.setFpconfig(value);
+      break;
+    case 27:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastScanFix(value);
+      break;
+    case 28:
+      var value = /** @type {!proto.openstorage.api.FilesystemHealthStatus} */ (reader.readEnum());
+      msg.setLastScanStatus(value);
       break;
     default:
       reader.skipField();
@@ -15516,6 +15889,21 @@ proto.openstorage.api.Volume.serializeBinaryToWriter = function(message, writer)
       26,
       f,
       proto.openstorage.api.FastpathConfig.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastScanFix();
+  if (f != null) {
+    writer.writeMessage(
+      27,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastScanStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      28,
+      f
     );
   }
 };
@@ -16240,6 +16628,61 @@ proto.openstorage.api.Volume.prototype.clearFpconfig = function() {
  */
 proto.openstorage.api.Volume.prototype.hasFpconfig = function() {
   return jspb.Message.getField(this, 26) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_scan_fix = 27;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.Volume.prototype.getLastScanFix = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 27));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.openstorage.api.Volume} returns this
+*/
+proto.openstorage.api.Volume.prototype.setLastScanFix = function(value) {
+  return jspb.Message.setWrapperField(this, 27, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.Volume} returns this
+ */
+proto.openstorage.api.Volume.prototype.clearLastScanFix = function() {
+  return this.setLastScanFix(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.Volume.prototype.hasLastScanFix = function() {
+  return jspb.Message.getField(this, 27) != null;
+};
+
+
+/**
+ * optional FilesystemHealthStatus last_scan_status = 28;
+ * @return {!proto.openstorage.api.FilesystemHealthStatus}
+ */
+proto.openstorage.api.Volume.prototype.getLastScanStatus = function() {
+  return /** @type {!proto.openstorage.api.FilesystemHealthStatus} */ (jspb.Message.getFieldWithDefault(this, 28, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.FilesystemHealthStatus} value
+ * @return {!proto.openstorage.api.Volume} returns this
+ */
+proto.openstorage.api.Volume.prototype.setLastScanStatus = function(value) {
+  return jspb.Message.setProto3EnumField(this, 28, value);
 };
 
 
@@ -41037,7 +41480,7 @@ proto.openstorage.api.StorageRebalanceTriggerThreshold.prototype.setUnderLoadTri
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.SdkStorageRebalanceRequest.repeatedFields_ = [1];
+proto.openstorage.api.SdkStorageRebalanceRequest.repeatedFields_ = [1,3,4];
 
 
 
@@ -41073,8 +41516,12 @@ proto.openstorage.api.SdkStorageRebalanceRequest.toObject = function(includeInst
     triggerThresholdsList: jspb.Message.toObjectList(msg.getTriggerThresholdsList(),
     proto.openstorage.api.StorageRebalanceTriggerThreshold.toObject, includeInstance),
     trialRun: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    poolSelectorLabelsMap: (f = msg.getPoolSelectorLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
-    maxDurationMinutes: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    sourcePoolSelectorList: jspb.Message.toObjectList(msg.getSourcePoolSelectorList(),
+    proto.openstorage.api.LabelSelectorRequirement.toObject, includeInstance),
+    targetPoolSelectorList: jspb.Message.toObjectList(msg.getTargetPoolSelectorList(),
+    proto.openstorage.api.LabelSelectorRequirement.toObject, includeInstance),
+    maxDurationMinutes: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    removeRepl1Snapshots: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -41121,14 +41568,22 @@ proto.openstorage.api.SdkStorageRebalanceRequest.deserializeBinaryFromReader = f
       msg.setTrialRun(value);
       break;
     case 3:
-      var value = msg.getPoolSelectorLabelsMap();
-      reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
-         });
+      var value = new proto.openstorage.api.LabelSelectorRequirement;
+      reader.readMessage(value,proto.openstorage.api.LabelSelectorRequirement.deserializeBinaryFromReader);
+      msg.addSourcePoolSelector(value);
       break;
     case 4:
+      var value = new proto.openstorage.api.LabelSelectorRequirement;
+      reader.readMessage(value,proto.openstorage.api.LabelSelectorRequirement.deserializeBinaryFromReader);
+      msg.addTargetPoolSelector(value);
+      break;
+    case 5:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setMaxDurationMinutes(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setRemoveRepl1Snapshots(value);
       break;
     default:
       reader.skipField();
@@ -41174,14 +41629,33 @@ proto.openstorage.api.SdkStorageRebalanceRequest.serializeBinaryToWriter = funct
       f
     );
   }
-  f = message.getPoolSelectorLabelsMap(true);
-  if (f && f.getLength() > 0) {
-    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+  f = message.getSourcePoolSelectorList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.openstorage.api.LabelSelectorRequirement.serializeBinaryToWriter
+    );
+  }
+  f = message.getTargetPoolSelectorList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      4,
+      f,
+      proto.openstorage.api.LabelSelectorRequirement.serializeBinaryToWriter
+    );
   }
   f = message.getMaxDurationMinutes();
   if (f !== 0) {
     writer.writeUint64(
-      4,
+      5,
+      f
+    );
+  }
+  f = message.getRemoveRepl1Snapshots();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -41245,33 +41719,87 @@ proto.openstorage.api.SdkStorageRebalanceRequest.prototype.setTrialRun = functio
 
 
 /**
- * map<string, string> pool_selector_labels = 3;
- * @param {boolean=} opt_noLazyCreate Do not create the map if
- * empty, instead returning `undefined`
- * @return {!jspb.Map<string,string>}
+ * repeated LabelSelectorRequirement source_pool_selector = 3;
+ * @return {!Array<!proto.openstorage.api.LabelSelectorRequirement>}
  */
-proto.openstorage.api.SdkStorageRebalanceRequest.prototype.getPoolSelectorLabelsMap = function(opt_noLazyCreate) {
-  return /** @type {!jspb.Map<string,string>} */ (
-      jspb.Message.getMapField(this, 3, opt_noLazyCreate,
-      null));
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.getSourcePoolSelectorList = function() {
+  return /** @type{!Array<!proto.openstorage.api.LabelSelectorRequirement>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.LabelSelectorRequirement, 3));
 };
 
 
 /**
- * Clears values from the map. The map will be non-null.
+ * @param {!Array<!proto.openstorage.api.LabelSelectorRequirement>} value
  * @return {!proto.openstorage.api.SdkStorageRebalanceRequest} returns this
- */
-proto.openstorage.api.SdkStorageRebalanceRequest.prototype.clearPoolSelectorLabelsMap = function() {
-  this.getPoolSelectorLabelsMap().clear();
-  return this;};
+*/
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.setSourcePoolSelectorList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
 
 
 /**
- * optional uint64 max_duration_minutes = 4;
+ * @param {!proto.openstorage.api.LabelSelectorRequirement=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.LabelSelectorRequirement}
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.addSourcePoolSelector = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.openstorage.api.LabelSelectorRequirement, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.openstorage.api.SdkStorageRebalanceRequest} returns this
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.clearSourcePoolSelectorList = function() {
+  return this.setSourcePoolSelectorList([]);
+};
+
+
+/**
+ * repeated LabelSelectorRequirement target_pool_selector = 4;
+ * @return {!Array<!proto.openstorage.api.LabelSelectorRequirement>}
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.getTargetPoolSelectorList = function() {
+  return /** @type{!Array<!proto.openstorage.api.LabelSelectorRequirement>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.LabelSelectorRequirement, 4));
+};
+
+
+/**
+ * @param {!Array<!proto.openstorage.api.LabelSelectorRequirement>} value
+ * @return {!proto.openstorage.api.SdkStorageRebalanceRequest} returns this
+*/
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.setTargetPoolSelectorList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.LabelSelectorRequirement=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.LabelSelectorRequirement}
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.addTargetPoolSelector = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.openstorage.api.LabelSelectorRequirement, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.openstorage.api.SdkStorageRebalanceRequest} returns this
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.clearTargetPoolSelectorList = function() {
+  return this.setTargetPoolSelectorList([]);
+};
+
+
+/**
+ * optional uint64 max_duration_minutes = 5;
  * @return {number}
  */
 proto.openstorage.api.SdkStorageRebalanceRequest.prototype.getMaxDurationMinutes = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
 
@@ -41280,7 +41808,25 @@ proto.openstorage.api.SdkStorageRebalanceRequest.prototype.getMaxDurationMinutes
  * @return {!proto.openstorage.api.SdkStorageRebalanceRequest} returns this
  */
 proto.openstorage.api.SdkStorageRebalanceRequest.prototype.setMaxDurationMinutes = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+  return jspb.Message.setProto3IntField(this, 5, value);
+};
+
+
+/**
+ * optional bool remove_repl_1_snapshots = 6;
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.getRemoveRepl1Snapshots = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.openstorage.api.SdkStorageRebalanceRequest} returns this
+ */
+proto.openstorage.api.SdkStorageRebalanceRequest.prototype.setRemoveRepl1Snapshots = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -41579,10 +42125,11 @@ proto.openstorage.api.StorageRebalanceJob.prototype.toObject = function(opt_incl
 proto.openstorage.api.StorageRebalanceJob.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    error: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    status: jspb.Message.getFieldWithDefault(msg, 2, ""),
     state: jspb.Message.getFieldWithDefault(msg, 3, 0),
     parameters: (f = msg.getParameters()) && proto.openstorage.api.SdkStorageRebalanceRequest.toObject(includeInstance, f),
-    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastUpdateTime: (f = msg.getLastUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -41625,7 +42172,7 @@ proto.openstorage.api.StorageRebalanceJob.deserializeBinaryFromReader = function
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setError(value);
+      msg.setStatus(value);
       break;
     case 3:
       var value = /** @type {!proto.openstorage.api.StorageRebalanceJobState} */ (reader.readEnum());
@@ -41640,6 +42187,11 @@ proto.openstorage.api.StorageRebalanceJob.deserializeBinaryFromReader = function
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setCreateTime(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastUpdateTime(value);
       break;
     default:
       reader.skipField();
@@ -41677,7 +42229,7 @@ proto.openstorage.api.StorageRebalanceJob.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getError();
+  f = message.getStatus();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -41707,6 +42259,14 @@ proto.openstorage.api.StorageRebalanceJob.serializeBinaryToWriter = function(mes
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
     );
   }
+  f = message.getLastUpdateTime();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -41729,10 +42289,10 @@ proto.openstorage.api.StorageRebalanceJob.prototype.setId = function(value) {
 
 
 /**
- * optional string error = 2;
+ * optional string status = 2;
  * @return {string}
  */
-proto.openstorage.api.StorageRebalanceJob.prototype.getError = function() {
+proto.openstorage.api.StorageRebalanceJob.prototype.getStatus = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -41741,7 +42301,7 @@ proto.openstorage.api.StorageRebalanceJob.prototype.getError = function() {
  * @param {string} value
  * @return {!proto.openstorage.api.StorageRebalanceJob} returns this
  */
-proto.openstorage.api.StorageRebalanceJob.prototype.setError = function(value) {
+proto.openstorage.api.StorageRebalanceJob.prototype.setStatus = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -41838,13 +42398,50 @@ proto.openstorage.api.StorageRebalanceJob.prototype.hasCreateTime = function() {
 };
 
 
+/**
+ * optional google.protobuf.Timestamp last_update_time = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.StorageRebalanceJob.prototype.getLastUpdateTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.openstorage.api.StorageRebalanceJob} returns this
+*/
+proto.openstorage.api.StorageRebalanceJob.prototype.setLastUpdateTime = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.StorageRebalanceJob} returns this
+ */
+proto.openstorage.api.StorageRebalanceJob.prototype.clearLastUpdateTime = function() {
+  return this.setLastUpdateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.StorageRebalanceJob.prototype.hasLastUpdateTime = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
 
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.openstorage.api.StorageRebalanceSummary.repeatedFields_ = [3];
+proto.openstorage.api.StorageRebalanceSummary.repeatedFields_ = [2];
 
 
 
@@ -41877,8 +42474,7 @@ proto.openstorage.api.StorageRebalanceSummary.prototype.toObject = function(opt_
  */
 proto.openstorage.api.StorageRebalanceSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
-    lastUpdateTime: (f = msg.getLastUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    totalRunTimeSeconds: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    totalRunTimeSeconds: jspb.Message.getFieldWithDefault(msg, 1, 0),
     workSummaryList: jspb.Message.toObjectList(msg.getWorkSummaryList(),
     proto.openstorage.api.StorageRebalanceWorkSummary.toObject, includeInstance)
   };
@@ -41918,15 +42514,10 @@ proto.openstorage.api.StorageRebalanceSummary.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setLastUpdateTime(value);
-      break;
-    case 2:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setTotalRunTimeSeconds(value);
       break;
-    case 3:
+    case 2:
       var value = new proto.openstorage.api.StorageRebalanceWorkSummary;
       reader.readMessage(value,proto.openstorage.api.StorageRebalanceWorkSummary.deserializeBinaryFromReader);
       msg.addWorkSummary(value);
@@ -41960,25 +42551,17 @@ proto.openstorage.api.StorageRebalanceSummary.prototype.serializeBinary = functi
  */
 proto.openstorage.api.StorageRebalanceSummary.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getLastUpdateTime();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
   f = message.getTotalRunTimeSeconds();
   if (f !== 0) {
     writer.writeUint64(
-      2,
+      1,
       f
     );
   }
   f = message.getWorkSummaryList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      3,
+      2,
       f,
       proto.openstorage.api.StorageRebalanceWorkSummary.serializeBinaryToWriter
     );
@@ -41987,48 +42570,11 @@ proto.openstorage.api.StorageRebalanceSummary.serializeBinaryToWriter = function
 
 
 /**
- * optional google.protobuf.Timestamp last_update_time = 1;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.openstorage.api.StorageRebalanceSummary.prototype.getLastUpdateTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 1));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.openstorage.api.StorageRebalanceSummary} returns this
-*/
-proto.openstorage.api.StorageRebalanceSummary.prototype.setLastUpdateTime = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.openstorage.api.StorageRebalanceSummary} returns this
- */
-proto.openstorage.api.StorageRebalanceSummary.prototype.clearLastUpdateTime = function() {
-  return this.setLastUpdateTime(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.openstorage.api.StorageRebalanceSummary.prototype.hasLastUpdateTime = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional uint64 total_run_time_seconds = 2;
+ * optional uint64 total_run_time_seconds = 1;
  * @return {number}
  */
 proto.openstorage.api.StorageRebalanceSummary.prototype.getTotalRunTimeSeconds = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
@@ -42037,17 +42583,17 @@ proto.openstorage.api.StorageRebalanceSummary.prototype.getTotalRunTimeSeconds =
  * @return {!proto.openstorage.api.StorageRebalanceSummary} returns this
  */
 proto.openstorage.api.StorageRebalanceSummary.prototype.setTotalRunTimeSeconds = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * repeated StorageRebalanceWorkSummary work_summary = 3;
+ * repeated StorageRebalanceWorkSummary work_summary = 2;
  * @return {!Array<!proto.openstorage.api.StorageRebalanceWorkSummary>}
  */
 proto.openstorage.api.StorageRebalanceSummary.prototype.getWorkSummaryList = function() {
   return /** @type{!Array<!proto.openstorage.api.StorageRebalanceWorkSummary>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.StorageRebalanceWorkSummary, 3));
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.StorageRebalanceWorkSummary, 2));
 };
 
 
@@ -42056,7 +42602,7 @@ proto.openstorage.api.StorageRebalanceSummary.prototype.getWorkSummaryList = fun
  * @return {!proto.openstorage.api.StorageRebalanceSummary} returns this
 */
 proto.openstorage.api.StorageRebalanceSummary.prototype.setWorkSummaryList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
@@ -42066,7 +42612,7 @@ proto.openstorage.api.StorageRebalanceSummary.prototype.setWorkSummaryList = fun
  * @return {!proto.openstorage.api.StorageRebalanceWorkSummary}
  */
 proto.openstorage.api.StorageRebalanceSummary.prototype.addWorkSummary = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.openstorage.api.StorageRebalanceWorkSummary, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.openstorage.api.StorageRebalanceWorkSummary, opt_index);
 };
 
 
@@ -55226,32 +55772,10 @@ proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus = {
   FS_CHECK_UNKNOWN: 0,
   FS_CHECK_NOT_RUNNING: 1,
   FS_CHECK_STARTED: 2,
-  FS_CHECK_CHECK_HEALTH_INPROGRESS: 3,
-  FS_CHECK_CHECK_HEALTH_STOPPED: 4,
-  FS_CHECK_CHECK_HEALTH_COMPLETED: 5,
-  FS_CHECK_CHECK_HEALTH_FAILED: 6,
-  FS_CHECK_FIXALL_INPROGRESS: 7,
-  FS_CHECK_FIXALL_STOPPED: 8,
-  FS_CHECK_FIXALL_COMPLETED: 9,
-  FS_CHECK_FIXALL_FAILED: 10
-};
-
-/**
- * @enum {number}
- */
-proto.openstorage.api.FilesystemCheck.CheckHealthStatus = {
-  CHECK_HEALTH_STATUS_UNKNOWN: 0,
-  CHECK_HEALTH_STATUS_HEALTHY: 1,
-  CHECK_HEALTH_STATUS_NOT_HEALTHY: 2
-};
-
-/**
- * @enum {number}
- */
-proto.openstorage.api.FilesystemCheck.FixAllStatus = {
-  FIXALL_STATUS_UNKNOWN: 0,
-  FIXALL_STATUS_HEALTHY: 1,
-  FIXALL_STATUS_NOT_HEALTHY: 2
+  FS_CHECK_INPROGRESS: 3,
+  FS_CHECK_STOPPED: 4,
+  FS_CHECK_COMPLETED: 5,
+  FS_CHECK_FAILED: 6
 };
 
 
@@ -55270,8 +55794,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.toObject(opt_includeInstance, this);
+proto.openstorage.api.SdkFilesystemCheckStartRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkFilesystemCheckStartRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -55280,13 +55804,14 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.prototype.toObject = 
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStartRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.toObject = function(includeInstance, msg) {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    volumeId: jspb.Message.getFieldWithDefault(msg, 1, "")
+    volumeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    mode: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -55300,23 +55825,23 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.toObject = function(i
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartRequest}
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.deserializeBinary = function(bytes) {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest;
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.SdkFilesystemCheckStartRequest;
+  return proto.openstorage.api.SdkFilesystemCheckStartRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStartRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartRequest}
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -55327,6 +55852,10 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.deserializeBinaryFrom
       var value = /** @type {string} */ (reader.readString());
       msg.setVolumeId(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMode(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -55340,9 +55869,9 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.deserializeBinaryFrom
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.prototype.serializeBinary = function() {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.SdkFilesystemCheckStartRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -55350,11 +55879,11 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.prototype.serializeBi
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest} message
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStartRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getVolumeId();
   if (f.length > 0) {
@@ -55363,142 +55892,7 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.serializeBinaryToWrit
       f
     );
   }
-};
-
-
-/**
- * optional string volume_id = 1;
- * @return {string}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.prototype.getVolumeId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthRequest.prototype.setVolumeId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    status: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 2, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse;
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} */ (reader.readEnum());
-      msg.setStatus(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getStatus();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      1,
-      f
-    );
-  }
-  f = message.getMessage();
+  f = message.getMode();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -55509,37 +55903,37 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.serializeBinaryToWri
 
 
 /**
- * optional FilesystemCheck.FilesystemCheckStatus status = 1;
- * @return {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.prototype.getStatus = function() {
-  return /** @type {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.prototype.setStatus = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-/**
- * optional string message = 2;
+ * optional string volume_id = 1;
  * @return {string}
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.prototype.getMessage = function() {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.prototype.getVolumeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartRequest} returns this
+ */
+proto.openstorage.api.SdkFilesystemCheckStartRequest.prototype.setVolumeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string mode = 2;
+ * @return {string}
+ */
+proto.openstorage.api.SdkFilesystemCheckStartRequest.prototype.getMode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse} returns this
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartRequest} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthResponse.prototype.setMessage = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStartRequest.prototype.setMode = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -55560,8 +55954,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.toObject(opt_includeInstance, this);
+proto.openstorage.api.SdkFilesystemCheckStartResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkFilesystemCheckStartResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -55570,461 +55964,11 @@ proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.prototype.to
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStartResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    volumeId: jspb.Message.getFieldWithDefault(msg, 1, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest;
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setVolumeId(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getVolumeId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string volume_id = 1;
- * @return {string}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.prototype.getVolumeId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest.prototype.setVolumeId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    status: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    healthStatus: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 3, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse;
-  return proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} */ (reader.readEnum());
-      msg.setStatus(value);
-      break;
-    case 2:
-      var value = /** @type {!proto.openstorage.api.FilesystemCheck.CheckHealthStatus} */ (reader.readEnum());
-      msg.setHealthStatus(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setMessage(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getStatus();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      1,
-      f
-    );
-  }
-  f = message.getHealthStatus();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
-    );
-  }
-  f = message.getMessage();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
-    );
-  }
-};
-
-
-/**
- * optional FilesystemCheck.FilesystemCheckStatus status = 1;
- * @return {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.getStatus = function() {
-  return /** @type {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.setStatus = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-/**
- * optional FilesystemCheck.CheckHealthStatus health_status = 2;
- * @return {!proto.openstorage.api.FilesystemCheck.CheckHealthStatus}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.getHealthStatus = function() {
-  return /** @type {!proto.openstorage.api.FilesystemCheck.CheckHealthStatus} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {!proto.openstorage.api.FilesystemCheck.CheckHealthStatus} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.setHealthStatus = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
-};
-
-
-/**
- * optional string message = 3;
- * @return {string}
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.getMessage = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse.prototype.setMessage = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckFixAllRequest.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllRequest} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    volumeId: jspb.Message.getFieldWithDefault(msg, 1, "")
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllRequest}
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckFixAllRequest;
-  return proto.openstorage.api.SdkFilesystemCheckFixAllRequest.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllRequest} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllRequest}
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setVolumeId(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckFixAllRequest.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllRequest} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getVolumeId();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional string volume_id = 1;
- * @return {string}
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.prototype.getVolumeId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllRequest} returns this
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllRequest.prototype.setVolumeId = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckFixAllResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.toObject = function(includeInstance, msg) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     status: jspb.Message.getFieldWithDefault(msg, 1, 0),
     message: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -56041,23 +55985,23 @@ proto.openstorage.api.SdkFilesystemCheckFixAllResponse.toObject = function(inclu
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartResponse}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.deserializeBinary = function(bytes) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckFixAllResponse;
-  return proto.openstorage.api.SdkFilesystemCheckFixAllResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.SdkFilesystemCheckStartResponse;
+  return proto.openstorage.api.SdkFilesystemCheckStartResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStartResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartResponse}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -56085,9 +56029,9 @@ proto.openstorage.api.SdkFilesystemCheckFixAllResponse.deserializeBinaryFromRead
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.serializeBinary = function() {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckFixAllResponse.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.SdkFilesystemCheckStartResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -56095,11 +56039,11 @@ proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.serializeBinary
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse} message
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStartResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStatus();
   if (f !== 0.0) {
@@ -56122,16 +56066,16 @@ proto.openstorage.api.SdkFilesystemCheckFixAllResponse.serializeBinaryToWriter =
  * optional FilesystemCheck.FilesystemCheckStatus status = 1;
  * @return {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.getStatus = function() {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.prototype.getStatus = function() {
   return /** @type {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse} returns this
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartResponse} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.setStatus = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.prototype.setStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
@@ -56140,16 +56084,16 @@ proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.setStatus = fun
  * optional string message = 2;
  * @return {string}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.getMessage = function() {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.prototype.getMessage = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllResponse} returns this
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStartResponse} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllResponse.prototype.setMessage = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStartResponse.prototype.setMessage = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -56170,8 +56114,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.toObject(opt_includeInstance, this);
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkFilesystemCheckStatusRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -56180,11 +56124,11 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.prototype.toObjec
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStatusRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.toObject = function(includeInstance, msg) {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     volumeId: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
@@ -56200,23 +56144,23 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.toObject = functi
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusRequest}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.deserializeBinary = function(bytes) {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest;
-  return proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.SdkFilesystemCheckStatusRequest;
+  return proto.openstorage.api.SdkFilesystemCheckStatusRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStatusRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusRequest}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -56240,9 +56184,9 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.deserializeBinary
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.prototype.serializeBinary = function() {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.SdkFilesystemCheckStatusRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -56250,11 +56194,11 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.prototype.seriali
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest} message
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStatusRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getVolumeId();
   if (f.length > 0) {
@@ -56270,16 +56214,16 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.serializeBinaryTo
  * optional string volume_id = 1;
  * @return {string}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.prototype.getVolumeId = function() {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.prototype.getVolumeId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest} returns this
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusRequest} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest.prototype.setVolumeId = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStatusRequest.prototype.setVolumeId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -56300,8 +56244,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.toObject(opt_includeInstance, this);
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkFilesystemCheckStatusResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -56310,15 +56254,16 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.toObje
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse} msg The msg instance to transform.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.toObject = function(includeInstance, msg) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     status: jspb.Message.getFieldWithDefault(msg, 1, 0),
     healthStatus: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 3, "")
+    mode: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    message: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -56332,23 +56277,23 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.toObject = funct
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusResponse}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinary = function(bytes) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse;
-  return proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.openstorage.api.SdkFilesystemCheckStatusResponse;
+  return proto.openstorage.api.SdkFilesystemCheckStatusResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse} msg The message object to deserialize into.
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse}
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusResponse}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -56360,10 +56305,14 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinar
       msg.setStatus(value);
       break;
     case 2:
-      var value = /** @type {!proto.openstorage.api.FilesystemCheck.FixAllStatus} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.FilesystemHealthStatus} */ (reader.readEnum());
       msg.setHealthStatus(value);
       break;
     case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMode(value);
+      break;
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessage(value);
       break;
@@ -56380,9 +56329,9 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinar
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.serializeBinary = function() {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.serializeBinaryToWriter(this, writer);
+  proto.openstorage.api.SdkFilesystemCheckStatusResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -56390,11 +56339,11 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.serial
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse} message
+ * @param {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.serializeBinaryToWriter = function(message, writer) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getStatus();
   if (f !== 0.0) {
@@ -56410,10 +56359,17 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.serializeBinaryT
       f
     );
   }
-  f = message.getMessage();
+  f = message.getMode();
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getMessage();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -56424,53 +56380,71 @@ proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.serializeBinaryT
  * optional FilesystemCheck.FilesystemCheckStatus status = 1;
  * @return {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.getStatus = function() {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.getStatus = function() {
   return /** @type {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {!proto.openstorage.api.FilesystemCheck.FilesystemCheckStatus} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse} returns this
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.setStatus = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.setStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
 /**
- * optional FilesystemCheck.FixAllStatus health_status = 2;
- * @return {!proto.openstorage.api.FilesystemCheck.FixAllStatus}
+ * optional FilesystemHealthStatus health_status = 2;
+ * @return {!proto.openstorage.api.FilesystemHealthStatus}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.getHealthStatus = function() {
-  return /** @type {!proto.openstorage.api.FilesystemCheck.FixAllStatus} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.getHealthStatus = function() {
+  return /** @type {!proto.openstorage.api.FilesystemHealthStatus} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.FilesystemCheck.FixAllStatus} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse} returns this
+ * @param {!proto.openstorage.api.FilesystemHealthStatus} value
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.setHealthStatus = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.setHealthStatus = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 
 /**
- * optional string message = 3;
+ * optional string mode = 3;
  * @return {string}
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.getMessage = function() {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.getMode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse} returns this
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} returns this
  */
-proto.openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse.prototype.setMessage = function(value) {
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.setMode = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string message = 4;
+ * @return {string}
+ */
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.getMessage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkFilesystemCheckStatusResponse} returns this
+ */
+proto.openstorage.api.SdkFilesystemCheckStatusResponse.prototype.setMessage = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -57750,7 +57724,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 69,
-  PATCH: 11
+  PATCH: 15
 };
 
 /**
@@ -68028,6 +68002,16 @@ proto.openstorage.api.VolumeStatus = {
   VOLUME_STATUS_UP: 2,
   VOLUME_STATUS_DOWN: 3,
   VOLUME_STATUS_DEGRADED: 4
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.FilesystemHealthStatus = {
+  FS_HEALTH_STATUS_UNKNOWN: 0,
+  FS_HEALTH_STATUS_HEALTHY: 1,
+  FS_HEALTH_STATUS_SAFE_TO_FIX: 2,
+  FS_HEALTH_STATUS_NEEDS_INSPECTION: 3
 };
 
 /**

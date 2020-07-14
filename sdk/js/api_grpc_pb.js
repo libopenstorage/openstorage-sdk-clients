@@ -831,92 +831,48 @@ function deserialize_openstorage_api_SdkEnumerateRebalanceJobsResponse(buffer_ar
   return api_pb.SdkEnumerateRebalanceJobsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthGetStatusRequest');
+function serialize_openstorage_api_SdkFilesystemCheckStartRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStartRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStartRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest(buffer_arg) {
-  return api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkFilesystemCheckStartRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStartRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthGetStatusResponse');
+function serialize_openstorage_api_SdkFilesystemCheckStartResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStartResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStartResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse(buffer_arg) {
-  return api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkFilesystemCheckStartResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStartResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthRequest');
+function serialize_openstorage_api_SdkFilesystemCheckStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStatusRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest(buffer_arg) {
-  return api_pb.SdkFilesystemCheckCheckHealthRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkFilesystemCheckStatusRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckCheckHealthResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckCheckHealthResponse');
+function serialize_openstorage_api_SdkFilesystemCheckStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStatusResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse(buffer_arg) {
-  return api_pb.SdkFilesystemCheckCheckHealthResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllGetStatusRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllGetStatusRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest(buffer_arg) {
-  return api_pb.SdkFilesystemCheckFixAllGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllGetStatusResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllGetStatusResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse(buffer_arg) {
-  return api_pb.SdkFilesystemCheckFixAllGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkFilesystemCheckFixAllRequest(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemCheckFixAllRequest(buffer_arg) {
-  return api_pb.SdkFilesystemCheckFixAllRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkFilesystemCheckFixAllResponse(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckFixAllResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckFixAllResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemCheckFixAllResponse(buffer_arg) {
-  return api_pb.SdkFilesystemCheckFixAllResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_openstorage_api_SdkFilesystemCheckStatusResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkFilesystemCheckStopRequest(arg) {
@@ -2372,80 +2328,65 @@ exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(Open
 // This operation is run in the background on an **unmounted volume**.
 // If the volume is mounted, then these APIs return error.
 //
-// Once the filesystem check operation(either CheckHealth() or FixAll()) is
-// started, the clients have to poll for the status of the background operation
-// using the `OpenStorageFilesystemcheck.CheckHealthGetStatus()` rpc request or
-// `OpenStorageFilesystemCheck.FixAllGetStatus()` rpc request.
+// Once the filesystem check operation is started, in one of the available
+// modes(check_health, fix_safe, fix_all),
+// the clients have to poll for the status of the background operation
+// using the `OpenStorageFilesystemcheck.Status()` rpc request.
 //
-// **Note: CheckHealth() and FixAll() cannot run in parallel for the same volume**
+// **Note:
+// 1. Different modes of filesystem check can execute in parallel for
+// the same volume.
+// 2. Filesystem Check and volume Mount are mutually exclusive, meaning both
+// cannot be run on a volume at the same time.
 //
 // A typical workflow involving filesystem check would be as follows
 // 1. Attach the volume
 //    `OpenStorageMountAttachClient.Attach()`
 // 2. Check the health of the filesystem by issuing a grpc call to
-//    `OpenStorageFilesystemCheckClient.CheckHealth()`
-// 3. Status of the CheckHealth() operation can be retrieved by polling for the
-//    status using `OpenStorageFilesystemCheck.CheckHealthGetStatus()`
-// 4. If the CheckHealth Operations status reports filesystem is in unhealthy
+//    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
+// 3. Status of the Filesystem Check operation in check_health mode, can be
+//    retrieved by polling for the status using
+//    `OpenStorageFilesystemCheck.Status()`
+// 4. If the Filesystem Check Operation status reports filesystem is in unhealthy
 //    state, then to fix all the problems issue a grpc call to
-//    `OpenStorageFilesystemCheckClient.FixAll()`
-// 5. Status of the FixAll() operation can be retrieved by polling for the
-//    status using `OpenStorageFilesystemCheck.FixAllGetStatus()`
-// 6. CheckHealth() and FixAll() operations run in the background, to stop these
-//    operations, issue a call to
+//    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
+// 5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+//    by polling for the status using
+//    `OpenStorageFilesystemCheck.Status()`
+// 6. Filesystem Check operation runs in the background, to stop the operation,
+//    issue a call to
 //    `OpenStorageFilesystemCheckClient.Stop()`
+// 7. To Check and Fix errors in the filesystem that are safe to fix, issue a
+//    grpc call to
+//    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
+//    Status of this operation can be polled in the way mentioned in step 3
+//    This operation can be stopped a Stop request as mentioned in step 6
+//
 var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckService = {
-  // Get a report of issues found on the filesystem. This operation works on an
-// unmounted volume.
-checkHealth: {
-    path: '/openstorage.api.OpenStorageFilesystemCheck/CheckHealth',
+  // Start a filesystem-check background operation on a unmounted volume.
+start: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/Start',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.SdkFilesystemCheckCheckHealthRequest,
-    responseType: api_pb.SdkFilesystemCheckCheckHealthResponse,
-    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthRequest,
-    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthResponse,
+    requestType: api_pb.SdkFilesystemCheckStartRequest,
+    responseType: api_pb.SdkFilesystemCheckStartResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckStartRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStartRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckStartResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStartResponse,
   },
-  // Get Status of a filesystem CheckHealth background operation on an unmounted
+  // Get Status of a filesystem-check background operation on an unmounted
 // volume, if any
-checkHealthGetStatus: {
-    path: '/openstorage.api.OpenStorageFilesystemCheck/CheckHealthGetStatus',
+status: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/Status',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.SdkFilesystemCheckCheckHealthGetStatusRequest,
-    responseType: api_pb.SdkFilesystemCheckCheckHealthGetStatusResponse,
-    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusRequest,
-    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckCheckHealthGetStatusResponse,
-  },
-  // FixAll fixes all the issues reported in the response to CheckHealth API on
-// a filesystem. This operation works on an unmounted volume.
-fixAll: {
-    path: '/openstorage.api.OpenStorageFilesystemCheck/FixAll',
-    requestStream: false,
-    responseStream: false,
-    requestType: api_pb.SdkFilesystemCheckFixAllRequest,
-    responseType: api_pb.SdkFilesystemCheckFixAllResponse,
-    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllRequest,
-    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllResponse,
-  },
-  // Get Status of a filesystem FixAll background operation on an unmounted
-// volume, if any
-fixAllGetStatus: {
-    path: '/openstorage.api.OpenStorageFilesystemCheck/FixAllGetStatus',
-    requestStream: false,
-    responseStream: false,
-    requestType: api_pb.SdkFilesystemCheckFixAllGetStatusRequest,
-    responseType: api_pb.SdkFilesystemCheckFixAllGetStatusResponse,
-    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusRequest,
-    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckFixAllGetStatusResponse,
+    requestType: api_pb.SdkFilesystemCheckStatusRequest,
+    responseType: api_pb.SdkFilesystemCheckStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStatusResponse,
   },
   // Stop a filesystem check background operation on an unmounted volume, if any
 stop: {
