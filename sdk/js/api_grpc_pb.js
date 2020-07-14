@@ -831,28 +831,6 @@ function deserialize_openstorage_api_SdkEnumerateRebalanceJobsResponse(buffer_ar
   return api_pb.SdkEnumerateRebalanceJobsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkFilesystemCheckGetStatusRequest(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckGetStatusRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckGetStatusRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemCheckGetStatusRequest(buffer_arg) {
-  return api_pb.SdkFilesystemCheckGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkFilesystemCheckGetStatusResponse(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemCheckGetStatusResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckGetStatusResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemCheckGetStatusResponse(buffer_arg) {
-  return api_pb.SdkFilesystemCheckGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_openstorage_api_SdkFilesystemCheckStartRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemCheckStartRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStartRequest');
@@ -873,6 +851,28 @@ function serialize_openstorage_api_SdkFilesystemCheckStartResponse(arg) {
 
 function deserialize_openstorage_api_SdkFilesystemCheckStartResponse(buffer_arg) {
   return api_pb.SdkFilesystemCheckStartResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckStatusRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckStatusResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkFilesystemCheckStopRequest(arg) {
@@ -2331,7 +2331,7 @@ exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(Open
 // Once the filesystem check operation is started, in one of the available
 // modes(check_health, fix_safe, fix_all),
 // the clients have to poll for the status of the background operation
-// using the `OpenStorageFilesystemcheck.GetStatus()` rpc request.
+// using the `OpenStorageFilesystemcheck.Status()` rpc request.
 //
 // **Note:
 // 1. Different modes of filesystem check can execute in parallel for
@@ -2346,13 +2346,13 @@ exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(Open
 //    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
 // 3. Status of the Filesystem Check operation in check_health mode, can be
 //    retrieved by polling for the status using
-//    `OpenStorageFilesystemCheck.GetStatus()`
+//    `OpenStorageFilesystemCheck.Status()`
 // 4. If the Filesystem Check Operation status reports filesystem is in unhealthy
 //    state, then to fix all the problems issue a grpc call to
 //    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
 // 5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
 //    by polling for the status using
-//    `OpenStorageFilesystemCheck.GetStatus()`
+//    `OpenStorageFilesystemCheck.Status()`
 // 6. Filesystem Check operation runs in the background, to stop the operation,
 //    issue a call to
 //    `OpenStorageFilesystemCheckClient.Stop()`
@@ -2377,16 +2377,16 @@ start: {
   },
   // Get Status of a filesystem-check background operation on an unmounted
 // volume, if any
-getStatus: {
-    path: '/openstorage.api.OpenStorageFilesystemCheck/GetStatus',
+status: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/Status',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.SdkFilesystemCheckGetStatusRequest,
-    responseType: api_pb.SdkFilesystemCheckGetStatusResponse,
-    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckGetStatusRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckGetStatusRequest,
-    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckGetStatusResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckGetStatusResponse,
+    requestType: api_pb.SdkFilesystemCheckStatusRequest,
+    responseType: api_pb.SdkFilesystemCheckStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStatusResponse,
   },
   // Stop a filesystem check background operation on an unmounted volume, if any
 stop: {

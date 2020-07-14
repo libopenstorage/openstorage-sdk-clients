@@ -168,7 +168,7 @@ module Openstorage
       # Once the filesystem check operation is started, in one of the available
       # modes(check_health, fix_safe, fix_all),
       # the clients have to poll for the status of the background operation
-      # using the `OpenStorageFilesystemcheck.GetStatus()` rpc request.
+      # using the `OpenStorageFilesystemcheck.Status()` rpc request.
       #
       # **Note:
       # 1. Different modes of filesystem check can execute in parallel for
@@ -183,13 +183,13 @@ module Openstorage
       #    `OpenStorageFilesystemCheckClient.Start(Mode='check_health')`
       # 3. Status of the Filesystem Check operation in check_health mode, can be
       #    retrieved by polling for the status using
-      #    `OpenStorageFilesystemCheck.GetStatus()`
+      #    `OpenStorageFilesystemCheck.Status()`
       # 4. If the Filesystem Check Operation status reports filesystem is in unhealthy
       #    state, then to fix all the problems issue a grpc call to
       #    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
       # 5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
       #    by polling for the status using
-      #    `OpenStorageFilesystemCheck.GetStatus()`
+      #    `OpenStorageFilesystemCheck.Status()`
       # 6. Filesystem Check operation runs in the background, to stop the operation,
       #    issue a call to
       #    `OpenStorageFilesystemCheckClient.Stop()`
@@ -211,7 +211,7 @@ module Openstorage
         rpc :Start, SdkFilesystemCheckStartRequest, SdkFilesystemCheckStartResponse
         # Get Status of a filesystem-check background operation on an unmounted
         # volume, if any
-        rpc :GetStatus, SdkFilesystemCheckGetStatusRequest, SdkFilesystemCheckGetStatusResponse
+        rpc :Status, SdkFilesystemCheckStatusRequest, SdkFilesystemCheckStatusResponse
         # Stop a filesystem check background operation on an unmounted volume, if any
         rpc :Stop, SdkFilesystemCheckStopRequest, SdkFilesystemCheckStopResponse
       end
