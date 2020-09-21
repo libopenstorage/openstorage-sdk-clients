@@ -897,28 +897,6 @@ function deserialize_openstorage_api_SdkFilesystemCheckStopResponse(buffer_arg) 
   return api_pb.SdkFilesystemCheckStopResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_openstorage_api_SdkFilesystemTrimGetStatusRequest(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemTrimGetStatusRequest)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimGetStatusRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemTrimGetStatusRequest(buffer_arg) {
-  return api_pb.SdkFilesystemTrimGetStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_openstorage_api_SdkFilesystemTrimGetStatusResponse(arg) {
-  if (!(arg instanceof api_pb.SdkFilesystemTrimGetStatusResponse)) {
-    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimGetStatusResponse');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_openstorage_api_SdkFilesystemTrimGetStatusResponse(buffer_arg) {
-  return api_pb.SdkFilesystemTrimGetStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_openstorage_api_SdkFilesystemTrimStartRequest(arg) {
   if (!(arg instanceof api_pb.SdkFilesystemTrimStartRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStartRequest');
@@ -939,6 +917,28 @@ function serialize_openstorage_api_SdkFilesystemTrimStartResponse(arg) {
 
 function deserialize_openstorage_api_SdkFilesystemTrimStartResponse(buffer_arg) {
   return api_pb.SdkFilesystemTrimStartResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimStatusRequest(buffer_arg) {
+  return api_pb.SdkFilesystemTrimStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemTrimStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemTrimStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemTrimStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemTrimStatusResponse(buffer_arg) {
+  return api_pb.SdkFilesystemTrimStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkFilesystemTrimStopRequest(arg) {
@@ -1115,6 +1115,28 @@ function serialize_openstorage_api_SdkNodeInspectResponse(arg) {
 
 function deserialize_openstorage_api_SdkNodeInspectResponse(buffer_arg) {
   return api_pb.SdkNodeInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeVolumeUsageByNodeRequest(arg) {
+  if (!(arg instanceof api_pb.SdkNodeVolumeUsageByNodeRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeVolumeUsageByNodeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeVolumeUsageByNodeRequest(buffer_arg) {
+  return api_pb.SdkNodeVolumeUsageByNodeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse(arg) {
+  if (!(arg instanceof api_pb.SdkNodeVolumeUsageByNodeResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeVolumeUsageByNodeResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse(buffer_arg) {
+  return api_pb.SdkNodeVolumeUsageByNodeResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkObjectstoreCreateRequest(arg) {
@@ -2265,7 +2287,7 @@ exports.OpenStorageRoleClient = grpc.makeGenericClientConstructor(OpenStorageRol
 //
 // Once the filesystem trim operation is started, the clients have to poll for
 // the status of the background operation using the
-// `OpenStorageFilesystemTrim.GetStatus()` rpc request
+// `OpenStorageFilesystemTrim.Status()` rpc request
 //
 // A typical workflow involving filesystem trim would be as follows
 // 1. Attach the volume
@@ -2277,7 +2299,7 @@ exports.OpenStorageRoleClient = grpc.makeGenericClientConstructor(OpenStorageRol
 //    This call returns immediately with a status code indicating if the
 //    operation was successfully started or not.
 // 4. To get the status of the Filesystem Trim operation, issue a grpc call to
-//    `OpenStorageFilesystemTrimClient.GetStatus()`
+//    `OpenStorageFilesystemTrimClient.Status()`
 // 5. To stop the Filesystem Trim operation, issue a grpc call to
 //    `OpenStorageFilesystemTrimClient.Stop()`
 var OpenStorageFilesystemTrimService = exports.OpenStorageFilesystemTrimService = {
@@ -2293,18 +2315,18 @@ start: {
     responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStartResponse,
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStartResponse,
   },
-  // Get Status of a filesystem Trim background operation on a mounted
+  // Status of a filesystem Trim background operation on a mounted
 // volume, if any
-getStatus: {
-    path: '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
+status: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/Status',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.SdkFilesystemTrimGetStatusRequest,
-    responseType: api_pb.SdkFilesystemTrimGetStatusResponse,
-    requestSerialize: serialize_openstorage_api_SdkFilesystemTrimGetStatusRequest,
-    requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimGetStatusRequest,
-    responseSerialize: serialize_openstorage_api_SdkFilesystemTrimGetStatusResponse,
-    responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimGetStatusResponse,
+    requestType: api_pb.SdkFilesystemTrimStatusRequest,
+    responseType: api_pb.SdkFilesystemTrimStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemTrimStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStatusResponse,
   },
   // Stop a filesystem Trim background operation on a mounted volume, if any
 stop: {
@@ -2725,6 +2747,18 @@ enumerateWithFilters: {
     requestDeserialize: deserialize_openstorage_api_SdkNodeEnumerateWithFiltersRequest,
     responseSerialize: serialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse,
     responseDeserialize: deserialize_openstorage_api_SdkNodeEnumerateWithFiltersResponse,
+  },
+  // Returns capacity usage of all volumes/snaps for a give node
+volumeUsageByNode: {
+    path: '/openstorage.api.OpenStorageNode/VolumeUsageByNode',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkNodeVolumeUsageByNodeRequest,
+    responseType: api_pb.SdkNodeVolumeUsageByNodeResponse,
+    requestSerialize: serialize_openstorage_api_SdkNodeVolumeUsageByNodeRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkNodeVolumeUsageByNodeRequest,
+    responseSerialize: serialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse,
   },
 };
 

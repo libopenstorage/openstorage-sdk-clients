@@ -113,6 +113,7 @@ class OpenStorageAlerts(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -121,7 +122,7 @@ class OpenStorageAlerts(object):
             api__pb2.SdkAlertsEnumerateWithFiltersRequest.SerializeToString,
             api__pb2.SdkAlertsEnumerateWithFiltersResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -129,6 +130,7 @@ class OpenStorageAlerts(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -137,7 +139,7 @@ class OpenStorageAlerts(object):
             api__pb2.SdkAlertsDeleteRequest.SerializeToString,
             api__pb2.SdkAlertsDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageRoleStub(object):
@@ -309,6 +311,7 @@ class OpenStorageRole(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -317,7 +320,7 @@ class OpenStorageRole(object):
             api__pb2.SdkRoleCreateRequest.SerializeToString,
             api__pb2.SdkRoleCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -325,6 +328,7 @@ class OpenStorageRole(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -333,7 +337,7 @@ class OpenStorageRole(object):
             api__pb2.SdkRoleEnumerateRequest.SerializeToString,
             api__pb2.SdkRoleEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -341,6 +345,7 @@ class OpenStorageRole(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -349,7 +354,7 @@ class OpenStorageRole(object):
             api__pb2.SdkRoleInspectRequest.SerializeToString,
             api__pb2.SdkRoleInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -357,6 +362,7 @@ class OpenStorageRole(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -365,7 +371,7 @@ class OpenStorageRole(object):
             api__pb2.SdkRoleDeleteRequest.SerializeToString,
             api__pb2.SdkRoleDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Update(request,
@@ -373,6 +379,7 @@ class OpenStorageRole(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -381,7 +388,7 @@ class OpenStorageRole(object):
             api__pb2.SdkRoleUpdateRequest.SerializeToString,
             api__pb2.SdkRoleUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageFilesystemTrimStub(object):
@@ -394,7 +401,7 @@ class OpenStorageFilesystemTrimStub(object):
 
     Once the filesystem trim operation is started, the clients have to poll for
     the status of the background operation using the
-    `OpenStorageFilesystemTrim.GetStatus()` rpc request
+    `OpenStorageFilesystemTrim.Status()` rpc request
 
     A typical workflow involving filesystem trim would be as follows
     1. Attach the volume
@@ -406,7 +413,7 @@ class OpenStorageFilesystemTrimStub(object):
     This call returns immediately with a status code indicating if the
     operation was successfully started or not.
     4. To get the status of the Filesystem Trim operation, issue a grpc call to
-    `OpenStorageFilesystemTrimClient.GetStatus()`
+    `OpenStorageFilesystemTrimClient.Status()`
     5. To stop the Filesystem Trim operation, issue a grpc call to
     `OpenStorageFilesystemTrimClient.Stop()`
     """
@@ -422,10 +429,10 @@ class OpenStorageFilesystemTrimStub(object):
                 request_serializer=api__pb2.SdkFilesystemTrimStartRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkFilesystemTrimStartResponse.FromString,
                 )
-        self.GetStatus = channel.unary_unary(
-                '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
-                request_serializer=api__pb2.SdkFilesystemTrimGetStatusRequest.SerializeToString,
-                response_deserializer=api__pb2.SdkFilesystemTrimGetStatusResponse.FromString,
+        self.Status = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemTrim/Status',
+                request_serializer=api__pb2.SdkFilesystemTrimStatusRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkFilesystemTrimStatusResponse.FromString,
                 )
         self.Stop = channel.unary_unary(
                 '/openstorage.api.OpenStorageFilesystemTrim/Stop',
@@ -444,7 +451,7 @@ class OpenStorageFilesystemTrimServicer(object):
 
     Once the filesystem trim operation is started, the clients have to poll for
     the status of the background operation using the
-    `OpenStorageFilesystemTrim.GetStatus()` rpc request
+    `OpenStorageFilesystemTrim.Status()` rpc request
 
     A typical workflow involving filesystem trim would be as follows
     1. Attach the volume
@@ -456,7 +463,7 @@ class OpenStorageFilesystemTrimServicer(object):
     This call returns immediately with a status code indicating if the
     operation was successfully started or not.
     4. To get the status of the Filesystem Trim operation, issue a grpc call to
-    `OpenStorageFilesystemTrimClient.GetStatus()`
+    `OpenStorageFilesystemTrimClient.Status()`
     5. To stop the Filesystem Trim operation, issue a grpc call to
     `OpenStorageFilesystemTrimClient.Stop()`
     """
@@ -468,8 +475,8 @@ class OpenStorageFilesystemTrimServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetStatus(self, request, context):
-        """Get Status of a filesystem Trim background operation on a mounted
+    def Status(self, request, context):
+        """Status of a filesystem Trim background operation on a mounted
         volume, if any
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -491,10 +498,10 @@ def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
                     request_deserializer=api__pb2.SdkFilesystemTrimStartRequest.FromString,
                     response_serializer=api__pb2.SdkFilesystemTrimStartResponse.SerializeToString,
             ),
-            'GetStatus': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetStatus,
-                    request_deserializer=api__pb2.SdkFilesystemTrimGetStatusRequest.FromString,
-                    response_serializer=api__pb2.SdkFilesystemTrimGetStatusResponse.SerializeToString,
+            'Status': grpc.unary_unary_rpc_method_handler(
+                    servicer.Status,
+                    request_deserializer=api__pb2.SdkFilesystemTrimStatusRequest.FromString,
+                    response_serializer=api__pb2.SdkFilesystemTrimStatusResponse.SerializeToString,
             ),
             'Stop': grpc.unary_unary_rpc_method_handler(
                     servicer.Stop,
@@ -518,7 +525,7 @@ class OpenStorageFilesystemTrim(object):
 
     Once the filesystem trim operation is started, the clients have to poll for
     the status of the background operation using the
-    `OpenStorageFilesystemTrim.GetStatus()` rpc request
+    `OpenStorageFilesystemTrim.Status()` rpc request
 
     A typical workflow involving filesystem trim would be as follows
     1. Attach the volume
@@ -530,7 +537,7 @@ class OpenStorageFilesystemTrim(object):
     This call returns immediately with a status code indicating if the
     operation was successfully started or not.
     4. To get the status of the Filesystem Trim operation, issue a grpc call to
-    `OpenStorageFilesystemTrimClient.GetStatus()`
+    `OpenStorageFilesystemTrimClient.Status()`
     5. To stop the Filesystem Trim operation, issue a grpc call to
     `OpenStorageFilesystemTrimClient.Stop()`
     """
@@ -541,6 +548,7 @@ class OpenStorageFilesystemTrim(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -549,23 +557,24 @@ class OpenStorageFilesystemTrim(object):
             api__pb2.SdkFilesystemTrimStartRequest.SerializeToString,
             api__pb2.SdkFilesystemTrimStartResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetStatus(request,
+    def Status(request,
             target,
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/GetStatus',
-            api__pb2.SdkFilesystemTrimGetStatusRequest.SerializeToString,
-            api__pb2.SdkFilesystemTrimGetStatusResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/Status',
+            api__pb2.SdkFilesystemTrimStatusRequest.SerializeToString,
+            api__pb2.SdkFilesystemTrimStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Stop(request,
@@ -573,6 +582,7 @@ class OpenStorageFilesystemTrim(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -581,7 +591,7 @@ class OpenStorageFilesystemTrim(object):
             api__pb2.SdkFilesystemTrimStopRequest.SerializeToString,
             api__pb2.SdkFilesystemTrimStopResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageFilesystemCheckStub(object):
@@ -792,6 +802,7 @@ class OpenStorageFilesystemCheck(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -800,7 +811,7 @@ class OpenStorageFilesystemCheck(object):
             api__pb2.SdkFilesystemCheckStartRequest.SerializeToString,
             api__pb2.SdkFilesystemCheckStartResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Status(request,
@@ -808,6 +819,7 @@ class OpenStorageFilesystemCheck(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -816,7 +828,7 @@ class OpenStorageFilesystemCheck(object):
             api__pb2.SdkFilesystemCheckStatusRequest.SerializeToString,
             api__pb2.SdkFilesystemCheckStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Stop(request,
@@ -824,6 +836,7 @@ class OpenStorageFilesystemCheck(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -832,7 +845,7 @@ class OpenStorageFilesystemCheck(object):
             api__pb2.SdkFilesystemCheckStopRequest.SerializeToString,
             api__pb2.SdkFilesystemCheckStopResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageIdentityStub(object):
@@ -912,6 +925,7 @@ class OpenStorageIdentity(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -920,7 +934,7 @@ class OpenStorageIdentity(object):
             api__pb2.SdkIdentityCapabilitiesRequest.SerializeToString,
             api__pb2.SdkIdentityCapabilitiesResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Version(request,
@@ -928,6 +942,7 @@ class OpenStorageIdentity(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -936,7 +951,7 @@ class OpenStorageIdentity(object):
             api__pb2.SdkIdentityVersionRequest.SerializeToString,
             api__pb2.SdkIdentityVersionResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageClusterStub(object):
@@ -992,6 +1007,7 @@ class OpenStorageCluster(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1000,7 +1016,7 @@ class OpenStorageCluster(object):
             api__pb2.SdkClusterInspectCurrentRequest.SerializeToString,
             api__pb2.SdkClusterInspectCurrentResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageClusterPairStub(object):
@@ -1153,6 +1169,7 @@ class OpenStorageClusterPair(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1161,7 +1178,7 @@ class OpenStorageClusterPair(object):
             api__pb2.SdkClusterPairCreateRequest.SerializeToString,
             api__pb2.SdkClusterPairCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -1169,6 +1186,7 @@ class OpenStorageClusterPair(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1177,7 +1195,7 @@ class OpenStorageClusterPair(object):
             api__pb2.SdkClusterPairInspectRequest.SerializeToString,
             api__pb2.SdkClusterPairInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -1185,6 +1203,7 @@ class OpenStorageClusterPair(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1193,7 +1212,7 @@ class OpenStorageClusterPair(object):
             api__pb2.SdkClusterPairEnumerateRequest.SerializeToString,
             api__pb2.SdkClusterPairEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetToken(request,
@@ -1201,6 +1220,7 @@ class OpenStorageClusterPair(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1209,7 +1229,7 @@ class OpenStorageClusterPair(object):
             api__pb2.SdkClusterPairGetTokenRequest.SerializeToString,
             api__pb2.SdkClusterPairGetTokenResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def ResetToken(request,
@@ -1217,6 +1237,7 @@ class OpenStorageClusterPair(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1225,7 +1246,7 @@ class OpenStorageClusterPair(object):
             api__pb2.SdkClusterPairResetTokenRequest.SerializeToString,
             api__pb2.SdkClusterPairResetTokenResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -1233,6 +1254,7 @@ class OpenStorageClusterPair(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1241,7 +1263,7 @@ class OpenStorageClusterPair(object):
             api__pb2.SdkClusterPairDeleteRequest.SerializeToString,
             api__pb2.SdkClusterPairDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageClusterDomainsStub(object):
@@ -1368,6 +1390,7 @@ class OpenStorageClusterDomains(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1376,7 +1399,7 @@ class OpenStorageClusterDomains(object):
             api__pb2.SdkClusterDomainsEnumerateRequest.SerializeToString,
             api__pb2.SdkClusterDomainsEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -1384,6 +1407,7 @@ class OpenStorageClusterDomains(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1392,7 +1416,7 @@ class OpenStorageClusterDomains(object):
             api__pb2.SdkClusterDomainInspectRequest.SerializeToString,
             api__pb2.SdkClusterDomainInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Activate(request,
@@ -1400,6 +1424,7 @@ class OpenStorageClusterDomains(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1408,7 +1433,7 @@ class OpenStorageClusterDomains(object):
             api__pb2.SdkClusterDomainActivateRequest.SerializeToString,
             api__pb2.SdkClusterDomainActivateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Deactivate(request,
@@ -1416,6 +1441,7 @@ class OpenStorageClusterDomains(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1424,7 +1450,7 @@ class OpenStorageClusterDomains(object):
             api__pb2.SdkClusterDomainDeactivateRequest.SerializeToString,
             api__pb2.SdkClusterDomainDeactivateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStoragePoolStub(object):
@@ -1552,6 +1578,7 @@ class OpenStoragePool(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1560,7 +1587,7 @@ class OpenStoragePool(object):
             api__pb2.SdkStoragePoolResizeRequest.SerializeToString,
             api__pb2.SdkStoragePoolResizeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Rebalance(request,
@@ -1568,6 +1595,7 @@ class OpenStoragePool(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1576,7 +1604,7 @@ class OpenStoragePool(object):
             api__pb2.SdkStorageRebalanceRequest.SerializeToString,
             api__pb2.SdkStorageRebalanceResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def UpdateRebalanceJobState(request,
@@ -1584,6 +1612,7 @@ class OpenStoragePool(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1592,7 +1621,7 @@ class OpenStoragePool(object):
             api__pb2.SdkUpdateRebalanceJobRequest.SerializeToString,
             api__pb2.SdkUpdateRebalanceJobResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetRebalanceJobStatus(request,
@@ -1600,6 +1629,7 @@ class OpenStoragePool(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1608,7 +1638,7 @@ class OpenStoragePool(object):
             api__pb2.SdkGetRebalanceJobStatusRequest.SerializeToString,
             api__pb2.SdkGetRebalanceJobStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def EnumerateRebalanceJobs(request,
@@ -1616,6 +1646,7 @@ class OpenStoragePool(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1624,7 +1655,7 @@ class OpenStoragePool(object):
             api__pb2.SdkEnumerateRebalanceJobsRequest.SerializeToString,
             api__pb2.SdkEnumerateRebalanceJobsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageNodeStub(object):
@@ -1656,6 +1687,11 @@ class OpenStorageNodeStub(object):
                 '/openstorage.api.OpenStorageNode/EnumerateWithFilters',
                 request_serializer=api__pb2.SdkNodeEnumerateWithFiltersRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkNodeEnumerateWithFiltersResponse.FromString,
+                )
+        self.VolumeUsageByNode = channel.unary_unary(
+                '/openstorage.api.OpenStorageNode/VolumeUsageByNode',
+                request_serializer=api__pb2.SdkNodeVolumeUsageByNodeRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkNodeVolumeUsageByNodeResponse.FromString,
                 )
 
 
@@ -1692,6 +1728,13 @@ class OpenStorageNodeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def VolumeUsageByNode(self, request, context):
+        """Returns capacity usage of all volumes/snaps for a give node
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageNodeServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1715,6 +1758,11 @@ def add_OpenStorageNodeServicer_to_server(servicer, server):
                     request_deserializer=api__pb2.SdkNodeEnumerateWithFiltersRequest.FromString,
                     response_serializer=api__pb2.SdkNodeEnumerateWithFiltersResponse.SerializeToString,
             ),
+            'VolumeUsageByNode': grpc.unary_unary_rpc_method_handler(
+                    servicer.VolumeUsageByNode,
+                    request_deserializer=api__pb2.SdkNodeVolumeUsageByNodeRequest.FromString,
+                    response_serializer=api__pb2.SdkNodeVolumeUsageByNodeResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'openstorage.api.OpenStorageNode', rpc_method_handlers)
@@ -1732,6 +1780,7 @@ class OpenStorageNode(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1740,7 +1789,7 @@ class OpenStorageNode(object):
             api__pb2.SdkNodeInspectRequest.SerializeToString,
             api__pb2.SdkNodeInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def InspectCurrent(request,
@@ -1748,6 +1797,7 @@ class OpenStorageNode(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1756,7 +1806,7 @@ class OpenStorageNode(object):
             api__pb2.SdkNodeInspectCurrentRequest.SerializeToString,
             api__pb2.SdkNodeInspectCurrentResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -1764,6 +1814,7 @@ class OpenStorageNode(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1772,7 +1823,7 @@ class OpenStorageNode(object):
             api__pb2.SdkNodeEnumerateRequest.SerializeToString,
             api__pb2.SdkNodeEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def EnumerateWithFilters(request,
@@ -1780,6 +1831,7 @@ class OpenStorageNode(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -1788,7 +1840,24 @@ class OpenStorageNode(object):
             api__pb2.SdkNodeEnumerateWithFiltersRequest.SerializeToString,
             api__pb2.SdkNodeEnumerateWithFiltersResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VolumeUsageByNode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/VolumeUsageByNode',
+            api__pb2.SdkNodeVolumeUsageByNodeRequest.SerializeToString,
+            api__pb2.SdkNodeVolumeUsageByNodeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageVolumeStub(object):
@@ -2157,6 +2226,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2165,7 +2235,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeCreateRequest.SerializeToString,
             api__pb2.SdkVolumeCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Clone(request,
@@ -2173,6 +2243,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2181,7 +2252,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeCloneRequest.SerializeToString,
             api__pb2.SdkVolumeCloneResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -2189,6 +2260,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2197,7 +2269,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeDeleteRequest.SerializeToString,
             api__pb2.SdkVolumeDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -2205,6 +2277,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2213,7 +2286,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeInspectRequest.SerializeToString,
             api__pb2.SdkVolumeInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def InspectWithFilters(request,
@@ -2221,6 +2294,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2229,7 +2303,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeInspectWithFiltersRequest.SerializeToString,
             api__pb2.SdkVolumeInspectWithFiltersResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Update(request,
@@ -2237,6 +2311,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2245,7 +2320,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeUpdateRequest.SerializeToString,
             api__pb2.SdkVolumeUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Stats(request,
@@ -2253,6 +2328,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2261,7 +2337,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeStatsRequest.SerializeToString,
             api__pb2.SdkVolumeStatsResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def CapacityUsage(request,
@@ -2269,6 +2345,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2277,7 +2354,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeCapacityUsageRequest.SerializeToString,
             api__pb2.SdkVolumeCapacityUsageResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -2285,6 +2362,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2293,7 +2371,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeEnumerateRequest.SerializeToString,
             api__pb2.SdkVolumeEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def EnumerateWithFilters(request,
@@ -2301,6 +2379,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2309,7 +2388,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeEnumerateWithFiltersRequest.SerializeToString,
             api__pb2.SdkVolumeEnumerateWithFiltersResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SnapshotCreate(request,
@@ -2317,6 +2396,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2325,7 +2405,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeSnapshotCreateRequest.SerializeToString,
             api__pb2.SdkVolumeSnapshotCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SnapshotRestore(request,
@@ -2333,6 +2413,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2341,7 +2422,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeSnapshotRestoreRequest.SerializeToString,
             api__pb2.SdkVolumeSnapshotRestoreResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SnapshotEnumerate(request,
@@ -2349,6 +2430,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2357,7 +2439,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeSnapshotEnumerateRequest.SerializeToString,
             api__pb2.SdkVolumeSnapshotEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SnapshotEnumerateWithFilters(request,
@@ -2365,6 +2447,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2373,7 +2456,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeSnapshotEnumerateWithFiltersRequest.SerializeToString,
             api__pb2.SdkVolumeSnapshotEnumerateWithFiltersResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SnapshotScheduleUpdate(request,
@@ -2381,6 +2464,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2389,7 +2473,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeSnapshotScheduleUpdateRequest.SerializeToString,
             api__pb2.SdkVolumeSnapshotScheduleUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def VolumeCatalog(request,
@@ -2397,6 +2481,7 @@ class OpenStorageVolume(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2405,7 +2490,7 @@ class OpenStorageVolume(object):
             api__pb2.SdkVolumeCatalogRequest.SerializeToString,
             api__pb2.SdkVolumeCatalogResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageMountAttachStub(object):
@@ -2532,6 +2617,7 @@ class OpenStorageMountAttach(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2540,7 +2626,7 @@ class OpenStorageMountAttach(object):
             api__pb2.SdkVolumeAttachRequest.SerializeToString,
             api__pb2.SdkVolumeAttachResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Detach(request,
@@ -2548,6 +2634,7 @@ class OpenStorageMountAttach(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2556,7 +2643,7 @@ class OpenStorageMountAttach(object):
             api__pb2.SdkVolumeDetachRequest.SerializeToString,
             api__pb2.SdkVolumeDetachResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Mount(request,
@@ -2564,6 +2651,7 @@ class OpenStorageMountAttach(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2572,7 +2660,7 @@ class OpenStorageMountAttach(object):
             api__pb2.SdkVolumeMountRequest.SerializeToString,
             api__pb2.SdkVolumeMountResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Unmount(request,
@@ -2580,6 +2668,7 @@ class OpenStorageMountAttach(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2588,7 +2677,7 @@ class OpenStorageMountAttach(object):
             api__pb2.SdkVolumeUnmountRequest.SerializeToString,
             api__pb2.SdkVolumeUnmountResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageMigrateStub(object):
@@ -2678,6 +2767,7 @@ class OpenStorageMigrate(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2686,7 +2776,7 @@ class OpenStorageMigrate(object):
             api__pb2.SdkCloudMigrateStartRequest.SerializeToString,
             api__pb2.SdkCloudMigrateStartResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Cancel(request,
@@ -2694,6 +2784,7 @@ class OpenStorageMigrate(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2702,7 +2793,7 @@ class OpenStorageMigrate(object):
             api__pb2.SdkCloudMigrateCancelRequest.SerializeToString,
             api__pb2.SdkCloudMigrateCancelResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Status(request,
@@ -2710,6 +2801,7 @@ class OpenStorageMigrate(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2718,7 +2810,7 @@ class OpenStorageMigrate(object):
             api__pb2.SdkCloudMigrateStatusRequest.SerializeToString,
             api__pb2.SdkCloudMigrateStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageObjectstoreStub(object):
@@ -2827,6 +2919,7 @@ class OpenStorageObjectstore(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2835,7 +2928,7 @@ class OpenStorageObjectstore(object):
             api__pb2.SdkObjectstoreInspectRequest.SerializeToString,
             api__pb2.SdkObjectstoreInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Create(request,
@@ -2843,6 +2936,7 @@ class OpenStorageObjectstore(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2851,7 +2945,7 @@ class OpenStorageObjectstore(object):
             api__pb2.SdkObjectstoreCreateRequest.SerializeToString,
             api__pb2.SdkObjectstoreCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -2859,6 +2953,7 @@ class OpenStorageObjectstore(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2867,7 +2962,7 @@ class OpenStorageObjectstore(object):
             api__pb2.SdkObjectstoreDeleteRequest.SerializeToString,
             api__pb2.SdkObjectstoreDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Update(request,
@@ -2875,6 +2970,7 @@ class OpenStorageObjectstore(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -2883,7 +2979,7 @@ class OpenStorageObjectstore(object):
             api__pb2.SdkObjectstoreUpdateRequest.SerializeToString,
             api__pb2.SdkObjectstoreUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageCredentialsStub(object):
@@ -3035,6 +3131,7 @@ class OpenStorageCredentials(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3043,7 +3140,7 @@ class OpenStorageCredentials(object):
             api__pb2.SdkCredentialCreateRequest.SerializeToString,
             api__pb2.SdkCredentialCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -3051,6 +3148,7 @@ class OpenStorageCredentials(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3059,7 +3157,7 @@ class OpenStorageCredentials(object):
             api__pb2.SdkCredentialEnumerateRequest.SerializeToString,
             api__pb2.SdkCredentialEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -3067,6 +3165,7 @@ class OpenStorageCredentials(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3075,7 +3174,7 @@ class OpenStorageCredentials(object):
             api__pb2.SdkCredentialInspectRequest.SerializeToString,
             api__pb2.SdkCredentialInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -3083,6 +3182,7 @@ class OpenStorageCredentials(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3091,7 +3191,7 @@ class OpenStorageCredentials(object):
             api__pb2.SdkCredentialDeleteRequest.SerializeToString,
             api__pb2.SdkCredentialDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Validate(request,
@@ -3099,6 +3199,7 @@ class OpenStorageCredentials(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3107,7 +3208,7 @@ class OpenStorageCredentials(object):
             api__pb2.SdkCredentialValidateRequest.SerializeToString,
             api__pb2.SdkCredentialValidateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageSchedulePolicyStub(object):
@@ -3235,6 +3336,7 @@ class OpenStorageSchedulePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3243,7 +3345,7 @@ class OpenStorageSchedulePolicy(object):
             api__pb2.SdkSchedulePolicyCreateRequest.SerializeToString,
             api__pb2.SdkSchedulePolicyCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Update(request,
@@ -3251,6 +3353,7 @@ class OpenStorageSchedulePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3259,7 +3362,7 @@ class OpenStorageSchedulePolicy(object):
             api__pb2.SdkSchedulePolicyUpdateRequest.SerializeToString,
             api__pb2.SdkSchedulePolicyUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -3267,6 +3370,7 @@ class OpenStorageSchedulePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3275,7 +3379,7 @@ class OpenStorageSchedulePolicy(object):
             api__pb2.SdkSchedulePolicyEnumerateRequest.SerializeToString,
             api__pb2.SdkSchedulePolicyEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -3283,6 +3387,7 @@ class OpenStorageSchedulePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3291,7 +3396,7 @@ class OpenStorageSchedulePolicy(object):
             api__pb2.SdkSchedulePolicyInspectRequest.SerializeToString,
             api__pb2.SdkSchedulePolicyInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -3299,6 +3404,7 @@ class OpenStorageSchedulePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3307,7 +3413,7 @@ class OpenStorageSchedulePolicy(object):
             api__pb2.SdkSchedulePolicyDeleteRequest.SerializeToString,
             api__pb2.SdkSchedulePolicyDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStorageCloudBackupStub(object):
@@ -3654,6 +3760,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3662,7 +3769,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupCreateRequest.SerializeToString,
             api__pb2.SdkCloudBackupCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GroupCreate(request,
@@ -3670,6 +3777,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3678,7 +3786,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupGroupCreateRequest.SerializeToString,
             api__pb2.SdkCloudBackupGroupCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Restore(request,
@@ -3686,6 +3794,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3694,7 +3803,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupRestoreRequest.SerializeToString,
             api__pb2.SdkCloudBackupRestoreResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -3702,6 +3811,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3710,7 +3820,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupDeleteRequest.SerializeToString,
             api__pb2.SdkCloudBackupDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DeleteAll(request,
@@ -3718,6 +3828,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3726,7 +3837,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupDeleteAllRequest.SerializeToString,
             api__pb2.SdkCloudBackupDeleteAllResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def EnumerateWithFilters(request,
@@ -3734,6 +3845,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3742,7 +3854,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupEnumerateWithFiltersRequest.SerializeToString,
             api__pb2.SdkCloudBackupEnumerateWithFiltersResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Status(request,
@@ -3750,6 +3862,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3758,7 +3871,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupStatusRequest.SerializeToString,
             api__pb2.SdkCloudBackupStatusResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Catalog(request,
@@ -3766,6 +3879,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3774,7 +3888,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupCatalogRequest.SerializeToString,
             api__pb2.SdkCloudBackupCatalogResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def History(request,
@@ -3782,6 +3896,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3790,7 +3905,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupHistoryRequest.SerializeToString,
             api__pb2.SdkCloudBackupHistoryResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def StateChange(request,
@@ -3798,6 +3913,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3806,7 +3922,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupStateChangeRequest.SerializeToString,
             api__pb2.SdkCloudBackupStateChangeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SchedCreate(request,
@@ -3814,6 +3930,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3822,7 +3939,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupSchedCreateRequest.SerializeToString,
             api__pb2.SdkCloudBackupSchedCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SchedUpdate(request,
@@ -3830,6 +3947,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3838,7 +3956,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupSchedUpdateRequest.SerializeToString,
             api__pb2.SdkCloudBackupSchedUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SchedDelete(request,
@@ -3846,6 +3964,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3854,7 +3973,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupSchedDeleteRequest.SerializeToString,
             api__pb2.SdkCloudBackupSchedDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SchedEnumerate(request,
@@ -3862,6 +3981,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3870,7 +3990,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupSchedEnumerateRequest.SerializeToString,
             api__pb2.SdkCloudBackupSchedEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Size(request,
@@ -3878,6 +3998,7 @@ class OpenStorageCloudBackup(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -3886,7 +4007,7 @@ class OpenStorageCloudBackup(object):
             api__pb2.SdkCloudBackupSizeRequest.SerializeToString,
             api__pb2.SdkCloudBackupSizeResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
 class OpenStoragePolicyStub(object):
@@ -4072,6 +4193,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4080,7 +4202,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyCreateRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyCreateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Enumerate(request,
@@ -4088,6 +4210,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4096,7 +4219,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyEnumerateRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyEnumerateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Inspect(request,
@@ -4104,6 +4227,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4112,7 +4236,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyInspectRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Update(request,
@@ -4120,6 +4244,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4128,7 +4253,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyUpdateRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyUpdateResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Delete(request,
@@ -4136,6 +4261,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4144,7 +4270,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyDeleteRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyDeleteResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def SetDefault(request,
@@ -4152,6 +4278,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4160,7 +4287,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicySetDefaultRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicySetDefaultResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def DefaultInspect(request,
@@ -4168,6 +4295,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4176,7 +4304,7 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyDefaultInspectRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyDefaultInspectResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def Release(request,
@@ -4184,6 +4312,7 @@ class OpenStoragePolicy(object):
             options=(),
             channel_credentials=None,
             call_credentials=None,
+            insecure=False,
             compression=None,
             wait_for_ready=None,
             timeout=None,
@@ -4192,4 +4321,4 @@ class OpenStoragePolicy(object):
             api__pb2.SdkOpenStoragePolicyReleaseRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyReleaseResponse.FromString,
             options, channel_credentials,
-            call_credentials, compression, wait_for_ready, timeout, metadata)
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
