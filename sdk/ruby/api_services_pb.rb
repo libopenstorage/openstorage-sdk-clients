@@ -355,6 +355,31 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageJob
+      # OpenstorageJob is a service that provides a common set of APIs for services
+      # that use the asynchronous job framework
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageJob'
+
+        # UpdateJobState updates an existing job
+        # Only acceptable values are
+        # JobState_PAUSED - acceptable only from running state
+        # JobState_CANCELLED - acceptable only from running/pause state
+        # JobState_RUNNING - acceptable only from pause state
+        rpc :UpdateJobState, SdkUpdateJobRequest, SdkUpdateJobResponse
+        # GetJobStatus gets the status of a job
+        rpc :GetJobStatus, SdkGetJobStatusRequest, SdkGetJobStatusResponse
+        # EnumerateJobs returns all the jobs currently known to the system
+        rpc :EnumerateJobs, SdkEnumerateJobsRequest, SdkEnumerateJobsResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageNode
       # OpenStorageNode is a service used to manage nodes in the cluster
       class Service
@@ -376,6 +401,16 @@ module Openstorage
         rpc :EnumerateWithFilters, SdkNodeEnumerateWithFiltersRequest, SdkNodeEnumerateWithFiltersResponse
         # Returns capacity usage of all volumes/snaps for a give node
         rpc :VolumeUsageByNode, SdkNodeVolumeUsageByNodeRequest, SdkNodeVolumeUsageByNodeResponse
+        # DrainAttachments creates a task to drain volume attachments
+        # from the provided node in the cluster.
+        rpc :DrainAttachments, SdkNodeDrainAttachmentsRequest, SdkJobResponse
+        # CordonAttachments disables any new volume attachments
+        # from the provided node in the cluster. Existing volume attachments
+        # will stay on the node.
+        rpc :CordonAttachments, SdkNodeCordonAttachmentsRequest, SdkNodeCordonAttachmentsResponse
+        # UncordonAttachments re-enables volume attachments
+        # on the provided node in the cluster.
+        rpc :UncordonAttachments, SdkNodeUncordonAttachmentsRequest, SdkNodeUncordonAttachmentsResponse
       end
 
       Stub = Service.rpc_stub_class
@@ -608,6 +643,8 @@ module Openstorage
         rpc :Delete, SdkCredentialDeleteRequest, SdkCredentialDeleteResponse
         # Validate is used to validate credentials
         rpc :Validate, SdkCredentialValidateRequest, SdkCredentialValidateResponse
+        # DeleteReferences is used to remove references to credentials
+        rpc :DeleteReferences, SdkCredentialDeleteReferencesRequest, SdkCredentialDeleteReferencesResponse
       end
 
       Stub = Service.rpc_stub_class

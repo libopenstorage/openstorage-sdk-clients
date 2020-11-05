@@ -48,6 +48,7 @@ goog.exportSymbol('proto.openstorage.api.ClusterPairTokenGetResponse', null, glo
 goog.exportSymbol('proto.openstorage.api.ClusterPairsEnumerateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.ClusterResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.CosType', null, global);
+goog.exportSymbol('proto.openstorage.api.DrainAttachmentsSummary', null, global);
 goog.exportSymbol('proto.openstorage.api.DriverType', null, global);
 goog.exportSymbol('proto.openstorage.api.EnforcementType', null, global);
 goog.exportSymbol('proto.openstorage.api.ExportProtocol', null, global);
@@ -70,11 +71,21 @@ goog.exportSymbol('proto.openstorage.api.GroupSnapCreateResponse', null, global)
 goog.exportSymbol('proto.openstorage.api.HardwareType', null, global);
 goog.exportSymbol('proto.openstorage.api.IoProfile', null, global);
 goog.exportSymbol('proto.openstorage.api.IoStrategy', null, global);
+goog.exportSymbol('proto.openstorage.api.Job', null, global);
+goog.exportSymbol('proto.openstorage.api.Job.JobCase', null, global);
+goog.exportSymbol('proto.openstorage.api.JobAudit', null, global);
+goog.exportSymbol('proto.openstorage.api.JobState', null, global);
+goog.exportSymbol('proto.openstorage.api.JobSummary', null, global);
+goog.exportSymbol('proto.openstorage.api.JobType', null, global);
+goog.exportSymbol('proto.openstorage.api.JobWorkSummary', null, global);
+goog.exportSymbol('proto.openstorage.api.JobWorkSummary.SummaryCase', null, global);
 goog.exportSymbol('proto.openstorage.api.LabelSelectorRequirement', null, global);
 goog.exportSymbol('proto.openstorage.api.LabelSelectorRequirement.Operator', null, global);
 goog.exportSymbol('proto.openstorage.api.LocateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.MountOptions', null, global);
 goog.exportSymbol('proto.openstorage.api.NFSProxySpec', null, global);
+goog.exportSymbol('proto.openstorage.api.NodeDrainAttachmentOptions', null, global);
+goog.exportSymbol('proto.openstorage.api.NodeDrainAttachmentsJob', null, global);
 goog.exportSymbol('proto.openstorage.api.ObjectstoreInfo', null, global);
 goog.exportSymbol('proto.openstorage.api.OperationFlags', null, global);
 goog.exportSymbol('proto.openstorage.api.Ownership', null, global);
@@ -186,6 +197,8 @@ goog.exportSymbol('proto.openstorage.api.SdkClusterPairResetTokenResponse', null
 goog.exportSymbol('proto.openstorage.api.SdkCredentialCreateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialCreateRequest.CredentialTypeCase', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialCreateResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkCredentialDeleteReferencesRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkCredentialDeleteReferencesResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialDeleteRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialDeleteResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialEnumerateRequest', null, global);
@@ -195,6 +208,8 @@ goog.exportSymbol('proto.openstorage.api.SdkCredentialInspectResponse', null, gl
 goog.exportSymbol('proto.openstorage.api.SdkCredentialInspectResponse.CredentialTypeCase', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialValidateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkCredentialValidateResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkEnumerateJobsRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkEnumerateJobsResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkEnumerateRebalanceJobsRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkEnumerateRebalanceJobsResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemCheckStartRequest', null, global);
@@ -209,6 +224,8 @@ goog.exportSymbol('proto.openstorage.api.SdkFilesystemTrimStatusRequest', null, 
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemTrimStatusResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemTrimStopRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkFilesystemTrimStopResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkGetJobStatusRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkGetJobStatusResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkGetRebalanceJobStatusRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkGetRebalanceJobStatusResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkGoogleCredentialRequest', null, global);
@@ -217,6 +234,10 @@ goog.exportSymbol('proto.openstorage.api.SdkIdentityCapabilitiesRequest', null, 
 goog.exportSymbol('proto.openstorage.api.SdkIdentityCapabilitiesResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkIdentityVersionRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkIdentityVersionResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkJobResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkNodeCordonAttachmentsRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkNodeCordonAttachmentsResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkNodeDrainAttachmentsRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeEnumerateRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeEnumerateResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeEnumerateWithFiltersRequest', null, global);
@@ -225,6 +246,8 @@ goog.exportSymbol('proto.openstorage.api.SdkNodeInspectCurrentRequest', null, gl
 goog.exportSymbol('proto.openstorage.api.SdkNodeInspectCurrentResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeInspectRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeInspectResponse', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkNodeUncordonAttachmentsRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkNodeUncordonAttachmentsResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeVolumeUsageByNodeRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkNodeVolumeUsageByNodeResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkObjectstoreCreateRequest', null, global);
@@ -295,6 +318,8 @@ goog.exportSymbol('proto.openstorage.api.SdkStoragePoolResizeResponse', null, gl
 goog.exportSymbol('proto.openstorage.api.SdkStorageRebalanceRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkStorageRebalanceResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkTimeWeekday', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkUpdateJobRequest', null, global);
+goog.exportSymbol('proto.openstorage.api.SdkUpdateJobResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkUpdateRebalanceJobRequest', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkUpdateRebalanceJobResponse', null, global);
 goog.exportSymbol('proto.openstorage.api.SdkVersion', null, global);
@@ -2865,6 +2890,48 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkCredentialDeleteReferencesRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkCredentialDeleteReferencesRequest.displayName = 'proto.openstorage.api.SdkCredentialDeleteReferencesRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkCredentialDeleteReferencesResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkCredentialDeleteReferencesResponse.displayName = 'proto.openstorage.api.SdkCredentialDeleteReferencesResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.openstorage.api.SdkVolumeAttachOptions = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -3988,6 +4055,405 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.openstorage.api.SdkNodeInspectRequest.displayName = 'proto.openstorage.api.SdkNodeInspectRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.Job = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.openstorage.api.Job.oneofGroups_);
+};
+goog.inherits(proto.openstorage.api.Job, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.Job.displayName = 'proto.openstorage.api.Job';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkJobResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkJobResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkJobResponse.displayName = 'proto.openstorage.api.SdkJobResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.NodeDrainAttachmentOptions, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.NodeDrainAttachmentOptions.displayName = 'proto.openstorage.api.NodeDrainAttachmentOptions';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkNodeDrainAttachmentsRequest.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.SdkNodeDrainAttachmentsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkNodeDrainAttachmentsRequest.displayName = 'proto.openstorage.api.SdkNodeDrainAttachmentsRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.NodeDrainAttachmentsJob, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.NodeDrainAttachmentsJob.displayName = 'proto.openstorage.api.NodeDrainAttachmentsJob';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkEnumerateJobsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkEnumerateJobsRequest.displayName = 'proto.openstorage.api.SdkEnumerateJobsRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.SdkEnumerateJobsResponse.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.SdkEnumerateJobsResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkEnumerateJobsResponse.displayName = 'proto.openstorage.api.SdkEnumerateJobsResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkUpdateJobRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkUpdateJobRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkUpdateJobRequest.displayName = 'proto.openstorage.api.SdkUpdateJobRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkUpdateJobResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkUpdateJobResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkUpdateJobResponse.displayName = 'proto.openstorage.api.SdkUpdateJobResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkGetJobStatusRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkGetJobStatusRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkGetJobStatusRequest.displayName = 'proto.openstorage.api.SdkGetJobStatusRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.JobAudit = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.JobAudit.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.JobAudit, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.JobAudit.displayName = 'proto.openstorage.api.JobAudit';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.JobWorkSummary = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.openstorage.api.JobWorkSummary.oneofGroups_);
+};
+goog.inherits(proto.openstorage.api.JobWorkSummary, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.JobWorkSummary.displayName = 'proto.openstorage.api.JobWorkSummary';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.JobSummary = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.openstorage.api.JobSummary.repeatedFields_, null);
+};
+goog.inherits(proto.openstorage.api.JobSummary, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.JobSummary.displayName = 'proto.openstorage.api.JobSummary';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkGetJobStatusResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkGetJobStatusResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkGetJobStatusResponse.displayName = 'proto.openstorage.api.SdkGetJobStatusResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.DrainAttachmentsSummary = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.DrainAttachmentsSummary, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.DrainAttachmentsSummary.displayName = 'proto.openstorage.api.DrainAttachmentsSummary';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkNodeCordonAttachmentsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkNodeCordonAttachmentsRequest.displayName = 'proto.openstorage.api.SdkNodeCordonAttachmentsRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkNodeCordonAttachmentsResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkNodeCordonAttachmentsResponse.displayName = 'proto.openstorage.api.SdkNodeCordonAttachmentsResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkNodeUncordonAttachmentsRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.displayName = 'proto.openstorage.api.SdkNodeUncordonAttachmentsRequest';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.openstorage.api.SdkNodeUncordonAttachmentsResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.displayName = 'proto.openstorage.api.SdkNodeUncordonAttachmentsResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -35155,6 +35621,237 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkCredentialDeleteReferencesRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkCredentialDeleteReferencesRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    credentialId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkCredentialDeleteReferencesRequest}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkCredentialDeleteReferencesRequest;
+  return proto.openstorage.api.SdkCredentialDeleteReferencesRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkCredentialDeleteReferencesRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkCredentialDeleteReferencesRequest}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCredentialId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkCredentialDeleteReferencesRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkCredentialDeleteReferencesRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getCredentialId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string credential_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.prototype.getCredentialId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkCredentialDeleteReferencesRequest} returns this
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesRequest.prototype.setCredentialId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkCredentialDeleteReferencesResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkCredentialDeleteReferencesResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkCredentialDeleteReferencesResponse}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkCredentialDeleteReferencesResponse;
+  return proto.openstorage.api.SdkCredentialDeleteReferencesResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkCredentialDeleteReferencesResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkCredentialDeleteReferencesResponse}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkCredentialDeleteReferencesResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkCredentialDeleteReferencesResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkCredentialDeleteReferencesResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
 proto.openstorage.api.SdkVolumeAttachOptions.prototype.toObject = function(opt_includeInstance) {
   return proto.openstorage.api.SdkVolumeAttachOptions.toObject(opt_includeInstance, this);
 };
@@ -43524,6 +44221,3370 @@ proto.openstorage.api.SdkNodeInspectRequest.prototype.getNodeId = function() {
  */
 proto.openstorage.api.SdkNodeInspectRequest.prototype.setNodeId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.openstorage.api.Job.oneofGroups_ = [[4]];
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.Job.JobCase = {
+  JOB_NOT_SET: 0,
+  DRAIN_ATTACHMENTS: 4
+};
+
+/**
+ * @return {proto.openstorage.api.Job.JobCase}
+ */
+proto.openstorage.api.Job.prototype.getJobCase = function() {
+  return /** @type {proto.openstorage.api.Job.JobCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.Job.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.Job.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.Job.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.Job} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.Job.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    state: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    type: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    drainAttachments: (f = msg.getDrainAttachments()) && proto.openstorage.api.NodeDrainAttachmentsJob.toObject(includeInstance, f),
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastUpdateTime: (f = msg.getLastUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.Job}
+ */
+proto.openstorage.api.Job.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.Job;
+  return proto.openstorage.api.Job.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.Job} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.Job}
+ */
+proto.openstorage.api.Job.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.openstorage.api.JobState} */ (reader.readEnum());
+      msg.setState(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 4:
+      var value = new proto.openstorage.api.NodeDrainAttachmentsJob;
+      reader.readMessage(value,proto.openstorage.api.NodeDrainAttachmentsJob.deserializeBinaryFromReader);
+      msg.setDrainAttachments(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreateTime(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastUpdateTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.Job.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.Job.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.Job} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.Job.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getDrainAttachments();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.openstorage.api.NodeDrainAttachmentsJob.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateTime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastUpdateTime();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.Job.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.Job} returns this
+ */
+proto.openstorage.api.Job.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional JobState state = 2;
+ * @return {!proto.openstorage.api.JobState}
+ */
+proto.openstorage.api.Job.prototype.getState = function() {
+  return /** @type {!proto.openstorage.api.JobState} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobState} value
+ * @return {!proto.openstorage.api.Job} returns this
+ */
+proto.openstorage.api.Job.prototype.setState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional JobType type = 3;
+ * @return {!proto.openstorage.api.JobType}
+ */
+proto.openstorage.api.Job.prototype.getType = function() {
+  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobType} value
+ * @return {!proto.openstorage.api.Job} returns this
+ */
+proto.openstorage.api.Job.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional NodeDrainAttachmentsJob drain_attachments = 4;
+ * @return {?proto.openstorage.api.NodeDrainAttachmentsJob}
+ */
+proto.openstorage.api.Job.prototype.getDrainAttachments = function() {
+  return /** @type{?proto.openstorage.api.NodeDrainAttachmentsJob} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.NodeDrainAttachmentsJob, 4));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.NodeDrainAttachmentsJob|undefined} value
+ * @return {!proto.openstorage.api.Job} returns this
+*/
+proto.openstorage.api.Job.prototype.setDrainAttachments = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 4, proto.openstorage.api.Job.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.Job} returns this
+ */
+proto.openstorage.api.Job.prototype.clearDrainAttachments = function() {
+  return this.setDrainAttachments(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.Job.prototype.hasDrainAttachments = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp create_time = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.Job.prototype.getCreateTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.openstorage.api.Job} returns this
+*/
+proto.openstorage.api.Job.prototype.setCreateTime = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.Job} returns this
+ */
+proto.openstorage.api.Job.prototype.clearCreateTime = function() {
+  return this.setCreateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.Job.prototype.hasCreateTime = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_update_time = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.Job.prototype.getLastUpdateTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.openstorage.api.Job} returns this
+*/
+proto.openstorage.api.Job.prototype.setLastUpdateTime = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.Job} returns this
+ */
+proto.openstorage.api.Job.prototype.clearLastUpdateTime = function() {
+  return this.setLastUpdateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.Job.prototype.hasLastUpdateTime = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkJobResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkJobResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkJobResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkJobResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    job: (f = msg.getJob()) && proto.openstorage.api.Job.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkJobResponse}
+ */
+proto.openstorage.api.SdkJobResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkJobResponse;
+  return proto.openstorage.api.SdkJobResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkJobResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkJobResponse}
+ */
+proto.openstorage.api.SdkJobResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.openstorage.api.Job;
+      reader.readMessage(value,proto.openstorage.api.Job.deserializeBinaryFromReader);
+      msg.setJob(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkJobResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkJobResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkJobResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkJobResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getJob();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.openstorage.api.Job.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional Job job = 1;
+ * @return {?proto.openstorage.api.Job}
+ */
+proto.openstorage.api.SdkJobResponse.prototype.getJob = function() {
+  return /** @type{?proto.openstorage.api.Job} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Job, 1));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.Job|undefined} value
+ * @return {!proto.openstorage.api.SdkJobResponse} returns this
+*/
+proto.openstorage.api.SdkJobResponse.prototype.setJob = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.SdkJobResponse} returns this
+ */
+proto.openstorage.api.SdkJobResponse.prototype.clearJob = function() {
+  return this.setJob(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkJobResponse.prototype.hasJob = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.NodeDrainAttachmentOptions.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.NodeDrainAttachmentOptions} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentOptions}
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.NodeDrainAttachmentOptions;
+  return proto.openstorage.api.NodeDrainAttachmentOptions.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.NodeDrainAttachmentOptions} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentOptions}
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.NodeDrainAttachmentOptions.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.NodeDrainAttachmentOptions} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.NodeDrainAttachmentOptions.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.repeatedFields_ = [2];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkNodeDrainAttachmentsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    nodeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    selectorList: jspb.Message.toObjectList(msg.getSelectorList(),
+    proto.openstorage.api.LabelSelectorRequirement.toObject, includeInstance),
+    onlySharedv4: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    issuer: jspb.Message.getFieldWithDefault(msg, 4, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkNodeDrainAttachmentsRequest;
+  return proto.openstorage.api.SdkNodeDrainAttachmentsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNodeId(value);
+      break;
+    case 2:
+      var value = new proto.openstorage.api.LabelSelectorRequirement;
+      reader.readMessage(value,proto.openstorage.api.LabelSelectorRequirement.deserializeBinaryFromReader);
+      msg.addSelector(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOnlySharedv4(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIssuer(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkNodeDrainAttachmentsRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getNodeId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getSelectorList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      2,
+      f,
+      proto.openstorage.api.LabelSelectorRequirement.serializeBinaryToWriter
+    );
+  }
+  f = message.getOnlySharedv4();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+  f = message.getIssuer();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string node_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.getNodeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} returns this
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.setNodeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated LabelSelectorRequirement selector = 2;
+ * @return {!Array<!proto.openstorage.api.LabelSelectorRequirement>}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.getSelectorList = function() {
+  return /** @type{!Array<!proto.openstorage.api.LabelSelectorRequirement>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.LabelSelectorRequirement, 2));
+};
+
+
+/**
+ * @param {!Array<!proto.openstorage.api.LabelSelectorRequirement>} value
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} returns this
+*/
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.setSelectorList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.LabelSelectorRequirement=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.LabelSelectorRequirement}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.addSelector = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.openstorage.api.LabelSelectorRequirement, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} returns this
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.clearSelectorList = function() {
+  return this.setSelectorList([]);
+};
+
+
+/**
+ * optional bool only_sharedv4 = 3;
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.getOnlySharedv4 = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} returns this
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.setOnlySharedv4 = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional string issuer = 4;
+ * @return {string}
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.getIssuer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkNodeDrainAttachmentsRequest} returns this
+ */
+proto.openstorage.api.SdkNodeDrainAttachmentsRequest.prototype.setIssuer = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.NodeDrainAttachmentsJob.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.NodeDrainAttachmentsJob} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    nodeId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    status: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    issuer: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    parameters: (f = msg.getParameters()) && proto.openstorage.api.SdkNodeDrainAttachmentsRequest.toObject(includeInstance, f),
+    createTime: (f = msg.getCreateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    lastUpdateTime: (f = msg.getLastUpdateTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.NodeDrainAttachmentsJob;
+  return proto.openstorage.api.NodeDrainAttachmentsJob.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.NodeDrainAttachmentsJob} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNodeId(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setStatus(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIssuer(value);
+      break;
+    case 4:
+      var value = new proto.openstorage.api.SdkNodeDrainAttachmentsRequest;
+      reader.readMessage(value,proto.openstorage.api.SdkNodeDrainAttachmentsRequest.deserializeBinaryFromReader);
+      msg.setParameters(value);
+      break;
+    case 5:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setCreateTime(value);
+      break;
+    case 6:
+      var value = new google_protobuf_timestamp_pb.Timestamp;
+      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
+      msg.setLastUpdateTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.NodeDrainAttachmentsJob.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.NodeDrainAttachmentsJob} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getNodeId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
+  f = message.getIssuer();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getParameters();
+  if (f != null) {
+    writer.writeMessage(
+      4,
+      f,
+      proto.openstorage.api.SdkNodeDrainAttachmentsRequest.serializeBinaryToWriter
+    );
+  }
+  f = message.getCreateTime();
+  if (f != null) {
+    writer.writeMessage(
+      5,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getLastUpdateTime();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string node_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.getNodeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.setNodeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string Status = 2;
+ * @return {string}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.getStatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.setStatus = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string issuer = 3;
+ * @return {string}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.getIssuer = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.setIssuer = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional SdkNodeDrainAttachmentsRequest parameters = 4;
+ * @return {?proto.openstorage.api.SdkNodeDrainAttachmentsRequest}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.getParameters = function() {
+  return /** @type{?proto.openstorage.api.SdkNodeDrainAttachmentsRequest} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.SdkNodeDrainAttachmentsRequest, 4));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.SdkNodeDrainAttachmentsRequest|undefined} value
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+*/
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.setParameters = function(value) {
+  return jspb.Message.setWrapperField(this, 4, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.clearParameters = function() {
+  return this.setParameters(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.hasParameters = function() {
+  return jspb.Message.getField(this, 4) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp create_time = 5;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.getCreateTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 5));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+*/
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.setCreateTime = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.clearCreateTime = function() {
+  return this.setCreateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.hasCreateTime = function() {
+  return jspb.Message.getField(this, 5) != null;
+};
+
+
+/**
+ * optional google.protobuf.Timestamp last_update_time = 6;
+ * @return {?proto.google.protobuf.Timestamp}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.getLastUpdateTime = function() {
+  return /** @type{?proto.google.protobuf.Timestamp} */ (
+    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 6));
+};
+
+
+/**
+ * @param {?proto.google.protobuf.Timestamp|undefined} value
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+*/
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.setLastUpdateTime = function(value) {
+  return jspb.Message.setWrapperField(this, 6, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.NodeDrainAttachmentsJob} returns this
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.clearLastUpdateTime = function() {
+  return this.setLastUpdateTime(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.NodeDrainAttachmentsJob.prototype.hasLastUpdateTime = function() {
+  return jspb.Message.getField(this, 6) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkEnumerateJobsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkEnumerateJobsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkEnumerateJobsRequest}
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkEnumerateJobsRequest;
+  return proto.openstorage.api.SdkEnumerateJobsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkEnumerateJobsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkEnumerateJobsRequest}
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkEnumerateJobsRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkEnumerateJobsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional JobType type = 1;
+ * @return {!proto.openstorage.api.JobType}
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.prototype.getType = function() {
+  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobType} value
+ * @return {!proto.openstorage.api.SdkEnumerateJobsRequest} returns this
+ */
+proto.openstorage.api.SdkEnumerateJobsRequest.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkEnumerateJobsResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkEnumerateJobsResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    jobsList: jspb.Message.toObjectList(msg.getJobsList(),
+    proto.openstorage.api.Job.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkEnumerateJobsResponse}
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkEnumerateJobsResponse;
+  return proto.openstorage.api.SdkEnumerateJobsResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkEnumerateJobsResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkEnumerateJobsResponse}
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.openstorage.api.Job;
+      reader.readMessage(value,proto.openstorage.api.Job.deserializeBinaryFromReader);
+      msg.addJobs(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkEnumerateJobsResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkEnumerateJobsResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getJobsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.openstorage.api.Job.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated Job jobs = 1;
+ * @return {!Array<!proto.openstorage.api.Job>}
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.prototype.getJobsList = function() {
+  return /** @type{!Array<!proto.openstorage.api.Job>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.Job, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.openstorage.api.Job>} value
+ * @return {!proto.openstorage.api.SdkEnumerateJobsResponse} returns this
+*/
+proto.openstorage.api.SdkEnumerateJobsResponse.prototype.setJobsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.Job=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.Job}
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.prototype.addJobs = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.openstorage.api.Job, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.openstorage.api.SdkEnumerateJobsResponse} returns this
+ */
+proto.openstorage.api.SdkEnumerateJobsResponse.prototype.clearJobsList = function() {
+  return this.setJobsList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkUpdateJobRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkUpdateJobRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkUpdateJobRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    state: jspb.Message.getFieldWithDefault(msg, 3, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkUpdateJobRequest}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkUpdateJobRequest;
+  return proto.openstorage.api.SdkUpdateJobRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkUpdateJobRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkUpdateJobRequest}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.openstorage.api.JobState} */ (reader.readEnum());
+      msg.setState(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkUpdateJobRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkUpdateJobRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkUpdateJobRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+  f = message.getState();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkUpdateJobRequest} returns this
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional JobType type = 2;
+ * @return {!proto.openstorage.api.JobType}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.getType = function() {
+  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobType} value
+ * @return {!proto.openstorage.api.SdkUpdateJobRequest} returns this
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional JobState state = 3;
+ * @return {!proto.openstorage.api.JobState}
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.getState = function() {
+  return /** @type {!proto.openstorage.api.JobState} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobState} value
+ * @return {!proto.openstorage.api.SdkUpdateJobRequest} returns this
+ */
+proto.openstorage.api.SdkUpdateJobRequest.prototype.setState = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkUpdateJobResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkUpdateJobResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkUpdateJobResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkUpdateJobResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkUpdateJobResponse}
+ */
+proto.openstorage.api.SdkUpdateJobResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkUpdateJobResponse;
+  return proto.openstorage.api.SdkUpdateJobResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkUpdateJobResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkUpdateJobResponse}
+ */
+proto.openstorage.api.SdkUpdateJobResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkUpdateJobResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkUpdateJobResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkUpdateJobResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkUpdateJobResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkGetJobStatusRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkGetJobStatusRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 2, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkGetJobStatusRequest}
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkGetJobStatusRequest;
+  return proto.openstorage.api.SdkGetJobStatusRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkGetJobStatusRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkGetJobStatusRequest}
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkGetJobStatusRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkGetJobStatusRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkGetJobStatusRequest} returns this
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional JobType type = 2;
+ * @return {!proto.openstorage.api.JobType}
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.prototype.getType = function() {
+  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobType} value
+ * @return {!proto.openstorage.api.SdkGetJobStatusRequest} returns this
+ */
+proto.openstorage.api.SdkGetJobStatusRequest.prototype.setType = function(value) {
+  return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.JobAudit.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.JobAudit.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.JobAudit.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.JobAudit} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.JobAudit.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    summaryList: jspb.Message.toObjectList(msg.getSummaryList(),
+    proto.openstorage.api.JobWorkSummary.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.JobAudit}
+ */
+proto.openstorage.api.JobAudit.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.JobAudit;
+  return proto.openstorage.api.JobAudit.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.JobAudit} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.JobAudit}
+ */
+proto.openstorage.api.JobAudit.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.openstorage.api.JobWorkSummary;
+      reader.readMessage(value,proto.openstorage.api.JobWorkSummary.deserializeBinaryFromReader);
+      msg.addSummary(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.JobAudit.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.JobAudit.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.JobAudit} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.JobAudit.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getSummaryList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.openstorage.api.JobWorkSummary.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated JobWorkSummary summary = 1;
+ * @return {!Array<!proto.openstorage.api.JobWorkSummary>}
+ */
+proto.openstorage.api.JobAudit.prototype.getSummaryList = function() {
+  return /** @type{!Array<!proto.openstorage.api.JobWorkSummary>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.JobWorkSummary, 1));
+};
+
+
+/**
+ * @param {!Array<!proto.openstorage.api.JobWorkSummary>} value
+ * @return {!proto.openstorage.api.JobAudit} returns this
+*/
+proto.openstorage.api.JobAudit.prototype.setSummaryList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobWorkSummary=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.JobWorkSummary}
+ */
+proto.openstorage.api.JobAudit.prototype.addSummary = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.openstorage.api.JobWorkSummary, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.openstorage.api.JobAudit} returns this
+ */
+proto.openstorage.api.JobAudit.prototype.clearSummaryList = function() {
+  return this.setSummaryList([]);
+};
+
+
+
+/**
+ * Oneof group definitions for this message. Each group defines the field
+ * numbers belonging to that group. When of these fields' value is set, all
+ * other fields in the group are cleared. During deserialization, if multiple
+ * fields are encountered for a group, only the last value seen will be kept.
+ * @private {!Array<!Array<number>>}
+ * @const
+ */
+proto.openstorage.api.JobWorkSummary.oneofGroups_ = [[3]];
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.JobWorkSummary.SummaryCase = {
+  SUMMARY_NOT_SET: 0,
+  DRAIN_ATTACHMENTS_SUMMARY: 3
+};
+
+/**
+ * @return {proto.openstorage.api.JobWorkSummary.SummaryCase}
+ */
+proto.openstorage.api.JobWorkSummary.prototype.getSummaryCase = function() {
+  return /** @type {proto.openstorage.api.JobWorkSummary.SummaryCase} */(jspb.Message.computeOneofCase(this, proto.openstorage.api.JobWorkSummary.oneofGroups_[0]));
+};
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.JobWorkSummary.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.JobWorkSummary.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.JobWorkSummary} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.JobWorkSummary.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    drainAttachmentsSummary: (f = msg.getDrainAttachmentsSummary()) && proto.openstorage.api.DrainAttachmentsSummary.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.JobWorkSummary}
+ */
+proto.openstorage.api.JobWorkSummary.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.JobWorkSummary;
+  return proto.openstorage.api.JobWorkSummary.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.JobWorkSummary} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.JobWorkSummary}
+ */
+proto.openstorage.api.JobWorkSummary.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 3:
+      var value = new proto.openstorage.api.DrainAttachmentsSummary;
+      reader.readMessage(value,proto.openstorage.api.DrainAttachmentsSummary.deserializeBinaryFromReader);
+      msg.setDrainAttachmentsSummary(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.JobWorkSummary.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.JobWorkSummary.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.JobWorkSummary} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.JobWorkSummary.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getDrainAttachmentsSummary();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.openstorage.api.DrainAttachmentsSummary.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional DrainAttachmentsSummary drain_attachments_summary = 3;
+ * @return {?proto.openstorage.api.DrainAttachmentsSummary}
+ */
+proto.openstorage.api.JobWorkSummary.prototype.getDrainAttachmentsSummary = function() {
+  return /** @type{?proto.openstorage.api.DrainAttachmentsSummary} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.DrainAttachmentsSummary, 3));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.DrainAttachmentsSummary|undefined} value
+ * @return {!proto.openstorage.api.JobWorkSummary} returns this
+*/
+proto.openstorage.api.JobWorkSummary.prototype.setDrainAttachmentsSummary = function(value) {
+  return jspb.Message.setOneofWrapperField(this, 3, proto.openstorage.api.JobWorkSummary.oneofGroups_[0], value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.JobWorkSummary} returns this
+ */
+proto.openstorage.api.JobWorkSummary.prototype.clearDrainAttachmentsSummary = function() {
+  return this.setDrainAttachmentsSummary(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.JobWorkSummary.prototype.hasDrainAttachmentsSummary = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.openstorage.api.JobSummary.repeatedFields_ = [3];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.JobSummary.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.JobSummary.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.JobSummary} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.JobSummary.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    totalRuntimeSeconds: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    workSummariesList: jspb.Message.toObjectList(msg.getWorkSummariesList(),
+    proto.openstorage.api.JobWorkSummary.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.JobSummary}
+ */
+proto.openstorage.api.JobSummary.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.JobSummary;
+  return proto.openstorage.api.JobSummary.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.JobSummary} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.JobSummary}
+ */
+proto.openstorage.api.JobSummary.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setId(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setTotalRuntimeSeconds(value);
+      break;
+    case 3:
+      var value = new proto.openstorage.api.JobWorkSummary;
+      reader.readMessage(value,proto.openstorage.api.JobWorkSummary.deserializeBinaryFromReader);
+      msg.addWorkSummaries(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.JobSummary.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.JobSummary.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.JobSummary} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.JobSummary.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getTotalRuntimeSeconds();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getWorkSummariesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      3,
+      f,
+      proto.openstorage.api.JobWorkSummary.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional string id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.JobSummary.prototype.getId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.JobSummary} returns this
+ */
+proto.openstorage.api.JobSummary.prototype.setId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 total_runtime_seconds = 2;
+ * @return {number}
+ */
+proto.openstorage.api.JobSummary.prototype.getTotalRuntimeSeconds = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.openstorage.api.JobSummary} returns this
+ */
+proto.openstorage.api.JobSummary.prototype.setTotalRuntimeSeconds = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * repeated JobWorkSummary work_summaries = 3;
+ * @return {!Array<!proto.openstorage.api.JobWorkSummary>}
+ */
+proto.openstorage.api.JobSummary.prototype.getWorkSummariesList = function() {
+  return /** @type{!Array<!proto.openstorage.api.JobWorkSummary>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.openstorage.api.JobWorkSummary, 3));
+};
+
+
+/**
+ * @param {!Array<!proto.openstorage.api.JobWorkSummary>} value
+ * @return {!proto.openstorage.api.JobSummary} returns this
+*/
+proto.openstorage.api.JobSummary.prototype.setWorkSummariesList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 3, value);
+};
+
+
+/**
+ * @param {!proto.openstorage.api.JobWorkSummary=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.openstorage.api.JobWorkSummary}
+ */
+proto.openstorage.api.JobSummary.prototype.addWorkSummaries = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 3, opt_value, proto.openstorage.api.JobWorkSummary, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.openstorage.api.JobSummary} returns this
+ */
+proto.openstorage.api.JobSummary.prototype.clearWorkSummariesList = function() {
+  return this.setWorkSummariesList([]);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkGetJobStatusResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkGetJobStatusResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    job: (f = msg.getJob()) && proto.openstorage.api.Job.toObject(includeInstance, f),
+    summary: (f = msg.getSummary()) && proto.openstorage.api.JobSummary.toObject(includeInstance, f)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkGetJobStatusResponse}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkGetJobStatusResponse;
+  return proto.openstorage.api.SdkGetJobStatusResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkGetJobStatusResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkGetJobStatusResponse}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.openstorage.api.Job;
+      reader.readMessage(value,proto.openstorage.api.Job.deserializeBinaryFromReader);
+      msg.setJob(value);
+      break;
+    case 2:
+      var value = new proto.openstorage.api.JobSummary;
+      reader.readMessage(value,proto.openstorage.api.JobSummary.deserializeBinaryFromReader);
+      msg.setSummary(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkGetJobStatusResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkGetJobStatusResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getJob();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      proto.openstorage.api.Job.serializeBinaryToWriter
+    );
+  }
+  f = message.getSummary();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.openstorage.api.JobSummary.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional Job job = 1;
+ * @return {?proto.openstorage.api.Job}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.getJob = function() {
+  return /** @type{?proto.openstorage.api.Job} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.Job, 1));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.Job|undefined} value
+ * @return {!proto.openstorage.api.SdkGetJobStatusResponse} returns this
+*/
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.setJob = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.SdkGetJobStatusResponse} returns this
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.clearJob = function() {
+  return this.setJob(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.hasJob = function() {
+  return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional JobSummary summary = 2;
+ * @return {?proto.openstorage.api.JobSummary}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.getSummary = function() {
+  return /** @type{?proto.openstorage.api.JobSummary} */ (
+    jspb.Message.getWrapperField(this, proto.openstorage.api.JobSummary, 2));
+};
+
+
+/**
+ * @param {?proto.openstorage.api.JobSummary|undefined} value
+ * @return {!proto.openstorage.api.SdkGetJobStatusResponse} returns this
+*/
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.setSummary = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.openstorage.api.SdkGetJobStatusResponse} returns this
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.clearSummary = function() {
+  return this.setSummary(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.openstorage.api.SdkGetJobStatusResponse.prototype.hasSummary = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.DrainAttachmentsSummary.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.DrainAttachmentsSummary} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.DrainAttachmentsSummary.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    numVolumesTotal: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    numVolumesDone: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    numVolumesPending: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.DrainAttachmentsSummary}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.DrainAttachmentsSummary;
+  return proto.openstorage.api.DrainAttachmentsSummary.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.DrainAttachmentsSummary} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.DrainAttachmentsSummary}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumVolumesTotal(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumVolumesDone(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setNumVolumesPending(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.DrainAttachmentsSummary.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.DrainAttachmentsSummary} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.DrainAttachmentsSummary.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getNumVolumesTotal();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getNumVolumesDone();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
+    );
+  }
+  f = message.getNumVolumesPending();
+  if (f !== 0) {
+    writer.writeUint64(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional uint64 num_volumes_total = 2;
+ * @return {number}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.getNumVolumesTotal = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.openstorage.api.DrainAttachmentsSummary} returns this
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.setNumVolumesTotal = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint64 num_volumes_done = 3;
+ * @return {number}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.getNumVolumesDone = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.openstorage.api.DrainAttachmentsSummary} returns this
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.setNumVolumesDone = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional uint64 num_volumes_pending = 4;
+ * @return {number}
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.getNumVolumesPending = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.openstorage.api.DrainAttachmentsSummary} returns this
+ */
+proto.openstorage.api.DrainAttachmentsSummary.prototype.setNumVolumesPending = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkNodeCordonAttachmentsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkNodeCordonAttachmentsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    nodeId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkNodeCordonAttachmentsRequest}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkNodeCordonAttachmentsRequest;
+  return proto.openstorage.api.SdkNodeCordonAttachmentsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkNodeCordonAttachmentsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkNodeCordonAttachmentsRequest}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNodeId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkNodeCordonAttachmentsRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkNodeCordonAttachmentsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getNodeId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string node_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.prototype.getNodeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkNodeCordonAttachmentsRequest} returns this
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsRequest.prototype.setNodeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkNodeCordonAttachmentsResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkNodeCordonAttachmentsResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkNodeCordonAttachmentsResponse}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkNodeCordonAttachmentsResponse;
+  return proto.openstorage.api.SdkNodeCordonAttachmentsResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkNodeCordonAttachmentsResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkNodeCordonAttachmentsResponse}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkNodeCordonAttachmentsResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkNodeCordonAttachmentsResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeCordonAttachmentsResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkNodeUncordonAttachmentsRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    nodeId: jspb.Message.getFieldWithDefault(msg, 1, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkNodeUncordonAttachmentsRequest}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkNodeUncordonAttachmentsRequest;
+  return proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkNodeUncordonAttachmentsRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkNodeUncordonAttachmentsRequest}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNodeId(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkNodeUncordonAttachmentsRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getNodeId();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string node_id = 1;
+ * @return {string}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.prototype.getNodeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkNodeUncordonAttachmentsRequest} returns this
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsRequest.prototype.setNodeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.openstorage.api.SdkNodeUncordonAttachmentsResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.openstorage.api.SdkNodeUncordonAttachmentsResponse}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.openstorage.api.SdkNodeUncordonAttachmentsResponse;
+  return proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.openstorage.api.SdkNodeUncordonAttachmentsResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.openstorage.api.SdkNodeUncordonAttachmentsResponse}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.openstorage.api.SdkNodeUncordonAttachmentsResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.openstorage.api.SdkNodeUncordonAttachmentsResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
 };
 
 
@@ -60385,7 +64446,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 69,
-  PATCH: 27
+  PATCH: 29
 };
 
 /**
@@ -71037,6 +75098,26 @@ proto.openstorage.api.SdkTimeWeekday = {
   SDKTIMEWEEKDAYTHURSDAY: 4,
   SDKTIMEWEEKDAYFRIDAY: 5,
   SDKTIMEWEEKDAYSATURDAY: 6
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.JobType = {
+  JOBTYPENONE: 0,
+  JOBTYPEDRAINATTACHMENTS: 1
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.JobState = {
+  JOB_STATE_PENDING: 0,
+  JOB_STATE_RUNNING: 1,
+  JOB_STATE_DONE: 2,
+  JOB_STATE_PAUSED: 3,
+  JOB_STATE_CANCELLED: 4,
+  JOB_STATE_FAILED: 5
 };
 
 /**

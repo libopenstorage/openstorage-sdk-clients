@@ -1658,6 +1658,146 @@ class OpenStoragePool(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
+class OpenStorageJobStub(object):
+    """OpenstorageJob is a service that provides a common set of APIs for services
+    that use the asynchronous job framework
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.UpdateJobState = channel.unary_unary(
+                '/openstorage.api.OpenStorageJob/UpdateJobState',
+                request_serializer=api__pb2.SdkUpdateJobRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkUpdateJobResponse.FromString,
+                )
+        self.GetJobStatus = channel.unary_unary(
+                '/openstorage.api.OpenStorageJob/GetJobStatus',
+                request_serializer=api__pb2.SdkGetJobStatusRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkGetJobStatusResponse.FromString,
+                )
+        self.EnumerateJobs = channel.unary_unary(
+                '/openstorage.api.OpenStorageJob/EnumerateJobs',
+                request_serializer=api__pb2.SdkEnumerateJobsRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkEnumerateJobsResponse.FromString,
+                )
+
+
+class OpenStorageJobServicer(object):
+    """OpenstorageJob is a service that provides a common set of APIs for services
+    that use the asynchronous job framework
+    """
+
+    def UpdateJobState(self, request, context):
+        """UpdateJobState updates an existing job
+        Only acceptable values are
+        JobState_PAUSED - acceptable only from running state
+        JobState_CANCELLED - acceptable only from running/pause state
+        JobState_RUNNING - acceptable only from pause state
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetJobStatus(self, request, context):
+        """GetJobStatus gets the status of a job
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EnumerateJobs(self, request, context):
+        """EnumerateJobs returns all the jobs currently known to the system
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageJobServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'UpdateJobState': grpc.unary_unary_rpc_method_handler(
+                    servicer.UpdateJobState,
+                    request_deserializer=api__pb2.SdkUpdateJobRequest.FromString,
+                    response_serializer=api__pb2.SdkUpdateJobResponse.SerializeToString,
+            ),
+            'GetJobStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetJobStatus,
+                    request_deserializer=api__pb2.SdkGetJobStatusRequest.FromString,
+                    response_serializer=api__pb2.SdkGetJobStatusResponse.SerializeToString,
+            ),
+            'EnumerateJobs': grpc.unary_unary_rpc_method_handler(
+                    servicer.EnumerateJobs,
+                    request_deserializer=api__pb2.SdkEnumerateJobsRequest.FromString,
+                    response_serializer=api__pb2.SdkEnumerateJobsResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'openstorage.api.OpenStorageJob', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class OpenStorageJob(object):
+    """OpenstorageJob is a service that provides a common set of APIs for services
+    that use the asynchronous job framework
+    """
+
+    @staticmethod
+    def UpdateJobState(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/UpdateJobState',
+            api__pb2.SdkUpdateJobRequest.SerializeToString,
+            api__pb2.SdkUpdateJobResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetJobStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/GetJobStatus',
+            api__pb2.SdkGetJobStatusRequest.SerializeToString,
+            api__pb2.SdkGetJobStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def EnumerateJobs(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/EnumerateJobs',
+            api__pb2.SdkEnumerateJobsRequest.SerializeToString,
+            api__pb2.SdkEnumerateJobsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
 class OpenStorageNodeStub(object):
     """OpenStorageNode is a service used to manage nodes in the cluster
     """
@@ -1692,6 +1832,21 @@ class OpenStorageNodeStub(object):
                 '/openstorage.api.OpenStorageNode/VolumeUsageByNode',
                 request_serializer=api__pb2.SdkNodeVolumeUsageByNodeRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkNodeVolumeUsageByNodeResponse.FromString,
+                )
+        self.DrainAttachments = channel.unary_unary(
+                '/openstorage.api.OpenStorageNode/DrainAttachments',
+                request_serializer=api__pb2.SdkNodeDrainAttachmentsRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkJobResponse.FromString,
+                )
+        self.CordonAttachments = channel.unary_unary(
+                '/openstorage.api.OpenStorageNode/CordonAttachments',
+                request_serializer=api__pb2.SdkNodeCordonAttachmentsRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkNodeCordonAttachmentsResponse.FromString,
+                )
+        self.UncordonAttachments = channel.unary_unary(
+                '/openstorage.api.OpenStorageNode/UncordonAttachments',
+                request_serializer=api__pb2.SdkNodeUncordonAttachmentsRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkNodeUncordonAttachmentsResponse.FromString,
                 )
 
 
@@ -1735,6 +1890,31 @@ class OpenStorageNodeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DrainAttachments(self, request, context):
+        """DrainAttachments creates a task to drain volume attachments
+        from the provided node in the cluster.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CordonAttachments(self, request, context):
+        """CordonAttachments disables any new volume attachments
+        from the provided node in the cluster. Existing volume attachments
+        will stay on the node.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def UncordonAttachments(self, request, context):
+        """UncordonAttachments re-enables volume attachments
+        on the provided node in the cluster.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageNodeServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1762,6 +1942,21 @@ def add_OpenStorageNodeServicer_to_server(servicer, server):
                     servicer.VolumeUsageByNode,
                     request_deserializer=api__pb2.SdkNodeVolumeUsageByNodeRequest.FromString,
                     response_serializer=api__pb2.SdkNodeVolumeUsageByNodeResponse.SerializeToString,
+            ),
+            'DrainAttachments': grpc.unary_unary_rpc_method_handler(
+                    servicer.DrainAttachments,
+                    request_deserializer=api__pb2.SdkNodeDrainAttachmentsRequest.FromString,
+                    response_serializer=api__pb2.SdkJobResponse.SerializeToString,
+            ),
+            'CordonAttachments': grpc.unary_unary_rpc_method_handler(
+                    servicer.CordonAttachments,
+                    request_deserializer=api__pb2.SdkNodeCordonAttachmentsRequest.FromString,
+                    response_serializer=api__pb2.SdkNodeCordonAttachmentsResponse.SerializeToString,
+            ),
+            'UncordonAttachments': grpc.unary_unary_rpc_method_handler(
+                    servicer.UncordonAttachments,
+                    request_deserializer=api__pb2.SdkNodeUncordonAttachmentsRequest.FromString,
+                    response_serializer=api__pb2.SdkNodeUncordonAttachmentsResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1856,6 +2051,57 @@ class OpenStorageNode(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/VolumeUsageByNode',
             api__pb2.SdkNodeVolumeUsageByNodeRequest.SerializeToString,
             api__pb2.SdkNodeVolumeUsageByNodeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DrainAttachments(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/DrainAttachments',
+            api__pb2.SdkNodeDrainAttachmentsRequest.SerializeToString,
+            api__pb2.SdkJobResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CordonAttachments(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/CordonAttachments',
+            api__pb2.SdkNodeCordonAttachmentsRequest.SerializeToString,
+            api__pb2.SdkNodeCordonAttachmentsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UncordonAttachments(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/UncordonAttachments',
+            api__pb2.SdkNodeUncordonAttachmentsRequest.SerializeToString,
+            api__pb2.SdkNodeUncordonAttachmentsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -3018,6 +3264,11 @@ class OpenStorageCredentialsStub(object):
                 request_serializer=api__pb2.SdkCredentialValidateRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkCredentialValidateResponse.FromString,
                 )
+        self.DeleteReferences = channel.unary_unary(
+                '/openstorage.api.OpenStorageCredentials/DeleteReferences',
+                request_serializer=api__pb2.SdkCredentialDeleteReferencesRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkCredentialDeleteReferencesResponse.FromString,
+                )
 
 
 class OpenStorageCredentialsServicer(object):
@@ -3085,6 +3336,13 @@ class OpenStorageCredentialsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteReferences(self, request, context):
+        """DeleteReferences is used to remove references to credentials
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageCredentialsServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -3112,6 +3370,11 @@ def add_OpenStorageCredentialsServicer_to_server(servicer, server):
                     servicer.Validate,
                     request_deserializer=api__pb2.SdkCredentialValidateRequest.FromString,
                     response_serializer=api__pb2.SdkCredentialValidateResponse.SerializeToString,
+            ),
+            'DeleteReferences': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteReferences,
+                    request_deserializer=api__pb2.SdkCredentialDeleteReferencesRequest.FromString,
+                    response_serializer=api__pb2.SdkCredentialDeleteReferencesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -3207,6 +3470,23 @@ class OpenStorageCredentials(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageCredentials/Validate',
             api__pb2.SdkCredentialValidateRequest.SerializeToString,
             api__pb2.SdkCredentialValidateResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteReferences(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageCredentials/DeleteReferences',
+            api__pb2.SdkCredentialDeleteReferencesRequest.SerializeToString,
+            api__pb2.SdkCredentialDeleteReferencesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

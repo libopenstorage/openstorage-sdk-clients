@@ -777,6 +777,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "openstorage.api.SdkCredentialValidateResponse" do
     end
+    add_message "openstorage.api.SdkCredentialDeleteReferencesRequest" do
+      optional :credential_id, :string, 1
+    end
+    add_message "openstorage.api.SdkCredentialDeleteReferencesResponse" do
+    end
     add_message "openstorage.api.SdkVolumeAttachOptions" do
       optional :secret_name, :string, 1
       optional :secret_key, :string, 2
@@ -964,6 +969,84 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "openstorage.api.SdkNodeInspectRequest" do
       optional :node_id, :string, 1
+    end
+    add_message "openstorage.api.Job" do
+      optional :id, :string, 1
+      optional :state, :enum, 2, "openstorage.api.JobState"
+      optional :type, :enum, 3, "openstorage.api.JobType"
+      optional :create_time, :message, 5, "google.protobuf.Timestamp"
+      optional :last_update_time, :message, 6, "google.protobuf.Timestamp"
+      oneof :job do
+        optional :drain_attachments, :message, 4, "openstorage.api.NodeDrainAttachmentsJob"
+      end
+    end
+    add_message "openstorage.api.SdkJobResponse" do
+      optional :job, :message, 1, "openstorage.api.Job"
+    end
+    add_message "openstorage.api.NodeDrainAttachmentOptions" do
+    end
+    add_message "openstorage.api.SdkNodeDrainAttachmentsRequest" do
+      optional :node_id, :string, 1
+      repeated :selector, :message, 2, "openstorage.api.LabelSelectorRequirement"
+      optional :only_sharedv4, :bool, 3
+      optional :issuer, :string, 4
+    end
+    add_message "openstorage.api.NodeDrainAttachmentsJob" do
+      optional :node_id, :string, 1
+      optional :Status, :string, 2
+      optional :issuer, :string, 3
+      optional :parameters, :message, 4, "openstorage.api.SdkNodeDrainAttachmentsRequest"
+      optional :create_time, :message, 5, "google.protobuf.Timestamp"
+      optional :last_update_time, :message, 6, "google.protobuf.Timestamp"
+    end
+    add_message "openstorage.api.SdkEnumerateJobsRequest" do
+      optional :type, :enum, 1, "openstorage.api.JobType"
+    end
+    add_message "openstorage.api.SdkEnumerateJobsResponse" do
+      repeated :jobs, :message, 1, "openstorage.api.Job"
+    end
+    add_message "openstorage.api.SdkUpdateJobRequest" do
+      optional :id, :string, 1
+      optional :type, :enum, 2, "openstorage.api.JobType"
+      optional :state, :enum, 3, "openstorage.api.JobState"
+    end
+    add_message "openstorage.api.SdkUpdateJobResponse" do
+    end
+    add_message "openstorage.api.SdkGetJobStatusRequest" do
+      optional :id, :string, 1
+      optional :type, :enum, 2, "openstorage.api.JobType"
+    end
+    add_message "openstorage.api.JobAudit" do
+      repeated :summary, :message, 1, "openstorage.api.JobWorkSummary"
+    end
+    add_message "openstorage.api.JobWorkSummary" do
+      oneof :summary do
+        optional :drain_attachments_summary, :message, 3, "openstorage.api.DrainAttachmentsSummary"
+      end
+    end
+    add_message "openstorage.api.JobSummary" do
+      optional :id, :string, 1
+      optional :total_runtime_seconds, :uint64, 2
+      repeated :work_summaries, :message, 3, "openstorage.api.JobWorkSummary"
+    end
+    add_message "openstorage.api.SdkGetJobStatusResponse" do
+      optional :job, :message, 1, "openstorage.api.Job"
+      optional :summary, :message, 2, "openstorage.api.JobSummary"
+    end
+    add_message "openstorage.api.DrainAttachmentsSummary" do
+      optional :num_volumes_total, :uint64, 2
+      optional :num_volumes_done, :uint64, 3
+      optional :num_volumes_pending, :uint64, 4
+    end
+    add_message "openstorage.api.SdkNodeCordonAttachmentsRequest" do
+      optional :node_id, :string, 1
+    end
+    add_message "openstorage.api.SdkNodeCordonAttachmentsResponse" do
+    end
+    add_message "openstorage.api.SdkNodeUncordonAttachmentsRequest" do
+      optional :node_id, :string, 1
+    end
+    add_message "openstorage.api.SdkNodeUncordonAttachmentsResponse" do
     end
     add_message "openstorage.api.SdkStoragePoolResizeRequest" do
       optional :uuid, :string, 1
@@ -1424,7 +1507,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 69
-      value :Patch, 27
+      value :Patch, 29
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -1863,6 +1946,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkTimeWeekdayFriday, 5
       value :SdkTimeWeekdaySaturday, 6
     end
+    add_enum "openstorage.api.JobType" do
+      value :JobTypeNone, 0
+      value :JobTypeDrainAttachments, 1
+    end
+    add_enum "openstorage.api.JobState" do
+      value :JOB_STATE_PENDING, 0
+      value :JOB_STATE_RUNNING, 1
+      value :JOB_STATE_DONE, 2
+      value :JOB_STATE_PAUSED, 3
+      value :JOB_STATE_CANCELLED, 4
+      value :JOB_STATE_FAILED, 5
+    end
     add_enum "openstorage.api.StorageRebalanceJobState" do
       value :PENDING, 0
       value :RUNNING, 1
@@ -2027,6 +2122,8 @@ module Openstorage
     SdkCredentialDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCredentialDeleteResponse").msgclass
     SdkCredentialValidateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCredentialValidateRequest").msgclass
     SdkCredentialValidateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCredentialValidateResponse").msgclass
+    SdkCredentialDeleteReferencesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCredentialDeleteReferencesRequest").msgclass
+    SdkCredentialDeleteReferencesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCredentialDeleteReferencesResponse").msgclass
     SdkVolumeAttachOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeAttachOptions").msgclass
     SdkVolumeMountRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeMountRequest").msgclass
     SdkVolumeMountResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeMountResponse").msgclass
@@ -2081,6 +2178,25 @@ module Openstorage
     SdkClusterInspectCurrentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterInspectCurrentRequest").msgclass
     SdkClusterInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterInspectCurrentResponse").msgclass
     SdkNodeInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectRequest").msgclass
+    Job = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Job").msgclass
+    SdkJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkJobResponse").msgclass
+    NodeDrainAttachmentOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentOptions").msgclass
+    SdkNodeDrainAttachmentsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeDrainAttachmentsRequest").msgclass
+    NodeDrainAttachmentsJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentsJob").msgclass
+    SdkEnumerateJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsRequest").msgclass
+    SdkEnumerateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsResponse").msgclass
+    SdkUpdateJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateJobRequest").msgclass
+    SdkUpdateJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateJobResponse").msgclass
+    SdkGetJobStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkGetJobStatusRequest").msgclass
+    JobAudit = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobAudit").msgclass
+    JobWorkSummary = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobWorkSummary").msgclass
+    JobSummary = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobSummary").msgclass
+    SdkGetJobStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkGetJobStatusResponse").msgclass
+    DrainAttachmentsSummary = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DrainAttachmentsSummary").msgclass
+    SdkNodeCordonAttachmentsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeCordonAttachmentsRequest").msgclass
+    SdkNodeCordonAttachmentsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeCordonAttachmentsResponse").msgclass
+    SdkNodeUncordonAttachmentsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeUncordonAttachmentsRequest").msgclass
+    SdkNodeUncordonAttachmentsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeUncordonAttachmentsResponse").msgclass
     SdkStoragePoolResizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePoolResizeRequest").msgclass
     StorageRebalanceTriggerThreshold = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold").msgclass
     StorageRebalanceTriggerThreshold::Type = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold.Type").enummodule
@@ -2269,6 +2385,8 @@ module Openstorage
     FastpathStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathStatus").enummodule
     FastpathProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathProtocol").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
+    JobType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobType").enummodule
+    JobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobState").enummodule
     StorageRebalanceJobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJobState").enummodule
     SdkCloudBackupOpType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupOpType").enummodule
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule

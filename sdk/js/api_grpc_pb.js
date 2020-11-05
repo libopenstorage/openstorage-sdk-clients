@@ -721,6 +721,28 @@ function deserialize_openstorage_api_SdkCredentialCreateResponse(buffer_arg) {
   return api_pb.SdkCredentialCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCredentialDeleteReferencesRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCredentialDeleteReferencesRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCredentialDeleteReferencesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCredentialDeleteReferencesRequest(buffer_arg) {
+  return api_pb.SdkCredentialDeleteReferencesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCredentialDeleteReferencesResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCredentialDeleteReferencesResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCredentialDeleteReferencesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCredentialDeleteReferencesResponse(buffer_arg) {
+  return api_pb.SdkCredentialDeleteReferencesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCredentialDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialDeleteRequest');
@@ -807,6 +829,28 @@ function serialize_openstorage_api_SdkCredentialValidateResponse(arg) {
 
 function deserialize_openstorage_api_SdkCredentialValidateResponse(buffer_arg) {
   return api_pb.SdkCredentialValidateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkEnumerateJobsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkEnumerateJobsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkEnumerateJobsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkEnumerateJobsRequest(buffer_arg) {
+  return api_pb.SdkEnumerateJobsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkEnumerateJobsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkEnumerateJobsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkEnumerateJobsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkEnumerateJobsResponse(buffer_arg) {
+  return api_pb.SdkEnumerateJobsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkEnumerateRebalanceJobsRequest(arg) {
@@ -963,6 +1007,28 @@ function deserialize_openstorage_api_SdkFilesystemTrimStopResponse(buffer_arg) {
   return api_pb.SdkFilesystemTrimStopResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkGetJobStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkGetJobStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkGetJobStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkGetJobStatusRequest(buffer_arg) {
+  return api_pb.SdkGetJobStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkGetJobStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkGetJobStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkGetJobStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkGetJobStatusResponse(buffer_arg) {
+  return api_pb.SdkGetJobStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkGetRebalanceJobStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkGetRebalanceJobStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkGetRebalanceJobStatusRequest');
@@ -1027,6 +1093,50 @@ function serialize_openstorage_api_SdkIdentityVersionResponse(arg) {
 
 function deserialize_openstorage_api_SdkIdentityVersionResponse(buffer_arg) {
   return api_pb.SdkIdentityVersionResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkJobResponse(arg) {
+  if (!(arg instanceof api_pb.SdkJobResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkJobResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkJobResponse(buffer_arg) {
+  return api_pb.SdkJobResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeCordonAttachmentsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkNodeCordonAttachmentsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeCordonAttachmentsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeCordonAttachmentsRequest(buffer_arg) {
+  return api_pb.SdkNodeCordonAttachmentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeCordonAttachmentsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkNodeCordonAttachmentsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeCordonAttachmentsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeCordonAttachmentsResponse(buffer_arg) {
+  return api_pb.SdkNodeCordonAttachmentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeDrainAttachmentsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkNodeDrainAttachmentsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeDrainAttachmentsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeDrainAttachmentsRequest(buffer_arg) {
+  return api_pb.SdkNodeDrainAttachmentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkNodeEnumerateRequest(arg) {
@@ -1115,6 +1225,28 @@ function serialize_openstorage_api_SdkNodeInspectResponse(arg) {
 
 function deserialize_openstorage_api_SdkNodeInspectResponse(buffer_arg) {
   return api_pb.SdkNodeInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeUncordonAttachmentsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkNodeUncordonAttachmentsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeUncordonAttachmentsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeUncordonAttachmentsRequest(buffer_arg) {
+  return api_pb.SdkNodeUncordonAttachmentsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeUncordonAttachmentsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkNodeUncordonAttachmentsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeUncordonAttachmentsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeUncordonAttachmentsResponse(buffer_arg) {
+  return api_pb.SdkNodeUncordonAttachmentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkNodeVolumeUsageByNodeRequest(arg) {
@@ -1665,6 +1797,28 @@ function serialize_openstorage_api_SdkStorageRebalanceResponse(arg) {
 
 function deserialize_openstorage_api_SdkStorageRebalanceResponse(buffer_arg) {
   return api_pb.SdkStorageRebalanceResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkUpdateJobRequest(arg) {
+  if (!(arg instanceof api_pb.SdkUpdateJobRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkUpdateJobRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkUpdateJobRequest(buffer_arg) {
+  return api_pb.SdkUpdateJobRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkUpdateJobResponse(arg) {
+  if (!(arg instanceof api_pb.SdkUpdateJobResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkUpdateJobResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkUpdateJobResponse(buffer_arg) {
+  return api_pb.SdkUpdateJobResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkUpdateRebalanceJobRequest(arg) {
@@ -2697,6 +2851,52 @@ enumerateRebalanceJobs: {
 };
 
 exports.OpenStoragePoolClient = grpc.makeGenericClientConstructor(OpenStoragePoolService);
+// OpenstorageJob is a service that provides a common set of APIs for services
+// that use the asynchronous job framework
+var OpenStorageJobService = exports.OpenStorageJobService = {
+  // UpdateJobState updates an existing job
+// Only acceptable values are
+// JobState_PAUSED - acceptable only from running state
+// JobState_CANCELLED - acceptable only from running/pause state
+// JobState_RUNNING - acceptable only from pause state
+updateJobState: {
+    path: '/openstorage.api.OpenStorageJob/UpdateJobState',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkUpdateJobRequest,
+    responseType: api_pb.SdkUpdateJobResponse,
+    requestSerialize: serialize_openstorage_api_SdkUpdateJobRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkUpdateJobRequest,
+    responseSerialize: serialize_openstorage_api_SdkUpdateJobResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkUpdateJobResponse,
+  },
+  // GetJobStatus gets the status of a job
+getJobStatus: {
+    path: '/openstorage.api.OpenStorageJob/GetJobStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkGetJobStatusRequest,
+    responseType: api_pb.SdkGetJobStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkGetJobStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkGetJobStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkGetJobStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkGetJobStatusResponse,
+  },
+  // EnumerateJobs returns all the jobs currently known to the system
+enumerateJobs: {
+    path: '/openstorage.api.OpenStorageJob/EnumerateJobs',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkEnumerateJobsRequest,
+    responseType: api_pb.SdkEnumerateJobsResponse,
+    requestSerialize: serialize_openstorage_api_SdkEnumerateJobsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkEnumerateJobsRequest,
+    responseSerialize: serialize_openstorage_api_SdkEnumerateJobsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkEnumerateJobsResponse,
+  },
+};
+
+exports.OpenStorageJobClient = grpc.makeGenericClientConstructor(OpenStorageJobService);
 // OpenStorageNode is a service used to manage nodes in the cluster
 var OpenStorageNodeService = exports.OpenStorageNodeService = {
   // Inspect returns information about the specified node
@@ -2759,6 +2959,46 @@ volumeUsageByNode: {
     requestDeserialize: deserialize_openstorage_api_SdkNodeVolumeUsageByNodeRequest,
     responseSerialize: serialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse,
     responseDeserialize: deserialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse,
+  },
+  // DrainAttachments creates a task to drain volume attachments
+// from the provided node in the cluster.
+drainAttachments: {
+    path: '/openstorage.api.OpenStorageNode/DrainAttachments',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkNodeDrainAttachmentsRequest,
+    responseType: api_pb.SdkJobResponse,
+    requestSerialize: serialize_openstorage_api_SdkNodeDrainAttachmentsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkNodeDrainAttachmentsRequest,
+    responseSerialize: serialize_openstorage_api_SdkJobResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkJobResponse,
+  },
+  // CordonAttachments disables any new volume attachments
+// from the provided node in the cluster. Existing volume attachments
+// will stay on the node.
+cordonAttachments: {
+    path: '/openstorage.api.OpenStorageNode/CordonAttachments',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkNodeCordonAttachmentsRequest,
+    responseType: api_pb.SdkNodeCordonAttachmentsResponse,
+    requestSerialize: serialize_openstorage_api_SdkNodeCordonAttachmentsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkNodeCordonAttachmentsRequest,
+    responseSerialize: serialize_openstorage_api_SdkNodeCordonAttachmentsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkNodeCordonAttachmentsResponse,
+  },
+  // UncordonAttachments re-enables volume attachments
+// on the provided node in the cluster.
+uncordonAttachments: {
+    path: '/openstorage.api.OpenStorageNode/UncordonAttachments',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkNodeUncordonAttachmentsRequest,
+    responseType: api_pb.SdkNodeUncordonAttachmentsResponse,
+    requestSerialize: serialize_openstorage_api_SdkNodeUncordonAttachmentsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkNodeUncordonAttachmentsRequest,
+    responseSerialize: serialize_openstorage_api_SdkNodeUncordonAttachmentsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkNodeUncordonAttachmentsResponse,
   },
 };
 
@@ -3266,6 +3506,18 @@ validate: {
     requestDeserialize: deserialize_openstorage_api_SdkCredentialValidateRequest,
     responseSerialize: serialize_openstorage_api_SdkCredentialValidateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCredentialValidateResponse,
+  },
+  // DeleteReferences is used to remove references to credentials
+deleteReferences: {
+    path: '/openstorage.api.OpenStorageCredentials/DeleteReferences',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCredentialDeleteReferencesRequest,
+    responseType: api_pb.SdkCredentialDeleteReferencesResponse,
+    requestSerialize: serialize_openstorage_api_SdkCredentialDeleteReferencesRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCredentialDeleteReferencesRequest,
+    responseSerialize: serialize_openstorage_api_SdkCredentialDeleteReferencesResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCredentialDeleteReferencesResponse,
   },
 };
 
