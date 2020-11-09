@@ -1669,18 +1669,18 @@ class OpenStorageJobStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.UpdateJobState = channel.unary_unary(
-                '/openstorage.api.OpenStorageJob/UpdateJobState',
+        self.Update = channel.unary_unary(
+                '/openstorage.api.OpenStorageJob/Update',
                 request_serializer=api__pb2.SdkUpdateJobRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkUpdateJobResponse.FromString,
                 )
-        self.GetJobStatus = channel.unary_unary(
-                '/openstorage.api.OpenStorageJob/GetJobStatus',
+        self.GetStatus = channel.unary_unary(
+                '/openstorage.api.OpenStorageJob/GetStatus',
                 request_serializer=api__pb2.SdkGetJobStatusRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkGetJobStatusResponse.FromString,
                 )
-        self.EnumerateJobs = channel.unary_unary(
-                '/openstorage.api.OpenStorageJob/EnumerateJobs',
+        self.Enumerate = channel.unary_unary(
+                '/openstorage.api.OpenStorageJob/Enumerate',
                 request_serializer=api__pb2.SdkEnumerateJobsRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkEnumerateJobsResponse.FromString,
                 )
@@ -1691,9 +1691,9 @@ class OpenStorageJobServicer(object):
     that use the asynchronous job framework
     """
 
-    def UpdateJobState(self, request, context):
-        """UpdateJobState updates an existing job
-        Only acceptable values are
+    def Update(self, request, context):
+        """Update updates an existing job's state
+        Only acceptable state values are
         JobState_PAUSED - acceptable only from running state
         JobState_CANCELLED - acceptable only from running/pause state
         JobState_RUNNING - acceptable only from pause state
@@ -1702,15 +1702,15 @@ class OpenStorageJobServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetJobStatus(self, request, context):
-        """GetJobStatus gets the status of a job
+    def GetStatus(self, request, context):
+        """GetStatus gets the status of a job
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def EnumerateJobs(self, request, context):
-        """EnumerateJobs returns all the jobs currently known to the system
+    def Enumerate(self, request, context):
+        """Enumerate returns all the jobs currently known to the system
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -1719,18 +1719,18 @@ class OpenStorageJobServicer(object):
 
 def add_OpenStorageJobServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'UpdateJobState': grpc.unary_unary_rpc_method_handler(
-                    servicer.UpdateJobState,
+            'Update': grpc.unary_unary_rpc_method_handler(
+                    servicer.Update,
                     request_deserializer=api__pb2.SdkUpdateJobRequest.FromString,
                     response_serializer=api__pb2.SdkUpdateJobResponse.SerializeToString,
             ),
-            'GetJobStatus': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetJobStatus,
+            'GetStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetStatus,
                     request_deserializer=api__pb2.SdkGetJobStatusRequest.FromString,
                     response_serializer=api__pb2.SdkGetJobStatusResponse.SerializeToString,
             ),
-            'EnumerateJobs': grpc.unary_unary_rpc_method_handler(
-                    servicer.EnumerateJobs,
+            'Enumerate': grpc.unary_unary_rpc_method_handler(
+                    servicer.Enumerate,
                     request_deserializer=api__pb2.SdkEnumerateJobsRequest.FromString,
                     response_serializer=api__pb2.SdkEnumerateJobsResponse.SerializeToString,
             ),
@@ -1747,7 +1747,7 @@ class OpenStorageJob(object):
     """
 
     @staticmethod
-    def UpdateJobState(request,
+    def Update(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1757,14 +1757,14 @@ class OpenStorageJob(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/UpdateJobState',
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/Update',
             api__pb2.SdkUpdateJobRequest.SerializeToString,
             api__pb2.SdkUpdateJobResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetJobStatus(request,
+    def GetStatus(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1774,14 +1774,14 @@ class OpenStorageJob(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/GetJobStatus',
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/GetStatus',
             api__pb2.SdkGetJobStatusRequest.SerializeToString,
             api__pb2.SdkGetJobStatusResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def EnumerateJobs(request,
+    def Enumerate(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1791,7 +1791,7 @@ class OpenStorageJob(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/EnumerateJobs',
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageJob/Enumerate',
             api__pb2.SdkEnumerateJobsRequest.SerializeToString,
             api__pb2.SdkEnumerateJobsResponse.FromString,
             options, channel_credentials,

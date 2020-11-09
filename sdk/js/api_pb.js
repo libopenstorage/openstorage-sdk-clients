@@ -73,10 +73,10 @@ goog.exportSymbol('proto.openstorage.api.IoProfile', null, global);
 goog.exportSymbol('proto.openstorage.api.IoStrategy', null, global);
 goog.exportSymbol('proto.openstorage.api.Job', null, global);
 goog.exportSymbol('proto.openstorage.api.Job.JobCase', null, global);
+goog.exportSymbol('proto.openstorage.api.Job.State', null, global);
+goog.exportSymbol('proto.openstorage.api.Job.Type', null, global);
 goog.exportSymbol('proto.openstorage.api.JobAudit', null, global);
-goog.exportSymbol('proto.openstorage.api.JobState', null, global);
 goog.exportSymbol('proto.openstorage.api.JobSummary', null, global);
-goog.exportSymbol('proto.openstorage.api.JobType', null, global);
 goog.exportSymbol('proto.openstorage.api.JobWorkSummary', null, global);
 goog.exportSymbol('proto.openstorage.api.JobWorkSummary.SummaryCase', null, global);
 goog.exportSymbol('proto.openstorage.api.LabelSelectorRequirement', null, global);
@@ -44388,11 +44388,11 @@ proto.openstorage.api.Job.deserializeBinaryFromReader = function(msg, reader) {
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {!proto.openstorage.api.JobState} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.Job.State} */ (reader.readEnum());
       msg.setState(value);
       break;
     case 3:
-      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.Job.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 4:
@@ -44488,6 +44488,28 @@ proto.openstorage.api.Job.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
+ * @enum {number}
+ */
+proto.openstorage.api.Job.Type = {
+  UNSPECIFIED_TYPE: 0,
+  NONE: 1,
+  DRAIN_ATTACHMENTS: 2
+};
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.Job.State = {
+  UNSPECIFIED_STATE: 0,
+  PENDING: 1,
+  RUNNING: 2,
+  DONE: 3,
+  PAUSED: 4,
+  CANCELLED: 5,
+  FAILED: 6
+};
+
+/**
  * optional string id = 1;
  * @return {string}
  */
@@ -44506,16 +44528,16 @@ proto.openstorage.api.Job.prototype.setId = function(value) {
 
 
 /**
- * optional JobState state = 2;
- * @return {!proto.openstorage.api.JobState}
+ * optional State state = 2;
+ * @return {!proto.openstorage.api.Job.State}
  */
 proto.openstorage.api.Job.prototype.getState = function() {
-  return /** @type {!proto.openstorage.api.JobState} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.openstorage.api.Job.State} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.JobState} value
+ * @param {!proto.openstorage.api.Job.State} value
  * @return {!proto.openstorage.api.Job} returns this
  */
 proto.openstorage.api.Job.prototype.setState = function(value) {
@@ -44524,16 +44546,16 @@ proto.openstorage.api.Job.prototype.setState = function(value) {
 
 
 /**
- * optional JobType type = 3;
- * @return {!proto.openstorage.api.JobType}
+ * optional Type type = 3;
+ * @return {!proto.openstorage.api.Job.Type}
  */
 proto.openstorage.api.Job.prototype.getType = function() {
-  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {!proto.openstorage.api.Job.Type} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.JobType} value
+ * @param {!proto.openstorage.api.Job.Type} value
  * @return {!proto.openstorage.api.Job} returns this
  */
 proto.openstorage.api.Job.prototype.setType = function(value) {
@@ -45567,7 +45589,7 @@ proto.openstorage.api.SdkEnumerateJobsRequest.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.Job.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     default:
@@ -45610,16 +45632,16 @@ proto.openstorage.api.SdkEnumerateJobsRequest.serializeBinaryToWriter = function
 
 
 /**
- * optional JobType type = 1;
- * @return {!proto.openstorage.api.JobType}
+ * optional Job.Type type = 1;
+ * @return {!proto.openstorage.api.Job.Type}
  */
 proto.openstorage.api.SdkEnumerateJobsRequest.prototype.getType = function() {
-  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+  return /** @type {!proto.openstorage.api.Job.Type} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.JobType} value
+ * @param {!proto.openstorage.api.Job.Type} value
  * @return {!proto.openstorage.api.SdkEnumerateJobsRequest} returns this
  */
 proto.openstorage.api.SdkEnumerateJobsRequest.prototype.setType = function(value) {
@@ -45863,11 +45885,11 @@ proto.openstorage.api.SdkUpdateJobRequest.deserializeBinaryFromReader = function
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.Job.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 3:
-      var value = /** @type {!proto.openstorage.api.JobState} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.Job.State} */ (reader.readEnum());
       msg.setState(value);
       break;
     default:
@@ -45942,16 +45964,16 @@ proto.openstorage.api.SdkUpdateJobRequest.prototype.setId = function(value) {
 
 
 /**
- * optional JobType type = 2;
- * @return {!proto.openstorage.api.JobType}
+ * optional Job.Type type = 2;
+ * @return {!proto.openstorage.api.Job.Type}
  */
 proto.openstorage.api.SdkUpdateJobRequest.prototype.getType = function() {
-  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.openstorage.api.Job.Type} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.JobType} value
+ * @param {!proto.openstorage.api.Job.Type} value
  * @return {!proto.openstorage.api.SdkUpdateJobRequest} returns this
  */
 proto.openstorage.api.SdkUpdateJobRequest.prototype.setType = function(value) {
@@ -45960,16 +45982,16 @@ proto.openstorage.api.SdkUpdateJobRequest.prototype.setType = function(value) {
 
 
 /**
- * optional JobState state = 3;
- * @return {!proto.openstorage.api.JobState}
+ * optional Job.State state = 3;
+ * @return {!proto.openstorage.api.Job.State}
  */
 proto.openstorage.api.SdkUpdateJobRequest.prototype.getState = function() {
-  return /** @type {!proto.openstorage.api.JobState} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+  return /** @type {!proto.openstorage.api.Job.State} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.JobState} value
+ * @param {!proto.openstorage.api.Job.State} value
  * @return {!proto.openstorage.api.SdkUpdateJobRequest} returns this
  */
 proto.openstorage.api.SdkUpdateJobRequest.prototype.setState = function(value) {
@@ -46153,7 +46175,7 @@ proto.openstorage.api.SdkGetJobStatusRequest.deserializeBinaryFromReader = funct
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {!proto.openstorage.api.JobType} */ (reader.readEnum());
+      var value = /** @type {!proto.openstorage.api.Job.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     default:
@@ -46221,16 +46243,16 @@ proto.openstorage.api.SdkGetJobStatusRequest.prototype.setId = function(value) {
 
 
 /**
- * optional JobType type = 2;
- * @return {!proto.openstorage.api.JobType}
+ * optional Job.Type type = 2;
+ * @return {!proto.openstorage.api.Job.Type}
  */
 proto.openstorage.api.SdkGetJobStatusRequest.prototype.getType = function() {
-  return /** @type {!proto.openstorage.api.JobType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.openstorage.api.Job.Type} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.openstorage.api.JobType} value
+ * @param {!proto.openstorage.api.Job.Type} value
  * @return {!proto.openstorage.api.SdkGetJobStatusRequest} returns this
  */
 proto.openstorage.api.SdkGetJobStatusRequest.prototype.setType = function(value) {
@@ -64506,7 +64528,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 101,
-  PATCH: 0
+  PATCH: 1
 };
 
 /**
@@ -75159,26 +75181,6 @@ proto.openstorage.api.SdkTimeWeekday = {
   SDKTIMEWEEKDAYTHURSDAY: 4,
   SDKTIMEWEEKDAYFRIDAY: 5,
   SDKTIMEWEEKDAYSATURDAY: 6
-};
-
-/**
- * @enum {number}
- */
-proto.openstorage.api.JobType = {
-  JOBTYPENONE: 0,
-  JOBTYPEDRAINATTACHMENTS: 1
-};
-
-/**
- * @enum {number}
- */
-proto.openstorage.api.JobState = {
-  JOB_STATE_PENDING: 0,
-  JOB_STATE_RUNNING: 1,
-  JOB_STATE_DONE: 2,
-  JOB_STATE_PAUSED: 3,
-  JOB_STATE_CANCELLED: 4,
-  JOB_STATE_FAILED: 5
 };
 
 /**

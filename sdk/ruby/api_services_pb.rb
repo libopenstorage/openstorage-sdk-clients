@@ -366,16 +366,16 @@ module Openstorage
         self.unmarshal_class_method = :decode
         self.service_name = 'openstorage.api.OpenStorageJob'
 
-        # UpdateJobState updates an existing job
-        # Only acceptable values are
+        # Update updates an existing job's state
+        # Only acceptable state values are
         # JobState_PAUSED - acceptable only from running state
         # JobState_CANCELLED - acceptable only from running/pause state
         # JobState_RUNNING - acceptable only from pause state
-        rpc :UpdateJobState, SdkUpdateJobRequest, SdkUpdateJobResponse
-        # GetJobStatus gets the status of a job
-        rpc :GetJobStatus, SdkGetJobStatusRequest, SdkGetJobStatusResponse
-        # EnumerateJobs returns all the jobs currently known to the system
-        rpc :EnumerateJobs, SdkEnumerateJobsRequest, SdkEnumerateJobsResponse
+        rpc :Update, SdkUpdateJobRequest, SdkUpdateJobResponse
+        # GetStatus gets the status of a job
+        rpc :GetStatus, SdkGetJobStatusRequest, SdkGetJobStatusResponse
+        # Enumerate returns all the jobs currently known to the system
+        rpc :Enumerate, SdkEnumerateJobsRequest, SdkEnumerateJobsResponse
       end
 
       Stub = Service.rpc_stub_class
