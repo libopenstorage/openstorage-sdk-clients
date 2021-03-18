@@ -103,6 +103,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :exported, :bool, 8
       optional :imported, :bool, 9
       optional :devpath, :string, 10
+      optional :node_uuid, :string, 11
     end
     add_message "openstorage.api.FastpathConfig" do
       optional :setup_on, :int32, 1
@@ -110,6 +111,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :status, :enum, 3, "openstorage.api.FastpathStatus"
       repeated :replicas, :message, 4, "openstorage.api.FastpathReplState"
       optional :dirty, :bool, 5
+      optional :coord_uuid, :string, 6
     end
     add_message "openstorage.api.ScanPolicy" do
       optional :trigger, :enum, 1, "openstorage.api.ScanPolicy.ScanTrigger"
@@ -322,6 +324,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :proxy_spec_opt do
         optional :proxy_spec, :message, 61, "openstorage.api.ProxySpec"
+      end
+      oneof :fastpath_opt do
+        optional :fastpath, :bool, 62
       end
     end
     add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
@@ -979,13 +984,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :create_time, :message, 5, "google.protobuf.Timestamp"
       optional :last_update_time, :message, 6, "google.protobuf.Timestamp"
       oneof :job do
-        optional :drain_attachments, :message, 4, "openstorage.api.NodeDrainAttachmentsJob"
+        optional :drain_attachments, :message, 400, "openstorage.api.NodeDrainAttachmentsJob"
+        optional :clouddrive_transfer, :message, 401, "openstorage.api.CloudDriveTransferJob"
       end
     end
     add_enum "openstorage.api.Job.Type" do
       value :UNSPECIFIED_TYPE, 0
       value :NONE, 1
       value :DRAIN_ATTACHMENTS, 2
+      value :CLOUD_DRIVE_TRANSFER, 3
     end
     add_enum "openstorage.api.Job.State" do
       value :UNSPECIFIED_STATE, 0
@@ -1014,6 +1021,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :parameters, :message, 4, "openstorage.api.SdkNodeDrainAttachmentsRequest"
       optional :create_time, :message, 5, "google.protobuf.Timestamp"
       optional :last_update_time, :message, 6, "google.protobuf.Timestamp"
+    end
+    add_message "openstorage.api.CloudDriveTransferJob" do
+      optional :source_driveset_id, :string, 1
+      optional :destination_instance_id, :string, 2
+      optional :status, :string, 3
     end
     add_message "openstorage.api.SdkEnumerateJobsRequest" do
       optional :type, :enum, 1, "openstorage.api.Job.Type"
@@ -1523,7 +1535,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 101
-      value :Patch, 1
+      value :Patch, 4
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -2190,6 +2202,7 @@ module Openstorage
     NodeDrainAttachmentOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentOptions").msgclass
     SdkNodeDrainAttachmentsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeDrainAttachmentsRequest").msgclass
     NodeDrainAttachmentsJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentsJob").msgclass
+    CloudDriveTransferJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudDriveTransferJob").msgclass
     SdkEnumerateJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsRequest").msgclass
     SdkEnumerateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsResponse").msgclass
     SdkUpdateJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateJobRequest").msgclass
