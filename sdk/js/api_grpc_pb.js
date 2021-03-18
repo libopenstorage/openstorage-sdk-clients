@@ -2854,13 +2854,13 @@ exports.OpenStoragePoolClient = grpc.makeGenericClientConstructor(OpenStoragePoo
 // OpenstorageJob is a service that provides a common set of APIs for services
 // that use the asynchronous job framework
 var OpenStorageJobService = exports.OpenStorageJobService = {
-  // UpdateJobState updates an existing job
-// Only acceptable values are
+  // Update updates an existing job's state
+// Only acceptable state values are
 // JobState_PAUSED - acceptable only from running state
 // JobState_CANCELLED - acceptable only from running/pause state
 // JobState_RUNNING - acceptable only from pause state
-updateJobState: {
-    path: '/openstorage.api.OpenStorageJob/UpdateJobState',
+update: {
+    path: '/openstorage.api.OpenStorageJob/Update',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkUpdateJobRequest,
@@ -2870,9 +2870,9 @@ updateJobState: {
     responseSerialize: serialize_openstorage_api_SdkUpdateJobResponse,
     responseDeserialize: deserialize_openstorage_api_SdkUpdateJobResponse,
   },
-  // GetJobStatus gets the status of a job
-getJobStatus: {
-    path: '/openstorage.api.OpenStorageJob/GetJobStatus',
+  // GetStatus gets the status of a job
+getStatus: {
+    path: '/openstorage.api.OpenStorageJob/GetStatus',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkGetJobStatusRequest,
@@ -2882,9 +2882,9 @@ getJobStatus: {
     responseSerialize: serialize_openstorage_api_SdkGetJobStatusResponse,
     responseDeserialize: deserialize_openstorage_api_SdkGetJobStatusResponse,
   },
-  // EnumerateJobs returns all the jobs currently known to the system
-enumerateJobs: {
-    path: '/openstorage.api.OpenStorageJob/EnumerateJobs',
+  // Enumerate returns all the jobs currently known to the system
+enumerate: {
+    path: '/openstorage.api.OpenStorageJob/Enumerate',
     requestStream: false,
     responseStream: false,
     requestType: api_pb.SdkEnumerateJobsRequest,

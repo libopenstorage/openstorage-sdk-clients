@@ -972,13 +972,29 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "openstorage.api.Job" do
       optional :id, :string, 1
-      optional :state, :enum, 2, "openstorage.api.JobState"
-      optional :type, :enum, 3, "openstorage.api.JobType"
+      optional :state, :enum, 2, "openstorage.api.Job.State"
+      optional :type, :enum, 3, "openstorage.api.Job.Type"
       optional :create_time, :message, 5, "google.protobuf.Timestamp"
       optional :last_update_time, :message, 6, "google.protobuf.Timestamp"
       oneof :job do
-        optional :drain_attachments, :message, 4, "openstorage.api.NodeDrainAttachmentsJob"
+        optional :drain_attachments, :message, 400, "openstorage.api.NodeDrainAttachmentsJob"
+        optional :clouddrive_transfer, :message, 401, "openstorage.api.CloudDriveTransferJob"
       end
+    end
+    add_enum "openstorage.api.Job.Type" do
+      value :UNSPECIFIED_TYPE, 0
+      value :NONE, 1
+      value :DRAIN_ATTACHMENTS, 2
+      value :CLOUD_DRIVE_TRANSFER, 3
+    end
+    add_enum "openstorage.api.Job.State" do
+      value :UNSPECIFIED_STATE, 0
+      value :PENDING, 1
+      value :RUNNING, 2
+      value :DONE, 3
+      value :PAUSED, 4
+      value :CANCELLED, 5
+      value :FAILED, 6
     end
     add_message "openstorage.api.SdkJobResponse" do
       optional :job, :message, 1, "openstorage.api.Job"
@@ -999,22 +1015,27 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :create_time, :message, 5, "google.protobuf.Timestamp"
       optional :last_update_time, :message, 6, "google.protobuf.Timestamp"
     end
+    add_message "openstorage.api.CloudDriveTransferJob" do
+      optional :source_driveset_id, :string, 1
+      optional :destination_instance_id, :string, 2
+      optional :status, :string, 3
+    end
     add_message "openstorage.api.SdkEnumerateJobsRequest" do
-      optional :type, :enum, 1, "openstorage.api.JobType"
+      optional :type, :enum, 1, "openstorage.api.Job.Type"
     end
     add_message "openstorage.api.SdkEnumerateJobsResponse" do
       repeated :jobs, :message, 1, "openstorage.api.Job"
     end
     add_message "openstorage.api.SdkUpdateJobRequest" do
       optional :id, :string, 1
-      optional :type, :enum, 2, "openstorage.api.JobType"
-      optional :state, :enum, 3, "openstorage.api.JobState"
+      optional :type, :enum, 2, "openstorage.api.Job.Type"
+      optional :state, :enum, 3, "openstorage.api.Job.State"
     end
     add_message "openstorage.api.SdkUpdateJobResponse" do
     end
     add_message "openstorage.api.SdkGetJobStatusRequest" do
       optional :id, :string, 1
-      optional :type, :enum, 2, "openstorage.api.JobType"
+      optional :type, :enum, 2, "openstorage.api.Job.Type"
     end
     add_message "openstorage.api.JobAudit" do
       repeated :summary, :message, 1, "openstorage.api.JobWorkSummary"
@@ -1507,7 +1528,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 69
-      value :Patch, 29
+      value :Patch, 32
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -1946,18 +1967,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkTimeWeekdayFriday, 5
       value :SdkTimeWeekdaySaturday, 6
     end
-    add_enum "openstorage.api.JobType" do
-      value :JobTypeNone, 0
-      value :JobTypeDrainAttachments, 1
-    end
-    add_enum "openstorage.api.JobState" do
-      value :JOB_STATE_PENDING, 0
-      value :JOB_STATE_RUNNING, 1
-      value :JOB_STATE_DONE, 2
-      value :JOB_STATE_PAUSED, 3
-      value :JOB_STATE_CANCELLED, 4
-      value :JOB_STATE_FAILED, 5
-    end
     add_enum "openstorage.api.StorageRebalanceJobState" do
       value :PENDING, 0
       value :RUNNING, 1
@@ -2179,10 +2188,13 @@ module Openstorage
     SdkClusterInspectCurrentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkClusterInspectCurrentResponse").msgclass
     SdkNodeInspectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeInspectRequest").msgclass
     Job = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Job").msgclass
+    Job::Type = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Job.Type").enummodule
+    Job::State = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Job.State").enummodule
     SdkJobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkJobResponse").msgclass
     NodeDrainAttachmentOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentOptions").msgclass
     SdkNodeDrainAttachmentsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeDrainAttachmentsRequest").msgclass
     NodeDrainAttachmentsJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentsJob").msgclass
+    CloudDriveTransferJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudDriveTransferJob").msgclass
     SdkEnumerateJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsRequest").msgclass
     SdkEnumerateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsResponse").msgclass
     SdkUpdateJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateJobRequest").msgclass
@@ -2385,8 +2397,6 @@ module Openstorage
     FastpathStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathStatus").enummodule
     FastpathProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathProtocol").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
-    JobType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobType").enummodule
-    JobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.JobState").enummodule
     StorageRebalanceJobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJobState").enummodule
     SdkCloudBackupOpType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupOpType").enummodule
     SdkCloudBackupStatusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusType").enummodule
