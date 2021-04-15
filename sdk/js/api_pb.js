@@ -377,6 +377,7 @@ goog.exportSymbol('proto.openstorage.api.Status', null, global);
 goog.exportSymbol('proto.openstorage.api.StorageCluster', null, global);
 goog.exportSymbol('proto.openstorage.api.StorageMedium', null, global);
 goog.exportSymbol('proto.openstorage.api.StorageNode', null, global);
+goog.exportSymbol('proto.openstorage.api.StorageNode.SecurityStatus', null, global);
 goog.exportSymbol('proto.openstorage.api.StoragePool', null, global);
 goog.exportSymbol('proto.openstorage.api.StoragePoolOperation', null, global);
 goog.exportSymbol('proto.openstorage.api.StorageRebalanceAudit', null, global);
@@ -27517,7 +27518,8 @@ proto.openstorage.api.StorageNode.toObject = function(includeInstance, msg) {
     hostname: jspb.Message.getFieldWithDefault(msg, 15, ""),
     nodeLabelsMap: (f = msg.getNodeLabelsMap()) ? f.toObject(includeInstance, undefined) : [],
     schedulerNodeName: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    hwtype: jspb.Message.getFieldWithDefault(msg, 18, 0)
+    hwtype: jspb.Message.getFieldWithDefault(msg, 18, 0),
+    securityStatus: jspb.Message.getFieldWithDefault(msg, 19, 0)
   };
 
   if (includeInstance) {
@@ -27618,6 +27620,10 @@ proto.openstorage.api.StorageNode.deserializeBinaryFromReader = function(msg, re
     case 18:
       var value = /** @type {!proto.openstorage.api.HardwareType} */ (reader.readEnum());
       msg.setHwtype(value);
+      break;
+    case 19:
+      var value = /** @type {!proto.openstorage.api.StorageNode.SecurityStatus} */ (reader.readEnum());
+      msg.setSecurityStatus(value);
       break;
     default:
       reader.skipField();
@@ -27748,8 +27754,25 @@ proto.openstorage.api.StorageNode.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getSecurityStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      19,
+      f
+    );
+  }
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.openstorage.api.StorageNode.SecurityStatus = {
+  UNSPECIFIED: 0,
+  UNSECURED: 1,
+  SECURED: 2,
+  SECURED_ALLOW_SECURITY_REMOVAL: 3
+};
 
 /**
  * optional string id = 1;
@@ -28046,6 +28069,24 @@ proto.openstorage.api.StorageNode.prototype.getHwtype = function() {
  */
 proto.openstorage.api.StorageNode.prototype.setHwtype = function(value) {
   return jspb.Message.setProto3EnumField(this, 18, value);
+};
+
+
+/**
+ * optional SecurityStatus security_status = 19;
+ * @return {!proto.openstorage.api.StorageNode.SecurityStatus}
+ */
+proto.openstorage.api.StorageNode.prototype.getSecurityStatus = function() {
+  return /** @type {!proto.openstorage.api.StorageNode.SecurityStatus} */ (jspb.Message.getFieldWithDefault(this, 19, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.StorageNode.SecurityStatus} value
+ * @return {!proto.openstorage.api.StorageNode} returns this
+ */
+proto.openstorage.api.StorageNode.prototype.setSecurityStatus = function(value) {
+  return jspb.Message.setProto3EnumField(this, 19, value);
 };
 
 
@@ -64917,7 +64958,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 101,
-  PATCH: 4
+  PATCH: 5
 };
 
 /**

@@ -604,6 +604,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       map :node_labels, :string, :string, 16
       optional :scheduler_node_name, :string, 17
       optional :HWType, :enum, 18, "openstorage.api.HardwareType"
+      optional :security_status, :enum, 19, "openstorage.api.StorageNode.SecurityStatus"
+    end
+    add_enum "openstorage.api.StorageNode.SecurityStatus" do
+      value :UNSPECIFIED, 0
+      value :UNSECURED, 1
+      value :SECURED, 2
+      value :SECURED_ALLOW_SECURITY_REMOVAL, 3
     end
     add_message "openstorage.api.StorageCluster" do
       optional :status, :enum, 1, "openstorage.api.Status"
@@ -1535,7 +1542,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 101
-      value :Patch, 4
+      value :Patch, 5
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -2090,6 +2097,7 @@ module Openstorage
     GroupSnapCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.GroupSnapCreateRequest").msgclass
     GroupSnapCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.GroupSnapCreateResponse").msgclass
     StorageNode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageNode").msgclass
+    StorageNode::SecurityStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageNode.SecurityStatus").enummodule
     StorageCluster = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageCluster").msgclass
     SdkOpenStoragePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyCreateRequest").msgclass
     SdkOpenStoragePolicyCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyCreateResponse").msgclass
