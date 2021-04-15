@@ -831,6 +831,28 @@ function deserialize_openstorage_api_SdkCredentialValidateResponse(buffer_arg) {
   return api_pb.SdkCredentialValidateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkDiagsCollectRequest(arg) {
+  if (!(arg instanceof api_pb.SdkDiagsCollectRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkDiagsCollectRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkDiagsCollectRequest(buffer_arg) {
+  return api_pb.SdkDiagsCollectRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkDiagsCollectResponse(arg) {
+  if (!(arg instanceof api_pb.SdkDiagsCollectResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkDiagsCollectResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkDiagsCollectResponse(buffer_arg) {
+  return api_pb.SdkDiagsCollectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkEnumerateJobsRequest(arg) {
   if (!(arg instanceof api_pb.SdkEnumerateJobsRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkEnumerateJobsRequest');
@@ -2851,6 +2873,25 @@ enumerateRebalanceJobs: {
 };
 
 exports.OpenStoragePoolClient = grpc.makeGenericClientConstructor(OpenStoragePoolService);
+// OpenStorageDiags service provides methods to manage diagnostic bundles
+var OpenStorageDiagsService = exports.OpenStorageDiagsService = {
+  // Collect starts a job to collect diagnostics from set of nodes that are selected based on the selectors provided
+// in the SdkDiagsCollectRequest. See SdkDiagsCollectRequest for more details on how to select the nodes
+// Returns SdkDiagsCollectResponse which has the job that is responsible for collecting the diags.
+collect: {
+    path: '/openstorage.api.OpenStorageDiags/Collect',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkDiagsCollectRequest,
+    responseType: api_pb.SdkDiagsCollectResponse,
+    requestSerialize: serialize_openstorage_api_SdkDiagsCollectRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkDiagsCollectRequest,
+    responseSerialize: serialize_openstorage_api_SdkDiagsCollectResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkDiagsCollectResponse,
+  },
+};
+
+exports.OpenStorageDiagsClient = grpc.makeGenericClientConstructor(OpenStorageDiagsService);
 // OpenstorageJob is a service that provides a common set of APIs for services
 // that use the asynchronous job framework
 var OpenStorageJobService = exports.OpenStorageJobService = {
