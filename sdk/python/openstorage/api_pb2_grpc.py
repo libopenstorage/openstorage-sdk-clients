@@ -1900,6 +1900,11 @@ class OpenStorageNodeStub(object):
                 request_serializer=api__pb2.SdkNodeVolumeUsageByNodeRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkNodeVolumeUsageByNodeResponse.FromString,
                 )
+        self.RelaxedReclaimPurge = channel.unary_unary(
+                '/openstorage.api.OpenStorageNode/RelaxedReclaimPurge',
+                request_serializer=api__pb2.SdkNodeRelaxedReclaimPurgeRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkNodeRelaxedReclaimPurgeResponse.FromString,
+                )
         self.DrainAttachments = channel.unary_unary(
                 '/openstorage.api.OpenStorageNode/DrainAttachments',
                 request_serializer=api__pb2.SdkNodeDrainAttachmentsRequest.SerializeToString,
@@ -1957,6 +1962,13 @@ class OpenStorageNodeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RelaxedReclaimPurge(self, request, context):
+        """Triggers RelaxedReclaim purge for a give node
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def DrainAttachments(self, request, context):
         """DrainAttachments creates a task to drain volume attachments
         from the provided node in the cluster.
@@ -2009,6 +2021,11 @@ def add_OpenStorageNodeServicer_to_server(servicer, server):
                     servicer.VolumeUsageByNode,
                     request_deserializer=api__pb2.SdkNodeVolumeUsageByNodeRequest.FromString,
                     response_serializer=api__pb2.SdkNodeVolumeUsageByNodeResponse.SerializeToString,
+            ),
+            'RelaxedReclaimPurge': grpc.unary_unary_rpc_method_handler(
+                    servicer.RelaxedReclaimPurge,
+                    request_deserializer=api__pb2.SdkNodeRelaxedReclaimPurgeRequest.FromString,
+                    response_serializer=api__pb2.SdkNodeRelaxedReclaimPurgeResponse.SerializeToString,
             ),
             'DrainAttachments': grpc.unary_unary_rpc_method_handler(
                     servicer.DrainAttachments,
@@ -2118,6 +2135,23 @@ class OpenStorageNode(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/VolumeUsageByNode',
             api__pb2.SdkNodeVolumeUsageByNodeRequest.SerializeToString,
             api__pb2.SdkNodeVolumeUsageByNodeResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RelaxedReclaimPurge(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/RelaxedReclaimPurge',
+            api__pb2.SdkNodeRelaxedReclaimPurgeRequest.SerializeToString,
+            api__pb2.SdkNodeRelaxedReclaimPurgeResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -3312,6 +3346,11 @@ class OpenStorageCredentialsStub(object):
                 request_serializer=api__pb2.SdkCredentialCreateRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkCredentialCreateResponse.FromString,
                 )
+        self.Update = channel.unary_unary(
+                '/openstorage.api.OpenStorageCredentials/Update',
+                request_serializer=api__pb2.SdkCredentialUpdateRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkCredentialUpdateResponse.FromString,
+                )
         self.Enumerate = channel.unary_unary(
                 '/openstorage.api.OpenStorageCredentials/Enumerate',
                 request_serializer=api__pb2.SdkCredentialEnumerateRequest.SerializeToString,
@@ -3376,6 +3415,13 @@ class OpenStorageCredentialsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Update(self, request, context):
+        """input is very same as credential create
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Enumerate(self, request, context):
         """Enumerate returns a list of credential ids
         """
@@ -3418,6 +3464,11 @@ def add_OpenStorageCredentialsServicer_to_server(servicer, server):
                     servicer.Create,
                     request_deserializer=api__pb2.SdkCredentialCreateRequest.FromString,
                     response_serializer=api__pb2.SdkCredentialCreateResponse.SerializeToString,
+            ),
+            'Update': grpc.unary_unary_rpc_method_handler(
+                    servicer.Update,
+                    request_deserializer=api__pb2.SdkCredentialUpdateRequest.FromString,
+                    response_serializer=api__pb2.SdkCredentialUpdateResponse.SerializeToString,
             ),
             'Enumerate': grpc.unary_unary_rpc_method_handler(
                     servicer.Enumerate,
@@ -3470,6 +3521,23 @@ class OpenStorageCredentials(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageCredentials/Create',
             api__pb2.SdkCredentialCreateRequest.SerializeToString,
             api__pb2.SdkCredentialCreateResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Update(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageCredentials/Update',
+            api__pb2.SdkCredentialUpdateRequest.SerializeToString,
+            api__pb2.SdkCredentialUpdateResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

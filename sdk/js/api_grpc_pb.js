@@ -809,6 +809,28 @@ function deserialize_openstorage_api_SdkCredentialInspectResponse(buffer_arg) {
   return api_pb.SdkCredentialInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCredentialUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCredentialUpdateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCredentialUpdateRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCredentialUpdateRequest(buffer_arg) {
+  return api_pb.SdkCredentialUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCredentialUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCredentialUpdateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCredentialUpdateResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCredentialUpdateResponse(buffer_arg) {
+  return api_pb.SdkCredentialUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCredentialValidateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialValidateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialValidateRequest');
@@ -1247,6 +1269,28 @@ function serialize_openstorage_api_SdkNodeInspectResponse(arg) {
 
 function deserialize_openstorage_api_SdkNodeInspectResponse(buffer_arg) {
   return api_pb.SdkNodeInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeRelaxedReclaimPurgeRequest(arg) {
+  if (!(arg instanceof api_pb.SdkNodeRelaxedReclaimPurgeRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeRelaxedReclaimPurgeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeRelaxedReclaimPurgeRequest(buffer_arg) {
+  return api_pb.SdkNodeRelaxedReclaimPurgeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkNodeRelaxedReclaimPurgeResponse(arg) {
+  if (!(arg instanceof api_pb.SdkNodeRelaxedReclaimPurgeResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkNodeRelaxedReclaimPurgeResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkNodeRelaxedReclaimPurgeResponse(buffer_arg) {
+  return api_pb.SdkNodeRelaxedReclaimPurgeResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkNodeUncordonAttachmentsRequest(arg) {
@@ -3001,6 +3045,18 @@ volumeUsageByNode: {
     responseSerialize: serialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse,
     responseDeserialize: deserialize_openstorage_api_SdkNodeVolumeUsageByNodeResponse,
   },
+  // Triggers RelaxedReclaim purge for a give node
+relaxedReclaimPurge: {
+    path: '/openstorage.api.OpenStorageNode/RelaxedReclaimPurge',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkNodeRelaxedReclaimPurgeRequest,
+    responseType: api_pb.SdkNodeRelaxedReclaimPurgeResponse,
+    requestSerialize: serialize_openstorage_api_SdkNodeRelaxedReclaimPurgeRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkNodeRelaxedReclaimPurgeRequest,
+    responseSerialize: serialize_openstorage_api_SdkNodeRelaxedReclaimPurgeResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkNodeRelaxedReclaimPurgeResponse,
+  },
   // DrainAttachments creates a task to drain volume attachments
 // from the provided node in the cluster.
 drainAttachments: {
@@ -3500,6 +3556,18 @@ create: {
     requestDeserialize: deserialize_openstorage_api_SdkCredentialCreateRequest,
     responseSerialize: serialize_openstorage_api_SdkCredentialCreateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCredentialCreateResponse,
+  },
+  // input is very same as credential create
+update: {
+    path: '/openstorage.api.OpenStorageCredentials/Update',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCredentialUpdateRequest,
+    responseType: api_pb.SdkCredentialUpdateResponse,
+    requestSerialize: serialize_openstorage_api_SdkCredentialUpdateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCredentialUpdateRequest,
+    responseSerialize: serialize_openstorage_api_SdkCredentialUpdateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCredentialUpdateResponse,
   },
   // Enumerate returns a list of credential ids
 enumerate: {

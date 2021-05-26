@@ -419,6 +419,8 @@ module Openstorage
         rpc :EnumerateWithFilters, SdkNodeEnumerateWithFiltersRequest, SdkNodeEnumerateWithFiltersResponse
         # Returns capacity usage of all volumes/snaps for a give node
         rpc :VolumeUsageByNode, SdkNodeVolumeUsageByNodeRequest, SdkNodeVolumeUsageByNodeResponse
+        # Triggers RelaxedReclaim purge for a give node
+        rpc :RelaxedReclaimPurge, SdkNodeRelaxedReclaimPurgeRequest, SdkNodeRelaxedReclaimPurgeResponse
         # DrainAttachments creates a task to drain volume attachments
         # from the provided node in the cluster.
         rpc :DrainAttachments, SdkNodeDrainAttachmentsRequest, SdkJobResponse
@@ -654,6 +656,8 @@ module Openstorage
         #     region='dummy-region')))
         # {%- endcodetabs %}
         rpc :Create, SdkCredentialCreateRequest, SdkCredentialCreateResponse
+        # input is very same as credential create
+        rpc :Update, SdkCredentialUpdateRequest, SdkCredentialUpdateResponse
         # Enumerate returns a list of credential ids
         rpc :Enumerate, SdkCredentialEnumerateRequest, SdkCredentialEnumerateResponse
         # Inspect returns the information about a credential, but does not return the secret key.
