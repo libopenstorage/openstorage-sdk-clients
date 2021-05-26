@@ -1658,6 +1658,73 @@ class OpenStoragePool(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
+class OpenStorageDiagsStub(object):
+    """OpenStorageDiags service provides methods to manage diagnostic bundles
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Collect = channel.unary_unary(
+                '/openstorage.api.OpenStorageDiags/Collect',
+                request_serializer=api__pb2.SdkDiagsCollectRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkDiagsCollectResponse.FromString,
+                )
+
+
+class OpenStorageDiagsServicer(object):
+    """OpenStorageDiags service provides methods to manage diagnostic bundles
+    """
+
+    def Collect(self, request, context):
+        """Collect starts a job to collect diagnostics from set of nodes that are selected based on the selectors provided
+        in the SdkDiagsCollectRequest. See SdkDiagsCollectRequest for more details on how to select the nodes
+        Returns SdkDiagsCollectResponse which has the job that is responsible for collecting the diags.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageDiagsServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Collect': grpc.unary_unary_rpc_method_handler(
+                    servicer.Collect,
+                    request_deserializer=api__pb2.SdkDiagsCollectRequest.FromString,
+                    response_serializer=api__pb2.SdkDiagsCollectResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'openstorage.api.OpenStorageDiags', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class OpenStorageDiags(object):
+    """OpenStorageDiags service provides methods to manage diagnostic bundles
+    """
+
+    @staticmethod
+    def Collect(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageDiags/Collect',
+            api__pb2.SdkDiagsCollectRequest.SerializeToString,
+            api__pb2.SdkDiagsCollectResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
 class OpenStorageJobStub(object):
     """OpenstorageJob is a service that provides a common set of APIs for services
     that use the asynchronous job framework

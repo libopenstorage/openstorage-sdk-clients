@@ -82,12 +82,29 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.PXDProxySpec" do
       optional :id, :string, 1
     end
+    add_message "openstorage.api.PureBlockSpec" do
+    end
+    add_message "openstorage.api.PureFileSpec" do
+      optional :export_rules, :string, 1
+    end
     add_message "openstorage.api.ProxySpec" do
       optional :proxy_protocol, :enum, 1, "openstorage.api.ProxyProtocol"
       optional :endpoint, :string, 2
       optional :nfs_spec, :message, 3, "openstorage.api.NFSProxySpec"
       optional :s3_spec, :message, 4, "openstorage.api.S3ProxySpec"
       optional :pxd_spec, :message, 5, "openstorage.api.PXDProxySpec"
+      optional :pure_block_spec, :message, 6, "openstorage.api.PureBlockSpec"
+      optional :pure_file_spec, :message, 7, "openstorage.api.PureFileSpec"
+    end
+    add_message "openstorage.api.Sharedv4ServiceSpec" do
+      optional :name, :string, 1
+      optional :type, :enum, 2, "openstorage.api.Sharedv4ServiceSpec.ServiceType"
+    end
+    add_enum "openstorage.api.Sharedv4ServiceSpec.ServiceType" do
+      value :UNSPECIFIED, 0
+      value :NODEPORT, 1
+      value :CLUSTERIP, 2
+      value :LOADBALANCER, 3
     end
     add_message "openstorage.api.MountOptions" do
       map :options, :string, :string, 1
@@ -167,6 +184,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :sharedv4_mount_options, :message, 39, "openstorage.api.MountOptions"
       optional :proxy_write, :bool, 40
       optional :proxy_spec, :message, 41, "openstorage.api.ProxySpec"
+      optional :sharedv4_service_spec, :message, 42, "openstorage.api.Sharedv4ServiceSpec"
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -243,6 +261,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :proxy_spec_opt do
         optional :proxy_spec, :message, 36, "openstorage.api.ProxySpec"
+      end
+      oneof :sharedv4_service_spec_opt do
+        optional :sharedv4_service_spec, :message, 37, "openstorage.api.Sharedv4ServiceSpec"
       end
     end
     add_message "openstorage.api.VolumeSpecPolicy" do
@@ -327,6 +348,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :fastpath_opt do
         optional :fastpath, :bool, 62
+      end
+      oneof :sharedv4_service_spec_opt do
+        optional :sharedv4_service_spec, :message, 63, "openstorage.api.Sharedv4ServiceSpec"
       end
     end
     add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
@@ -993,6 +1017,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       oneof :job do
         optional :drain_attachments, :message, 400, "openstorage.api.NodeDrainAttachmentsJob"
         optional :clouddrive_transfer, :message, 401, "openstorage.api.CloudDriveTransferJob"
+        optional :collect_diags, :message, 402, "openstorage.api.CollectDiagsJob"
       end
     end
     add_enum "openstorage.api.Job.Type" do
@@ -1000,6 +1025,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :NONE, 1
       value :DRAIN_ATTACHMENTS, 2
       value :CLOUD_DRIVE_TRANSFER, 3
+      value :COLLECT_DIAGS, 4
     end
     add_enum "openstorage.api.Job.State" do
       value :UNSPECIFIED_STATE, 0
@@ -1033,6 +1059,42 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :source_driveset_id, :string, 1
       optional :destination_instance_id, :string, 2
       optional :status, :string, 3
+    end
+    add_message "openstorage.api.CollectDiagsJob" do
+      optional :request, :message, 1, "openstorage.api.SdkDiagsCollectRequest"
+      repeated :statuses, :message, 2, "openstorage.api.DiagsCollectionStatus"
+    end
+    add_message "openstorage.api.DiagsCollectionStatus" do
+      optional :node, :string, 1
+      optional :state, :enum, 2, "openstorage.api.DiagsCollectionStatus.State"
+      optional :message, :string, 3
+    end
+    add_enum "openstorage.api.DiagsCollectionStatus.State" do
+      value :UNSPECIFIED, 0
+      value :PENDING, 1
+      value :RUNNING, 2
+      value :DONE, 3
+      value :FAILED, 4
+    end
+    add_message "openstorage.api.SdkDiagsCollectRequest" do
+      optional :node, :message, 1, "openstorage.api.DiagsNodeSelector"
+      optional :volume, :message, 2, "openstorage.api.DiagsVolumeSelector"
+      optional :profile_only, :bool, 3
+      optional :issuer, :string, 4
+      optional :timeout_mins, :int64, 5
+      optional :live, :bool, 6
+    end
+    add_message "openstorage.api.SdkDiagsCollectResponse" do
+      optional :job, :message, 1, "openstorage.api.Job"
+    end
+    add_message "openstorage.api.DiagsNodeSelector" do
+      repeated :node_label_selector, :message, 1, "openstorage.api.LabelSelectorRequirement"
+      repeated :node_ids, :string, 2
+      optional :all, :bool, 3
+    end
+    add_message "openstorage.api.DiagsVolumeSelector" do
+      repeated :volume_label_selector, :message, 1, "openstorage.api.LabelSelectorRequirement"
+      repeated :volume_ids, :string, 2
     end
     add_message "openstorage.api.SdkEnumerateJobsRequest" do
       optional :type, :enum, 1, "openstorage.api.Job.Type"
@@ -1542,7 +1604,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 101
-      value :Patch, 5
+      value :Patch, 10
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -1810,6 +1872,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :proxy_write, :enum, 24, "openstorage.api.RestoreParamBoolType"
       optional :io_profile_bkup_src, :bool, 25
       optional :proxy_spec, :message, 26, "openstorage.api.ProxySpec"
+      optional :sharedv4_service_spec, :message, 27, "openstorage.api.Sharedv4ServiceSpec"
     end
     add_message "openstorage.api.SdkVolumeCatalogRequest" do
       optional :volume_id, :string, 1
@@ -1958,6 +2021,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :PROXY_PROTOCOL_NFS, 1
       value :PROXY_PROTOCOL_S3, 2
       value :PROXY_PROTOCOL_PXD, 3
+      value :PROXY_PROTOCOL_PURE_BLOCK, 4
+      value :PROXY_PROTOCOL_PURE_FILE, 5
     end
     add_enum "openstorage.api.FastpathStatus" do
       value :FASTPATH_UNKNOWN, 0
@@ -2040,7 +2105,11 @@ module Openstorage
     NFSProxySpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NFSProxySpec").msgclass
     S3ProxySpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.S3ProxySpec").msgclass
     PXDProxySpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.PXDProxySpec").msgclass
+    PureBlockSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.PureBlockSpec").msgclass
+    PureFileSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.PureFileSpec").msgclass
     ProxySpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ProxySpec").msgclass
+    Sharedv4ServiceSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4ServiceSpec").msgclass
+    Sharedv4ServiceSpec::ServiceType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4ServiceSpec.ServiceType").enummodule
     MountOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.MountOptions").msgclass
     FastpathReplState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathReplState").msgclass
     FastpathConfig = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathConfig").msgclass
@@ -2211,6 +2280,13 @@ module Openstorage
     SdkNodeDrainAttachmentsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeDrainAttachmentsRequest").msgclass
     NodeDrainAttachmentsJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NodeDrainAttachmentsJob").msgclass
     CloudDriveTransferJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CloudDriveTransferJob").msgclass
+    CollectDiagsJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CollectDiagsJob").msgclass
+    DiagsCollectionStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DiagsCollectionStatus").msgclass
+    DiagsCollectionStatus::State = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DiagsCollectionStatus.State").enummodule
+    SdkDiagsCollectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkDiagsCollectRequest").msgclass
+    SdkDiagsCollectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkDiagsCollectResponse").msgclass
+    DiagsNodeSelector = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DiagsNodeSelector").msgclass
+    DiagsVolumeSelector = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.DiagsVolumeSelector").msgclass
     SdkEnumerateJobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsRequest").msgclass
     SdkEnumerateJobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkEnumerateJobsResponse").msgclass
     SdkUpdateJobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkUpdateJobRequest").msgclass

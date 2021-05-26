@@ -51,21 +51,6 @@
         "title": "FilesystemTrimStatus represents the status codes returned from\nOpenStorageFilesystemTrim service APIs()",
         "type": "string"
       },
-      "JobState": {
-        "default": "UNSPECIFIED_STATE",
-        "description": "- UNSPECIFIED_STATE: Unspecified\n - PENDING: Pending indicates job is still pending and has not started work\n - RUNNING: Running indicates job is actively running\n - DONE: Done indicates job has finished processing\n - PAUSED: Paused indicates job is paused\n - CANCELLED: Cancelled indicates job is cancelled\n - FAILED: Failed indicates job has failed",
-        "enum": [
-          "UNSPECIFIED_STATE",
-          "PENDING",
-          "RUNNING",
-          "DONE",
-          "PAUSED",
-          "CANCELLED",
-          "FAILED"
-        ],
-        "title": "State is an enum for state of a node drain operation",
-        "type": "string"
-      },
       "LabelSelectorRequirementOperator": {
         "default": "In",
         "description": "- In: In means the value for 'key' should be in one of the given value(s)\n - NotIn: NotIn means the value for 'key' should NOT be in one of the given value(s)\n - Exists: Exists means the 'key' should just exist regardless of the value\n - DoesNotExist: DoesNotExist means the 'key' should NOT exist\n - Gt: Gt means the 'key' should be greater than the value(s)\n - Lt: Lt means the 'key' should be less than the value(s)",
@@ -211,6 +196,17 @@
           "RESIZE_TYPE_RESIZE_DISK"
         ],
         "title": "Defines the operation types available to resize a storage pool",
+        "type": "string"
+      },
+      "Sharedv4ServiceSpecServiceType": {
+        "default": "UNSPECIFIED",
+        "description": "Type of sharedv4 service. Values are governed by the different types\nof services supported by container orchestrators such as Kubernetes.\n\n - UNSPECIFIED: Unspecified\n - NODEPORT: Export the sharedv4 service on each Node's IP.\nIn this mode the sharedv4 volume can be accessed from outside the\ncluster using one of the node's IPs.\n - CLUSTERIP: Export the shared4 service on an internal cluster IP.\nIn this mode the sharedv4 volume will only be accessible\nwithin the cluster via this service.\n - LOADBALANCER: Expose the sharedv4 service on cloud provider's load balancer.\nApplicable when running in cloud. In this mode the sharedv4 volume\ncan be accessed from outside the cluster.",
+        "enum": [
+          "UNSPECIFIED",
+          "NODEPORT",
+          "CLUSTERIP",
+          "LOADBALANCER"
+        ],
         "type": "string"
       },
       "StorageNodeSecurityStatus": {
@@ -681,6 +677,21 @@
         "title": "Response to enumerate all the cluster pairs",
         "type": "object"
       },
+      "apiCollectDiagsJob": {
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/apiSdkDiagsCollectRequest"
+          },
+          "statuses": {
+            "items": {
+              "$ref": "#/components/schemas/apiDiagsCollectionStatus"
+            },
+            "title": "Statuses is a list of statuses for diags collection for each node that is part of the request",
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
       "apiCosType": {
         "default": "NONE",
         "enum": [
@@ -690,6 +701,80 @@
           "HIGH"
         ],
         "type": "string"
+      },
+      "apiDiagsCollectionStatus": {
+        "properties": {
+          "message": {
+            "title": "Message is a user friendly message for current status of diags collection",
+            "type": "string"
+          },
+          "node": {
+            "title": "Node is the node that's collecting the diags",
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/components/schemas/apiDiagsCollectionStatusState"
+          }
+        },
+        "type": "object"
+      },
+      "apiDiagsCollectionStatusState": {
+        "default": "UNSPECIFIED",
+        "description": "- UNSPECIFIED: Unspecified means uninitialized or unknown state\n - PENDING: Pending indicates the diags collection is pending and hasn't started\n - RUNNING: Running indicates diags collection is actively running\n - DONE: Done indicates diags collection has finished\n - FAILED: Failed indicates diags collection has failed",
+        "enum": [
+          "UNSPECIFIED",
+          "PENDING",
+          "RUNNING",
+          "DONE",
+          "FAILED"
+        ],
+        "title": "State is an enum for state of diags collection on a given node",
+        "type": "string"
+      },
+      "apiDiagsNodeSelector": {
+        "properties": {
+          "all": {
+            "format": "boolean",
+            "title": "All selects all nodes for diags collection",
+            "type": "boolean"
+          },
+          "node_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "NodeIDs are unique IDs fo the nodes for which the diags will be collected",
+            "type": "array"
+          },
+          "node_label_selector": {
+            "items": {
+              "$ref": "#/components/schemas/apiLabelSelectorRequirement"
+            },
+            "title": "NodeLabelSelector is a label selector used to select the nodes for which diags will be collected",
+            "type": "array"
+          }
+        },
+        "title": "DiagsNodeSelector allows selecting nodes for diags collection\nUser can select NodeLabelSelector AND/OR NodeIDs. If both are provided, the implementation will select nodes based on\nboth labels and IDs and also handle overlaps\nIf All is set to true, other selectors are ignored since it selects all nodes",
+        "type": "object"
+      },
+      "apiDiagsVolumeSelector": {
+        "properties": {
+          "volume_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "VolumeIDs selects volumes by their unique IDs and then uses replica and attached nodes for those volumes for diags\ncollection",
+            "type": "array"
+          },
+          "volume_label_selector": {
+            "items": {
+              "$ref": "#/components/schemas/apiLabelSelectorRequirement"
+            },
+            "title": "VolumeLabelSelector selects volumes by their labels and then uses replica and attached nodes for those volumes for\ndiags collection",
+            "type": "array"
+          }
+        },
+        "title": "DiagsVolumeSelector allows selecting volumes for diags collection\nUser can select VolumeLabelSelector AND/OR VolumeIDs. If both are provided, the implementation will select nodes\nbased on both labels and IDs and also handle overlaps",
+        "type": "object"
       },
       "apiDrainAttachmentsSummary": {
         "properties": {
@@ -938,6 +1023,9 @@
           "clouddrive_transfer": {
             "$ref": "#/components/schemas/apiCloudDriveTransferJob"
           },
+          "collect_diags": {
+            "$ref": "#/components/schemas/apiCollectDiagsJob"
+          },
           "create_time": {
             "format": "date-time",
             "title": "CreateTime is the time the job was created",
@@ -956,7 +1044,7 @@
             "type": "string"
           },
           "state": {
-            "$ref": "#/components/schemas/JobState"
+            "$ref": "#/components/schemas/apiJobState"
           },
           "type": {
             "$ref": "#/components/schemas/apiJobType"
@@ -964,6 +1052,21 @@
         },
         "title": "Job is a generic job object that can encapsulate other\nmessages which follow the job framework of APIs",
         "type": "object"
+      },
+      "apiJobState": {
+        "default": "UNSPECIFIED_STATE",
+        "description": "- UNSPECIFIED_STATE: Unspecified\n - PENDING: Pending indicates job is still pending and has not started work\n - RUNNING: Running indicates job is actively running\n - DONE: Done indicates job has finished processing\n - PAUSED: Paused indicates job is paused\n - CANCELLED: Cancelled indicates job is cancelled\n - FAILED: Failed indicates job has failed",
+        "enum": [
+          "UNSPECIFIED_STATE",
+          "PENDING",
+          "RUNNING",
+          "DONE",
+          "PAUSED",
+          "CANCELLED",
+          "FAILED"
+        ],
+        "title": "State is an enum for state of a node drain operation",
+        "type": "string"
       },
       "apiJobSummary": {
         "properties": {
@@ -989,12 +1092,13 @@
       },
       "apiJobType": {
         "default": "UNSPECIFIED_TYPE",
-        "description": "- UNSPECIFIED_TYPE: Unspecified\n - NONE: None\n - DRAIN_ATTACHMENTS: Job for draining volume attachments\n - CLOUD_DRIVE_TRANSFER: Job for transferring cloud drives between nodes",
+        "description": "- UNSPECIFIED_TYPE: Unspecified\n - NONE: None\n - DRAIN_ATTACHMENTS: Job for draining volume attachments\n - CLOUD_DRIVE_TRANSFER: Job for transferring cloud drives between nodes\n - COLLECT_DIAGS: Job for collecting diags from the cluster nodes",
         "enum": [
           "UNSPECIFIED_TYPE",
           "NONE",
           "DRAIN_ATTACHMENTS",
-          "CLOUD_DRIVE_TRANSFER"
+          "CLOUD_DRIVE_TRANSFER",
+          "COLLECT_DIAGS"
         ],
         "title": "Type are the supported job types",
         "type": "string"
@@ -1167,12 +1271,14 @@
       },
       "apiProxyProtocol": {
         "default": "PROXY_PROTOCOL_INVALID",
-        "description": "ProxyProtocol defines the protocol used for proxy.\n\n - PROXY_PROTOCOL_INVALID: Invalid uninitialized value\n - PROXY_PROTOCOL_NFS: NFS indicates that the external data source is NFS and the volume\nwill be reflected over NFS protocol\n - PROXY_PROTOCOL_S3: S3 indicates that the external data source is an object store.\n - PROXY_PROTOCOL_PXD: PXD indicates that the external data source is a Portworx block volume.",
+        "description": "ProxyProtocol defines the protocol used for proxy.\n\n - PROXY_PROTOCOL_INVALID: Invalid uninitialized value\n - PROXY_PROTOCOL_NFS: NFS indicates that the external data source is NFS and the volume\nwill be reflected over NFS protocol\n - PROXY_PROTOCOL_S3: S3 indicates that the external data source is an object store.\n - PROXY_PROTOCOL_PXD: PXD indicates that the external data source is a Portworx block volume.\n - PROXY_PROTOCOL_PURE_BLOCK: PURE_BLOCK indicates that the external data source is a pure_block volume.\n - PROXY_PROTOCOL_PURE_FILE: PURE_FILE indicates that the external data source is a pure_file volume.",
         "enum": [
           "PROXY_PROTOCOL_INVALID",
           "PROXY_PROTOCOL_NFS",
           "PROXY_PROTOCOL_S3",
-          "PROXY_PROTOCOL_PXD"
+          "PROXY_PROTOCOL_PXD",
+          "PROXY_PROTOCOL_PURE_BLOCK",
+          "PROXY_PROTOCOL_PURE_FILE"
         ],
         "type": "string"
       },
@@ -1189,6 +1295,12 @@
           "proxy_protocol": {
             "$ref": "#/components/schemas/apiProxyProtocol"
           },
+          "pure_block_spec": {
+            "$ref": "#/components/schemas/apiPureBlockSpec"
+          },
+          "pure_file_spec": {
+            "$ref": "#/components/schemas/apiPureFileSpec"
+          },
           "pxd_spec": {
             "$ref": "#/components/schemas/apiPXDProxySpec"
           },
@@ -1196,6 +1308,19 @@
             "$ref": "#/components/schemas/apiS3ProxySpec"
           }
         },
+        "type": "object"
+      },
+      "apiPureBlockSpec": {
+        "title": "PureBlockSpec is the spec for proxying a volume on pure_block backends",
+        "type": "object"
+      },
+      "apiPureFileSpec": {
+        "properties": {
+          "export_rules": {
+            "type": "string"
+          }
+        },
+        "title": "PureFileSpec is the spec for proxying a volume on pure_file backends",
         "type": "object"
       },
       "apiReplicaPlacementSpec": {
@@ -1376,6 +1501,9 @@
           },
           "sharedv4_mount_options": {
             "$ref": "#/components/schemas/apiMountOptions"
+          },
+          "sharedv4_service_spec": {
+            "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
           },
           "snapshot_interval": {
             "format": "int64",
@@ -2545,6 +2673,46 @@
         "title": "Empty response",
         "type": "object"
       },
+      "apiSdkDiagsCollectRequest": {
+        "properties": {
+          "issuer": {
+            "title": "Issuer is an optional  user friendly name for the caller invoking the API",
+            "type": "string"
+          },
+          "live": {
+            "format": "boolean",
+            "title": "Live is an optional flag if true will collect live cores from running processes of the driver",
+            "type": "boolean"
+          },
+          "node": {
+            "$ref": "#/components/schemas/apiDiagsNodeSelector"
+          },
+          "profile_only": {
+            "format": "boolean",
+            "title": "ProfileOnly is an optional flag if true will only collect the stack and heap profile of the driver and will skip\nother diag components",
+            "type": "boolean"
+          },
+          "timeout_mins": {
+            "format": "int64",
+            "title": "TimeoutMins is the timeout in minutes for the job. This is an optional field and if not provided, the\nimplementation of the SDK will use a sane default",
+            "type": "string"
+          },
+          "volume": {
+            "$ref": "#/components/schemas/apiDiagsVolumeSelector"
+          }
+        },
+        "title": "SdkDiagsCollectRequest is the request object that specifies what should be part of the diags that are collected\nUser can specify both Node and Volume or just one of them. If both are provided, the implementation will select\nnodes based on both and also handle overlaps",
+        "type": "object"
+      },
+      "apiSdkDiagsCollectResponse": {
+        "properties": {
+          "job": {
+            "$ref": "#/components/schemas/apiJob"
+          }
+        },
+        "title": "SdkDiagsCollectResponse defines a response for an SDK request to collect diags",
+        "type": "object"
+      },
       "apiSdkEnumerateJobsResponse": {
         "properties": {
           "jobs": {
@@ -3403,7 +3571,7 @@
             "type": "string"
           },
           "state": {
-            "$ref": "#/components/schemas/JobState"
+            "$ref": "#/components/schemas/apiJobState"
           },
           "type": {
             "$ref": "#/components/schemas/apiJobType"
@@ -3969,6 +4137,19 @@
           "SEVERITY_TYPE_NOTIFY"
         ],
         "type": "string"
+      },
+      "apiSharedv4ServiceSpec": {
+        "description": "Sharedv4ServiceSpec when set, creates a service endpoint for accessing\na sharedv4 volume.",
+        "properties": {
+          "name": {
+            "title": "Name of the service. If not provided the name of the volume will be\nused for setting up a service",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Sharedv4ServiceSpecServiceType"
+          }
+        },
+        "type": "object"
       },
       "apiSource": {
         "description": "Source is a structure that can be given to a volume\nto seed the volume with data.",
@@ -4882,6 +5063,9 @@
           "sharedv4_mount_options": {
             "$ref": "#/components/schemas/apiMountOptions"
           },
+          "sharedv4_service_spec": {
+            "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
+          },
           "size": {
             "format": "uint64",
             "title": "Size specifies the thin provisioned volume size in bytes",
@@ -5007,6 +5191,9 @@
           "sharedv4_mount_opt_spec": {
             "$ref": "#/components/schemas/apiMountOptions"
           },
+          "sharedv4_service_spec": {
+            "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
+          },
           "size": {
             "format": "uint64",
             "type": "string"
@@ -5116,6 +5303,9 @@
           },
           "sharedv4_mount_opt_spec": {
             "$ref": "#/components/schemas/apiMountOptions"
+          },
+          "sharedv4_service_spec": {
+            "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
           },
           "size": {
             "format": "uint64",
@@ -5247,7 +5437,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.101.5"
+    "version": "0.101.10"
   },
   "openapi": "3.0.0",
   "paths": {
@@ -6270,6 +6460,37 @@
         ]
       }
     },
+    "/v1/diags": {
+      "post": {
+        "operationId": "Collect",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiSdkDiagsCollectRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkDiagsCollectResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Collect starts a job to collect diagnostics from set of nodes that are selected based on the selectors provided\nin the SdkDiagsCollectRequest. See SdkDiagsCollectRequest for more details on how to select the nodes\nReturns SdkDiagsCollectResponse which has the job that is responsible for collecting the diags.",
+        "tags": [
+          "OpenStorageDiags"
+        ]
+      }
+    },
     "/v1/filesystem-check/start": {
       "post": {
         "operationId": "Start",
@@ -6514,7 +6735,7 @@
         "operationId": "Enumerate",
         "parameters": [
           {
-            "description": "Type if specified will list the jobs of the provided type.\n\n - UNSPECIFIED_TYPE: Unspecified\n - NONE: None\n - DRAIN_ATTACHMENTS: Job for draining volume attachments\n - CLOUD_DRIVE_TRANSFER: Job for transferring cloud drives between nodes",
+            "description": "Type if specified will list the jobs of the provided type.\n\n - UNSPECIFIED_TYPE: Unspecified\n - NONE: None\n - DRAIN_ATTACHMENTS: Job for draining volume attachments\n - CLOUD_DRIVE_TRANSFER: Job for transferring cloud drives between nodes\n - COLLECT_DIAGS: Job for collecting diags from the cluster nodes",
             "in": "query",
             "name": "type",
             "required": false,
@@ -6524,7 +6745,8 @@
                 "UNSPECIFIED_TYPE",
                 "NONE",
                 "DRAIN_ATTACHMENTS",
-                "CLOUD_DRIVE_TRANSFER"
+                "CLOUD_DRIVE_TRANSFER",
+                "COLLECT_DIAGS"
               ],
               "type": "string"
             }
@@ -6561,7 +6783,7 @@
             }
           },
           {
-            "description": "Type of the job.\n\n - UNSPECIFIED_TYPE: Unspecified\n - NONE: None\n - DRAIN_ATTACHMENTS: Job for draining volume attachments\n - CLOUD_DRIVE_TRANSFER: Job for transferring cloud drives between nodes",
+            "description": "Type of the job.\n\n - UNSPECIFIED_TYPE: Unspecified\n - NONE: None\n - DRAIN_ATTACHMENTS: Job for draining volume attachments\n - CLOUD_DRIVE_TRANSFER: Job for transferring cloud drives between nodes\n - COLLECT_DIAGS: Job for collecting diags from the cluster nodes",
             "in": "query",
             "name": "type",
             "required": false,
@@ -6571,7 +6793,8 @@
                 "UNSPECIFIED_TYPE",
                 "NONE",
                 "DRAIN_ATTACHMENTS",
-                "CLOUD_DRIVE_TRANSFER"
+                "CLOUD_DRIVE_TRANSFER",
+                "COLLECT_DIAGS"
               ],
               "type": "string"
             }

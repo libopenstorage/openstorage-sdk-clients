@@ -355,6 +355,24 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageDiags
+      # OpenStorageDiags service provides methods to manage diagnostic bundles
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageDiags'
+
+        # Collect starts a job to collect diagnostics from set of nodes that are selected based on the selectors provided
+        # in the SdkDiagsCollectRequest. See SdkDiagsCollectRequest for more details on how to select the nodes
+        # Returns SdkDiagsCollectResponse which has the job that is responsible for collecting the diags.
+        rpc :Collect, SdkDiagsCollectRequest, SdkDiagsCollectResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageJob
       # OpenstorageJob is a service that provides a common set of APIs for services
       # that use the asynchronous job framework
