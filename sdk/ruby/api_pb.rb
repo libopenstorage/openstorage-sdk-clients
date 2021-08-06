@@ -99,6 +99,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.Sharedv4ServiceSpec" do
       optional :name, :string, 1
       optional :type, :enum, 2, "openstorage.api.Sharedv4ServiceSpec.ServiceType"
+      optional :external_access, :bool, 3
     end
     add_enum "openstorage.api.Sharedv4ServiceSpec.ServiceType" do
       value :UNSPECIFIED, 0
@@ -435,9 +436,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :last_scan_status, :enum, 28, "openstorage.api.FilesystemHealthStatus"
       optional :mount_options, :message, 29, "openstorage.api.MountOptions"
       optional :sharedv4_mount_options, :message, 30, "openstorage.api.MountOptions"
-      optional :prev_state, :enum, 31, "openstorage.api.VolumeState"
-      optional :delete_time, :message, 32, "google.protobuf.Timestamp"
-      optional :expiry_time, :message, 33, "google.protobuf.Timestamp"
+      optional :in_trashcan, :bool, 31
+      optional :derived_io_profile, :enum, 32, "openstorage.api.IoProfile"
     end
     add_message "openstorage.api.Stats" do
       optional :reads, :uint64, 1
@@ -1650,7 +1650,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 120
+      value :Minor, 123
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -2012,6 +2012,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_CMS, 4
       value :IO_PROFILE_SYNC_SHARED, 5
       value :IO_PROFILE_AUTO, 6
+      value :IO_PROFILE_NONE, 7
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
@@ -2024,7 +2025,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :VOLUME_STATE_DELETED, 7
       value :VOLUME_STATE_TRY_DETACHING, 8
       value :VOLUME_STATE_RESTORE, 9
-      value :VOLUME_STATE_IN_TRASHCAN, 10
     end
     add_enum "openstorage.api.VolumeStatus" do
       value :VOLUME_STATUS_NONE, 0

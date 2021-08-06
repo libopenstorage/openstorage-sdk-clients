@@ -11425,7 +11425,8 @@ proto.openstorage.api.Sharedv4ServiceSpec.prototype.toObject = function(opt_incl
 proto.openstorage.api.Sharedv4ServiceSpec.toObject = function(includeInstance, msg) {
   var f, obj = {
     name: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    type: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    type: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    externalAccess: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -11470,6 +11471,10 @@ proto.openstorage.api.Sharedv4ServiceSpec.deserializeBinaryFromReader = function
       var value = /** @type {!proto.openstorage.api.Sharedv4ServiceSpec.ServiceType} */ (reader.readEnum());
       msg.setType(value);
       break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setExternalAccess(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -11510,6 +11515,13 @@ proto.openstorage.api.Sharedv4ServiceSpec.serializeBinaryToWriter = function(mes
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = message.getExternalAccess();
+  if (f) {
+    writer.writeBool(
+      3,
       f
     );
   }
@@ -11559,6 +11571,24 @@ proto.openstorage.api.Sharedv4ServiceSpec.prototype.getType = function() {
  */
 proto.openstorage.api.Sharedv4ServiceSpec.prototype.setType = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional bool external_access = 3;
+ * @return {boolean}
+ */
+proto.openstorage.api.Sharedv4ServiceSpec.prototype.getExternalAccess = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.openstorage.api.Sharedv4ServiceSpec} returns this
+ */
+proto.openstorage.api.Sharedv4ServiceSpec.prototype.setExternalAccess = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
@@ -19605,9 +19635,8 @@ proto.openstorage.api.Volume.toObject = function(includeInstance, msg) {
     lastScanStatus: jspb.Message.getFieldWithDefault(msg, 28, 0),
     mountOptions: (f = msg.getMountOptions()) && proto.openstorage.api.MountOptions.toObject(includeInstance, f),
     sharedv4MountOptions: (f = msg.getSharedv4MountOptions()) && proto.openstorage.api.MountOptions.toObject(includeInstance, f),
-    prevState: jspb.Message.getFieldWithDefault(msg, 31, 0),
-    deleteTime: (f = msg.getDeleteTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    expiryTime: (f = msg.getExpiryTime()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    inTrashcan: jspb.Message.getBooleanFieldWithDefault(msg, 31, false),
+    derivedIoProfile: jspb.Message.getFieldWithDefault(msg, 32, 0)
   };
 
   if (includeInstance) {
@@ -19782,18 +19811,12 @@ proto.openstorage.api.Volume.deserializeBinaryFromReader = function(msg, reader)
       msg.setSharedv4MountOptions(value);
       break;
     case 31:
-      var value = /** @type {!proto.openstorage.api.VolumeState} */ (reader.readEnum());
-      msg.setPrevState(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setInTrashcan(value);
       break;
     case 32:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setDeleteTime(value);
-      break;
-    case 33:
-      var value = new google_protobuf_timestamp_pb.Timestamp;
-      reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
-      msg.setExpiryTime(value);
+      var value = /** @type {!proto.openstorage.api.IoProfile} */ (reader.readEnum());
+      msg.setDerivedIoProfile(value);
       break;
     default:
       reader.skipField();
@@ -20046,27 +20069,18 @@ proto.openstorage.api.Volume.serializeBinaryToWriter = function(message, writer)
       proto.openstorage.api.MountOptions.serializeBinaryToWriter
     );
   }
-  f = message.getPrevState();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getInTrashcan();
+  if (f) {
+    writer.writeBool(
       31,
       f
     );
   }
-  f = message.getDeleteTime();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getDerivedIoProfile();
+  if (f !== 0.0) {
+    writer.writeEnum(
       32,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
-    );
-  }
-  f = message.getExpiryTime();
-  if (f != null) {
-    writer.writeMessage(
-      33,
-      f,
-      google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -20924,94 +20938,38 @@ proto.openstorage.api.Volume.prototype.hasSharedv4MountOptions = function() {
 
 
 /**
- * optional VolumeState prev_state = 31;
- * @return {!proto.openstorage.api.VolumeState}
- */
-proto.openstorage.api.Volume.prototype.getPrevState = function() {
-  return /** @type {!proto.openstorage.api.VolumeState} */ (jspb.Message.getFieldWithDefault(this, 31, 0));
-};
-
-
-/**
- * @param {!proto.openstorage.api.VolumeState} value
- * @return {!proto.openstorage.api.Volume} returns this
- */
-proto.openstorage.api.Volume.prototype.setPrevState = function(value) {
-  return jspb.Message.setProto3EnumField(this, 31, value);
-};
-
-
-/**
- * optional google.protobuf.Timestamp delete_time = 32;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.openstorage.api.Volume.prototype.getDeleteTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 32));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.openstorage.api.Volume} returns this
-*/
-proto.openstorage.api.Volume.prototype.setDeleteTime = function(value) {
-  return jspb.Message.setWrapperField(this, 32, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.openstorage.api.Volume} returns this
- */
-proto.openstorage.api.Volume.prototype.clearDeleteTime = function() {
-  return this.setDeleteTime(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
+ * optional bool in_trashcan = 31;
  * @return {boolean}
  */
-proto.openstorage.api.Volume.prototype.hasDeleteTime = function() {
-  return jspb.Message.getField(this, 32) != null;
+proto.openstorage.api.Volume.prototype.getInTrashcan = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 31, false));
 };
 
 
 /**
- * optional google.protobuf.Timestamp expiry_time = 33;
- * @return {?proto.google.protobuf.Timestamp}
- */
-proto.openstorage.api.Volume.prototype.getExpiryTime = function() {
-  return /** @type{?proto.google.protobuf.Timestamp} */ (
-    jspb.Message.getWrapperField(this, google_protobuf_timestamp_pb.Timestamp, 33));
-};
-
-
-/**
- * @param {?proto.google.protobuf.Timestamp|undefined} value
- * @return {!proto.openstorage.api.Volume} returns this
-*/
-proto.openstorage.api.Volume.prototype.setExpiryTime = function(value) {
-  return jspb.Message.setWrapperField(this, 33, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {boolean} value
  * @return {!proto.openstorage.api.Volume} returns this
  */
-proto.openstorage.api.Volume.prototype.clearExpiryTime = function() {
-  return this.setExpiryTime(undefined);
+proto.openstorage.api.Volume.prototype.setInTrashcan = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 31, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * optional IoProfile derived_io_profile = 32;
+ * @return {!proto.openstorage.api.IoProfile}
  */
-proto.openstorage.api.Volume.prototype.hasExpiryTime = function() {
-  return jspb.Message.getField(this, 33) != null;
+proto.openstorage.api.Volume.prototype.getDerivedIoProfile = function() {
+  return /** @type {!proto.openstorage.api.IoProfile} */ (jspb.Message.getFieldWithDefault(this, 32, 0));
+};
+
+
+/**
+ * @param {!proto.openstorage.api.IoProfile} value
+ * @return {!proto.openstorage.api.Volume} returns this
+ */
+proto.openstorage.api.Volume.prototype.setDerivedIoProfile = function(value) {
+  return jspb.Message.setProto3EnumField(this, 32, value);
 };
 
 
@@ -69022,7 +68980,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 120,
+  MINOR: 123,
   PATCH: 0
 };
 
@@ -79678,7 +79636,8 @@ proto.openstorage.api.IoProfile = {
   IO_PROFILE_DB_REMOTE: 3,
   IO_PROFILE_CMS: 4,
   IO_PROFILE_SYNC_SHARED: 5,
-  IO_PROFILE_AUTO: 6
+  IO_PROFILE_AUTO: 6,
+  IO_PROFILE_NONE: 7
 };
 
 /**
@@ -79694,8 +79653,7 @@ proto.openstorage.api.VolumeState = {
   VOLUME_STATE_ERROR: 6,
   VOLUME_STATE_DELETED: 7,
   VOLUME_STATE_TRY_DETACHING: 8,
-  VOLUME_STATE_RESTORE: 9,
-  VOLUME_STATE_IN_TRASHCAN: 10
+  VOLUME_STATE_RESTORE: 9
 };
 
 /**
