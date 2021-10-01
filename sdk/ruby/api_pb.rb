@@ -107,6 +107,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :CLUSTERIP, 2
       value :LOADBALANCER, 3
     end
+    add_message "openstorage.api.Sharedv4FailoverStrategy" do
+    end
+    add_enum "openstorage.api.Sharedv4FailoverStrategy.Value" do
+      value :UNSPECIFIED, 0
+      value :AGGRESSIVE, 1
+      value :NORMAL, 2
+    end
+    add_message "openstorage.api.Sharedv4Spec" do
+      optional :failover_strategy, :enum, 1, "openstorage.api.Sharedv4FailoverStrategy.Value"
+    end
     add_message "openstorage.api.MountOptions" do
       map :options, :string, :string, 1
     end
@@ -195,6 +205,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :auto_fstrim, :bool, 43
       optional :number_of_chunks, :uint32, 44
       optional :io_throttle, :message, 45, "openstorage.api.IoThrottle"
+      optional :sharedv4_spec, :message, 46, "openstorage.api.Sharedv4Spec"
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -280,6 +291,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :io_throttle_opt do
         optional :io_throttle, :message, 39, "openstorage.api.IoThrottle"
+      end
+      oneof :sharedv4_spec_opt do
+        optional :sharedv4_spec, :message, 40, "openstorage.api.Sharedv4Spec"
       end
     end
     add_message "openstorage.api.VolumeSpecPolicy" do
@@ -373,6 +387,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :io_throttle_opt do
         optional :io_throttle, :message, 65, "openstorage.api.IoThrottle"
+      end
+      oneof :sharedv4_spec_opt do
+        optional :sharedv4_spec, :message, 66, "openstorage.api.Sharedv4Spec"
       end
     end
     add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
@@ -1567,6 +1584,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :status, :enum, 1, "openstorage.api.FilesystemTrim.FilesystemTrimStatus"
       optional :message, :string, 2
     end
+    add_message "openstorage.api.SdkAutoFSTrimStatusRequest" do
+    end
+    add_message "openstorage.api.SdkAutoFSTrimStatusResponse" do
+      map :trim_status, :string, :enum, 1, "openstorage.api.FilesystemTrim.FilesystemTrimStatus"
+      optional :message, :string, 2
+    end
     add_message "openstorage.api.SdkFilesystemTrimStopRequest" do
       optional :volume_id, :string, 1
       optional :mount_path, :string, 2
@@ -1650,7 +1673,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 123
+      value :Minor, 126
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1922,6 +1945,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :sharedv4_service_spec, :message, 27, "openstorage.api.Sharedv4ServiceSpec"
       optional :auto_fstrim, :enum, 28, "openstorage.api.RestoreParamBoolType"
       optional :io_throttle, :message, 29, "openstorage.api.IoThrottle"
+      optional :sharedv4_spec, :message, 30, "openstorage.api.Sharedv4Spec"
     end
     add_message "openstorage.api.SdkVolumeCatalogRequest" do
       optional :volume_id, :string, 1
@@ -1946,7 +1970,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :STATUS_STORAGE_REBALANCE, 11
       value :STATUS_STORAGE_DRIVE_REPLACE, 12
       value :STATUS_NOT_IN_QUORUM_NO_STORAGE, 13
-      value :STATUS_MAX, 14
+      value :STATUS_POOLMAINTENANCE, 14
+      value :STATUS_MAX, 15
     end
     add_enum "openstorage.api.DriverType" do
       value :DRIVER_TYPE_NONE, 0
@@ -2165,6 +2190,9 @@ module Openstorage
     ProxySpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ProxySpec").msgclass
     Sharedv4ServiceSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4ServiceSpec").msgclass
     Sharedv4ServiceSpec::ServiceType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4ServiceSpec.ServiceType").enummodule
+    Sharedv4FailoverStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4FailoverStrategy").msgclass
+    Sharedv4FailoverStrategy::Value = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4FailoverStrategy.Value").enummodule
+    Sharedv4Spec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4Spec").msgclass
     MountOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.MountOptions").msgclass
     FastpathReplState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathReplState").msgclass
     FastpathConfig = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathConfig").msgclass
@@ -2452,6 +2480,8 @@ module Openstorage
     SdkFilesystemTrimStartResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStartResponse").msgclass
     SdkFilesystemTrimStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStatusRequest").msgclass
     SdkFilesystemTrimStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStatusResponse").msgclass
+    SdkAutoFSTrimStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimStatusRequest").msgclass
+    SdkAutoFSTrimStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimStatusResponse").msgclass
     SdkFilesystemTrimStopRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopRequest").msgclass
     SdkFilesystemTrimStopResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopResponse").msgclass
     FilesystemCheck = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck").msgclass

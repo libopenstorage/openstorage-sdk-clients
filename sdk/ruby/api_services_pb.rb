@@ -151,6 +151,7 @@ module Openstorage
         # Status of a filesystem Trim background operation on a mounted
         # volume, if any
         rpc :Status, SdkFilesystemTrimStatusRequest, SdkFilesystemTrimStatusResponse
+        rpc :AutoFSTrimStatus, SdkAutoFSTrimStatusRequest, SdkAutoFSTrimStatusResponse
         # Stop a filesystem Trim background operation on a mounted volume, if any
         rpc :Stop, SdkFilesystemTrimStopRequest, SdkFilesystemTrimStopResponse
       end

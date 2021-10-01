@@ -61,6 +61,28 @@ function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(buffe
   return api_pb.SdkAlertsEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkAutoFSTrimStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimStatusRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimStatusResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCloudBackupCatalogRequest(arg) {
   if (!(arg instanceof api_pb.SdkCloudBackupCatalogRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCloudBackupCatalogRequest');
@@ -2547,6 +2569,17 @@ status: {
     requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStatusRequest,
     responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStatusResponse,
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStatusResponse,
+  },
+  autoFSTrimStatus: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimStatusRequest,
+    responseType: api_pb.SdkAutoFSTrimStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimStatusResponse,
   },
   // Stop a filesystem Trim background operation on a mounted volume, if any
 stop: {
