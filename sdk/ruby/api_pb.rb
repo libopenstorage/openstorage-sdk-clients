@@ -106,6 +106,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :CLUSTERIP, 2
       value :LOADBALANCER, 3
     end
+    add_message "openstorage.api.Sharedv4FailoverStrategy" do
+    end
+    add_enum "openstorage.api.Sharedv4FailoverStrategy.Value" do
+      value :UNSPECIFIED, 0
+      value :AGGRESSIVE, 1
+      value :NORMAL, 2
+    end
+    add_message "openstorage.api.Sharedv4Spec" do
+      optional :failover_strategy, :enum, 1, "openstorage.api.Sharedv4FailoverStrategy.Value"
+    end
     add_message "openstorage.api.MountOptions" do
       map :options, :string, :string, 1
     end
@@ -185,6 +195,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :proxy_write, :bool, 40
       optional :proxy_spec, :message, 41, "openstorage.api.ProxySpec"
       optional :sharedv4_service_spec, :message, 42, "openstorage.api.Sharedv4ServiceSpec"
+      optional :sharedv4_spec, :message, 43, "openstorage.api.Sharedv4Spec"
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -264,6 +275,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :sharedv4_service_spec_opt do
         optional :sharedv4_service_spec, :message, 37, "openstorage.api.Sharedv4ServiceSpec"
+      end
+      oneof :sharedv4_spec_opt do
+        optional :sharedv4_spec, :message, 38, "openstorage.api.Sharedv4Spec"
       end
     end
     add_message "openstorage.api.VolumeSpecPolicy" do
@@ -352,6 +366,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       oneof :sharedv4_service_spec_opt do
         optional :sharedv4_service_spec, :message, 63, "openstorage.api.Sharedv4ServiceSpec"
       end
+      oneof :sharedv4_spec_opt do
+        optional :sharedv4_spec, :message, 64, "openstorage.api.Sharedv4Spec"
+      end
     end
     add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
       value :Equal, 0
@@ -413,6 +430,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :last_scan_status, :enum, 28, "openstorage.api.FilesystemHealthStatus"
       optional :mount_options, :message, 29, "openstorage.api.MountOptions"
       optional :sharedv4_mount_options, :message, 30, "openstorage.api.MountOptions"
+      optional :derived_io_profile, :enum, 31, "openstorage.api.IoProfile"
     end
     add_message "openstorage.api.Stats" do
       optional :reads, :uint64, 1
@@ -1358,6 +1376,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :max_backups, :uint64, 7
       optional :continuation_token, :string, 8
       optional :cloud_backup_id, :string, 9
+      optional :missing_src_volumes, :bool, 10
     end
     add_message "openstorage.api.SdkCloudBackupInfo" do
       optional :id, :string, 1
@@ -1366,6 +1385,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :timestamp, :message, 4, "google.protobuf.Timestamp"
       map :metadata, :string, :string, 5
       optional :status, :enum, 6, "openstorage.api.SdkCloudBackupStatusType"
+      optional :cluster_type, :enum, 7, "openstorage.api.SdkCloudBackupClusterType.Value"
+      optional :namespace, :string, 8
+    end
+    add_message "openstorage.api.SdkCloudBackupClusterType" do
+    end
+    add_enum "openstorage.api.SdkCloudBackupClusterType.Value" do
+      value :UNKNOWN, 0
+      value :CURRENT_CLUSTER, 1
+      value :OTHER_CLUSTER, 2
     end
     add_message "openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse" do
       repeated :backups, :message, 1, "openstorage.api.SdkCloudBackupInfo"
@@ -1604,7 +1632,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 101
-      value :Patch, 10
+      value :Patch, 14
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -1873,6 +1901,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :io_profile_bkup_src, :bool, 25
       optional :proxy_spec, :message, 26, "openstorage.api.ProxySpec"
       optional :sharedv4_service_spec, :message, 27, "openstorage.api.Sharedv4ServiceSpec"
+      optional :sharedv4_spec, :message, 28, "openstorage.api.Sharedv4Spec"
     end
     add_message "openstorage.api.SdkVolumeCatalogRequest" do
       optional :volume_id, :string, 1
@@ -1897,7 +1926,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :STATUS_STORAGE_REBALANCE, 11
       value :STATUS_STORAGE_DRIVE_REPLACE, 12
       value :STATUS_NOT_IN_QUORUM_NO_STORAGE, 13
-      value :STATUS_MAX, 14
+      value :STATUS_POOLMAINTENANCE, 14
+      value :STATUS_MAX, 15
     end
     add_enum "openstorage.api.DriverType" do
       value :DRIVER_TYPE_NONE, 0
@@ -1963,6 +1993,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_CMS, 4
       value :IO_PROFILE_SYNC_SHARED, 5
       value :IO_PROFILE_AUTO, 6
+      value :IO_PROFILE_NONE, 7
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
@@ -2110,6 +2141,9 @@ module Openstorage
     ProxySpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ProxySpec").msgclass
     Sharedv4ServiceSpec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4ServiceSpec").msgclass
     Sharedv4ServiceSpec::ServiceType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4ServiceSpec.ServiceType").enummodule
+    Sharedv4FailoverStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4FailoverStrategy").msgclass
+    Sharedv4FailoverStrategy::Value = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4FailoverStrategy.Value").enummodule
+    Sharedv4Spec = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Sharedv4Spec").msgclass
     MountOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.MountOptions").msgclass
     FastpathReplState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathReplState").msgclass
     FastpathConfig = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathConfig").msgclass
@@ -2351,6 +2385,8 @@ module Openstorage
     SdkCloudBackupDeleteAllResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupDeleteAllResponse").msgclass
     SdkCloudBackupEnumerateWithFiltersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupEnumerateWithFiltersRequest").msgclass
     SdkCloudBackupInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupInfo").msgclass
+    SdkCloudBackupClusterType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupClusterType").msgclass
+    SdkCloudBackupClusterType::Value = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupClusterType.Value").enummodule
     SdkCloudBackupEnumerateWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupEnumerateWithFiltersResponse").msgclass
     SdkCloudBackupStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatus").msgclass
     SdkCloudBackupStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupStatusRequest").msgclass

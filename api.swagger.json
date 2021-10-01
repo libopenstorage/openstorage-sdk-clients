@@ -251,15 +251,6 @@
         "title": "This defines an operator for the policy comparisons",
         "type": "string"
       },
-      "XattrValue": {
-        "default": "UNSPECIFIED",
-        "enum": [
-          "UNSPECIFIED",
-          "COW_ON_DEMAND"
-        ],
-        "title": "- UNSPECIFIED: Value is uninitialized or unknown\n - COW_ON_DEMAND: Enable on-demand copy-on-write on the volume",
-        "type": "string"
-      },
       "apiAlert": {
         "properties": {
           "alert_type": {
@@ -993,7 +984,8 @@
           "IO_PROFILE_DB_REMOTE",
           "IO_PROFILE_CMS",
           "IO_PROFILE_SYNC_SHARED",
-          "IO_PROFILE_AUTO"
+          "IO_PROFILE_AUTO",
+          "IO_PROFILE_NONE"
         ],
         "type": "string"
       },
@@ -1505,6 +1497,9 @@
           "sharedv4_service_spec": {
             "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
           },
+          "sharedv4_spec": {
+            "$ref": "#/components/schemas/apiSharedv4Spec"
+          },
           "snapshot_interval": {
             "format": "int64",
             "title": "SnapshotInterval in minutes, set to 0 to disable snapshots",
@@ -1829,6 +1824,16 @@
         "title": "Defines a response containing the contents of a backup stored by a cloud provider",
         "type": "object"
       },
+      "apiSdkCloudBackupClusterTypeValue": {
+        "default": "UNKNOWN",
+        "enum": [
+          "UNKNOWN",
+          "CURRENT_CLUSTER",
+          "OTHER_CLUSTER"
+        ],
+        "title": "- UNKNOWN: Unknown\n - CURRENT_CLUSTER: Belongs to this cluster\n - OTHER_CLUSTER: belongs to other cluster",
+        "type": "string"
+      },
       "apiSdkCloudBackupCreateRequest": {
         "properties": {
           "credential_id": {
@@ -1936,6 +1941,11 @@
             },
             "title": "(optional) Enumerates backups that have tags of this type",
             "type": "object"
+          },
+          "missing_src_volumes": {
+            "format": "boolean",
+            "title": "To enumerate cloudbackups for which source volumes do not exist in this\ncluster",
+            "type": "boolean"
           },
           "src_volume_id": {
             "description": "(optional) Source id of the volume for the request.",
@@ -2052,6 +2062,9 @@
       },
       "apiSdkCloudBackupInfo": {
         "properties": {
+          "cluster_type": {
+            "$ref": "#/components/schemas/apiSdkCloudBackupClusterTypeValue"
+          },
           "id": {
             "title": "This is the id as represented by the cloud provider",
             "type": "string"
@@ -2062,6 +2075,10 @@
             },
             "title": "Metadata associated with the backup",
             "type": "object"
+          },
+          "namespace": {
+            "title": "k8s namespace to which this backup belongs to",
+            "type": "string"
           },
           "src_volume_id": {
             "title": "Source volumeID of the backup",
@@ -4138,6 +4155,16 @@
         ],
         "type": "string"
       },
+      "apiSharedv4FailoverStrategyValue": {
+        "default": "UNSPECIFIED",
+        "description": " - UNSPECIFIED: Unspecified\n - AGGRESSIVE: Fail over to the new NFS server quickly. This is appropriate for\nthe apps with sharedv4 service volumes. It can also be used\nfor the apps with sharedv4 volumes when such apps are able\nto restart quickly.\n - NORMAL: Give the old NFS server more time to come back up before\ntriggering the failover. This is appropriate for the apps\nwith sharedv4 volumes (non-service).",
+        "enum": [
+          "UNSPECIFIED",
+          "AGGRESSIVE",
+          "NORMAL"
+        ],
+        "type": "string"
+      },
       "apiSharedv4ServiceSpec": {
         "description": "Sharedv4ServiceSpec when set, creates a service endpoint for accessing\na sharedv4 volume.",
         "properties": {
@@ -4149,6 +4176,15 @@
             "$ref": "#/components/schemas/Sharedv4ServiceSpecServiceType"
           }
         },
+        "type": "object"
+      },
+      "apiSharedv4Spec": {
+        "properties": {
+          "failover_strategy": {
+            "$ref": "#/components/schemas/apiSharedv4FailoverStrategyValue"
+          }
+        },
+        "title": "Sharedv4Spec specifies common properties of sharedv4 and sharedv4 service volumes",
         "type": "object"
       },
       "apiSource": {
@@ -4695,6 +4731,9 @@
             "title": "Volume creation time",
             "type": "string"
           },
+          "derived_io_profile": {
+            "$ref": "#/components/schemas/apiIoProfile"
+          },
           "detach_time": {
             "description": "DetachTime time this device was detached.",
             "format": "date-time",
@@ -5066,6 +5105,9 @@
           "sharedv4_service_spec": {
             "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
           },
+          "sharedv4_spec": {
+            "$ref": "#/components/schemas/apiSharedv4Spec"
+          },
           "size": {
             "format": "uint64",
             "title": "Size specifies the thin provisioned volume size in bytes",
@@ -5097,7 +5139,7 @@
             "type": "object"
           },
           "xattr": {
-            "$ref": "#/components/schemas/XattrValue"
+            "$ref": "#/components/schemas/apiXattrValue"
           }
         },
         "type": "object"
@@ -5193,6 +5235,9 @@
           },
           "sharedv4_service_spec": {
             "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
+          },
+          "sharedv4_spec": {
+            "$ref": "#/components/schemas/apiSharedv4Spec"
           },
           "size": {
             "format": "uint64",
@@ -5307,6 +5352,9 @@
           "sharedv4_service_spec": {
             "$ref": "#/components/schemas/apiSharedv4ServiceSpec"
           },
+          "sharedv4_spec": {
+            "$ref": "#/components/schemas/apiSharedv4Spec"
+          },
           "size": {
             "format": "uint64",
             "type": "string"
@@ -5323,7 +5371,7 @@
             "type": "boolean"
           },
           "xattr": {
-            "$ref": "#/components/schemas/XattrValue"
+            "$ref": "#/components/schemas/apiXattrValue"
           }
         },
         "title": "VolumeSpecUpdate provides a method to set any of the VolumeSpec of an existing volume",
@@ -5404,6 +5452,15 @@
         },
         "type": "object"
       },
+      "apiXattrValue": {
+        "default": "UNSPECIFIED",
+        "enum": [
+          "UNSPECIFIED",
+          "COW_ON_DEMAND"
+        ],
+        "title": "- UNSPECIFIED: Value is uninitialized or unknown\n - COW_ON_DEMAND: Enable on-demand copy-on-write on the volume",
+        "type": "string"
+      },
       "openstorageapiStatus": {
         "default": "STATUS_NONE",
         "enum": [
@@ -5421,6 +5478,7 @@
           "STATUS_STORAGE_REBALANCE",
           "STATUS_STORAGE_DRIVE_REPLACE",
           "STATUS_NOT_IN_QUORUM_NO_STORAGE",
+          "STATUS_POOLMAINTENANCE",
           "STATUS_MAX"
         ],
         "title": "- STATUS_MAX: Add statuses before MAX and update the number for MAX",
@@ -5437,7 +5495,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.101.10"
+    "version": "0.101.14"
   },
   "openapi": "3.0.0",
   "paths": {
