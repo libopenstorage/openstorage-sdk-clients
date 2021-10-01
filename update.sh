@@ -26,5 +26,5 @@ create() {
 	fi
 }
 
-create "release-9.1"
+create "release-9.2"
 
