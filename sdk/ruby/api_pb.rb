@@ -488,6 +488,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.VolumeUsageByNode" do
       repeated :volume_usage, :message, 1, "openstorage.api.VolumeUsage"
     end
+    add_message "openstorage.api.FstrimVolumeUsageInfo" do
+      optional :volume_name, :string, 1
+      optional :volume_size, :uint64, 2
+      optional :du_usage, :uint64, 3
+      optional :px_usage, :uint64, 4
+      optional :perform_auto_fstrim, :string, 5
+    end
     add_message "openstorage.api.RelaxedReclaimPurge" do
       optional :num_purged, :uint64, 1
     end
@@ -1144,6 +1151,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :issuer, :string, 4
       optional :timeout_mins, :int64, 5
       optional :live, :bool, 6
+      optional :filename, :string, 7
     end
     add_message "openstorage.api.SdkDiagsCollectResponse" do
       optional :job, :message, 1, "openstorage.api.Job"
@@ -1590,6 +1598,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       map :trim_status, :string, :enum, 1, "openstorage.api.FilesystemTrim.FilesystemTrimStatus"
       optional :message, :string, 2
     end
+    add_message "openstorage.api.SdkAutoFSTrimUsageRequest" do
+    end
+    add_message "openstorage.api.SdkAutoFSTrimUsageResponse" do
+      map :usage, :string, :message, 1, "openstorage.api.FstrimVolumeUsageInfo"
+      optional :message, :string, 2
+    end
     add_message "openstorage.api.SdkFilesystemTrimStopRequest" do
       optional :volume_id, :string, 1
       optional :mount_path, :string, 2
@@ -1673,7 +1687,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 126
+      value :Minor, 130
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -2215,6 +2229,7 @@ module Openstorage
     CapacityUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CapacityUsageInfo").msgclass
     VolumeUsage = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeUsage").msgclass
     VolumeUsageByNode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeUsageByNode").msgclass
+    FstrimVolumeUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FstrimVolumeUsageInfo").msgclass
     RelaxedReclaimPurge = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RelaxedReclaimPurge").msgclass
     SdkStoragePolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePolicy").msgclass
     Alert = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Alert").msgclass
@@ -2482,6 +2497,8 @@ module Openstorage
     SdkFilesystemTrimStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStatusResponse").msgclass
     SdkAutoFSTrimStatusRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimStatusRequest").msgclass
     SdkAutoFSTrimStatusResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimStatusResponse").msgclass
+    SdkAutoFSTrimUsageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimUsageRequest").msgclass
+    SdkAutoFSTrimUsageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimUsageResponse").msgclass
     SdkFilesystemTrimStopRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopRequest").msgclass
     SdkFilesystemTrimStopResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopResponse").msgclass
     FilesystemCheck = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck").msgclass

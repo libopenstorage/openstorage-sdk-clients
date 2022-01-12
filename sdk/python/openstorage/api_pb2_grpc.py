@@ -439,6 +439,11 @@ class OpenStorageFilesystemTrimStub(object):
                 request_serializer=api__pb2.SdkAutoFSTrimStatusRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkAutoFSTrimStatusResponse.FromString,
                 )
+        self.AutoFSTrimUsage = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimUsage',
+                request_serializer=api__pb2.SdkAutoFSTrimUsageRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkAutoFSTrimUsageResponse.FromString,
+                )
         self.Stop = channel.unary_unary(
                 '/openstorage.api.OpenStorageFilesystemTrim/Stop',
                 request_serializer=api__pb2.SdkFilesystemTrimStopRequest.SerializeToString,
@@ -494,6 +499,14 @@ class OpenStorageFilesystemTrimServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AutoFSTrimUsage(self, request, context):
+        """Usage of a filesystem Trim background operation on all locally mounted
+        volume
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Stop(self, request, context):
         """Stop a filesystem Trim background operation on a mounted volume, if any
         """
@@ -518,6 +531,11 @@ def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
                     servicer.AutoFSTrimStatus,
                     request_deserializer=api__pb2.SdkAutoFSTrimStatusRequest.FromString,
                     response_serializer=api__pb2.SdkAutoFSTrimStatusResponse.SerializeToString,
+            ),
+            'AutoFSTrimUsage': grpc.unary_unary_rpc_method_handler(
+                    servicer.AutoFSTrimUsage,
+                    request_deserializer=api__pb2.SdkAutoFSTrimUsageRequest.FromString,
+                    response_serializer=api__pb2.SdkAutoFSTrimUsageResponse.SerializeToString,
             ),
             'Stop': grpc.unary_unary_rpc_method_handler(
                     servicer.Stop,
@@ -606,6 +624,23 @@ class OpenStorageFilesystemTrim(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimStatus',
             api__pb2.SdkAutoFSTrimStatusRequest.SerializeToString,
             api__pb2.SdkAutoFSTrimStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AutoFSTrimUsage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimUsage',
+            api__pb2.SdkAutoFSTrimUsageRequest.SerializeToString,
+            api__pb2.SdkAutoFSTrimUsageResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
