@@ -17,6 +17,94 @@ var api_pb = require('./api_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
 
+function serialize_openstorage_api_BucketCreateRequest(arg) {
+  if (!(arg instanceof api_pb.BucketCreateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketCreateRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketCreateRequest(buffer_arg) {
+  return api_pb.BucketCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketCreateResponse(arg) {
+  if (!(arg instanceof api_pb.BucketCreateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketCreateResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketCreateResponse(buffer_arg) {
+  return api_pb.BucketCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.BucketDeleteRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketDeleteRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketDeleteRequest(buffer_arg) {
+  return api_pb.BucketDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.BucketDeleteResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketDeleteResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketDeleteResponse(buffer_arg) {
+  return api_pb.BucketDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketGrantAccessRequest(arg) {
+  if (!(arg instanceof api_pb.BucketGrantAccessRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketGrantAccessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketGrantAccessRequest(buffer_arg) {
+  return api_pb.BucketGrantAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketGrantAccessResponse(arg) {
+  if (!(arg instanceof api_pb.BucketGrantAccessResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketGrantAccessResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketGrantAccessResponse(buffer_arg) {
+  return api_pb.BucketGrantAccessResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketRevokeAccessRequest(arg) {
+  if (!(arg instanceof api_pb.BucketRevokeAccessRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketRevokeAccessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketRevokeAccessRequest(buffer_arg) {
+  return api_pb.BucketRevokeAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketRevokeAccessResponse(arg) {
+  if (!(arg instanceof api_pb.BucketRevokeAccessResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketRevokeAccessResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketRevokeAccessResponse(buffer_arg) {
+  return api_pb.BucketRevokeAccessResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkAlertsDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkAlertsDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsDeleteRequest');
@@ -2406,7 +2494,7 @@ var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
 //
 // #### Input
 // SdkAlertsEnumerateRequest takes a list of such queries and the returned
-// output is a collective ouput from each of these queries. In that sense,
+// output is a collective output from each of these queries. In that sense,
 // the filtering of these queries has a behavior of OR operation.
 // Each query also has a list of optional options. These options allow
 // narrowing down the scope of alerts search. These options have a
@@ -3168,6 +3256,55 @@ uncordonAttachments: {
 };
 
 exports.OpenStorageNodeClient = grpc.makeGenericClientConstructor(OpenStorageNodeService);
+// BucketService to manage the bucket driver
+var OpenStorageBucketService = exports.OpenStorageBucketService = {
+  create: {
+    path: '/openstorage.api.OpenStorageBucket/Create',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketCreateRequest,
+    responseType: api_pb.BucketCreateResponse,
+    requestSerialize: serialize_openstorage_api_BucketCreateRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketCreateRequest,
+    responseSerialize: serialize_openstorage_api_BucketCreateResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketCreateResponse,
+  },
+  delete: {
+    path: '/openstorage.api.OpenStorageBucket/Delete',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketDeleteRequest,
+    responseType: api_pb.BucketDeleteResponse,
+    requestSerialize: serialize_openstorage_api_BucketDeleteRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketDeleteRequest,
+    responseSerialize: serialize_openstorage_api_BucketDeleteResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketDeleteResponse,
+  },
+  grantAccess: {
+    path: '/openstorage.api.OpenStorageBucket/GrantAccess',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketGrantAccessRequest,
+    responseType: api_pb.BucketGrantAccessResponse,
+    requestSerialize: serialize_openstorage_api_BucketGrantAccessRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketGrantAccessRequest,
+    responseSerialize: serialize_openstorage_api_BucketGrantAccessResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketGrantAccessResponse,
+  },
+  revokeAccess: {
+    path: '/openstorage.api.OpenStorageBucket/RevokeAccess',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketRevokeAccessRequest,
+    responseType: api_pb.BucketRevokeAccessResponse,
+    requestSerialize: serialize_openstorage_api_BucketRevokeAccessRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketRevokeAccessRequest,
+    responseSerialize: serialize_openstorage_api_BucketRevokeAccessResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketRevokeAccessResponse,
+  },
+};
+
+exports.OpenStorageBucketClient = grpc.makeGenericClientConstructor(OpenStorageBucketService);
 // OpenStorageVolume is a service used to manage the volumes of a storage system
 var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   // Create creates a volume according to the specification provided
@@ -3376,7 +3513,7 @@ snapshotEnumerate: {
   },
   // SnapshotEnumerate returns a list of snapshots.
 // To filter all the snapshots for a specific volume which may no longer exist,
-// specifiy a volume id.
+// specify a volume id.
 // Labels can also be used to filter the snapshot list.
 // If neither are provided all snapshots will be returned.
 snapshotEnumerateWithFilters: {

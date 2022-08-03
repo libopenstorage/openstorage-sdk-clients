@@ -30,5 +30,7 @@ endif
 		-I $(PROTOS_PATH)/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
 		--grpc-gateway_out=logtostderr=true:. \
 		$(PROTOSRC_PATH)/api.proto
+	# For some reason, now (after 8/3/2022) an api dir is created with the output.
+	mv api/* . && rm -rf api
 
 .PHONY: all grpc

@@ -22,6 +22,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :last_scan, :message, 12, "google.protobuf.Timestamp"
       optional :metadata, :bool, 13
       optional :cache, :bool, 14
+      optional :pool_metadata_dev, :bool, 15
     end
     add_message "openstorage.api.StoragePool" do
       optional :ID, :int32, 1
@@ -34,11 +35,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :uuid, :string, 10
       optional :last_operation, :message, 11, "openstorage.api.StoragePoolOperation"
     end
+    add_message "openstorage.api.SchedulerTopology" do
+      map :labels, :string, :string, 1
+    end
     add_message "openstorage.api.StoragePoolOperation" do
       optional :type, :enum, 1, "openstorage.api.SdkStoragePool.OperationType"
       optional :msg, :string, 2
       map :params, :string, :string, 3
       optional :status, :enum, 4, "openstorage.api.SdkStoragePool.OperationStatus"
+    end
+    add_message "openstorage.api.TopologyRequirement" do
+      map :labels, :string, :string, 1
     end
     add_message "openstorage.api.VolumeLocator" do
       optional :name, :string, 1
@@ -83,9 +90,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :id, :string, 1
     end
     add_message "openstorage.api.PureBlockSpec" do
+      optional :serial_num, :string, 1
+      optional :full_vol_name, :string, 2
     end
     add_message "openstorage.api.PureFileSpec" do
       optional :export_rules, :string, 1
+      optional :full_vol_name, :string, 2
     end
     add_message "openstorage.api.ProxySpec" do
       optional :proxy_protocol, :enum, 1, "openstorage.api.ProxyProtocol"
@@ -202,10 +212,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :proxy_write, :bool, 40
       optional :proxy_spec, :message, 41, "openstorage.api.ProxySpec"
       optional :sharedv4_service_spec, :message, 42, "openstorage.api.Sharedv4ServiceSpec"
-      optional :auto_fstrim, :bool, 43
-      optional :number_of_chunks, :uint32, 44
+      optional :sharedv4_spec, :message, 43, "openstorage.api.Sharedv4Spec"
+      optional :auto_fstrim, :bool, 44
       optional :io_throttle, :message, 45, "openstorage.api.IoThrottle"
-      optional :sharedv4_spec, :message, 46, "openstorage.api.Sharedv4Spec"
+      optional :number_of_chunks, :uint32, 46
+      optional :readahead, :bool, 47
+      optional :topology_requirement, :message, 48, "openstorage.api.TopologyRequirement"
+      optional :winshare, :bool, 49
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -286,14 +299,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       oneof :sharedv4_service_spec_opt do
         optional :sharedv4_service_spec, :message, 37, "openstorage.api.Sharedv4ServiceSpec"
       end
+      oneof :sharedv4_spec_opt do
+        optional :sharedv4_spec, :message, 38, "openstorage.api.Sharedv4Spec"
+      end
       oneof :auto_fstrim_opt do
-        optional :auto_fstrim, :bool, 38
+        optional :auto_fstrim, :bool, 39
       end
       oneof :io_throttle_opt do
-        optional :io_throttle, :message, 39, "openstorage.api.IoThrottle"
+        optional :io_throttle, :message, 40, "openstorage.api.IoThrottle"
       end
-      oneof :sharedv4_spec_opt do
-        optional :sharedv4_spec, :message, 40, "openstorage.api.Sharedv4Spec"
+      oneof :readahead_opt do
+        optional :readahead, :bool, 41
+      end
+      oneof :winshare_opt do
+        optional :winshare, :bool, 42
       end
     end
     add_message "openstorage.api.VolumeSpecPolicy" do
@@ -376,20 +395,26 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       oneof :proxy_spec_opt do
         optional :proxy_spec, :message, 61, "openstorage.api.ProxySpec"
       end
-      oneof :sharedv4_service_spec_opt do
-        optional :sharedv4_service_spec, :message, 62, "openstorage.api.Sharedv4ServiceSpec"
-      end
       oneof :fastpath_opt do
-        optional :fastpath, :bool, 63
+        optional :fastpath, :bool, 62
       end
-      oneof :auto_fstrim_opt do
-        optional :auto_fstrim, :bool, 64
-      end
-      oneof :io_throttle_opt do
-        optional :io_throttle, :message, 65, "openstorage.api.IoThrottle"
+      oneof :sharedv4_service_spec_opt do
+        optional :sharedv4_service_spec, :message, 63, "openstorage.api.Sharedv4ServiceSpec"
       end
       oneof :sharedv4_spec_opt do
-        optional :sharedv4_spec, :message, 66, "openstorage.api.Sharedv4Spec"
+        optional :sharedv4_spec, :message, 64, "openstorage.api.Sharedv4Spec"
+      end
+      oneof :auto_fstrim_opt do
+        optional :auto_fstrim, :bool, 65
+      end
+      oneof :io_throttle_opt do
+        optional :io_throttle, :message, 66, "openstorage.api.IoThrottle"
+      end
+      oneof :readahead_opt do
+        optional :readahead, :bool, 67
+      end
+      oneof :winshare_opt do
+        optional :winshare, :bool, 68
       end
     end
     add_enum "openstorage.api.VolumeSpecPolicy.PolicyOp" do
@@ -453,8 +478,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :last_scan_status, :enum, 28, "openstorage.api.FilesystemHealthStatus"
       optional :mount_options, :message, 29, "openstorage.api.MountOptions"
       optional :sharedv4_mount_options, :message, 30, "openstorage.api.MountOptions"
-      optional :in_trashcan, :bool, 31
-      optional :derived_io_profile, :enum, 32, "openstorage.api.IoProfile"
+      optional :derived_io_profile, :enum, 31, "openstorage.api.IoProfile"
+      optional :in_trashcan, :bool, 32
     end
     add_message "openstorage.api.Stats" do
       optional :reads, :uint64, 1
@@ -685,6 +710,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :scheduler_node_name, :string, 17
       optional :HWType, :enum, 18, "openstorage.api.HardwareType"
       optional :security_status, :enum, 19, "openstorage.api.StorageNode.SecurityStatus"
+      optional :scheduler_topology, :message, 20, "openstorage.api.SchedulerTopology"
     end
     add_enum "openstorage.api.StorageNode.SecurityStatus" do
       value :UNSPECIFIED, 0
@@ -696,6 +722,42 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :status, :enum, 1, "openstorage.api.Status"
       optional :id, :string, 2
       optional :name, :string, 3
+    end
+    add_message "openstorage.api.BucketCreateRequest" do
+      optional :name, :string, 1
+      optional :region, :string, 2
+      optional :endpoint, :string, 3
+      optional :anonymousBucketAccessMode, :enum, 4, "openstorage.api.AnonymousBucketAccessMode"
+    end
+    add_message "openstorage.api.BucketCreateResponse" do
+      optional :bucket_id, :string, 1
+    end
+    add_message "openstorage.api.BucketDeleteRequest" do
+      optional :bucket_id, :string, 1
+      optional :region, :string, 2
+      optional :endpoint, :string, 3
+      optional :clear_bucket, :bool, 4
+    end
+    add_message "openstorage.api.BucketDeleteResponse" do
+    end
+    add_message "openstorage.api.BucketGrantAccessRequest" do
+      optional :bucket_id, :string, 1
+      optional :account_name, :string, 2
+      optional :access_policy, :string, 3
+    end
+    add_message "openstorage.api.BucketGrantAccessResponse" do
+      optional :account_id, :string, 1
+      optional :credentials, :message, 2, "openstorage.api.BucketAccessCredentials"
+    end
+    add_message "openstorage.api.BucketRevokeAccessRequest" do
+      optional :bucket_id, :string, 1
+      optional :account_id, :string, 2
+    end
+    add_message "openstorage.api.BucketRevokeAccessResponse" do
+    end
+    add_message "openstorage.api.BucketAccessCredentials" do
+      optional :access_key_id, :string, 1
+      optional :secret_access_key, :string, 2
     end
     add_message "openstorage.api.SdkOpenStoragePolicyCreateRequest" do
       optional :storage_policy, :message, 1, "openstorage.api.SdkStoragePolicy"
@@ -1408,6 +1470,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :backup_id, :string, 1
       optional :credential_id, :string, 2
       optional :force, :bool, 3
+      optional :bucket, :string, 4
     end
     add_message "openstorage.api.SdkCloudBackupDeleteResponse" do
     end
@@ -1687,7 +1750,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 130
+      value :Minor, 148
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -1794,6 +1857,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.ClusterPairMode.Mode" do
       value :Default, 0
       value :DisasterRecovery, 1
+      value :OneTimeMigration, 2
     end
     add_message "openstorage.api.ClusterPairCreateRequest" do
       optional :remote_cluster_ip, :string, 1
@@ -1957,9 +2021,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :io_profile_bkup_src, :bool, 25
       optional :proxy_spec, :message, 26, "openstorage.api.ProxySpec"
       optional :sharedv4_service_spec, :message, 27, "openstorage.api.Sharedv4ServiceSpec"
-      optional :auto_fstrim, :enum, 28, "openstorage.api.RestoreParamBoolType"
-      optional :io_throttle, :message, 29, "openstorage.api.IoThrottle"
-      optional :sharedv4_spec, :message, 30, "openstorage.api.Sharedv4Spec"
+      optional :sharedv4_spec, :message, 28, "openstorage.api.Sharedv4Spec"
+      optional :auto_fstrim, :enum, 29, "openstorage.api.RestoreParamBoolType"
+      optional :io_throttle, :message, 30, "openstorage.api.IoThrottle"
+      optional :readahead, :enum, 31, "openstorage.api.RestoreParamBoolType"
     end
     add_message "openstorage.api.SdkVolumeCatalogRequest" do
       optional :volume_id, :string, 1
@@ -2127,6 +2192,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :FASTPATH_PROTO_ISCSI, 2
       value :FASTPATH_PROTO_LOCAL, 3
     end
+    add_enum "openstorage.api.AnonymousBucketAccessMode" do
+      value :UnknownBucketAccessMode, 0
+      value :Private, 1
+      value :ReadOnly, 2
+      value :WriteOnly, 3
+      value :ReadWrite, 4
+    end
     add_enum "openstorage.api.SdkTimeWeekday" do
       value :SdkTimeWeekdaySunday, 0
       value :SdkTimeWeekdayMonday, 1
@@ -2187,7 +2259,9 @@ module Openstorage
   module Api
     StorageResource = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageResource").msgclass
     StoragePool = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StoragePool").msgclass
+    SchedulerTopology = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SchedulerTopology").msgclass
     StoragePoolOperation = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StoragePoolOperation").msgclass
+    TopologyRequirement = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.TopologyRequirement").msgclass
     VolumeLocator = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeLocator").msgclass
     VolumeInspectOptions = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeInspectOptions").msgclass
     Source = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.Source").msgclass
@@ -2268,6 +2342,15 @@ module Openstorage
     StorageNode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageNode").msgclass
     StorageNode::SecurityStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageNode.SecurityStatus").enummodule
     StorageCluster = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageCluster").msgclass
+    BucketCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketCreateRequest").msgclass
+    BucketCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketCreateResponse").msgclass
+    BucketDeleteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketDeleteRequest").msgclass
+    BucketDeleteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketDeleteResponse").msgclass
+    BucketGrantAccessRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketGrantAccessRequest").msgclass
+    BucketGrantAccessResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketGrantAccessResponse").msgclass
+    BucketRevokeAccessRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketRevokeAccessRequest").msgclass
+    BucketRevokeAccessResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketRevokeAccessResponse").msgclass
+    BucketAccessCredentials = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.BucketAccessCredentials").msgclass
     SdkOpenStoragePolicyCreateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyCreateRequest").msgclass
     SdkOpenStoragePolicyCreateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyCreateResponse").msgclass
     SdkOpenStoragePolicyEnumerateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkOpenStoragePolicyEnumerateRequest").msgclass
@@ -2596,6 +2679,7 @@ module Openstorage
     ProxyProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ProxyProtocol").enummodule
     FastpathStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathStatus").enummodule
     FastpathProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathProtocol").enummodule
+    AnonymousBucketAccessMode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.AnonymousBucketAccessMode").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
     StorageRebalanceJobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJobState").enummodule
     SdkCloudBackupClusterType = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkCloudBackupClusterType").enummodule

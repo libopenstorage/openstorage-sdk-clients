@@ -37,7 +37,7 @@ module Openstorage
         #
         # #### Input
         # SdkAlertsEnumerateRequest takes a list of such queries and the returned
-        # output is a collective ouput from each of these queries. In that sense,
+        # output is a collective output from each of these queries. In that sense,
         # the filtering of these queries has a behavior of OR operation.
         # Each query also has a list of optional options. These options allow
         # narrowing down the scope of alerts search. These options have a
@@ -439,6 +439,24 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageBucket
+      # BucketService to manage the bucket driver
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageBucket'
+
+        rpc :Create, BucketCreateRequest, BucketCreateResponse
+        rpc :Delete, BucketDeleteRequest, BucketDeleteResponse
+        rpc :GrantAccess, BucketGrantAccessRequest, BucketGrantAccessResponse
+        rpc :RevokeAccess, BucketRevokeAccessRequest, BucketRevokeAccessResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageVolume
       # OpenStorageVolume is a service used to manage the volumes of a storage system
       class Service
@@ -525,7 +543,7 @@ module Openstorage
         rpc :SnapshotEnumerate, SdkVolumeSnapshotEnumerateRequest, SdkVolumeSnapshotEnumerateResponse
         # SnapshotEnumerate returns a list of snapshots.
         # To filter all the snapshots for a specific volume which may no longer exist,
-        # specifiy a volume id.
+        # specify a volume id.
         # Labels can also be used to filter the snapshot list.
         # If neither are provided all snapshots will be returned.
         rpc :SnapshotEnumerateWithFilters, SdkVolumeSnapshotEnumerateWithFiltersRequest, SdkVolumeSnapshotEnumerateWithFiltersResponse
