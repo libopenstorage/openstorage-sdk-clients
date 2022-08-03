@@ -151,6 +151,10 @@ module Openstorage
         # Status of a filesystem Trim background operation on a mounted
         # volume, if any
         rpc :Status, SdkFilesystemTrimStatusRequest, SdkFilesystemTrimStatusResponse
+        rpc :AutoFSTrimStatus, SdkAutoFSTrimStatusRequest, SdkAutoFSTrimStatusResponse
+        # Usage of a filesystem Trim background operation on all locally mounted
+        # volume
+        rpc :AutoFSTrimUsage, SdkAutoFSTrimUsageRequest, SdkAutoFSTrimUsageResponse
         # Stop a filesystem Trim background operation on a mounted volume, if any
         rpc :Stop, SdkFilesystemTrimStopRequest, SdkFilesystemTrimStopResponse
       end
@@ -433,6 +437,24 @@ module Openstorage
 
       Stub = Service.rpc_stub_class
     end
+    module OpenStorageBucket
+      # BucketService to manage the bucket driver
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageBucket'
+
+        rpc :Create, BucketCreateRequest, BucketCreateResponse
+        rpc :Delete, BucketDeleteRequest, BucketDeleteResponse
+        rpc :GrantAccess, BucketGrantAccessRequest, BucketGrantAccessResponse
+        rpc :RevokeAccess, BucketRevokeAccessRequest, BucketRevokeAccessResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
     module OpenStorageVolume
       # OpenStorageVolume is a service used to manage the volumes of a storage system
       class Service
@@ -654,6 +676,8 @@ module Openstorage
         #     region='dummy-region')))
         # {%- endcodetabs %}
         rpc :Create, SdkCredentialCreateRequest, SdkCredentialCreateResponse
+        # input is very same as credential create
+        rpc :Update, SdkCredentialUpdateRequest, SdkCredentialUpdateResponse
         # Enumerate returns a list of credential ids
         rpc :Enumerate, SdkCredentialEnumerateRequest, SdkCredentialEnumerateResponse
         # Inspect returns the information about a credential, but does not return the secret key.

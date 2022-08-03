@@ -16,9 +16,10 @@
         "default": "Default",
         "enum": [
           "Default",
-          "DisasterRecovery"
+          "DisasterRecovery",
+          "OneTimeMigration"
         ],
-        "title": "- Default: Default pairing mode\n - DisasterRecovery: Paired for DisasterRecovery",
+        "title": "- Default: Default pairing mode\n - DisasterRecovery: Paired for DisasterRecovery\n - OneTimeMigration: Paired for one-time migration",
         "type": "string"
       },
       "FilesystemCheckFilesystemCheckStatus": {
@@ -310,6 +311,18 @@
         "title": "Alert is a structure that represents an alert object",
         "type": "object"
       },
+      "apiAnonymousBucketAccessMode": {
+        "default": "UnknownBucketAccessMode",
+        "description": " - Private: Default, disallow uncredentialed access to the backend storage.\n - ReadOnly: Read only, uncredentialed users can call ListBucket and GetObject.\n - WriteOnly: Write only, uncredentialed users can only call PutObject.\n - ReadWrite: Read/Write, uncredentialed users can read objects as well as PutObject.",
+        "enum": [
+          "UnknownBucketAccessMode",
+          "Private",
+          "ReadOnly",
+          "WriteOnly",
+          "ReadWrite"
+        ],
+        "type": "string"
+      },
       "apiAttachState": {
         "default": "ATTACH_STATE_EXTERNAL",
         "enum": [
@@ -319,6 +332,104 @@
         ],
         "title": "- ATTACH_STATE_EXTERNAL: Attached and available externally\n - ATTACH_STATE_INTERNAL: Attached but only available internally\n - ATTACH_STATE_INTERNAL_SWITCH: Switching from External to Internal",
         "type": "string"
+      },
+      "apiBucketAccessCredentials": {
+        "properties": {
+          "access_key_id": {
+            "title": "Access key id",
+            "type": "string"
+          },
+          "secret_access_key": {
+            "title": "Secret access key",
+            "type": "string"
+          }
+        },
+        "title": "Defines the bucket access credential object",
+        "type": "object"
+      },
+      "apiBucketCreateRequest": {
+        "description": "Defines a request to create a bucket.",
+        "properties": {
+          "anonymousBucketAccessMode": {
+            "$ref": "#/components/schemas/apiAnonymousBucketAccessMode"
+          },
+          "endpoint": {
+            "title": "Endpoint to use when creating the bucket",
+            "type": "string"
+          },
+          "name": {
+            "description": "Unique name of the bucket. This will be used for idempotency.",
+            "type": "string"
+          },
+          "region": {
+            "description": "Region in which bucket will be created.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "apiBucketCreateResponse": {
+        "properties": {
+          "bucket_id": {
+            "title": "Id of new bucket",
+            "type": "string"
+          }
+        },
+        "title": "Defines a response to the creation of a bucket",
+        "type": "object"
+      },
+      "apiBucketDeleteResponse": {
+        "title": "Empty response",
+        "type": "object"
+      },
+      "apiBucketGrantAccessRequest": {
+        "properties": {
+          "access_policy": {
+            "title": "Access policy to be applied for the account",
+            "type": "string"
+          },
+          "account_name": {
+            "title": "Name of the account to which access to be provided",
+            "type": "string"
+          },
+          "bucket_id": {
+            "title": "Id of the bucket",
+            "type": "string"
+          }
+        },
+        "title": "Defines a request to grant access to the bucket",
+        "type": "object"
+      },
+      "apiBucketGrantAccessResponse": {
+        "properties": {
+          "account_id": {
+            "description": "This is the account_id that is being provided access. This will\nThis will be required later to revoke access.",
+            "type": "string"
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/apiBucketAccessCredentials"
+          }
+        },
+        "title": "Defines a response to the creation of a bucket",
+        "type": "object"
+      },
+      "apiBucketRevokeAccessRequest": {
+        "properties": {
+          "account_id": {
+            "description": "AccountId that is having its access revoked.",
+            "type": "string"
+          },
+          "bucket_id": {
+            "title": "Id of bucket to delete",
+            "type": "string"
+          }
+        },
+        "title": "Defines the request to revoke access to the bucket",
+        "type": "object"
+      },
+      "apiBucketRevokeAccessResponse": {
+        "title": "Empty response",
+        "type": "object"
       },
       "apiCapacityUsageInfo": {
         "description": "Provides details on exclusive and shared storage used by\nsnapshot/volume specifically for copy-on-write(COW) snapshots. Deletion\nof snapshots and overwirte of volume will affect the exclusive storage\nused by the other dependent snaps and parent volume.",
@@ -955,6 +1066,35 @@
         "title": "- FS_HEALTH_STATUS_UNKNOWN: filesystem health status is unknown\n - FS_HEALTH_STATUS_HEALTHY: filesystem is a healthy\n - FS_HEALTH_STATUS_SAFE_TO_FIX: filesystem has errors, but can be fixed safely\n - FS_HEALTH_STATUS_NEEDS_INSPECTION: filesystem has errors, these cannot be fixed automatically,\nuser needs to review the reported errors and take appropriate action",
         "type": "string"
       },
+      "apiFstrimVolumeUsageInfo": {
+        "properties": {
+          "du_usage": {
+            "format": "uint64",
+            "title": "Disk usage in bytes",
+            "type": "string"
+          },
+          "perform_auto_fstrim": {
+            "title": "If auto fstrim is performed to the volume, if not, why",
+            "type": "string"
+          },
+          "px_usage": {
+            "format": "uint64",
+            "title": "Disk usage seen in Portworx in bytes",
+            "type": "string"
+          },
+          "volume_name": {
+            "title": "Volume name",
+            "type": "string"
+          },
+          "volume_size": {
+            "format": "uint64",
+            "title": "Volume size",
+            "type": "string"
+          }
+        },
+        "title": "FstrimVolUsageInfo",
+        "type": "object"
+      },
       "apiGroup": {
         "description": "Group represents VolumeGroup / namespace\nAll volumes in the same group share this object.",
         "properties": {
@@ -1008,6 +1148,28 @@
             "type": "boolean"
           }
         },
+        "type": "object"
+      },
+      "apiIoThrottle": {
+        "properties": {
+          "read_bw_mbytes": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "read_iops": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "write_bw_mbytes": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "write_iops": {
+            "format": "int64",
+            "type": "integer"
+          }
+        },
+        "title": "IoThrottle defines IO throttle limits for a volume\nread_iops : maximum read iops this volume is allowed\nwrite_iops : maximum write iops this volume is allowed\nread_bw_mbytes  : maximum read bandwidth this volume is allowed in MegaBytes\nwrite_bw_mbytes : maximum write bandwidth this volume is allowed in MegaBytes",
         "type": "object"
       },
       "apiJob": {
@@ -1303,12 +1465,23 @@
         "type": "object"
       },
       "apiPureBlockSpec": {
+        "properties": {
+          "full_vol_name": {
+            "type": "string"
+          },
+          "serial_num": {
+            "type": "string"
+          }
+        },
         "title": "PureBlockSpec is the spec for proxying a volume on pure_block backends",
         "type": "object"
       },
       "apiPureFileSpec": {
         "properties": {
           "export_rules": {
+            "type": "string"
+          },
+          "full_vol_name": {
             "type": "string"
           }
         },
@@ -1423,6 +1596,9 @@
             "format": "int64",
             "type": "integer"
           },
+          "auto_fstrim": {
+            "$ref": "#/components/schemas/apiRestoreParamBoolType"
+          },
           "cos": {
             "$ref": "#/components/schemas/apiCosType"
           },
@@ -1455,6 +1631,9 @@
           },
           "io_strategy": {
             "$ref": "#/components/schemas/apiIoStrategy"
+          },
+          "io_throttle": {
+            "$ref": "#/components/schemas/apiIoThrottle"
           },
           "journal": {
             "$ref": "#/components/schemas/apiRestoreParamBoolType"
@@ -1549,6 +1728,19 @@
             "$ref": "#/components/schemas/ScanPolicyScanTrigger"
           }
         },
+        "type": "object"
+      },
+      "apiSchedulerTopology": {
+        "properties": {
+          "labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Key-value pairs defining the topology of the node",
+            "type": "object"
+          }
+        },
+        "title": "SchedulerTopology defines the topology information of the storage node\nin scheduler context",
         "type": "object"
       },
       "apiSdkAlertsAlertTypeQuery": {
@@ -1705,6 +1897,40 @@
             "format": "date-time",
             "title": "Start timestamp when Alert occured",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "apiSdkAutoFSTrimStatusResponse": {
+        "description": "SdkAutoFSTrimStatusResponse defines the response for a\nSdkAutoFSTrimStatusRequest.",
+        "properties": {
+          "message": {
+            "title": "Text blob containing ASCII text providing details of the operation",
+            "type": "string"
+          },
+          "trim_status": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FilesystemTrimFilesystemTrimStatus"
+            },
+            "title": "map of volume id and the state of the filesystem trim operation",
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "apiSdkAutoFSTrimUsageResponse": {
+        "description": "SdkAutoFSTrimUsageResponse defines the response for a\nSdkAutoFSTrimUsageRequest.",
+        "properties": {
+          "message": {
+            "title": "Text blob containing ASCII text providing details of the operation",
+            "type": "string"
+          },
+          "usage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/apiFstrimVolumeUsageInfo"
+            },
+            "title": "map of fstrim disk usage and volume name",
+            "type": "object"
           }
         },
         "type": "object"
@@ -2684,6 +2910,22 @@
             "type": "boolean"
           }
         },
+        "type": "object"
+      },
+      "apiSdkCredentialUpdateRequest": {
+        "properties": {
+          "credential_id": {
+            "type": "string"
+          },
+          "update_req": {
+            "$ref": "#/components/schemas/apiSdkCredentialCreateRequest"
+          }
+        },
+        "title": "Defines request for credential update",
+        "type": "object"
+      },
+      "apiSdkCredentialUpdateResponse": {
+        "title": "Defines response for credential update",
         "type": "object"
       },
       "apiSdkCredentialValidateResponse": {
@@ -4238,6 +4480,11 @@
             "title": "Reads completed successfully",
             "type": "string"
           },
+          "unique_blocks": {
+            "format": "uint64",
+            "title": "Unique Blocks",
+            "type": "string"
+          },
           "write_bytes": {
             "format": "uint64",
             "title": "Number of bytes written",
@@ -4354,6 +4601,9 @@
           "scheduler_node_name": {
             "description": "SchedulerNodeName is name of the node in scheduler context. It can be\nempty if unable to get the name from the scheduler.",
             "type": "string"
+          },
+          "scheduler_topology": {
+            "$ref": "#/components/schemas/apiSchedulerTopology"
           },
           "security_status": {
             "$ref": "#/components/schemas/StorageNodeSecurityStatus"
@@ -4697,6 +4947,19 @@
         "title": "Version information about the storage system",
         "type": "object"
       },
+      "apiTopologyRequirement": {
+        "properties": {
+          "labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Key-value pairs defining the required topology for a volume",
+            "type": "object"
+          }
+        },
+        "title": "TopologyRequirement defines the topology requirement for a volume",
+        "type": "object"
+      },
       "apiVolume": {
         "description": "Volume represents an abstract storage volume.",
         "properties": {
@@ -4764,6 +5027,11 @@
           "id": {
             "description": "Self referential volume ID.",
             "type": "string"
+          },
+          "in_trashcan": {
+            "format": "boolean",
+            "title": "InTrashcan if the volume is in trashcan",
+            "type": "boolean"
           },
           "last_scan": {
             "description": "LastScan is the time when an integrity check was run.",
@@ -4974,6 +5242,11 @@
             "format": "int64",
             "type": "integer"
           },
+          "auto_fstrim": {
+            "format": "boolean",
+            "title": "Autofstrim indicates that fstrim would be run on this volume automatically, without user intervention",
+            "type": "boolean"
+          },
           "block_size": {
             "description": "BlockSize for the filesystem.",
             "format": "int64",
@@ -5041,6 +5314,9 @@
           },
           "io_strategy": {
             "$ref": "#/components/schemas/apiIoStrategy"
+          },
+          "io_throttle": {
+            "$ref": "#/components/schemas/apiIoThrottle"
           },
           "journal": {
             "description": "Journal is true if data for the volume goes into the journal.",
@@ -5131,6 +5407,9 @@
             "title": "StoragePolicy if applied/specified while creating volume",
             "type": "string"
           },
+          "topology_requirement": {
+            "$ref": "#/components/schemas/apiTopologyRequirement"
+          },
           "volume_labels": {
             "additionalProperties": {
               "type": "string"
@@ -5149,6 +5428,10 @@
           "aggregation_level": {
             "format": "int64",
             "type": "integer"
+          },
+          "auto_fstrim": {
+            "format": "boolean",
+            "type": "boolean"
           },
           "cos": {
             "$ref": "#/components/schemas/apiCosType"
@@ -5183,6 +5466,9 @@
           },
           "io_strategy": {
             "$ref": "#/components/schemas/apiIoStrategy"
+          },
+          "io_throttle": {
+            "$ref": "#/components/schemas/apiIoThrottle"
           },
           "journal": {
             "format": "boolean",
@@ -5273,6 +5559,10 @@
       },
       "apiVolumeSpecUpdate": {
         "properties": {
+          "auto_fstrim": {
+            "format": "boolean",
+            "type": "boolean"
+          },
           "cos": {
             "$ref": "#/components/schemas/apiCosType"
           },
@@ -5299,6 +5589,9 @@
           },
           "io_strategy": {
             "$ref": "#/components/schemas/apiIoStrategy"
+          },
+          "io_throttle": {
+            "$ref": "#/components/schemas/apiIoThrottle"
           },
           "journal": {
             "format": "boolean",
@@ -5495,7 +5788,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.101.14"
+    "version": "0.101.27"
   },
   "openapi": "3.0.0",
   "paths": {
@@ -5560,6 +5853,174 @@
         "summary": "Allows querying alerts.",
         "tags": [
           "OpenStorageAlerts"
+        ]
+      }
+    },
+    "/v1/bucket": {
+      "post": {
+        "operationId": "Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiBucketCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiBucketCreateResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "OpenStorageBucket"
+        ]
+      }
+    },
+    "/v1/bucket/access/{bucket_id}": {
+      "post": {
+        "operationId": "GrantAccess",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bucket_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiBucketGrantAccessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiBucketGrantAccessResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "OpenStorageBucket"
+        ]
+      }
+    },
+    "/v1/bucket/revoke/{bucket_id}": {
+      "post": {
+        "operationId": "RevokeAccess",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bucket_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiBucketRevokeAccessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiBucketRevokeAccessResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "OpenStorageBucket"
+        ]
+      }
+    },
+    "/v1/bucket/{bucket_id}": {
+      "delete": {
+        "operationId": "Delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bucket_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Region in which bucket will be created.",
+            "in": "query",
+            "name": "region",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Endpoint to use when deleting the bucket.",
+            "in": "query",
+            "name": "endpoint",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Flag to allow non empty bucket deletion.",
+            "in": "query",
+            "name": "clear_bucket",
+            "required": false,
+            "schema": {
+              "format": "boolean",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiBucketDeleteResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "OpenStorageBucket"
         ]
       }
     },
@@ -6516,6 +6977,45 @@
         "tags": [
           "OpenStorageCredentials"
         ]
+      },
+      "put": {
+        "operationId": "Update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "credential_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiSdkCredentialUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkCredentialUpdateResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "input is very same as credential create",
+        "tags": [
+          "OpenStorageCredentials"
+        ]
       }
     },
     "/v1/diags": {
@@ -6640,6 +7140,47 @@
         "summary": "Stop a filesystem check background operation on an unmounted volume, if any",
         "tags": [
           "OpenStorageFilesystemCheck"
+        ]
+      }
+    },
+    "/v1/filesystem-trim/auto-fstrim-status": {
+      "get": {
+        "operationId": "AutoFSTrimStatus",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkAutoFSTrimStatusResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "OpenStorageFilesystemTrim"
+        ]
+      }
+    },
+    "/v1/filesystem-trim/auto-fstrim-usage": {
+      "get": {
+        "operationId": "AutoFSTrimUsage",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkAutoFSTrimUsageResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Usage of a filesystem Trim background operation on all locally mounted\nvolume",
+        "tags": [
+          "OpenStorageFilesystemTrim"
         ]
       }
     },

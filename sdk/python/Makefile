@@ -1,5 +1,5 @@
 APIDIR := ../..
-VEDIR := "build"
+VEDIR := build
 PYTHON := python3
 PIP := pip3
 all: grpc
@@ -11,7 +11,7 @@ endif
 grpc:
 	$(PYTHON) -m venv $(VEDIR)
 	bash -c "source $(VEDIR)/bin/activate && \
-	$(PIP) install --upgrade pip grpcio grpcio-tools setuptools wheel twine && \
+	$(PIP) install -r requirements.txt && \
 	$(PYTHON) -m grpc_tools.protoc \
 		-I$(APIDIR) \
 		-I$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
@@ -36,7 +36,7 @@ grpc:
 	sed -i -e "s#^import api_pb2 as api__pb2#from openstorage import api_pb2 as api__pb2#" openstorage/api_pb2_grpc.py
 	sed -e "s#%%APIVER%%#$(APIVER)#" setup.py.tmpl > setup.py
 	bash -c "source $(VEDIR)/bin/activate && \
-		$(PYTHON) setup.py sdist bdist_wheel"
+		$(PYTHON) setup.py sdist bdist_egg"
 
 clean:
 	sudo rm -rf $(VEDIR) setup.py dist libopenstorage_openstorage.egg-info

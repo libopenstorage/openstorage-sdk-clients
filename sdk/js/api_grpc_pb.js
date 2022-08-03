@@ -17,6 +17,94 @@ var api_pb = require('./api_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
 
+function serialize_openstorage_api_BucketCreateRequest(arg) {
+  if (!(arg instanceof api_pb.BucketCreateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketCreateRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketCreateRequest(buffer_arg) {
+  return api_pb.BucketCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketCreateResponse(arg) {
+  if (!(arg instanceof api_pb.BucketCreateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketCreateResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketCreateResponse(buffer_arg) {
+  return api_pb.BucketCreateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.BucketDeleteRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketDeleteRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketDeleteRequest(buffer_arg) {
+  return api_pb.BucketDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.BucketDeleteResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketDeleteResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketDeleteResponse(buffer_arg) {
+  return api_pb.BucketDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketGrantAccessRequest(arg) {
+  if (!(arg instanceof api_pb.BucketGrantAccessRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketGrantAccessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketGrantAccessRequest(buffer_arg) {
+  return api_pb.BucketGrantAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketGrantAccessResponse(arg) {
+  if (!(arg instanceof api_pb.BucketGrantAccessResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketGrantAccessResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketGrantAccessResponse(buffer_arg) {
+  return api_pb.BucketGrantAccessResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketRevokeAccessRequest(arg) {
+  if (!(arg instanceof api_pb.BucketRevokeAccessRequest)) {
+    throw new Error('Expected argument of type openstorage.api.BucketRevokeAccessRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketRevokeAccessRequest(buffer_arg) {
+  return api_pb.BucketRevokeAccessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_BucketRevokeAccessResponse(arg) {
+  if (!(arg instanceof api_pb.BucketRevokeAccessResponse)) {
+    throw new Error('Expected argument of type openstorage.api.BucketRevokeAccessResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_BucketRevokeAccessResponse(buffer_arg) {
+  return api_pb.BucketRevokeAccessResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkAlertsDeleteRequest(arg) {
   if (!(arg instanceof api_pb.SdkAlertsDeleteRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAlertsDeleteRequest');
@@ -59,6 +147,50 @@ function serialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(arg) {
 
 function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(buffer_arg) {
   return api_pb.SdkAlertsEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimStatusRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimStatusResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimUsageRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimUsageRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimUsageRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimUsageRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimUsageRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimUsageResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimUsageResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimUsageResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimUsageResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimUsageResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkCloudBackupCatalogRequest(arg) {
@@ -807,6 +939,28 @@ function serialize_openstorage_api_SdkCredentialInspectResponse(arg) {
 
 function deserialize_openstorage_api_SdkCredentialInspectResponse(buffer_arg) {
   return api_pb.SdkCredentialInspectResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCredentialUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCredentialUpdateRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCredentialUpdateRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCredentialUpdateRequest(buffer_arg) {
+  return api_pb.SdkCredentialUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCredentialUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCredentialUpdateResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCredentialUpdateResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCredentialUpdateResponse(buffer_arg) {
+  return api_pb.SdkCredentialUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkCredentialValidateRequest(arg) {
@@ -2504,6 +2658,30 @@ status: {
     responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStatusResponse,
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStatusResponse,
   },
+  autoFSTrimStatus: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimStatusRequest,
+    responseType: api_pb.SdkAutoFSTrimStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimStatusResponse,
+  },
+  // Usage of a filesystem Trim background operation on all locally mounted
+// volume
+autoFSTrimUsage: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimUsage',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimUsageRequest,
+    responseType: api_pb.SdkAutoFSTrimUsageResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimUsageRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimUsageRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimUsageResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimUsageResponse,
+  },
   // Stop a filesystem Trim background operation on a mounted volume, if any
 stop: {
     path: '/openstorage.api.OpenStorageFilesystemTrim/Stop',
@@ -3044,6 +3222,55 @@ uncordonAttachments: {
 };
 
 exports.OpenStorageNodeClient = grpc.makeGenericClientConstructor(OpenStorageNodeService);
+// BucketService to manage the bucket driver
+var OpenStorageBucketService = exports.OpenStorageBucketService = {
+  create: {
+    path: '/openstorage.api.OpenStorageBucket/Create',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketCreateRequest,
+    responseType: api_pb.BucketCreateResponse,
+    requestSerialize: serialize_openstorage_api_BucketCreateRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketCreateRequest,
+    responseSerialize: serialize_openstorage_api_BucketCreateResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketCreateResponse,
+  },
+  delete: {
+    path: '/openstorage.api.OpenStorageBucket/Delete',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketDeleteRequest,
+    responseType: api_pb.BucketDeleteResponse,
+    requestSerialize: serialize_openstorage_api_BucketDeleteRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketDeleteRequest,
+    responseSerialize: serialize_openstorage_api_BucketDeleteResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketDeleteResponse,
+  },
+  grantAccess: {
+    path: '/openstorage.api.OpenStorageBucket/GrantAccess',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketGrantAccessRequest,
+    responseType: api_pb.BucketGrantAccessResponse,
+    requestSerialize: serialize_openstorage_api_BucketGrantAccessRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketGrantAccessRequest,
+    responseSerialize: serialize_openstorage_api_BucketGrantAccessResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketGrantAccessResponse,
+  },
+  revokeAccess: {
+    path: '/openstorage.api.OpenStorageBucket/RevokeAccess',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BucketRevokeAccessRequest,
+    responseType: api_pb.BucketRevokeAccessResponse,
+    requestSerialize: serialize_openstorage_api_BucketRevokeAccessRequest,
+    requestDeserialize: deserialize_openstorage_api_BucketRevokeAccessRequest,
+    responseSerialize: serialize_openstorage_api_BucketRevokeAccessResponse,
+    responseDeserialize: deserialize_openstorage_api_BucketRevokeAccessResponse,
+  },
+};
+
+exports.OpenStorageBucketClient = grpc.makeGenericClientConstructor(OpenStorageBucketService);
 // OpenStorageVolume is a service used to manage the volumes of a storage system
 var OpenStorageVolumeService = exports.OpenStorageVolumeService = {
   // Create creates a volume according to the specification provided
@@ -3500,6 +3727,18 @@ create: {
     requestDeserialize: deserialize_openstorage_api_SdkCredentialCreateRequest,
     responseSerialize: serialize_openstorage_api_SdkCredentialCreateResponse,
     responseDeserialize: deserialize_openstorage_api_SdkCredentialCreateResponse,
+  },
+  // input is very same as credential create
+update: {
+    path: '/openstorage.api.OpenStorageCredentials/Update',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCredentialUpdateRequest,
+    responseType: api_pb.SdkCredentialUpdateResponse,
+    requestSerialize: serialize_openstorage_api_SdkCredentialUpdateRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCredentialUpdateRequest,
+    responseSerialize: serialize_openstorage_api_SdkCredentialUpdateResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCredentialUpdateResponse,
   },
   // Enumerate returns a list of credential ids
 enumerate: {
