@@ -7,3 +7,4 @@ sdk/js/package-lock.json
 sdk/python/dist/
 sdk/python/libopenstorage_openstorage.egg-info/
 sdk/python/setup.py
+api.proto
