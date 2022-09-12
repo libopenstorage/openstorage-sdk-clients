@@ -2,6 +2,7 @@ APIDIR := ../..
 VEDIR := build
 PYTHON := python3
 PIP := pip3
+PATCH :=
 all: grpc
 
 ifndef APIVER
@@ -9,8 +10,10 @@ ifndef APIVER
 endif
 
 grpc:
+	-sudo rm -rf $(VEDIR) > /dev/null 2>&1
 	$(PYTHON) -m venv $(VEDIR)
 	bash -c "source $(VEDIR)/bin/activate && \
+	$(PIP) install --upgrade pip && \
 	$(PIP) install -r requirements.txt && \
 	$(PYTHON) -m grpc_tools.protoc \
 		-I$(APIDIR) \
@@ -34,9 +37,16 @@ grpc:
 		--grpc_python_out=. \
 		$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/http.proto"
 	sed -i -e "s#^import api_pb2 as api__pb2#from openstorage import api_pb2 as api__pb2#" openstorage/api_pb2_grpc.py
-	sed -e "s#%%APIVER%%#$(APIVER)#" setup.py.tmpl > setup.py
+	sed -e "s#%%APIVER%%#$(APIVER)$(PATCH)#" setup.py.tmpl > setup.py
 	bash -c "source $(VEDIR)/bin/activate && \
 		$(PYTHON) setup.py sdist bdist_egg"
+
+release:
+	$(PYTHON) -m venv release
+	bash -c "source release/bin/activate && \
+		python3 -m pip install --upgrade pip && \
+		python3 -m pip install --upgrade twine"
+
 
 clean:
 	sudo rm -rf $(VEDIR) setup.py dist libopenstorage_openstorage.egg-info
