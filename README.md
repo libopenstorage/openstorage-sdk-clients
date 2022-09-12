@@ -6,11 +6,14 @@ For more information, please see [OpenStorage SDK](https://libopenstorage.github
 
 ## Releasing new clients
 
-Type:
+For each branch, type:
 
 ```
-$ make
+$ ./update.sh
 ```
 
-This will use [api.proto](https://github.com/libopenstorage/openstorage/blob/master/api/api.proto) from the master branch in `github.com/libopenstorage/openstorage` to generate new clients.
+This will use
+[api.proto](https://github.com/libopenstorage/openstorage/blob/master/api/api.proto)
+from the appropriate branch in `github.com/libopenstorage/openstorage` to generate
+new clients.
 
