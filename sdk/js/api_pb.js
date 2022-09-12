@@ -8394,7 +8394,8 @@ proto.openstorage.api.StorageResource.toObject = function(includeInstance, msg) 
     rotationSpeed: jspb.Message.getFieldWithDefault(msg, 11, ""),
     lastScan: (f = msg.getLastScan()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     metadata: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
-    cache: jspb.Message.getBooleanFieldWithDefault(msg, 14, false)
+    cache: jspb.Message.getBooleanFieldWithDefault(msg, 14, false),
+    poolMetadataDev: jspb.Message.getBooleanFieldWithDefault(msg, 15, false)
   };
 
   if (includeInstance) {
@@ -8487,6 +8488,10 @@ proto.openstorage.api.StorageResource.deserializeBinaryFromReader = function(msg
     case 14:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setCache(value);
+      break;
+    case 15:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setPoolMetadataDev(value);
       break;
     default:
       reader.skipField();
@@ -8613,6 +8618,13 @@ proto.openstorage.api.StorageResource.serializeBinaryToWriter = function(message
   if (f) {
     writer.writeBool(
       14,
+      f
+    );
+  }
+  f = message.getPoolMetadataDev();
+  if (f) {
+    writer.writeBool(
+      15,
       f
     );
   }
@@ -8887,6 +8899,24 @@ proto.openstorage.api.StorageResource.prototype.getCache = function() {
  */
 proto.openstorage.api.StorageResource.prototype.setCache = function(value) {
   return jspb.Message.setProto3BooleanField(this, 14, value);
+};
+
+
+/**
+ * optional bool pool_metadata_dev = 15;
+ * @return {boolean}
+ */
+proto.openstorage.api.StorageResource.prototype.getPoolMetadataDev = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 15, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.openstorage.api.StorageResource} returns this
+ */
+proto.openstorage.api.StorageResource.prototype.setPoolMetadataDev = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 15, value);
 };
 
 
@@ -13146,7 +13176,8 @@ proto.openstorage.api.FastpathConfig.toObject = function(includeInstance, msg) {
     replicasList: jspb.Message.toObjectList(msg.getReplicasList(),
     proto.openstorage.api.FastpathReplState.toObject, includeInstance),
     dirty: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    coordUuid: jspb.Message.getFieldWithDefault(msg, 6, "")
+    coordUuid: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    forceFailover: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -13207,6 +13238,10 @@ proto.openstorage.api.FastpathConfig.deserializeBinaryFromReader = function(msg,
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setCoordUuid(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setForceFailover(value);
       break;
     default:
       reader.skipField();
@@ -13277,6 +13312,13 @@ proto.openstorage.api.FastpathConfig.serializeBinaryToWriter = function(message,
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getForceFailover();
+  if (f) {
+    writer.writeBool(
+      7,
       f
     );
   }
@@ -13408,6 +13450,24 @@ proto.openstorage.api.FastpathConfig.prototype.getCoordUuid = function() {
  */
 proto.openstorage.api.FastpathConfig.prototype.setCoordUuid = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional bool force_failover = 7;
+ * @return {boolean}
+ */
+proto.openstorage.api.FastpathConfig.prototype.getForceFailover = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.openstorage.api.FastpathConfig} returns this
+ */
+proto.openstorage.api.FastpathConfig.prototype.setForceFailover = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
@@ -72132,7 +72192,7 @@ proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
   MINOR: 101,
-  PATCH: 27
+  PATCH: 28
 };
 
 /**

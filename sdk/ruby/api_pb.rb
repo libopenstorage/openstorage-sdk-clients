@@ -22,6 +22,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :last_scan, :message, 12, "google.protobuf.Timestamp"
       optional :metadata, :bool, 13
       optional :cache, :bool, 14
+      optional :pool_metadata_dev, :bool, 15
     end
     add_message "openstorage.api.StoragePool" do
       optional :ID, :int32, 1
@@ -148,6 +149,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :replicas, :message, 4, "openstorage.api.FastpathReplState"
       optional :dirty, :bool, 5
       optional :coord_uuid, :string, 6
+      optional :force_failover, :bool, 7
     end
     add_message "openstorage.api.ScanPolicy" do
       optional :trigger, :enum, 1, "openstorage.api.ScanPolicy.ScanTrigger"
@@ -1729,7 +1731,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 101
-      value :Patch, 27
+      value :Patch, 28
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
