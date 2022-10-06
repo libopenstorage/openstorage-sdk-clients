@@ -116,6 +116,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :NODEPORT, 1
       value :CLUSTERIP, 2
       value :LOADBALANCER, 3
+      value :NONE, 4
     end
     add_message "openstorage.api.Sharedv4FailoverStrategy" do
     end
@@ -1765,7 +1766,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 150
+      value :Minor, 151
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do

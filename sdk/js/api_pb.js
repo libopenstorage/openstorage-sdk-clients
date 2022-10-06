@@ -12371,7 +12371,8 @@ proto.openstorage.api.Sharedv4ServiceSpec.ServiceType = {
   UNSPECIFIED: 0,
   NODEPORT: 1,
   CLUSTERIP: 2,
-  LOADBALANCER: 3
+  LOADBALANCER: 3,
+  NONE: 4
 };
 
 /**
@@ -73528,7 +73529,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 150,
+  MINOR: 151,
   PATCH: 0
 };
 
