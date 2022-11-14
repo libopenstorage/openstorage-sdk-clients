@@ -14048,7 +14048,8 @@ proto.openstorage.api.VolumeSpec.toObject = function(includeInstance, msg) {
     numberOfChunks: jspb.Message.getFieldWithDefault(msg, 46, 0),
     readahead: jspb.Message.getBooleanFieldWithDefault(msg, 47, false),
     topologyRequirement: (f = msg.getTopologyRequirement()) && proto.openstorage.api.TopologyRequirement.toObject(includeInstance, f),
-    winshare: jspb.Message.getBooleanFieldWithDefault(msg, 49, false)
+    winshare: jspb.Message.getBooleanFieldWithDefault(msg, 49, false),
+    faCreateOptions: jspb.Message.getFieldWithDefault(msg, 50, "")
   };
 
   if (includeInstance) {
@@ -14288,6 +14289,10 @@ proto.openstorage.api.VolumeSpec.deserializeBinaryFromReader = function(msg, rea
     case 49:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setWinshare(value);
+      break;
+    case 50:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFaCreateOptions(value);
       break;
     default:
       reader.skipField();
@@ -14655,6 +14660,13 @@ proto.openstorage.api.VolumeSpec.serializeBinaryToWriter = function(message, wri
   if (f) {
     writer.writeBool(
       49,
+      f
+    );
+  }
+  f = message.getFaCreateOptions();
+  if (f.length > 0) {
+    writer.writeString(
+      50,
       f
     );
   }
@@ -15774,6 +15786,24 @@ proto.openstorage.api.VolumeSpec.prototype.getWinshare = function() {
  */
 proto.openstorage.api.VolumeSpec.prototype.setWinshare = function(value) {
   return jspb.Message.setProto3BooleanField(this, 49, value);
+};
+
+
+/**
+ * optional string fa_create_options = 50;
+ * @return {string}
+ */
+proto.openstorage.api.VolumeSpec.prototype.getFaCreateOptions = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 50, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.VolumeSpec} returns this
+ */
+proto.openstorage.api.VolumeSpec.prototype.setFaCreateOptions = function(value) {
+  return jspb.Message.setProto3StringField(this, 50, value);
 };
 
 
@@ -73529,7 +73559,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 151,
+  MINOR: 152,
   PATCH: 0
 };
 

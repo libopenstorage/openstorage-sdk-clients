@@ -221,6 +221,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :readahead, :bool, 47
       optional :topology_requirement, :message, 48, "openstorage.api.TopologyRequirement"
       optional :winshare, :bool, 49
+      optional :fa_create_options, :string, 50
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -1766,7 +1767,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 151
+      value :Minor, 152
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
