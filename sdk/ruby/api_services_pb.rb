@@ -157,6 +157,10 @@ module Openstorage
         rpc :AutoFSTrimUsage, SdkAutoFSTrimUsageRequest, SdkAutoFSTrimUsageResponse
         # Stop a filesystem Trim background operation on a mounted volume, if any
         rpc :Stop, SdkFilesystemTrimStopRequest, SdkFilesystemTrimStopResponse
+        # Push a auto filesystem Trim job into the queue
+        rpc :AutoFSTrimPush, SdkAutoFSTrimPushRequest, SdkAutoFSTrimPushResponse
+        # Pop a auto filesystem Trim job from the queue
+        rpc :AutoFSTrimPop, SdkAutoFSTrimPopRequest, SdkAutoFSTrimPopResponse
       end
 
       Stub = Service.rpc_stub_class
@@ -188,13 +192,16 @@ module Openstorage
       # 3. Status of the Filesystem Check operation in check_health mode, can be
       #    retrieved by polling for the status using
       #    `OpenStorageFilesystemCheck.Status()`
-      # 4. If the Filesystem Check Operation status reports filesystem is in unhealthy
+      # 4. If the Filesystem Check Operation status reports filesystem is in
+      # unhealthy
       #    state, then to fix all the problems issue a grpc call to
       #    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
-      # 5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+      # 5. Status of the Filesystem Check operation in fix_all mode, can be
+      # retrieved
       #    by polling for the status using
       #    `OpenStorageFilesystemCheck.Status()`
-      # 6. Filesystem Check operation runs in the background, to stop the operation,
+      # 6. Filesystem Check operation runs in the background, to stop the
+      # operation,
       #    issue a call to
       #    `OpenStorageFilesystemCheckClient.Stop()`
       # 7. To Check and Fix errors in the filesystem that are safe to fix, issue a
@@ -435,6 +442,8 @@ module Openstorage
         # UncordonAttachments re-enables volume attachments
         # on the provided node in the cluster.
         rpc :UncordonAttachments, SdkNodeUncordonAttachmentsRequest, SdkNodeUncordonAttachmentsResponse
+        # Returns bytes used of multiple volumes for a give node
+        rpc :VolumeBytesUsedByNode, SdkVolumeBytesUsedRequest, SdkVolumeBytesUsedResponse
       end
 
       Stub = Service.rpc_stub_class
@@ -557,6 +566,24 @@ module Openstorage
         # Returns the entire tree up to "n"  depth (default is all of it)
         # Takes a path that can be used as the new root for the catalog request.
         rpc :VolumeCatalog, SdkVolumeCatalogRequest, SdkVolumeCatalogResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
+    module OpenStorageWatch
+      # OpenStorageWatcher is a service that provides APIs for watching on resources and receive them as a stream of events.
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageWatch'
+
+        # Watch on resources managed by the driver and receive them as a stream of events.
+        #
+        # Requires access AccessType.Read
+        rpc :Watch, SdkWatchRequest, stream(SdkWatchResponse)
       end
 
       Stub = Service.rpc_stub_class

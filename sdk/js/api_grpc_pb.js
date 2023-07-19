@@ -149,6 +149,50 @@ function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(buffe
   return api_pb.SdkAlertsEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkAutoFSTrimPopRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPopRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPopRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPopRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPopRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimPopResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPopResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPopResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPopResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPopResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimPushRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPushRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPushRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPushRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPushRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimPushResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPushResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPushResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPushResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPushResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkAutoFSTrimStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkAutoFSTrimStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimStatusRequest');
@@ -2063,6 +2107,28 @@ function deserialize_openstorage_api_SdkVolumeAttachResponse(buffer_arg) {
   return api_pb.SdkVolumeAttachResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVolumeBytesUsedRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeBytesUsedRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeBytesUsedRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeBytesUsedRequest(buffer_arg) {
+  return api_pb.SdkVolumeBytesUsedRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVolumeBytesUsedResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVolumeBytesUsedResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVolumeBytesUsedResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVolumeBytesUsedResponse(buffer_arg) {
+  return api_pb.SdkVolumeBytesUsedResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeCapacityUsageRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeCapacityUsageRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeCapacityUsageRequest');
@@ -2481,6 +2547,28 @@ function deserialize_openstorage_api_SdkVolumeUpdateResponse(buffer_arg) {
   return api_pb.SdkVolumeUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkWatchRequest(arg) {
+  if (!(arg instanceof api_pb.SdkWatchRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkWatchRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkWatchRequest(buffer_arg) {
+  return api_pb.SdkWatchRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkWatchResponse(arg) {
+  if (!(arg instanceof api_pb.SdkWatchResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkWatchResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkWatchResponse(buffer_arg) {
+  return api_pb.SdkWatchResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 // OpenStorageAlerts defines rpc's for alerts.
 var OpenStorageAlertsService = exports.OpenStorageAlertsService = {
@@ -2716,6 +2804,30 @@ stop: {
     responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStopResponse,
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStopResponse,
   },
+  // Push a auto filesystem Trim job into the queue
+autoFSTrimPush: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPush',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimPushRequest,
+    responseType: api_pb.SdkAutoFSTrimPushResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimPushRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPushRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimPushResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPushResponse,
+  },
+  // Pop a auto filesystem Trim job from the queue
+autoFSTrimPop: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPop',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimPopRequest,
+    responseType: api_pb.SdkAutoFSTrimPopResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimPopRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPopRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimPopResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPopResponse,
+  },
 };
 
 exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(OpenStorageFilesystemTrimService);
@@ -2745,13 +2857,16 @@ exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(Open
 // 3. Status of the Filesystem Check operation in check_health mode, can be
 //    retrieved by polling for the status using
 //    `OpenStorageFilesystemCheck.Status()`
-// 4. If the Filesystem Check Operation status reports filesystem is in unhealthy
+// 4. If the Filesystem Check Operation status reports filesystem is in
+// unhealthy
 //    state, then to fix all the problems issue a grpc call to
 //    `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
-// 5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+// 5. Status of the Filesystem Check operation in fix_all mode, can be
+// retrieved
 //    by polling for the status using
 //    `OpenStorageFilesystemCheck.Status()`
-// 6. Filesystem Check operation runs in the background, to stop the operation,
+// 6. Filesystem Check operation runs in the background, to stop the
+// operation,
 //    issue a call to
 //    `OpenStorageFilesystemCheckClient.Stop()`
 // 7. To Check and Fix errors in the filesystem that are safe to fix, issue a
@@ -3253,6 +3368,18 @@ uncordonAttachments: {
     responseSerialize: serialize_openstorage_api_SdkNodeUncordonAttachmentsResponse,
     responseDeserialize: deserialize_openstorage_api_SdkNodeUncordonAttachmentsResponse,
   },
+  // Returns bytes used of multiple volumes for a give node
+volumeBytesUsedByNode: {
+    path: '/openstorage.api.OpenStorageNode/VolumeBytesUsedByNode',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVolumeBytesUsedRequest,
+    responseType: api_pb.SdkVolumeBytesUsedResponse,
+    requestSerialize: serialize_openstorage_api_SdkVolumeBytesUsedRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVolumeBytesUsedRequest,
+    responseSerialize: serialize_openstorage_api_SdkVolumeBytesUsedResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVolumeBytesUsedResponse,
+  },
 };
 
 exports.OpenStorageNodeClient = grpc.makeGenericClientConstructor(OpenStorageNodeService);
@@ -3560,6 +3687,25 @@ volumeCatalog: {
 };
 
 exports.OpenStorageVolumeClient = grpc.makeGenericClientConstructor(OpenStorageVolumeService);
+// OpenStorageWatcher is a service that provides APIs for watching on resources and receive them as a stream of events.
+var OpenStorageWatchService = exports.OpenStorageWatchService = {
+  // Watch on resources managed by the driver and receive them as a stream of events.
+//
+// Requires access AccessType.Read
+watch: {
+    path: '/openstorage.api.OpenStorageWatch/Watch',
+    requestStream: false,
+    responseStream: true,
+    requestType: api_pb.SdkWatchRequest,
+    responseType: api_pb.SdkWatchResponse,
+    requestSerialize: serialize_openstorage_api_SdkWatchRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkWatchRequest,
+    responseSerialize: serialize_openstorage_api_SdkWatchResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkWatchResponse,
+  },
+};
+
+exports.OpenStorageWatchClient = grpc.makeGenericClientConstructor(OpenStorageWatchService);
 // OpenStorageMountAttach is a service used to manage node access to a volume.
 // Note, these APIs are here for testing or diagnostics purposes only. In normal
 // operations, the Container Orchestration (CO) system is managing all mount

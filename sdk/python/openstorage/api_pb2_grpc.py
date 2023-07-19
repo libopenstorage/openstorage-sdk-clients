@@ -449,6 +449,16 @@ class OpenStorageFilesystemTrimStub(object):
                 request_serializer=api__pb2.SdkFilesystemTrimStopRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkFilesystemTrimStopResponse.FromString,
                 )
+        self.AutoFSTrimPush = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPush',
+                request_serializer=api__pb2.SdkAutoFSTrimPushRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkAutoFSTrimPushResponse.FromString,
+                )
+        self.AutoFSTrimPop = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPop',
+                request_serializer=api__pb2.SdkAutoFSTrimPopRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkAutoFSTrimPopResponse.FromString,
+                )
 
 
 class OpenStorageFilesystemTrimServicer(object):
@@ -514,6 +524,20 @@ class OpenStorageFilesystemTrimServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AutoFSTrimPush(self, request, context):
+        """Push a auto filesystem Trim job into the queue
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AutoFSTrimPop(self, request, context):
+        """Pop a auto filesystem Trim job from the queue
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -541,6 +565,16 @@ def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
                     servicer.Stop,
                     request_deserializer=api__pb2.SdkFilesystemTrimStopRequest.FromString,
                     response_serializer=api__pb2.SdkFilesystemTrimStopResponse.SerializeToString,
+            ),
+            'AutoFSTrimPush': grpc.unary_unary_rpc_method_handler(
+                    servicer.AutoFSTrimPush,
+                    request_deserializer=api__pb2.SdkAutoFSTrimPushRequest.FromString,
+                    response_serializer=api__pb2.SdkAutoFSTrimPushResponse.SerializeToString,
+            ),
+            'AutoFSTrimPop': grpc.unary_unary_rpc_method_handler(
+                    servicer.AutoFSTrimPop,
+                    request_deserializer=api__pb2.SdkAutoFSTrimPopRequest.FromString,
+                    response_serializer=api__pb2.SdkAutoFSTrimPopResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -661,6 +695,40 @@ class OpenStorageFilesystemTrim(object):
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
+    @staticmethod
+    def AutoFSTrimPush(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPush',
+            api__pb2.SdkAutoFSTrimPushRequest.SerializeToString,
+            api__pb2.SdkAutoFSTrimPushResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AutoFSTrimPop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPop',
+            api__pb2.SdkAutoFSTrimPopRequest.SerializeToString,
+            api__pb2.SdkAutoFSTrimPopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
 
 class OpenStorageFilesystemCheckStub(object):
     """## OpenStorageFilesystemCheckService
@@ -689,13 +757,16 @@ class OpenStorageFilesystemCheckStub(object):
     3. Status of the Filesystem Check operation in check_health mode, can be
     retrieved by polling for the status using
     `OpenStorageFilesystemCheck.Status()`
-    4. If the Filesystem Check Operation status reports filesystem is in unhealthy
+    4. If the Filesystem Check Operation status reports filesystem is in
+    unhealthy
     state, then to fix all the problems issue a grpc call to
     `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
-    5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+    5. Status of the Filesystem Check operation in fix_all mode, can be
+    retrieved
     by polling for the status using
     `OpenStorageFilesystemCheck.Status()`
-    6. Filesystem Check operation runs in the background, to stop the operation,
+    6. Filesystem Check operation runs in the background, to stop the
+    operation,
     issue a call to
     `OpenStorageFilesystemCheckClient.Stop()`
     7. To Check and Fix errors in the filesystem that are safe to fix, issue a
@@ -756,13 +827,16 @@ class OpenStorageFilesystemCheckServicer(object):
     3. Status of the Filesystem Check operation in check_health mode, can be
     retrieved by polling for the status using
     `OpenStorageFilesystemCheck.Status()`
-    4. If the Filesystem Check Operation status reports filesystem is in unhealthy
+    4. If the Filesystem Check Operation status reports filesystem is in
+    unhealthy
     state, then to fix all the problems issue a grpc call to
     `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
-    5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+    5. Status of the Filesystem Check operation in fix_all mode, can be
+    retrieved
     by polling for the status using
     `OpenStorageFilesystemCheck.Status()`
-    6. Filesystem Check operation runs in the background, to stop the operation,
+    6. Filesystem Check operation runs in the background, to stop the
+    operation,
     issue a call to
     `OpenStorageFilesystemCheckClient.Stop()`
     7. To Check and Fix errors in the filesystem that are safe to fix, issue a
@@ -847,13 +921,16 @@ class OpenStorageFilesystemCheck(object):
     3. Status of the Filesystem Check operation in check_health mode, can be
     retrieved by polling for the status using
     `OpenStorageFilesystemCheck.Status()`
-    4. If the Filesystem Check Operation status reports filesystem is in unhealthy
+    4. If the Filesystem Check Operation status reports filesystem is in
+    unhealthy
     state, then to fix all the problems issue a grpc call to
     `OpenStorageFilesystemCheckClient.Start(Mode='fix_all')`
-    5. Status of the Filesystem Check operation in fix_all mode, can be retrieved
+    5. Status of the Filesystem Check operation in fix_all mode, can be
+    retrieved
     by polling for the status using
     `OpenStorageFilesystemCheck.Status()`
-    6. Filesystem Check operation runs in the background, to stop the operation,
+    6. Filesystem Check operation runs in the background, to stop the
+    operation,
     issue a call to
     `OpenStorageFilesystemCheckClient.Stop()`
     7. To Check and Fix errors in the filesystem that are safe to fix, issue a
@@ -1988,6 +2065,11 @@ class OpenStorageNodeStub(object):
                 request_serializer=api__pb2.SdkNodeUncordonAttachmentsRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkNodeUncordonAttachmentsResponse.FromString,
                 )
+        self.VolumeBytesUsedByNode = channel.unary_unary(
+                '/openstorage.api.OpenStorageNode/VolumeBytesUsedByNode',
+                request_serializer=api__pb2.SdkVolumeBytesUsedRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkVolumeBytesUsedResponse.FromString,
+                )
 
 
 class OpenStorageNodeServicer(object):
@@ -2062,6 +2144,13 @@ class OpenStorageNodeServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def VolumeBytesUsedByNode(self, request, context):
+        """Returns bytes used of multiple volumes for a give node
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageNodeServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -2109,6 +2198,11 @@ def add_OpenStorageNodeServicer_to_server(servicer, server):
                     servicer.UncordonAttachments,
                     request_deserializer=api__pb2.SdkNodeUncordonAttachmentsRequest.FromString,
                     response_serializer=api__pb2.SdkNodeUncordonAttachmentsResponse.SerializeToString,
+            ),
+            'VolumeBytesUsedByNode': grpc.unary_unary_rpc_method_handler(
+                    servicer.VolumeBytesUsedByNode,
+                    request_deserializer=api__pb2.SdkVolumeBytesUsedRequest.FromString,
+                    response_serializer=api__pb2.SdkVolumeBytesUsedResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -2271,6 +2365,23 @@ class OpenStorageNode(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/UncordonAttachments',
             api__pb2.SdkNodeUncordonAttachmentsRequest.SerializeToString,
             api__pb2.SdkNodeUncordonAttachmentsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VolumeBytesUsedByNode(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageNode/VolumeBytesUsedByNode',
+            api__pb2.SdkVolumeBytesUsedRequest.SerializeToString,
+            api__pb2.SdkVolumeBytesUsedResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -3067,6 +3178,73 @@ class OpenStorageVolume(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageVolume/VolumeCatalog',
             api__pb2.SdkVolumeCatalogRequest.SerializeToString,
             api__pb2.SdkVolumeCatalogResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class OpenStorageWatchStub(object):
+    """OpenStorageWatcher is a service that provides APIs for watching on resources and receive them as a stream of events.
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Watch = channel.unary_stream(
+                '/openstorage.api.OpenStorageWatch/Watch',
+                request_serializer=api__pb2.SdkWatchRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkWatchResponse.FromString,
+                )
+
+
+class OpenStorageWatchServicer(object):
+    """OpenStorageWatcher is a service that provides APIs for watching on resources and receive them as a stream of events.
+    """
+
+    def Watch(self, request, context):
+        """Watch on resources managed by the driver and receive them as a stream of events.
+
+        Requires access AccessType.Read
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageWatchServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Watch': grpc.unary_stream_rpc_method_handler(
+                    servicer.Watch,
+                    request_deserializer=api__pb2.SdkWatchRequest.FromString,
+                    response_serializer=api__pb2.SdkWatchResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'openstorage.api.OpenStorageWatch', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class OpenStorageWatch(object):
+    """OpenStorageWatcher is a service that provides APIs for watching on resources and receive them as a stream of events.
+    """
+
+    @staticmethod
+    def Watch(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/openstorage.api.OpenStorageWatch/Watch',
+            api__pb2.SdkWatchRequest.SerializeToString,
+            api__pb2.SdkWatchResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

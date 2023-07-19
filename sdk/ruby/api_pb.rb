@@ -222,6 +222,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :topology_requirement, :message, 48, "openstorage.api.TopologyRequirement"
       optional :winshare, :bool, 49
       optional :fa_create_options, :string, 50
+      optional :near_sync, :bool, 51
+      optional :near_sync_replication_strategy, :enum, 52, "openstorage.api.NearSyncReplicationStrategy"
     end
     add_message "openstorage.api.VolumeSpecUpdate" do
       optional :replica_set, :message, 12, "openstorage.api.ReplicaSet"
@@ -316,6 +318,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       end
       oneof :winshare_opt do
         optional :winshare, :bool, 42
+      end
+      oneof :near_sync_replication_strategy_opt do
+        optional :near_sync_replication_strategy, :enum, 43, "openstorage.api.NearSyncReplicationStrategy"
       end
     end
     add_message "openstorage.api.VolumeSpecPolicy" do
@@ -515,6 +520,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "openstorage.api.VolumeUsageByNode" do
       repeated :volume_usage, :message, 1, "openstorage.api.VolumeUsage"
+    end
+    add_message "openstorage.api.VolumeBytesUsed" do
+      optional :volume_id, :string, 1
+      optional :total_bytes, :uint64, 2
+    end
+    add_message "openstorage.api.VolumeBytesUsedByNode" do
+      optional :node_id, :string, 1
+      repeated :vol_usage, :message, 2, "openstorage.api.VolumeBytesUsed"
     end
     add_message "openstorage.api.FstrimVolumeUsageInfo" do
       optional :volume_name, :string, 1
@@ -1018,6 +1031,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_message "openstorage.api.SdkVolumeCloneRequest" do
       optional :name, :string, 1
       optional :parent_id, :string, 2
+      map :additional_labels, :string, :string, 3
     end
     add_message "openstorage.api.SdkVolumeCloneResponse" do
       optional :volume_id, :string, 1
@@ -1112,6 +1126,23 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :snapshot_schedule_names, :string, 2
     end
     add_message "openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse" do
+    end
+    add_message "openstorage.api.SdkWatchRequest" do
+      oneof :event_type do
+        optional :volume_event, :message, 1, "openstorage.api.SdkVolumeWatchRequest"
+      end
+    end
+    add_message "openstorage.api.SdkWatchResponse" do
+      oneof :event_type do
+        optional :volume_event, :message, 1, "openstorage.api.SdkVolumeWatchResponse"
+      end
+    end
+    add_message "openstorage.api.SdkVolumeWatchRequest" do
+      map :labels, :string, :string, 1
+    end
+    add_message "openstorage.api.SdkVolumeWatchResponse" do
+      optional :volume, :message, 1, "openstorage.api.Volume"
+      optional :name, :string, 2
     end
     add_message "openstorage.api.SdkNodeVolumeUsageByNodeRequest" do
       optional :node_id, :string, 1
@@ -1323,6 +1354,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :target_pool_selector, :message, 4, "openstorage.api.LabelSelectorRequirement"
       optional :max_duration_minutes, :uint64, 5
       optional :remove_repl_1_snapshots, :bool, 6
+      optional :mode, :enum, 7, "openstorage.api.SdkStorageRebalanceRequest.Mode"
+    end
+    add_enum "openstorage.api.SdkStorageRebalanceRequest.Mode" do
+      value :STORAGE_REBALANCE, 0
+      value :VOLUME_PLACEMENT_FIX, 1
     end
     add_message "openstorage.api.SdkStorageRebalanceResponse" do
       optional :job, :message, 1, "openstorage.api.StorageRebalanceJob"
@@ -1454,6 +1490,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       map :labels, :string, :string, 5
       optional :full_backup_frequency, :uint32, 6
       optional :delete_local, :bool, 7
+      optional :near_sync_migrate, :bool, 8
     end
     add_message "openstorage.api.SdkCloudBackupCreateResponse" do
       optional :task_id, :string, 1
@@ -1542,6 +1579,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :volume_id, :string, 1
       optional :local, :bool, 2
       optional :task_id, :string, 3
+      optional :near_sync_migrate, :bool, 4
     end
     add_message "openstorage.api.SdkCloudBackupStatusResponse" do
       map :statuses, :string, :message, 1, "openstorage.api.SdkCloudBackupStatus"
@@ -1608,6 +1646,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     end
     add_message "openstorage.api.SdkCloudBackupSizeResponse" do
       optional :size, :uint64, 1
+      optional :total_download_bytes, :uint64, 2
+      optional :compressed_object_bytes, :uint64, 3
+      optional :capacity_required_for_restore, :uint64, 4
     end
     add_message "openstorage.api.SdkRule" do
       repeated :services, :string, 1
@@ -1688,7 +1729,26 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :volume_id, :string, 1
       optional :mount_path, :string, 2
     end
+    add_message "openstorage.api.SdkVolumeBytesUsedResponse" do
+      optional :vol_util_info, :message, 1, "openstorage.api.VolumeBytesUsedByNode"
+    end
+    add_message "openstorage.api.SdkVolumeBytesUsedRequest" do
+      optional :node_id, :string, 1
+      repeated :ids, :uint64, 2
+    end
     add_message "openstorage.api.SdkFilesystemTrimStopResponse" do
+    end
+    add_message "openstorage.api.SdkAutoFSTrimPushRequest" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkAutoFSTrimPushResponse" do
+      optional :message, :string, 1
+    end
+    add_message "openstorage.api.SdkAutoFSTrimPopRequest" do
+      optional :volume_id, :string, 1
+    end
+    add_message "openstorage.api.SdkAutoFSTrimPopResponse" do
+      optional :message, :string, 1
     end
     add_message "openstorage.api.FilesystemCheck" do
     end
@@ -1767,7 +1827,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     add_enum "openstorage.api.SdkVersion.Version" do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
-      value :Minor, 152
+      value :Minor, 163
       value :Patch, 0
     end
     add_message "openstorage.api.StorageVersion" do
@@ -2134,6 +2194,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_SYNC_SHARED, 5
       value :IO_PROFILE_AUTO, 6
       value :IO_PROFILE_NONE, 7
+      value :IO_PROFILE_JOURNAL, 8
+      value :IO_PROFILE_AUTO_JOURNAL, 9
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
@@ -2209,6 +2271,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :FASTPATH_PROTO_ISCSI, 2
       value :FASTPATH_PROTO_LOCAL, 3
     end
+    add_enum "openstorage.api.NearSyncReplicationStrategy" do
+      value :NEAR_SYNC_STRATEGY_NONE, 0
+      value :NEAR_SYNC_STRATEGY_AGGRESSIVE, 1
+      value :NEAR_SYNC_STRATEGY_OPTIMIZED, 2
+    end
     add_enum "openstorage.api.AnonymousBucketAccessMode" do
       value :UnknownBucketAccessMode, 0
       value :Private, 1
@@ -2241,6 +2308,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkCloudBackupOpTypeUnknown, 0
       value :SdkCloudBackupOpTypeBackupOp, 1
       value :SdkCloudBackupOpTypeRestoreOp, 2
+      value :SdkNearSyncOpTypeCloneOp, 3
+      value :SdkNearSyncOpTypeReplAddOp, 4
+      value :SdkNearSyncOpTypeRestoreOp, 5
     end
     add_enum "openstorage.api.SdkCloudBackupStatusType" do
       value :SdkCloudBackupStatusTypeUnknown, 0
@@ -2253,12 +2323,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :SdkCloudBackupStatusTypeFailed, 7
       value :SdkCloudBackupStatusTypeQueued, 8
       value :SdkCloudBackupStatusTypeInvalid, 9
+      value :SdkNearSyncStatusTypeNotStarted, 10
+      value :SdkNearSyncStatusTypeDone, 11
+      value :SdkNearSyncStatusTypePaused, 12
+      value :SdkNearSyncStatusTypeStopped, 13
+      value :SdkNearSyncStatusTypeActive, 14
+      value :SdkNearSyncStatusTypeFailed, 15
+      value :SdkNearSyncStatusTypeInvalid, 16
     end
     add_enum "openstorage.api.SdkCloudBackupRequestedState" do
       value :SdkCloudBackupRequestedStateUnknown, 0
       value :SdkCloudBackupRequestedStatePause, 1
       value :SdkCloudBackupRequestedStateResume, 2
       value :SdkCloudBackupRequestedStateStop, 3
+      value :SdkNearSyncRequestedStatePause, 4
+      value :SdkNearSyncRequestedStateResume, 5
+      value :SdkNearSyncRequestedStateStop, 6
     end
     add_enum "openstorage.api.EnforcementType" do
       value :required, 0
@@ -2320,6 +2400,8 @@ module Openstorage
     CapacityUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.CapacityUsageInfo").msgclass
     VolumeUsage = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeUsage").msgclass
     VolumeUsageByNode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeUsageByNode").msgclass
+    VolumeBytesUsed = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeBytesUsed").msgclass
+    VolumeBytesUsedByNode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.VolumeBytesUsedByNode").msgclass
     FstrimVolumeUsageInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FstrimVolumeUsageInfo").msgclass
     RelaxedReclaimPurge = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.RelaxedReclaimPurge").msgclass
     SdkStoragePolicy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStoragePolicy").msgclass
@@ -2463,6 +2545,10 @@ module Openstorage
     SdkVolumeSnapshotEnumerateWithFiltersResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeSnapshotEnumerateWithFiltersResponse").msgclass
     SdkVolumeSnapshotScheduleUpdateRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeSnapshotScheduleUpdateRequest").msgclass
     SdkVolumeSnapshotScheduleUpdateResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeSnapshotScheduleUpdateResponse").msgclass
+    SdkWatchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkWatchRequest").msgclass
+    SdkWatchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkWatchResponse").msgclass
+    SdkVolumeWatchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeWatchRequest").msgclass
+    SdkVolumeWatchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeWatchResponse").msgclass
     SdkNodeVolumeUsageByNodeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeVolumeUsageByNodeRequest").msgclass
     SdkNodeVolumeUsageByNodeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeVolumeUsageByNodeResponse").msgclass
     SdkNodeRelaxedReclaimPurgeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkNodeRelaxedReclaimPurgeRequest").msgclass
@@ -2512,6 +2598,7 @@ module Openstorage
     StorageRebalanceTriggerThreshold::Type = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold.Type").enummodule
     StorageRebalanceTriggerThreshold::Metric = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceTriggerThreshold.Metric").enummodule
     SdkStorageRebalanceRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStorageRebalanceRequest").msgclass
+    SdkStorageRebalanceRequest::Mode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStorageRebalanceRequest.Mode").enummodule
     SdkStorageRebalanceResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkStorageRebalanceResponse").msgclass
     StorageRebalanceJob = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJob").msgclass
     StorageRebalanceSummary = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceSummary").msgclass
@@ -2602,7 +2689,13 @@ module Openstorage
     SdkAutoFSTrimUsageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimUsageRequest").msgclass
     SdkAutoFSTrimUsageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimUsageResponse").msgclass
     SdkFilesystemTrimStopRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopRequest").msgclass
+    SdkVolumeBytesUsedResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeBytesUsedResponse").msgclass
+    SdkVolumeBytesUsedRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkVolumeBytesUsedRequest").msgclass
     SdkFilesystemTrimStopResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemTrimStopResponse").msgclass
+    SdkAutoFSTrimPushRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimPushRequest").msgclass
+    SdkAutoFSTrimPushResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimPushResponse").msgclass
+    SdkAutoFSTrimPopRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimPopRequest").msgclass
+    SdkAutoFSTrimPopResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkAutoFSTrimPopResponse").msgclass
     FilesystemCheck = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck").msgclass
     FilesystemCheck::FilesystemCheckStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FilesystemCheck.FilesystemCheckStatus").enummodule
     SdkFilesystemCheckStartRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkFilesystemCheckStartRequest").msgclass
@@ -2698,6 +2791,7 @@ module Openstorage
     ProxyProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.ProxyProtocol").enummodule
     FastpathStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathStatus").enummodule
     FastpathProtocol = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.FastpathProtocol").enummodule
+    NearSyncReplicationStrategy = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.NearSyncReplicationStrategy").enummodule
     AnonymousBucketAccessMode = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.AnonymousBucketAccessMode").enummodule
     SdkTimeWeekday = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.SdkTimeWeekday").enummodule
     StorageRebalanceJobState = Google::Protobuf::DescriptorPool.generated_pool.lookup("openstorage.api.StorageRebalanceJobState").enummodule
