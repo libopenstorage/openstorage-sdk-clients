@@ -449,6 +449,16 @@ class OpenStorageFilesystemTrimStub(object):
                 request_serializer=api__pb2.SdkFilesystemTrimStopRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkFilesystemTrimStopResponse.FromString,
                 )
+        self.AutoFSTrimPush = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPush',
+                request_serializer=api__pb2.SdkAutoFSTrimPushRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkAutoFSTrimPushResponse.FromString,
+                )
+        self.AutoFSTrimPop = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPop',
+                request_serializer=api__pb2.SdkAutoFSTrimPopRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkAutoFSTrimPopResponse.FromString,
+                )
 
 
 class OpenStorageFilesystemTrimServicer(object):
@@ -514,6 +524,20 @@ class OpenStorageFilesystemTrimServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def AutoFSTrimPush(self, request, context):
+        """Push a auto filesystem Trim job into the queue
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AutoFSTrimPop(self, request, context):
+        """Pop a auto filesystem Trim job from the queue
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -541,6 +565,16 @@ def add_OpenStorageFilesystemTrimServicer_to_server(servicer, server):
                     servicer.Stop,
                     request_deserializer=api__pb2.SdkFilesystemTrimStopRequest.FromString,
                     response_serializer=api__pb2.SdkFilesystemTrimStopResponse.SerializeToString,
+            ),
+            'AutoFSTrimPush': grpc.unary_unary_rpc_method_handler(
+                    servicer.AutoFSTrimPush,
+                    request_deserializer=api__pb2.SdkAutoFSTrimPushRequest.FromString,
+                    response_serializer=api__pb2.SdkAutoFSTrimPushResponse.SerializeToString,
+            ),
+            'AutoFSTrimPop': grpc.unary_unary_rpc_method_handler(
+                    servicer.AutoFSTrimPop,
+                    request_deserializer=api__pb2.SdkAutoFSTrimPopRequest.FromString,
+                    response_serializer=api__pb2.SdkAutoFSTrimPopResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -658,6 +692,40 @@ class OpenStorageFilesystemTrim(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/Stop',
             api__pb2.SdkFilesystemTrimStopRequest.SerializeToString,
             api__pb2.SdkFilesystemTrimStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AutoFSTrimPush(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPush',
+            api__pb2.SdkAutoFSTrimPushRequest.SerializeToString,
+            api__pb2.SdkAutoFSTrimPushResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AutoFSTrimPop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPop',
+            api__pb2.SdkAutoFSTrimPopRequest.SerializeToString,
+            api__pb2.SdkAutoFSTrimPopResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

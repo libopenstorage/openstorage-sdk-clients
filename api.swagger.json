@@ -201,12 +201,13 @@
       },
       "Sharedv4ServiceSpecServiceType": {
         "default": "UNSPECIFIED",
-        "description": "Type of sharedv4 service. Values are governed by the different types\nof services supported by container orchestrators such as Kubernetes.\n\n - UNSPECIFIED: Unspecified\n - NODEPORT: Export the sharedv4 service on each Node's IP.\nIn this mode the sharedv4 volume can be accessed from outside the\ncluster using one of the node's IPs.\n - CLUSTERIP: Export the shared4 service on an internal cluster IP.\nIn this mode the sharedv4 volume will only be accessible\nwithin the cluster via this service.\n - LOADBALANCER: Expose the sharedv4 service on cloud provider's load balancer.\nApplicable when running in cloud. In this mode the sharedv4 volume\ncan be accessed from outside the cluster.",
+        "description": "Type of sharedv4 service. Values are governed by the different types\nof services supported by container orchestrators such as Kubernetes.\n\n - UNSPECIFIED: Unspecified\n - NODEPORT: Export the sharedv4 service on each Node's IP.\nIn this mode the sharedv4 volume can be accessed from outside the\ncluster using one of the node's IPs.\n - CLUSTERIP: Export the shared4 service on an internal cluster IP.\nIn this mode the sharedv4 volume will only be accessible\nwithin the cluster via this service.\n - LOADBALANCER: Expose the sharedv4 service on cloud provider's load balancer.\nApplicable when running in cloud. In this mode the sharedv4 volume\ncan be accessed from outside the cluster.\n - NONE: Do not use sharedv4 service feature. Use legacy sharedv4 volumes instead.",
         "enum": [
           "UNSPECIFIED",
           "NODEPORT",
           "CLUSTERIP",
-          "LOADBALANCER"
+          "LOADBALANCER",
+          "NONE"
         ],
         "type": "string"
       },
@@ -1130,7 +1131,8 @@
           "IO_PROFILE_CMS",
           "IO_PROFILE_SYNC_SHARED",
           "IO_PROFILE_AUTO",
-          "IO_PROFILE_NONE"
+          "IO_PROFILE_NONE",
+          "IO_PROFILE_JOURNAL"
         ],
         "type": "string"
       },
@@ -1317,6 +1319,15 @@
           }
         },
         "type": "object"
+      },
+      "apiNearSyncReplicationStrategy": {
+        "default": "NEAR_SYNC_STRATEGY_NONE",
+        "enum": [
+          "NEAR_SYNC_STRATEGY_NONE",
+          "NEAR_SYNC_STRATEGY_AGGRESSIVE",
+          "NEAR_SYNC_STRATEGY_OPTIMIZED"
+        ],
+        "type": "string"
       },
       "apiNodeDrainAttachmentsJob": {
         "properties": {
@@ -1906,6 +1917,46 @@
         },
         "type": "object"
       },
+      "apiSdkAutoFSTrimPopRequest": {
+        "properties": {
+          "volume_id": {
+            "title": "Id of the volume",
+            "type": "string"
+          }
+        },
+        "title": "SdkAutoFSTrimPopRequest defines the request to pop a volume to autofstrim\nqueue",
+        "type": "object"
+      },
+      "apiSdkAutoFSTrimPopResponse": {
+        "properties": {
+          "message": {
+            "title": "Text blob containing ASCII text providing details of the operation",
+            "type": "string"
+          }
+        },
+        "title": "SdkAutoFSTrimPopResponse defines the response to pop a volume to autofstrim\nqueue",
+        "type": "object"
+      },
+      "apiSdkAutoFSTrimPushRequest": {
+        "properties": {
+          "volume_id": {
+            "title": "Id of the volume",
+            "type": "string"
+          }
+        },
+        "title": "SdkAutoFSTrimPushRequest defines the request to push a volume to autofstrim\nqueue",
+        "type": "object"
+      },
+      "apiSdkAutoFSTrimPushResponse": {
+        "properties": {
+          "message": {
+            "title": "Text blob containing ASCII text providing details of the operation",
+            "type": "string"
+          }
+        },
+        "title": "SdkAutoFSTrimPushResponse defines the response to push a volume to autofstrim\nqueue",
+        "type": "object"
+      },
       "apiSdkAutoFSTrimStatusResponse": {
         "description": "SdkAutoFSTrimStatusResponse defines the response for a\nSdkAutoFSTrimStatusRequest.",
         "properties": {
@@ -2092,6 +2143,11 @@
             },
             "description": "Labels are list of key value pairs to tag the cloud backup. These labels\nare stored in the metadata associated with the backup.",
             "type": "object"
+          },
+          "near_sync_migrate": {
+            "format": "boolean",
+            "title": "Indicates if this is a near sync migrate",
+            "type": "boolean"
           },
           "task_id": {
             "description": "TaskId of the task performing this backup. This value can be used for\nidempotency.",
@@ -2333,23 +2389,29 @@
       },
       "apiSdkCloudBackupOpType": {
         "default": "SdkCloudBackupOpTypeUnknown",
-        "description": "- SdkCloudBackupOpTypeUnknown: Unknown\n - SdkCloudBackupOpTypeBackupOp: Backup\n - SdkCloudBackupOpTypeRestoreOp: Restore",
+        "description": "- SdkCloudBackupOpTypeUnknown: Unknown\n - SdkCloudBackupOpTypeBackupOp: Backup\n - SdkCloudBackupOpTypeRestoreOp: Restore\n - SdkNearSyncOpTypeCloneOp: NearSync clone\n - SdkNearSyncOpTypeReplAddOp: NearSync replication add\n - SdkNearSyncOpTypeRestoreOp: NearSync restore",
         "enum": [
           "SdkCloudBackupOpTypeUnknown",
           "SdkCloudBackupOpTypeBackupOp",
-          "SdkCloudBackupOpTypeRestoreOp"
+          "SdkCloudBackupOpTypeRestoreOp",
+          "SdkNearSyncOpTypeCloneOp",
+          "SdkNearSyncOpTypeReplAddOp",
+          "SdkNearSyncOpTypeRestoreOp"
         ],
         "title": "CloudBackup operations types",
         "type": "string"
       },
       "apiSdkCloudBackupRequestedState": {
         "default": "SdkCloudBackupRequestedStateUnknown",
-        "description": "- SdkCloudBackupRequestedStateUnknown: Unknown state\n - SdkCloudBackupRequestedStatePause: Pause the backup or restore\n - SdkCloudBackupRequestedStateResume: Resume the backup or restore\n - SdkCloudBackupRequestedStateStop: Stop a backup or restore",
+        "description": "- SdkCloudBackupRequestedStateUnknown: Unknown state\n - SdkCloudBackupRequestedStatePause: Pause the backup or restore\n - SdkCloudBackupRequestedStateResume: Resume the backup or restore\n - SdkCloudBackupRequestedStateStop: Stop a backup or restore\n - SdkNearSyncRequestedStatePause: Pause the near sync migrate\n - SdkNearSyncRequestedStateResume: Resume the near sync migrate\n - SdkNearSyncRequestedStateStop: Stop a near sync migrate",
         "enum": [
           "SdkCloudBackupRequestedStateUnknown",
           "SdkCloudBackupRequestedStatePause",
           "SdkCloudBackupRequestedStateResume",
-          "SdkCloudBackupRequestedStateStop"
+          "SdkCloudBackupRequestedStateStop",
+          "SdkNearSyncRequestedStatePause",
+          "SdkNearSyncRequestedStateResume",
+          "SdkNearSyncRequestedStateStop"
         ],
         "title": "SdkCloudBackupRequestedState defines states to set a specified backup or restore\nto or from a cloud provider",
         "type": "string"
@@ -2501,9 +2563,24 @@
       },
       "apiSdkCloudBackupSizeResponse": {
         "properties": {
+          "capacity_required_for_restore": {
+            "format": "uint64",
+            "title": "Used size of the volume to be restored (in bytes)",
+            "type": "string"
+          },
+          "compressed_object_bytes": {
+            "format": "uint64",
+            "title": "Size of the compressed individual backup in object-store or NFS",
+            "type": "string"
+          },
           "size": {
             "format": "uint64",
-            "title": "Size is the size of the volume in bytes",
+            "title": "Same value as total_download_bytes, will be deprecated",
+            "type": "string"
+          },
+          "total_download_bytes": {
+            "format": "uint64",
+            "title": "Total download size of all the backups (full \u0026 incremental) required for a restore",
             "type": "string"
           }
         },
@@ -2598,6 +2675,11 @@
             "title": "Local indicates if only those backups/restores that are\nactive on current node must be returned",
             "type": "boolean"
           },
+          "near_sync_migrate": {
+            "format": "boolean",
+            "title": "Indicates if this is for nearsync migration",
+            "type": "boolean"
+          },
           "task_id": {
             "description": "TaskId of the backup/restore task, if this is specified,\nvolume_id is ignored.",
             "type": "string"
@@ -2625,7 +2707,7 @@
       },
       "apiSdkCloudBackupStatusType": {
         "default": "SdkCloudBackupStatusTypeUnknown",
-        "description": "- SdkCloudBackupStatusTypeUnknown: Unkonwn\n - SdkCloudBackupStatusTypeNotStarted: Not started\n - SdkCloudBackupStatusTypeDone: Done\n - SdkCloudBackupStatusTypeAborted: Aborted\n - SdkCloudBackupStatusTypePaused: Paused\n - SdkCloudBackupStatusTypeStopped: Stopped\n - SdkCloudBackupStatusTypeActive: Active\n - SdkCloudBackupStatusTypeFailed: Failed\n - SdkCloudBackupStatusTypeQueued: Queued\n - SdkCloudBackupStatusTypeInvalid: Invalid, used by enumerate, includes failed,\nstopped and aborted",
+        "description": "- SdkCloudBackupStatusTypeUnknown: Unkonwn\n - SdkCloudBackupStatusTypeNotStarted: Not started\n - SdkCloudBackupStatusTypeDone: Done\n - SdkCloudBackupStatusTypeAborted: Aborted\n - SdkCloudBackupStatusTypePaused: Paused\n - SdkCloudBackupStatusTypeStopped: Stopped\n - SdkCloudBackupStatusTypeActive: Active\n - SdkCloudBackupStatusTypeFailed: Failed\n - SdkCloudBackupStatusTypeQueued: Queued\n - SdkCloudBackupStatusTypeInvalid: Invalid, used by enumerate, includes failed,\nstopped and aborted\n - SdkNearSyncStatusTypeNotStarted: Near sync\nNot started\n - SdkNearSyncStatusTypeDone: Done\n - SdkNearSyncStatusTypePaused: Paused\n - SdkNearSyncStatusTypeStopped: Stopped\n - SdkNearSyncStatusTypeActive: Active\n - SdkNearSyncStatusTypeFailed: Failed\n - SdkNearSyncStatusTypeInvalid: Invalid",
         "enum": [
           "SdkCloudBackupStatusTypeUnknown",
           "SdkCloudBackupStatusTypeNotStarted",
@@ -2636,7 +2718,14 @@
           "SdkCloudBackupStatusTypeActive",
           "SdkCloudBackupStatusTypeFailed",
           "SdkCloudBackupStatusTypeQueued",
-          "SdkCloudBackupStatusTypeInvalid"
+          "SdkCloudBackupStatusTypeInvalid",
+          "SdkNearSyncStatusTypeNotStarted",
+          "SdkNearSyncStatusTypeDone",
+          "SdkNearSyncStatusTypePaused",
+          "SdkNearSyncStatusTypeStopped",
+          "SdkNearSyncStatusTypeActive",
+          "SdkNearSyncStatusTypeFailed",
+          "SdkNearSyncStatusTypeInvalid"
         ],
         "title": "CloudBackup status types",
         "type": "string"
@@ -2830,6 +2919,9 @@
             "title": "Name of the credential",
             "type": "string"
           },
+          "nfs_credential": {
+            "$ref": "#/components/schemas/apiSdkNfsCredentialRequest"
+          },
           "ownership": {
             "$ref": "#/components/schemas/apiOwnership"
           },
@@ -2905,6 +2997,9 @@
           "name": {
             "title": "Name of the credential",
             "type": "string"
+          },
+          "nfs_credential": {
+            "$ref": "#/components/schemas/apiSdkNfsCredentialResponse"
           },
           "ownership": {
             "$ref": "#/components/schemas/apiOwnership"
@@ -3207,6 +3302,52 @@
           }
         },
         "title": "Defines a response for an SDK request that spins up a new job\nto perform the request",
+        "type": "object"
+      },
+      "apiSdkNfsCredentialRequest": {
+        "properties": {
+          "mount_opts": {
+            "title": "mount options for nfs mount",
+            "type": "string"
+          },
+          "server": {
+            "title": "NFS Server address",
+            "type": "string"
+          },
+          "sub_path": {
+            "title": "NFS export path",
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "format": "int64",
+            "title": "timeout for nfs IO in seconds",
+            "type": "integer"
+          }
+        },
+        "title": "Defines credentials for NFS",
+        "type": "object"
+      },
+      "apiSdkNfsCredentialResponse": {
+        "properties": {
+          "mount_opts": {
+            "title": "mount options ( \",\" separated)",
+            "type": "string"
+          },
+          "server": {
+            "title": "NFS Server Address",
+            "type": "string"
+          },
+          "sub_path": {
+            "title": "NFS export path",
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "format": "int64",
+            "title": "timeout in seconds",
+            "type": "integer"
+          }
+        },
+        "title": "Defines the response for NFS credential",
         "type": "object"
       },
       "apiSdkNodeCordonAttachmentsRequest": {
@@ -3966,6 +4107,13 @@
       },
       "apiSdkVolumeCloneRequest": {
         "properties": {
+          "additional_labels": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Additional labels to be appended after cloning the volume. Note that clone will\nissue a snapshot, which copies most labels except pvc and namespace. This map\nallows you to pass additional labels that are not part of the parent volume.",
+            "type": "object"
+          },
           "name": {
             "description": "Unique name of the volume. This will be used for idempotency.",
             "type": "string"
@@ -5293,6 +5441,10 @@
           "export_spec": {
             "$ref": "#/components/schemas/apiExportSpec"
           },
+          "fa_create_options": {
+            "description": "Filesystem create options to be honored.",
+            "type": "string"
+          },
           "force_unsupported_fs_type": {
             "description": "Use to force a file system type which is not recommended.\nThe driver may still refuse to use the file system type.",
             "format": "boolean",
@@ -5335,6 +5487,14 @@
           },
           "mount_options": {
             "$ref": "#/components/schemas/apiMountOptions"
+          },
+          "near_sync": {
+            "format": "boolean",
+            "title": "NearSync specifies the volume has a near-sync replica",
+            "type": "boolean"
+          },
+          "near_sync_replication_strategy": {
+            "$ref": "#/components/schemas/apiNearSyncReplicationStrategy"
           },
           "nodiscard": {
             "description": "Nodiscard specifies if the volume will be mounted with discard support disabled.\ni.e. FS will not release allocated blocks back to the backing storage pool.",
@@ -5610,6 +5770,9 @@
           "mount_opt_spec": {
             "$ref": "#/components/schemas/apiMountOptions"
           },
+          "near_sync_replication_strategy": {
+            "$ref": "#/components/schemas/apiNearSyncReplicationStrategy"
+          },
           "nodiscard": {
             "format": "boolean",
             "type": "boolean"
@@ -5798,7 +5961,7 @@
   },
   "info": {
     "title": "OpenStorage SDK",
-    "version": "0.101.28"
+    "version": "0.101.37"
   },
   "openapi": "3.0.0",
   "paths": {
@@ -6095,6 +6258,15 @@
             "schema": {
               "format": "boolean",
               "type": "boolean"
+            }
+          },
+          {
+            "description": "Bucket name to which cloud backup belongs to.",
+            "in": "query",
+            "name": "bucket",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -7150,6 +7322,68 @@
         "summary": "Stop a filesystem check background operation on an unmounted volume, if any",
         "tags": [
           "OpenStorageFilesystemCheck"
+        ]
+      }
+    },
+    "/v1/filesystem-trim/auto-fstrim-pop": {
+      "post": {
+        "operationId": "AutoFSTrimPop",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiSdkAutoFSTrimPopRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkAutoFSTrimPopResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Pop a auto filesystem Trim job from the queue",
+        "tags": [
+          "OpenStorageFilesystemTrim"
+        ]
+      }
+    },
+    "/v1/filesystem-trim/auto-fstrim-push": {
+      "post": {
+        "operationId": "AutoFSTrimPush",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apiSdkAutoFSTrimPushRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiSdkAutoFSTrimPushResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Push a auto filesystem Trim job into the queue",
+        "tags": [
+          "OpenStorageFilesystemTrim"
         ]
       }
     },

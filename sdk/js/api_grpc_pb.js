@@ -149,6 +149,50 @@ function deserialize_openstorage_api_SdkAlertsEnumerateWithFiltersResponse(buffe
   return api_pb.SdkAlertsEnumerateWithFiltersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkAutoFSTrimPopRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPopRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPopRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPopRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPopRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimPopResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPopResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPopResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPopResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPopResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimPushRequest(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPushRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPushRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPushRequest(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPushRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkAutoFSTrimPushResponse(arg) {
+  if (!(arg instanceof api_pb.SdkAutoFSTrimPushResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimPushResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkAutoFSTrimPushResponse(buffer_arg) {
+  return api_pb.SdkAutoFSTrimPushResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkAutoFSTrimStatusRequest(arg) {
   if (!(arg instanceof api_pb.SdkAutoFSTrimStatusRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkAutoFSTrimStatusRequest');
@@ -2693,6 +2737,30 @@ stop: {
     requestDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStopRequest,
     responseSerialize: serialize_openstorage_api_SdkFilesystemTrimStopResponse,
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemTrimStopResponse,
+  },
+  // Push a auto filesystem Trim job into the queue
+autoFSTrimPush: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPush',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimPushRequest,
+    responseType: api_pb.SdkAutoFSTrimPushResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimPushRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPushRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimPushResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPushResponse,
+  },
+  // Pop a auto filesystem Trim job from the queue
+autoFSTrimPop: {
+    path: '/openstorage.api.OpenStorageFilesystemTrim/AutoFSTrimPop',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkAutoFSTrimPopRequest,
+    responseType: api_pb.SdkAutoFSTrimPopResponse,
+    requestSerialize: serialize_openstorage_api_SdkAutoFSTrimPopRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPopRequest,
+    responseSerialize: serialize_openstorage_api_SdkAutoFSTrimPopResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkAutoFSTrimPopResponse,
   },
 };
 

@@ -157,6 +157,10 @@ module Openstorage
         rpc :AutoFSTrimUsage, SdkAutoFSTrimUsageRequest, SdkAutoFSTrimUsageResponse
         # Stop a filesystem Trim background operation on a mounted volume, if any
         rpc :Stop, SdkFilesystemTrimStopRequest, SdkFilesystemTrimStopResponse
+        # Push a auto filesystem Trim job into the queue
+        rpc :AutoFSTrimPush, SdkAutoFSTrimPushRequest, SdkAutoFSTrimPushResponse
+        # Pop a auto filesystem Trim job from the queue
+        rpc :AutoFSTrimPop, SdkAutoFSTrimPopRequest, SdkAutoFSTrimPopResponse
       end
 
       Stub = Service.rpc_stub_class
