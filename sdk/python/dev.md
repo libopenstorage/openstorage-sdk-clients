@@ -18,9 +18,38 @@ python3 -m twine upload dist/*
 > NOTE: You will need to setup your $HOME/.pypirc with the API tokens for both
 > the testpypi and pypi servers.
 
+See https://pypi.org/help/#apitoken
 
-## Patch Number
+Example `$HOME/.pypirc`:
+
+```
+[pypi]
+  username = __token__
+  password = pypi-A...
+[testpypi]
+  username = __token__
+  password = pypi-A...
+[libopenstorage-openstorage]
+  repository = https://test.pypi.org/legacy/
+  username = __token__
+  password = pypi-A...
+```
+
+## Updating requirements.txt
+
+To update the `requirements.txt` run:
+
+```
+make requirements
+```
+
+## Versions
+
+Versions go in `openstorage/__about__.py` as a variable called `VERSION`
+
+### Patch Number
 
 If during the testing you find an error and fix it, then you will want to add
 a PATCH number of ".1", and so on to the value of PATCH in the Makefile. This is
 due to pypi or testpypi not allowing uploads to get overwritten.
+
