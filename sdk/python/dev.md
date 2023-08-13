@@ -18,6 +18,22 @@ python3 -m twine upload dist/*
 > NOTE: You will need to setup your $HOME/.pypirc with the API tokens for both
 > the testpypi and pypi servers.
 
+See https://pypi.org/help/#apitoken
+
+Example `$HOME/.pypirc`:
+
+```
+[pypi]
+  username = __token__
+  password = pypi-A...
+[testpypi]
+  username = __token__
+  password = pypi-A...
+[libopenstorage-openstorage]
+  repository = https://test.pypi.org/legacy/
+  username = __token__
+  password = pypi-A...
+```
 
 ## Patch Number
 

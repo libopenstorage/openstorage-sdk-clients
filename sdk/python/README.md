@@ -34,3 +34,7 @@ except grpc.RpcError as e:
     print('Failed: code={0} msg={1}'.format(e.code(), e.details()))
 ```
 
+## Development
+
+Please read [dev.md](dev.md) to publish on pypi.org
+
