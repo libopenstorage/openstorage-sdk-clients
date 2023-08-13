@@ -39926,7 +39926,8 @@ proto.openstorage.api.SdkAwsCredentialRequest.toObject = function(includeInstanc
     endpoint: jspb.Message.getFieldWithDefault(msg, 3, ""),
     region: jspb.Message.getFieldWithDefault(msg, 4, ""),
     disableSsl: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    disablePathStyle: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+    disablePathStyle: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    serverSideEncryption: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -39986,6 +39987,10 @@ proto.openstorage.api.SdkAwsCredentialRequest.deserializeBinaryFromReader = func
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisablePathStyle(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setServerSideEncryption(value);
       break;
     default:
       reader.skipField();
@@ -40055,6 +40060,13 @@ proto.openstorage.api.SdkAwsCredentialRequest.serializeBinaryToWriter = function
   if (f) {
     writer.writeBool(
       6,
+      f
+    );
+  }
+  f = message.getServerSideEncryption();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -40166,6 +40178,24 @@ proto.openstorage.api.SdkAwsCredentialRequest.prototype.getDisablePathStyle = fu
  */
 proto.openstorage.api.SdkAwsCredentialRequest.prototype.setDisablePathStyle = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional string server_side_encryption = 7;
+ * @return {string}
+ */
+proto.openstorage.api.SdkAwsCredentialRequest.prototype.getServerSideEncryption = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkAwsCredentialRequest} returns this
+ */
+proto.openstorage.api.SdkAwsCredentialRequest.prototype.setServerSideEncryption = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -40746,7 +40776,8 @@ proto.openstorage.api.SdkAwsCredentialResponse.toObject = function(includeInstan
     region: jspb.Message.getFieldWithDefault(msg, 4, ""),
     disableSsl: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     disablePathStyle: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    s3StorageClass: jspb.Message.getFieldWithDefault(msg, 7, "")
+    s3StorageClass: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    serverSideEncryption: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -40806,6 +40837,10 @@ proto.openstorage.api.SdkAwsCredentialResponse.deserializeBinaryFromReader = fun
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setS3StorageClass(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setServerSideEncryption(value);
       break;
     default:
       reader.skipField();
@@ -40875,6 +40910,13 @@ proto.openstorage.api.SdkAwsCredentialResponse.serializeBinaryToWriter = functio
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getServerSideEncryption();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -40986,6 +41028,24 @@ proto.openstorage.api.SdkAwsCredentialResponse.prototype.getS3StorageClass = fun
  */
 proto.openstorage.api.SdkAwsCredentialResponse.prototype.setS3StorageClass = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string server_side_encryption = 8;
+ * @return {string}
+ */
+proto.openstorage.api.SdkAwsCredentialResponse.prototype.getServerSideEncryption = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.openstorage.api.SdkAwsCredentialResponse} returns this
+ */
+proto.openstorage.api.SdkAwsCredentialResponse.prototype.setServerSideEncryption = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -76047,7 +76107,7 @@ proto.openstorage.api.SdkVersion.serializeBinaryToWriter = function(message, wri
 proto.openstorage.api.SdkVersion.Version = {
   MUST_HAVE_ZERO_VALUE: 0,
   MAJOR: 0,
-  MINOR: 163,
+  MINOR: 164,
   PATCH: 0
 };
 
