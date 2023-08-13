@@ -35,8 +35,21 @@ Example `$HOME/.pypirc`:
   password = pypi-A...
 ```
 
-## Patch Number
+## Updating requirements.txt
+
+To update the `requirements.txt` run:
+
+```
+make requirements
+```
+
+## Versions
+
+Versions go in `openstorage/__about__.py` as a variable called `VERSION`
+
+### Patch Number
 
 If during the testing you find an error and fix it, then you will want to add
 a PATCH number of ".1", and so on to the value of PATCH in the Makefile. This is
 due to pypi or testpypi not allowing uploads to get overwritten.
+

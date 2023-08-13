@@ -1,5 +1,6 @@
 APIDIR := ../..
 VEDIR := build
+RELDIR := release
 PYTHON := python3
 PIP := pip3
 PATCH :=
@@ -37,16 +38,28 @@ grpc:
 		--grpc_python_out=. \
 		$(GOPATH)/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api/http.proto"
 	sed -i -e "s#^import api_pb2 as api__pb2#from openstorage import api_pb2 as api__pb2#" openstorage/api_pb2_grpc.py
-	sed -e "s#%%APIVER%%#$(APIVER)$(PATCH)#" setup.py.tmpl > setup.py
-	bash -c "source $(VEDIR)/bin/activate && \
-		$(PYTHON) setup.py sdist bdist_egg"
+	echo "VERSION = '$(APIVER)'" > openstorage/__about__.py
+	sudo rm -rf $(VEDIR)
 
+requirements:
+	docker run -ti \
+		-v $(PWD):$(PWD) \
+		-w $(PWD) \
+		--rm \
+		--privileged \
+		python \
+		bash -c "python3 -m venv req && \
+			source req/bin/activate && \
+			pip3 install grpcio grpcio-tools kubernetes && \
+			pip3 freeze > requirements.txt && \
+			rm -rf req"
+
+.PHONY: release
 release:
-	$(PYTHON) -m venv release
-	bash -c "source release/bin/activate && \
-		python3 -m pip install --upgrade pip && \
-		python3 -m pip install --upgrade twine"
-
+	-$(PYTHON) -m venv $(RELDIR)
+	bash -c "source $(RELDIR)/bin/activate && \
+		pip3 install --upgrade pip twine build && \
+		python3 -m build"
 
 clean:
 	sudo rm -rf $(VEDIR) setup.py dist libopenstorage_openstorage.egg-info
