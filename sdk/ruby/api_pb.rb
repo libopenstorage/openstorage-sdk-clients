@@ -874,6 +874,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :region, :string, 4
       optional :disable_ssl, :bool, 5
       optional :disable_path_style, :bool, 6
+      optional :server_side_encryption, :string, 7
     end
     add_message "openstorage.api.SdkAzureCredentialRequest" do
       optional :account_name, :string, 1
@@ -896,6 +897,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :disable_ssl, :bool, 5
       optional :disable_path_style, :bool, 6
       optional :s3_storage_class, :string, 7
+      optional :server_side_encryption, :string, 8
     end
     add_message "openstorage.api.SdkAzureCredentialResponse" do
       optional :account_name, :string, 2
@@ -1771,7 +1773,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :MUST_HAVE_ZERO_VALUE, 0
       value :Major, 0
       value :Minor, 101
-      value :Patch, 37
+      value :Patch, 39
     end
     add_message "openstorage.api.StorageVersion" do
       optional :driver, :string, 1
@@ -2137,6 +2139,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :IO_PROFILE_AUTO, 6
       value :IO_PROFILE_NONE, 7
       value :IO_PROFILE_JOURNAL, 8
+      value :IO_PROFILE_AUTO_JOURNAL, 9
     end
     add_enum "openstorage.api.VolumeState" do
       value :VOLUME_STATE_NONE, 0
