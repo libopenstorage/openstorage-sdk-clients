@@ -209,6 +209,15 @@ module Openstorage
       #    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
       #    Status of this operation can be polled in the way mentioned in step 3
       #    This operation can be stopped a Stop request as mentioned in step 6
+      # 8. To list all snapshots in the filesystem that are created by fsck, issue a
+      # 	grpc call to
+      # 	`OpenStorageFilesystemCheckClient.ListSnapshots()`
+      # 9. To delete all snapshots in the filesystem that are created by fsck, issue a
+      # 	grpc call to
+      # 	`OpenStorageFilesystemCheckClient.DeleteSnapshots()`
+      # 10. To list all volumes in the filesystem that need fsck check/fix, issue a
+      # 	grpc call to
+      # 	`OpenStorageFilesystemCheckClient.ListVolumes()`
       #
       class Service
 
@@ -225,6 +234,12 @@ module Openstorage
         rpc :Status, SdkFilesystemCheckStatusRequest, SdkFilesystemCheckStatusResponse
         # Stop a filesystem check background operation on an unmounted volume, if any
         rpc :Stop, SdkFilesystemCheckStopRequest, SdkFilesystemCheckStopResponse
+        # List all fsck created snapshots on volume
+        rpc :ListSnapshots, SdkFilesystemCheckListSnapshotsRequest, SdkFilesystemCheckListSnapshotsResponse
+        # Delete all fsck created snapshots on volume
+        rpc :DeleteSnapshots, SdkFilesystemCheckDeleteSnapshotsRequest, SdkFilesystemCheckDeleteSnapshotsResponse
+        # List of all volumes which require fsck check/fix to be run
+        rpc :ListVolumes, SdkFilesystemCheckListVolumesRequest, SdkFilesystemCheckListVolumesResponse
       end
 
       Stub = Service.rpc_stub_class
@@ -362,6 +377,12 @@ module Openstorage
         rpc :GetRebalanceJobStatus, SdkGetRebalanceJobStatusRequest, SdkGetRebalanceJobStatusResponse
         # EnumerateRebalanceJobs returns all rebalance jobs currently known to the system
         rpc :EnumerateRebalanceJobs, SdkEnumerateRebalanceJobsRequest, SdkEnumerateRebalanceJobsResponse
+        # CreateRebalanceSchedule creates a scheudle for the input rebalance requests
+        rpc :CreateRebalanceSchedule, SdkCreateRebalanceScheduleRequest, SdkCreateRebalanceScheduleResponse
+        # GetRebalanceSchedule returns the information of rebalance schedule
+        rpc :GetRebalanceSchedule, SdkGetRebalanceScheduleRequest, SdkGetRebalanceScheduleResponse
+        # DeleteRebalanceSchedule deletes the rebalance schedule
+        rpc :DeleteRebalanceSchedule, SdkDeleteRebalanceScheduleRequest, SdkDeleteRebalanceScheduleResponse
       end
 
       Stub = Service.rpc_stub_class
@@ -847,6 +868,40 @@ module Openstorage
         # Release specified storage policy constraint for volume
         # creation
         rpc :Release, SdkOpenStoragePolicyReleaseRequest, SdkOpenStoragePolicyReleaseResponse
+      end
+
+      Stub = Service.rpc_stub_class
+    end
+    module OpenStorageVerifyChecksum
+      # ## OpenStorageVerifyChecksum
+      # This service provides methods to manage verify checksum operations on a
+      # volume.
+      #
+      # This operation is run in the background on a clone of the volume.
+      #
+      # A typical workflow involving checksum validation would be as follows
+      # 1. To trigger checksum validation on a volume issue a grpc call to
+      #    `OpenStorageVerifyChecksum.Start()`
+      # 2. Status of the checksum validation can be retrieved by polling for the status using
+      #    `OpenStorageVerifyChecksum.Status()`
+      # 3. Checksum validation runs in the background, to stop the
+      #    operation issue a call to
+      #    `OpenStorageVerifyChecksum.Stop()`
+      #
+      class Service
+
+        include GRPC::GenericService
+
+        self.marshal_class_method = :encode
+        self.unmarshal_class_method = :decode
+        self.service_name = 'openstorage.api.OpenStorageVerifyChecksum'
+
+        # Start a verify checksum background operation on a volume.
+        rpc :Start, SdkVerifyChecksumStartRequest, SdkVerifyChecksumStartResponse
+        # Get Status of a verify checksum background operation on a volume
+        rpc :Status, SdkVerifyChecksumStatusRequest, SdkVerifyChecksumStatusResponse
+        # Stop a verify checksum background operation on a volume
+        rpc :Stop, SdkVerifyChecksumStopRequest, SdkVerifyChecksumStopResponse
       end
 
       Stub = Service.rpc_stub_class

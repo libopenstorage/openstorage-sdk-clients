@@ -875,6 +875,28 @@ function deserialize_openstorage_api_SdkClusterPairResetTokenResponse(buffer_arg
   return api_pb.SdkClusterPairResetTokenResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkCreateRebalanceScheduleRequest(arg) {
+  if (!(arg instanceof api_pb.SdkCreateRebalanceScheduleRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCreateRebalanceScheduleRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCreateRebalanceScheduleRequest(buffer_arg) {
+  return api_pb.SdkCreateRebalanceScheduleRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkCreateRebalanceScheduleResponse(arg) {
+  if (!(arg instanceof api_pb.SdkCreateRebalanceScheduleResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkCreateRebalanceScheduleResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkCreateRebalanceScheduleResponse(buffer_arg) {
+  return api_pb.SdkCreateRebalanceScheduleResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkCredentialCreateRequest(arg) {
   if (!(arg instanceof api_pb.SdkCredentialCreateRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkCredentialCreateRequest');
@@ -1029,6 +1051,28 @@ function deserialize_openstorage_api_SdkCredentialValidateResponse(buffer_arg) {
   return api_pb.SdkCredentialValidateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkDeleteRebalanceScheduleRequest(arg) {
+  if (!(arg instanceof api_pb.SdkDeleteRebalanceScheduleRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkDeleteRebalanceScheduleRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkDeleteRebalanceScheduleRequest(buffer_arg) {
+  return api_pb.SdkDeleteRebalanceScheduleRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkDeleteRebalanceScheduleResponse(arg) {
+  if (!(arg instanceof api_pb.SdkDeleteRebalanceScheduleResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkDeleteRebalanceScheduleResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkDeleteRebalanceScheduleResponse(buffer_arg) {
+  return api_pb.SdkDeleteRebalanceScheduleResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkDiagsCollectRequest(arg) {
   if (!(arg instanceof api_pb.SdkDiagsCollectRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkDiagsCollectRequest');
@@ -1093,6 +1137,72 @@ function serialize_openstorage_api_SdkEnumerateRebalanceJobsResponse(arg) {
 
 function deserialize_openstorage_api_SdkEnumerateRebalanceJobsResponse(buffer_arg) {
   return api_pb.SdkEnumerateRebalanceJobsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckDeleteSnapshotsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckDeleteSnapshotsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckDeleteSnapshotsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckDeleteSnapshotsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckDeleteSnapshotsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckDeleteSnapshotsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckListSnapshotsRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckListSnapshotsRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckListSnapshotsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckListSnapshotsRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckListSnapshotsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckListSnapshotsResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckListSnapshotsResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckListSnapshotsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckListSnapshotsResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckListSnapshotsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckListVolumesRequest(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckListVolumesRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckListVolumesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckListVolumesRequest(buffer_arg) {
+  return api_pb.SdkFilesystemCheckListVolumesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkFilesystemCheckListVolumesResponse(arg) {
+  if (!(arg instanceof api_pb.SdkFilesystemCheckListVolumesResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkFilesystemCheckListVolumesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkFilesystemCheckListVolumesResponse(buffer_arg) {
+  return api_pb.SdkFilesystemCheckListVolumesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkFilesystemCheckStartRequest(arg) {
@@ -1269,6 +1379,28 @@ function serialize_openstorage_api_SdkGetRebalanceJobStatusResponse(arg) {
 
 function deserialize_openstorage_api_SdkGetRebalanceJobStatusResponse(buffer_arg) {
   return api_pb.SdkGetRebalanceJobStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkGetRebalanceScheduleRequest(arg) {
+  if (!(arg instanceof api_pb.SdkGetRebalanceScheduleRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkGetRebalanceScheduleRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkGetRebalanceScheduleRequest(buffer_arg) {
+  return api_pb.SdkGetRebalanceScheduleRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkGetRebalanceScheduleResponse(arg) {
+  if (!(arg instanceof api_pb.SdkGetRebalanceScheduleResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkGetRebalanceScheduleResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkGetRebalanceScheduleResponse(buffer_arg) {
+  return api_pb.SdkGetRebalanceScheduleResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_openstorage_api_SdkIdentityCapabilitiesRequest(arg) {
@@ -2085,6 +2217,72 @@ function deserialize_openstorage_api_SdkUpdateRebalanceJobResponse(buffer_arg) {
   return api_pb.SdkUpdateRebalanceJobResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_openstorage_api_SdkVerifyChecksumStartRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVerifyChecksumStartRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVerifyChecksumStartRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVerifyChecksumStartRequest(buffer_arg) {
+  return api_pb.SdkVerifyChecksumStartRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVerifyChecksumStartResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVerifyChecksumStartResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVerifyChecksumStartResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVerifyChecksumStartResponse(buffer_arg) {
+  return api_pb.SdkVerifyChecksumStartResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVerifyChecksumStatusRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVerifyChecksumStatusRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVerifyChecksumStatusRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVerifyChecksumStatusRequest(buffer_arg) {
+  return api_pb.SdkVerifyChecksumStatusRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVerifyChecksumStatusResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVerifyChecksumStatusResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVerifyChecksumStatusResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVerifyChecksumStatusResponse(buffer_arg) {
+  return api_pb.SdkVerifyChecksumStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVerifyChecksumStopRequest(arg) {
+  if (!(arg instanceof api_pb.SdkVerifyChecksumStopRequest)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVerifyChecksumStopRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVerifyChecksumStopRequest(buffer_arg) {
+  return api_pb.SdkVerifyChecksumStopRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_openstorage_api_SdkVerifyChecksumStopResponse(arg) {
+  if (!(arg instanceof api_pb.SdkVerifyChecksumStopResponse)) {
+    throw new Error('Expected argument of type openstorage.api.SdkVerifyChecksumStopResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_openstorage_api_SdkVerifyChecksumStopResponse(buffer_arg) {
+  return api_pb.SdkVerifyChecksumStopResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_openstorage_api_SdkVolumeAttachRequest(arg) {
   if (!(arg instanceof api_pb.SdkVolumeAttachRequest)) {
     throw new Error('Expected argument of type openstorage.api.SdkVolumeAttachRequest');
@@ -2874,6 +3072,15 @@ exports.OpenStorageFilesystemTrimClient = grpc.makeGenericClientConstructor(Open
 //    `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
 //    Status of this operation can be polled in the way mentioned in step 3
 //    This operation can be stopped a Stop request as mentioned in step 6
+// 8. To list all snapshots in the filesystem that are created by fsck, issue a
+// 	grpc call to
+// 	`OpenStorageFilesystemCheckClient.ListSnapshots()`
+// 9. To delete all snapshots in the filesystem that are created by fsck, issue a
+// 	grpc call to
+// 	`OpenStorageFilesystemCheckClient.DeleteSnapshots()`
+// 10. To list all volumes in the filesystem that need fsck check/fix, issue a
+// 	grpc call to
+// 	`OpenStorageFilesystemCheckClient.ListVolumes()`
 //
 var OpenStorageFilesystemCheckService = exports.OpenStorageFilesystemCheckService = {
   // Start a filesystem-check background operation on a unmounted volume.
@@ -2912,6 +3119,42 @@ stop: {
     requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStopRequest,
     responseSerialize: serialize_openstorage_api_SdkFilesystemCheckStopResponse,
     responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckStopResponse,
+  },
+  // List all fsck created snapshots on volume
+listSnapshots: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/ListSnapshots',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckListSnapshotsRequest,
+    responseType: api_pb.SdkFilesystemCheckListSnapshotsResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckListSnapshotsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckListSnapshotsRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckListSnapshotsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckListSnapshotsResponse,
+  },
+  // Delete all fsck created snapshots on volume
+deleteSnapshots: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/DeleteSnapshots',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckDeleteSnapshotsRequest,
+    responseType: api_pb.SdkFilesystemCheckDeleteSnapshotsResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckDeleteSnapshotsResponse,
+  },
+  // List of all volumes which require fsck check/fix to be run
+listVolumes: {
+    path: '/openstorage.api.OpenStorageFilesystemCheck/ListVolumes',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkFilesystemCheckListVolumesRequest,
+    responseType: api_pb.SdkFilesystemCheckListVolumesResponse,
+    requestSerialize: serialize_openstorage_api_SdkFilesystemCheckListVolumesRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkFilesystemCheckListVolumesRequest,
+    responseSerialize: serialize_openstorage_api_SdkFilesystemCheckListVolumesResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkFilesystemCheckListVolumesResponse,
   },
 };
 
@@ -3184,6 +3427,42 @@ enumerateRebalanceJobs: {
     requestDeserialize: deserialize_openstorage_api_SdkEnumerateRebalanceJobsRequest,
     responseSerialize: serialize_openstorage_api_SdkEnumerateRebalanceJobsResponse,
     responseDeserialize: deserialize_openstorage_api_SdkEnumerateRebalanceJobsResponse,
+  },
+  // CreateRebalanceSchedule creates a scheudle for the input rebalance requests
+createRebalanceSchedule: {
+    path: '/openstorage.api.OpenStoragePool/CreateRebalanceSchedule',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkCreateRebalanceScheduleRequest,
+    responseType: api_pb.SdkCreateRebalanceScheduleResponse,
+    requestSerialize: serialize_openstorage_api_SdkCreateRebalanceScheduleRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkCreateRebalanceScheduleRequest,
+    responseSerialize: serialize_openstorage_api_SdkCreateRebalanceScheduleResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkCreateRebalanceScheduleResponse,
+  },
+  // GetRebalanceSchedule returns the information of rebalance schedule
+getRebalanceSchedule: {
+    path: '/openstorage.api.OpenStoragePool/GetRebalanceSchedule',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkGetRebalanceScheduleRequest,
+    responseType: api_pb.SdkGetRebalanceScheduleResponse,
+    requestSerialize: serialize_openstorage_api_SdkGetRebalanceScheduleRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkGetRebalanceScheduleRequest,
+    responseSerialize: serialize_openstorage_api_SdkGetRebalanceScheduleResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkGetRebalanceScheduleResponse,
+  },
+  // DeleteRebalanceSchedule deletes the rebalance schedule
+deleteRebalanceSchedule: {
+    path: '/openstorage.api.OpenStoragePool/DeleteRebalanceSchedule',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkDeleteRebalanceScheduleRequest,
+    responseType: api_pb.SdkDeleteRebalanceScheduleResponse,
+    requestSerialize: serialize_openstorage_api_SdkDeleteRebalanceScheduleRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkDeleteRebalanceScheduleRequest,
+    responseSerialize: serialize_openstorage_api_SdkDeleteRebalanceScheduleResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkDeleteRebalanceScheduleResponse,
   },
 };
 
@@ -4366,3 +4645,58 @@ release: {
 };
 
 exports.OpenStoragePolicyClient = grpc.makeGenericClientConstructor(OpenStoragePolicyService);
+// ## OpenStorageVerifyChecksum
+// This service provides methods to manage verify checksum operations on a
+// volume.
+//
+// This operation is run in the background on a clone of the volume.
+//
+// A typical workflow involving checksum validation would be as follows
+// 1. To trigger checksum validation on a volume issue a grpc call to
+//    `OpenStorageVerifyChecksum.Start()`
+// 2. Status of the checksum validation can be retrieved by polling for the status using
+//    `OpenStorageVerifyChecksum.Status()`
+// 3. Checksum validation runs in the background, to stop the
+//    operation issue a call to
+//    `OpenStorageVerifyChecksum.Stop()`
+//
+var OpenStorageVerifyChecksumService = exports.OpenStorageVerifyChecksumService = {
+  // Start a verify checksum background operation on a volume.
+start: {
+    path: '/openstorage.api.OpenStorageVerifyChecksum/Start',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVerifyChecksumStartRequest,
+    responseType: api_pb.SdkVerifyChecksumStartResponse,
+    requestSerialize: serialize_openstorage_api_SdkVerifyChecksumStartRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVerifyChecksumStartRequest,
+    responseSerialize: serialize_openstorage_api_SdkVerifyChecksumStartResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVerifyChecksumStartResponse,
+  },
+  // Get Status of a verify checksum background operation on a volume
+status: {
+    path: '/openstorage.api.OpenStorageVerifyChecksum/Status',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVerifyChecksumStatusRequest,
+    responseType: api_pb.SdkVerifyChecksumStatusResponse,
+    requestSerialize: serialize_openstorage_api_SdkVerifyChecksumStatusRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVerifyChecksumStatusRequest,
+    responseSerialize: serialize_openstorage_api_SdkVerifyChecksumStatusResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVerifyChecksumStatusResponse,
+  },
+  // Stop a verify checksum background operation on a volume
+stop: {
+    path: '/openstorage.api.OpenStorageVerifyChecksum/Stop',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SdkVerifyChecksumStopRequest,
+    responseType: api_pb.SdkVerifyChecksumStopResponse,
+    requestSerialize: serialize_openstorage_api_SdkVerifyChecksumStopRequest,
+    requestDeserialize: deserialize_openstorage_api_SdkVerifyChecksumStopRequest,
+    responseSerialize: serialize_openstorage_api_SdkVerifyChecksumStopResponse,
+    responseDeserialize: deserialize_openstorage_api_SdkVerifyChecksumStopResponse,
+  },
+};
+
+exports.OpenStorageVerifyChecksumClient = grpc.makeGenericClientConstructor(OpenStorageVerifyChecksumService);

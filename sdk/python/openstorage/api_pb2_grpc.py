@@ -774,6 +774,15 @@ class OpenStorageFilesystemCheckStub(object):
     `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
     Status of this operation can be polled in the way mentioned in step 3
     This operation can be stopped a Stop request as mentioned in step 6
+    8. To list all snapshots in the filesystem that are created by fsck, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.ListSnapshots()`
+    9. To delete all snapshots in the filesystem that are created by fsck, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.DeleteSnapshots()`
+    10. To list all volumes in the filesystem that need fsck check/fix, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.ListVolumes()`
 
     """
 
@@ -797,6 +806,21 @@ class OpenStorageFilesystemCheckStub(object):
                 '/openstorage.api.OpenStorageFilesystemCheck/Stop',
                 request_serializer=api__pb2.SdkFilesystemCheckStopRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkFilesystemCheckStopResponse.FromString,
+                )
+        self.ListSnapshots = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemCheck/ListSnapshots',
+                request_serializer=api__pb2.SdkFilesystemCheckListSnapshotsRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkFilesystemCheckListSnapshotsResponse.FromString,
+                )
+        self.DeleteSnapshots = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemCheck/DeleteSnapshots',
+                request_serializer=api__pb2.SdkFilesystemCheckDeleteSnapshotsRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkFilesystemCheckDeleteSnapshotsResponse.FromString,
+                )
+        self.ListVolumes = channel.unary_unary(
+                '/openstorage.api.OpenStorageFilesystemCheck/ListVolumes',
+                request_serializer=api__pb2.SdkFilesystemCheckListVolumesRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkFilesystemCheckListVolumesResponse.FromString,
                 )
 
 
@@ -844,6 +868,15 @@ class OpenStorageFilesystemCheckServicer(object):
     `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
     Status of this operation can be polled in the way mentioned in step 3
     This operation can be stopped a Stop request as mentioned in step 6
+    8. To list all snapshots in the filesystem that are created by fsck, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.ListSnapshots()`
+    9. To delete all snapshots in the filesystem that are created by fsck, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.DeleteSnapshots()`
+    10. To list all volumes in the filesystem that need fsck check/fix, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.ListVolumes()`
 
     """
 
@@ -869,6 +902,27 @@ class OpenStorageFilesystemCheckServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ListSnapshots(self, request, context):
+        """List all fsck created snapshots on volume
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSnapshots(self, request, context):
+        """Delete all fsck created snapshots on volume
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ListVolumes(self, request, context):
+        """List of all volumes which require fsck check/fix to be run
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStorageFilesystemCheckServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -886,6 +940,21 @@ def add_OpenStorageFilesystemCheckServicer_to_server(servicer, server):
                     servicer.Stop,
                     request_deserializer=api__pb2.SdkFilesystemCheckStopRequest.FromString,
                     response_serializer=api__pb2.SdkFilesystemCheckStopResponse.SerializeToString,
+            ),
+            'ListSnapshots': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListSnapshots,
+                    request_deserializer=api__pb2.SdkFilesystemCheckListSnapshotsRequest.FromString,
+                    response_serializer=api__pb2.SdkFilesystemCheckListSnapshotsResponse.SerializeToString,
+            ),
+            'DeleteSnapshots': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSnapshots,
+                    request_deserializer=api__pb2.SdkFilesystemCheckDeleteSnapshotsRequest.FromString,
+                    response_serializer=api__pb2.SdkFilesystemCheckDeleteSnapshotsResponse.SerializeToString,
+            ),
+            'ListVolumes': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListVolumes,
+                    request_deserializer=api__pb2.SdkFilesystemCheckListVolumesRequest.FromString,
+                    response_serializer=api__pb2.SdkFilesystemCheckListVolumesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -938,6 +1007,15 @@ class OpenStorageFilesystemCheck(object):
     `OpenStorageFilesystemCheckClient.Start(Mode='fix_safe')`
     Status of this operation can be polled in the way mentioned in step 3
     This operation can be stopped a Stop request as mentioned in step 6
+    8. To list all snapshots in the filesystem that are created by fsck, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.ListSnapshots()`
+    9. To delete all snapshots in the filesystem that are created by fsck, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.DeleteSnapshots()`
+    10. To list all volumes in the filesystem that need fsck check/fix, issue a
+    	grpc call to
+    	`OpenStorageFilesystemCheckClient.ListVolumes()`
 
     """
 
@@ -989,6 +1067,57 @@ class OpenStorageFilesystemCheck(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/Stop',
             api__pb2.SdkFilesystemCheckStopRequest.SerializeToString,
             api__pb2.SdkFilesystemCheckStopResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListSnapshots(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/ListSnapshots',
+            api__pb2.SdkFilesystemCheckListSnapshotsRequest.SerializeToString,
+            api__pb2.SdkFilesystemCheckListSnapshotsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteSnapshots(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/DeleteSnapshots',
+            api__pb2.SdkFilesystemCheckDeleteSnapshotsRequest.SerializeToString,
+            api__pb2.SdkFilesystemCheckDeleteSnapshotsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListVolumes(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageFilesystemCheck/ListVolumes',
+            api__pb2.SdkFilesystemCheckListVolumesRequest.SerializeToString,
+            api__pb2.SdkFilesystemCheckListVolumesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1633,6 +1762,21 @@ class OpenStoragePoolStub(object):
                 request_serializer=api__pb2.SdkEnumerateRebalanceJobsRequest.SerializeToString,
                 response_deserializer=api__pb2.SdkEnumerateRebalanceJobsResponse.FromString,
                 )
+        self.CreateRebalanceSchedule = channel.unary_unary(
+                '/openstorage.api.OpenStoragePool/CreateRebalanceSchedule',
+                request_serializer=api__pb2.SdkCreateRebalanceScheduleRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkCreateRebalanceScheduleResponse.FromString,
+                )
+        self.GetRebalanceSchedule = channel.unary_unary(
+                '/openstorage.api.OpenStoragePool/GetRebalanceSchedule',
+                request_serializer=api__pb2.SdkGetRebalanceScheduleRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkGetRebalanceScheduleResponse.FromString,
+                )
+        self.DeleteRebalanceSchedule = channel.unary_unary(
+                '/openstorage.api.OpenStoragePool/DeleteRebalanceSchedule',
+                request_serializer=api__pb2.SdkDeleteRebalanceScheduleRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkDeleteRebalanceScheduleResponse.FromString,
+                )
 
 
 class OpenStoragePoolServicer(object):
@@ -1678,6 +1822,27 @@ class OpenStoragePoolServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateRebalanceSchedule(self, request, context):
+        """CreateRebalanceSchedule creates a scheudle for the input rebalance requests
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetRebalanceSchedule(self, request, context):
+        """GetRebalanceSchedule returns the information of rebalance schedule
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteRebalanceSchedule(self, request, context):
+        """DeleteRebalanceSchedule deletes the rebalance schedule
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OpenStoragePoolServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -1705,6 +1870,21 @@ def add_OpenStoragePoolServicer_to_server(servicer, server):
                     servicer.EnumerateRebalanceJobs,
                     request_deserializer=api__pb2.SdkEnumerateRebalanceJobsRequest.FromString,
                     response_serializer=api__pb2.SdkEnumerateRebalanceJobsResponse.SerializeToString,
+            ),
+            'CreateRebalanceSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateRebalanceSchedule,
+                    request_deserializer=api__pb2.SdkCreateRebalanceScheduleRequest.FromString,
+                    response_serializer=api__pb2.SdkCreateRebalanceScheduleResponse.SerializeToString,
+            ),
+            'GetRebalanceSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetRebalanceSchedule,
+                    request_deserializer=api__pb2.SdkGetRebalanceScheduleRequest.FromString,
+                    response_serializer=api__pb2.SdkGetRebalanceScheduleResponse.SerializeToString,
+            ),
+            'DeleteRebalanceSchedule': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteRebalanceSchedule,
+                    request_deserializer=api__pb2.SdkDeleteRebalanceScheduleRequest.FromString,
+                    response_serializer=api__pb2.SdkDeleteRebalanceScheduleResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1799,6 +1979,57 @@ class OpenStoragePool(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStoragePool/EnumerateRebalanceJobs',
             api__pb2.SdkEnumerateRebalanceJobsRequest.SerializeToString,
             api__pb2.SdkEnumerateRebalanceJobsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateRebalanceSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStoragePool/CreateRebalanceSchedule',
+            api__pb2.SdkCreateRebalanceScheduleRequest.SerializeToString,
+            api__pb2.SdkCreateRebalanceScheduleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetRebalanceSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStoragePool/GetRebalanceSchedule',
+            api__pb2.SdkGetRebalanceScheduleRequest.SerializeToString,
+            api__pb2.SdkGetRebalanceScheduleResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DeleteRebalanceSchedule(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStoragePool/DeleteRebalanceSchedule',
+            api__pb2.SdkDeleteRebalanceScheduleRequest.SerializeToString,
+            api__pb2.SdkDeleteRebalanceScheduleResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -5145,5 +5376,180 @@ class OpenStoragePolicy(object):
         return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStoragePolicy/Release',
             api__pb2.SdkOpenStoragePolicyReleaseRequest.SerializeToString,
             api__pb2.SdkOpenStoragePolicyReleaseResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class OpenStorageVerifyChecksumStub(object):
+    """## OpenStorageVerifyChecksum
+    This service provides methods to manage verify checksum operations on a
+    volume.
+
+    This operation is run in the background on a clone of the volume.
+
+    A typical workflow involving checksum validation would be as follows
+    1. To trigger checksum validation on a volume issue a grpc call to
+    `OpenStorageVerifyChecksum.Start()`
+    2. Status of the checksum validation can be retrieved by polling for the status using
+    `OpenStorageVerifyChecksum.Status()`
+    3. Checksum validation runs in the background, to stop the
+    operation issue a call to
+    `OpenStorageVerifyChecksum.Stop()`
+
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Start = channel.unary_unary(
+                '/openstorage.api.OpenStorageVerifyChecksum/Start',
+                request_serializer=api__pb2.SdkVerifyChecksumStartRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkVerifyChecksumStartResponse.FromString,
+                )
+        self.Status = channel.unary_unary(
+                '/openstorage.api.OpenStorageVerifyChecksum/Status',
+                request_serializer=api__pb2.SdkVerifyChecksumStatusRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkVerifyChecksumStatusResponse.FromString,
+                )
+        self.Stop = channel.unary_unary(
+                '/openstorage.api.OpenStorageVerifyChecksum/Stop',
+                request_serializer=api__pb2.SdkVerifyChecksumStopRequest.SerializeToString,
+                response_deserializer=api__pb2.SdkVerifyChecksumStopResponse.FromString,
+                )
+
+
+class OpenStorageVerifyChecksumServicer(object):
+    """## OpenStorageVerifyChecksum
+    This service provides methods to manage verify checksum operations on a
+    volume.
+
+    This operation is run in the background on a clone of the volume.
+
+    A typical workflow involving checksum validation would be as follows
+    1. To trigger checksum validation on a volume issue a grpc call to
+    `OpenStorageVerifyChecksum.Start()`
+    2. Status of the checksum validation can be retrieved by polling for the status using
+    `OpenStorageVerifyChecksum.Status()`
+    3. Checksum validation runs in the background, to stop the
+    operation issue a call to
+    `OpenStorageVerifyChecksum.Stop()`
+
+    """
+
+    def Start(self, request, context):
+        """Start a verify checksum background operation on a volume.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Status(self, request, context):
+        """Get Status of a verify checksum background operation on a volume
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Stop(self, request, context):
+        """Stop a verify checksum background operation on a volume
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_OpenStorageVerifyChecksumServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Start': grpc.unary_unary_rpc_method_handler(
+                    servicer.Start,
+                    request_deserializer=api__pb2.SdkVerifyChecksumStartRequest.FromString,
+                    response_serializer=api__pb2.SdkVerifyChecksumStartResponse.SerializeToString,
+            ),
+            'Status': grpc.unary_unary_rpc_method_handler(
+                    servicer.Status,
+                    request_deserializer=api__pb2.SdkVerifyChecksumStatusRequest.FromString,
+                    response_serializer=api__pb2.SdkVerifyChecksumStatusResponse.SerializeToString,
+            ),
+            'Stop': grpc.unary_unary_rpc_method_handler(
+                    servicer.Stop,
+                    request_deserializer=api__pb2.SdkVerifyChecksumStopRequest.FromString,
+                    response_serializer=api__pb2.SdkVerifyChecksumStopResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'openstorage.api.OpenStorageVerifyChecksum', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class OpenStorageVerifyChecksum(object):
+    """## OpenStorageVerifyChecksum
+    This service provides methods to manage verify checksum operations on a
+    volume.
+
+    This operation is run in the background on a clone of the volume.
+
+    A typical workflow involving checksum validation would be as follows
+    1. To trigger checksum validation on a volume issue a grpc call to
+    `OpenStorageVerifyChecksum.Start()`
+    2. Status of the checksum validation can be retrieved by polling for the status using
+    `OpenStorageVerifyChecksum.Status()`
+    3. Checksum validation runs in the background, to stop the
+    operation issue a call to
+    `OpenStorageVerifyChecksum.Stop()`
+
+    """
+
+    @staticmethod
+    def Start(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageVerifyChecksum/Start',
+            api__pb2.SdkVerifyChecksumStartRequest.SerializeToString,
+            api__pb2.SdkVerifyChecksumStartResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Status(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageVerifyChecksum/Status',
+            api__pb2.SdkVerifyChecksumStatusRequest.SerializeToString,
+            api__pb2.SdkVerifyChecksumStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Stop(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/openstorage.api.OpenStorageVerifyChecksum/Stop',
+            api__pb2.SdkVerifyChecksumStopRequest.SerializeToString,
+            api__pb2.SdkVerifyChecksumStopResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
